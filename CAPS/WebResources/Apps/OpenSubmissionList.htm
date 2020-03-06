@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript" src="../../ClientGlobalContext.js.aspx"></script>
+    <script src="../Scripts/Common/jquery-3.4.1.min.js" type="text/javascript"></script>
+
+    <style>
+        .select {
+            font-size: 17px;
+            font-family: Segoe UI Regular, SeguoUI, Arial;
+            color: rgb(51, 51, 51);
+        }
+    </style>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?$select=caps_submissionid,caps_name&$filter=statuscode eq 1").then(
+                function success(result) {
+                    var options = $("#submissionCategory");
+
+                    for (var i = 0; i < result.entities.length; i++) {
+                        options.append($("<option />").val(result.entities[i].caps_submissionid).text(result.entities[i].caps_name));
+                    }
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
+
+
+        });
+
+        function validate() {
+            if (!$("#submissionCategory").val()) {
+                alert("You must select a submission.");
+                return false;
+            }
+
+            return $("#submissionCategory").val();
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    </script>
+</head>
+<body>
+    <!--<h1>Submission Categories</h1>-->
+    <div style="padding:20px;">
+        <select class="select" id="submissionCategory"></select>
+    </div>
+    <!--<div style="padding-top: 20px; float: right;">
+        <button id="cancelBtn" onclick="closePopup();">Cancel</button>
+        <button id="saveBtn" onclick="validate();">Assign</button>
+    </div>-->
+</body>
+</html >
