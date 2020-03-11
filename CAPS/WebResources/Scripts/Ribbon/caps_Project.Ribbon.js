@@ -4,14 +4,25 @@ var CAPS = CAPS || {};
 CAPS.Project = CAPS.Project ||
     {
     GLOBAL_FORM_CONTEXT: null,
-    PROJECT_ARRAY: null
+    PROJECT_ARRAY: null,
+    SHOW_CANCEL_ASYNC_COMPLETED: false,
+    SHOW_CANCEL_BUTTON: false
     };
+
+const PROJECT_STATE = {
+    DRAFT: 1,
+    SUBMITTED: 100000009,
+    PLANNED: 100000004,
+    SUPPORTED: 100000003,
+    APPROVED: 100000005,
+    COMPLETE: 100000009
+};
 
 
 /**
  * Called from Project Homepage (main list view).  Takes in a list of records.  This function
  * calls ShowSubmissionWindow to show the submission selection popup.
- * @param {any} selectedControlIds
+ * @param {any} selectedControlIds selected Control IDs
  */
 CAPS.Project.AddListToSubmission = function (selectedControlIds) {
     
@@ -52,7 +63,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds) {
 /**
  * Called from Project Form.  Takes in the form context as primary Control.  This function
  * calls ShowSubmissionWindow to show the submission selection popup.
- * @param {any} primaryControl
+ * @param {any} primaryControl primary Control
  */
 CAPS.Project.AddToSubmission = function (primaryControl) {
     var formContext = primaryControl;
@@ -87,8 +98,92 @@ CAPS.Project.AddToSubmission = function (primaryControl) {
 }
 
 /**
+ * Function which determines if the cancel button should be shown.
+ * If using the MyCaps app, the button is only shown on draft records
+ * If using the Caps app, the button is only shown for planned, supported or approved projects
+ * @param {any} primaryControl primary Control 
+ * @returns {any} true/false
+ */
+CAPS.Project.ShowCancelButton = function (primaryControl) {
+    var formContext = primaryControl;
+
+    if (CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED) {
+        return CAPS.Project.SHOW_CANCEL_BUTTON;
+    }
+
+    var globalContext = Xrm.Utility.getGlobalContext();
+    globalContext.getCurrentAppName().then(
+        function success(result) {
+            CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED = true;
+            
+            var recordStatus = formContext.getAttribute("statuscode").getValue();
+            if (result === "MyCAPS") {
+                if (recordStatus === PROJECT_STATE.DRAFT) {
+                    CAPS.Project.SHOW_CANCEL_BUTTON = true;
+                }
+                
+            }
+            else if (result === "CAPS") {
+                if (recordStatus === PROJECT_STATE.PLANNED || recordStatus === PROJECT_STATE.SUPPORTED || recordStatus === PROJECT_STATE.APPROVED) {
+                    CAPS.Project.SHOW_CANCEL_BUTTON = true;
+                }
+            }
+
+            if (CAPS.Project.SHOW_CANCEL_BUTTON) {
+                formContext.ui.refreshRibbon();
+            }
+        }
+        , function (error) {
+            CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED = true;
+            CAPS.Project.SHOW_CANCEL_BUTTON = false;
+            Xrm.Navigation.openAlertDialog({ text: error.message });
+        });
+}
+
+
+/**
+ * Called from Project Form, this function shows the cancel tab as well as the reason for cancellation field and makes it mandatory.
+ * @param {any} primaryControl primary control
+ */
+CAPS.Project.CancelProject = function (primaryControl) {
+    var formContext = primaryControl;
+
+    var confirmStrings = { text: "Do you wish to deactivate this project? Click OK to continue or Cancel to keep the project.  ", title: "Confirm Project Cancellation" };
+    var confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                //show cancel tab 
+                if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT) {
+                    formContext.getAttribute("statecode").setValue(1);
+                    formContext.getAttribute("statuscode").setValue(100000010);
+                    formContext.data.entity.save();
+                }
+                else {
+                    formContext.ui.tabs.get("tab_cancel").setVisible(true);
+
+                    //show reason for cancellation and make mandatory
+                    formContext.getAttribute("caps_reasonforcancellation").setRequiredLevel("required");
+                    formContext.getControl("caps_reasonforcancellation").setVisible(true);
+                    formContext.getControl("caps_reasonforcancellation").setFocus();
+
+                    //change status
+                    formContext.getAttribute("statecode").setValue(1);
+                    formContext.getAttribute("statuscode").setValue(100000010);
+
+                    //Prevent auto-save
+                    CAPS.Project.PREVENT_AUTO_SAVE = true;
+                }
+            }
+        });
+    
+
+
+}
+
+/**
  * Opens a modal window with a submission drop down
- * @param {any} selectedControlIds
+ * @param {any} selectedControlIds selected Control IDs
  */
 CAPS.Project.ShowSubmissionWindow = function (selectedControlIds) {
 

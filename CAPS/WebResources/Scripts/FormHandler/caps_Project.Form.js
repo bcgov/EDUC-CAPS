@@ -3,9 +3,10 @@
 /* INCLUDE CAPS.Common.js */
 
 var CAPS = CAPS || {};
-CAPS.Project = CAPS.Project || { GLOBAL_FORM_CONTEXT: null};
-
-
+CAPS.Project = CAPS.Project || {
+    GLOBAL_FORM_CONTEXT: null,
+    PREVENT_AUTO_SAVE: false
+};
 
 const FORM_STATE = {
     UNDEFINED: 0,
@@ -24,7 +25,7 @@ const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
 
 /**
  * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events
- * @param {any} executionContext
+ * @param {any} executionContext the form execution context
  */
 CAPS.Project.onLoad = function (executionContext) {
     
@@ -32,6 +33,13 @@ CAPS.Project.onLoad = function (executionContext) {
     CAPS.Project.GLOBAL_FORM_CONTEXT = formContext;
 
     CAPS.Project.ShowHideRelevantTabs(formContext);
+
+    var formState = formContext.ui.getFormType();
+
+    if (formState === FORM_STATE.CREATE) {
+        //Set School District based on User
+        CAPS.Project.DefaultSchoolDistrict(formContext);
+    }
     
     //Check if Expenditure Validation Required
     if (formContext.getAttribute("caps_submissioncategoryrequirecostallocation").getValue() === true) {
@@ -48,9 +56,58 @@ CAPS.Project.onLoad = function (executionContext) {
     //TODO: Have added a flag to Project Submission, if we are keeping then add calculated field to Project and check here
     CAPS.Project.addFacilitiesEventListener(0);
 
-    //Set School District based on User
-    CAPS.Project.DefaultLookupIfSingle(formContext, "caps_schooldistrict", "caps_schooldistrict", "caps_schooldistrictid", "caps_name");
 
+    //CAPS.Project.DefaultLookupIfSingle(formContext, "caps_schooldistrict", "caps_schooldistrict", "caps_schooldistrictid", "caps_name");
+
+}
+
+CAPS.Project.onSave = function (executionContext) {
+    if (CAPS.Project.PREVENT_AUTO_SAVE) {
+        var eventArgs = executionContext.getEventArgs();
+        //auto-save = 70
+        if (eventArgs.getSaveMode() === 70) {
+            eventArgs.preventDefault();
+        }
+    }
+}
+/**
+ * Sets the projects School District to the user's business unit's school district if it's set
+ * @param {any} formContext the form's form context
+ */
+CAPS.Project.DefaultSchoolDistrict = function (formContext) {
+    //get Current User ID
+    var userSettings = Xrm.Utility.getGlobalContext().userSettings;
+
+    var userId = userSettings.userId;
+
+    //Get BU from User record
+    Xrm.WebApi.retrieveRecord("systemuser", userId, "?$select=_businessunitid_value").then(
+        function success(result) {
+
+            var businessUnit = result["_businessunitid_value"];
+
+            //Now get Business Unit's School District if it exists
+            Xrm.WebApi.retrieveRecord("businessunit", businessUnit, "?$select=_caps_schooldistrict_value").then(
+                function success(resultBU) {
+
+                    var sdID = resultBU["_caps_schooldistrict_value"];
+                    if (sdID !== null) {
+                        var sdName = resultBU["_caps_schooldistrict_value@OData.Community.Display.V1.FormattedValue"];
+                        var sdType = resultBU["_caps_schooldistrict_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                        formContext.getAttribute("caps_schooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
+                    }
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
+        },
+        function (error) {
+            console.log(error.message);
+            // handle error conditions
+        }
+    );
 }
 
 /**
@@ -110,7 +167,7 @@ CAPS.Project.RemoveRequirement = function(formContext, tabsToDisregard){
 /**
  * This function compares the total project cost to the sum of the estimated yearly expenditures and shows an error if they don't match.
  * This function is only called if the related Submission Category field Require Cost Allocation is set to Yes.
- * @param {any} executionContext
+ * @param {any} executionContext Execution Context
  */
 CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
     //Only validate if Submission Category requires 10 year plan
@@ -130,7 +187,7 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
 
 /**
  * This function waits for the Facilities subgrid to load and adds an event listener to the grid for validating that at least one facility was added.
- * @param {any} loopCount
+ * @param {any} loopCount count of loops
  */
 CAPS.Project.addFacilitiesEventListener = function(loopCount) {
     var gridContext = CAPS.Project.GLOBAL_FORM_CONTEXT.getControl("Facilities - SEP");
@@ -146,7 +203,7 @@ CAPS.Project.addFacilitiesEventListener = function(loopCount) {
 
 /**
  * This function validates that at least one facility has been added to the project
- * @param {any} executionContext
+ * @param {any} executionContext Execution Context
  */
 CAPS.Project.ValidateAtLeaseOneFacility = function (executionContext) {
     var gridContext = executionContext.getFormContext(); 
