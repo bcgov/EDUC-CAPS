@@ -4,7 +4,10 @@
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="CAPS_DEV___ITKSB4">
-      <DataSourceReference>CAPS DEV (ITKSB4)</DataSourceReference>
+      <ConnectionProperties>
+        <DataProvider>MSCRMFETCH</DataProvider>
+        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+      </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>fd8aaa13-e3c9-437f-90bd-aedc8dea1d54</rd:DataSourceID>
     </DataSource>
@@ -129,16 +132,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.18367in</Width>
+                  <Width>0.66804in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.069in</Width>
+                  <Width>0.96746in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.42317in</Width>
+                  <Width>1.05338in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.26692in</Width>
+                  <Width>0.90234in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.36596in</Width>
@@ -146,7 +149,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.46875in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -505,10 +508,9 @@
                 <Value>=Fields!caps_submissioncategory.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>2.24965in</Top>
-            <Left>0cm</Left>
-            <Height>0.5in</Height>
-            <Width>8.30872in</Width>
+            <Top>2.12465in</Top>
+            <Height>0.71875in</Height>
+            <Width>6.95718in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -843,7 +845,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CapitalPlan</DataSetName>
-            <Top>1.01389in</Top>
+            <Top>0.88889in</Top>
             <Height>1in</Height>
             <Width>3.05867in</Width>
             <ZIndex>1</ZIndex>
@@ -870,8 +872,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>CapitalPlan_caps_schooldistrict</rd:DefaultName>
-            <Top>0.39465in</Top>
-            <Left>0in</Left>
+            <Top>0.33215in</Top>
             <Height>0.32521in</Height>
             <Width>3.48438in</Width>
             <ZIndex>2</ZIndex>
@@ -902,7 +903,6 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>CapitalPlan_caps_name</rd:DefaultName>
-            <Left>0in</Left>
             <Height>0.35298in</Height>
             <Width>3.48438in</Width>
             <ZIndex>3</ZIndex>
@@ -917,10 +917,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.9684in</Height>
+        <Height>2.8434in</Height>
         <Style />
       </Body>
-      <Width>8.30872in</Width>
+      <Width>7.47016in</Width>
       <Page>
         <PageHeader>
           <Height>1.79917cm</Height>
@@ -963,8 +963,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="Report run: " &amp; Globals!ExecutionTime</Value>
-                      <Style />
+                      <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
+                      <Style>
+                        <Format>yyyy-MM-dd</Format>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
@@ -973,7 +975,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox49</rd:DefaultName>
-              <Left>5.72537in</Left>
+              <Left>4.88683in</Left>
               <Height>0.25in</Height>
               <Width>2.58333in</Width>
               <ZIndex>1</ZIndex>
@@ -1017,7 +1019,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.75in</Top>
-              <Left>6.97017in</Left>
+              <Left>6.13162in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <Style>
@@ -1037,12 +1039,10 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>8.5in</PageHeight>
-        <PageWidth>11in</PageWidth>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
