@@ -28,17 +28,22 @@ const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
  * @param {any} executionContext the form execution context
  */
 CAPS.Project.onLoad = function (executionContext) {
-    
+    // Set variables
     var formContext = executionContext.getFormContext();
     CAPS.Project.GLOBAL_FORM_CONTEXT = formContext;
-
-    CAPS.Project.ShowHideRelevantTabs(formContext);
-
     var formState = formContext.ui.getFormType();
 
+    //Show/Hide Tabs
+    CAPS.Project.ShowHideRelevantTabs(formContext);
+
+    
+    //On Create
     if (formState === FORM_STATE.CREATE) {
         //Set School District based on User
         CAPS.Project.DefaultSchoolDistrict(formContext);
+
+        //add onchange events for create
+        formContext.getAttribute("caps_submissioncategory").addOnChange(CAPS.Project.SetProjectTypeValue);
     }
     
     //Check if Expenditure Validation Required
@@ -47,7 +52,7 @@ CAPS.Project.onLoad = function (executionContext) {
         formContext.getAttribute("caps_totalprojectcost").addOnChange(CAPS.Project.ValidateExpenditureDistribution);
 
         //caps_sumestimatedyearlyexpenditures caps_totalestimatedprojectcost
-        formContext.getAttribute("caps_sumestimatedyearlyexpenditures").addOnChange(CAPS.Project.ValidateExpenditureDistribution);
+        formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidateExpenditureDistribution);
 
         CAPS.Project.ValidateExpenditureDistribution(executionContext);
     }
@@ -57,10 +62,39 @@ CAPS.Project.onLoad = function (executionContext) {
     CAPS.Project.addFacilitiesEventListener(0);
 
 
-    //CAPS.Project.DefaultLookupIfSingle(formContext, "caps_schooldistrict", "caps_schooldistrict", "caps_schooldistrictid", "caps_name");
+}
+/**
+ * Set's the Project Type if the lookup list only contains one value.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.SetProjectTypeValue = function (executionContext) {
 
+    var formContext = executionContext.getFormContext();
+
+    //Get Submission Category
+    var submissionCategory = formContext.getAttribute("caps_submissioncategory").getValue();
+
+    if (submissionCategory !== null && submissionCategory[0] !== null) {
+        var submissionCategoryID = submissionCategory[0].id;
+
+        //Filtering fetch XML for Project Type
+        var filterFetchXml = "<link-entity name=\"caps_submissioncategory_caps_projecttype\" from=\"caps_projecttypeid\" to=\"caps_projecttypeid\" visible=\"false\" intersect=\"true\">" +
+            "<link-entity name=\"caps_submissioncategory\" from=\"caps_submissioncategoryid\" to=\"caps_submissioncategoryid\" alias=\"ab\">" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_submissioncategoryid\" operator=\"eq\" value=\"" + submissionCategoryID + "\" />" +
+            "</filter>" +
+            "</link-entity>" +
+            "</link-entity>";
+
+        //Call to set default value if only one value exists
+        CAPS.Common.DefaultLookupIfSingle(formContext, "caps_projecttype", "caps_projecttype", "caps_projecttypeid", "caps_type", filterFetchXml);
+    }
 }
 
+/**
+ * Prevents autosave if the global prevent autosave flag is set
+ * @param {any} executionContext execution context
+ */
 CAPS.Project.onSave = function (executionContext) {
     if (CAPS.Project.PREVENT_AUTO_SAVE) {
         var eventArgs = executionContext.getEventArgs();
@@ -113,7 +147,7 @@ CAPS.Project.DefaultSchoolDistrict = function (formContext) {
 /**
  * This function shows either the General tab for new Projects or the relevant tab from the related Submission Category for existing projects.
  * It also calls a function to turn off any field validation for any tab not shown.
- * @param {any} formContext
+ * @param {any} formContext form context
  */
 CAPS.Project.ShowHideRelevantTabs = function (formContext) {
     //check form state
@@ -147,7 +181,7 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
 
 /**
  * This function turns off all field requirements for any field except those in the tabsToDisregard array
- * @param {any} formContext
+ * @param {any} formContext form context
  * @param {any} tabsToDisregard - array of tab names to disregard
  */
 CAPS.Project.RemoveRequirement = function(formContext, tabsToDisregard){
@@ -175,7 +209,7 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
     var totalProjectCost = formContext.getAttribute("caps_totalprojectcost").getValue();
-    var sumOfEstimatedExpenditures = formContext.getAttribute("caps_sumestimatedyearlyexpenditures").getValue();
+    var sumOfEstimatedExpenditures = formContext.getAttribute("caps_totalallocated").getValue();
 
     if (totalProjectCost !== sumOfEstimatedExpenditures) {
         formContext.getControl("caps_totalprojectcost").setNotification('Total Project Cost Not Fully Allocated', COST_MISSMATCH_NOTIFICATION);

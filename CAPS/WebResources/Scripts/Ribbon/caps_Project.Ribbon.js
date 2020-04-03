@@ -6,7 +6,8 @@ CAPS.Project = CAPS.Project ||
     GLOBAL_FORM_CONTEXT: null,
     PROJECT_ARRAY: null,
     SHOW_CANCEL_ASYNC_COMPLETED: false,
-    SHOW_CANCEL_BUTTON: false
+    SHOW_CANCEL_BUTTON: false,
+    VIEW_SELECTED_CONTROL: null
     };
 
 const PROJECT_STATE = {
@@ -24,11 +25,12 @@ const PROJECT_STATE = {
  * calls ShowSubmissionWindow to show the submission selection popup.
  * @param {any} selectedControlIds selected Control IDs
  */
-CAPS.Project.AddListToSubmission = function (selectedControlIds) {
-    
+CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl) {
+    CAPS.Project.VIEW_SELECTED_CONTROL = selectedControl;
     //Get all "Draft" projects and confirm that the selected list only contains Draft ones.
     Xrm.WebApi.retrieveMultipleRecords("caps_project", "?$select=caps_projectid&$filter=statuscode eq 1").then(
         function success(result) {
+
             var unqualifiedRecordFound = false;
 
             var draftProjects = [];
@@ -44,7 +46,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds) {
             });
 
             if (unqualifiedRecordFound) {
-                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the submisson.", title: "Error" };
+                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the capital plan.", title: "Error" };
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
             }
@@ -55,6 +57,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds) {
         function (error) {
             console.log(error.message);
             // handle error conditions
+            Xrm.Navigation.openErrorDialog({ message: error.message });
             return false;
         }
     );
@@ -101,7 +104,7 @@ CAPS.Project.AddToSubmission = function (primaryControl) {
  * Function which determines if the cancel button should be shown.
  * If using the MyCaps app, the button is only shown on draft records
  * If using the Caps app, the button is only shown for planned, supported or approved projects
- * @param {any} primaryControl primary Control 
+ * @param {any} primaryControl record's primary Control 
  * @returns {any} true/false
  */
 CAPS.Project.ShowCancelButton = function (primaryControl) {
@@ -154,13 +157,22 @@ CAPS.Project.CancelProject = function (primaryControl) {
         function (success) {
             if (success.confirmed) {
                 //show cancel tab 
+                var currentStatus = formContext.getAttribute("statuscode").getValue().toString();
+
                 if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT) {
+                    //update pre-cancellation status
+                    formContext.getAttribute("caps_precancellationstatus").setValue(currentStatus);
+
                     formContext.getAttribute("statecode").setValue(1);
                     formContext.getAttribute("statuscode").setValue(100000010);
                     formContext.data.entity.save();
                 }
                 else {
+                    //show cancelation tab
                     formContext.ui.tabs.get("tab_cancel").setVisible(true);
+
+                    //update pre-cancellation status
+                    formContext.getAttribute("caps_precancellationstatus").setValue(currentStatus);
 
                     //show reason for cancellation and make mandatory
                     formContext.getAttribute("caps_reasonforcancellation").setRequiredLevel("required");
@@ -175,10 +187,104 @@ CAPS.Project.CancelProject = function (primaryControl) {
                     CAPS.Project.PREVENT_AUTO_SAVE = true;
                 }
             }
+        },
+        function (error) {
+            Xrm.Navigation.openErrorDialog({ message: error });
+        }
+
+    );
+}
+
+/**
+ * Function which determines if the uncancel button should be shown.
+ * If using the MyCaps app, the button is only shown on records that were draft records
+ * If using the Caps app, the button is only shown on records that were planned, supported or approved projects
+ * @param {any} primaryControl record's primary Control
+ * @returns {any} true/false
+ */
+CAPS.Project.ShowUncancelButton = function (primaryControl) {
+    var formContext = primaryControl;
+
+    if (CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED) {
+        return CAPS.Project.SHOW_CANCEL_BUTTON;
+    }
+
+    var globalContext = Xrm.Utility.getGlobalContext();
+    globalContext.getCurrentAppName().then(
+        function success(result) {
+            CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED = true;
+
+            var recordStatus = parseInt(formContext.getAttribute("caps_precancellationstatus").getValue());
+
+            if (result === "MyCAPS") {
+                if (recordStatus === PROJECT_STATE.DRAFT) {
+                    CAPS.Project.SHOW_CANCEL_BUTTON = true;
+                }
+
+            }
+            else if (result === "CAPS") {
+                if (recordStatus === PROJECT_STATE.PLANNED || recordStatus === PROJECT_STATE.SUPPORTED || recordStatus === PROJECT_STATE.APPROVED) {
+                    CAPS.Project.SHOW_CANCEL_BUTTON = true;
+                }
+            }
+
+            if (CAPS.Project.SHOW_CANCEL_BUTTON) {
+                formContext.ui.refreshRibbon();
+            }
+        }
+        , function (error) {
+            CAPS.Project.SHOW_CANCEL_ASYNC_COMPLETED = true;
+            CAPS.Project.SHOW_CANCEL_BUTTON = false;
+            Xrm.Navigation.openAlertDialog({ text: error.message });
         });
-    
+}
 
+/**
+ * Called from Project Form, this function allows the user to uncancel a project and put it back into it's previous status.
+ * @param {any} primaryControl the record's primary control
+ */
+CAPS.Project.UncancelProject = function (primaryControl) {
+    var formContext = primaryControl;
 
+    var confirmStrings = { text: "Are you sure you want to activate the selected Project?", title: "Confirm Project Activation" };
+    var confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                //show cancel tab 
+                var preCancellationStatus = PROJECT_STATE.DRAFT;
+                if (formContext.getAttribute("caps_precancellationstatus").getValue() !== null) {
+                    preCancellationStatus = parseInt(formContext.getAttribute("caps_precancellationstatus").getValue());
+                }
+
+                var data =
+                {
+                    "statecode": 0,
+                    "statuscode": preCancellationStatus,
+                    "caps_precancellationstatus": null,
+                    "caps_reasonforcancellation": null
+                };
+
+                var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+
+                // update the record
+                Xrm.WebApi.updateRecord("caps_project", recordId, data).then(
+                    function success(result) {
+                        // perform operations on record update
+                        formContext.data.refresh();
+                    },
+                    function (error) {
+                        // handle error conditions
+                        Xrm.Navigation.openErrorDialog({ message: error.message });
+                    }
+                );
+
+            }
+        },
+        function (error) {
+            Xrm.Navigation.openErrorDialog({ message: error });
+        }
+    );
 }
 
 /**
@@ -193,7 +299,7 @@ CAPS.Project.ShowSubmissionWindow = function (selectedControlIds) {
     
     var webResource = '/caps_/Apps/OpenSubmissionList.htm';
 
-    Alert.showWebResource(webResource, 500, 230, "Add to Submission", [
+    Alert.showWebResource(webResource, 500, 230, "Add to Capital Plan", [
         new Alert.Button("Add", CAPS.Project.SubmissionResult, true, true),
         new Alert.Button("Cancel")
     ], clientUrl, true, null);
@@ -222,8 +328,15 @@ CAPS.Project.SubmissionResult = function () {
         function (results) {
             //Close Popup
             Alert.hide();
+            if (CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
+                CAPS.Project.VIEW_SELECTED_CONTROL.refresh();
+            }
         }
-        , function (error) { }
+        , function (error) {
+            //Close Popup
+            Alert.hide();
+            Xrm.Navigation.openErrorDialog({ message: error.message });
+        }
     );
 }
 
