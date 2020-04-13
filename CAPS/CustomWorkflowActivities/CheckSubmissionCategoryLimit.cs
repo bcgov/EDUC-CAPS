@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 
 namespace CustomWorkflowActivities
 {
+    /// <summary>
+    /// Called when a project is added to a capital plan, this CWA checks if the submission category has a limit and if it's been reached.
+    /// If it has an error is returned.
+    /// </summary>
     public class CheckSubmissionCategoryLimit : CodeActivity
     {
         //Define the properties

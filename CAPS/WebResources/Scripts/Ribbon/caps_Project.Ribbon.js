@@ -24,6 +24,7 @@ const PROJECT_STATE = {
  * Called from Project Homepage (main list view).  Takes in a list of records.  This function
  * calls ShowSubmissionWindow to show the submission selection popup.
  * @param {any} selectedControlIds selected Control IDs
+ * @param {any} selectedControl selected Control, used for refreshing view
  */
 CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl) {
     CAPS.Project.VIEW_SELECTED_CONTROL = selectedControl;
@@ -328,6 +329,7 @@ CAPS.Project.SubmissionResult = function () {
         function (results) {
             //Close Popup
             Alert.hide();
+            //refesh view
             if (CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
                 CAPS.Project.VIEW_SELECTED_CONTROL.refresh();
             }
@@ -336,6 +338,10 @@ CAPS.Project.SubmissionResult = function () {
             //Close Popup
             Alert.hide();
             Xrm.Navigation.openErrorDialog({ message: error.message });
+            //refresh view
+            if (CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
+                CAPS.Project.VIEW_SELECTED_CONTROL.refresh();
+            }
         }
     );
 }

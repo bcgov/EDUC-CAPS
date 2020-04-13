@@ -164,13 +164,23 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
         formContext.ui.tabs.get(GENERAL_TAB).setVisible(false);
 
         //Show only appropriate tab
-        var submissionCategoryTabName = formContext.getAttribute("caps_submissioncategorytabname").getValue();
+        var submissionCategoryTabNames = formContext.getAttribute("caps_submissioncategorytabname").getValue();
+        var arrTabNames = submissionCategoryTabNames.split(", ");
 
-        //Remove all mandatory fields and show relevant tab
-        var tabsToDisregard = [submissionCategoryTabName, TIMELINE_TAB];
+        //Remove all mandatory fields and show relevant tab(s)
+        var tabsToDisregard = [TIMELINE_TAB];
+        arrTabNames.forEach(function (tabName) {
+            tabsToDisregard.push(tabName);
+        });
+        
+
         CAPS.Project.RemoveRequirement(formContext, tabsToDisregard);
 
-        formContext.ui.tabs.get(submissionCategoryTabName).setVisible(true);
+        arrTabNames.forEach(function (tabName) {
+            formContext.ui.tabs.get(tabName).setVisible(true);
+        });
+
+        
 
         //if capital expense needs allocating, show the tab
         //if (formContext.getAttribute("caps_submissioncategoryrequirecostallocation").getValue() === true) {
@@ -184,14 +194,33 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
  * @param {any} formContext form context
  * @param {any} tabsToDisregard - array of tab names to disregard
  */
-CAPS.Project.RemoveRequirement = function(formContext, tabsToDisregard){
+CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard) {
+
+    //Get array of all fields on tabs to disregard
+    var fieldsToShow = [];
+
+    formContext.ui.tabs.forEach(function (tab, i) {
+        //loop through sections
+        if (tabsToDisregard.includes(tab.getName())) {
+            tab.sections.forEach(function (section, j) {
+                section.controls.forEach(function (control, k) {
+                    //add to array
+                    fieldsToShow.push(control.getAttribute().getName());
+                });
+            });
+        }
+    });
+
     //loop through tabs
     formContext.ui.tabs.forEach(function (tab, i) {
         //loop through sections
         if (!tabsToDisregard.includes(tab.getName())) {
             tab.sections.forEach(function (section, j) {
                 section.controls.forEach(function (control, k) {
-                    control.getAttribute().setRequiredLevel("none");
+                    //if the field isn't on a shown tab, then remove required flag
+                    if (!fieldsToShow.includes(control.getAttribute().getName())) {
+                        control.getAttribute().setRequiredLevel("none");
+                    }
                 });
             });
         }
@@ -211,11 +240,13 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
     var totalProjectCost = formContext.getAttribute("caps_totalprojectcost").getValue();
     var sumOfEstimatedExpenditures = formContext.getAttribute("caps_totalallocated").getValue();
 
-    if (totalProjectCost !== sumOfEstimatedExpenditures) {
-        formContext.getControl("caps_totalprojectcost").setNotification('Total Project Cost Not Fully Allocated', COST_MISSMATCH_NOTIFICATION);
+    if (totalProjectCost !== null && totalProjectCost !== sumOfEstimatedExpenditures) {
+        formContext.ui.setFormNotification('Total Project Cost Not Fully Allocated', 'WARNING', COST_MISSMATCH_NOTIFICATION);
+        //formContext.getControl("caps_totalprojectcost").setNotification('Total Project Cost Not Fully Allocated', COST_MISSMATCH_NOTIFICATION);
     }
     else {
-        formContext.getControl("caps_totalprojectcost").clearNotification(COST_MISSMATCH_NOTIFICATION);
+        formContext.ui.clearFormNotification(COST_MISSMATCH_NOTIFICATION);
+        //formContext.getControl("caps_totalprojectcost").clearNotification(COST_MISSMATCH_NOTIFICATION);
     }
 }
 
@@ -224,7 +255,7 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
  * @param {any} loopCount count of loops
  */
 CAPS.Project.addFacilitiesEventListener = function(loopCount) {
-    var gridContext = CAPS.Project.GLOBAL_FORM_CONTEXT.getControl("Facilities - SEP");
+    var gridContext = CAPS.Project.GLOBAL_FORM_CONTEXT.getControl("FacilitiesSEP");
 
     if (loopCount < 5) {
         if (gridContext === null) {

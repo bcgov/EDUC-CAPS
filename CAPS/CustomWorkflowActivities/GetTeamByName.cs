@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace CustomWorkflowActivities
 {
+    /// <summary>
+    /// Called by various workflows to get the Team entity reference by Team name.
+    /// </summary>
     public class GetTeamByName : CodeActivity
     {
         [Input("TeamName")]
