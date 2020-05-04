@@ -73,13 +73,38 @@ namespace CustomWorkflowActivities
             Microsoft.Xrm.Sdk.Query.ColumnSet columns = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_projectlimit");
             var submissionCategoryRecord = service.Retrieve(submissonCategoryReference.LogicalName, submissonCategoryReference.Id, columns) as CAPS.DataContext.caps_SubmissionCategory;
 
-            //if submission category has a count, check the count in the capital plan, otherwise return
-            if (submissionCategoryRecord.caps_ProjectLimit.GetValueOrDefault(0) > 0)
-            {
-                tracingService.Trace("Submission Category Limit: {0}", submissionCategoryRecord.caps_ProjectLimit.Value.ToString());
+            //Get Submission (Capital Plan)
+            Microsoft.Xrm.Sdk.Query.ColumnSet columnsCapitalPlan = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_callforsubmission");
+            var capitalPlanRecord = service.Retrieve(capitalPlanReference.LogicalName, capitalPlanReference.Id, columnsCapitalPlan) as CAPS.DataContext.caps_Submission;
 
-                using (var crmContext = new CrmServiceContext(service))
+            tracingService.Trace("Capital Plan ID: {0}", capitalPlanRecord.caps_CallforSubmission.Id);
+
+            //Get Submission Categories for the Capital Plan
+            using (var crmContext = new CrmServiceContext(service))
+            {
+
+                tracingService.Trace("Project's Submission Category ID: {0}", submissonCategoryReference.Id);
+                //First check that the submission category of the project is valid, if it's isn't return an error.
+
+                var validSubmissionCategories = from a in crmContext.caps_CallForSubmission_caps_SubmissionCatSet
+                            join b in crmContext.caps_CallForSubmissionSet on a.caps_callforsubmissionid equals b.caps_CallForSubmissionId
+                            where a.caps_callforsubmissionid == capitalPlanRecord.caps_CallforSubmission.Id
+                            select a.caps_submissioncategoryid;
+
+
+                if (!validSubmissionCategories.ToList().Contains(submissonCategoryReference.Id))
                 {
+                    //This is not an allow submission category
+                    error = true;
+                    errorMessage = string.Format("This project cannot be added to {0} as the submission category of {1} is not allowed.", capitalPlanReference.Name, submissonCategoryReference.Name);
+                }
+
+                //if submission category has a count, check the count in the capital plan, otherwise return
+                if (!error && submissionCategoryRecord.caps_ProjectLimit.GetValueOrDefault(0) > 0)
+                {
+                    tracingService.Trace("Submission Category Limit: {0}", submissionCategoryRecord.caps_ProjectLimit.Value.ToString());
+
+
                     var records = crmContext.caps_ProjectSet.Where(r => r.caps_SubmissionCategory.Id == submissonCategoryReference.Id && r.caps_Submission.Id == capitalPlanReference.Id).ToList();
 
                     tracingService.Trace("Record Count: {0}", records.Count.ToString());
@@ -89,8 +114,10 @@ namespace CustomWorkflowActivities
                         error = true;
                         errorMessage = string.Format("This project cannot be added to {0} as you have already reached the limit of {1} {2} Projects.  All subsequent projects will not be added.", capitalPlanReference.Name, submissionCategoryRecord.caps_ProjectLimit.Value.ToString(), submissonCategoryReference.Name);
                     }
+                        
                 }
             }
+
             this.error.Set(executionContext, error);
             this.errorMessage.Set(executionContext, errorMessage);
         }

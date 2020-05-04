@@ -5,7 +5,8 @@
 var CAPS = CAPS || {};
 CAPS.Project = CAPS.Project || {
     GLOBAL_FORM_CONTEXT: null,
-    PREVENT_AUTO_SAVE: false
+    PREVENT_AUTO_SAVE: false,
+    RECORD_JUST_CREATED: false
 };
 
 const FORM_STATE = {
@@ -28,10 +29,30 @@ const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
  * @param {any} executionContext the form execution context
  */
 CAPS.Project.onLoad = function (executionContext) {
+    debugger;
     // Set variables
     var formContext = executionContext.getFormContext();
     CAPS.Project.GLOBAL_FORM_CONTEXT = formContext;
     var formState = formContext.ui.getFormType();
+
+    //if record was just created, a full reload is needed
+    if (CAPS.Project.RECORD_JUST_CREATED) {
+        CAPS.Project.RECORD_JUST_CREATED = false;
+
+        var entityFormOptions = {};
+        entityFormOptions["entityName"] = "caps_project";
+        entityFormOptions["entityId"] = formContext.data.entity.getId();
+
+        // Open the form.
+        Xrm.Navigation.openForm(entityFormOptions).then(
+            function (success) {
+                console.log(success);
+            },
+            function (error) {
+                console.log(error);
+            });
+    }
+
 
     //Show/Hide Tabs
     CAPS.Project.ShowHideRelevantTabs(formContext);
@@ -39,6 +60,7 @@ CAPS.Project.onLoad = function (executionContext) {
     
     //On Create
     if (formState === FORM_STATE.CREATE) {
+        CAPS.Project.RECORD_JUST_CREATED = true;
         //Set School District based on User
         CAPS.Project.DefaultSchoolDistrict(formContext);
 
@@ -59,10 +81,32 @@ CAPS.Project.onLoad = function (executionContext) {
 
     //Only call for SEP and CNCP!
     //TODO: Have added a flag to Project Submission, if we are keeping then add calculated field to Project and check here
-    CAPS.Project.addFacilitiesEventListener(0);
+    if (formContext.getAttribute("caps_submissioncategoryallowmultiplefacilities").getValue() === true) {
+        CAPS.Project.SetMultipleFacility(executionContext);
 
+        //Add onChange event to caps_multiplefacility
+        formContext.getAttribute("caps_multiplefacilities").addOnChange(CAPS.Project.SetMultipleFacility);
 
+        CAPS.Project.addFacilitiesEventListener(0);
+    }
 }
+
+
+CAPS.Project.SetMultipleFacility = function (executionContext) {
+    //var formContext = executionContext.getFormContext();
+
+    //if (formContext.getAttribute("caps_multiplefacilities").getValue() === true) {
+    //    //show sub-grid, hide facility and make it not mandatory
+    //    formContext.getAttribute("caps_facility").setRequiredLevel("none");
+    //    formContext.getAttribute("caps_facility").setValue(null);
+    //    formContext.getControl("caps_facility6").setVisible(false);
+    //}
+    //else {
+    //    formContext.getAttribute("caps_facility").setRequiredLevel("required");
+    //    formContext.getControl("caps_facility6").setVisible(true);
+    //}
+}
+
 /**
  * Set's the Project Type if the lookup list only contains one value.
  * @param {any} executionContext execution context
@@ -96,14 +140,17 @@ CAPS.Project.SetProjectTypeValue = function (executionContext) {
  * @param {any} executionContext execution context
  */
 CAPS.Project.onSave = function (executionContext) {
+    var eventArgs = executionContext.getEventArgs();
+
     if (CAPS.Project.PREVENT_AUTO_SAVE) {
-        var eventArgs = executionContext.getEventArgs();
+
         //auto-save = 70
         if (eventArgs.getSaveMode() === 70) {
             eventArgs.preventDefault();
         }
     }
 }
+
 /**
  * Sets the projects School District to the user's business unit's school district if it's set
  * @param {any} formContext the form's form context
@@ -150,6 +197,7 @@ CAPS.Project.DefaultSchoolDistrict = function (formContext) {
  * @param {any} formContext form context
  */
 CAPS.Project.ShowHideRelevantTabs = function (formContext) {
+    debugger;
     //check form state
     var formState = formContext.ui.getFormType();
 
@@ -195,7 +243,7 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
  * @param {any} tabsToDisregard - array of tab names to disregard
  */
 CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard) {
-
+    debugger;
     //Get array of all fields on tabs to disregard
     var fieldsToShow = [];
 
@@ -271,15 +319,17 @@ CAPS.Project.addFacilitiesEventListener = function(loopCount) {
  * @param {any} executionContext Execution Context
  */
 CAPS.Project.ValidateAtLeaseOneFacility = function (executionContext) {
-    var gridContext = executionContext.getFormContext(); 
+    if (CAPS.Project.GLOBAL_FORM_CONTEXT.getAttribute("caps_multiplefacilities").getValue() === true) {
+        var gridContext = executionContext.getFormContext();
 
-    var filteredRecordCount = gridContext.getGrid().getTotalRecordCount();
+        var filteredRecordCount = gridContext.getGrid().getTotalRecordCount();
 
-    if (filteredRecordCount < 1) {
-        CAPS.Project.GLOBAL_FORM_CONTEXT.ui.setFormNotification('You must add at least one facility to this project.', 'INFO', NO_FACILITY_NOTIFICATION);
-    }
-    else {
-        CAPS.Project.GLOBAL_FORM_CONTEXT.ui.clearFormNotification(NO_FACILITY_NOTIFICATION);
+        if (filteredRecordCount < 1) {
+            CAPS.Project.GLOBAL_FORM_CONTEXT.ui.setFormNotification('You must add at least one facility to this project.', 'INFO', NO_FACILITY_NOTIFICATION);
+        }
+        else {
+            CAPS.Project.GLOBAL_FORM_CONTEXT.ui.clearFormNotification(NO_FACILITY_NOTIFICATION);
+        }
     }
 
 }
