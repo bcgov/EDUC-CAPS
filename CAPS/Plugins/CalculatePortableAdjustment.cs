@@ -24,43 +24,52 @@ namespace Plugins
             tracingService.Trace("{0}", "CalculatePortableAdjustment Plug-in");
 
             // The InputParameters collection contains all the data passed in the message request.
-            if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
+            if (context.InputParameters.Contains("Target") 
+                && (context.InputParameters["Target"] is Entity || context.InputParameters["Target"] is EntityReference))
             {
-                Entity entity = (Entity)context.InputParameters["Target"];
-
-                if (entity.LogicalName != caps_Portable.EntityLogicalName)
-                    return;
 
                 var facilitiesToUpdate = new EntityReferenceCollection();
 
-                //Keep CRUD in mind, need to handle all scenarios
-                //Get previous facility (if exists) and current facility
-                if (context.MessageName == "Create" && entity.Contains("caps_facility"))
+                if (context.MessageName == "Create" || context.MessageName == "Update")
                 {
-                    facilitiesToUpdate.Add(entity.GetAttributeValue<EntityReference>("caps_facility"));
-                }
+                    Entity entity = (Entity)context.InputParameters["Target"];
 
-                if (context.MessageName == "Update")
-                {
-                    Entity preImage = context.PreEntityImages["preImage"];
-
-                    if (preImage.Contains("caps_facility"))
-                    {
-                        facilitiesToUpdate.Add(preImage.GetAttributeValue<EntityReference>("caps_facility"));
-                    }
-                    if (entity.Contains("caps_facility"))
+                    if (entity.LogicalName != caps_Portable.EntityLogicalName)
+                        return;
+                    //Keep CRUD in mind, need to handle all scenarios
+                    //Get previous facility (if exists) and current facility
+                    if (context.MessageName == "Create" && entity.Contains("caps_facility"))
                     {
                         facilitiesToUpdate.Add(entity.GetAttributeValue<EntityReference>("caps_facility"));
+                    }
+
+                    if (context.MessageName == "Update")
+                    {
+                        Entity preImage = context.PreEntityImages["preImage"];
+
+                        if (preImage.Contains("caps_facility"))
+                        {
+                            facilitiesToUpdate.Add(preImage.GetAttributeValue<EntityReference>("caps_facility"));
+                        }
+                        if (entity.Contains("caps_facility"))
+                        {
+                            facilitiesToUpdate.Add(entity.GetAttributeValue<EntityReference>("caps_facility"));
+                        }
                     }
                 }
 
                 if (context.MessageName == "Delete")
                 {
-                    //Entity preImage = context.PreEntityImages["preImage"];
+                    EntityReference entity = (EntityReference)context.InputParameters["Target"];
 
-                    if (entity.Contains("caps_facility"))
+                    if (entity.LogicalName != caps_Portable.EntityLogicalName)
+                        return;
+
+                    Entity preImage = context.PreEntityImages["preImage"];
+
+                    if (preImage.Contains("caps_facility"))
                     {
-                        facilitiesToUpdate.Add(entity.GetAttributeValue<EntityReference>("caps_facility"));
+                        facilitiesToUpdate.Add(preImage.GetAttributeValue<EntityReference>("caps_facility"));
                     }
                 }
 

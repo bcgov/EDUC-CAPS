@@ -2846,6 +2846,139 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ConditionXmlConversion")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_ConditionXmlConversionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string InputType
+		{
+			get
+			{
+				if (this.Parameters.Contains("InputType"))
+				{
+					return ((string)(this.Parameters["InputType"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["InputType"] = value;
+			}
+		}
+		
+		public string OutputType
+		{
+			get
+			{
+				if (this.Parameters.Contains("OutputType"))
+				{
+					return ((string)(this.Parameters["OutputType"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["OutputType"] = value;
+			}
+		}
+		
+		public string InputString
+		{
+			get
+			{
+				if (this.Parameters.Contains("InputString"))
+				{
+					return ((string)(this.Parameters["InputString"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["InputString"] = value;
+			}
+		}
+		
+		public string EntityName
+		{
+			get
+			{
+				if (this.Parameters.Contains("EntityName"))
+				{
+					return ((string)(this.Parameters["EntityName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["EntityName"] = value;
+			}
+		}
+		
+		public msdyn_ConditionXmlConversionRequest()
+		{
+			this.RequestName = "msdyn_ConditionXmlConversion";
+			this.InputType = default(string);
+			this.OutputType = default(string);
+			this.InputString = default(string);
+			this.EntityName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ConditionXmlConversion")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_ConditionXmlConversionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public msdyn_ConditionXmlConversionResponse()
+		{
+		}
+		
+		public string Exception
+		{
+			get
+			{
+				if (this.Results.Contains("Exception"))
+				{
+					return ((string)(this.Results["Exception"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		public string OutputString
+		{
+			get
+			{
+				if (this.Results.Contains("OutputString"))
+				{
+					return ((string)(this.Results["OutputString"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForDeletedProcess")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public partial class msdyn_CheckForDeletedProcessRequest : Microsoft.Xrm.Sdk.OrganizationRequest

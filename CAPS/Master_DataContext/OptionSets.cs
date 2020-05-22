@@ -1532,6 +1532,21 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_ActualDraw_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approved = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Pending = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_AdditionalFundingSource
 	{
 		
@@ -1964,6 +1979,27 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_CertificateofApproval_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approved = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Cancelled = 200870003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Draft = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Rejected = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Submitted = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_ClassType
 	{
 		
@@ -2069,7 +2105,34 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_facilityenrolment_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_FacilityHistory_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NotinUse = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		UnderConstruction = 100000000,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_FacilityStatus
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2200,6 +2263,51 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		School = 100000001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_Milestone
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Announced = 200870007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConceptPlanDue = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConceptPlanFinalized = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConstructionDocuments = 200870009,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ContractAward = 200870010,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CPFAApproval = 200870006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CPRL = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DesignDevelopment = 200870008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FinalCompletion = 200870012,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Occupancy = 200870011,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PDRDue = 200870003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PDRFinalized = 200870004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TBApproval = 200870005,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2342,6 +2450,18 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_projectcashflow_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_ProjectHistory_StatusCode
 	{
 		
@@ -2368,6 +2488,45 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Supported = 100000003,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_ProjectMilestone_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_ProjectTracker_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Approval = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Complete = 200870004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Construction = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DesignDevelopment = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PDRDevelopment = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SubstantiallyComplete = 200870003,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2509,57 +2668,6 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Valid = 100000000,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
-	public enum caps_Year
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20182019 = 100000098,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20192020 = 100000099,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20202021 = 100000100,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20212022 = 100000101,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20222023 = 100000102,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20232024 = 100000103,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20242025 = 100000104,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20252026 = 100000105,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20262027 = 100000106,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20272028 = 100000107,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20282029 = 100000108,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20292030 = 100000109,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20302031 = 100000110,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20312032 = 100000111,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		_20322033 = 100000112,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -3696,6 +3804,9 @@ namespace CAPS.DataContext
 		ActivityParty = 135,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActualDraw = 10083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Address = 1071,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -3879,6 +3990,9 @@ namespace CAPS.DataContext
 		Category = 9959,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CertificateofApproval = 10077,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfile = 3005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4054,6 +4168,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Facility = 10042,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FacilityEnrolment = 10084,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FacilityHistory = 10075,
@@ -4368,10 +4485,19 @@ namespace CAPS.DataContext
 		ProcessTrigger = 4712,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Project = 10038,
+		Project = 10078,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectMilestone = 10080,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectRequest = 10038,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectType = 10048,
@@ -4813,6 +4939,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowWaitSubscription = 4702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Year = 10081,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -4845,6 +4974,9 @@ namespace CAPS.DataContext
 		ActivityParty = 135,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActualDraw = 10083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Address = 1071,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5028,6 +5160,9 @@ namespace CAPS.DataContext
 		Category = 9959,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CertificateofApproval = 10077,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfile = 3005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5203,6 +5338,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Facility = 10042,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FacilityEnrolment = 10084,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FacilityHistory = 10075,
@@ -5517,10 +5655,19 @@ namespace CAPS.DataContext
 		ProcessTrigger = 4712,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Project = 10038,
+		Project = 10078,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectMilestone = 10080,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectRequest = 10038,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectType = 10048,
@@ -5962,6 +6109,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowWaitSubscription = 4702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Year = 10081,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -6266,6 +6416,36 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum edu_Year_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Current = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Future = 757500000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Historical = 757500001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum edu_YearType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Fiscal = 757500000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		School = 757500001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum Email_CorrelationMethod
 	{
 		
@@ -6403,6 +6583,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NTLM = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		OAuth = 4,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -6439,6 +6622,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CredentialsSpecifiedinEmailServerProfile = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		GmailOAuth = 5,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServertoServerAuthentication = 2,
@@ -6499,6 +6685,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CredentialsSpecifiedinEmailServerProfile = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		GmailOAuth = 5,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServertoServerAuthentication = 2,
@@ -7434,6 +7623,9 @@ namespace CAPS.DataContext
 		ActivityParty = 135,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActualDraw = 10083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Address = 1071,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -7617,6 +7809,9 @@ namespace CAPS.DataContext
 		Category = 9959,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CertificateofApproval = 10077,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfile = 3005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -7792,6 +7987,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Facility = 10042,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FacilityEnrolment = 10084,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FacilityHistory = 10075,
@@ -8106,10 +8304,19 @@ namespace CAPS.DataContext
 		ProcessTrigger = 4712,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Project = 10038,
+		Project = 10078,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectMilestone = 10080,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectRequest = 10038,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectType = 10048,
@@ -8551,6 +8758,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowWaitSubscription = 4702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Year = 10081,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -11661,6 +11871,9 @@ namespace CAPS.DataContext
 		ActivityParty = 135,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ActualDraw = 10083,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Address = 1071,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -11844,6 +12057,9 @@ namespace CAPS.DataContext
 		Category = 9959,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CertificateofApproval = 10077,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ChannelAccessProfile = 3005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12019,6 +12235,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Facility = 10042,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FacilityEnrolment = 10084,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FacilityHistory = 10075,
@@ -12333,10 +12552,19 @@ namespace CAPS.DataContext
 		ProcessTrigger = 4712,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Project = 10038,
+		Project = 10078,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectMilestone = 10080,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectRequest = 10038,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectType = 10048,
@@ -12778,6 +13006,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		WorkflowWaitSubscription = 4702,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Year = 10081,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -12790,6 +13021,18 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Standard = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SLA_slaversion
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		VersionUC = 100000001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		VersionWC = 100000000,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]

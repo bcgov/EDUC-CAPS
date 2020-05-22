@@ -33,16 +33,18 @@ namespace CustomWorkflowActivities
             tracingService.Trace("{0}{1}", "Start Custom Workflow Activity: CheckPhasedProjectYear", DateTime.Now.ToLongTimeString());
 
             //Get Project & Phased Project Group Field
-            Microsoft.Xrm.Sdk.Query.ColumnSet columns = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_phasedprojectgroup", "caps_startdate");
+            Microsoft.Xrm.Sdk.Query.ColumnSet columns = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_phasedprojectgroup", "caps_startdate", "caps_projectyear");
             var projectRecord = service.Retrieve(context.PrimaryEntityName, context.PrimaryEntityId, columns) as caps_Project;
 
-            if (!projectRecord.caps_StartDate.HasValue) return;
+            if (projectRecord.caps_Projectyear == null) return;
 
             //Set default values for outputs
             var error = false;
             var errorMessage = "";
 
-            var proejctStartYear = projectRecord.caps_StartDate.Value.Year;
+            var projectStartYear = projectRecord.caps_Projectyear.Id;
+
+            tracingService.Trace("{0}:{1}", projectRecord.caps_ProjectCode, projectRecord.caps_Projectyear.Name);
 
             //get projects that are part of the phased project group
             using (var crmContext = new CrmServiceContext(service))
@@ -51,10 +53,23 @@ namespace CustomWorkflowActivities
 
                 foreach (var record in records)
                 {
+                    ////get start date
+                    //if (record.caps_StartDate.HasValue)
+                    //{
+                    //    if (record.caps_StartDate.Value.Year == proejctStartYear)
+                    //    {
+                    //        //Start Year was already used so need to display error.
+                    //        error = true;
+                    //        errorMessage = "Another project in the phased project group is for the same year.";
+                    //        break;
+                    //    }
+                    //}
+                    tracingService.Trace("{0}:{1}", record.caps_ProjectCode, record.caps_Projectyear.Name);
+                    //Get Year
                     //get start date
-                    if (record.caps_StartDate.HasValue)
+                    if (record.caps_Projectyear != null)
                     {
-                        if (record.caps_StartDate.Value.Year == proejctStartYear)
+                        if (record.caps_Projectyear.Id == projectStartYear)
                         {
                             //Start Year was already used so need to display error.
                             error = true;

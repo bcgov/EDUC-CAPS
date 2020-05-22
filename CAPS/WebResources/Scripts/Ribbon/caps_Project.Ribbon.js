@@ -71,6 +71,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl
  */
 CAPS.Project.AddToSubmission = function (primaryControl) {
     var formContext = primaryControl;
+    CAPS.Project.GLOBAL_FORM_CONTEXT = formContext;
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
@@ -332,6 +333,9 @@ CAPS.Project.SubmissionResult = function () {
             //refesh view
             if (CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
                 CAPS.Project.VIEW_SELECTED_CONTROL.refresh();
+            }
+            if (CAPS.Project.GLOBAL_FORM_CONTEXT !== null) {
+                CAPS.Project.GLOBAL_FORM_CONTEXT.data.refresh();
             }
         }
         , function (error) {

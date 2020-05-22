@@ -6,7 +6,8 @@ var CAPS = CAPS || {};
 CAPS.Project = CAPS.Project || {
     GLOBAL_FORM_CONTEXT: null,
     PREVENT_AUTO_SAVE: false,
-    RECORD_JUST_CREATED: false
+    RECORD_JUST_CREATED: false,
+    FACILITY_GRID_CONTROL: null
 };
 
 const FORM_STATE = {
@@ -25,7 +26,7 @@ const COST_MISSMATCH_NOTIFICATION = "Cost_Missmatch_Notification";
 const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
 
 /**
- * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events
+ * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events.
  * @param {any} executionContext the form execution context
  */
 CAPS.Project.onLoad = function (executionContext) {
@@ -91,20 +92,53 @@ CAPS.Project.onLoad = function (executionContext) {
     }
 }
 
-
+/**
+ * Function to toggle showing and hiding of facility lookup and subgrid depending on if the multiple facility? field is set to Yes or No.
+ * @param {any} executionContext the form execution context
+ */
 CAPS.Project.SetMultipleFacility = function (executionContext) {
-    //var formContext = executionContext.getFormContext();
+    var formContext = executionContext.getFormContext();
 
-    //if (formContext.getAttribute("caps_multiplefacilities").getValue() === true) {
-    //    //show sub-grid, hide facility and make it not mandatory
-    //    formContext.getAttribute("caps_facility").setRequiredLevel("none");
-    //    formContext.getAttribute("caps_facility").setValue(null);
-    //    formContext.getControl("caps_facility6").setVisible(false);
-    //}
-    //else {
-    //    formContext.getAttribute("caps_facility").setRequiredLevel("required");
-    //    formContext.getControl("caps_facility6").setVisible(true);
-    //}
+    var submissionCategoryTabNames = formContext.getAttribute("caps_submissioncategorytabname").getValue();
+    var arrTabNames = submissionCategoryTabNames.split(", ");
+
+    var showMultipleFacilities = (formContext.getAttribute("caps_multiplefacilities").getValue() === true) ? true : false;
+
+    //loop through tabs
+    formContext.ui.tabs.forEach(function (tab, i) {
+        //loop through sections
+        if (arrTabNames.includes(tab.getName())) {
+            //loop through sections
+            tab.sections.forEach(function (section, j) {
+                section.controls.forEach(function (control, k) {
+
+
+                    //add to array
+                    //console.log(control.getControlType());
+                    if (control.getControlType() === "subgrid") {
+                        if (control.getEntityName() === "caps_facility") {
+                            CAPS.Project.FACILITY_GRID_CONTROL = control.getName();
+                            control.setVisible(showMultipleFacilities);
+                        }
+                    }
+
+                    if (control.getAttribute().getName() === "caps_facility") {
+                        control.setVisible(!showMultipleFacilities);
+
+                        if (showMultipleFacilities) {
+                            control.getAttribute().setRequiredLevel("none");
+                            control.getAttribute().setValue(null);
+                        }
+                        else {
+                            control.getAttribute().setRequiredLevel("required");
+                        }
+                    }
+
+                });
+            });
+        }
+    });
+   
 }
 
 /**
@@ -302,15 +336,16 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
  * This function waits for the Facilities subgrid to load and adds an event listener to the grid for validating that at least one facility was added.
  * @param {any} loopCount count of loops
  */
-CAPS.Project.addFacilitiesEventListener = function(loopCount) {
-    var gridContext = CAPS.Project.GLOBAL_FORM_CONTEXT.getControl("FacilitiesSEP");
+CAPS.Project.addFacilitiesEventListener = function (loopCount) {
+
+    var gridContext = CAPS.Project.GLOBAL_FORM_CONTEXT.getControl(CAPS.Project.FACILITY_GRID_CONTROL);
 
     if (loopCount < 5) {
         if (gridContext === null) {
             setTimeout(function () { FACILITIES_EVENT_HANDLER_LOOP_COUNTER++; CAPS.Project.addFacilitiesEventListener(loopCount++); }, 500);
         }
 
-        gridContext.addOnLoad(CAPS.Project.ValidateAtLeaseOneFacility);
+        gridContext.addOnLoad(CAPS.Project.ValidateAtLeastOneFacility);
     }
 }
 
@@ -318,17 +353,19 @@ CAPS.Project.addFacilitiesEventListener = function(loopCount) {
  * This function validates that at least one facility has been added to the project
  * @param {any} executionContext Execution Context
  */
-CAPS.Project.ValidateAtLeaseOneFacility = function (executionContext) {
-    if (CAPS.Project.GLOBAL_FORM_CONTEXT.getAttribute("caps_multiplefacilities").getValue() === true) {
-        var gridContext = executionContext.getFormContext();
+CAPS.Project.ValidateAtLeastOneFacility = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    if (formContext.getAttribute("caps_multiplefacilities").getValue() === true) {
+        //var gridContext = executionContext.getFormContext();
 
-        var filteredRecordCount = gridContext.getGrid().getTotalRecordCount();
+        var filteredRecordCount = formContext.getControl(CAPS.Project.FACILITY_GRID_CONTROL).getGrid().getTotalRecordCount();
 
         if (filteredRecordCount < 1) {
-            CAPS.Project.GLOBAL_FORM_CONTEXT.ui.setFormNotification('You must add at least one facility to this project.', 'INFO', NO_FACILITY_NOTIFICATION);
+            formContext.ui.setFormNotification('You must add at least one facility to this project.', 'INFO', NO_FACILITY_NOTIFICATION);
         }
         else {
-            CAPS.Project.GLOBAL_FORM_CONTEXT.ui.clearFormNotification(NO_FACILITY_NOTIFICATION);
+            formContext.ui.clearFormNotification(NO_FACILITY_NOTIFICATION);
         }
     }
 
