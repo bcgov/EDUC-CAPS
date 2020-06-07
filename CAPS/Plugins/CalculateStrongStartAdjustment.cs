@@ -61,7 +61,7 @@ namespace Plugins
                 {
                     EntityReference entity = (EntityReference)context.InputParameters["Target"];
 
-                    if (entity.LogicalName != caps_Portable.EntityLogicalName)
+                    if (entity.LogicalName != caps_StrongStartCentre.EntityLogicalName)
                         return;
 
                     Entity preImage = context.PreEntityImages["preImage"];

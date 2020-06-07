@@ -54,7 +54,6 @@ CAPS.Project.onLoad = function (executionContext) {
             });
     }
 
-
     //Show/Hide Tabs
     CAPS.Project.ShowHideRelevantTabs(formContext);
 
@@ -90,6 +89,66 @@ CAPS.Project.onLoad = function (executionContext) {
 
         CAPS.Project.addFacilitiesEventListener(0);
     }
+
+    //Check if AFG Project
+    //Get Submission Category
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+
+    if (submissionCategoryCode === "AFG") {
+        //add on-change function to existing facility? caps_existingfacility
+        formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.ToggleAFGFacility);
+    }    
+}
+/**
+ * Function to toggle showing and hiding of facility and facility site on AFG.
+ * @param {any} executionContext the execution context
+ */
+CAPS.Project.ToggleAFGFacility = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var submissionCategoryTabNames = formContext.getAttribute("caps_submissioncategorytabname").getValue();
+    var arrTabNames = submissionCategoryTabNames.split(", ");
+
+    var showExistingFacility = (formContext.getAttribute("caps_existingfacility").getValue() === true) ? true : false;
+
+    //loop through tabs
+    formContext.ui.tabs.forEach(function (tab, i) {
+        //loop through sections
+        if (arrTabNames.includes(tab.getName())) {
+            //loop through sections
+            tab.sections.forEach(function (section, j) {
+                section.controls.forEach(function (control, k) {
+
+                    if (control.getAttribute().getName() === "caps_facility") {
+                        if (showExistingFacility) {
+                            control.getAttribute().setRequiredLevel("required");
+                            control.setVisible(true);
+                        }
+                        else {
+                            control.getAttribute().setRequiredLevel("none");
+                            control.setVisible(false);
+                            control.getAttribute().setValue(null);
+                        }
+                    }
+
+                    if (control.getAttribute().getName() === "caps_facilityview") {
+                        if (showExistingFacility) {
+                            control.getAttribute().setRequiredLevel("none");
+                            control.setVisible(false);
+                            control.getAttribute().setValue(null);
+                        }
+                        else {
+                            control.getAttribute().setRequiredLevel("required");
+                            control.setVisible(true);
+                        }
+                    }
+
+                });
+            });
+        }
+    });
+
+
 }
 
 /**

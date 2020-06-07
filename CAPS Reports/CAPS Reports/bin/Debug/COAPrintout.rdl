@@ -227,7 +227,6 @@
                 <Source>Embedded</Source>
                 <Value>BC</Value>
                 <Sizing>FitProportional</Sizing>
-                <Left>0in</Left>
                 <Height>0.41042in</Height>
                 <Width>1.1875in</Width>
                 <Style>
@@ -285,10 +284,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_projectdescription</rd:DefaultName>
-                <Top>2.95069in</Top>
-                <Left>1.43229in</Left>
+                <Top>2.93681in</Top>
+                <Left>1.44106in</Left>
                 <Height>0.53258in</Height>
-                <Width>5.36719in</Width>
+                <Width>5.55374in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -1094,7 +1093,6 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox26</rd:DefaultName>
-                    <Top>0in</Top>
                     <Left>0.03143in</Left>
                     <Height>0.25in</Height>
                     <Width>0.16578in</Width>
@@ -1186,7 +1184,7 @@
                 <Top>2.31181in</Top>
                 <Left>4.60752in</Left>
                 <Height>0.25in</Height>
-                <Width>2.19196in</Width>
+                <Width>2.38727in</Width>
                 <ZIndex>32</ZIndex>
                 <Style>
                   <Border>
@@ -1218,7 +1216,7 @@
                 <Top>2.63125in</Top>
                 <Left>1.1875in</Left>
                 <Height>0.25in</Height>
-                <Width>5.61198in</Width>
+                <Width>5.80729in</Width>
                 <ZIndex>33</ZIndex>
                 <Style>
                   <Border>
@@ -1805,7 +1803,7 @@
                 <Top>4.53576in</Top>
                 <Left>5.12153in</Left>
                 <Height>0.25in</Height>
-                <Width>1in</Width>
+                <Width>1.67796in</Width>
                 <ZIndex>51</ZIndex>
                 <Style>
                   <Border>
@@ -1995,6 +1993,38 @@
                 <Height>0.25in</Height>
                 <Width>1in</Width>
                 <ZIndex>58</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="project_caps_maxpotentialprojectbudget">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!project_caps_maxpotentialprojectbudget.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>project_caps_maxpotentialprojectbudget</rd:DefaultName>
+                <Top>3.49716in</Top>
+                <Left>2.10178in</Left>
+                <Height>0.25in</Height>
+                <Width>3.33572in</Width>
+                <ZIndex>59</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>

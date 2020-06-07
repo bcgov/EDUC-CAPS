@@ -1,24 +1,34 @@
-﻿
+﻿"use strict";
 
-function RunOnSelected(executionContext) {
-    var selected = executionContext.getFormContext().data.entity;
-    var Id = selected.getId();
+/* INCLUDE CAPS.Common.js */
 
-    var pageInput = {
-        pageType: "entityrecord",
-        entityName: "caps_projectcashflow",
-        entityId: Id
-    };
-    var navigationOptions = {
-        target: 2,
-        height: { value: 80, unit: "%" },
-        width: { value: 80, unit: "%" },
-        position: 1
-    };
-    Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
-        function success() { },
-        function error() { }
-    );
+var CAPS = CAPS || {};
+CAPS.ProjectTracker = CAPS.ProjectTracker || {};
+
+CAPS.ProjectTracker.onLoad = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    //Show Summary Report
+    CAPS.ProjectTracker.showSummaryReport(formContext);
 }
 
+CAPS.ProjectTracker.showSummaryReport = function (formContext) {
+    debugger;
+    //Get iframe 
+    var iframeObject = formContext.getControl("IFRAME_SummaryReport");
+
+    if (iframeObject !== null) {
+        var strURL = "/crmreports/viewer/viewer.aspx"
+            + "?id=ed1744bc-98a6-ea11-a813-000d3af42496"
+            + "&action=run"
+            + "&context=records"
+            + "&recordstype=10078"
+            + "&records=" + formContext.data.entity.getId()
+            + "&helpID=Monthly%20Project%20Summary.rdl";
+
+
+        //Set URL of iframe
+        iframeObject.setSrc(strURL);
+    }
+}
 
