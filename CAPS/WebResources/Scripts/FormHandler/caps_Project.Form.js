@@ -77,6 +77,9 @@ CAPS.Project.onLoad = function (executionContext) {
         formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidateExpenditureDistribution);
 
         CAPS.Project.ValidateExpenditureDistribution(executionContext);
+
+        //sgd_EstimatedExpenditures
+        formContext.getControl("sgd_EstimatedExpenditures").addOnLoad(CAPS.Project.UpdateTotalAllocated); 
     }
 
     //Only call for SEP and CNCP!
@@ -95,12 +98,49 @@ CAPS.Project.onLoad = function (executionContext) {
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
     if (submissionCategoryCode === "AFG") {
+        CAPS.Project.ToggleAFGFacility(executionContext);
         //add on-change function to existing facility? caps_existingfacility
         formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.ToggleAFGFacility);
     }    
 }
+
 /**
- * Function to toggle showing and hiding of facility and facility site on AFG.
+ * This function is called on change of the Estimated Expenditure PCF sub grid.  It calculates and updates the total allocated and total variance for the project cost.
+ * @param {any} executionContext forms execution context.
+ */
+CAPS.Project.UpdateTotalAllocated = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    Xrm.WebApi.retrieveMultipleRecords("caps_estimatedyearlycapitalexpenditure", "?$select=caps_yearlyexpenditure&$filter=caps_Project/caps_projectid eq "+id).then(
+        function success(result) {
+            var totalAllocated = 0;
+            for (var i = 0; i < result.entities.length; i++) {
+                totalAllocated += result.entities[i].caps_yearlyexpenditure;
+            }
+
+            // perform operations on record retrieval
+            formContext.getAttribute('caps_totalallocated').setValue(totalAllocated);
+            //calculate variance
+            var totalCost = formContext.getAttribute('caps_totalprojectcost').getValue();
+            var variance = null;
+            if (totalCost !== null && totalAllocated !== null) { 
+                variance = totalCost - totalAllocated;
+                formContext.getAttribute('caps_totalprojectcostvariance').setValue(variance);
+            }
+
+            CAPS.Project.ValidateExpenditureDistribution(executionContext);
+        },
+        function (error) {
+            console.log(error.message);
+            // handle error conditions
+        }
+    );
+
+}
+
+/**
+ * This function is used to toggle showing and hiding of facility and facility site on AFG onchange of Existing Facility? field.
  * @param {any} executionContext the execution context
  */
 CAPS.Project.ToggleAFGFacility = function (executionContext) {
@@ -131,7 +171,7 @@ CAPS.Project.ToggleAFGFacility = function (executionContext) {
                         }
                     }
 
-                    if (control.getAttribute().getName() === "caps_facilityview") {
+                    if (control.getAttribute().getName() === "caps_otherfacility") {
                         if (showExistingFacility) {
                             control.getAttribute().setRequiredLevel("none");
                             control.setVisible(false);

@@ -52,11 +52,13 @@ CAPS.ProjectCashFlow.onLoad = function(executionContext) {
  * @param {any} currentYearPlus1 the current fiscal year + 1
  */
 CAPS.ProjectCashFlow.showHideValuesBasedOnYear = function(formContext, currentYear, currentYearPlus1) {
-
+    debugger;
     //Check if fiscal Year is set, if so check if it's the current year or current year plus 1
     var fiscalYear = formContext.getAttribute("caps_fiscalyear").getValue();
 
     var fiscalYearValue = fiscalYear[0].id.toLowerCase().replace("{", "").replace("}", "");
+
+    var stateCode = formContext.getAttribute("statecode").getValue();
     
     if (fiscalYearValue === currentYear || fiscalYearValue === currentYearPlus1) {
         if (fiscalYearValue === currentYear) {
@@ -100,6 +102,26 @@ CAPS.ProjectCashFlow.showHideValuesBasedOnYear = function(formContext, currentYe
         formContext.getAttribute("caps_q3provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
         formContext.getAttribute("caps_q4provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
 
+
+    }
+    else if (stateCode === 1) {
+        formContext.getControl("caps_q1actualdraws").setVisible(true);
+        formContext.getControl("caps_q2actualdraws").setVisible(true);
+        formContext.getControl("caps_q3actualdraws").setVisible(true);
+        formContext.getControl("caps_q4actualdraws").setVisible(true);
+        formContext.getControl("caps_totalactualdraws").setVisible(true);
+
+        formContext.getControl("caps_remainingdraws").setVisible(true);
+
+        formContext.getControl("caps_q1agency").setVisible(true);
+        formContext.getControl("caps_q2agency").setVisible(true);
+        formContext.getControl("caps_q3agency").setVisible(true);
+        formContext.getControl("caps_q4agency").setVisible(true);
+
+        formContext.getControl("caps_q1provincial").setVisible(true);
+        formContext.getControl("caps_q2provincial").setVisible(true);
+        formContext.getControl("caps_q3provincial").setVisible(true);
+        formContext.getControl("caps_q4provincial").setVisible(true);
 
     }
     else {

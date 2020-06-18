@@ -370,6 +370,7 @@
     &lt;attribute name="caps_q1actualdraws" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
+&lt;filter type="and"&gt;&lt;condition attribute="statecode" operator="eq" value="0" /&gt;&lt;/filter&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="aa"&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_projecttrackerid" operator="eq" value="@ProjectID" /&gt;
@@ -816,7 +817,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
             <Top>0.63944in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>3</ZIndex>
@@ -2348,14 +2348,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_q1agencyValue">
+                        <Textbox Name="caps_q1actualdrawsValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_q1agencyValue.Value</Value>
+                                  <Value>=Fields!caps_q1actualdrawsValue.Value</Value>
                                   <Style>
                                     <Format>'$'#,0,;('$'#,0,);'-'</Format>
                                   </Style>
@@ -2364,7 +2364,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_q1agencyValue</rd:DefaultName>
+                          <rd:DefaultName>caps_q1actualdrawsValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>Gray</Color>
@@ -2948,7 +2948,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox83</rd:DefaultName>
             <Top>2.145in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1.57223in</Width>
             <ZIndex>5</ZIndex>
@@ -3074,7 +3073,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox87</rd:DefaultName>
             <Top>0.95889in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>1.31667in</Width>
             <ZIndex>9</ZIndex>
@@ -3095,7 +3093,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Status:</Value>
+                    <Value>Project Phase:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -3106,9 +3104,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
             <Top>1.27833in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
-            <Width>0.60833in</Width>
+            <Width>1in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -3159,7 +3156,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Total Potential Project Budget:</Value>
+                    <Value>Max. Potential Project Budget:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -3260,7 +3257,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox93</rd:DefaultName>
             <Top>1.27833in</Top>
-            <Left>0.60833in</Left>
+            <Left>1in</Left>
             <Height>0.25in</Height>
             <Width>2.20833in</Width>
             <ZIndex>15</ZIndex>
@@ -3559,13 +3556,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>5.11333in</Height>
+        <Height>3.51333in</Height>
         <Style />
       </Body>
       <Width>13.64083in</Width>
       <Page>
         <PageFooter>
-          <Height>1in</Height>
+          <Height>0.45in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3576,8 +3573,10 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>All numbers are displayed in thousands.</Value>
-                      <Style />
+                      <Value>ALL NUMBERS ARE DISPLAYED IN THOUSANDS.</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -3640,6 +3639,7 @@
         </Values>
       </DefaultValue>
       <Prompt>Current Date</Prompt>
+      <Hidden>true</Hidden>
     </ReportParameter>
     <ReportParameter Name="CRM_caps_projectmilestone">
       <DataType>String</DataType>
@@ -3659,6 +3659,7 @@
         </DataSetReference>
       </DefaultValue>
       <Prompt>ProjectID</Prompt>
+      <Hidden>true</Hidden>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>

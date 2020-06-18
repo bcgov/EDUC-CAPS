@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace CustomWorkflowActivities
 {
+    /// <summary>
+    /// Called by flow via action to get next project number for AFG and BUS projects.
+    /// </summary>
     public class GetNextProjectRequestNumber : CodeActivity
     {
         [Output("ProjectRequestNumber")]
