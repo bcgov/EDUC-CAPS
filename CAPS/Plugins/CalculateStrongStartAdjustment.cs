@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Plugins
-{
+{   
     /// <summary>
     /// This plugin runs on change of portable.  It finds the previous and current related facility, and adjusts the portable capacity.
     /// Register on async Post of events (Create, Update, Delete)
