@@ -16,8 +16,13 @@
     <DataSet Name="CapitalPlanDetails">
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="CRM_caps_submission">
+            <Value>=Parameters!CRM_caps_submission.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch count="300" &gt;
-  &lt;entity name="caps_submission" &gt;
+  &lt;entity name="caps_submission" enableprefiltering="1" &gt;
     &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="caps_callforsubmission" /&gt;
     &lt;attribute name="caps_name" /&gt;
@@ -121,15 +126,6 @@
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
-      <Filters>
-        <Filter>
-          <FilterExpression>=Fields!caps_name.Value</FilterExpression>
-          <Operator>Equal</Operator>
-          <FilterValues>
-            <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-          </FilterValues>
-        </Filter>
-      </Filters>
     </DataSet>
     <DataSet Name="CapitalPlanParameter">
       <Query>
@@ -244,7 +240,7 @@
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
         <CommandText>&lt;fetch count="300" &gt;
-  &lt;entity name="caps_project" &gt;
+  &lt;entity name="caps_project"&gt;
     &lt;attribute name="caps_fundingrequested" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
     &lt;attribute name="caps_totalprojectcost" /&gt;
@@ -404,6 +400,15 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!projectsnapshot_caps_submissionValue.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>=Parameters!CRM_caps_submission.Value</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
   </DataSets>
   <ReportSections>
@@ -837,7 +842,7 @@
             </TablixRowHierarchy>
             <DataSetName>CapitalPlanDetails</DataSetName>
             <Height>1.02084in</Height>
-            <Width>7.5729in</Width>
+            <Width>7.57292in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1342,13 +1347,6 @@
             </TablixRowHierarchy>
             <DataSetName>RelatedProjectRequests</DataSetName>
             <Filters>
-              <Filter>
-                <FilterExpression>=Fields!projectsnapshot_caps_submission.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-                </FilterValues>
-              </Filter>
               <Filter>
                 <FilterExpression>=Fields!projectsnapshot_caps_ministryreviewstatus.Value</FilterExpression>
                 <Operator>Equal</Operator>
@@ -1869,13 +1867,6 @@
             <DataSetName>RelatedProjectRequests</DataSetName>
             <Filters>
               <Filter>
-                <FilterExpression>=Fields!projectsnapshot_caps_submission.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-                </FilterValues>
-              </Filter>
-              <Filter>
                 <FilterExpression>=Fields!projectsnapshot_caps_ministryreviewstatus.Value</FilterExpression>
                 <Operator>NotEqual</Operator>
                 <FilterValues>
@@ -2395,13 +2386,6 @@
             <DataSetName>RelatedProjectRequests</DataSetName>
             <Filters>
               <Filter>
-                <FilterExpression>=Fields!projectsnapshot_caps_submission.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-                </FilterValues>
-              </Filter>
-              <Filter>
                 <FilterExpression>=Fields!projectsnapshot_caps_ministryreviewstatus.Value</FilterExpression>
                 <Operator>NotEqual</Operator>
                 <FilterValues>
@@ -2410,6 +2394,7 @@
               </Filter>
             </Filters>
             <Top>3.60292in</Top>
+            <Left>0.01041in</Left>
             <Height>1.04167in</Height>
             <Width>10.69792in</Width>
             <ZIndex>3</ZIndex>
@@ -2931,13 +2916,6 @@
             </TablixRowHierarchy>
             <DataSetName>RelatedProjectRequests</DataSetName>
             <Filters>
-              <Filter>
-                <FilterExpression>=Fields!projectsnapshot_caps_submission.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-                </FilterValues>
-              </Filter>
               <Filter>
                 <FilterExpression>=Fields!projectsnapshot_caps_ministryreviewstatus.Value</FilterExpression>
                 <Operator>NotEqual</Operator>
@@ -3562,15 +3540,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>RelatedProjectRequests</DataSetName>
-            <Filters>
-              <Filter>
-                <FilterExpression>=Fields!projectsnapshot_caps_submission.Value</FilterExpression>
-                <Operator>Equal</Operator>
-                <FilterValues>
-                  <FilterValue>=Parameters!CapitaPlanParameter.Value</FilterValue>
-                </FilterValues>
-              </Filter>
-            </Filters>
             <Top>6.14458in</Top>
             <Height>1.0625in</Height>
             <Width>10.70833in</Width>
@@ -3642,16 +3611,14 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="CapitaPlanParameter">
+    <ReportParameter Name="CRM_caps_submission">
       <DataType>String</DataType>
-      <Prompt>Select a Capital Plan</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>CapitalPlanParameter</DataSetName>
-          <ValueField>caps_name</ValueField>
-          <LabelField>caps_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
+      <DefaultValue>
+        <Values>
+          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="caps_submission"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CRM caps submission</Prompt>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -3662,7 +3629,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>CapitaPlanParameter</ParameterName>
+          <ParameterName>CRM_caps_submission</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
