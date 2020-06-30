@@ -25,6 +25,9 @@
   &lt;entity name="caps_projecttracker" enableprefiltering="1"&gt;
 &lt;all-attributes/&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" alias="SubCat" &gt;
+      &lt;attribute name="caps_type" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -561,6 +564,14 @@
           <DataField>caps_supplementalitemsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="SubCat_caps_type">
+          <DataField>SubCat_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubCat_caps_typeValue">
+          <DataField>SubCat_caps_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="CAPS_ProjectCashflow">
@@ -817,6 +828,7 @@
                       <FontFamily>Segoe UI Light</FontFamily>
                       <FontSize>24pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -824,10 +836,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
-            <Left>0.00306in</Left>
+            <Left>1.17667in</Left>
             <Height>0.57in</Height>
             <Width>2.68833in</Width>
             <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -853,7 +869,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Left>2.69139in</Left>
+            <Left>3.87889in</Left>
             <Height>0.57in</Height>
             <Width>7.98333in</Width>
             <ZIndex>1</ZIndex>
@@ -877,6 +893,7 @@
                     <Value>Total Provincial Budget:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -884,8 +901,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>0.63944in</Top>
-            <Left>8.29722in</Left>
+            <Top>1.59777in</Top>
+            <Left>8.30028in</Left>
             <Height>0.25in</Height>
             <Width>1.675in</Width>
             <ZIndex>2</ZIndex>
@@ -893,6 +910,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -909,6 +927,7 @@
                     <Value>Project Type:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -916,7 +935,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>0.63944in</Top>
+            <Top>1.59777in</Top>
+            <Left>0.00777cm</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>3</ZIndex>
@@ -924,6 +944,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -940,6 +961,7 @@
                     <Value>School District:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -947,8 +969,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox85</rd:DefaultName>
-            <Top>0.65333in</Top>
-            <Left>4.02778in</Left>
+            <Top>1.61166in</Top>
+            <Left>4.03084in</Left>
             <Height>0.25in</Height>
             <Width>1.28333in</Width>
             <ZIndex>4</ZIndex>
@@ -956,6 +978,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -972,6 +995,7 @@
                     <Value>Facility/Site:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -979,8 +1003,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox86</rd:DefaultName>
-            <Top>0.97278in</Top>
-            <Left>4.02778in</Left>
+            <Top>1.91722in</Top>
+            <Left>4.03084in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>5</ZIndex>
@@ -988,6 +1012,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1004,6 +1029,7 @@
                     <Value>Funding Program:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1011,7 +1037,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox87</rd:DefaultName>
-            <Top>0.95889in</Top>
+            <Top>1.91722in</Top>
+            <Left>0.00777cm</Left>
             <Height>0.25in</Height>
             <Width>1.31667in</Width>
             <ZIndex>6</ZIndex>
@@ -1019,6 +1046,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1035,6 +1063,7 @@
                     <Value>Project Phase:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1042,8 +1071,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>1.27833in</Top>
-            <Left>0.00777cm</Left>
+            <Top>2.23666in</Top>
+            <Left>0.01554cm</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>7</ZIndex>
@@ -1051,13 +1080,14 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox5">
+          <Textbox Name="TotalOtherFundingText">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -1067,29 +1097,33 @@
                     <Value>Total Other Funding:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>0.945in</Top>
-            <Left>8.29722in</Left>
+            <Top>1.90333in</Top>
+            <Left>8.30028in</Left>
             <Height>0.25in</Height>
             <Width>1.675in</Width>
             <ZIndex>8</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "Major" Or First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "BEP", False, True)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox6">
+          <Textbox Name="MaxPotentialProjectBudgetText">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -1099,22 +1133,26 @@
                     <Value>Max. Potential Project Budget:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.27833in</Top>
-            <Left>8.29722in</Left>
+            <Top>2.20889in</Top>
+            <Left>8.30028in</Left>
             <Height>0.25in</Height>
             <Width>2.125in</Width>
             <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "Major" Or First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "BEP", False, True)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1136,8 +1174,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.63944in</Top>
-            <Left>1in</Left>
+            <Top>1.59777in</Top>
+            <Left>1.00306in</Left>
             <Height>0.25in</Height>
             <Width>1.81667in</Width>
             <ZIndex>10</ZIndex>
@@ -1166,8 +1204,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox92</rd:DefaultName>
-            <Top>0.95889in</Top>
-            <Left>1.31667in</Left>
+            <Top>1.91722in</Top>
+            <Left>1.31973in</Left>
             <Height>0.25in</Height>
             <Width>1.75in</Width>
             <ZIndex>11</ZIndex>
@@ -1196,8 +1234,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox93</rd:DefaultName>
-            <Top>1.27833in</Top>
-            <Left>1.00306in</Left>
+            <Top>2.23666in</Top>
+            <Left>1.00612in</Left>
             <Height>0.25in</Height>
             <Width>2.20833in</Width>
             <ZIndex>12</ZIndex>
@@ -1226,8 +1264,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox94</rd:DefaultName>
-            <Top>0.65333in</Top>
-            <Left>5.31111in</Left>
+            <Top>1.61166in</Top>
+            <Left>5.31417in</Left>
             <Height>0.25in</Height>
             <Width>2.11667in</Width>
             <ZIndex>13</ZIndex>
@@ -1256,8 +1294,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox95</rd:DefaultName>
-            <Top>0.97278in</Top>
-            <Left>5.02778in</Left>
+            <Top>1.91722in</Top>
+            <Left>5.03084in</Left>
             <Height>0.25in</Height>
             <Width>2.4in</Width>
             <ZIndex>14</ZIndex>
@@ -1280,7 +1318,7 @@
                   <TextRun>
                     <Value>=First(Fields!caps_totalprovincialbudgetValue.Value, "CAPS_Project")</Value>
                     <Style>
-                      <Format>'$'#,0,;('$'#,0,);'-'</Format>
+                      <Format>'$'#,0;('$'#,0);'-'</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1288,8 +1326,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox96</rd:DefaultName>
-            <Top>0.63944in</Top>
-            <Left>9.97222in</Left>
+            <Top>1.59777in</Top>
+            <Left>9.97528in</Left>
             <Height>0.25in</Height>
             <Width>1.22222in</Width>
             <ZIndex>15</ZIndex>
@@ -1304,7 +1342,7 @@
               <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox98">
+          <Textbox Name="OtherFundingExp">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -1313,19 +1351,21 @@
                   <TextRun>
                     <Value>=First(Fields!caps_totalotherfundingValue.Value, "CAPS_Project")</Value>
                     <Style>
-                      <Format>'$'#,0,;('$'#,0,);'-'</Format>
+                      <Format>'$'#,0;('$'#,0);'-'</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox98</rd:DefaultName>
-            <Top>0.95889in</Top>
-            <Left>9.97222in</Left>
-            <Height>0.25in</Height>
+            <Top>1.91722in</Top>
+            <Left>9.97528in</Left>
+            <Height>0.23611in</Height>
             <Width>1.23611in</Width>
             <ZIndex>16</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "Major" Or First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "BEP", False, True)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1337,7 +1377,7 @@
               <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox99">
+          <Textbox Name="MaxPotentialProjectBudgetExp">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -1346,19 +1386,21 @@
                   <TextRun>
                     <Value>=First(Fields!caps_maxpotentialprojectbudgetValue.Value, "CAPS_Project")</Value>
                     <Style>
-                      <Format>'$'#,0,;('$'#,0,);'-'</Format>
+                      <Format>'$'#,0;('$'#,0);'-'</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox99</rd:DefaultName>
-            <Top>1.27833in</Top>
-            <Left>10.43611in</Left>
+            <Top>2.20889in</Top>
+            <Left>10.42528in</Left>
             <Height>0.25in</Height>
-            <Width>0.94167in</Width>
+            <Width>0.95556in</Width>
             <ZIndex>17</ZIndex>
+            <Visibility>
+              <Hidden>=IIF(First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "Major" Or First(Fields!SubCat_caps_type.Value, "CAPS_Project") = "BEP", False, True)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1380,6 +1422,7 @@
                     <Value>Submission Category:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1387,8 +1430,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>1.59777in</Top>
-            <Left>0.00777cm</Left>
+            <Top>2.5561in</Top>
+            <Left>0.01554cm</Left>
             <Height>0.25in</Height>
             <Width>1.46875in</Width>
             <ZIndex>18</ZIndex>
@@ -1396,6 +1439,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1412,6 +1456,7 @@
                     <Value>Procurement Method:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1419,8 +1464,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>1.27833in</Top>
-            <Left>10.23056cm</Left>
+            <Top>2.23666in</Top>
+            <Left>10.23833cm</Left>
             <Height>0.25in</Height>
             <Width>1.47917in</Width>
             <ZIndex>19</ZIndex>
@@ -1428,6 +1473,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1444,6 +1490,7 @@
                     <Value>Requested Funding:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1451,8 +1498,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>1.59777in</Top>
-            <Left>21.07494cm</Left>
+            <Top>2.51444in</Top>
+            <Left>21.08271cm</Left>
             <Height>0.25in</Height>
             <Width>1.46875in</Width>
             <ZIndex>20</ZIndex>
@@ -1460,6 +1507,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
+              <BackgroundColor>MidnightBlue</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1483,10 +1531,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>caps_requestedfunding</rd:DefaultName>
-            <Top>4.05835cm</Top>
-            <Left>24.84084cm</Left>
+            <Top>6.38669cm</Top>
+            <Left>24.81334cm</Left>
             <Height>0.635cm</Height>
-            <Width>4.05872cm</Width>
+            <Width>4.09399cm</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -1522,8 +1570,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>PROVINCIAL BUDGET</Value>
-                                  <Style />
+                                  <Value>Provincial Budget</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1537,6 +1588,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1924,11 +1976,14 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
-            <Top>7.03474cm</Top>
-            <Left>0.28934cm</Left>
+            <Top>8.7162cm</Top>
+            <Left>0.42773cm</Left>
             <Height>3.6cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>22</ZIndex>
+            <Visibility>
+              <Hidden>=Fields!SubCat_caps_type.Value = "AFG"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1950,8 +2005,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>caps_submissioncategoryValue</rd:DefaultName>
-            <Top>4.05835cm</Top>
-            <Left>3.77368cm</Left>
+            <Top>6.49252cm</Top>
+            <Left>3.78145cm</Left>
             <Height>0.635cm</Height>
             <Width>4.38326cm</Width>
             <ZIndex>23</ZIndex>
@@ -1980,8 +2035,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>caps_procurementmethodValue</rd:DefaultName>
-            <Top>3.24696cm</Top>
-            <Left>14.02292cm</Left>
+            <Top>5.68113cm</Top>
+            <Left>14.03069cm</Left>
             <Height>0.635cm</Height>
             <Width>4.84364cm</Width>
             <ZIndex>24</ZIndex>
@@ -1995,7 +2050,7 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Tablix Name="Tablix2">
+          <Tablix Name="FundingSources">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
@@ -2018,8 +2073,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>FUNDING SOURCES</Value>
-                                  <Style />
+                                  <Value>Funding Sources</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -2033,6 +2091,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2566,13 +2625,13 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
-            <Top>7.03474cm</Top>
-            <Left>13.73594cm</Left>
+            <Top>8.7162cm</Top>
+            <Left>13.87433cm</Left>
             <Height>4.8cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>25</ZIndex>
             <Visibility>
-              <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "DEMOLITION" or Fields!caps_submissioncategorycode.Value &lt;&gt; "NEW_SCHOOL" or Fields!caps_submissioncategorycode.Value &lt;&gt; "REPLACEMENT_RENOVATION" or Fields!caps_submissioncategorycode.Value &lt;&gt; "SEISMIC" or Fields!caps_submissioncategorycode.Value &lt;&gt; "ADDITION" or Fields!caps_submissioncategorycode.Value &lt;&gt; "SITE_ACQUISITION"</Hidden>
+              <Hidden>=IIF(Fields!SubCat_caps_type.Value = "Major" Or Fields!SubCat_caps_type.Value = "BEP", False, True)</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -2603,8 +2662,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>BUDGET BREAKDOWN</Value>
-                                  <Style />
+                                  <Value>Budget Breakdown</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -2618,6 +2680,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3005,8 +3068,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
-            <Top>11.23474cm</Top>
-            <Left>0.28934cm</Left>
+            <Top>12.9162cm</Top>
+            <Left>0.42773cm</Left>
             <Height>3.6cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>26</ZIndex>
@@ -3039,8 +3102,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>AFG BUDGET</Value>
-                                  <Style />
+                                  <Value>AFG Budget</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -3054,6 +3120,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3295,8 +3362,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
-            <Top>12.43474cm</Top>
-            <Left>13.73594cm</Left>
+            <Top>14.1162cm</Top>
+            <Left>13.87433cm</Left>
             <Height>2.4cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>27</ZIndex>
@@ -3332,9 +3399,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>PROJECT CASHFLOW</Value>
+                                  <Value>Project Cashflow</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3349,6 +3417,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3529,8 +3598,8 @@
                 <Value>=Fields!caps_fiscalyear.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>18.51766cm</Top>
-            <Left>0.28934cm</Left>
+            <Top>19.22016cm</Top>
+            <Left>0.42773cm</Left>
             <Height>1.8cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>28</ZIndex>
@@ -3566,9 +3635,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MINISTRY DATES</Value>
+                                  <Value>Ministry Dates</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3583,6 +3653,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3742,7 +3813,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_originaldateValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -3772,7 +3845,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_expectedactualdateValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -3817,8 +3892,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_MinistryDates</DataSetName>
-            <Top>15.3162cm</Top>
-            <Left>0.28934cm</Left>
+            <Top>16.99766cm</Top>
+            <Left>0.42773cm</Left>
             <Height>1.8cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>29</ZIndex>
@@ -3854,9 +3929,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>AGREEMENT DATES</Value>
+                                  <Value>Agreement Dates</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3871,6 +3947,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>MidnightBlue</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -4028,7 +4105,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_originaldateValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -4058,7 +4137,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_expectedactualdateValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -4103,8 +4184,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>CAPS_AgreementDates</DataSetName>
-            <Top>15.3162cm</Top>
-            <Left>13.73594cm</Left>
+            <Top>16.99766cm</Top>
+            <Left>13.87433cm</Left>
             <Height>1.8cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>30</ZIndex>
@@ -4114,11 +4195,55 @@
               </Border>
             </Style>
           </Tablix>
+          <Image Name="Logo">
+            <Source>Embedded</Source>
+            <Value>BC</Value>
+            <Sizing>FitProportional</Sizing>
+            <Left>0.00777cm</Left>
+            <Height>0.57in</Height>
+            <Width>1.17361in</Width>
+            <ZIndex>31</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Textbox Name="Textbox156">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Report Created: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox156</rd:DefaultName>
+            <Top>1.4478cm</Top>
+            <Left>21.90432cm</Left>
+            <Height>0.6cm</Height>
+            <Width>8.22571cm</Width>
+            <ZIndex>32</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>8.94389in</Height>
         <Style />
       </Body>
-      <Width>11.77133in</Width>
+      <Width>11.86222in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -4199,6 +4324,22 @@
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="BC">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>88190931-7770-40dc-b9f8-5985a8fd6957</rd:ReportID>
 </Report>
