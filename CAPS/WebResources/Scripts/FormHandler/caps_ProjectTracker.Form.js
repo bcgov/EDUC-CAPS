@@ -42,7 +42,10 @@ CAPS.ProjectTracker.showSummaryReport = function (formContext) {
     }
 }
 
-
+/**
+ * Shows and hides appropriate sections and fields for Major/Minor and AFG Projects.
+ * @param {any} formContext the form context
+ */
 CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
     debugger;
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
@@ -50,21 +53,45 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
     if (submissionCategoryCode === 'AFG') {
         //hide procurement, hide other funding, hide both date sections, hide agency section
         formContext.getControl("caps_procurementmethod").setVisible(false);
+        if (formContext.getControl("caps_totalagencyprojected") !== null) {
+            formContext.getControl("caps_totalagencyprojected").setVisible(false);
+        }
+        if (formContext.getControl("caps_variancefromagencybudgeted") !== null) {
+            formContext.getControl("caps_variancefromagencybudgeted").setVisible(false);
+        }
 
         formContext.ui.tabs.get("tab_general").sections.get("sec_other_funding").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("sec_agreement_dates").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("sec_ministry_dates").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_provincial_budget").setVisible(false);
+
+        if (formContext.ui.tabs.get("tab_general").sections.get("sec_cps") !== null) {
+            formContext.ui.tabs.get("tab_general").sections.get("sec_cps").setVisible(false);
+        }
+
+        formContext.ui.tabs.get("tab_general").sections.get("sec_afg_budget").setVisible(true);
 
     }
     else if (submissionCategoryCode === 'BUS' || submissionCategoryCode === 'SEP' || submissionCategoryCode === 'PEP' || submissionCategoryCode === 'CNCP') {
         //hide other funding, provincial funding > hide all but total provincial field
         formContext.ui.tabs.get("tab_general").sections.get("sec_other_funding").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
+
 
         formContext.getControl("caps_approvedreserve").setVisible(false);
         formContext.getControl("caps_totalapproved").setVisible(false);
         formContext.getControl("caps_unapprovedreserve").setVisible(false);
         formContext.getControl("caps_totalprovincialbudget").setVisible(false);
+        
+        if (formContext.getControl("caps_totalagencyprojected") !== null) {
+            formContext.getControl("caps_totalagencyprojected").setVisible(false);
+        }
+        if (formContext.getControl("caps_variancefromagencybudgeted") !== null) {
+            formContext.getControl("caps_variancefromagencybudgeted").setVisible(false);
+        }
 
     }
+
 }
 

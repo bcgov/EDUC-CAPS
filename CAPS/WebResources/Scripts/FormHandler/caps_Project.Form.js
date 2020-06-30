@@ -101,7 +101,13 @@ CAPS.Project.onLoad = function (executionContext) {
         CAPS.Project.ToggleAFGFacility(executionContext);
         //add on-change function to existing facility? caps_existingfacility
         formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.ToggleAFGFacility);
-    }    
+    }   
+
+    //Hide Ministry Review Status of Planned if not allowed
+    if (formContext.getAttribute("caps_submissioncategoryallowplannedstatus").getValue() !== true) {
+        //remove planned (2008700000)
+        formContext.getControl("caps_ministryassessmentstatus").removeOption(200870000);
+    }
 }
 
 /**
@@ -353,9 +359,15 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
         arrTabNames.forEach(function (tabName) {
             tabsToDisregard.push(tabName);
         });
+
+        //Get fields that should or should not be mandatory
+        var mandatoryFields = formContext.getAttribute("caps_submissioncategorymandatoryfields").getValue();
+        var optionalFields = formContext.getAttribute("caps_submissioncategoryoptionalfields").getValue();
+
+
         
 
-        CAPS.Project.RemoveRequirement(formContext, tabsToDisregard);
+        CAPS.Project.RemoveRequirement(formContext, tabsToDisregard, mandatoryFields, optionalFields);
 
         arrTabNames.forEach(function (tabName) {
             formContext.ui.tabs.get(tabName).setVisible(true);
@@ -374,9 +386,15 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
  * This function turns off all field requirements for any field except those in the tabsToDisregard array
  * @param {any} formContext form context
  * @param {any} tabsToDisregard - array of tab names to disregard
- */
-CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard) {
+ * @param {string} mandatoryFields - string of mandatory fields
+ * @param {string} optionalFields - string of optional fields
+ * */
+CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard, mandatoryFields, optionalFields) {
     debugger;
+
+    var mandatoryFieldArray = (mandatoryFields !== null && mandatoryFields !== undefined) ? mandatoryFields.split(",") : [];
+    var optionalFieldArray = (optionalFields !== null && optionalFields !== undefined) ? optionalFields.split(",") : [];
+
     //Get array of all fields on tabs to disregard
     var fieldsToShow = [];
 
@@ -384,10 +402,12 @@ CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard) {
         //loop through sections
         if (tabsToDisregard.includes(tab.getName())) {
             tab.sections.forEach(function (section, j) {
-                section.controls.forEach(function (control, k) {
-                    //add to array
-                    fieldsToShow.push(control.getAttribute().getName());
-                });
+                if (section.name !== "general_sec_hidden") {
+                    section.controls.forEach(function (control, k) {
+                        //add to array
+                        fieldsToShow.push(control.getAttribute().getName());
+                    });
+                }
             });
         }
     });
@@ -405,6 +425,24 @@ CAPS.Project.RemoveRequirement = function (formContext, tabsToDisregard) {
                 });
             });
         }
+    });
+
+    //loop through one last time setting mandatory and not mandatory
+    formContext.ui.tabs.forEach(function (tab, i) {
+        //loop through sections
+        //if (!tabsToDisregard.includes(tab.getName())) {
+            tab.sections.forEach(function (section, j) {
+                section.controls.forEach(function (control, k) {
+                    //if the field is in the mandatory list or optional list then setup appropriately
+                    if (mandatoryFieldArray.includes(control.getAttribute().getName())) {
+                        control.getAttribute().setRequiredLevel("required");
+                    }
+                    if (optionalFieldArray.includes(control.getAttribute().getName())) {
+                        control.getAttribute().setRequiredLevel("none");
+                    }
+                });
+            });
+        //}
     });
 }
 

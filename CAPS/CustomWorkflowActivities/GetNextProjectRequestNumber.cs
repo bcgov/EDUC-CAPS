@@ -33,10 +33,10 @@ namespace CustomWorkflowActivities
             var projectId = service.Create(projectToCreate);
 
             //get project Id
-            Microsoft.Xrm.Sdk.Query.ColumnSet columns = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_projectcode");
+            Microsoft.Xrm.Sdk.Query.ColumnSet columns = new Microsoft.Xrm.Sdk.Query.ColumnSet("caps_projectnumber");
             var projectRecord = service.Retrieve(caps_Project.EntityLogicalName, projectId, columns) as caps_Project;
 
-            var projectNumber = projectRecord.caps_ProjectCode;
+            var projectNumber = projectRecord.caps_ProjectNumber;
 
             tracingService.Trace("Project Number:{0}", projectNumber);
 

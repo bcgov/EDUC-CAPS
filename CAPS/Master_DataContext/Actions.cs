@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\Deanna\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /generateActions /out:"C:\Projects\CAPS\Source Code\EDUC-CAPS\CAPS\Master_DataContext\Actions.cs" /namespace:"CAPS.DataContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Action.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Action.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Action.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
+// Created via this command line: "C:\Users\Deanna\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /generateActions /out:"C:\Projects\CAPS\Source Code\GIT\CAPS\Master_DataContext\Actions.cs" /namespace:"CAPS.DataContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Action.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Action.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Action.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
 //------------------------------------------------------------------------------
 
 namespace CAPS.DataContext
@@ -2053,6 +2053,165 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ManageSLAInstances")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_ManageSLAInstancesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SLAId
+		{
+			get
+			{
+				if (this.Parameters.Contains("SLAId"))
+				{
+					return ((string)(this.Parameters["SLAId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SLAId"] = value;
+			}
+		}
+		
+		public string RegardingId
+		{
+			get
+			{
+				if (this.Parameters.Contains("RegardingId"))
+				{
+					return ((string)(this.Parameters["RegardingId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["RegardingId"] = value;
+			}
+		}
+		
+		public string EntityLogicalName
+		{
+			get
+			{
+				if (this.Parameters.Contains("EntityLogicalName"))
+				{
+					return ((string)(this.Parameters["EntityLogicalName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["EntityLogicalName"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public msdyn_ManageSLAInstancesRequest()
+		{
+			this.RequestName = "msdyn_ManageSLAInstances";
+			this.SLAId = default(string);
+			this.RegardingId = default(string);
+			this.EntityLogicalName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ManageSLAInstances")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_ManageSLAInstancesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public msdyn_ManageSLAInstancesResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_GetNextProjectRequestNumber")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_GetNextProjectRequestNumberRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_GetNextProjectRequestNumberRequest()
+		{
+			this.RequestName = "caps_GetNextProjectRequestNumber";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_GetNextProjectRequestNumber")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_GetNextProjectRequestNumberResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_GetNextProjectRequestNumberResponse()
+		{
+		}
+		
+		public string ProjectNumber
+		{
+			get
+			{
+				if (this.Results.Contains("ProjectNumber"))
+				{
+					return ((string)(this.Results["ProjectNumber"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ProjectSubmission")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
@@ -2150,6 +2309,49 @@ namespace CAPS.DataContext
 					return default(Microsoft.Xrm.Sdk.EntityReference);
 				}
 			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CalculateSDAFGAmountsV2")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_CalculateSDAFGAmountsV2Request : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CalculateSDAFGAmountsV2Request()
+		{
+			this.RequestName = "caps_CalculateSDAFGAmountsV2";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CalculateSDAFGAmountsV2")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_CalculateSDAFGAmountsV2Response : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CalculateSDAFGAmountsV2Response()
+		{
 		}
 	}
 	
@@ -3664,6 +3866,49 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CreateActionFlow")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_CreateActionFlowRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SLAId
+		{
+			get
+			{
+				if (this.Parameters.Contains("SLAId"))
+				{
+					return ((string)(this.Parameters["SLAId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SLAId"] = value;
+			}
+		}
+		
+		public msdyn_CreateActionFlowRequest()
+		{
+			this.RequestName = "msdyn_CreateActionFlow";
+			this.SLAId = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CreateActionFlow")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class msdyn_CreateActionFlowResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public msdyn_CreateActionFlowResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForCustomizedSitemap")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public partial class msdyn_CheckForCustomizedSitemapRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -4384,6 +4629,98 @@ namespace CAPS.DataContext
 				else
 				{
 					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RecognizeText")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class RecognizeTextRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid modelId
+		{
+			get
+			{
+				if (this.Parameters.Contains("modelId"))
+				{
+					return ((System.Guid)(this.Parameters["modelId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["modelId"] = value;
+			}
+		}
+		
+		public string base64encoded
+		{
+			get
+			{
+				if (this.Parameters.Contains("base64encoded"))
+				{
+					return ((string)(this.Parameters["base64encoded"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["base64encoded"] = value;
+			}
+		}
+		
+		public RecognizeTextRequest()
+		{
+			this.RequestName = "RecognizeText";
+			this.base64encoded = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RecognizeText")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class RecognizeTextResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RecognizeTextResponse()
+		{
+		}
+		
+		public decimal countOfPages
+		{
+			get
+			{
+				if (this.Results.Contains("countOfPages"))
+				{
+					return ((decimal)(this.Results["countOfPages"]));
+				}
+				else
+				{
+					return default(decimal);
+				}
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityCollection pages
+		{
+			get
+			{
+				if (this.Results.Contains("pages"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Results["pages"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityCollection);
 				}
 			}
 		}

@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\Deanna\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"CAPS.DataContext" /out:"C:\Projects\CAPS\Source Code\EDUC-CAPS\CAPS\Master_DataContext\OptionSets.cs" /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
+// Created via this command line: "C:\Users\Deanna\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /namespace:"CAPS.DataContext" /out:"C:\Projects\CAPS\Source Code\GIT\CAPS\Master_DataContext\OptionSets.cs" /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
 //------------------------------------------------------------------------------
 
 namespace CAPS.DataContext
@@ -657,6 +657,33 @@ namespace CAPS.DataContext
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum AppConfig_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum ApplicationUser_ApplicationType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Externalapplications = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Firstpartyapplications = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Platformapplications = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum ApplicationUser_StatusCode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1628,39 +1655,6 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
-	public enum caps_busMake
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BlueBird = 100000000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Chevrolet = 100000005,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CountryCoach = 100000008,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Ford = 100000007,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Freightliner = 100000006,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GMC = 100000003,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ICBus = 100000002,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		International = 100000004,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ThomasBuilt = 100000001,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_BusMake_StatusCode
 	{
 		
@@ -1669,36 +1663,6 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Inactive = 2,
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute()]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
-	public enum caps_busManufacturer
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		BlueBirdBodyCompany = 100000000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CountryCoachCorporation = 100000007,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FordMotorCompanyUSA = 100000006,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FreightlinerCustomChassisCorp = 100000005,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		GeneralMotorsLLC = 100000003,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ICBusLLC = 100000002,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NavistarInc = 100000004,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ThomasBuiltBusesInc = 100000001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1960,6 +1924,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Published = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResultsReleased = 200870000,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2011,6 +1978,21 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Secondary = 100000002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_coaapproval_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Aborted = 3,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Finished = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2124,10 +2106,7 @@ namespace CAPS.DataContext
 		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		NotinUse = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		UnderConstruction = 100000000,
+		Inactive = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2159,7 +2138,31 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_FamilyofSchools_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_FuelType_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_FundingProgram_StatusCode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2267,47 +2270,26 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
-	public enum caps_Milestone
+	public enum caps_Milestone_StatusCode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Announced = 200870007,
+		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ConceptPlanDue = 200870001,
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_milestone_type
+	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ConceptPlanFinalized = 200870002,
+		Agreement = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ConstructionDocuments = 200870009,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		ContractAward = 200870010,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CPFAApproval = 200870006,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		CPRL = 200870000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		DesignDevelopment = 200870008,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		FinalCompletion = 200870012,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		Occupancy = 200870011,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PDRDue = 200870003,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		PDRFinalized = 200870004,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		TBApproval = 200870005,
+		Ministry = 200870001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2317,6 +2299,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NotSupported = 100000001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Planned = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Supported = 100000000,
@@ -2420,6 +2405,27 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_ProcurementMethod
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConstructionManagement = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DesignBidBuild = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DesignBuild = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NA = 200870004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		TBD = 200870003,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_Project_StatusCode
 	{
 		
@@ -2451,6 +2457,18 @@ namespace CAPS.DataContext
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_projectcashflow_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_ProjectCashFlowHistory_StatusCode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2526,6 +2544,9 @@ namespace CAPS.DataContext
 		PDRDevelopment = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Planned = 200870005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SubstantiallyComplete = 200870003,
 	}
 	
@@ -2573,6 +2594,24 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_Quarter
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Q1 = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Q2 = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Q3 = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Q4 = 200870003,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum caps_SeismicRiskRating
 	{
 		
@@ -2610,6 +2649,9 @@ namespace CAPS.DataContext
 		Draft = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ResultsReleased = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Submit = 100000000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2626,6 +2668,27 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum caps_submissioncategory_type
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AFG = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		BEP = 200870003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Bus = 200870004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Major = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Minor = 200870001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -3704,6 +3767,30 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum datalakeworkspace_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum datalakeworkspacepermission_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum DelveActionHub_CardType
 	{
 		
@@ -3891,6 +3978,9 @@ namespace CAPS.DataContext
 		ApplicationRibbons = 1120,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ApplicationUser = 10093,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AppModuleComponent = 9007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4011,6 +4101,9 @@ namespace CAPS.DataContext
 		Clientupdate = 36,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		COAApproval = 10086,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ColumnMapping = 4417,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4057,6 +4150,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataImport = 4410,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspace = 10091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspacePermission = 10092,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataMap = 4411,
@@ -4179,6 +4278,9 @@ namespace CAPS.DataContext
 		FacilityType = 10076,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FamilyofSchools = 10098,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Fax = 4204,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4210,6 +4312,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FuelType = 10068,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FundingProgram = 10085,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		GlobalSearchConfiguration = 54,
@@ -4341,6 +4446,9 @@ namespace CAPS.DataContext
 		MetadataDifference = 4231,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Milestone = 10090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MobileOfflineProfile = 9866,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4369,6 +4477,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NewProcess = 950,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NonRelationalDataSource = 10089,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Note = 5,
@@ -4491,6 +4602,9 @@ namespace CAPS.DataContext
 		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlowHistory = 10096,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4537,6 +4651,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Region = 10033,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipAttribute = 9814,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipEntity = 9813,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RelationshipRole = 4500,
@@ -4662,6 +4782,9 @@ namespace CAPS.DataContext
 		SemiannualFiscalCalendar = 2001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceConfiguration = 10087,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 4618,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4687,6 +4810,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAItem = 9751,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SLAKPI = 10088,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAKPIInstance = 9752,
@@ -4717,6 +4843,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentDefinition = 7104,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SolutionComponentRelationshipConfiguration = 10097,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentSummary = 10006,
@@ -5061,6 +5190,9 @@ namespace CAPS.DataContext
 		ApplicationRibbons = 1120,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ApplicationUser = 10093,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AppModuleComponent = 9007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5181,6 +5313,9 @@ namespace CAPS.DataContext
 		Clientupdate = 36,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		COAApproval = 10086,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ColumnMapping = 4417,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5227,6 +5362,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataImport = 4410,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspace = 10091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspacePermission = 10092,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataMap = 4411,
@@ -5349,6 +5490,9 @@ namespace CAPS.DataContext
 		FacilityType = 10076,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FamilyofSchools = 10098,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Fax = 4204,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5380,6 +5524,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FuelType = 10068,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FundingProgram = 10085,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		GlobalSearchConfiguration = 54,
@@ -5511,6 +5658,9 @@ namespace CAPS.DataContext
 		MetadataDifference = 4231,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Milestone = 10090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MobileOfflineProfile = 9866,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5539,6 +5689,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NewProcess = 950,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NonRelationalDataSource = 10089,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Note = 5,
@@ -5661,6 +5814,9 @@ namespace CAPS.DataContext
 		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlowHistory = 10096,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5707,6 +5863,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Region = 10033,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipAttribute = 9814,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipEntity = 9813,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RelationshipRole = 4500,
@@ -5832,6 +5994,9 @@ namespace CAPS.DataContext
 		SemiannualFiscalCalendar = 2001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceConfiguration = 10087,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 4618,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5857,6 +6022,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAItem = 9751,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SLAKPI = 10088,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAKPIInstance = 9752,
@@ -5887,6 +6055,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentDefinition = 7104,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SolutionComponentRelationshipConfiguration = 10097,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentSummary = 10006,
@@ -6226,6 +6397,54 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		VFATravel = 757500003,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum edu_School_edu_FacilityType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DistributedLearning = 757500008,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		StandardSchool = 757500000,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum edu_School_edu_SchoolCategory
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		IndependSchool = 757500002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum edu_School_edu_SchoolType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Elementary_GRK7EU = 757500001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ElementarySecondary_GRK12EUSU = 757500003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ElemJrSecondary_GRK10EUSU = 757500002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		JuniorSecondary_GR810SU = 757500004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		MiddleSchool_5868697879EUSU = 757500007,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Secondary_GR812SU = 757500005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SeniorSecondary_GR1112 = 757500006,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -7710,6 +7929,9 @@ namespace CAPS.DataContext
 		ApplicationRibbons = 1120,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ApplicationUser = 10093,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AppModuleComponent = 9007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -7830,6 +8052,9 @@ namespace CAPS.DataContext
 		Clientupdate = 36,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		COAApproval = 10086,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ColumnMapping = 4417,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -7876,6 +8101,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataImport = 4410,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspace = 10091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspacePermission = 10092,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataMap = 4411,
@@ -7998,6 +8229,9 @@ namespace CAPS.DataContext
 		FacilityType = 10076,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FamilyofSchools = 10098,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Fax = 4204,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8029,6 +8263,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FuelType = 10068,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FundingProgram = 10085,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		GlobalSearchConfiguration = 54,
@@ -8160,6 +8397,9 @@ namespace CAPS.DataContext
 		MetadataDifference = 4231,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Milestone = 10090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MobileOfflineProfile = 9866,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8188,6 +8428,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NewProcess = 950,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NonRelationalDataSource = 10089,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Note = 5,
@@ -8310,6 +8553,9 @@ namespace CAPS.DataContext
 		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlowHistory = 10096,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8356,6 +8602,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Region = 10033,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipAttribute = 9814,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipEntity = 9813,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RelationshipRole = 4500,
@@ -8481,6 +8733,9 @@ namespace CAPS.DataContext
 		SemiannualFiscalCalendar = 2001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceConfiguration = 10087,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 4618,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8506,6 +8761,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAItem = 9751,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SLAKPI = 10088,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAKPIInstance = 9752,
@@ -8536,6 +8794,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentDefinition = 7104,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SolutionComponentRelationshipConfiguration = 10097,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentSummary = 10006,
@@ -8799,10 +9060,10 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		DefaultTeamprivilegesonly = 0,
+		DirectUser_BasicaccesslevelandTeamprivileges = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		DirectUser_BasicaccesslevelandTeamprivileges = 1,
+		Teamprivilegesonly = 0,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -9805,6 +10066,30 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServersidePaging = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum msdyn_serviceconfiguration_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum msdyn_slakpi_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -11958,6 +12243,9 @@ namespace CAPS.DataContext
 		ApplicationRibbons = 1120,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ApplicationUser = 10093,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		AppModuleComponent = 9007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12078,6 +12366,9 @@ namespace CAPS.DataContext
 		Clientupdate = 36,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		COAApproval = 10086,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ColumnMapping = 4417,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12124,6 +12415,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataImport = 4410,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspace = 10091,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		DataLakeWorkspacePermission = 10092,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		DataMap = 4411,
@@ -12246,6 +12543,9 @@ namespace CAPS.DataContext
 		FacilityType = 10076,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FamilyofSchools = 10098,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Fax = 4204,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12277,6 +12577,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		FuelType = 10068,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		FundingProgram = 10085,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		GlobalSearchConfiguration = 54,
@@ -12408,6 +12711,9 @@ namespace CAPS.DataContext
 		MetadataDifference = 4231,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Milestone = 10090,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MobileOfflineProfile = 9866,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12436,6 +12742,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		NewProcess = 950,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		NonRelationalDataSource = 10089,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Note = 5,
@@ -12558,6 +12867,9 @@ namespace CAPS.DataContext
 		ProjectCashFlow = 10082,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ProjectCashFlowHistory = 10096,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ProjectHistory = 10059,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12604,6 +12916,12 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Region = 10033,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipAttribute = 9814,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		RelationshipEntity = 9813,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		RelationshipRole = 4500,
@@ -12729,6 +13047,9 @@ namespace CAPS.DataContext
 		SemiannualFiscalCalendar = 2001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ServiceConfiguration = 10087,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServiceEndpoint = 4618,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12754,6 +13075,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAItem = 9751,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SLAKPI = 10088,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SLAKPIInstance = 9752,
@@ -12784,6 +13108,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentDefinition = 7104,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SolutionComponentRelationshipConfiguration = 10097,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SolutionComponentSummary = 10006,
@@ -13049,6 +13376,21 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SLAKPIInstance_msdyn_ActionExecutionStatus
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		None = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Success = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Warning = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum SLAKPIInstance_Status
 	{
 		
@@ -13294,6 +13636,42 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		None = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum solutioncomponentrelationshipconfiguration_PrimaryEntityDependencyType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		HardDependency = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SoftDependency = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum solutioncomponentrelationshipconfiguration_SecondaryEntityDependencyType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		HardDependency = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SoftDependency = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum solutioncomponentrelationshipconfiguration_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
