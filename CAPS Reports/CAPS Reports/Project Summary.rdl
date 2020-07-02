@@ -681,7 +681,8 @@
         &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="ae"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="SubCatcodes"&gt;
+&lt;attribute name="caps_submissioncategorycode"/&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_projecttrackerid" operator="eq" value="@ProjectID" /&gt;
       &lt;/filter&gt;
@@ -730,6 +731,10 @@
           <DataField>caps_completeValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="SubCatcodes_caps_submissioncategorycode">
+          <DataField>SubCatcodes_caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="CAPS_MinistryDates">
@@ -760,7 +765,8 @@
         &lt;condition attribute="caps_type" operator="eq" value="200870001" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="ae"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="Subcatcode"&gt;
+&lt;attribute name="caps_submissioncategorycode"/&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_projecttrackerid" operator="eq"  value="@ProjectID" /&gt;
       &lt;/filter&gt;
@@ -809,6 +815,10 @@
           <DataField>caps_completeValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="Subcatcode_caps_submissioncategorycode">
+          <DataField>Subcatcode_caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -843,7 +853,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -901,8 +911,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.59777in</Top>
-            <Left>8.30028in</Left>
+            <Top>1.90332in</Top>
+            <Left>8.28639in</Left>
             <Height>0.25in</Height>
             <Width>1.675in</Width>
             <ZIndex>2</ZIndex>
@@ -910,7 +920,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -944,7 +954,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -978,7 +988,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1012,7 +1022,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1046,7 +1056,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1080,7 +1090,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1104,8 +1114,8 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <Top>1.90333in</Top>
-            <Left>8.30028in</Left>
+            <Top>2.20888in</Top>
+            <Left>8.28639in</Left>
             <Height>0.25in</Height>
             <Width>1.675in</Width>
             <ZIndex>8</ZIndex>
@@ -1116,7 +1126,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1140,8 +1150,8 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <Top>2.20889in</Top>
-            <Left>8.30028in</Left>
+            <Top>2.51444in</Top>
+            <Left>8.28639in</Left>
             <Height>0.25in</Height>
             <Width>2.125in</Width>
             <ZIndex>9</ZIndex>
@@ -1152,7 +1162,7 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1234,8 +1244,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox93</rd:DefaultName>
-            <Top>2.23666in</Top>
-            <Left>1.00612in</Left>
+            <Top>2.23667in</Top>
+            <Left>1in</Left>
             <Height>0.25in</Height>
             <Width>2.20833in</Width>
             <ZIndex>12</ZIndex>
@@ -1326,8 +1336,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox96</rd:DefaultName>
-            <Top>1.59777in</Top>
-            <Left>9.97528in</Left>
+            <Top>1.90332in</Top>
+            <Left>9.96139in</Left>
             <Height>0.25in</Height>
             <Width>1.22222in</Width>
             <ZIndex>15</ZIndex>
@@ -1358,8 +1368,8 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <Top>1.91722in</Top>
-            <Left>9.97528in</Left>
+            <Top>2.22277in</Top>
+            <Left>9.96139in</Left>
             <Height>0.23611in</Height>
             <Width>1.23611in</Width>
             <ZIndex>16</ZIndex>
@@ -1393,8 +1403,8 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <Top>2.20889in</Top>
-            <Left>10.42528in</Left>
+            <Top>2.51444in</Top>
+            <Left>10.41139in</Left>
             <Height>0.25in</Height>
             <Width>0.95556in</Width>
             <ZIndex>17</ZIndex>
@@ -1430,16 +1440,15 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>2.5561in</Top>
-            <Left>0.01554cm</Left>
+            <Top>2.55611in</Top>
             <Height>0.25in</Height>
-            <Width>1.46875in</Width>
+            <Width>1.73235in</Width>
             <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1467,13 +1476,13 @@
             <Top>2.23666in</Top>
             <Left>10.23833cm</Left>
             <Height>0.25in</Height>
-            <Width>1.47917in</Width>
+            <Width>1.59722in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1498,16 +1507,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>2.51444in</Top>
-            <Left>21.08271cm</Left>
+            <Top>1.59777in</Top>
+            <Left>21.04743cm</Left>
             <Height>0.25in</Height>
-            <Width>1.46875in</Width>
+            <Width>1.675in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundColor>MidnightBlue</BackgroundColor>
+              <BackgroundColor>#234075</BackgroundColor>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1531,10 +1540,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>caps_requestedfunding</rd:DefaultName>
-            <Top>6.38669cm</Top>
-            <Left>24.81334cm</Left>
+            <Top>4.05834cm</Top>
+            <Left>25.30193cm</Left>
             <Height>0.635cm</Height>
-            <Width>4.09399cm</Width>
+            <Width>3.57012cm</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -1588,7 +1597,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1977,7 +1986,7 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
             <Top>8.7162cm</Top>
-            <Left>0.42773cm</Left>
+            <Left>0.00777cm</Left>
             <Height>3.6cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>22</ZIndex>
@@ -2005,10 +2014,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>caps_submissioncategoryValue</rd:DefaultName>
-            <Top>6.49252cm</Top>
-            <Left>3.78145cm</Left>
+            <Top>6.49256cm</Top>
+            <Left>4.40016cm</Left>
             <Height>0.635cm</Height>
-            <Width>4.38326cm</Width>
+            <Width>3.74901cm</Width>
             <ZIndex>23</ZIndex>
             <Style>
               <Border>
@@ -2036,9 +2045,9 @@
             </Paragraphs>
             <rd:DefaultName>caps_procurementmethodValue</rd:DefaultName>
             <Top>5.68113cm</Top>
-            <Left>14.03069cm</Left>
+            <Left>14.29527cm</Left>
             <Height>0.635cm</Height>
-            <Width>4.84364cm</Width>
+            <Width>4.57906cm</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -2091,7 +2100,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2626,7 +2635,7 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
             <Top>8.7162cm</Top>
-            <Left>13.87433cm</Left>
+            <Left>13.45437cm</Left>
             <Height>4.8cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>25</ZIndex>
@@ -2680,7 +2689,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3069,7 +3078,7 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
             <Top>12.9162cm</Top>
-            <Left>0.42773cm</Left>
+            <Left>0.00777cm</Left>
             <Height>3.6cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>26</ZIndex>
@@ -3120,7 +3129,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3363,7 +3372,7 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_Project</DataSetName>
             <Top>14.1162cm</Top>
-            <Left>13.87433cm</Left>
+            <Left>13.45437cm</Left>
             <Height>2.4cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>27</ZIndex>
@@ -3417,7 +3426,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3459,6 +3468,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3493,6 +3503,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3599,7 +3610,7 @@
               </SortExpression>
             </SortExpressions>
             <Top>19.22016cm</Top>
-            <Left>0.42773cm</Left>
+            <Left>0.00777cm</Left>
             <Height>1.8cm</Height>
             <Width>11.96392cm</Width>
             <ZIndex>28</ZIndex>
@@ -3653,7 +3664,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3696,6 +3707,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3728,6 +3740,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3760,6 +3773,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3893,10 +3907,13 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_MinistryDates</DataSetName>
             <Top>16.99766cm</Top>
-            <Left>0.42773cm</Left>
+            <Left>0.00777cm</Left>
             <Height>1.8cm</Height>
-            <Width>11.96392cm</Width>
+            <Width>11.96391cm</Width>
             <ZIndex>29</ZIndex>
+            <Visibility>
+              <Hidden>=Fields!Subcatcode_caps_submissioncategorycode.Value = "AFG"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3947,7 +3964,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>MidnightBlue</BackgroundColor>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3988,6 +4005,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -4020,6 +4038,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -4052,6 +4071,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -4185,10 +4205,13 @@
             </TablixRowHierarchy>
             <DataSetName>CAPS_AgreementDates</DataSetName>
             <Top>16.99766cm</Top>
-            <Left>13.87433cm</Left>
+            <Left>13.45437cm</Left>
             <Height>1.8cm</Height>
             <Width>11.5935cm</Width>
             <ZIndex>30</ZIndex>
+            <Visibility>
+              <Hidden>=Fields!SubCatcodes_caps_submissioncategorycode.Value = "AFG"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4229,6 +4252,36 @@
             <Height>0.6cm</Height>
             <Width>8.22571cm</Width>
             <ZIndex>32</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="SubCatcodes_caps_submissioncategorycode">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!SubCatcodes_caps_submissioncategorycode.Value, "CAPS_AgreementDates")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>SubCatcodes_caps_submissioncategorycode</rd:DefaultName>
+            <Top>20.66854cm</Top>
+            <Left>18.05799cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>33</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
