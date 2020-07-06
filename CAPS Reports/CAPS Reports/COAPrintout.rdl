@@ -1,0 +1,2193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="CAPS_DEV">
+      <ConnectionProperties>
+        <DataProvider>MSCRMFETCH</DataProvider>
+        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+      </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>009502d4-7e2b-4982-bfd8-01d2ebf79af3</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CAPS">
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="CRM_caps_certificateofapproval">
+            <Value>=Parameters!CRM_caps_certificateofapproval.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_certificateofapproval" enableprefiltering="true"&gt;
+    &lt;attribute name="caps_certificateofapprovalid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="createdon" /&gt;
+    &lt;attribute name="caps_totalapprovedadvance" /&gt;
+    &lt;attribute name="statecode" /&gt;
+    &lt;attribute name="caps_signedon" /&gt;
+    &lt;attribute name="caps_signedby" /&gt;
+    &lt;attribute name="caps_signature" /&gt;
+    &lt;attribute name="caps_revisionnumber" /&gt;
+    &lt;attribute name="caps_projectdescription" /&gt;
+    &lt;attribute name="caps_ptr" /&gt;
+    &lt;attribute name="caps_previoustotalapprovedadvance" /&gt;
+    &lt;attribute name="caps_previousrevisionnumber" /&gt;
+    &lt;attribute name="caps_previouscertificatenumber" /&gt;
+    &lt;attribute name="caps_changefrompreviouscoa" /&gt;
+    &lt;attribute name="caps_expirydate" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" visible="false" link-type="outer" alias="a_77c825787491ea11a811000d3af43595"&gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+      &lt;attribute name="caps_name" /&gt;
+      &lt;attribute name="caps_projectnumber" /&gt;
+      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
+      &lt;attribute name="caps_facilitysite" /&gt;
+      &lt;attribute name="caps_description" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="caps_certificateofapprovalid">
+          <DataField>caps_certificateofapprovalid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalapprovedadvance">
+          <DataField>caps_totalapprovedadvance</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalapprovedadvanceValue">
+          <DataField>caps_totalapprovedadvanceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="statecode">
+          <DataField>statecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecodeValue">
+          <DataField>statecodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_signedon">
+          <DataField>caps_signedon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_signedonValue">
+          <DataField>caps_signedonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_signedby">
+          <DataField>caps_signedby</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_signedbyValue">
+          <DataField>caps_signedbyValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_signedbyEntityName">
+          <DataField>caps_signedbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_signature">
+          <DataField>caps_signature</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_revisionnumber">
+          <DataField>caps_revisionnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_revisionnumberValue">
+          <DataField>caps_revisionnumberValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectdescription">
+          <DataField>caps_projectdescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_ptr">
+          <DataField>caps_ptr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_ptrValue">
+          <DataField>caps_ptrValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_ptrEntityName">
+          <DataField>caps_ptrEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_previoustotalapprovedadvance">
+          <DataField>caps_previoustotalapprovedadvance</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_previoustotalapprovedadvanceValue">
+          <DataField>caps_previoustotalapprovedadvanceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_previousrevisionnumber">
+          <DataField>caps_previousrevisionnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_previousrevisionnumberValue">
+          <DataField>caps_previousrevisionnumberValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_previouscertificatenumber">
+          <DataField>caps_previouscertificatenumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changefrompreviouscoa">
+          <DataField>caps_changefrompreviouscoa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changefrompreviouscoaValue">
+          <DataField>caps_changefrompreviouscoaValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_expirydate">
+          <DataField>caps_expirydate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expirydateValue">
+          <DataField>caps_expirydateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_schooldistrict">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_schooldistrictValue">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_schooldistrictEntityName">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_name">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_projectnumber">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_projectnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_maxpotentialprojectbudget">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_maxpotentialprojectbudget</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_maxpotentialprojectbudgetValue">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_maxpotentialprojectbudgetValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_facilitysite">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_facilitysite</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_description">
+          <DataField>a_77c825787491ea11a811000d3af43595_caps_description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Rectangle Name="Rectangle1">
+            <ReportItems>
+              <Image Name="Logo">
+                <Source>Embedded</Source>
+                <Value>BC</Value>
+                <Sizing>FitProportional</Sizing>
+                <Height>0.41042in</Height>
+                <Width>1.1875in</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+              <Textbox Name="caps_signedon">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=FormatDateTime(First(Fields!createdon.Value, "CAPS"),DateFormat.ShortDate)</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_signedon</rd:DefaultName>
+                <Top>9.02083in</Top>
+                <Left>4.6059in</Left>
+                <Height>0.25in</Height>
+                <Width>1.58507in</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_projectdescription">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_projectdescription.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_projectdescription</rd:DefaultName>
+                <Top>2.93681in</Top>
+                <Left>1.44106in</Left>
+                <Height>0.53258in</Height>
+                <Width>5.55374in</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_previouscertificatenumber">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_name.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_previouscertificatenumber</rd:DefaultName>
+                <Top>1.2493in</Top>
+                <Left>1.55729in</Left>
+                <Height>0.25in</Height>
+                <Width>1in</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_revisionnumber">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_revisionnumber.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_revisionnumber</rd:DefaultName>
+                <Top>1.2493in</Top>
+                <Left>4.4375in</Left>
+                <Height>0.25in</Height>
+                <Width>1in</Width>
+                <ZIndex>4</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="textbox1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>CAPITAL PROJECT CERTIFICATE OF APPROVAL</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>14pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>textbox1</rd:DefaultName>
+                <Left>3.63803cm</Left>
+                <Height>0.43in</Height>
+                <Width>5.5625in</Width>
+                <ZIndex>5</ZIndex>
+                <Style>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Certificate Number:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>1.2493in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>1.34375in</Width>
+                <ZIndex>6</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox3">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Revision No:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>1.2493in</Top>
+                <Left>3.59375in</Left>
+                <Height>0.25in</Height>
+                <Width>0.84375in</Width>
+                <ZIndex>7</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox4">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project Description:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>2.95069in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>1.18932in</Width>
+                <ZIndex>8</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox5">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Facility Name:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>2.63125in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>0.96354in</Width>
+                <ZIndex>9</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox6">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project No.:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>2.31181in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>0.76389in</Width>
+                <ZIndex>10</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line2">
+                <Top>7.58333in</Top>
+                <Left>0.22396in</Left>
+                <Height>0in</Height>
+                <Width>6.60417in</Width>
+                <ZIndex>11</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox7">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>EFFECTIVE DATE</Value>
+                        <Style>
+                          <FontSize>6pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox7</rd:DefaultName>
+                <Top>8.83959in</Top>
+                <Left>4.59201in</Left>
+                <Height>0.14931in</Height>
+                <Width>1in</Width>
+                <ZIndex>12</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox8">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>SIGNATURE OF RESPONSIBLE MINISTER OR DESIGNATE</Value>
+                        <Style>
+                          <FontSize>6pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox7</rd:DefaultName>
+                <Top>8.85903in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.14931in</Height>
+                <Width>3.25694in</Width>
+                <ZIndex>13</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line3">
+                <Top>8.86181in</Top>
+                <Left>4.53646in</Left>
+                <Height>0.43472in</Height>
+                <Width>0in</Width>
+                <ZIndex>14</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox10">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>TERMS OF APPROVAL</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox7</rd:DefaultName>
+                <Top>7.58333in</Top>
+                <Left>2.76935in</Left>
+                <Height>0.2111in</Height>
+                <Width>1.50906in</Width>
+                <ZIndex>15</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line4">
+                <Top>6.3691in</Top>
+                <Left>0.19531in</Left>
+                <Height>0in</Height>
+                <Width>6.60417in</Width>
+                <ZIndex>16</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox11">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>GOVERNMENT BODY ACCOUNT</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox7</rd:DefaultName>
+                <Top>6.3691in</Top>
+                <Left>2.03007in</Left>
+                <Height>0.2111in</Height>
+                <Width>2.99211in</Width>
+                <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox12">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>This Certificate is issued pursuant to the Treasury Board approval for the Capital Project described below (the "Project") and a Memorandum of Understanding (the "COA-MOU") between Provincial Treasury and the Sponsoring Ministry. This Certificate constitutes an approval by the Province for the Government Body to request Capital Funding (Advance) from the Province in accordance with the COA-MOU for the purpose of facilitating approved Project expenditures.</Value>
+                        <Style>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>1.51962in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.52484in</Height>
+                <Width>6.17602in</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox13">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>APPROVED CAPITAL PROJECT</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox7</rd:DefaultName>
+                <Top>2.04445in</Top>
+                <Left>2.03007in</Left>
+                <Height>0.2111in</Height>
+                <Width>2.99211in</Width>
+                <ZIndex>19</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox14">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Sponsoring Ministry:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>0.4382in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>1.34375in</Width>
+                <ZIndex>20</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox15">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Government Body:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>0.75764in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>1.34375in</Width>
+                <ZIndex>21</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox16">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Division:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>0.4382in</Top>
+                <Left>3.59375in</Left>
+                <Height>0.25in</Height>
+                <Width>1.34375in</Width>
+                <ZIndex>22</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox17">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Total Estimated Costs:              $</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>3.49716in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>1.87783in</Width>
+                <ZIndex>23</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox18">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project Location:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>2.31181in</Top>
+                <Left>3.59375in</Left>
+                <Height>0.25in</Height>
+                <Width>1.01377in</Width>
+                <ZIndex>24</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox19">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Treasury Board Approval Stage:     1.</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>3.8166in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.25in</Height>
+                <Width>2.08057in</Width>
+                <ZIndex>25</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Rectangle Name="Rectangle6">
+                <ReportItems>
+                  <Rectangle Name="Rectangle7">
+                    <KeepTogether>true</KeepTogether>
+                    <Height>0.2329in</Height>
+                    <Width>0.23888in</Width>
+                    <Style>
+                      <Border>
+                        <Style>Solid</Style>
+                      </Border>
+                    </Style>
+                  </Rectangle>
+                </ReportItems>
+                <KeepTogether>true</KeepTogether>
+                <Top>3.8166in</Top>
+                <Left>3.3852in</Left>
+                <Height>0.2329in</Height>
+                <Width>0.23888in</Width>
+                <ZIndex>26</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Rectangle>
+              <Textbox Name="Textbox20">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Site           2.</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>3.8166in</Top>
+                <Left>2.57119in</Left>
+                <Height>0.25in</Height>
+                <Width>0.78623in</Width>
+                <ZIndex>27</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox21">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Planning    3.</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>3.7995in</Top>
+                <Left>3.63796in</Left>
+                <Height>0.25in</Height>
+                <Width>0.78623in</Width>
+                <ZIndex>28</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Rectangle Name="Rectangle9">
+                <ReportItems>
+                  <Textbox Name="Textbox26">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>X</Value>
+                            <Style>
+                              <Color>Blue</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox26</rd:DefaultName>
+                    <Left>0.03143in</Left>
+                    <Height>0.25in</Height>
+                    <Width>0.16578in</Width>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </ReportItems>
+                <KeepTogether>true</KeepTogether>
+                <Top>9.69417cm</Top>
+                <Left>11.23745cm</Left>
+                <Height>0.25in</Height>
+                <Width>0.23888in</Width>
+                <ZIndex>29</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Rectangle>
+              <Rectangle Name="Rectangle8">
+                <KeepTogether>true</KeepTogether>
+                <Top>9.69417cm</Top>
+                <Left>5.88878cm</Left>
+                <Height>0.2329in</Height>
+                <Width>0.23888in</Width>
+                <ZIndex>30</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Rectangle>
+              <Textbox Name="Textbox22">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Completion</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>3.7995in</Top>
+                <Left>4.66307in</Left>
+                <Height>0.25in</Height>
+                <Width>0.78623in</Width>
+                <ZIndex>31</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="project_caps_schooldistrict">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!project_caps_schooldistrict.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>project_caps_schooldistrict</rd:DefaultName>
+                <Top>2.31181in</Top>
+                <Left>4.60752in</Left>
+                <Height>0.25in</Height>
+                <Width>2.38727in</Width>
+                <ZIndex>32</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="project_caps_facilitysite">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!project_caps_facilitysite.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>project_caps_facilitysite</rd:DefaultName>
+                <Top>2.63125in</Top>
+                <Left>1.1875in</Left>
+                <Height>0.25in</Height>
+                <Width>5.80729in</Width>
+                <ZIndex>33</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox23">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Funding Detail (this certificate cancels and replaces all previous certificates issued for the Project):</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>4.13605in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>6.60417in</Width>
+                <ZIndex>34</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox24">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Previous Certificate No.:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>4.53576in</Top>
+                <Left>0.63675in</Left>
+                <Height>0.25in</Height>
+                <Width>1.46503in</Width>
+                <ZIndex>35</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox25">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Previous Total Approved Advance:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>4.85521in</Top>
+                <Left>0.63675in</Left>
+                <Height>0.25in</Height>
+                <Width>2.03928in</Width>
+                <ZIndex>36</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox27">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Increase (Decrease) Determined By This Certificate:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>5.17465in</Top>
+                <Left>0.63675in</Left>
+                <Height>0.25in</Height>
+                <Width>2.98732in</Width>
+                <ZIndex>37</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox28">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Total Approved Advance:</Value>
+                        <Style>
+                          <FontSize>12pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>5.4941in</Top>
+                <Left>0.63675in</Left>
+                <Height>0.31677in</Height>
+                <Width>2.29302in</Width>
+                <ZIndex>38</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox29">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Expiry Date:</Value>
+                        <Style>
+                          <FontSize>12pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>5.88032in</Top>
+                <Left>0.63675in</Left>
+                <Height>0.31677in</Height>
+                <Width>1.07106in</Width>
+                <ZIndex>39</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox30">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Previous Revision No.:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>4.53576in</Top>
+                <Left>3.7602in</Left>
+                <Height>0.25in</Height>
+                <Width>1.36133in</Width>
+                <ZIndex>40</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox31">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>$</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>4.85521in</Top>
+                <Left>4.0283in</Left>
+                <Height>0.25in</Height>
+                <Width>0.12875in</Width>
+                <ZIndex>41</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox32">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>$</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>5.17465in</Top>
+                <Left>4.0283in</Left>
+                <Height>0.25in</Height>
+                <Width>0.12875in</Width>
+                <ZIndex>42</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox33">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>$</Value>
+                        <Style>
+                          <FontSize>12pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>5.4941in</Top>
+                <Left>4.0283in</Left>
+                <Height>0.31677in</Height>
+                <Width>0.12875in</Width>
+                <ZIndex>43</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line6">
+                <Top>5.42465in</Top>
+                <Left>4.17246in</Left>
+                <Height>0in</Height>
+                <Width>1.75663in</Width>
+                <ZIndex>44</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox34">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Financial Institution:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>6.9605in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>1.21797in</Width>
+                <ZIndex>45</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox35">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Transit No.:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>7.26605in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>1.21797in</Width>
+                <ZIndex>46</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox36">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Account No.:</Value>
+                        <Style>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox2</rd:DefaultName>
+                <Top>7.26605in</Top>
+                <Left>3.4451in</Left>
+                <Height>0.25in</Height>
+                <Width>1.21797in</Width>
+                <ZIndex>47</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox37">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>1.  The Total Approved Advance approved by this Certificate represents the maximum that may be advance for the Project.</Value>
+                        <Style>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>2.  This Certificate is valid only until the Expiry Date or until cancelled by the Sponsoring Ministry. This Certificate is not transferable.</Value>
+                        <Style>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>3.  Additional terms specific to the Project made between the Sponsoring Ministry and the Government Body are set out below or in the              attached Appendix.</Value>
+                        <Style>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>7.82221in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.60296in</Height>
+                <Width>6.17602in</Width>
+                <ZIndex>48</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox42">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>TOTAL APPROVED BORROWING HAS BEEN REDUCED BY 1,000,000.00 FUNDED FROM MINISTRY OF EDUCATION - RESTRICTED CAPITAL AND/OR LAND CAPITAL RESERVE.</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Normal</FontWeight>
+                          <TextDecoration>None</TextDecoration>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox42</rd:DefaultName>
+                <Top>8.45574in</Top>
+                <Left>0.27759in</Left>
+                <Height>0.30746in</Height>
+                <Width>5.75566in</Width>
+                <ZIndex>49</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_previoustotalapprovedadvance">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_previoustotalapprovedadvance.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_previoustotalapprovedadvance</rd:DefaultName>
+                <Top>4.85521in</Top>
+                <Left>4.15705in</Left>
+                <Height>0.25in</Height>
+                <Width>1.77203in</Width>
+                <ZIndex>50</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_previousrevisionnumber">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_previousrevisionnumber.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_previousrevisionnumber</rd:DefaultName>
+                <Top>4.53576in</Top>
+                <Left>5.12153in</Left>
+                <Height>0.25in</Height>
+                <Width>1.67796in</Width>
+                <ZIndex>51</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_previouscertificatenumber1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_previouscertificatenumber.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_previouscertificatenumber1</rd:DefaultName>
+                <Top>4.53576in</Top>
+                <Left>2.10178in</Left>
+                <Height>0.25in</Height>
+                <Width>1.52229in</Width>
+                <ZIndex>52</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_expirydate">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_expirydate.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_expirydate</rd:DefaultName>
+                <Top>5.92209in</Top>
+                <Left>1.7356in</Left>
+                <Height>0.25in</Height>
+                <Width>1.7453in</Width>
+                <ZIndex>53</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_totalapprovedadvance">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_totalapprovedadvance.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_totalapprovedadvance</rd:DefaultName>
+                <Top>5.52337in</Top>
+                <Left>4.17094in</Left>
+                <Height>0.25in</Height>
+                <Width>1.77203in</Width>
+                <ZIndex>54</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_changefrompreviouscoa">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_changefrompreviouscoa.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_changefrompreviouscoa</rd:DefaultName>
+                <Top>5.17465in</Top>
+                <Left>4.15705in</Left>
+                <Height>0.25in</Height>
+                <Width>1.77203in</Width>
+                <ZIndex>55</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Image Name="Image2">
+                <Source>Database</Source>
+                <Value>=IIF(NOT IsNothing(First(Fields!caps_signature.Value, "CAPS")),First(Fields!caps_signature.Value, "CAPS").ToString().Split(“,”).GetValue(1),””)</Value>
+                <MIMEType>image/x-png</MIMEType>
+                <Sizing>FitProportional</Sizing>
+                <Top>8.90625in</Top>
+                <Left>0.32118in</Left>
+                <Height>0.39236in</Height>
+                <Width>3.15972in</Width>
+                <ZIndex>56</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+              <Line Name="Line1">
+                <Top>8.83681in</Top>
+                <Left>0.22396in</Left>
+                <Height>0in</Height>
+                <Width>6.60417in</Width>
+                <ZIndex>57</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="project_caps_projectnumber">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!project_caps_projectnumber.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>project_caps_projectnumber</rd:DefaultName>
+                <Top>2.31181in</Top>
+                <Left>0.98785in</Left>
+                <Height>0.25in</Height>
+                <Width>1in</Width>
+                <ZIndex>58</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="project_caps_maxpotentialprojectbudget">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!project_caps_maxpotentialprojectbudget.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>project_caps_maxpotentialprojectbudget</rd:DefaultName>
+                <Top>3.49716in</Top>
+                <Left>2.10178in</Left>
+                <Height>0.25in</Height>
+                <Width>3.33572in</Width>
+                <ZIndex>59</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.12445in</Top>
+            <Left>0.22791in</Left>
+            <Height>9.32153in</Height>
+            <Width>7.15786in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ORIGINAL</Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: MINISTRY OF FINANCE                  </Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>COPIES</Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>: 1) GOVERNMENT BODY    2) SPONSORING MINISTRY</Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox7</rd:DefaultName>
+            <Top>9.43695in</Top>
+            <Left>1.45188in</Left>
+            <Height>0.14931in</Height>
+            <Width>4.21354in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox43">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>FIN 14 Rev.2010/04/28</Value>
+                    <Style>
+                      <FontSize>6pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox43</rd:DefaultName>
+            <Top>7.81056in</Top>
+            <Left>0.09167in</Left>
+            <Height>1.63541in</Height>
+            <Width>0.21354in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+              <WritingMode>Rotate270</WritingMode>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>10.0134in</Height>
+        <Style />
+      </Body>
+      <Width>7.51958in</Width>
+      <Page>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CRM_caps_certificateofapproval">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="caps_certificateofapproval"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CRM caps certificateofapproval</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CRM_caps_certificateofapproval</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="BC">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>ad326796-072d-4115-855f-c4cbbbf38c82</rd:ReportID>
+</Report>
