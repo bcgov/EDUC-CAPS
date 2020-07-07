@@ -668,6 +668,18 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum AppElement_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum ApplicationUser_ApplicationType
 	{
 		
@@ -749,6 +761,42 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum AppModuleComponentEdge_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum AppModuleComponentNode_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum AppModuleComponentNode_ValidationStatus
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Failure = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Success = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum Appointment_AttachmentErrors
 	{
 		
@@ -817,6 +865,18 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Tentative = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum AppSetting_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1555,6 +1615,18 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		UnifiedApp = 3,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum CanvasAppExtendedMetadata_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2304,6 +2376,9 @@ namespace CAPS.DataContext
 		Planned = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PreviouslyPlanned = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Supported = 100000000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2545,6 +2620,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Planned = 200870005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PreviouslyPlanned = 200870006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SubstantiallyComplete = 200870003,
@@ -3276,6 +3354,18 @@ namespace CAPS.DataContext
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum Connection_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum connectionreference_StatusCode
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4074,6 +4164,9 @@ namespace CAPS.DataContext
 		CanvasApp = 300,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CanvasAppExtendedMetadata = 10105,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CapitalPlan = 10049,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4117,6 +4210,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Connection = 3234,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConnectionReference = 10104,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ConnectionRole = 3231,
@@ -4461,6 +4557,18 @@ namespace CAPS.DataContext
 		ModeldrivenApp = 9006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNode = 10101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNodesEdge = 10100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppElement = 10099,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppSetting = 10102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MonthlyFiscalCalendar = 2003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -4789,6 +4897,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServicePlan = 101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SettingDefinition = 10103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointData = 9509,
@@ -5286,6 +5397,9 @@ namespace CAPS.DataContext
 		CanvasApp = 300,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CanvasAppExtendedMetadata = 10105,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CapitalPlan = 10049,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -5329,6 +5443,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Connection = 3234,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConnectionReference = 10104,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ConnectionRole = 3231,
@@ -5673,6 +5790,18 @@ namespace CAPS.DataContext
 		ModeldrivenApp = 9006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNode = 10101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNodesEdge = 10100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppElement = 10099,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppSetting = 10102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MonthlyFiscalCalendar = 2003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -6001,6 +6130,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServicePlan = 101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SettingDefinition = 10103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointData = 9509,
@@ -8025,6 +8157,9 @@ namespace CAPS.DataContext
 		CanvasApp = 300,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CanvasAppExtendedMetadata = 10105,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CapitalPlan = 10049,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8068,6 +8203,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Connection = 3234,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConnectionReference = 10104,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ConnectionRole = 3231,
@@ -8412,6 +8550,18 @@ namespace CAPS.DataContext
 		ModeldrivenApp = 9006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNode = 10101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNodesEdge = 10100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppElement = 10099,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppSetting = 10102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MonthlyFiscalCalendar = 2003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -8740,6 +8890,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServicePlan = 101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SettingDefinition = 10103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointData = 9509,
@@ -12014,6 +12167,69 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SettingDefinition_Category
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		AppSetting = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ExperimentalSetting = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		PreviewSetting = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SettingDefinition_DataType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Boolean = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Number = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		String = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SettingDefinition_Scope
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenApp = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SettingDefinition_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public enum SettingDefinition_Type
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppLevelSettings = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppPlatformLevelSettings = 0,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
 	public enum SharePoint_ValidationStatus
 	{
 		
@@ -12339,6 +12555,9 @@ namespace CAPS.DataContext
 		CanvasApp = 300,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		CanvasAppExtendedMetadata = 10105,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		CapitalPlan = 10049,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -12382,6 +12601,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		Connection = 3234,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ConnectionReference = 10104,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ConnectionRole = 3231,
@@ -12726,6 +12948,18 @@ namespace CAPS.DataContext
 		ModeldrivenApp = 9006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNode = 10101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppComponentNodesEdge = 10100,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppElement = 10099,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		ModelDrivenAppSetting = 10102,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		MonthlyFiscalCalendar = 2003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -13054,6 +13288,9 @@ namespace CAPS.DataContext
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		ServicePlan = 101,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		SettingDefinition = 10103,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		SharePointData = 9509,

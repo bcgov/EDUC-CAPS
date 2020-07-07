@@ -2355,6 +2355,49 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CloseCapitalPlan")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_CloseCapitalPlanRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CloseCapitalPlanRequest()
+		{
+			this.RequestName = "caps_CloseCapitalPlan";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CloseCapitalPlan")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	public partial class caps_CloseCapitalPlanResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CloseCapitalPlanResponse()
+		{
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ScheduleRetrain")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
