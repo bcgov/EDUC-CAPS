@@ -5569,16 +5569,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PlannedProjectRequests</DataSetName>
-            <Filters>
-              <Filter>
-                <FilterExpression>=Fields!ProjectTracker_createdon.Value</FilterExpression>
-                <Operator>Between</Operator>
-                <FilterValues>
-                  <FilterValue>=DateValue(First(Fields!Year_edu_enddate.Value, "CapitalPlanDetails"))</FilterValue>
-                  <FilterValue>=DateValue(First(Fields!Year_edu_startdate.Value, "CapitalPlanDetails"))</FilterValue>
-                </FilterValues>
-              </Filter>
-            </Filters>
             <Top>7.30249cm</Top>
             <Left>0cm</Left>
             <Height>2.83187cm</Height>
