@@ -1469,7 +1469,6 @@
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1940,14 +1939,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_existingfacility1">
+                        <Textbox Name="caps_facilityview6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_existingfacility.Value</Value>
+                                  <Value>=Fields!caps_facilityview.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -1956,7 +1955,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_existingfacility1</rd:DefaultName>
+                          <rd:DefaultName>caps_facilityview6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1968,6 +1967,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3744,7 +3744,7 @@
             <Top>14.92582cm</Top>
             <Left>0cm</Left>
             <Height>2.83187cm</Height>
-            <Width>26.05264cm</Width>
+            <Width>26.05263cm</Width>
             <ZIndex>12</ZIndex>
             <Visibility>
               <Hidden>= Fields!CallForSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Minor"</Hidden>
@@ -4278,7 +4278,7 @@
             <Top>17.7577cm</Top>
             <Left>0cm</Left>
             <Height>2.80542cm</Height>
-            <Width>26.05264cm</Width>
+            <Width>26.05263cm</Width>
             <ZIndex>13</ZIndex>
             <Visibility>
               <Hidden>=Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Minor"</Hidden>
@@ -4878,8 +4878,8 @@
             </SortExpressions>
             <Top>20.59839cm</Top>
             <Left>0cm</Left>
-            <Height>2.51437cm</Height>
-            <Width>25.99969cm</Width>
+            <Height>2.51438cm</Height>
+            <Width>25.99968cm</Width>
             <ZIndex>14</ZIndex>
             <Visibility>
               <Hidden>=Fields!CallForSubmission_caps_callforsubmissiontype.Value &lt;&gt; "AFG"</Hidden>
@@ -5077,7 +5077,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0in</Top>
               <Left>8.89759in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
