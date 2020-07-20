@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="CAPS_Dev">
+      <ConnectionProperties>
+        <DataProvider>MSCRMFETCH</DataProvider>
+        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>dcd99244-329d-4b93-851a-d9e39c9f99b4</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="PRFSAlternativeOption">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="SubProjectID">
+            <Value>=Parameters!CRM_caps_prfsalternativeoption.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch&gt;
+  &lt;entity name="caps_prfsalternativeoption" enableprefiltering="1" &gt;
+    &lt;all-attributes/&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="owninguser">
+          <DataField>owninguser</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owninguserValue">
+          <DataField>owninguserValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owninguserEntityName">
+          <DataField>owninguserEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecode">
+          <DataField>statecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecodeValue">
+          <DataField>statecodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="createdonbehalfby">
+          <DataField>createdonbehalfby</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonbehalfbyValue">
+          <DataField>createdonbehalfbyValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="createdonbehalfbyEntityName">
+          <DataField>createdonbehalfbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_prfsalternativeoptionid">
+          <DataField>caps_prfsalternativeoptionid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_nlc_percentage">
+          <DataField>caps_nlc_percentage</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_nlc_percentageValue">
+          <DataField>caps_nlc_percentageValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="importsequencenumber">
+          <DataField>importsequencenumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="importsequencenumberValue">
+          <DataField>importsequencenumberValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_optionrationale">
+          <DataField>caps_optionrationale</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_scopeofwork">
+          <DataField>caps_scopeofwork</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectrequest">
+          <DataField>caps_projectrequest</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectrequestValue">
+          <DataField>caps_projectrequestValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectrequestEntityName">
+          <DataField>caps_projectrequestEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="utcconversiontimezonecode">
+          <DataField>utcconversiontimezonecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="utcconversiontimezonecodeValue">
+          <DataField>utcconversiontimezonecodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttype">
+          <DataField>caps_projecttype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttypeValue">
+          <DataField>caps_projecttypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttypeEntityName">
+          <DataField>caps_projecttypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owningbusinessunit">
+          <DataField>owningbusinessunit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owningbusinessunitValue">
+          <DataField>owningbusinessunitValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owningbusinessunitEntityName">
+          <DataField>owningbusinessunitEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owningteam">
+          <DataField>owningteam</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owningteamValue">
+          <DataField>owningteamValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owningteamEntityName">
+          <DataField>owningteamEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_municipalrequirements">
+          <DataField>caps_municipalrequirements</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="modifiedby">
+          <DataField>modifiedby</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="modifiedbyValue">
+          <DataField>modifiedbyValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="modifiedbyEntityName">
+          <DataField>modifiedbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdby">
+          <DataField>createdby</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdbyValue">
+          <DataField>createdbyValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="createdbyEntityName">
+          <DataField>createdbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="timezoneruleversionnumber">
+          <DataField>timezoneruleversionnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="timezoneruleversionnumberValue">
+          <DataField>timezoneruleversionnumberValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_tempaccommodationandbusingplan">
+          <DataField>caps_tempaccommodationandbusingplan</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_constructiontype">
+          <DataField>caps_constructiontype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_constructiontypeValue">
+          <DataField>caps_constructiontypeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="modifiedon">
+          <DataField>modifiedon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="modifiedonValue">
+          <DataField>modifiedonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_proposedfacility">
+          <DataField>caps_proposedfacility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="versionnumber">
+          <DataField>versionnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="versionnumberValue">
+          <DataField>versionnumberValue</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="modifiedonbehalfby">
+          <DataField>modifiedonbehalfby</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="modifiedonbehalfbyValue">
+          <DataField>modifiedonbehalfbyValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="modifiedonbehalfbyEntityName">
+          <DataField>modifiedonbehalfbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ownerid">
+          <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owneridValue">
+          <DataField>owneridValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owneridEntityName">
+          <DataField>owneridEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="overriddencreatedon">
+          <DataField>overriddencreatedon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="overriddencreatedonValue">
+          <DataField>overriddencreatedonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="caps_optionrationale">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_optionrationale.Value, "PRFSAlternativeOption")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_optionrationale</rd:DefaultName>
+            <Top>2.03412cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>9.03521cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Option Rationale</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>1.43412cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.50542cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="caps_scopeofwork">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_scopeofwork.Value, "PRFSAlternativeOption")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_scopeofwork</rd:DefaultName>
+            <Top>3.41051cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>9.03521cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Scope of Work</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>2.81051cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.50542cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="caps_tempaccommodationandbusingplan">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_tempaccommodationandbusingplan.Value, "PRFSAlternativeOption")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_tempaccommodationandbusingplan</rd:DefaultName>
+            <Top>4.78689cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>9.03521cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Temporary Accomodation and Busing Plan</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>4.18689cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.47417cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="caps_municipalrequirements">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_municipalrequirements.Value, "PRFSAlternativeOption")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_municipalrequirements</rd:DefaultName>
+            <Top>6.16328cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>9.03521cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Municipal Requirements</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>5.56328cm</Top>
+            <Left>1.31974cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.47417cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>3.72917in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CRM_caps_prfsalternativeoption">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="caps_prfsalternativeoption"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CRM caps prfsalternativeoption</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CRM_caps_prfsalternativeoption</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>e07cd02a-1525-4cbf-943c-197c79acd19e</rd:ReportID>
+</Report>
