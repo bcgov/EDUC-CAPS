@@ -1091,869 +1091,47 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="FacilityPortables">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch mapping="logical" aggregate="true" &gt;
+  &lt;entity name="caps_facility" &gt;
+&lt;attribute name="caps_facilityid" alias="facilityid" groupby="true"/&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+&lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_portable" from="caps_facility" to="caps_facilityid" link-type="outer" &gt;
+      &lt;attribute name="caps_assetnumber" alias="countPortables" aggregate="countcolumn" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="facilityid">
+          <DataField>facilityid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="countPortables">
+          <DataField>countPortables</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="countPortablesValue">
+          <DataField>countPortablesValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="Textbox7">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>="Table - " &amp; First(Fields!caps_projecttype.Value, "ProjectRequest") &amp;" - "&amp; First(Fields!caps_projectcode.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>0.97578cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>11.29708cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox16">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Proposed Project Information</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>1.75217cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox17">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>School District Project Priority Ranking</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>2.35217cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox18">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_districtpriority.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>2.96925cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox19">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>School Information</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>1.75217cm</Top>
-            <Left>9.29662cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox20">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Grade Configuration of Existing School:</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>2.35217cm</Top>
-            <Left>9.29662cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox21">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_lowestgrade.Value, "ProjectRequestFacility") &amp;"-"&amp; First(Fields!caps_highestgrade.Value, "ProjectRequestFacility")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>2.96925cm</Top>
-            <Left>9.29662cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox22">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Project Rationale</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>4.31808cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox23">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_projectrationale.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>4.91808cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>1.64979cm</Height>
-            <Width>11.29708cm</Width>
-            <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox24">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Scope of Work</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>6.74426cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox25">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_scopeofwork.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>7.34426cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>1.64979cm</Height>
-            <Width>11.29708cm</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox26">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Temporary Accomodation and Busing Plan</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>9.17043cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>7.44771cm</Width>
-            <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox27">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_tempaccommodationandbusingplan.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>9.77043cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>1.64979cm</Height>
-            <Width>11.29708cm</Width>
-            <ZIndex>12</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox28">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Municipal Requirements</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>11.59661cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>13</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox29">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_municipalrequirements.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>12.19661cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>1.64979cm</Height>
-            <Width>11.29708cm</Width>
-            <ZIndex>14</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox30">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Long-Range Facilities Plan</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>14.02279cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.64854cm</Width>
-            <ZIndex>15</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_isanlrfpcurrentlyinplace">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_isanlrfpcurrentlyinplace.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_isanlrfpcurrentlyinplace</rd:DefaultName>
-            <Top>14.72863cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>16</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_datecompleted_lrfpValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_datecompleted_lrfpValue.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_datecompleted_lrfpValue</rd:DefaultName>
-            <Top>15.3639cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>17</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_dateupdated_lrfpValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_dateupdated_lrfpValue.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_dateupdated_lrfpValue</rd:DefaultName>
-            <Top>15.99918cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>18</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_datelrfpwillbeinplaceValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_datelrfpwillbeinplaceValue.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_datelrfpwillbeinplaceValue</rd:DefaultName>
-            <Top>16.63446cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>19</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_includedinlrfpasneedValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_includedinlrfpasneedValue.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_includedinlrfpasneedValue</rd:DefaultName>
-            <Top>17.41085cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
-            <ZIndex>20</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_describelrfpsupportsneed">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_describelrfpsupportsneed.Value, "ProjectRequest")</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_describelrfpsupportsneed</rd:DefaultName>
-            <Top>18.04613cm</Top>
-            <Left>8.59578cm</Left>
-            <Height>1.64979cm</Height>
-            <Width>6.34937cm</Width>
-            <ZIndex>21</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox37">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Does the District have an LRFP currently in place?</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>14.72863cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.94771cm</Width>
-            <ZIndex>22</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox38">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Date Completed</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>15.3639cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.9477cm</Width>
-            <ZIndex>23</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox39">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Date Updated</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>15.99918cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.9477cm</Width>
-            <ZIndex>24</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox40">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Date when the District will have a LRFP in place</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>16.63446cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.9477cm</Width>
-            <ZIndex>25</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox41">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Is the proposed project identified in the LRFP as a future capital project need?</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>17.41085cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.9477cm</Width>
-            <ZIndex>26</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox42">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Describe how the LRFP supports the need for the proposed capital project</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>18.04613cm</Top>
-            <Left>3.64808cm</Left>
-            <Height>0.6cm</Height>
-            <Width>4.9477cm</Width>
-            <ZIndex>27</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Rectangle Name="DemolitionRectangle">
             <ReportItems>
               <Textbox Name="Textbox8">
@@ -1974,7 +1152,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>0.3175cm</Top>
+                <Top>0.33903cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>10.08cm</Width>
@@ -2003,7 +1181,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>1.05861cm</Top>
+                <Top>1.08014cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2035,7 +1213,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>1.69389cm</Top>
+                <Top>1.71542cm</Top>
                 <Left>0.39687cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2067,7 +1245,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>4.05667cm</Top>
+                <Top>4.0782cm</Top>
                 <Left>0.39687cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2099,7 +1277,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>4.69195cm</Top>
+                <Top>4.71348cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2131,7 +1309,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>5.32723cm</Top>
+                <Top>5.34876cm</Top>
                 <Left>0.39687cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2163,7 +1341,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>5.9625cm</Top>
+                <Top>5.98403cm</Top>
                 <Left>0.39687cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2195,7 +1373,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>8.38812cm</Top>
+                <Top>8.40965cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2227,7 +1405,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>10.96395cm</Top>
+                <Top>10.98548cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2259,7 +1437,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>13.5045cm</Top>
+                <Top>13.52603cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2291,7 +1469,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>14.1045cm</Top>
+                <Top>14.12603cm</Top>
                 <Left>0.39688cm</Left>
                 <Height>0.6cm</Height>
                 <Width>4.02622cm</Width>
@@ -2321,7 +1499,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>1.05861cm</Top>
+                <Top>1.08014cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.05378cm</Width>
@@ -2351,10 +1529,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>1.69389cm</Top>
+                <Top>1.71542cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>2.32751cm</Height>
-                <Width>6.08906cm</Width>
+                <Width>6.05378cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -2374,14 +1552,16 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=First(Fields!caps_datebuildingportionbecameunoccupiedValue.Value, "ProjectRequest")</Value>
-                        <Style />
+                        <Style>
+                          <Format>d</Format>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>4.05667cm</Top>
+                <Top>4.0782cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.05378cm</Width>
@@ -2411,7 +1591,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>4.69195cm</Top>
+                <Top>4.71348cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.05378cm</Width>
@@ -2441,7 +1621,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>5.32723cm</Top>
+                <Top>5.34876cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.05378cm</Width>
@@ -2471,7 +1651,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>5.9625cm</Top>
+                <Top>5.98403cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>2.39034cm</Height>
                 <Width>6.05378cm</Width>
@@ -2501,7 +1681,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>8.38812cm</Top>
+                <Top>8.40965cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>2.36416cm</Height>
                 <Width>6.05378cm</Width>
@@ -2531,7 +1711,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>10.96395cm</Top>
+                <Top>10.98548cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>2.36416cm</Height>
                 <Width>6.05378cm</Width>
@@ -2554,14 +1734,16 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=Sum(Fields!caps_estimatedmarketvalueofpropertywbuildingValue.Value, "ProjectRequest")</Value>
-                        <Style />
+                        <Style>
+                          <Format>'$'#,0;('$'#,0);'-'</Format>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>13.5045cm</Top>
+                <Top>13.52603cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.05378cm</Width>
@@ -2574,6 +1756,7 @@
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
                   <PaddingBottom>2pt</PaddingBottom>
+                  <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                 </Style>
               </Textbox>
               <Textbox Name="Textbox63">
@@ -2584,17 +1767,687 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=Sum(Fields!caps_estimatedmarketvalueoflandwobuildingValue.Value, "ProjectRequest")</Value>
-                        <Style />
+                        <Style>
+                          <Format>'$'#,0;('$'#,0);'-'</Format>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>14.13978cm</Top>
+                <Top>14.16131cm</Top>
                 <Left>4.45837cm</Left>
                 <Height>0.56472cm</Height>
                 <Width>6.05378cm</Width>
+                <ZIndex>20</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                  <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.95425cm</Top>
+            <Left>15.46977cm</Left>
+            <Height>16.10242cm</Height>
+            <Width>11.29708cm</Width>
+            <Visibility>
+              <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") &lt;&gt; "DEMOLITION"</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Rectangle Name="PrimaryOptionPRFSAggregate">
+            <ReportItems>
+              <Textbox Name="Textbox22">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project Rationale</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox22</rd:DefaultName>
+                <Top>0.19376cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>5.64854cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox23">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_projectrationale.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox23</rd:DefaultName>
+                <Top>0.79376cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>1.64979cm</Height>
+                <Width>11.29708cm</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox24">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Scope of Work</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox22</rd:DefaultName>
+                <Top>2.61994cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>5.64854cm</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox25">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_scopeofwork.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox23</rd:DefaultName>
+                <Top>3.21994cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>1.64979cm</Height>
+                <Width>11.29708cm</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox26">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Temporary Accomodation and Busing Plan</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox22</rd:DefaultName>
+                <Top>5.04611cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>7.44771cm</Width>
+                <ZIndex>4</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox27">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_tempaccommodationandbusingplan.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox23</rd:DefaultName>
+                <Top>5.64611cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>1.64979cm</Height>
+                <Width>11.29708cm</Width>
+                <ZIndex>5</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox28">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Municipal Requirements</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox22</rd:DefaultName>
+                <Top>7.47229cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>5.64854cm</Width>
+                <ZIndex>6</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox29">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_municipalrequirements.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox23</rd:DefaultName>
+                <Top>8.07229cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>1.64979cm</Height>
+                <Width>11.29708cm</Width>
+                <ZIndex>7</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox30">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Long-Range Facilities Plan</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox22</rd:DefaultName>
+                <Top>9.89847cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>5.64854cm</Width>
+                <ZIndex>8</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_isanlrfpcurrentlyinplace">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_isanlrfpcurrentlyinplace.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_isanlrfpcurrentlyinplace</rd:DefaultName>
+                <Top>10.60431cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <ZIndex>9</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_datecompleted_lrfpValue">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_datecompleted_lrfpValue.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <Format>d</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_datecompleted_lrfpValue</rd:DefaultName>
+                <Top>11.23958cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <ZIndex>10</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_dateupdated_lrfpValue">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_dateupdated_lrfpValue.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <Format>d</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_dateupdated_lrfpValue</rd:DefaultName>
+                <Top>11.87486cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <ZIndex>11</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_datelrfpwillbeinplaceValue">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_datelrfpwillbeinplaceValue.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <Format>d</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_datelrfpwillbeinplaceValue</rd:DefaultName>
+                <Top>12.51014cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <ZIndex>12</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_includedinlrfpasneedValue">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_includedinlrfpasneedValue.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_includedinlrfpasneedValue</rd:DefaultName>
+                <Top>13.28653cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <ZIndex>13</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_describelrfpsupportsneed">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_describelrfpsupportsneed.Value, "ProjectRequest")</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_describelrfpsupportsneed</rd:DefaultName>
+                <Top>13.92181cm</Top>
+                <Left>5.84729cm</Left>
+                <Height>1.64979cm</Height>
+                <Width>6.34937cm</Width>
+                <ZIndex>14</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox37">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Does the District have an LRFP currently in place?</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>10.60431cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.94771cm</Width>
+                <ZIndex>15</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox38">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Date Completed</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>11.23958cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.9477cm</Width>
+                <ZIndex>16</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox39">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Date Updated</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>11.87486cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.9477cm</Width>
+                <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox40">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Date when the District will have a LRFP in place</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>12.51014cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.9477cm</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox41">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Is the proposed project identified in the LRFP as a future capital project need?</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>13.28653cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.9477cm</Width>
+                <ZIndex>19</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox42">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Describe how the LRFP supports the need for the proposed capital project</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox37</rd:DefaultName>
+                <Top>13.92181cm</Top>
+                <Left>0.89959cm</Left>
+                <Height>0.6cm</Height>
+                <Width>4.9477cm</Width>
                 <ZIndex>20</ZIndex>
                 <Style>
                   <Border>
@@ -2608,13 +2461,13 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.97578cm</Top>
-            <Left>15.46977cm</Left>
-            <Height>16.08089cm</Height>
-            <Width>11.29708cm</Width>
-            <ZIndex>28</ZIndex>
+            <Top>11.86034cm</Top>
+            <Left>0.45176cm</Left>
+            <Height>15.71433cm</Height>
+            <Width>14.07521cm</Width>
+            <ZIndex>1</ZIndex>
             <Visibility>
-              <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") &lt;&gt; "DEMOLITION"</Hidden>
+              <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -2622,29 +2475,779 @@
               </Border>
             </Style>
           </Rectangle>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Table - " &amp; First(Fields!caps_projecttype.Value, "ProjectRequest") &amp;" - "&amp; First(Fields!caps_projectcode.Value, "ProjectRequest")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox7</rd:DefaultName>
+            <Top>0.95425cm</Top>
+            <Left>1.76952cm</Left>
+            <Height>0.6cm</Height>
+            <Width>13.17563cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Proposed Project Information</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>1.73064cm</Top>
+            <Left>1.76952cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.61609cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>School District Project Priority Ranking</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>2.33064cm</Top>
+            <Left>1.76952cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.61609cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_districtpriority.Value, "ProjectRequest")</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>2.94772cm</Top>
+            <Left>1.76952cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox19">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>School Information</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>1.73064cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Grade Configuration of Existing School:</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>2.33064cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_lowestgrade.Value, "ProjectRequestFacility") &amp;"-"&amp; First(Fields!caps_highestgrade.Value, "ProjectRequestFacility")</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>2.94772cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Subreport Name="PRFSAlternativeOptions">
             <ReportName>PRFSOptions</ReportName>
             <Parameters>
-              <Parameter Name="CRM_caps_prfsalternativeoption">
+              <Parameter Name="SubProjectID">
                 <Value>=First(Fields!caps_projectid.Value, "ProjectRequest")</Value>
               </Parameter>
             </Parameters>
-            <Top>20.47558cm</Top>
-            <Left>3.64807cm</Left>
+            <Top>28.53931cm</Top>
+            <Left>0.45176cm</Left>
             <Height>7.6cm</Height>
-            <Width>11.29709cm</Width>
-            <ZIndex>29</ZIndex>
+            <Width>14.07521cm</Width>
+            <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Subreport>
+          <Textbox Name="Textbox31">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Design Capacity of Existing School</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>3.583cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_designcapacitykindergartenValue.Value, "ProjectRequestFacility") &amp; "K/"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>4.183cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox33">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Change in Design Capacity</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>4.81828cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox34">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_changeindesigncapacitykindergarten.Value, "ProjectRequest") &amp; "K" &amp; "/" &amp; First(Fields!caps_changeindesigncapacityelementary.Value, "ProjectRequest") &amp; "Elem" &amp; "/" &amp; First(Fields!caps_changeindesigncapacitysecondary.Value, "ProjectRequest") &amp; "Sec"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>5.41828cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox35">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Operating Capacity of Existing School</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>6.05355cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox43">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Change in Operating Capacity</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>7.28883cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox64">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "ProjectRequest") &amp; "K" &amp; "/" &amp; First(Fields!caps_changeinoperatingcapacityelementary.Value, "ProjectRequest") &amp; "Elem" &amp; "/" &amp; First(Fields!caps_changeinoperatingcapacitysecondary.Value, "ProjectRequest") &amp; "Sec"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>7.88883cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox65">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Utilization of Existing School</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>8.52411cm</Top>
+            <Left>8.42089cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox66">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_utilizationtotal_operatingValue.Value, "FacilitiesForSelection")</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0%</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>9.12411cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox67">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Number of Portable Classrooms On-Site</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>9.75939cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.52425cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="countPortablesValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!countPortablesValue.Value, "FacilityPortables")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>countPortablesValue</rd:DefaultName>
+            <Top>10.35939cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>4.22754cm</Width>
+            <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox68">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_designcapacityelementaryValue.Value, "ProjectRequestFacility") &amp; "Elem/"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>4.183cm</Top>
+            <Left>9.45579cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>21</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox69">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_designcapacitysecondaryValue.Value, "ProjectRequestFacility") &amp; "Sec"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>4.183cm</Top>
+            <Left>10.45541cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox36">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_operatingcapacitykindergartenValue.Value, "ProjectRequestFacility") &amp; "K/"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>6.65355cm</Top>
+            <Left>8.4209cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox70">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_operatingcapacityelementaryValue.Value, "ProjectRequestFacility") &amp; "Elem/"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>6.65355cm</Top>
+            <Left>9.42052cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox71">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!caps_operatingcapacitysecondaryValue.Value, "ProjectRequestFacility") &amp; "Sec"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Format>0;(0);'-'</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>6.65355cm</Top>
+            <Left>10.42014cm</Left>
+            <Height>0.6cm</Height>
+            <Width>0.99962cm</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>13.02111in</Height>
+        <Height>14.22808in</Height>
         <Style />
       </Body>
-      <Width>10.85776in</Width>
+      <Width>15.31303in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -2666,6 +3269,7 @@
         </Values>
       </DefaultValue>
       <Prompt>CRM caps project</Prompt>
+      <Hidden>true</Hidden>
     </ReportParameter>
     <ReportParameter Name="PRFSAlternativeOptionID">
       <DataType>String</DataType>
@@ -2697,6 +3301,16 @@
         </DataSetReference>
       </DefaultValue>
       <Prompt>School District</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="FacilityID">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ProjectRequest</DataSetName>
+          <ValueField>caps_facilityValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>FacilityID</Prompt>
     </ReportParameter>
     <ReportParameter Name="Facilities">
       <DataType>String</DataType>
@@ -2740,6 +3354,11 @@
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>FacilityID</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>Facilities</ParameterName>
         </CellDefinition>
