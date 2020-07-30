@@ -4,14 +4,15 @@
   <CrmSvcUtilRelativePath>DLaB.EarlyBoundGenerator\crmsvcutil.exe</CrmSvcUtilRelativePath>
   <IncludeCommandLine>true</IncludeCommandLine>
   <MaskPassword>true</MaskPassword>
-  <SettingsVersion>1.2020.3.29</SettingsVersion>
-  <Version>1.2020.3.29</Version>
+  <SettingsVersion>1.2020.6.22</SettingsVersion>
+  <Version>1.2020.6.22</Version>
   <ExtensionConfig>
     <ActionPrefixesWhitelist />
     <ActionsWhitelist />
     <ActionsToSkip />
     <AddDebuggerNonUserCode>false</AddDebuggerNonUserCode>
     <AddNewFilesToProject>true</AddNewFilesToProject>
+    <AddOptionSetMetadataAttribute>true</AddOptionSetMetadataAttribute>
     <CreateOneFilePerAction>false</CreateOneFilePerAction>
     <CreateOneFilePerEntity>false</CreateOneFilePerEntity>
     <CreateOneFilePerOptionSet>false</CreateOneFilePerOptionSet>
@@ -29,20 +30,23 @@
     <GenerateEntityTypeCode>false</GenerateEntityTypeCode>
     <GenerateEnumProperties>false</GenerateEnumProperties>
     <GenerateOnlyReferencedOptionSets>true</GenerateOnlyReferencedOptionSets>
+    <GenerateOptionSetMetadataAttribute>true</GenerateOptionSetMetadataAttribute>
     <InvalidCSharpNamePrefix>_</InvalidCSharpNamePrefix>
     <MakeAllFieldsEditable>false</MakeAllFieldsEditable>
     <MakeReadonlyFieldsEditable>false</MakeReadonlyFieldsEditable>
     <MakeResponseActionsEditable>false</MakeResponseActionsEditable>
     <LocalOptionSetFormat>{0}_{1}</LocalOptionSetFormat>
+    <OptionSetLanguageCodeOverride
+      xsi:nil="true" />
     <OptionSetPrefixesToSkip />
     <OptionSetsToSkip>organization_currencyformatcode|
 quote_statuscode</OptionSetsToSkip>
-    <OptionSetLanguageCodeOverride
-      xsi:nil="true" />
     <ProjectNameForEarlyBoundFiles />
+    <PropertyEnumMappings />
+    <ReadSerializedMetadata>false</ReadSerializedMetadata>
     <RemoveRuntimeVersionComment>true</RemoveRuntimeVersionComment>
     <ReplaceOptionSetPropertiesWithEnum>false</ReplaceOptionSetPropertiesWithEnum>
-    <PropertyEnumMappings />
+    <SerializeMetadata>false</SerializeMetadata>
     <UnmappedProperties>duplicaterule:BaseEntityTypeCode,MatchingEntityTypeCode|
 invoicedetail:InvoiceStateCode|
 leadaddress:AddressTypeCode,ShippingMethodCode|
@@ -52,6 +56,7 @@ quotedetail:QuoteStateCode|
 salesorderdetail:SalesOrderStateCode</UnmappedProperties>
     <UseDeprecatedOptionSetNaming>false</UseDeprecatedOptionSetNaming>
     <UseTfsToCheckoutFiles>false</UseTfsToCheckoutFiles>
+    <WaitForAttachedDebugger>false</WaitForAttachedDebugger>
   </ExtensionConfig>
   <ExtensionArguments>
     <Argument>

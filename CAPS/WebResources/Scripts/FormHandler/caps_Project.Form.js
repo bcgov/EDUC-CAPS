@@ -108,6 +108,10 @@ CAPS.Project.onLoad = function (executionContext) {
         //remove planned (2008700000)
         formContext.getControl("caps_ministryassessmentstatus").removeOption(200870000);
     }
+
+    //Adding Schedule B Toggles & general setup of schedule B    
+    CAPS.Project.SetupScheduleB(executionContext);
+    
 }
 
 /**
@@ -315,6 +319,8 @@ CAPS.Project.DefaultSchoolDistrict = function (formContext) {
                         var sdName = resultBU["_caps_schooldistrict_value@OData.Community.Display.V1.FormattedValue"];
                         var sdType = resultBU["_caps_schooldistrict_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
                         formContext.getAttribute("caps_schooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
+
+                        formContext.getAttribute("caps_hostschooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
                     }
                 },
                 function (error) {
@@ -508,4 +514,52 @@ CAPS.Project.ValidateAtLeastOneFacility = function (executionContext) {
 
 }
 
+CAPS.Project.ToggleScheduleBSupplementalField = function (executionContext, toggleField, displayField) {
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute(toggleField) !== null && formContext.getAttribute(toggleField).getValue() === true) {
+        //show display Field and make mandatory
+        if (formContext.getAttribute(displayField) !== null) {
+            formContext.getAttribute(displayField).setRequiredLevel("required");
+            formContext.getControl(displayField).setVisible(true);
+        }
+    }
+    else {
+        if (formContext.getAttribute(displayField) !== null) {
+            formContext.getAttribute(displayField).setRequiredLevel("none");
+            formContext.getAttribute(displayField).setValue(null);
+            formContext.getControl(displayField).setVisible(false);
+        }
+    }
+}
+
+CAPS.Project.ToggleOtherSupplementalCostField = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute("caps_othercost").getValue() !== null && formContext.getAttribute("caps_othercost").getValue() !== 0) {
+        formContext.getAttribute("caps_othercostdescription").setRequiredLevel("required");
+    }
+    else {
+        formContext.getAttribute("caps_othercostdescription").setRequiredLevel("none");
+    }
+}
+
+CAPS.Project.SetupScheduleB = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    formContext.getAttribute("caps_projectincludesdemolition").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesdemolition", "caps_demolitioncost"); });
+    formContext.getAttribute("caps_projectincludesabnormaltopography").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesabnormaltopography", "caps_abnormaltopographycost"); });
+    formContext.getAttribute("caps_projectincludestemporaryaccommodation").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludestemporaryaccommodation", "caps_temporaryaccommodationcost"); });
+
+    formContext.getAttribute("caps_othercost").addOnChange(CAPS.Project.ToggleOtherSupplementalCostField);
+
+    if (formContext.getAttribute("caps_requiresscheduleb").getValue() === true) {
+        //Lock Total Project Cost
+        var attr = Xrm.Page.getAttribute("caps_totalprojectcost");
+        attr.controls.forEach(function (control) {
+            control.setDisabled(true);
+        });
+    }
+}
 

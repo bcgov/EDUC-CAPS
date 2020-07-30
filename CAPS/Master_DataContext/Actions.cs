@@ -14,7 +14,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckIfSDKMessageProcessingStepsAreActive")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfSDKMessageProcessingStepsAreActiveRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -64,7 +64,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckIfSDKMessageProcessingStepsAreActive")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfSDKMessageProcessingStepsAreActiveResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -150,7 +150,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_GetKAObjectFromTemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_GetKAObjectFromTemplateRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -201,7 +201,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_GetKAObjectFromTemplate")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_GetKAObjectFromTemplateResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -227,7 +227,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForCustomizedWebResources")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedWebResourcesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -296,7 +296,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForCustomizedWebResources")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedWebResourcesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -382,7 +382,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_RegisterSolutionHealthRule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_RegisterSolutionHealthRuleRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -568,7 +568,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_RegisterSolutionHealthRule")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_RegisterSolutionHealthRuleResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -594,7 +594,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ResolveSolutionHealthRuleFailure")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ResolveSolutionHealthRuleFailureRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -625,7 +625,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ResolveSolutionHealthRuleFailure")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ResolveSolutionHealthRuleFailureResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -636,7 +636,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ActivateSdkMessageProcessingSteps")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ActivateSdkMessageProcessingStepsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -667,7 +667,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ActivateSdkMessageProcessingSteps")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ActivateSdkMessageProcessingStepsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -708,7 +708,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CancelTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class CancelTrainingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -760,7 +760,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("CancelTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class CancelTrainingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -786,7 +786,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ScheduleTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ScheduleTrainingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -838,7 +838,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ScheduleTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ScheduleTrainingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -864,7 +864,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UnscheduleTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnscheduleTrainingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -916,7 +916,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("UnscheduleTraining")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnscheduleTrainingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -942,7 +942,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PublishAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PublishAIConfigurationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -994,7 +994,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PublishAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PublishAIConfigurationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1020,7 +1020,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UnpublishAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnpublishAIConfigurationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1072,7 +1072,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("UnpublishAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnpublishAIConfigurationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1098,7 +1098,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("Predict")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PredictRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1207,7 +1207,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("Predict")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PredictResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1248,7 +1248,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("QuickTest")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class QuickTestRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1338,7 +1338,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("QuickTest")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class QuickTestResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1379,7 +1379,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("Train")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class TrainRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1431,7 +1431,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("Train")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class TrainResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1457,7 +1457,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PredictionSchema")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PredictionSchemaRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1477,6 +1477,25 @@ namespace CAPS.DataContext
 			set
 			{
 				this.Parameters["version"] = value;
+			}
+		}
+		
+		public string predictionMode
+		{
+			get
+			{
+				if (this.Parameters.Contains("predictionMode"))
+				{
+					return ((string)(this.Parameters["predictionMode"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["predictionMode"] = value;
 			}
 		}
 		
@@ -1509,7 +1528,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PredictionSchema")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class PredictionSchemaResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1550,7 +1569,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_DeleteCalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_DeleteCalendarRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1581,7 +1600,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_DeleteCalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_DeleteCalendarResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1607,7 +1626,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ValidateAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ValidateAIConfigurationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1659,7 +1678,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ValidateAIConfiguration")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ValidateAIConfigurationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1685,7 +1704,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("SchedulePrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class SchedulePredictionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1775,7 +1794,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("SchedulePrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class SchedulePredictionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1801,7 +1820,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UnschedulePrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnschedulePredictionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1821,6 +1840,25 @@ namespace CAPS.DataContext
 			set
 			{
 				this.Parameters["version"] = value;
+			}
+		}
+		
+		public bool skipStatusUpdate
+		{
+			get
+			{
+				if (this.Parameters.Contains("skipStatusUpdate"))
+				{
+					return ((bool)(this.Parameters["skipStatusUpdate"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["skipStatusUpdate"] = value;
 			}
 		}
 		
@@ -1853,7 +1891,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("UnschedulePrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class UnschedulePredictionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1879,7 +1917,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("BatchPrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class BatchPredictionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1931,7 +1969,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("BatchPrediction")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class BatchPredictionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -1957,7 +1995,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("IsPaiEnabled")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class IsPaiEnabledRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -1969,7 +2007,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("IsPaiEnabled")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class IsPaiEnabledResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2055,7 +2093,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ManageSLAInstances")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ManageSLAInstancesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2146,7 +2184,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ManageSLAInstances")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ManageSLAInstancesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2156,8 +2194,51 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CalculateJobCreationNumbersV2")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CalculateJobCreationNumbersV2Request : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CalculateJobCreationNumbersV2Request()
+		{
+			this.RequestName = "caps_CalculateJobCreationNumbersV2";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CalculateJobCreationNumbersV2")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CalculateJobCreationNumbersV2Response : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CalculateJobCreationNumbersV2Response()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_GetNextProjectRequestNumber")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_GetNextProjectRequestNumberRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2188,7 +2269,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_GetNextProjectRequestNumber")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_GetNextProjectRequestNumberResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2213,8 +2294,51 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_TriggerScheduleBCalculation")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_TriggerScheduleBCalculationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_TriggerScheduleBCalculationRequest()
+		{
+			this.RequestName = "caps_TriggerScheduleBCalculation";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_TriggerScheduleBCalculation")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_TriggerScheduleBCalculationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_TriggerScheduleBCalculationResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ProjectSubmission")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ProjectSubmissionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2246,7 +2370,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ProjectSubmission")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ProjectSubmissionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2257,7 +2381,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_GetMoETeam")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_GetMoETeamRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2288,7 +2412,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_GetMoETeam")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_GetMoETeamResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2314,7 +2438,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CalculateSDAFGAmountsV2")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_CalculateSDAFGAmountsV2Request : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2346,7 +2470,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CalculateSDAFGAmountsV2")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_CalculateSDAFGAmountsV2Response : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2357,7 +2481,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CloseCapitalPlan")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_CloseCapitalPlanRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2389,7 +2513,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CloseCapitalPlan")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_CloseCapitalPlanResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2400,7 +2524,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ScheduleRetrain")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ScheduleRetrainRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2472,7 +2596,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ScheduleRetrain")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ScheduleRetrainResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2498,7 +2622,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckIfProcessesAreActive")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfProcessesAreActiveRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2548,7 +2672,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckIfProcessesAreActive")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfProcessesAreActiveResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2634,7 +2758,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_SaveCalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_SaveCalendarRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2666,7 +2790,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_SaveCalendar")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_SaveCalendarResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2692,7 +2816,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_RunSolutionCheckerRules")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_RunSolutionCheckerRulesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2723,7 +2847,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_RunSolutionCheckerRules")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_RunSolutionCheckerRulesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2734,7 +2858,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CreateNewAnalysisJobForRuleSet")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CreateNewAnalysisJobForRuleSetRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2766,7 +2890,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CreateNewAnalysisJobForRuleSet")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CreateNewAnalysisJobForRuleSetResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2792,7 +2916,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ActivateProcesses")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ActivateProcessesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2823,7 +2947,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ActivateProcesses")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ActivateProcessesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2864,7 +2988,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExtractKeyPhrases")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ExtractKeyPhrasesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -2934,7 +3058,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExtractKeyPhrases")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ExtractKeyPhrasesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -2973,9 +3097,107 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PredictByReference")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class PredictByReferenceRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string version
+		{
+			get
+			{
+				if (this.Parameters.Contains("version"))
+				{
+					return ((string)(this.Parameters["version"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["version"] = value;
+			}
+		}
+		
+		public string targetRecordId
+		{
+			get
+			{
+				if (this.Parameters.Contains("targetRecordId"))
+				{
+					return ((string)(this.Parameters["targetRecordId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["targetRecordId"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public PredictByReferenceRequest()
+		{
+			this.RequestName = "PredictByReference";
+			this.version = default(string);
+			this.targetRecordId = default(string);
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PredictByReference")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class PredictByReferenceResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public PredictByReferenceResponse()
+		{
+		}
+		
+		public Microsoft.Xrm.Sdk.Entity responsev2
+		{
+			get
+			{
+				if (this.Results.Contains("responsev2"))
+				{
+					return ((Microsoft.Xrm.Sdk.Entity)(this.Results["responsev2"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.Entity);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckIfProcessesOwnedByDisabledUsers")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfProcessesOwnedByDisabledUsersRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3006,7 +3228,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckIfProcessesOwnedByDisabledUsers")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckIfProcessesOwnedByDisabledUsersResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3092,7 +3314,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ConditionXmlConversion")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ConditionXmlConversionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3184,7 +3406,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_ConditionXmlConversion")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_ConditionXmlConversionResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3225,7 +3447,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForDeletedProcess")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedProcessRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3275,7 +3497,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForDeletedProcess")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedProcessResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3331,7 +3553,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CategorizeText")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class CategorizeTextRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3401,7 +3623,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("CategorizeText")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class CategorizeTextResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3440,9 +3662,67 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("DownloadSolutionExportData")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class DownloadSolutionExportDataRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid ExportJobId
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportJobId"))
+				{
+					return ((System.Guid)(this.Parameters["ExportJobId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportJobId"] = value;
+			}
+		}
+		
+		public DownloadSolutionExportDataRequest()
+		{
+			this.RequestName = "DownloadSolutionExportData";
+			this.ExportJobId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("DownloadSolutionExportData")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class DownloadSolutionExportDataResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public DownloadSolutionExportDataResponse()
+		{
+		}
+		
+		public byte[] RetrieveExportedSolution
+		{
+			get
+			{
+				if (this.Results.Contains("RetrieveExportedSolution"))
+				{
+					return ((byte[])(this.Results["RetrieveExportedSolution"]));
+				}
+				else
+				{
+					return default(byte[]);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForCustomizedOptionSet")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedOptionSetRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3511,7 +3791,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForCustomizedOptionSet")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedOptionSetResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3597,7 +3877,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("DetectLanguage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class DetectLanguageRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3667,7 +3947,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("DetectLanguage")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class DetectLanguageResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3708,7 +3988,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("AlmHandler")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class AlmHandlerRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3759,7 +4039,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("AlmHandler")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class AlmHandlerResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3785,7 +4065,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForDeletedWebResources")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedWebResourcesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3854,7 +4134,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForDeletedWebResources")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedWebResourcesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3910,7 +4190,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CreateActionFlow")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CreateActionFlowRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -3942,7 +4222,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CreateActionFlow")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CreateActionFlowResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -3953,7 +4233,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForCustomizedSitemap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedSitemapRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4022,7 +4302,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForCustomizedSitemap")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForCustomizedSitemapResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4106,9 +4386,330 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExportSolutionAsync")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class ExportSolutionAsyncRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public bool ExportGeneralSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportGeneralSettings"))
+				{
+					return ((bool)(this.Parameters["ExportGeneralSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportGeneralSettings"] = value;
+			}
+		}
+		
+		public bool ExportAutoNumberingSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportAutoNumberingSettings"))
+				{
+					return ((bool)(this.Parameters["ExportAutoNumberingSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportAutoNumberingSettings"] = value;
+			}
+		}
+		
+		public bool ExportCalendarSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportCalendarSettings"))
+				{
+					return ((bool)(this.Parameters["ExportCalendarSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportCalendarSettings"] = value;
+			}
+		}
+		
+		public bool ExportSales
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportSales"))
+				{
+					return ((bool)(this.Parameters["ExportSales"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportSales"] = value;
+			}
+		}
+		
+		public bool ExportRelationshipRoles
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportRelationshipRoles"))
+				{
+					return ((bool)(this.Parameters["ExportRelationshipRoles"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportRelationshipRoles"] = value;
+			}
+		}
+		
+		public bool ExportEmailTrackingSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportEmailTrackingSettings"))
+				{
+					return ((bool)(this.Parameters["ExportEmailTrackingSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportEmailTrackingSettings"] = value;
+			}
+		}
+		
+		public bool ExportCustomizationSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportCustomizationSettings"))
+				{
+					return ((bool)(this.Parameters["ExportCustomizationSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportCustomizationSettings"] = value;
+			}
+		}
+		
+		public string TargetVersion
+		{
+			get
+			{
+				if (this.Parameters.Contains("TargetVersion"))
+				{
+					return ((string)(this.Parameters["TargetVersion"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["TargetVersion"] = value;
+			}
+		}
+		
+		public bool ExportIsvConfig
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportIsvConfig"))
+				{
+					return ((bool)(this.Parameters["ExportIsvConfig"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportIsvConfig"] = value;
+			}
+		}
+		
+		public string SolutionName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionName"))
+				{
+					return ((string)(this.Parameters["SolutionName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionName"] = value;
+			}
+		}
+		
+		public bool ExportOutlookSynchronizationSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportOutlookSynchronizationSettings"))
+				{
+					return ((bool)(this.Parameters["ExportOutlookSynchronizationSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportOutlookSynchronizationSettings"] = value;
+			}
+		}
+		
+		public bool Managed
+		{
+			get
+			{
+				if (this.Parameters.Contains("Managed"))
+				{
+					return ((bool)(this.Parameters["Managed"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["Managed"] = value;
+			}
+		}
+		
+		public bool ExportMarketingSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportMarketingSettings"))
+				{
+					return ((bool)(this.Parameters["ExportMarketingSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportMarketingSettings"] = value;
+			}
+		}
+		
+		public bool ExportExternalApplications
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportExternalApplications"))
+				{
+					return ((bool)(this.Parameters["ExportExternalApplications"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportExternalApplications"] = value;
+			}
+		}
+		
+		public ExportSolutionAsyncRequest()
+		{
+			this.RequestName = "ExportSolutionAsync";
+			this.SolutionName = default(string);
+			this.Managed = default(bool);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExportSolutionAsync")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class ExportSolutionAsyncResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public ExportSolutionAsyncResponse()
+		{
+		}
+		
+		public System.Guid AsyncOperationId
+		{
+			get
+			{
+				if (this.Results.Contains("AsyncOperationId"))
+				{
+					return ((System.Guid)(this.Results["AsyncOperationId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+		}
+		
+		public System.Guid ExportJobId
+		{
+			get
+			{
+				if (this.Results.Contains("ExportJobId"))
+				{
+					return ((System.Guid)(this.Results["ExportJobId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForDeletedSDKMessageProcessingSteps")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedSDKMessageProcessingStepsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4158,7 +4759,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForDeletedSDKMessageProcessingSteps")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForDeletedSDKMessageProcessingStepsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4212,9 +4813,92 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("SaveAppSetting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class SaveAppSettingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string AppUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("AppUniqueName"))
+				{
+					return ((string)(this.Parameters["AppUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["AppUniqueName"] = value;
+			}
+		}
+		
+		public string Value
+		{
+			get
+			{
+				if (this.Parameters.Contains("Value"))
+				{
+					return ((string)(this.Parameters["Value"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["Value"] = value;
+			}
+		}
+		
+		public string SettingName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SettingName"))
+				{
+					return ((string)(this.Parameters["SettingName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SettingName"] = value;
+			}
+		}
+		
+		public SaveAppSettingRequest()
+		{
+			this.RequestName = "SaveAppSetting";
+			this.AppUniqueName = default(string);
+			this.Value = default(string);
+			this.SettingName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("SaveAppSetting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class SaveAppSettingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public SaveAppSettingResponse()
+		{
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForPendingProcesses")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForPendingProcessesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4245,7 +4929,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForPendingProcesses")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class msdyn_CheckForPendingProcessesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4331,7 +5015,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("AnalyzeSentiment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class AnalyzeSentimentRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4401,7 +5085,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("AnalyzeSentiment")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class AnalyzeSentimentResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4457,7 +5141,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExtractTextEntities")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ExtractTextEntitiesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4527,7 +5211,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExtractTextEntities")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class ExtractTextEntitiesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4583,7 +5267,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("GetJobStatus")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class GetJobStatusRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4653,7 +5337,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("GetJobStatus")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class GetJobStatusResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4677,9 +5361,86 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveAppSettingList")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAppSettingListRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string AppUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("AppUniqueName"))
+				{
+					return ((string)(this.Parameters["AppUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["AppUniqueName"] = value;
+			}
+		}
+		
+		public bool IncludeInactiveSettings
+		{
+			get
+			{
+				if (this.Parameters.Contains("IncludeInactiveSettings"))
+				{
+					return ((bool)(this.Parameters["IncludeInactiveSettings"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["IncludeInactiveSettings"] = value;
+			}
+		}
+		
+		public RetrieveAppSettingListRequest()
+		{
+			this.RequestName = "RetrieveAppSettingList";
+			this.AppUniqueName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveAppSettingList")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAppSettingListResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveAppSettingListResponse()
+		{
+		}
+		
+		public Microsoft.Crm.Sdk.Messages.AppSettingDetailCollection AppSettingDetailCollection
+		{
+			get
+			{
+				if (this.Results.Contains("AppSettingDetailCollection"))
+				{
+					return ((Microsoft.Crm.Sdk.Messages.AppSettingDetailCollection)(this.Results["AppSettingDetailCollection"]));
+				}
+				else
+				{
+					return default(Microsoft.Crm.Sdk.Messages.AppSettingDetailCollection);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RecognizeText")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class RecognizeTextRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
@@ -4730,7 +5491,7 @@ namespace CAPS.DataContext
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RecognizeText")]
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.42")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class RecognizeTextResponse : Microsoft.Xrm.Sdk.OrganizationResponse
 	{
 		
@@ -4764,6 +5525,84 @@ namespace CAPS.DataContext
 				else
 				{
 					return default(Microsoft.Xrm.Sdk.EntityCollection);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveAppSetting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAppSettingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SettingName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SettingName"))
+				{
+					return ((string)(this.Parameters["SettingName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SettingName"] = value;
+			}
+		}
+		
+		public string AppUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("AppUniqueName"))
+				{
+					return ((string)(this.Parameters["AppUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["AppUniqueName"] = value;
+			}
+		}
+		
+		public RetrieveAppSettingRequest()
+		{
+			this.RequestName = "RetrieveAppSetting";
+			this.SettingName = default(string);
+			this.AppUniqueName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveAppSetting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAppSettingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveAppSettingResponse()
+		{
+		}
+		
+		public Microsoft.Crm.Sdk.Messages.AppSettingDetail AppSettingDetail
+		{
+			get
+			{
+				if (this.Results.Contains("AppSettingDetail"))
+				{
+					return ((Microsoft.Crm.Sdk.Messages.AppSettingDetail)(this.Results["AppSettingDetail"]));
+				}
+				else
+				{
+					return default(Microsoft.Crm.Sdk.Messages.AppSettingDetail);
 				}
 			}
 		}

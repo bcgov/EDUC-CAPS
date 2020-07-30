@@ -350,5 +350,79 @@ CAPS.Project.SubmissionResult = function () {
     );
 }
 
+CAPS.Project.PublishList = function (selectedControlIds, selectedControl) {
+    //Update records
+    selectedControlIds.forEach(function (item, index) {
+        // update the record
+        
+    });
+}
+
+CAPS.Project.CalculateScheduleB = function (primaryControl) {
+    var formContext = primaryControl;
+    debugger;
+
+    //If dirty, then save and call again
+    if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
+        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Project.CalculateScheduleB(primaryControl); });
+    }
+    else {
+        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+        //call action
+        var req = {};
+        var target = { entityType: "caps_project", id: recordId };
+        req.entity = target;
+
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_TriggerScheduleBCalculation",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+
+        Xrm.WebApi.online.execute(req).then(
+            function (response) {
+                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
+                var alertOptions = { height: 120, width: 260 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                    function success(result) {
+                        console.log("Alert dialog closed");
+                        formContext.data.refresh();
+                    },
+                    function (error) {
+                        console.log(error.message);
+                    }
+                );
+            },
+            function (e) {
+
+                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + e.message, title: "Schedule B Result" };
+                var alertOptions = { height: 120, width: 260 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                    function success(result) {
+                        console.log("Alert dialog closed");
+                    },
+                    function (error) {
+                        console.log(error.message);
+                    }
+                );
+            }
+        );
+    }
+}
+
+CAPS.Project.ShowCalculateScheduleB = function (primaryControl) {
+    var formContext = primaryControl;
+
+    return formContext.getAttribute("caps_requiresscheduleb").getValue();
+}
+
 
 
