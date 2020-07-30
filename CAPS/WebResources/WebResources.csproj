@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -85,6 +86,8 @@
     <Content Include="AddOns\AlertJS\img\alert_load.gif" />
     <Content Include="AddOns\AlertJS\js\alert.js" />
     <Content Include="Apps\OpenSubmissionList.htm" />
+    <Content Include="Help\HtmlPage1.html" />
+    <Content Include="Help\TestHelpFile.html" />
     <Content Include="Scripts\Common\CAPS.Common.js" />
     <Content Include="Scripts\Common\jquery-3.4.1.min.js" />
     <Content Include="Scripts\FormHandler\caps_CallForSubmission.Form.js" />
