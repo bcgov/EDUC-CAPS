@@ -19,6 +19,7 @@
         <QueryParameters>
           <QueryParameter Name="CRM_caps_project">
             <Value>=Parameters!CRM_caps_project.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch&gt;
@@ -28,6 +29,8 @@
     &lt;attribute name="caps_projectedchangetofacilityconditionindex" /&gt;
 &lt;attribute name="caps_totalprojectcost" /&gt;
 &lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
+&lt;attribute name="caps_otherprojecttotalcost" /&gt;
+    &lt;attribute name="caps_demolitioncompletedinonefiscalyear" /&gt;
     &lt;attribute name="caps_benefitsofafullorpartialdemolition" /&gt;
     &lt;attribute name="caps_changeindesigncapacityelementary" /&gt;
 &lt;attribute name="caps_municipalrequirements" /&gt;
@@ -108,6 +111,18 @@
           <DataField>caps_includedinlrfpasneedValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="caps_projectyear">
+          <DataField>caps_projectyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectyearValue">
+          <DataField>caps_projectyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectyearEntityName">
+          <DataField>caps_projectyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_projectedchangetofacilityconditionindex">
           <DataField>caps_projectedchangetofacilityconditionindex</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -116,21 +131,57 @@
           <DataField>caps_projectedchangetofacilityconditionindexValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_totalprojectcost">
+          <DataField>caps_totalprojectcost</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalprojectcostValue">
+          <DataField>caps_totalprojectcostValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedsitepurchaseclosingyear">
+          <DataField>caps_anticipatedsitepurchaseclosingyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedsitepurchaseclosingyearValue">
+          <DataField>caps_anticipatedsitepurchaseclosingyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedsitepurchaseclosingyearEntityName">
+          <DataField>caps_anticipatedsitepurchaseclosingyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_otherprojecttotalcost">
+          <DataField>caps_otherprojecttotalcost</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_benefitsofafullorpartialdemolition">
           <DataField>caps_benefitsofafullorpartialdemolition</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_otherprojecttotalcostValue">
+          <DataField>caps_otherprojecttotalcostValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_changeindesigncapacityelementary">
           <DataField>caps_changeindesigncapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_demolitioncompletedinonefiscalyear">
+          <DataField>caps_demolitioncompletedinonefiscalyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacityelementaryValue">
           <DataField>caps_changeindesigncapacityelementaryValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_districtpriority">
-          <DataField>caps_districtpriority</DataField>
+        <Field Name="caps_municipalrequirements">
+          <DataField>caps_municipalrequirements</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_demolitioncompletedinonefiscalyearValue">
+          <DataField>caps_demolitioncompletedinonefiscalyearValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="caps_submissioncategorycode">
           <DataField>caps_submissioncategorycode</DataField>
@@ -140,20 +191,40 @@
           <DataField>caps_facilityview</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_anticipatedsitepurchaseclosingyear">
-          <DataField>caps_anticipatedsitepurchaseclosingyear</DataField>
+        <Field Name="caps_constructionarea">
+          <DataField>caps_constructionarea</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_municipalrequirements">
-          <DataField>caps_municipalrequirements</DataField>
+        <Field Name="caps_constructionareaValue">
+          <DataField>caps_constructionareaValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurelowestgrade">
+          <DataField>caps_futurelowestgrade</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_anticipatedsitepurchaseclosingyearValue">
-          <DataField>caps_anticipatedsitepurchaseclosingyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
+        <Field Name="caps_futurelowestgradeValue">
+          <DataField>caps_futurelowestgradeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_anticipatedsitepurchaseclosingyearEntityName">
-          <DataField>caps_anticipatedsitepurchaseclosingyearEntityName</DataField>
+        <Field Name="caps_futurehighestgrade">
+          <DataField>caps_futurehighestgrade</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurehighestgradeValue">
+          <DataField>caps_futurehighestgradeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurefacilityconditionindex">
+          <DataField>caps_futurefacilityconditionindex</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurefacilityconditionindexValue">
+          <DataField>caps_futurefacilityconditionindexValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_districtpriority">
+          <DataField>caps_districtpriority</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_districtpriorityValue">
@@ -172,61 +243,25 @@
           <DataField>caps_changeinoperatingcapacitysecondary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_constructionarea">
-          <DataField>caps_constructionarea</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_changeinoperatingcapacitysecondaryValue">
           <DataField>caps_changeinoperatingcapacitysecondaryValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructionareaValue">
-          <DataField>caps_constructionareaValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitysecondary">
           <DataField>caps_changeindesigncapacitysecondary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_futurelowestgrade">
-          <DataField>caps_futurelowestgrade</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_changeindesigncapacitysecondaryValue">
           <DataField>caps_changeindesigncapacitysecondaryValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurelowestgradeValue">
-          <DataField>caps_futurelowestgradeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_spircompletiondate">
           <DataField>caps_spircompletiondate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_futurehighestgrade">
-          <DataField>caps_futurehighestgrade</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyear">
-          <DataField>caps_projectyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurehighestgradeValue">
-          <DataField>caps_futurehighestgradeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearValue">
-          <DataField>caps_projectyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
         <Field Name="caps_spircompletiondateValue">
           <DataField>caps_spircompletiondateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearEntityName">
-          <DataField>caps_projectyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_seismicrapidassessmentcompletiondate">
           <DataField>caps_seismicrapidassessmentcompletiondate</DataField>
@@ -236,6 +271,126 @@
           <DataField>caps_seismicrapidassessmentcompletiondateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="caps_seismicrapidassessmentcomplete">
+          <DataField>caps_seismicrapidassessmentcomplete</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_seismicrapidassessmentcompleteValue">
+          <DataField>caps_seismicrapidassessmentcompleteValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_seismicprojectidentificationreport">
+          <DataField>caps_seismicprojectidentificationreport</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_seismicprojectidentificationreportValue">
+          <DataField>caps_seismicprojectidentificationreportValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofunknownblocks_seismicrisk">
+          <DataField>caps_numberofunknownblocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofunknownblocks_seismicriskValue">
+          <DataField>caps_numberofunknownblocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofmediumblocks_seismicrisk">
+          <DataField>caps_numberofmediumblocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofmediumblocks_seismicriskValue">
+          <DataField>caps_numberofmediumblocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberoflowblocks_seismicrisk">
+          <DataField>caps_numberoflowblocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberoflowblocks_seismicriskValue">
+          <DataField>caps_numberoflowblocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh3blocks_seismicrisk">
+          <DataField>caps_numberofh3blocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh3blocks_seismicriskValue">
+          <DataField>caps_numberofh3blocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh2blocks_seismicrisk">
+          <DataField>caps_numberofh2blocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh2blocks_seismicriskValue">
+          <DataField>caps_numberofh2blocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh1blocks_seismicrisk">
+          <DataField>caps_numberofh1blocks_seismicrisk</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofh1blocks_seismicriskValue">
+          <DataField>caps_numberofh1blocks_seismicriskValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurefacilityconditionindex0">
+          <DataField>caps_futurefacilityconditionindex0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurefacilityconditionindexValue0">
+          <DataField>caps_futurefacilityconditionindexValue0</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_spircostestimate">
+          <DataField>caps_spircostestimate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_spircostestimateValue">
+          <DataField>caps_spircostestimateValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_availablesitesize_hectares">
+          <DataField>caps_availablesitesize_hectares</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_availablesitesize_hectaresValue">
+          <DataField>caps_availablesitesize_hectaresValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_availablesitesize_acres">
+          <DataField>caps_availablesitesize_acres</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_availablesitesize_acresValue">
+          <DataField>caps_availablesitesize_acresValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedoccupancyyear">
+          <DataField>caps_anticipatedoccupancyyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedoccupancyyearValue">
+          <DataField>caps_anticipatedoccupancyyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_anticipatedoccupancyyearEntityName">
+          <DataField>caps_anticipatedoccupancyyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectyear0">
+          <DataField>caps_projectyear0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectyearValue0">
+          <DataField>caps_projectyearValue0</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectyearEntityName0">
+          <DataField>caps_projectyearEntityName0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_seismicriskrating">
           <DataField>caps_seismicriskrating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -244,17 +399,9 @@
           <DataField>caps_seismicriskratingValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_seismicrapidassessmentcomplete">
-          <DataField>caps_seismicrapidassessmentcomplete</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_potentialplanforvacantsite">
           <DataField>caps_potentialplanforvacantsite</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicrapidassessmentcompleteValue">
-          <DataField>caps_seismicrapidassessmentcompleteValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacityelementary">
           <DataField>caps_changeinoperatingcapacityelementary</DataField>
@@ -268,21 +415,9 @@
           <DataField>caps_datecompleted_lrfp</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_seismicprojectidentificationreport">
-          <DataField>caps_seismicprojectidentificationreport</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicprojectidentificationreportValue">
-          <DataField>caps_seismicprojectidentificationreportValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
         <Field Name="caps_datecompleted_lrfpValue">
           <DataField>caps_datecompleted_lrfpValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofunknownblocks_seismicrisk">
-          <DataField>caps_numberofunknownblocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitykindergarten">
           <DataField>caps_changeindesigncapacitykindergarten</DataField>
@@ -292,21 +427,9 @@
           <DataField>caps_changeindesigncapacitykindergartenValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_numberofunknownblocks_seismicriskValue">
-          <DataField>caps_numberofunknownblocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofmediumblocks_seismicrisk">
-          <DataField>caps_numberofmediumblocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_facility">
           <DataField>caps_facility</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofmediumblocks_seismicriskValue">
-          <DataField>caps_numberofmediumblocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_facilityValue">
           <DataField>caps_facilityValue</DataField>
@@ -316,148 +439,56 @@
           <DataField>caps_facilityEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_numberoflowblocks_seismicrisk">
-          <DataField>caps_numberoflowblocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_isanlrfpcurrentlyinplace">
           <DataField>caps_isanlrfpcurrentlyinplace</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberoflowblocks_seismicriskValue">
-          <DataField>caps_numberoflowblocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_isanlrfpcurrentlyinplaceValue">
           <DataField>caps_isanlrfpcurrentlyinplaceValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="caps_anticipatedoccupancyyear">
-          <DataField>caps_anticipatedoccupancyyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_anticipatedoccupancyyearValue">
-          <DataField>caps_anticipatedoccupancyyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofh3blocks_seismicrisk">
-          <DataField>caps_numberofh3blocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurefacilityconditionindex0">
-          <DataField>caps_futurefacilityconditionindex0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurefacilityconditionindexValue0">
-          <DataField>caps_futurefacilityconditionindexValue0</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_projecttype">
           <DataField>caps_projecttype</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_anticipatedoccupancyyearEntityName">
-          <DataField>caps_anticipatedoccupancyyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofh3blocks_seismicriskValue">
-          <DataField>caps_numberofh3blocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyear0">
-          <DataField>caps_projectyear0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearValue0">
-          <DataField>caps_projectyearValue0</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
         <Field Name="caps_projecttypeValue">
           <DataField>caps_projecttypeValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="caps_projectyearEntityName0">
-          <DataField>caps_projectyearEntityName0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofh2blocks_seismicrisk">
-          <DataField>caps_numberofh2blocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_projecttypeEntityName">
           <DataField>caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_numberofh2blocks_seismicriskValue">
-          <DataField>caps_numberofh2blocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcost">
-          <DataField>caps_totalprojectcost</DataField>
+        <Field Name="caps_totalprojectcost0">
+          <DataField>caps_totalprojectcost0</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_numberofh1blocks_seismicrisk">
-          <DataField>caps_numberofh1blocks_seismicrisk</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofh1blocks_seismicriskValue">
-          <DataField>caps_numberofh1blocks_seismicriskValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcostValue">
-          <DataField>caps_totalprojectcostValue</DataField>
+        <Field Name="caps_totalprojectcostValue0">
+          <DataField>caps_totalprojectcostValue0</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_tempaccommodationandbusingplan">
           <DataField>caps_tempaccommodationandbusingplan</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_futurefacilityconditionindex">
-          <DataField>caps_futurefacilityconditionindex</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurefacilityconditionindexValue">
-          <DataField>caps_futurefacilityconditionindexValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_primarydriver">
           <DataField>caps_primarydriver</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_spircostestimate">
-          <DataField>caps_spircostestimate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_primarydriverValue">
           <DataField>caps_primarydriverValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_spircostestimateValue">
-          <DataField>caps_spircostestimateValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_schooldistrict">
           <DataField>caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_availablesitesize_hectares">
-          <DataField>caps_availablesitesize_hectares</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schooldistrictValue">
           <DataField>caps_schooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="caps_availablesitesize_hectaresValue">
-          <DataField>caps_availablesitesize_hectaresValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_schooldistrictEntityName">
           <DataField>caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_availablesitesize_acres">
-          <DataField>caps_availablesitesize_acres</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_siterequirement">
@@ -467,18 +498,6 @@
         <Field Name="caps_siterequirementValue">
           <DataField>caps_siterequirementValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcost0">
-          <DataField>caps_totalprojectcost0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_availablesitesize_acresValue">
-          <DataField>caps_availablesitesize_acresValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcostValue0">
-          <DataField>caps_totalprojectcostValue0</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_describelrfpsupportsneed">
           <DataField>caps_describelrfpsupportsneed</DataField>
@@ -666,13 +685,29 @@
           <DataField>statecodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacityenegative">
+          <DataField>caps_changeindesigncapacityenegative</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityenegativeValue">
+          <DataField>caps_changeindesigncapacityenegativeValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_optionincludesabnormaltopography">
           <DataField>caps_optionincludesabnormaltopography</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitykindergarten">
+          <DataField>caps_changeindesigncapacitykindergarten</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_optionincludesabnormaltopographyValue">
           <DataField>caps_optionincludesabnormaltopographyValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitykindergartenValue">
+          <DataField>caps_changeindesigncapacitykindergartenValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="createdonbehalfby">
           <DataField>createdonbehalfby</DataField>
@@ -681,6 +716,14 @@
         <Field Name="createdonbehalfbyValue">
           <DataField>createdonbehalfbyValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitypositivetotal">
+          <DataField>caps_changeindesigncapacitypositivetotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitypositivetotalValue">
+          <DataField>caps_changeindesigncapacitypositivetotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="createdonbehalfbyEntityName">
           <DataField>createdonbehalfbyEntityName</DataField>
@@ -709,6 +752,14 @@
         <Field Name="caps_constructioncostsspiradjustmentsValue">
           <DataField>caps_constructioncostsspiradjustmentsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_requiresscheduleb">
+          <DataField>caps_requiresscheduleb</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_requiresschedulebValue">
+          <DataField>caps_requiresschedulebValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="importsequencenumber">
           <DataField>importsequencenumber</DataField>
@@ -758,9 +809,17 @@
           <DataField>caps_projectrequestValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacitytotal">
+          <DataField>caps_changeindesigncapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_occupancyyearEntityName">
           <DataField>caps_occupancyyearEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitytotalValue">
+          <DataField>caps_changeindesigncapacitytotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_seismicupgradespaceallocation">
           <DataField>caps_seismicupgradespaceallocation</DataField>
@@ -810,9 +869,17 @@
           <DataField>owningteam</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacityknegative">
+          <DataField>caps_changeindesigncapacityknegative</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="owningteamValue">
           <DataField>owningteamValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityknegativeValue">
+          <DataField>caps_changeindesigncapacityknegativeValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_anticipatedoptionstartyear">
           <DataField>caps_anticipatedoptionstartyear</DataField>
@@ -862,8 +929,20 @@
           <DataField>createdbyValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacityspositive">
+          <DataField>caps_changeindesigncapacityspositive</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityspositiveValue">
+          <DataField>caps_changeindesigncapacityspositiveValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="createdbyEntityName">
           <DataField>createdbyEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysnegative">
+          <DataField>caps_changeindesigncapacitysnegative</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="timezoneruleversionnumber">
@@ -873,6 +952,10 @@
         <Field Name="timezoneruleversionnumberValue">
           <DataField>timezoneruleversionnumberValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysnegativeValue">
+          <DataField>caps_changeindesigncapacitysnegativeValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_tempaccommodationandbusingplan">
           <DataField>caps_tempaccommodationandbusingplan</DataField>
@@ -918,12 +1001,20 @@
           <DataField>caps_changeinoperatingcapacity_totalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_totaloptioncost">
+          <DataField>caps_totaloptioncost</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_facility">
           <DataField>caps_facility</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_demolitioncostValue">
           <DataField>caps_demolitioncostValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_totaloptioncostValue">
+          <DataField>caps_totaloptioncostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_facilityValue">
@@ -966,9 +1057,17 @@
           <DataField>versionnumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacityelementary">
+          <DataField>caps_changeindesigncapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="versionnumberValue">
           <DataField>versionnumberValue</DataField>
           <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityelementaryValue">
+          <DataField>caps_changeindesigncapacityelementaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_submissioncategory">
           <DataField>caps_submissioncategory</DataField>
@@ -1002,13 +1101,29 @@
           <DataField>modifiedonbehalfbyEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacitykpositive">
+          <DataField>caps_changeindesigncapacitykpositive</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ownerid">
           <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitykpositiveValue">
+          <DataField>caps_changeindesigncapacitykpositiveValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysecondary">
+          <DataField>caps_changeindesigncapacitysecondary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_constructionarea">
           <DataField>caps_constructionarea</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysecondaryValue">
+          <DataField>caps_changeindesigncapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_constructionareaValue">
           <DataField>caps_constructionareaValue</DataField>
@@ -1034,6 +1149,14 @@
           <DataField>YEAR_edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindesigncapacitynegativetotal">
+          <DataField>caps_changeindesigncapacitynegativetotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitynegativetotalValue">
+          <DataField>caps_changeindesigncapacitynegativetotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_schedulebtotal">
           <DataField>caps_schedulebtotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1044,6 +1167,14 @@
         </Field>
         <Field Name="caps_schedulebtotalValue">
           <DataField>caps_schedulebtotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityepositive">
+          <DataField>caps_changeindesigncapacityepositive</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityepositiveValue">
+          <DataField>caps_changeindesigncapacityepositiveValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="YEAR_edu_startyearValue">
@@ -2224,10 +2355,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>0.36841cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>2.52504cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>10.11527cm</Width>
+                <Width>14.23582cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2256,15 +2387,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>3.65375cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>5.81038cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.0615cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2288,15 +2424,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>4.28903cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>6.51621cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.0615cm</Width>
+                <Width>5.11039cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2320,15 +2461,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>6.59669cm</Top>
-                <Left>0.29577cm</Left>
+                <Top>9.83782cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.02622cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2352,15 +2498,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>7.26724cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>10.47309cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.02622cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2384,15 +2535,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>7.90252cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>11.10837cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.02622cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2416,15 +2572,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>8.5378cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>11.74365cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.0615cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2448,15 +2609,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>10.92814cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>14.23984cm</Top>
+                <Left>0.08822cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.06151cm</Width>
+                <Width>5.17085cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2480,15 +2646,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>13.2923cm</Top>
-                <Left>0.25577cm</Left>
+                <Top>16.604cm</Top>
+                <Left>0.08822cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.06151cm</Width>
+                <Width>5.17085cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2512,15 +2683,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>15.65646cm</Top>
-                <Left>0.30049cm</Left>
+                <Top>18.93288cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.01678cm</Width>
+                <Width>5.11039cm</Width>
                 <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2544,15 +2720,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>16.25646cm</Top>
-                <Left>0.29577cm</Left>
+                <Top>19.60344cm</Top>
+                <Left>0.09766cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.01678cm</Width>
+                <Width>5.16141cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2576,10 +2757,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>3.61847cm</Top>
-                <Left>4.38781cm</Left>
+                <Top>5.88093cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
@@ -2608,10 +2789,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>4.21847cm</Top>
-                <Left>4.35727cm</Left>
-                <Height>2.32751cm</Height>
-                <Width>6.05378cm</Width>
+                <Top>6.51621cm</Top>
+                <Left>5.41781cm</Left>
+                <Height>2.25697cm</Height>
+                <Width>8.94656cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -2637,14 +2818,16 @@
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>6.63196cm</Top>
-                <Left>4.35727cm</Left>
+                <Top>9.80254cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>13</ZIndex>
                 <Style>
                   <Border>
@@ -2663,7 +2846,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=First(Fields!caps_hasschoolbeenpermanentlyclosedValue.Value, "ProjectRequest")</Value>
+                        <Value>=First(Fields!caps_hasschoolbeenpermanentlyclosed.Value, "ProjectRequest")</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                         </Style>
@@ -2673,10 +2856,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>7.30252cm</Top>
-                <Left>4.35254cm</Left>
+                <Top>10.47307cm</Top>
+                <Left>5.43546cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>14</ZIndex>
                 <Style>
                   <Border>
@@ -2695,20 +2878,22 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!caps_propertyownershipValue.Value, "ProjectRequestFacility")</Value>
+                        <Value>=First(Fields!caps_propertyownership.Value, "ProjectRequestFacility")</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>7.9378cm</Top>
-                <Left>4.38782cm</Left>
+                <Top>11.10837cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -2737,10 +2922,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>8.5378cm</Top>
-                <Left>4.38782cm</Left>
+                <Top>11.74365cm</Top>
+                <Left>5.42851cm</Left>
                 <Height>2.39034cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>16</ZIndex>
                 <Style>
                   <Border>
@@ -2769,10 +2954,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>10.92814cm</Top>
-                <Left>4.38782cm</Left>
+                <Top>14.23984cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>2.36416cm</Height>
-                <Width>6.05378cm</Width>
+                <Width>8.94656cm</Width>
                 <ZIndex>17</ZIndex>
                 <Style>
                   <Border>
@@ -2801,10 +2986,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>13.2923cm</Top>
-                <Left>4.35255cm</Left>
-                <Height>2.36416cm</Height>
-                <Width>6.05378cm</Width>
+                <Top>16.604cm</Top>
+                <Left>5.41781cm</Left>
+                <Height>2.29361cm</Height>
+                <Width>8.94656cm</Width>
                 <ZIndex>18</ZIndex>
                 <Style>
                   <Border>
@@ -2830,12 +3015,14 @@
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>15.65646cm</Top>
-                <Left>4.31727cm</Left>
+                <Top>18.93288cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.73104cm</Width>
                 <ZIndex>19</ZIndex>
@@ -2864,12 +3051,14 @@
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>16.29174cm</Top>
-                <Left>4.31727cm</Left>
+                <Top>19.60344cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.56472cm</Height>
                 <Width>2.73104cm</Width>
                 <ZIndex>20</ZIndex>
@@ -2891,7 +3080,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Project Type:</Value>
+                        <Value>Project Type</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                         </Style>
@@ -2901,15 +3090,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>2.41847cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>4.5751cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.0615cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>21</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2933,9 +3127,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_projecttype1</rd:DefaultName>
-                <Top>2.41847cm</Top>
-                <Left>4.35255cm</Left>
-                <Height>0.6cm</Height>
+                <Top>4.64565cm</Top>
+                <Left>5.41781cm</Left>
+                <Height>0.60002cm</Height>
                 <Width>2.73103cm</Width>
                 <ZIndex>22</ZIndex>
                 <Style>
@@ -2955,7 +3149,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Estimated Cost:</Value>
+                        <Value>Estimated Cost</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                         </Style>
@@ -2965,15 +3159,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>3.01847cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>5.1751cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.02622cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>23</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -2997,8 +3196,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_totalprojectcost1</rd:DefaultName>
-                <Top>3.01847cm</Top>
-                <Left>4.35727cm</Left>
+                <Top>5.24567cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.72631cm</Width>
                 <ZIndex>24</ZIndex>
@@ -3029,15 +3228,20 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>1.1448cm</Top>
-                <Left>0.29105cm</Left>
+                <Top>3.30143cm</Top>
+                <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>4.0615cm</Width>
+                <Width>5.11983cm</Width>
                 <ZIndex>25</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -3052,17 +3256,19 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=First(Fields!caps_name.Value, "ProjectRequestFacility")</Value>
-                        <Style />
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox348</rd:DefaultName>
-                <Top>1.1448cm</Top>
-                <Left>4.38781cm</Left>
+                <Top>3.372cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.0185cm</Width>
+                <Width>8.91128cm</Width>
                 <ZIndex>26</ZIndex>
                 <Style>
                   <Border>
@@ -3082,18 +3288,186 @@
                     <TextRuns>
                       <TextRun>
                         <Value>=First(Fields!caps_streetaddress.Value, "ProjectRequestFacility")</Value>
-                        <Style />
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox349</rd:DefaultName>
-                <Top>1.7448cm</Top>
-                <Left>4.38781cm</Left>
+                <Top>3.972cm</Top>
+                <Left>5.41781cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.0185cm</Width>
+                <Width>8.91128cm</Width>
                 <ZIndex>27</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox254">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project Request Fact Sheet </Value>
+                        <Style>
+                          <FontSize>18pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox240</rd:DefaultName>
+                <Top>0.13823cm</Top>
+                <Height>0.6cm</Height>
+                <Width>14.37506cm</Width>
+                <ZIndex>28</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_schooldistrictValue2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_schooldistrict.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
+                <Top>0.77351cm</Top>
+                <Height>0.6cm</Height>
+                <Width>14.37506cm</Width>
+                <ZIndex>29</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_facilityview2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_facilityview.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_facilityview</rd:DefaultName>
+                <Top>1.40879cm</Top>
+                <Height>0.6cm</Height>
+                <Width>14.37506cm</Width>
+                <ZIndex>30</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox68">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Can the Demolition be Completed in One Fiscal Year?</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox44</rd:DefaultName>
+                <Top>9.23782cm</Top>
+                <Left>0.13925cm</Left>
+                <Height>0.6cm</Height>
+                <Width>5.11038cm</Width>
+                <ZIndex>31</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox69">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_demolitioncompletedinonefiscalyear.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <Format>d</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox54</rd:DefaultName>
+                <Top>9.20252cm</Top>
+                <Left>5.41781cm</Left>
+                <Height>0.6cm</Height>
+                <Width>8.94656cm</Width>
+                <ZIndex>32</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -3106,10 +3480,10 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>3.82089cm</Top>
-            <Left>20.17315cm</Left>
-            <Height>17.15321cm</Height>
-            <Width>11.18531cm</Width>
+            <Top>0.49705cm</Top>
+            <Left>20.24558cm</Left>
+            <Height>20.88793cm</Height>
+            <Width>14.71882cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") &lt;&gt; "DEMOLITION"</Hidden>
             </Visibility>
@@ -3842,6 +4216,75 @@
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
+                                <Textbox Name="Textbox32">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Total Option Cost</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox32</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="caps_totaloptioncost">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>="$" &amp; Fields!caps_totaloptioncost.Value</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>caps_totaloptioncost</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
                                 <Textbox Name="Textbox398">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
@@ -4533,6 +4976,7 @@
                             <TablixMember />
                             <TablixMember />
                             <TablixMember />
+                            <TablixMember />
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
@@ -4540,7 +4984,7 @@
                     <DataSetName>PRFSAlternativeOption</DataSetName>
                     <Top>0.30133cm</Top>
                     <Left>0.46773cm</Left>
-                    <Height>9.06458cm</Height>
+                    <Height>9.66458cm</Height>
                     <Width>19.65792cm</Width>
                     <Style>
                       <Border>
@@ -4572,7 +5016,7 @@
                 <KeepTogether>true</KeepTogether>
                 <Top>17.12388cm</Top>
                 <Left>0.37472cm</Left>
-                <Height>9.36591cm</Height>
+                <Height>9.96591cm</Height>
                 <Width>20.68979cm</Width>
                 <ZIndex>8</ZIndex>
                 <Visibility>
@@ -14442,7 +14886,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_isanlrfpcurrentlyinplace</rd:DefaultName>
                     <Top>0.74631cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>1</ZIndex>
@@ -14450,11 +14894,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14482,7 +14921,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_datecompleted_lrfpValue</rd:DefaultName>
                     <Top>1.38158cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>2</ZIndex>
@@ -14490,11 +14929,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14522,7 +14956,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_dateupdated_lrfpValue</rd:DefaultName>
                     <Top>2.01686cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>3</ZIndex>
@@ -14530,11 +14964,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14562,7 +14991,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_datelrfpwillbeinplaceValue</rd:DefaultName>
                     <Top>2.65214cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>4</ZIndex>
@@ -14570,11 +14999,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14601,7 +15025,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_includedinlrfpasneedValue</rd:DefaultName>
                     <Top>3.25214cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>5</ZIndex>
@@ -14609,11 +15033,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14640,7 +15059,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_describelrfpsupportsneed</rd:DefaultName>
                     <Top>3.88742cm</Top>
-                    <Left>6.81208cm</Left>
+                    <Left>6.98848cm</Left>
                     <Height>1.64979cm</Height>
                     <Width>12.00331cm</Width>
                     <ZIndex>6</ZIndex>
@@ -14648,11 +15067,6 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <LeftBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </LeftBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14684,6 +15098,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14715,6 +15134,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14746,6 +15170,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14777,6 +15206,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14808,6 +15242,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14839,6 +15278,11 @@
                       <Border>
                         <Style>None</Style>
                       </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -14880,7 +15324,8 @@
               </Rectangle>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>22.76971cm</Top>
+            <Top>21.97348cm</Top>
+            <Left>0.0353cm</Left>
             <Height>42.39092cm</Height>
             <Width>34.9291cm</Width>
             <ZIndex>1</ZIndex>
@@ -14893,103 +15338,6 @@
               </Border>
             </Style>
           </Rectangle>
-          <Textbox Name="Textbox240">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Project Request Fact Sheet </Value>
-                    <Style>
-                      <FontSize>18pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox240</rd:DefaultName>
-            <Top>1.16721cm</Top>
-            <Left>0.85917cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.44682cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_schooldistrictValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_schooldistrict.Value, "ProjectRequest")</Value>
-                    <Style>
-                      <FontSize>14pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
-            <Top>1.80249cm</Top>
-            <Left>0.85917cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.44682cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="caps_facilityview">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_facilityview.Value, "ProjectRequest")</Value>
-                    <Style>
-                      <FontSize>14pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>caps_facilityview</rd:DefaultName>
-            <Top>2.43777cm</Top>
-            <Left>0.85917cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.44682cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Rectangle Name="Rectangle13">
             <ReportItems>
               <Textbox Name="Textbox7">
@@ -15094,9 +15442,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.74111cm</Top>
-                <Left>8.04821cm</Left>
+                <Left>7.97077cm</Left>
                 <Height>0.6cm</Height>
-                <Width>10.73206cm</Width>
+                <Width>10.8095cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -15126,6 +15474,7 @@
                             <Value>=First(Fields!caps_availablesitesize_acres.Value, "ProjectRequest") &amp; " acres/"</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
+                              <Format>0.0;(0.0)</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -15134,7 +15483,7 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_availablesitesize_acresValue</rd:DefaultName>
                     <Top>0.67056cm</Top>
-                    <Left>0.00002cm</Left>
+                    <Left>0.03529cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <Style>
@@ -15154,18 +15503,21 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!caps_availablesitesize_hectaresValue.Value, "ProjectRequest") &amp; " hectares"</Value>
+                            <Value>=First(Fields!caps_availablesitesize_hectares.Value, "ProjectRequest") &amp; " hectares"</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
+                              <Format>0.0;(0.0)</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
-                        <Style />
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_availablesitesize_hectaresValue</rd:DefaultName>
                     <Top>0.67056cm</Top>
-                    <Left>2.50002cm</Left>
+                    <Left>2.53529cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>1</ZIndex>
@@ -15199,7 +15551,7 @@
                     <rd:DefaultName>Textbox17</rd:DefaultName>
                     <Top>1.27056cm</Top>
                     <Height>0.6cm</Height>
-                    <Width>6.30557cm</Width>
+                    <Width>5.70568cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -15224,11 +15576,14 @@
                             </Style>
                           </TextRun>
                         </TextRuns>
-                        <Style />
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_anticipatedsitepurchaseclosingdateValue</rd:DefaultName>
                     <Top>1.87056cm</Top>
+                    <Left>0.03529cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>3</ZIndex>
@@ -15315,14 +15670,16 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>="$" &amp; First(Fields!caps_totalprojectcost.Value, "ProjectRequest")</Value>
+                            <Value>=IIF(First(Fields!caps_submissioncategorycode.Value = "SITE_ACQUISITION", "ProjectRequest"), "$" &amp; First(Fields!caps_totalprojectcost.Value, "ProjectRequest"), "$" &amp; First(Fields!caps_otherprojecttotalcost.Value, "ProjectRequest"))</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <Format>'$'0;('$'0)</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
-                        <Style />
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_totalprojectcost</rd:DefaultName>
@@ -15344,10 +15701,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>7.01629cm</Top>
+                <Top>6.75821cm</Top>
                 <Left>0.07057cm</Left>
                 <Height>3.82793cm</Height>
-                <Width>6.35276cm</Width>
+                <Width>6.29859cm</Width>
                 <ZIndex>3</ZIndex>
                 <Visibility>
                   <Hidden>=IIF(First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION" Or First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "NEW_SCHOOL", False, True)</Hidden>
@@ -15399,9 +15756,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
                     <Top>0.06472cm</Top>
-                    <Left>0.01641cm</Left>
+                    <Left>0.03527cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.31747cm</Width>
+                    <Width>5.67041cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15433,7 +15790,7 @@
                     <Top>1.3cm</Top>
                     <Left>0.01641cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.30557cm</Width>
+                    <Width>5.68927cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -15464,9 +15821,9 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_occupancydateValue</rd:DefaultName>
                     <Top>1.9cm</Top>
-                    <Left>0.01641cm</Left>
+                    <Left>0.03527cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
+                    <Width>2.48114cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -15499,7 +15856,7 @@
                     <Top>2.53528cm</Top>
                     <Left>0.0517cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.28218cm</Width>
+                    <Width>5.65398cm</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
@@ -15518,7 +15875,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>="$" &amp; First(Fields!caps_totalprojectcost.Value, "ProjectRequest")</Value>
+                            <Value>=IIF(First(Fields!caps_submissioncategorycode.Value = "SITE_ACQUISITION", "ProjectRequest"),"$" &amp; First(Fields!caps_otherprojecttotalcost.Value, "ProjectRequest"), "$" &amp; First(Fields!caps_totalprojectcost.Value, "ProjectRequest"))</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <Format>'$'0;('$'0)</Format>
@@ -15579,10 +15936,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>2.88212cm</Top>
-                <Left>0.07057cm</Left>
+                <Top>2.83169cm</Top>
+                <Left>0.07059cm</Left>
                 <Height>3.82069cm</Height>
-                <Width>6.33388cm</Width>
+                <Width>6.29859cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
@@ -15630,7 +15987,6 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
-                    <Left>0.03529cm</Left>
                     <Height>0.6cm</Height>
                     <Width>6.29859cm</Width>
                     <Style>
@@ -15663,8 +16019,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_spircostestimateValue</rd:DefaultName>
-                    <Top>1.84492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>1.8cm</Top>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>1</ZIndex>
@@ -15698,8 +16053,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_spircompletiondateValue</rd:DefaultName>
-                    <Top>1.24492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>1.2cm</Top>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>2</ZIndex>
@@ -15732,8 +16086,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_seismicprojectidentificationreport</rd:DefaultName>
-                    <Top>0.64492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>0.6cm</Top>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>3</ZIndex>
@@ -15765,8 +16118,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
-                    <Top>2.44492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>2.4cm</Top>
                     <Height>0.6cm</Height>
                     <Width>6.29859cm</Width>
                     <ZIndex>4</ZIndex>
@@ -15797,8 +16149,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_seismicrapidassessmentcomplete</rd:DefaultName>
-                    <Top>3.04492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>3cm</Top>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>5</ZIndex>
@@ -15830,8 +16181,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_seismicrapidassessmentcompletiondateValue</rd:DefaultName>
-                    <Top>3.64492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>3.6cm</Top>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>6</ZIndex>
@@ -16360,8 +16710,7 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequest</DataSetName>
-                    <Top>4.24492cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>4.24495cm</Top>
                     <Height>1.2cm</Height>
                     <Width>7.5808cm</Width>
                     <ZIndex>7</ZIndex>
@@ -16373,10 +16722,10 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>11.02061cm</Top>
+                <Top>10.65532cm</Top>
                 <Left>0.07057cm</Left>
-                <Height>5.63471cm</Height>
-                <Width>7.61609cm</Width>
+                <Height>6cm</Height>
+                <Width>7.70568cm</Width>
                 <ZIndex>5</ZIndex>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest")&lt;&gt; "SEISMIC"</Hidden>
@@ -16430,8 +16779,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
                     <Top>0.6cm</Top>
+                    <Left>0.04211cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>3.26466cm</Width>
+                    <Width>3.29999cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -16462,6 +16812,7 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox21</rd:DefaultName>
                     <Top>1.21708cm</Top>
+                    <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
                     <Width>1.29948cm</Width>
                     <ZIndex>1</ZIndex>
@@ -16482,7 +16833,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Existing School After Project</Value>
+                            <Value>School After Project</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <FontWeight>Bold</FontWeight>
@@ -16496,8 +16847,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
                     <Top>1.81736cm</Top>
+                    <Left>0.04211cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.08922cm</Width>
+                    <Width>5.04717cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -16528,7 +16880,8 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox21</rd:DefaultName>
-                    <Top>2.48792cm</Top>
+                    <Top>2.45264cm</Top>
+                    <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
                     <Width>1.29948cm</Width>
                     <ZIndex>3</ZIndex>
@@ -16571,7 +16924,6 @@
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -16579,9 +16931,9 @@
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>1.5175cm</Top>
-                <Left>8.04821cm</Left>
+                <Left>7.97077cm</Left>
                 <Height>3.08792cm</Height>
-                <Width>5.08922cm</Width>
+                <Width>5.08928cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -16632,8 +16984,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>0.63499cm</Top>
+                    <Left>0.04211cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.83834cm</Width>
+                    <Width>2.79623cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -16699,8 +17052,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>2.43443cm</Top>
+                    <Left>0.04211cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.08922cm</Width>
+                    <Width>5.04711cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -16741,7 +17095,6 @@
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -17193,7 +17546,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_designcapacitykindergartenValue.Value + First(Fields!caps_changeindesigncapacitykindergarten.Value, "ProjectRequest"))</Value>
+                                          <Value>=(Fields!caps_designcapacitykindergartenValue.Value + First(Fields!caps_changeindesigncapacitykindergarten.Value, "SSProjectRequest"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -17250,7 +17603,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "ProjectRequest"))</Value>
+                                          <Value>=(Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -17375,7 +17728,7 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.99917cm</Top>
+                    <Top>3.03472cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>1.2cm</Height>
                     <Width>2.82561cm</Width>
@@ -17762,8 +18115,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>0.6cm</Top>
+                    <Left>0.05196cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.83834cm</Width>
+                    <Width>2.78638cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -17795,8 +18149,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>4.23472cm</Top>
+                    <Left>0.05196cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.78364cm</Width>
+                    <Width>2.73168cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -17829,8 +18184,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>2.43472cm</Top>
+                    <Left>0.05196cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.08922cm</Width>
+                    <Width>4.94804cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -17863,7 +18219,7 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
                     <Height>0.6cm</Height>
-                    <Width>5.08922cm</Width>
+                    <Width>5.0895cm</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
@@ -17871,7 +18227,6 @@
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -18323,7 +18678,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_operatingcapacitykindergartenValue.Value + First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "ProjectRequest"))</Value>
+                                          <Value>=(Fields!caps_operatingcapacitykindergartenValue.Value + First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "SSProjectRequest"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -18380,7 +18735,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_operatingcapacityelementaryValue.Value + First(Fields!caps_changeinoperatingcapacityelementary.Value, "ProjectRequest"))</Value>
+                                          <Value>=(Fields!caps_operatingcapacityelementaryValue.Value + First(Fields!caps_changeinoperatingcapacityelementary.Value, "SSProjectRequest"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -18436,7 +18791,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_operatingcapacitysecondaryValue.Value + First(Fields!caps_changeinoperatingcapacitysecondary.Value, "ProjectRequest"))</Value>
+                                          <Value>=(Fields!caps_operatingcapacitysecondaryValue.Value + First(Fields!caps_changeinoperatingcapacitysecondary.Value, "SSProjectRequest"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -18841,7 +19196,7 @@
                 <Top>4.86782cm</Top>
                 <Left>13.55883cm</Left>
                 <Height>6.03472cm</Height>
-                <Width>5.08922cm</Width>
+                <Width>5.0895cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
@@ -18892,14 +19247,13 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Height>0.6cm</Height>
-                    <Width>5.089cm</Width>
+                    <Width>5.0895cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -18911,7 +19265,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!caps_utilizationtotal_operating.Value, "FacilitiesForSelection") &amp; "%"</Value>
+                            <Value>=First(Fields!caps_utilizationtotal_operating.Value, "ProjectRequestFacility") &amp; "%"</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <Format>0%</Format>
@@ -18944,7 +19298,7 @@
                 <Top>11.18476cm</Top>
                 <Left>13.55883cm</Left>
                 <Height>1.2cm</Height>
-                <Width>5.0892cm</Width>
+                <Width>5.0895cm</Width>
                 <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
@@ -18995,8 +19349,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>0.56472cm</Top>
+                    <Left>0.04205cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.83834cm</Width>
+                    <Width>2.79629cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -19028,8 +19383,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>2.43528cm</Top>
+                    <Left>0.04205cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.08922cm</Width>
+                    <Width>5.04717cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -19064,7 +19420,7 @@
                     <Top>4.27056cm</Top>
                     <Left>0.04205cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>4.41968cm</Width>
+                    <Width>2.74143cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -19105,7 +19461,6 @@
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -19237,7 +19592,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_designcapacitykindergartenValue.Value + First(Fields!caps_changeindesigncapacitykindergarten.Value, "ProjectRequest")) \ 20</Value>
+                                          <Value>=(Fields!caps_designcapacitykindergartenValue.Value + First(Fields!caps_changeindesigncapacitykindergarten.Value, "SSProjectRequest")) \ 20</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -19294,7 +19649,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "ProjectRequest")) \ 25</Value>
+                                          <Value>=(Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")) \ 25</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -19350,7 +19705,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Fields!caps_designcapacitysecondaryValue.Value + First(Fields!caps_changeindesigncapacitysecondary.Value, "ProjectRequest")) \ 25</Value>
+                                          <Value>=(Fields!caps_designcapacitysecondaryValue.Value + First(Fields!caps_changeindesigncapacitysecondary.Value, "SSProjectRequest")) \ 25</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -20128,7 +20483,7 @@
                     <Top>0.63528cm</Top>
                     <Left>0.05197cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>1.64167cm</Width>
+                    <Width>1.54907cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -20271,7 +20626,6 @@
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -20332,14 +20686,13 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Height>0.6cm</Height>
-                    <Width>5.089cm</Width>
+                    <Width>5.08cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
                       </Border>
                       <BackgroundColor>#e3a82b</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
                       <PaddingBottom>2pt</PaddingBottom>
                     </Style>
@@ -20433,8 +20786,9 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
+                    <Left>0.05172cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.70568cm</Width>
+                    <Width>5.65396cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -20463,8 +20817,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox18</rd:DefaultName>
                     <Top>0.61708cm</Top>
+                    <Left>0.05172cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
+                    <Width>2.44828cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -20511,11 +20866,125 @@
               </Rectangle>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>3.82089cm</Top>
+            <Top>3.10288cm</Top>
             <Left>0.80716cm</Left>
             <Height>18.2821cm</Height>
             <Width>18.78027cm</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>2</ZIndex>
+            <Visibility>
+              <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Rectangle Name="Rectangle14">
+            <ReportItems>
+              <Textbox Name="Textbox240">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Project Request Fact Sheet </Value>
+                        <Style>
+                          <FontSize>18pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox240</rd:DefaultName>
+                <Top>0.13823cm</Top>
+                <Left>0.50303cm</Left>
+                <Height>0.6cm</Height>
+                <Width>17.44682cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_schooldistrictValue">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_schooldistrict.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
+                <Top>0.77351cm</Top>
+                <Left>0.50303cm</Left>
+                <Height>0.6cm</Height>
+                <Width>17.44682cm</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="caps_facilityview">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_facilityview.Value, "ProjectRequest")</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>caps_facilityview</rd:DefaultName>
+                <Top>1.40879cm</Top>
+                <Left>0.50303cm</Left>
+                <Height>0.6cm</Height>
+                <Width>17.44682cm</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.49705cm</Top>
+            <Left>0.37472cm</Left>
+            <Height>2.32685cm</Height>
+            <Width>17.94985cm</Width>
+            <ZIndex>3</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
             </Visibility>
@@ -20526,10 +20995,10 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>26.43157in</Height>
+        <Height>25.67018in</Height>
         <Style />
       </Body>
-      <Width>14.17551in</Width>
+      <Width>14.28in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -20587,12 +21056,14 @@
     </ReportParameter>
     <ReportParameter Name="FacilityID">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>ProjectRequest</DataSetName>
           <ValueField>caps_facilityValue</ValueField>
         </DataSetReference>
       </DefaultValue>
+      <AllowBlank>true</AllowBlank>
       <Prompt>FacilityID</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
@@ -20649,6 +21120,7 @@
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>b2f16be9-7821-4ece-9604-3dd732849a0c</rd:ReportID>
 </Report>
