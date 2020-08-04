@@ -350,14 +350,10 @@ CAPS.Project.SubmissionResult = function () {
     );
 }
 
-CAPS.Project.PublishList = function (selectedControlIds, selectedControl) {
-    //Update records
-    selectedControlIds.forEach(function (item, index) {
-        // update the record
-        
-    });
-}
-
+/**
+ * This function triggers the Calculate Schedule B action.
+ * @param {any} primaryControl primary control
+ */
 CAPS.Project.CalculateScheduleB = function (primaryControl) {
     var formContext = primaryControl;
     debugger;
@@ -418,6 +414,11 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
     }
 }
 
+/**
+ * This function determines if the Calculate Schedule B button should be displayed
+ * @param {any} primaryControl primary control
+ * @return {bool} true if should be displayed, otherwise false
+ */
 CAPS.Project.ShowCalculateScheduleB = function (primaryControl) {
     var formContext = primaryControl;
 

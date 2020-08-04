@@ -514,6 +514,12 @@ CAPS.Project.ValidateAtLeastOneFacility = function (executionContext) {
 
 }
 
+/**
+ * This function set's the visibility and requirement level for a related supplemental cost item
+ * @param {any} executionContext Execution Context
+ * @param {any} toggleField logical name of toggle field (yes/no)
+ * @param {any} displayField logical name of display field
+ */
 CAPS.Project.ToggleScheduleBSupplementalField = function (executionContext, toggleField, displayField) {
     var formContext = executionContext.getFormContext();
 
@@ -533,6 +539,10 @@ CAPS.Project.ToggleScheduleBSupplementalField = function (executionContext, togg
     }
 }
 
+/**
+ * This function set's the visibility and requirement level for other description when other cost is entered.
+ * @param {any} executionContext Execution Context
+ */
 CAPS.Project.ToggleOtherSupplementalCostField = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
@@ -544,22 +554,90 @@ CAPS.Project.ToggleOtherSupplementalCostField = function (executionContext) {
     }
 }
 
-CAPS.Project.SetupScheduleB = function (executionContext) {
+/**
+ * This function get's the related facility's school type and pre-set the value
+ * @param {any} executionContext Execution Context
+ */
+CAPS.Project.GetSchoolType = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
 
-    formContext.getAttribute("caps_projectincludesdemolition").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesdemolition", "caps_demolitioncost"); });
-    formContext.getAttribute("caps_projectincludesabnormaltopography").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesabnormaltopography", "caps_abnormaltopographycost"); });
-    formContext.getAttribute("caps_projectincludestemporaryaccommodation").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludestemporaryaccommodation", "caps_temporaryaccommodationcost"); });
+    var facility = formContext.getAttribute("caps_facility").getValue();
 
-    formContext.getAttribute("caps_othercost").addOnChange(CAPS.Project.ToggleOtherSupplementalCostField);
+    if (facility !== null && facility[0] !== null) {
+
+        Xrm.WebApi.retrieveRecord("caps_facility", facility[0].id, "?$select=_caps_currentfacilitytype_value").then(
+            function success(result) {
+                debugger;
+                if (result!== null && result._caps_currentfacilitytype_value !== null) {
+                    Xrm.WebApi.retrieveRecord("caps_facilitytype", result._caps_currentfacilitytype_value, "?$select=_caps_schooltype_value").then(
+                        function success(result) {
+                            debugger;
+                            var schoolType = new Array();
+                            schoolType[0] = new Object();
+                            schoolType[0].id = result._caps_schooltype_value;
+                            schoolType[0].name = result["_caps_schooltype_value@OData.Community.Display.V1.FormattedValue"];
+                            schoolType[0].entityType = result["_caps_schooltype_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+
+                            formContext.getAttribute("caps_schooltype").setValue(schoolType);
+                        }
+                    );
+                }
+
+            },
+            function (error) {
+                console.log(error.message);
+                // handle error conditions
+            }
+        );
+    }
+    
+}
+
+/**
+ * This function locks the total project cost field if schedule b should be used to determine the project request cost.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ToggleRequiresScheduleB = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var attr = formContext.getAttribute("caps_totalprojectcost");
 
     if (formContext.getAttribute("caps_requiresscheduleb").getValue() === true) {
         //Lock Total Project Cost
-        var attr = Xrm.Page.getAttribute("caps_totalprojectcost");
         attr.controls.forEach(function (control) {
             control.setDisabled(true);
         });
     }
+    else {
+        //un-Lock Total Project Cost
+        attr.controls.forEach(function (control) {
+            control.setDisabled(false);
+        });
+    }
+}
+
+/**
+ * This function calls all schedule b related functions
+ * @param {any} executionContext Execution Context
+ */
+CAPS.Project.SetupScheduleB = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesdemolition", "caps_demolitioncost");
+    CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesabnormaltopography", "caps_abnormaltopographycost");
+    CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludestemporaryaccommodation", "caps_temporaryaccommodationcost");
+    CAPS.Project.ToggleOtherSupplementalCostField(executionContext);
+    CAPS.Project.ToggleRequiresScheduleB(executionContext);
+    //add on change for project type to get and set school type
+
+    //Add on change events
+    formContext.getAttribute("caps_projectincludesdemolition").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesdemolition", "caps_demolitioncost"); });
+    formContext.getAttribute("caps_projectincludesabnormaltopography").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesabnormaltopography", "caps_abnormaltopographycost"); });
+    formContext.getAttribute("caps_projectincludestemporaryaccommodation").addOnChange(function () { CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludestemporaryaccommodation", "caps_temporaryaccommodationcost"); });
+    formContext.getAttribute("caps_othercost").addOnChange(CAPS.Project.ToggleOtherSupplementalCostField);
+    formContext.getAttribute("caps_facility").addOnChange(CAPS.Project.GetSchoolType);
+    formContext.getAttribute("caps_requiresscheduleb").addOnChange(CAPS.Project.ToggleRequiresScheduleB);
+
 }
 

@@ -2337,6 +2337,49 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496Request : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496Request()
+		{
+			this.RequestName = "caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496Response : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_TriggerScheduleBCalculation69523368a6d2ea11a813000d3af42496Response()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ProjectSubmission")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ProjectSubmissionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -3704,13 +3747,13 @@ namespace CAPS.DataContext
 		{
 		}
 		
-		public byte[] RetrieveExportedSolution
+		public byte[] ExportSolutionFile
 		{
 			get
 			{
-				if (this.Results.Contains("RetrieveExportedSolution"))
+				if (this.Results.Contains("ExportSolutionFile"))
 				{
-					return ((byte[])(this.Results["RetrieveExportedSolution"]));
+					return ((byte[])(this.Results["ExportSolutionFile"]));
 				}
 				else
 				{

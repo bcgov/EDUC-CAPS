@@ -11,6 +11,10 @@ using CAPS.DataContext;
 
 namespace CustomWorkflowActivities
 {
+    /// <summary>
+    /// Called when a project request switches from multiple facilities to a single facility.  
+    /// This CWA removes the relationship between the project request and the related facilities.
+    /// </summary>
     public class DisassociateFacilitiesFromProjectRequest : CodeActivity
     {
         protected override void Execute(CodeActivityContext executionContext)
