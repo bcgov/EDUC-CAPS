@@ -19352,7 +19352,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")/20, (Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")) \ 20)</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")/25, (Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")) \ 25)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19567,7 +19567,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, Fields!caps_designcapacitykindergarten.Value)</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacitykindergarten.Value /20))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19601,7 +19601,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacityelementary.Value / 20))</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacityelementary.Value / 25))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19624,7 +19624,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -19863,6 +19862,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -19874,7 +19874,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_changeindesigncapacityelementary.Value \ 20</Value>
+                                          <Value>=Fields!caps_changeindesigncapacityelementary.Value \ 25</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
