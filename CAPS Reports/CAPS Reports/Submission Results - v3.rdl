@@ -242,19 +242,20 @@
     &lt;attribute name="caps_ministryreviewstatus" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;attribute name="caps_facilityview" /&gt;
+    &lt;attribute name="caps_existingfacility" /&gt;
     &lt;attribute name="caps_resultsreleasedreviewstatus" /&gt;
     &lt;attribute name="caps_projectdescription" /&gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_vfarequirementidno" /&gt;
     &lt;attribute name="caps_fundingrequested" /&gt;
     &lt;filter type="and" &gt;
-      &lt;condition attribute="caps_submission" operator="eq" value="@CapitalPlanID" uitype="caps_submission" /&gt;
+      &lt;condition attribute="caps_submission" operator="eq" value="@CapitalPlanID"  uitype="caps_submission" /&gt;
       &lt;condition attribute="caps_resultsreleasedreviewstatus" operator="eq" value="100000000" /&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="caps_submission" from="caps_submissionid" to="caps_submission" alias="capitalplan" &gt;
+    &lt;link-entity name="caps_submission" from="caps_submissionid" to="caps_submission" link-type="inner" alias="capitalplan" &gt;
       &lt;attribute name="caps_submissionid" /&gt;
       &lt;attribute name="caps_name" /&gt;
-      &lt;link-entity name="caps_callforsubmission" from="caps_callforsubmissionid" to="caps_callforsubmission" alias="callforsubmission" &gt;
+      &lt;link-entity name="caps_callforsubmission" from="caps_callforsubmissionid" to="caps_callforsubmission" link-type="inner" alias="callforsubmission" &gt;
         &lt;attribute name="caps_callforsubmissiontype" /&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
@@ -310,9 +311,17 @@
           <DataField>caps_resultsreleasedreviewstatus</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_existingfacility">
+          <DataField>caps_existingfacility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_resultsreleasedreviewstatusValue">
           <DataField>caps_resultsreleasedreviewstatusValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_existingfacilityValue">
+          <DataField>caps_existingfacilityValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="caps_projectdescription">
           <DataField>caps_projectdescription</DataField>
@@ -618,7 +627,7 @@
             <Value>=Parameters!CapitalPlanID.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch top="50" &gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projecthistory" &gt;
     &lt;attribute name="caps_existingfacility" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
@@ -1519,7 +1528,14 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
             <DataSetName>SupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>4.36562cm</Top>
             <Left>0.12543cm</Left>
             <Height>2.77896cm</Height>
@@ -2036,14 +2052,21 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>SupportedProjectRequests</DataSetName>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
+            <DataSetName>PlannedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>7.19666cm</Top>
             <Left>0.1058cm</Left>
             <Height>2.67312cm</Height>
             <Width>26.07226cm</Width>
             <ZIndex>9</ZIndex>
             <Visibility>
-              <Hidden>==(Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major") or (Count(Fields!name.Value, "SecurityRole") = 0)</Hidden>
+              <Hidden>=(Fields!callforsubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major") or (Count(Fields!name.Value, "SecurityRole") = 0)</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -2556,14 +2579,21 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
             <DataSetName>NotSupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>9.90506cm</Top>
             <Left>0.1058cm</Left>
-            <Height>2.67312cm</Height>
+            <Height>2.67313cm</Height>
             <Width>26.07226cm</Width>
             <ZIndex>10</ZIndex>
             <Visibility>
-              <Hidden>=Fields!callforsubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major"</Hidden>
+              <Hidden>=(Fields!callforsubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major") or (Count(Fields!name.Value, "SecurityRole") = 0)</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -3076,12 +3106,22 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
             <DataSetName>SDNotSupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>12.64874cm</Top>
             <Left>0.1058cm</Left>
             <Height>2.62021cm</Height>
             <Width>26.07226cm</Width>
             <ZIndex>11</ZIndex>
+            <Visibility>
+              <Hidden>= (Fields!callforsubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major") or (Count(Fields!name.Value, "SecurityRole") &lt;&gt; 0)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3593,7 +3633,14 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
             <DataSetName>SupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>15.37478cm</Top>
             <Left>0.1058cm</Left>
             <Height>2.62021cm</Height>
@@ -4113,7 +4160,14 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
             <DataSetName>NotSupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>18.03027cm</Top>
             <Left>0.05294cm</Left>
             <Height>2.62021cm</Height>
@@ -4166,7 +4220,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>NOT SUPPORTED PROJECT REQUESTS</Value>
+                                  <Value>SUPPORTED PROJECT REQUESTS</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
@@ -4462,7 +4516,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox235">
+                        <Textbox Name="caps_projectcode4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4476,7 +4530,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox226</rd:DefaultName>
+                          <rd:DefaultName>caps_projectcode4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4522,7 +4576,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox245">
+                        <Textbox Name="caps_facilityview3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4536,7 +4590,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox228</rd:DefaultName>
+                          <rd:DefaultName>caps_facilityview3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4552,7 +4606,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox246">
+                        <Textbox Name="caps_totalprojectcost4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4568,7 +4622,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox236</rd:DefaultName>
+                          <rd:DefaultName>caps_totalprojectcost4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4584,7 +4638,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox247">
+                        <Textbox Name="caps_projecttype4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4598,7 +4652,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox230</rd:DefaultName>
+                          <rd:DefaultName>caps_projecttype4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4614,7 +4668,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox248">
+                        <Textbox Name="caps_vfarequirementidno">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4630,7 +4684,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox239</rd:DefaultName>
+                          <rd:DefaultName>caps_vfarequirementidno</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4646,7 +4700,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox249">
+                        <Textbox Name="caps_projectdescription4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4662,7 +4716,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox242</rd:DefaultName>
+                          <rd:DefaultName>caps_projectdescription4</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4704,7 +4758,14 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>NotSupportedProjectRequests</DataSetName>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <KeepTogether>true</KeepTogether>
+            <DataSetName>SupportedProjectRequests</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!caps_projectcode.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>20.82687cm</Top>
             <Left>0.05294cm</Left>
             <Height>2.62021cm</Height>
@@ -4720,7 +4781,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>24.74424cm</Height>
+        <Height>23.73882cm</Height>
         <Style />
       </Body>
       <Width>26.3989cm</Width>
