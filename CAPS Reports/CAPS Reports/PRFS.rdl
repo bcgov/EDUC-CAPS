@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -22,24 +22,24 @@
             <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch&gt;
-  &lt;entity name="caps_project" enableprefiltering= "1"&gt;
-    &lt;attribute name="caps_includedinlrfpasneed" /&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_project" enableprefiltering="1"&gt;
+   &lt;attribute name="caps_includedinlrfpasneed" /&gt;
     &lt;attribute name="caps_projectyear" /&gt;
     &lt;attribute name="caps_projectedchangetofacilityconditionindex" /&gt;
-&lt;attribute name="caps_totalprojectcost" /&gt;
-&lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
-&lt;attribute name="caps_otherprojecttotalcost" /&gt;
+    &lt;attribute name="caps_totalprojectcost" /&gt;
+    &lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
+    &lt;attribute name="caps_otherprojecttotalcost" /&gt;
     &lt;attribute name="caps_demolitioncompletedinonefiscalyear" /&gt;
     &lt;attribute name="caps_benefitsofafullorpartialdemolition" /&gt;
     &lt;attribute name="caps_changeindesigncapacityelementary" /&gt;
-&lt;attribute name="caps_municipalrequirements" /&gt;
-&lt;attribute name="caps_submissioncategorycode" /&gt;
-&lt;attribute name="caps_facilityview" /&gt;
-&lt;attribute name="caps_constructionarea" /&gt;
-&lt;attribute name="caps_futurelowestgrade" /&gt;
-&lt;attribute name="caps_futurehighestgrade" /&gt;
-&lt;attribute name="caps_futurefacilityconditionindex" /&gt;
+    &lt;attribute name="caps_municipalrequirements" /&gt;
+    &lt;attribute name="caps_submissioncategorycode" /&gt;
+    &lt;attribute name="caps_facilityview" /&gt;
+    &lt;attribute name="caps_constructionarea" /&gt;
+    &lt;attribute name="caps_futurelowestgrade" /&gt;
+    &lt;attribute name="caps_futurehighestgrade" /&gt;
+    &lt;attribute name="caps_futurefacilityconditionindex" /&gt;
     &lt;attribute name="caps_districtpriority" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacitysecondary" /&gt;
@@ -59,16 +59,13 @@
     &lt;attribute name="caps_availablesitesize_hectares" /&gt;
     &lt;attribute name="caps_availablesitesize_acres" /&gt;
     &lt;attribute name="caps_anticipatedoccupancyyear" /&gt;
-    &lt;attribute name="caps_projectyear" /&gt;
     &lt;attribute name="caps_seismicriskrating" /&gt;
     &lt;attribute name="caps_potentialplanforvacantsite" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacityelementary" /&gt;
-    &lt;attribute name="caps_datecompleted_lrfp" /&gt;
     &lt;attribute name="caps_changeindesigncapacitykindergarten" /&gt;
     &lt;attribute name="caps_facility" /&gt;
     &lt;attribute name="caps_isanlrfpcurrentlyinplace" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
-    &lt;attribute name="caps_totalprojectcost" /&gt;
     &lt;attribute name="caps_tempaccommodationandbusingplan" /&gt;
     &lt;attribute name="caps_primarydriver" /&gt;
     &lt;attribute name="caps_schooldistrict" /&gt;
@@ -80,7 +77,6 @@
     &lt;attribute name="caps_estimatedmarketvalueoflandwobuilding" /&gt;
     &lt;attribute name="caps_projectrationale" /&gt;
     &lt;attribute name="caps_estimatedmarketvalueofpropertywbuilding" /&gt;
-    &lt;attribute name="caps_dateupdated_lrfp" /&gt;
     &lt;attribute name="caps_datebuildingportionbecameunoccupied" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;attribute name="caps_summaryofhazardousmaterialsenvassessment" /&gt;
@@ -91,16 +87,18 @@
     &lt;attribute name="caps_changeinoperatingcapacitytotal" /&gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
-    &lt;order attribute="caps_projectcode" descending="true" /&gt;
-  &lt;link-entity name="edu_year" from="edu_yearid" to="caps_anticipatedoccupancyyear" link-type="outer" alias="YEAR" &gt;
-      &lt;attribute name="edu_name" /&gt;
+    &lt;order attribute="caps_projectcode" descending="false" /&gt;
+    &lt;link-entity name="caps_longrangefacilityplan" from="caps_longrangefacilityplanid" to="caps_longrangefacilityplan" visible="false" link-type="outer" alias="LRPF"&gt;
+      &lt;attribute name="caps_description" /&gt;
+      &lt;attribute name="caps_lrfpdate" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_anticipatedoccupancyyear" visible="false" link-type="outer" alias="YEAR"&gt;
       &lt;attribute name="edu_startyear" /&gt;
+      &lt;attribute name="edu_name" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_includedinlrfpasneed">
@@ -379,18 +377,6 @@
           <DataField>caps_anticipatedoccupancyyearEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_projectyear0">
-          <DataField>caps_projectyear0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearValue0">
-          <DataField>caps_projectyearValue0</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearEntityName0">
-          <DataField>caps_projectyearEntityName0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_seismicriskrating">
           <DataField>caps_seismicriskrating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -410,14 +396,6 @@
         <Field Name="caps_changeinoperatingcapacityelementaryValue">
           <DataField>caps_changeinoperatingcapacityelementaryValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecompleted_lrfp">
-          <DataField>caps_datecompleted_lrfp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecompleted_lrfpValue">
-          <DataField>caps_datecompleted_lrfpValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitykindergarten">
           <DataField>caps_changeindesigncapacitykindergarten</DataField>
@@ -458,14 +436,6 @@
         <Field Name="caps_projecttypeEntityName">
           <DataField>caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcost0">
-          <DataField>caps_totalprojectcost0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcostValue0">
-          <DataField>caps_totalprojectcostValue0</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_tempaccommodationandbusingplan">
           <DataField>caps_tempaccommodationandbusingplan</DataField>
@@ -547,14 +517,6 @@
           <DataField>caps_estimatedmarketvalueofpropertywbuildingValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_dateupdated_lrfp">
-          <DataField>caps_dateupdated_lrfp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_dateupdated_lrfpValue">
-          <DataField>caps_dateupdated_lrfpValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="caps_datebuildingportionbecameunoccupied">
           <DataField>caps_datebuildingportionbecameunoccupied</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -603,13 +565,25 @@
           <DataField>caps_hasschoolbeenpermanentlyclosedValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="LRPF_caps_description">
+          <DataField>LRPF_caps_description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_changeinoperatingcapacitytotal">
           <DataField>caps_changeinoperatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdate">
+          <DataField>LRPF_caps_lrfpdate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacitytotalValue">
           <DataField>caps_changeinoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdateValue">
+          <DataField>LRPF_caps_lrfpdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_projectcode">
           <DataField>caps_projectcode</DataField>
@@ -14873,7 +14847,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!caps_isanlrfpcurrentlyinplace.Value, "ProjectRequest")</Value>
+                            <Value>=iif(IsNothing(First(Fields!LRPF_caps_lrfpdate.Value, "ProjectRequest")),"No","Yes")</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                             </Style>
@@ -14890,76 +14864,6 @@
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>1</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="caps_datecompleted_lrfpValue">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!caps_datecompleted_lrfpValue.Value, "ProjectRequest")</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                              <Format>d</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Left</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>caps_datecompleted_lrfpValue</rd:DefaultName>
-                    <Top>1.38158cm</Top>
-                    <Left>12.46522cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <ZIndex>2</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="caps_dateupdated_lrfpValue">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!caps_dateupdated_lrfpValue.Value, "ProjectRequest")</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                              <Format>d</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Left</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>caps_dateupdated_lrfpValue</rd:DefaultName>
-                    <Top>2.01686cm</Top>
-                    <Left>12.46522cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -14990,11 +14894,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_datelrfpwillbeinplaceValue</rd:DefaultName>
-                    <Top>2.65214cm</Top>
+                    <Top>3.25539cm</Top>
                     <Left>12.46522cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
-                    <ZIndex>4</ZIndex>
+                    <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15024,11 +14928,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_includedinlrfpasneedValue</rd:DefaultName>
-                    <Top>3.25214cm</Top>
+                    <Top>3.88714cm</Top>
                     <Left>12.46522cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
-                    <ZIndex>5</ZIndex>
+                    <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15058,11 +14962,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_describelrfpsupportsneed</rd:DefaultName>
-                    <Top>3.88742cm</Top>
+                    <Top>4.55417cm</Top>
                     <Left>12.46522cm</Left>
                     <Height>1.64979cm</Height>
-                    <Width>12.00331cm</Width>
-                    <ZIndex>6</ZIndex>
+                    <Width>13.93064cm</Width>
+                    <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15091,81 +14995,10 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
                     <Top>0.74631cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
                     <Width>11.99792cm</Width>
-                    <ZIndex>7</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <RightBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </RightBorder>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox38">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Date Completed</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>1.38158cm</Top>
-                    <Height>0.6cm</Height>
-                    <Width>11.99791cm</Width>
-                    <ZIndex>8</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <RightBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </RightBorder>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox39">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Date Updated</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>2.01686cm</Top>
-                    <Height>0.6cm</Height>
-                    <Width>11.99791cm</Width>
-                    <ZIndex>9</ZIndex>
+                    <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15198,10 +15031,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>2.65214cm</Top>
+                    <Top>3.25539cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>11.99791cm</Width>
-                    <ZIndex>10</ZIndex>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15234,10 +15068,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>3.25214cm</Top>
+                    <Top>3.88714cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>11.99791cm</Width>
-                    <ZIndex>11</ZIndex>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>7</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15270,9 +15105,144 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>3.88742cm</Top>
+                    <Top>4.55417cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>11.99791cm</Width>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>8</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="LRPF_caps_lrfpdate">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!LRPF_caps_lrfpdate.Value, "ProjectRequest")</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>LRPF_caps_lrfpdate</rd:DefaultName>
+                    <Top>1.45214cm</Top>
+                    <Left>12.46522cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>2.5cm</Width>
+                    <ZIndex>9</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="Textbox336">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Date Produced</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox37</rd:DefaultName>
+                    <Top>1.45214cm</Top>
+                    <Left>0.01625cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>10</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="LRPF_caps_description">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!LRPF_caps_description.Value, "ProjectRequest")</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>LRPF_caps_description</rd:DefaultName>
+                    <Top>2.15798cm</Top>
+                    <Left>12.46522cm</Left>
+                    <Height>1.02333cm</Height>
+                    <Width>13.93064cm</Width>
+                    <ZIndex>11</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="Textbox342">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Description</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox37</rd:DefaultName>
+                    <Top>2.15798cm</Top>
+                    <Left>0.01625cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>11.99792cm</Width>
                     <ZIndex>12</ZIndex>
                     <Style>
                       <Border>
@@ -15293,7 +15263,7 @@
                 <KeepTogether>true</KeepTogether>
                 <Top>11.11037cm</Top>
                 <Left>0.06976cm</Left>
-                <Height>5.63597cm</Height>
+                <Height>6.20396cm</Height>
                 <Width>26.61815cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
@@ -18549,6 +18519,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "SSProjectRequest"), (Fields!caps_operatingcapacitykindergartenValue.Value + First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -18583,6 +18554,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacityelementary.Value, "SSProjectRequest"), (Fields!caps_operatingcapacityelementaryValue.Value + First(Fields!caps_changeinoperatingcapacityelementary.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -18617,6 +18589,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacitysecondary.Value, "SSProjectRequest"), (Fields!caps_operatingcapacitysecondaryValue.Value + First(Fields!caps_changeinoperatingcapacitysecondary.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
