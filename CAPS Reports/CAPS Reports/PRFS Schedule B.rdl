@@ -54,7 +54,6 @@
     &lt;attribute name="caps_constructioncostsspiradjustments" /&gt;
     &lt;attribute name="caps_constructioncostsspir" /&gt;
     &lt;attribute name="caps_constructioncostsnonstructuralseismicup" /&gt;
-    &lt;attribute name="caps_changeinoperatingcapacity_total" /&gt;
     &lt;attribute name="caps_changeindesigncapacitytotal" /&gt;
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
     &lt;attribute name="caps_seismicupgradespaceallocation" /&gt;
@@ -329,14 +328,6 @@
           <DataField>caps_constructioncostsnonstructuralseismicupValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_changeinoperatingcapacity_total">
-          <DataField>caps_changeinoperatingcapacity_total</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_changeinoperatingcapacity_totalValue">
-          <DataField>caps_changeinoperatingcapacity_totalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_changeindesigncapacitytotal">
           <DataField>caps_changeindesigncapacitytotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -352,6 +343,72 @@
         <Field Name="caps_abnormaltopographycostValue">
           <DataField>caps_abnormaltopographycostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="PRFSFacility">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@PRFSFacility">
+            <Value>=Parameters!PRFSFacility.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_facility"&gt;
+    &lt;attribute name="caps_facilityid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitysecondary" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitykindergarten" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacityelementary" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_facilityid" operator="eq" uitype="caps_facility" value="@PRFSFacility" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_facilityid">
+          <DataField>caps_facilityid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitytotal">
+          <DataField>caps_adjusteddesigncapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitytotalValue">
+          <DataField>caps_adjusteddesigncapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitysecondary">
+          <DataField>caps_adjusteddesigncapacitysecondary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitysecondaryValue">
+          <DataField>caps_adjusteddesigncapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitykindergarten">
+          <DataField>caps_adjusteddesigncapacitykindergarten</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitykindergartenValue">
+          <DataField>caps_adjusteddesigncapacitykindergartenValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacityelementary">
+          <DataField>caps_adjusteddesigncapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacityelementaryValue">
+          <DataField>caps_adjusteddesigncapacityelementaryValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2934,8 +2991,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=First(Fields!caps_adjusteddesigncapacitytotal.Value, "PRFSFacility")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -3012,9 +3071,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!caps_changeindesigncapacitytotal.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Color>=iif(Fields!caps_changeindesigncapacitytotal.Value &lt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3081,13 +3141,15 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "PRFSFacility") + Sum(Fields!caps_changeindesigncapacitytotalValue.Value, "PRFSOption")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -3102,6 +3164,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3122,6 +3185,7 @@
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>PRFSOption</DataSetName>
             <Top>2.35713cm</Top>
             <Left>0.03772cm</Left>
             <Height>2.4cm</Height>
@@ -3450,6 +3514,16 @@
       </DefaultValue>
       <Prompt>CRM caps prfsalternativeoption</Prompt>
     </ReportParameter>
+    <ReportParameter Name="PRFSFacility">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>PRFSOption</DataSetName>
+          <ValueField>caps_facilityValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Facility</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -3460,6 +3534,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>CRM_caps_prfsalternativeoption</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>PRFSFacility</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

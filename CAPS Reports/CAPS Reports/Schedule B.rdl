@@ -56,6 +56,11 @@
     &lt;attribute name="caps_demolitioncost" /&gt;
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
     &lt;attribute name="caps_schbspaceallocationnlc" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;attribute name="caps_changeindesigncapacitytotal" /&gt;
+    &lt;attribute name="caps_changeindesigncapacitysecondary" /&gt;
+    &lt;attribute name="caps_changeindesigncapacitykindergarten" /&gt;
+    &lt;attribute name="caps_changeindesigncapacityelementary" /&gt;
     &lt;order attribute="caps_projectcode" descending="false" /&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -316,6 +321,116 @@
         <Field Name="caps_schbspaceallocationnlcValue">
           <DataField>caps_schbspaceallocationnlcValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitytotal">
+          <DataField>caps_changeindesigncapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitytotalValue">
+          <DataField>caps_changeindesigncapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysecondary">
+          <DataField>caps_changeindesigncapacitysecondary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitysecondaryValue">
+          <DataField>caps_changeindesigncapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitykindergarten">
+          <DataField>caps_changeindesigncapacitykindergarten</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacitykindergartenValue">
+          <DataField>caps_changeindesigncapacitykindergartenValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityelementary">
+          <DataField>caps_changeindesigncapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityelementaryValue">
+          <DataField>caps_changeindesigncapacityelementaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="RequestFacility">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@RequestFacility">
+            <Value>=Parameters!RequestFacility.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_facility"&gt;
+    &lt;attribute name="caps_facilityid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitysecondary" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacitykindergarten" /&gt;
+    &lt;attribute name="caps_adjusteddesigncapacityelementary" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_facilityid" operator="eq" uitype="caps_facility" value="@RequestFacility" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_facilityid">
+          <DataField>caps_facilityid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitytotal">
+          <DataField>caps_adjusteddesigncapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitytotalValue">
+          <DataField>caps_adjusteddesigncapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitysecondary">
+          <DataField>caps_adjusteddesigncapacitysecondary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitysecondaryValue">
+          <DataField>caps_adjusteddesigncapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitykindergarten">
+          <DataField>caps_adjusteddesigncapacitykindergarten</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacitykindergartenValue">
+          <DataField>caps_adjusteddesigncapacitykindergartenValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacityelementary">
+          <DataField>caps_adjusteddesigncapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_adjusteddesigncapacityelementaryValue">
+          <DataField>caps_adjusteddesigncapacityelementaryValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1331,7 +1446,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2894,15 +3008,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox58">
+                        <Textbox Name="Textbox63">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=First(Fields!caps_adjusteddesigncapacitytotal.Value, "RequestFacility")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -2979,9 +3095,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!caps_changeindesigncapacitytotal.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Color>=iif(Fields!caps_changeindesigncapacitytotal.Value &lt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3041,20 +3158,22 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox62">
+                        <Textbox Name="Textbox66">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "RequestFacility") + Sum(Fields!caps_changeindesigncapacitytotalValue.Value, "ProjectRequest")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -3069,6 +3188,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3089,6 +3209,7 @@
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>ProjectRequest</DataSetName>
             <Top>2.3708cm</Top>
             <Left>0.04867cm</Left>
             <Height>2.4cm</Height>
@@ -3417,6 +3538,17 @@
       </DefaultValue>
       <Prompt>CRM caps project</Prompt>
     </ReportParameter>
+    <ReportParameter Name="RequestFacility">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ProjectRequest</DataSetName>
+          <ValueField>caps_facilityValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Facility</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -3427,6 +3559,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>CRM_caps_project</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>RequestFacility</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
