@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -22,24 +22,24 @@
             <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch&gt;
-  &lt;entity name="caps_project" enableprefiltering= "1"&gt;
-    &lt;attribute name="caps_includedinlrfpasneed" /&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_project" enableprefiltering="1"&gt;
+   &lt;attribute name="caps_includedinlrfpasneed" /&gt;
     &lt;attribute name="caps_projectyear" /&gt;
     &lt;attribute name="caps_projectedchangetofacilityconditionindex" /&gt;
-&lt;attribute name="caps_totalprojectcost" /&gt;
-&lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
-&lt;attribute name="caps_otherprojecttotalcost" /&gt;
+    &lt;attribute name="caps_totalprojectcost" /&gt;
+    &lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
+    &lt;attribute name="caps_otherprojecttotalcost" /&gt;
     &lt;attribute name="caps_demolitioncompletedinonefiscalyear" /&gt;
     &lt;attribute name="caps_benefitsofafullorpartialdemolition" /&gt;
     &lt;attribute name="caps_changeindesigncapacityelementary" /&gt;
-&lt;attribute name="caps_municipalrequirements" /&gt;
-&lt;attribute name="caps_submissioncategorycode" /&gt;
-&lt;attribute name="caps_facilityview" /&gt;
-&lt;attribute name="caps_constructionarea" /&gt;
-&lt;attribute name="caps_futurelowestgrade" /&gt;
-&lt;attribute name="caps_futurehighestgrade" /&gt;
-&lt;attribute name="caps_futurefacilityconditionindex" /&gt;
+    &lt;attribute name="caps_municipalrequirements" /&gt;
+    &lt;attribute name="caps_submissioncategorycode" /&gt;
+    &lt;attribute name="caps_facilityview" /&gt;
+    &lt;attribute name="caps_constructionarea" /&gt;
+    &lt;attribute name="caps_futurelowestgrade" /&gt;
+    &lt;attribute name="caps_futurehighestgrade" /&gt;
+    &lt;attribute name="caps_futurefacilityconditionindex" /&gt;
     &lt;attribute name="caps_districtpriority" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacitysecondary" /&gt;
@@ -59,16 +59,12 @@
     &lt;attribute name="caps_availablesitesize_hectares" /&gt;
     &lt;attribute name="caps_availablesitesize_acres" /&gt;
     &lt;attribute name="caps_anticipatedoccupancyyear" /&gt;
-    &lt;attribute name="caps_projectyear" /&gt;
     &lt;attribute name="caps_seismicriskrating" /&gt;
     &lt;attribute name="caps_potentialplanforvacantsite" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacityelementary" /&gt;
-    &lt;attribute name="caps_datecompleted_lrfp" /&gt;
     &lt;attribute name="caps_changeindesigncapacitykindergarten" /&gt;
     &lt;attribute name="caps_facility" /&gt;
-    &lt;attribute name="caps_isanlrfpcurrentlyinplace" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
-    &lt;attribute name="caps_totalprojectcost" /&gt;
     &lt;attribute name="caps_tempaccommodationandbusingplan" /&gt;
     &lt;attribute name="caps_primarydriver" /&gt;
     &lt;attribute name="caps_schooldistrict" /&gt;
@@ -80,7 +76,6 @@
     &lt;attribute name="caps_estimatedmarketvalueoflandwobuilding" /&gt;
     &lt;attribute name="caps_projectrationale" /&gt;
     &lt;attribute name="caps_estimatedmarketvalueofpropertywbuilding" /&gt;
-    &lt;attribute name="caps_dateupdated_lrfp" /&gt;
     &lt;attribute name="caps_datebuildingportionbecameunoccupied" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;attribute name="caps_summaryofhazardousmaterialsenvassessment" /&gt;
@@ -91,16 +86,18 @@
     &lt;attribute name="caps_changeinoperatingcapacitytotal" /&gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
-    &lt;order attribute="caps_projectcode" descending="true" /&gt;
-  &lt;link-entity name="edu_year" from="edu_yearid" to="caps_anticipatedoccupancyyear" link-type="outer" alias="YEAR" &gt;
-      &lt;attribute name="edu_name" /&gt;
+    &lt;order attribute="caps_projectcode" descending="false" /&gt;
+    &lt;link-entity name="caps_longrangefacilityplan" from="caps_longrangefacilityplanid" to="caps_longrangefacilityplan" visible="false" link-type="outer" alias="LRPF"&gt;
+      &lt;attribute name="caps_description" /&gt;
+      &lt;attribute name="caps_lrfpdate" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_anticipatedoccupancyyear" visible="false" link-type="outer" alias="YEAR"&gt;
       &lt;attribute name="edu_startyear" /&gt;
+      &lt;attribute name="edu_name" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_includedinlrfpasneed">
@@ -379,18 +376,6 @@
           <DataField>caps_anticipatedoccupancyyearEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_projectyear0">
-          <DataField>caps_projectyear0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearValue0">
-          <DataField>caps_projectyearValue0</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectyearEntityName0">
-          <DataField>caps_projectyearEntityName0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_seismicriskrating">
           <DataField>caps_seismicriskrating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -410,14 +395,6 @@
         <Field Name="caps_changeinoperatingcapacityelementaryValue">
           <DataField>caps_changeinoperatingcapacityelementaryValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecompleted_lrfp">
-          <DataField>caps_datecompleted_lrfp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecompleted_lrfpValue">
-          <DataField>caps_datecompleted_lrfpValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitykindergarten">
           <DataField>caps_changeindesigncapacitykindergarten</DataField>
@@ -439,14 +416,6 @@
           <DataField>caps_facilityEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_isanlrfpcurrentlyinplace">
-          <DataField>caps_isanlrfpcurrentlyinplace</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_isanlrfpcurrentlyinplaceValue">
-          <DataField>caps_isanlrfpcurrentlyinplaceValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
         <Field Name="caps_projecttype">
           <DataField>caps_projecttype</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -458,14 +427,6 @@
         <Field Name="caps_projecttypeEntityName">
           <DataField>caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcost0">
-          <DataField>caps_totalprojectcost0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprojectcostValue0">
-          <DataField>caps_totalprojectcostValue0</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_tempaccommodationandbusingplan">
           <DataField>caps_tempaccommodationandbusingplan</DataField>
@@ -547,14 +508,6 @@
           <DataField>caps_estimatedmarketvalueofpropertywbuildingValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_dateupdated_lrfp">
-          <DataField>caps_dateupdated_lrfp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_dateupdated_lrfpValue">
-          <DataField>caps_dateupdated_lrfpValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
         <Field Name="caps_datebuildingportionbecameunoccupied">
           <DataField>caps_datebuildingportionbecameunoccupied</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -603,13 +556,25 @@
           <DataField>caps_hasschoolbeenpermanentlyclosedValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="LRPF_caps_description">
+          <DataField>LRPF_caps_description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_changeinoperatingcapacitytotal">
           <DataField>caps_changeinoperatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdate">
+          <DataField>LRPF_caps_lrfpdate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacitytotalValue">
           <DataField>caps_changeinoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdateValue">
+          <DataField>LRPF_caps_lrfpdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_projectcode">
           <DataField>caps_projectcode</DataField>
@@ -2351,14 +2316,16 @@
                         </Style>
                       </TextRun>
                     </TextRuns>
-                    <Style />
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>2.52504cm</Top>
+                <Top>2.02902cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>14.23582cm</Width>
+                <Width>26.61612cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2387,10 +2354,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>5.81038cm</Top>
+                <Top>5.31436cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -2424,10 +2391,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>6.51621cm</Top>
+                <Top>6.02019cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11039cm</Width>
+                <Width>12.20122cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -2461,10 +2428,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>9.83782cm</Top>
+                <Top>9.3418cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -2498,10 +2465,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>10.47309cm</Top>
+                <Top>9.97707cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
@@ -2535,10 +2502,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>11.10837cm</Top>
+                <Top>10.61235cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -2572,10 +2539,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>11.74365cm</Top>
+                <Top>11.24763cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -2609,10 +2576,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>14.23984cm</Top>
+                <Top>13.74382cm</Top>
                 <Left>0.08822cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.17085cm</Width>
+                <Width>12.26168cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
@@ -2646,10 +2613,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>16.604cm</Top>
+                <Top>16.10798cm</Top>
                 <Left>0.08822cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.17085cm</Width>
+                <Width>12.26168cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
@@ -2683,10 +2650,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>18.93288cm</Top>
+                <Top>18.43686cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11039cm</Width>
+                <Width>12.20122cm</Width>
                 <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
@@ -2720,10 +2687,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>19.60344cm</Top>
+                <Top>19.10742cm</Top>
                 <Left>0.09766cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.16141cm</Width>
+                <Width>12.25224cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
                   <Border>
@@ -2747,7 +2714,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=First(Fields!caps_hazmatenvassesscompleteValue.Value, "ProjectRequest")</Value>
+                        <Value>=First(Fields!caps_hazmatenvassesscomplete.Value, "ProjectRequest")</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                         </Style>
@@ -2757,10 +2724,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>5.88093cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>5.34963cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
@@ -2789,10 +2756,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>6.51621cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>5.98491cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>2.25697cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -2824,10 +2791,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>9.80254cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>9.27124cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>13</ZIndex>
                 <Style>
                   <Border>
@@ -2856,10 +2823,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>10.47307cm</Top>
-                <Left>5.43546cm</Left>
+                <Top>9.94177cm</Top>
+                <Left>12.61563cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>14</ZIndex>
                 <Style>
                   <Border>
@@ -2890,10 +2857,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>11.10837cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>10.57707cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
@@ -2922,10 +2889,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>11.74365cm</Top>
-                <Left>5.42851cm</Left>
+                <Top>11.21235cm</Top>
+                <Left>12.60868cm</Left>
                 <Height>2.39034cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>16</ZIndex>
                 <Style>
                   <Border>
@@ -2954,10 +2921,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>14.23984cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>13.70854cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>2.36416cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>17</ZIndex>
                 <Style>
                   <Border>
@@ -2986,10 +2953,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>16.604cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>16.0727cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>2.29361cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>18</ZIndex>
                 <Style>
                   <Border>
@@ -3021,10 +2988,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>18.93288cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>18.40158cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>2.73104cm</Width>
+                <Width>5.78577cm</Width>
                 <ZIndex>19</ZIndex>
                 <Style>
                   <Border>
@@ -3057,10 +3024,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>19.60344cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>19.07214cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.56472cm</Height>
-                <Width>2.73104cm</Width>
+                <Width>5.78577cm</Width>
                 <ZIndex>20</ZIndex>
                 <Style>
                   <Border>
@@ -3090,10 +3057,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>4.5751cm</Top>
+                <Top>4.07908cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>21</ZIndex>
                 <Style>
                   <Border>
@@ -3127,10 +3094,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_projecttype1</rd:DefaultName>
-                <Top>4.64565cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>4.11435cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.60002cm</Height>
-                <Width>2.73103cm</Width>
+                <Width>5.78576cm</Width>
                 <ZIndex>22</ZIndex>
                 <Style>
                   <Border>
@@ -3159,10 +3126,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>5.1751cm</Top>
+                <Top>4.67908cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>23</ZIndex>
                 <Style>
                   <Border>
@@ -3196,10 +3163,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_totalprojectcost1</rd:DefaultName>
-                <Top>5.24567cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>4.71437cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>2.72631cm</Width>
+                <Width>5.78104cm</Width>
                 <ZIndex>24</ZIndex>
                 <Style>
                   <Border>
@@ -3228,10 +3195,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>3.30143cm</Top>
+                <Top>2.80541cm</Top>
                 <Left>0.13924cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11983cm</Width>
+                <Width>12.21066cm</Width>
                 <ZIndex>25</ZIndex>
                 <Style>
                   <Border>
@@ -3265,10 +3232,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox348</rd:DefaultName>
-                <Top>3.372cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>2.8407cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.91128cm</Width>
+                <Width>13.92087cm</Width>
                 <ZIndex>26</ZIndex>
                 <Style>
                   <Border>
@@ -3297,10 +3264,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox349</rd:DefaultName>
-                <Top>3.972cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>3.4407cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.91128cm</Width>
+                <Width>13.92087cm</Width>
                 <ZIndex>27</ZIndex>
                 <Style>
                   <Border>
@@ -3330,9 +3297,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox240</rd:DefaultName>
-                <Top>0.13823cm</Top>
                 <Height>0.6cm</Height>
-                <Width>14.37506cm</Width>
+                <Width>26.75536cm</Width>
                 <ZIndex>28</ZIndex>
                 <Style>
                   <Border>
@@ -3361,9 +3327,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
-                <Top>0.77351cm</Top>
+                <Top>0.63528cm</Top>
                 <Height>0.6cm</Height>
-                <Width>14.37506cm</Width>
+                <Width>26.75536cm</Width>
                 <ZIndex>29</ZIndex>
                 <Style>
                   <Border>
@@ -3392,9 +3358,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_facilityview</rd:DefaultName>
-                <Top>1.40879cm</Top>
+                <Top>1.27056cm</Top>
                 <Height>0.6cm</Height>
-                <Width>14.37506cm</Width>
+                <Width>26.75536cm</Width>
                 <ZIndex>30</ZIndex>
                 <Style>
                   <Border>
@@ -3423,10 +3389,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox44</rd:DefaultName>
-                <Top>9.23782cm</Top>
+                <Top>8.7418cm</Top>
                 <Left>0.13925cm</Left>
                 <Height>0.6cm</Height>
-                <Width>5.11038cm</Width>
+                <Width>12.20121cm</Width>
                 <ZIndex>31</ZIndex>
                 <Style>
                   <Border>
@@ -3463,10 +3429,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox54</rd:DefaultName>
-                <Top>9.20252cm</Top>
-                <Left>5.41781cm</Left>
+                <Top>8.67122cm</Top>
+                <Left>12.59798cm</Left>
                 <Height>0.6cm</Height>
-                <Width>8.94656cm</Width>
+                <Width>13.95615cm</Width>
                 <ZIndex>32</ZIndex>
                 <Style>
                   <Border>
@@ -3480,17 +3446,37 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.49705cm</Top>
-            <Left>20.24558cm</Left>
-            <Height>20.88793cm</Height>
-            <Width>14.71882cm</Width>
+            <Top>60.65142cm</Top>
+            <Left>0.22348cm</Left>
+            <Height>19.78299cm</Height>
+            <Width>26.82514cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") &lt;&gt; "DEMOLITION"</Hidden>
             </Visibility>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </TopBorder>
+              <BottomBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </BottomBorder>
+              <LeftBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </LeftBorder>
+              <RightBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+                <Width>1pt</Width>
+              </RightBorder>
             </Style>
           </Rectangle>
           <Rectangle Name="PrimaryOptionPRFSAggregate">
@@ -3513,8 +3499,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>1.25209cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>1.33148cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>0.6cm</Height>
                 <Width>5.64854cm</Width>
                 <Style>
@@ -3544,10 +3530,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>1.85209cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>1.93148cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>1.64979cm</Height>
-                <Width>19.64151cm</Width>
+                <Width>26.61763cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -3597,8 +3583,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>3.67827cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>3.75766cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>0.6cm</Height>
                 <Width>5.64854cm</Width>
                 <ZIndex>2</ZIndex>
@@ -3629,10 +3615,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>4.27827cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>4.35766cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>1.64979cm</Height>
-                <Width>19.64151cm</Width>
+                <Width>26.58234cm</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -3682,8 +3668,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>6.10444cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>6.18383cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>0.6cm</Height>
                 <Width>7.44771cm</Width>
                 <ZIndex>4</ZIndex>
@@ -3714,10 +3700,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>6.70444cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>6.78383cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>1.64979cm</Height>
-                <Width>19.64151cm</Width>
+                <Width>26.58234cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -3767,8 +3753,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>8.53062cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>8.61001cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>0.6cm</Height>
                 <Width>5.64854cm</Width>
                 <ZIndex>6</ZIndex>
@@ -3799,10 +3785,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>9.13062cm</Top>
-                <Left>0.85886cm</Left>
+                <Top>9.21001cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>1.64979cm</Height>
-                <Width>19.64151cm</Width>
+                <Width>26.58262cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
@@ -3840,10 +3826,10 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>7.2625cm</Width>
+                          <Width>10.71938cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>12.39542cm</Width>
+                          <Width>15.8523cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -4983,9 +4969,8 @@
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
                     <Top>0.30133cm</Top>
-                    <Left>0.46773cm</Left>
                     <Height>9.66458cm</Height>
-                    <Width>19.65792cm</Width>
+                    <Width>26.57168cm</Width>
                     <Style>
                       <Border>
                         <Style>Solid</Style>
@@ -5013,11 +4998,14 @@
                     </Style>
                   </Tablix>
                 </ReportItems>
+                <PageBreak>
+                  <BreakLocation>End</BreakLocation>
+                </PageBreak>
                 <KeepTogether>true</KeepTogether>
-                <Top>17.12388cm</Top>
-                <Left>0.37472cm</Left>
+                <Top>17.17681cm</Top>
+                <Left>0.07028cm</Left>
                 <Height>9.96591cm</Height>
-                <Width>20.68979cm</Width>
+                <Width>26.58233cm</Width>
                 <ZIndex>8</ZIndex>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -5034,55 +5022,55 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>4.90771cm</Width>
+                          <Width>5.04465cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.2cm</Width>
+                          <Width>1.28402cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.2cm</Width>
+                          <Width>1.28403cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.2cm</Width>
+                          <Width>1.28402cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.2cm</Width>
+                          <Width>1.28402cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>2.4cm</Width>
+                          <Width>2.12209cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>2.4cm</Width>
+                          <Width>2.25976cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>1.20289cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -5218,7 +5206,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Operating Capacity</Value>
+                                          <Value>Op.          Capacity</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontSize>12pt</FontSize>
@@ -9151,10 +9139,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSFacilities</DataSetName>
-                    <Top>1.4643cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>0.93513cm</Top>
+                    <Left>0.02615cm</Left>
                     <Height>4.4cm</Height>
-                    <Width>33.50771cm</Width>
+                    <Width>26.59149cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -9165,37 +9153,37 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>8.05605cm</Width>
+                          <Width>5.72817cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -9899,7 +9887,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -9933,7 +9921,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -9967,7 +9955,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10001,7 +9989,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10035,7 +10023,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10069,7 +10057,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10103,7 +10091,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10137,7 +10125,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10171,7 +10159,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, "")</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -12037,10 +12025,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>6.43049cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>5.58382cm</Top>
+                    <Left>0.02563cm</Left>
                     <Height>4.22296cm</Height>
-                    <Width>27.05605cm</Width>
+                    <Width>26.58137cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -12070,10 +12058,8 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox238</rd:DefaultName>
-                    <Top>0.29683cm</Top>
-                    <Left>6.70897cm</Left>
                     <Height>0.90238cm</Height>
-                    <Width>19.68579cm</Width>
+                    <Width>26.60697cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -12090,37 +12076,37 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>8.05605cm</Width>
+                          <Width>5.72817cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.9cm</Width>
+                          <Width>2.08532cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -14745,10 +14731,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>10.67488cm</Top>
-                    <Left>0.03529cm</Left>
+                    <Top>9.82821cm</Top>
+                    <Left>0.02563cm</Left>
                     <Height>3cm</Height>
-                    <Width>27.05605cm</Width>
+                    <Width>26.58137cm</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
@@ -14758,38 +14744,18 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>27.52105cm</Top>
-                <Left>0.80716cm</Left>
-                <Height>14.01002cm</Height>
-                <Width>34.12194cm</Width>
+                <Top>27.65336cm</Top>
+                <Left>0.03499cm</Left>
+                <Height>13.02224cm</Height>
+                <Width>26.61764cm</Width>
                 <ZIndex>9</ZIndex>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>
-                    <Style>Solid</Style>
+                    <Style>None</Style>
                   </Border>
-                  <TopBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </TopBorder>
-                  <BottomBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </BottomBorder>
-                  <LeftBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </LeftBorder>
-                  <RightBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </RightBorder>
                 </Style>
               </Rectangle>
               <Textbox Name="Textbox10">
@@ -14812,10 +14778,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>0.31862cm</Top>
-                <Left>0.85917cm</Left>
+                <Top>0.39801cm</Top>
+                <Left>0.07059cm</Left>
                 <Height>0.6cm</Height>
-                <Width>19.6412cm</Width>
+                <Width>26.64115cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
                   <Border>
@@ -14852,9 +14818,8 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox22</rd:DefaultName>
-                    <Top>0.04047cm</Top>
                     <Height>0.6cm</Height>
-                    <Width>19.6576cm</Width>
+                    <Width>26.61815cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -14873,7 +14838,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!caps_isanlrfpcurrentlyinplace.Value, "ProjectRequest")</Value>
+                            <Value>=iif(IsNothing(First(Fields!LRPF_caps_lrfpdate.Value, "ProjectRequest")),"No","Yes")</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                             </Style>
@@ -14886,80 +14851,10 @@
                     </Paragraphs>
                     <rd:DefaultName>caps_isanlrfpcurrentlyinplace</rd:DefaultName>
                     <Top>0.74631cm</Top>
-                    <Left>6.98848cm</Left>
+                    <Left>12.46522cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
                     <ZIndex>1</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="caps_datecompleted_lrfpValue">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!caps_datecompleted_lrfpValue.Value, "ProjectRequest")</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                              <Format>d</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Left</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>caps_datecompleted_lrfpValue</rd:DefaultName>
-                    <Top>1.38158cm</Top>
-                    <Left>6.98848cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <ZIndex>2</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="caps_dateupdated_lrfpValue">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=First(Fields!caps_dateupdated_lrfpValue.Value, "ProjectRequest")</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                              <Format>d</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Left</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>caps_dateupdated_lrfpValue</rd:DefaultName>
-                    <Top>2.01686cm</Top>
-                    <Left>6.98848cm</Left>
-                    <Height>0.6cm</Height>
-                    <Width>2.5cm</Width>
-                    <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -14990,11 +14885,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_datelrfpwillbeinplaceValue</rd:DefaultName>
-                    <Top>2.65214cm</Top>
-                    <Left>6.98848cm</Left>
+                    <Top>3.25539cm</Top>
+                    <Left>12.46522cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
-                    <ZIndex>4</ZIndex>
+                    <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15012,7 +14907,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=First(Fields!caps_includedinlrfpasneedValue.Value, "ProjectRequest")</Value>
+                            <Value>=First(Fields!caps_includedinlrfpasneed.Value, "ProjectRequest")</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                             </Style>
@@ -15024,11 +14919,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_includedinlrfpasneedValue</rd:DefaultName>
-                    <Top>3.25214cm</Top>
-                    <Left>6.98848cm</Left>
+                    <Top>3.88714cm</Top>
+                    <Left>12.46522cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.5cm</Width>
-                    <ZIndex>5</ZIndex>
+                    <ZIndex>3</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15058,11 +14953,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>caps_describelrfpsupportsneed</rd:DefaultName>
-                    <Top>3.88742cm</Top>
-                    <Left>6.98848cm</Left>
+                    <Top>4.55417cm</Top>
+                    <Left>12.46522cm</Left>
                     <Height>1.64979cm</Height>
-                    <Width>12.00331cm</Width>
-                    <ZIndex>6</ZIndex>
+                    <Width>13.93064cm</Width>
+                    <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15091,81 +14986,10 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
                     <Top>0.74631cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.81209cm</Width>
-                    <ZIndex>7</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <RightBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </RightBorder>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox38">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Date Completed</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>1.38158cm</Top>
-                    <Height>0.6cm</Height>
-                    <Width>6.81208cm</Width>
-                    <ZIndex>8</ZIndex>
-                    <Style>
-                      <Border>
-                        <Style>None</Style>
-                      </Border>
-                      <RightBorder>
-                        <Color>Black</Color>
-                        <Style>Solid</Style>
-                        <Width>1pt</Width>
-                      </RightBorder>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                  <Textbox Name="Textbox39">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Date Updated</Value>
-                            <Style>
-                              <FontFamily>Arial</FontFamily>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>2.01686cm</Top>
-                    <Height>0.6cm</Height>
-                    <Width>6.81208cm</Width>
-                    <ZIndex>9</ZIndex>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15198,10 +15022,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>2.65214cm</Top>
+                    <Top>3.25539cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.81208cm</Width>
-                    <ZIndex>10</ZIndex>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15234,10 +15059,11 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>3.25214cm</Top>
+                    <Top>3.88714cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.81208cm</Width>
-                    <ZIndex>11</ZIndex>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>7</ZIndex>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -15270,9 +15096,144 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox37</rd:DefaultName>
-                    <Top>3.88742cm</Top>
+                    <Top>4.55417cm</Top>
+                    <Left>0.01625cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.81208cm</Width>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>8</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="LRPF_caps_lrfpdate">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!LRPF_caps_lrfpdate.Value, "ProjectRequest")</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>LRPF_caps_lrfpdate</rd:DefaultName>
+                    <Top>1.45214cm</Top>
+                    <Left>12.46522cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>2.5cm</Width>
+                    <ZIndex>9</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="Textbox336">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Date Produced</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox37</rd:DefaultName>
+                    <Top>1.45214cm</Top>
+                    <Left>0.01625cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>11.99792cm</Width>
+                    <ZIndex>10</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="LRPF_caps_description">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!LRPF_caps_description.Value, "ProjectRequest")</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>LRPF_caps_description</rd:DefaultName>
+                    <Top>2.15798cm</Top>
+                    <Left>12.46522cm</Left>
+                    <Height>1.02333cm</Height>
+                    <Width>13.93064cm</Width>
+                    <ZIndex>11</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                  <Textbox Name="Textbox342">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Description</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox37</rd:DefaultName>
+                    <Top>2.15798cm</Top>
+                    <Left>0.01625cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>11.99792cm</Width>
                     <ZIndex>12</ZIndex>
                     <Style>
                       <Border>
@@ -15291,10 +15252,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>11.05744cm</Top>
-                <Left>0.84277cm</Left>
-                <Height>5.77708cm</Height>
-                <Width>19.6576cm</Width>
+                <Top>11.11037cm</Top>
+                <Left>0.06976cm</Left>
+                <Height>6.20396cm</Height>
+                <Width>26.61815cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
@@ -15324,10 +15285,10 @@
               </Rectangle>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>21.97348cm</Top>
-            <Left>0.0353cm</Left>
-            <Height>42.39092cm</Height>
-            <Width>34.9291cm</Width>
+            <Top>19.52157cm</Top>
+            <Left>0.27671cm</Left>
+            <Height>40.74488cm</Height>
+            <Width>26.71174cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -15364,7 +15325,7 @@
                 <rd:DefaultName>Textbox7</rd:DefaultName>
                 <Left>0.0517cm</Left>
                 <Height>0.6cm</Height>
-                <Width>18.82857cm</Width>
+                <Width>26.59783cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -15393,7 +15354,7 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Left</TextAlign>
+                      <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
@@ -15401,7 +15362,7 @@
                 <Top>0.74111cm</Top>
                 <Left>0.0517cm</Left>
                 <Height>0.6cm</Height>
-                <Width>7.56439cm</Width>
+                <Width>11.23371cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -15442,9 +15403,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.74111cm</Top>
-                <Left>7.97077cm</Left>
+                <Left>13.25728cm</Left>
                 <Height>0.6cm</Height>
-                <Width>10.8095cm</Width>
+                <Width>13.39225cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -15702,8 +15663,8 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>6.75821cm</Top>
-                <Left>0.07057cm</Left>
+                <Top>6.65209cm</Top>
+                <Left>2.58906cm</Left>
                 <Height>3.82793cm</Height>
                 <Width>6.10773cm</Width>
                 <ZIndex>3</ZIndex>
@@ -15937,8 +15898,8 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>2.83169cm</Top>
-                <Left>0.07059cm</Left>
+                <Top>2.72557cm</Top>
+                <Left>2.58908cm</Left>
                 <Height>3.82069cm</Height>
                 <Width>6.10771cm</Width>
                 <ZIndex>4</ZIndex>
@@ -15990,7 +15951,7 @@
                     <rd:DefaultName>Textbox17</rd:DefaultName>
                     <Left>0.05172cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.24687cm</Width>
+                    <Width>5.65396cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -16126,7 +16087,7 @@
                     <Top>2.4cm</Top>
                     <Left>0.03529cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>6.2633cm</Width>
+                    <Width>5.67041cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
@@ -16210,22 +16171,22 @@
                           <Width>1.57341cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.59154cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.59154cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.59154cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.59154cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.59154cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.99261cm</Width>
+                          <Width>0.8074cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -16721,7 +16682,7 @@
                     <Top>4.24495cm</Top>
                     <Left>0.05172cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>7.52908cm</Width>
+                    <Width>5.33851cm</Width>
                     <ZIndex>7</ZIndex>
                     <Style>
                       <Border>
@@ -16731,10 +16692,10 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>10.65532cm</Top>
-                <Left>0.07057cm</Left>
-                <Height>6cm</Height>
-                <Width>7.70568cm</Width>
+                <Top>10.5492cm</Top>
+                <Left>2.58906cm</Left>
+                <Height>5.57667cm</Height>
+                <Width>6.10773cm</Width>
                 <ZIndex>5</ZIndex>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest")&lt;&gt; "SEISMIC"</Hidden>
@@ -16787,8 +16748,8 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
-                    <Top>0.6cm</Top>
-                    <Left>0.04211cm</Left>
+                    <Top>0.58263cm</Top>
+                    <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
                     <Width>3.29999cm</Width>
                     <Style>
@@ -16820,7 +16781,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox21</rd:DefaultName>
-                    <Top>1.21708cm</Top>
+                    <Top>1.18263cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
                     <Width>1.29948cm</Width>
@@ -16855,10 +16816,10 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox17</rd:DefaultName>
-                    <Top>1.81736cm</Top>
-                    <Left>0.04211cm</Left>
+                    <Top>1.83527cm</Top>
+                    <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.04717cm</Width>
+                    <Width>3.74585cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -16889,7 +16850,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox21</rd:DefaultName>
-                    <Top>2.45264cm</Top>
+                    <Top>2.43527cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
                     <Width>1.29948cm</Width>
@@ -16939,10 +16900,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>1.5175cm</Top>
-                <Left>7.97077cm</Left>
+                <Top>1.41167cm</Top>
+                <Left>14.11145cm</Left>
                 <Height>3.08792cm</Height>
-                <Width>5.08928cm</Width>
+                <Width>5.12461cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -16992,10 +16953,10 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
-                    <Top>0.63499cm</Top>
+                    <Top>0.59944cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.7609cm</Width>
+                    <Width>3.29999cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -17064,7 +17025,7 @@
                     <Top>2.43443cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.01178cm</Width>
+                    <Width>3.70656cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -17113,13 +17074,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -17421,7 +17382,7 @@
                     <Top>4.83445cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
@@ -17433,13 +17394,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -17670,7 +17631,7 @@
                     <Top>3.03472cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
@@ -17682,13 +17643,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -17919,7 +17880,7 @@
                     <Top>1.23472cm</Top>
                     <Left>0.07744cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
@@ -17929,8 +17890,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>4.86782cm</Top>
-                <Left>7.97077cm</Left>
+                <Top>4.57806cm</Top>
+                <Left>14.11145cm</Left>
                 <Height>6.03472cm</Height>
                 <Width>5.08922cm</Width>
                 <ZIndex>7</ZIndex>
@@ -17983,9 +17944,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>0.6cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.76096cm</Width>
+                    <Width>3.3cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -18017,7 +17978,7 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>4.23472cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.70626cm</Width>
                     <ZIndex>1</ZIndex>
@@ -18052,9 +18013,9 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
                     <Top>2.43472cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>4.92262cm</Width>
+                    <Width>3.72318cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -18103,13 +18064,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -18409,9 +18370,9 @@
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
                     <Top>4.83472cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
@@ -18423,13 +18384,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -18549,6 +18510,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "SSProjectRequest"), (Fields!caps_operatingcapacitykindergartenValue.Value + First(Fields!caps_changeinoperatingcapacitykindergarten.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -18583,6 +18545,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacityelementary.Value, "SSProjectRequest"), (Fields!caps_operatingcapacityelementaryValue.Value + First(Fields!caps_changeinoperatingcapacityelementary.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -18617,6 +18580,7 @@
                                           <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeinoperatingcapacitysecondary.Value, "SSProjectRequest"), (Fields!caps_operatingcapacitysecondaryValue.Value + First(Fields!caps_changeinoperatingcapacitysecondary.Value, "SSProjectRequest")))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -18658,9 +18622,9 @@
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
                     <Top>3.03472cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
@@ -18672,13 +18636,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -18907,9 +18871,9 @@
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
                     <Top>1.23472cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
@@ -18919,8 +18883,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>4.86782cm</Top>
-                <Left>13.55883cm</Left>
+                <Top>4.66437cm</Top>
+                <Left>20.45962cm</Left>
                 <Height>6.03472cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>8</ZIndex>
@@ -19005,7 +18969,7 @@
                     </Paragraphs>
                     <rd:DefaultName>Textbox21</rd:DefaultName>
                     <Top>0.6cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Left>0.07682cm</Left>
                     <Height>0.6cm</Height>
                     <Width>1.23347cm</Width>
                     <ZIndex>1</ZIndex>
@@ -19021,8 +18985,8 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>11.18476cm</Top>
-                <Left>13.55883cm</Left>
+                <Top>10.80492cm</Top>
+                <Left>20.45962cm</Left>
                 <Height>1.2cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>9</ZIndex>
@@ -19074,10 +19038,10 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
-                    <Top>0.56472cm</Top>
+                    <Top>0.60161cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>2.76096cm</Width>
+                    <Width>3.29999cm</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
@@ -19108,10 +19072,10 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
-                    <Top>2.43528cm</Top>
+                    <Top>2.47217cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>0.6cm</Height>
-                    <Width>5.01184cm</Width>
+                    <Width>3.70656cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
                       <Border>
@@ -19143,7 +19107,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox16</rd:DefaultName>
-                    <Top>4.27056cm</Top>
+                    <Top>4.30745cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>0.6cm</Height>
                     <Width>2.7061cm</Width>
@@ -19178,6 +19142,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
+                    <Top>0.03689cm</Top>
                     <Height>0.6cm</Height>
                     <Width>5.08922cm</Width>
                     <ZIndex>3</ZIndex>
@@ -19195,13 +19160,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -19352,7 +19317,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")/20, (Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")) \ 20)</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")/25, (Fields!caps_designcapacityelementaryValue.Value + First(Fields!caps_changeindesigncapacityelementary.Value, "SSProjectRequest")) \ 25)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19429,10 +19394,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>3.07056cm</Top>
+                    <Top>3.10745cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
                       <Border>
@@ -19444,13 +19409,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -19567,7 +19532,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, Fields!caps_designcapacitykindergarten.Value)</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacitykindergarten.Value /20))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19601,7 +19566,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacityelementary.Value / 20))</Value>
+                                          <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, (Fields!caps_designcapacityelementary.Value / 25))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -19678,10 +19643,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>1.16472cm</Top>
+                    <Top>1.20161cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>5</ZIndex>
                     <Style>
                       <Border>
@@ -19693,13 +19658,13 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>0.94187cm</Width>
+                          <Width>1.1cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -19998,10 +19963,10 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.87056cm</Top>
+                    <Top>4.90745cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>1.2cm</Height>
-                    <Width>2.82561cm</Width>
+                    <Width>3.3cm</Width>
                     <ZIndex>6</ZIndex>
                     <Style>
                       <Border>
@@ -20011,9 +19976,9 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>11.18476cm</Top>
-                <Left>7.97083cm</Left>
-                <Height>6.07056cm</Height>
+                <Top>10.71834cm</Top>
+                <Left>14.11151cm</Left>
+                <Height>6.10745cm</Height>
                 <Width>5.08922cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
@@ -20216,9 +20181,9 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>1.49959cm</Top>
-                <Left>13.55883cm</Left>
-                <Height>1.83528cm</Height>
+                <Top>1.41167cm</Top>
+                <Left>20.45962cm</Left>
+                <Height>1.85265cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>11</ZIndex>
                 <Style>
@@ -20301,7 +20266,7 @@
                     </Paragraphs>
                     <rd:DefaultName>countPortablesValue</rd:DefaultName>
                     <Top>0.64103cm</Top>
-                    <Left>0.05196cm</Left>
+                    <Left>0.05168cm</Left>
                     <Height>0.6cm</Height>
                     <Width>0.99962cm</Width>
                     <ZIndex>1</ZIndex>
@@ -20317,10 +20282,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>3.40543cm</Top>
-                <Left>13.55883cm</Left>
+                <Top>3.35278cm</Top>
+                <Left>20.45962cm</Left>
                 <Height>1.24103cm</Height>
-                <Width>5.185cm</Width>
+                <Width>5.08922cm</Width>
                 <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
@@ -20417,10 +20382,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>1.51779cm</Top>
-                <Left>0.07057cm</Left>
+                <Top>1.41167cm</Top>
+                <Left>2.58906cm</Left>
                 <Height>1.21708cm</Height>
-                <Width>6.29859cm</Width>
+                <Width>6.10773cm</Width>
                 <ZIndex>13</ZIndex>
                 <Style>
                   <Border>
@@ -20449,11 +20414,14 @@
                 </Style>
               </Rectangle>
             </ReportItems>
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>3.10288cm</Top>
-            <Left>0.80716cm</Left>
-            <Height>18.2821cm</Height>
-            <Width>18.88027cm</Width>
+            <Top>2.36494cm</Top>
+            <Left>0.26914cm</Left>
+            <Height>16.98024cm</Height>
+            <Width>26.64953cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -20485,9 +20453,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox240</rd:DefaultName>
                 <Top>0.13823cm</Top>
-                <Left>0.50303cm</Left>
+                <Left>0.00914cm</Left>
                 <Height>0.6cm</Height>
-                <Width>17.44682cm</Width>
+                <Width>24.46853cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -20516,9 +20484,9 @@
                 </Paragraphs>
                 <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
                 <Top>0.77351cm</Top>
-                <Left>0.50303cm</Left>
+                <Left>0.00914cm</Left>
                 <Height>0.6cm</Height>
-                <Width>17.44682cm</Width>
+                <Width>24.46853cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -20548,9 +20516,9 @@
                 </Paragraphs>
                 <rd:DefaultName>caps_facilityview</rd:DefaultName>
                 <Top>1.40879cm</Top>
-                <Left>0.50303cm</Left>
+                <Left>0.00914cm</Left>
                 <Height>0.6cm</Height>
-                <Width>17.44682cm</Width>
+                <Width>24.46853cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -20564,10 +20532,10 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.49705cm</Top>
-            <Left>0.37472cm</Left>
-            <Height>2.32685cm</Height>
-            <Width>17.94985cm</Width>
+            <Top>0.22059cm</Top>
+            <Left>0.30256cm</Left>
+            <Height>2.03329cm</Height>
+            <Width>26.61611cm</Width>
             <ZIndex>3</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -20579,17 +20547,17 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>25.67018in</Height>
+        <Height>80.71663cm</Height>
         <Style />
       </Body>
-      <Width>14.28in</Width>
+      <Width>27.25896cm</Width>
       <Page>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
-        <LeftMargin>2cm</LeftMargin>
-        <RightMargin>2cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <PageHeight>21cm</PageHeight>
+        <PageWidth>29.7cm</PageWidth>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
