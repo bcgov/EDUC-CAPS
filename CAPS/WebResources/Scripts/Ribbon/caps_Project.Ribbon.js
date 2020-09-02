@@ -29,7 +29,7 @@ const PROJECT_STATE = {
 CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl) {
     CAPS.Project.VIEW_SELECTED_CONTROL = selectedControl;
     //Get all "Draft" projects and confirm that the selected list only contains Draft ones.
-    Xrm.WebApi.retrieveMultipleRecords("caps_project", "?$select=caps_projectid&$filter=statuscode eq 1").then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_project", "?$select=caps_projectid&$filter=statuscode eq 1 and caps_Submission eq null").then(
         function success(result) {
 
             var unqualifiedRecordFound = false;
@@ -47,7 +47,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl
             });
 
             if (unqualifiedRecordFound) {
-                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the capital plan.", title: "Error" };
+                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the capital plan.  This is because they are either already in a capital plan or they are not in a draft/published state.", title: "Error" };
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
             }
@@ -100,6 +100,21 @@ CAPS.Project.AddToSubmission = function (primaryControl) {
     //        // Handle errors
     //    }
     //);
+}
+
+/**
+ * Function to determine if the Add to Capital Plan button should be displayed.
+ * @param {any} primaryControl primary control
+ * @return {boolean} true if should be shown, otherwise false
+ */
+CAPS.Project.ShowAddToSubmission = function (primaryControl) {
+    var formContext = primaryControl;
+
+    if (formContext.getAttribute("statecode").getValue() === 0
+        && formContext.getAttribute("caps_submission").getValue() === null) {
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -420,9 +435,92 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
  * @return {bool} true if should be displayed, otherwise false
  */
 CAPS.Project.ShowCalculateScheduleB = function (primaryControl) {
+    debugger;
     var formContext = primaryControl;
 
-    return formContext.getAttribute("caps_requiresscheduleb").getValue();
+    return (formContext.getAttribute("caps_requiresscheduleb").getValue() && formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT);
+}
+
+/**
+ * Function to validate the project request record.
+ * @param {any} primaryControl primary control
+ */
+CAPS.Project.Validate = function (primaryControl) {
+    var formContext = primaryControl;
+    debugger;
+
+    //If dirty, then save and call again
+    if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
+        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Project.Validate(primaryControl); });
+    }
+    else {
+        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+        //call action
+        var req = {};
+        var target = { entityType: "caps_project", id: recordId };
+        req.entity = target;
+
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_ValidateProjectRequest",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+
+        Xrm.WebApi.online.execute(req).then(
+            function (response) {
+                var alertStrings = { confirmButtonLabel: "OK", text: "Validation complete.", title: "Validation" };
+                var alertOptions = { height: 120, width: 260 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                    function success(result) {
+                        console.log("Alert dialog closed");
+                        formContext.data.refresh();
+                        formContext.getControl("caps_validationstatus").setFocus();
+                    },
+                    function (error) {
+                        console.log(error.message);
+                    }
+                );
+            },
+            function (e) {
+
+                var alertStrings = { confirmButtonLabel: "OK", text: "Validation failed. Details: " + e.message, title: "Validation" };
+                var alertOptions = { height: 120, width: 260 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                    function success(result) {
+                        console.log("Alert dialog closed");
+                    },
+                    function (error) {
+                        console.log(error.message);
+                    }
+                );
+            }
+        );
+    }
+}
+
+/**
+ * Function to determine when the Validate button should be shown.
+ * @param {any} primaryControl primary control
+ * @returns {boolean} true if should be shown, otherwise false.
+ */
+CAPS.Project.ShowValidate = function (primaryControl) {
+    var formContext = primaryControl;
+    debugger;
+    //validate for all draft projects except AFG
+    if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 

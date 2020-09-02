@@ -11,10 +11,11 @@ CAPS.CallForSubmission = CAPS.CallForSubmission || {
  * @param {any} executionContext the form's execution context
  */
 CAPS.CallForSubmission.onLoad = async function (executionContext) {
+
     var formContext = executionContext.getFormContext();
 
     //Get current Year
-    var currentYearRecord = await Xrm.WebApi.retrieveMultipleRecords("edu_year", "?$select=edu_yearid,edu_startyear,statuscode&$filter=statuscode eq 1");
+    var currentYearRecord = await Xrm.WebApi.retrieveMultipleRecords("edu_year", "?$select=edu_yearid,edu_startyear,statuscode&$filter=edu_type eq 757500000 and statuscode eq 1");
 
     if (currentYearRecord.entities.length === 1) {
         //Good to go
@@ -39,6 +40,7 @@ CAPS.CallForSubmission.setFiscalYearFilter = function (executionContext) {
  * @param {any} executionContext the form's execution context
  */
 CAPS.CallForSubmission.filterFiscalYear = function (executionContext) {
+
     var formContext = executionContext.getFormContext();
     //Then add 2 to the starting year value and call addCustomFilter
     var fetchXML = "<filter type=\"and\">" +

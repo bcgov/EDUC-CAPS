@@ -24,6 +24,7 @@ const GENERAL_TAB = "General";
 //const CAPITAL_EXPENDITURE_TAB = "tab_Capital_Expenditure";
 const COST_MISSMATCH_NOTIFICATION = "Cost_Missmatch_Notification";
 const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
+const PRFS_INCOMPLETE_NOTIFICATION = "PRFS_Incomplete_Notification";
 
 /**
  * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events.
@@ -80,6 +81,15 @@ CAPS.Project.onLoad = function (executionContext) {
 
         //sgd_EstimatedExpenditures
         formContext.getControl("sgd_EstimatedExpenditures").addOnLoad(CAPS.Project.UpdateTotalAllocated); 
+
+        //add on-change events for prfs
+        formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
+        formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
+        formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
+        formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
+        formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
+
+        CAPS.Project.ValidatePRFS(executionContext);
     }
 
     //Only call for SEP and CNCP!
@@ -111,7 +121,28 @@ CAPS.Project.onLoad = function (executionContext) {
 
     //Adding Schedule B Toggles & general setup of schedule B    
     CAPS.Project.SetupScheduleB(executionContext);
-    
+
+    //if PEP Replacement, show Playground age
+    if (submissionCategoryCode === "PEP") {
+        //add on-change to project type
+        formContext.getAttribute("caps_projecttype").addOnChange(CAPS.Project.TogglePEPReplacement);
+        CAPS.Project.TogglePEPReplacement(executionContext);
+    }
+
+    //if BUS Replacement, show bus to be replaced
+    if (submissionCategoryCode === "BUS") {
+        //add on-change to project type
+        formContext.getAttribute("caps_projecttype").addOnChange(CAPS.Project.ToggleBUSReplacement);
+        CAPS.Project.ToggleBUSReplacement(executionContext);
+
+        formContext.getAttribute("caps_issuetype").addOnChange(CAPS.Project.ToggleBusIssueType);
+        CAPS.Project.ToggleBusIssueType(executionContext);
+    }
+
+    //setup LRFP field validation and display
+    CAPS.Project.ToggleLRFP(executionContext);
+    formContext.getAttribute("caps_longrangefacilityplan").addOnChange(CAPS.Project.ToggleLRFP);
+
 }
 
 /**
@@ -140,6 +171,7 @@ CAPS.Project.UpdateTotalAllocated = function (executionContext) {
             }
 
             CAPS.Project.ValidateExpenditureDistribution(executionContext);
+            CAPS.Project.ValidatePRFS(executionContext);
         },
         function (error) {
             console.log(error.message);
@@ -265,13 +297,9 @@ CAPS.Project.SetProjectTypeValue = function (executionContext) {
         var submissionCategoryID = submissionCategory[0].id;
 
         //Filtering fetch XML for Project Type
-        var filterFetchXml = "<link-entity name=\"caps_submissioncategory_caps_projecttype\" from=\"caps_projecttypeid\" to=\"caps_projecttypeid\" visible=\"false\" intersect=\"true\">" +
-            "<link-entity name=\"caps_submissioncategory\" from=\"caps_submissioncategoryid\" to=\"caps_submissioncategoryid\" alias=\"ab\">" +
-            "<filter type=\"and\">" +
-            "<condition attribute=\"caps_submissioncategoryid\" operator=\"eq\" value=\"" + submissionCategoryID + "\" />" +
-            "</filter>" +
-            "</link-entity>" +
-            "</link-entity>";
+        var filterFetchXml =  "<filter type=\"and\">" +
+            "<condition attribute=\"caps_submissioncategory\" operator=\"eq\" value=\"" + submissionCategoryID + "\" />" +
+            "</filter>";
 
         //Call to set default value if only one value exists
         CAPS.Common.DefaultLookupIfSingle(formContext, "caps_projecttype", "caps_projecttype", "caps_projecttypeid", "caps_type", filterFetchXml);
@@ -370,16 +398,14 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
         var mandatoryFields = formContext.getAttribute("caps_submissioncategorymandatoryfields").getValue();
         var optionalFields = formContext.getAttribute("caps_submissioncategoryoptionalfields").getValue();
 
-
-        
-
         CAPS.Project.RemoveRequirement(formContext, tabsToDisregard, mandatoryFields, optionalFields);
 
         arrTabNames.forEach(function (tabName) {
             formContext.ui.tabs.get(tabName).setVisible(true);
         });
 
-        
+        //set focus to first tab in list
+        formContext.ui.tabs.get(arrTabNames[0]).setDisplayState("expanded");
 
         //if capital expense needs allocating, show the tab
         //if (formContext.getAttribute("caps_submissioncategoryrequirecostallocation").getValue() === true) {
@@ -473,6 +499,69 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
         formContext.ui.clearFormNotification(COST_MISSMATCH_NOTIFICATION);
         //formContext.getControl("caps_totalprojectcost").clearNotification(COST_MISSMATCH_NOTIFICATION);
     }
+}
+
+/**
+ * This function checks if the 4 main PRFS fields are filled in for major projects if there is cash flow in the first 3 years.
+ * If the fields aren't filled out, a warning is shown to the user.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ValidatePRFS = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    //Check the 4 fields
+    var projectRationale = formContext.getAttribute("caps_projectrationale").getValue();
+    var scopeOfWork = formContext.getAttribute("caps_scopeofwork").getValue();
+    var tempAccomodation = formContext.getAttribute("caps_tempaccommodationandbusingplan").getValue();
+    var municipalRequirements = formContext.getAttribute("caps_municipalrequirements").getValue();
+
+    if (projectRationale !== null && scopeOfWork !== null && tempAccomodation !== null && municipalRequirements !== null) {
+        formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+    }
+    else {
+        //Call action to validate 
+        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+        //call action
+        var req = {};
+        var target = { entityType: "caps_project", id: recordId };
+        req.entity = target;
+
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_ValidatePRFS",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            };
+        };
+
+        Xrm.WebApi.online.execute(req).then(
+            function (result) {
+                debugger;
+                if (result.ok) {
+                    return result.json().then(
+                        function (response) {
+
+                            if (response.hasCashflow) {
+                                formContext.ui.setFormNotification('PRFS is not complete.', 'WARNING', PRFS_INCOMPLETE_NOTIFICATION);
+                            }
+                            else {
+                                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+                            }
+                        });
+                }
+            },
+            function (e) {
+                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+            }
+        );
+    }
+
 }
 
 /**
@@ -640,4 +729,80 @@ CAPS.Project.SetupScheduleB = function (executionContext) {
     formContext.getAttribute("caps_requiresscheduleb").addOnChange(CAPS.Project.ToggleRequiresScheduleB);
 
 }
+
+/**
+ * This function shows age of existing playground field if this is a PEP replacement
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.TogglePEPReplacement = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var projectType = formContext.getAttribute("caps_projecttype").getValue();
+
+    if (projectType !== null && projectType[0].name === "Replacement") {
+        //Show Age of Existing Playground caps_ageofexistingplayground
+        formContext.getControl("caps_ageofexistingplayground").setVisible(true);
+    }
+    else {
+        formContext.getControl("caps_ageofexistingplayground").setVisible(false);
+    }
+}
+
+/**
+ * This function shows the bus lookup field and makes it mandatory on a Bus Replacement project.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ToggleBUSReplacement = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var projectType = formContext.getAttribute("caps_projecttype").getValue();
+
+    if (projectType !== null && projectType[0].name === "Replacement") {
+        //Show Bus to be replaced and make mandatory
+        formContext.getControl("caps_bus").setVisible(true);
+        formContext.getAttribute("caps_bus").setRequiredLevel("required");
+    }
+    else {
+        //hide Bus to be replaced and make optional and clear
+        formContext.getControl("caps_bus").setVisible(false);
+        formContext.getAttribute("caps_bus").setRequiredLevel("none");
+        formContext.getAttribute("caps_bus").setValue(null);
+    }
+}
+
+/**
+ * This function shows/hides the Date LRFP will be in place when an LRFP record is selected/removed.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ToggleLRFP = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+
+    if (formContext.getAttribute("caps_longrangefacilityplan").getValue()) {
+        formContext.getControl("caps_datelrfpwillbeinplace").setVisible(false);
+        formContext.getAttribute("caps_datelrfpwillbeinplace").setValue(null);
+
+    }
+    else {
+        formContext.getControl("caps_datelrfpwillbeinplace").setVisible(true);
+    }
+    
+}
+
+/**
+ * This function makes the Bus New Route Information file field manadatory or if the issue type is New Route.
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ToggleBusIssueType = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    //New Route = 100000003
+    if (formContext.getAttribute("caps_issuetype").getValue() === 100000003) {
+        formContext.getAttribute("caps_bus_newrouteinformation").setRequiredLevel("required");
+    }
+    else {
+        formContext.getAttribute("caps_bus_newrouteinformation").setRequiredLevel("none");
+    }
+}
+
 

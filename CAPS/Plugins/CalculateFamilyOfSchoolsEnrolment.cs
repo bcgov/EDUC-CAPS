@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Plugins
 {
+    /// <summary>
+    /// This plugin runs on change of design capacity fields on facility.  It finds the previous and current family of schools and updates the totals.
+    /// </summary>
     public class CalculateFamilyOfSchoolsEnrolment : IPlugin
     {
         public void Execute(IServiceProvider serviceProvider)

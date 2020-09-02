@@ -1,4 +1,5 @@
 ﻿using CAPS.DataContext;
+using CustomWorkflowActivities.Services;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Sdk.Workflow;
@@ -106,7 +107,7 @@ namespace CustomWorkflowActivities
 
                 tracingService.Trace("CalculateScheduleB: {0}", "Populate Variable");
 
-                var scheduleB = new Services.ScheduleB(service, tracingService);
+                var scheduleB = new ScheduleB(service, tracingService);
                 //set parameters
                 scheduleB.SchoolType = prfsOptionRecord.caps_SchoolType.Id;
                 scheduleB.BudgetCalculationType = projectTypeRecord.caps_BudgetCalculationType.Value;
@@ -136,10 +137,42 @@ namespace CustomWorkflowActivities
 
                 //call Calculate
                 tracingService.Trace("CalculateScheduleB: {0}", "Call Calculate Function");
-                var total = scheduleB.Calculate();
+                CalculationResult result = scheduleB.Calculate();
 
-                //Update Project Request
-                this.total.Set(executionContext, total);
+                //Update PRFS Option with Calculations
+                var recordToUpdate = new caps_PRFSAlternativeOption();
+                recordToUpdate.Id = recordId;
+                //Section 2
+                recordToUpdate.caps_SchBSpaceAllocationNewReplacement = result.SpaceAllocationNewReplacement;
+                recordToUpdate.caps_SchBSpaceAllocationNLC = result.SpaceAllocationNLC;
+
+                //Section 3
+                recordToUpdate.caps_SchBBaseBudgetRate = result.BaseBudgetRate;
+                recordToUpdate.caps_SchBProjectSizeFactor = result.ProjectSizeFactor;
+                recordToUpdate.caps_SchBProjectLocationFactor = result.ProjectLocationFactor;
+                recordToUpdate.caps_SchBUnitRate = result.UnitRate;
+
+                //Section 4
+                recordToUpdate.caps_SchBConstructionNewSpaceReplacement = result.ConstructionNewReplacement;
+                recordToUpdate.caps_SchBConstructionRenovations = result.ConstructionRenovation;
+                recordToUpdate.caps_SchBSiteDevelopmentAllowance = result.SiteDevelopmentAllowance;
+                recordToUpdate.caps_SchBSiteDevelopmentLocationAllowance = result.SiteDevelopmentLocationAllowance;
+
+                //Section 5
+                recordToUpdate.caps_SchBDesignFees = result.DesignFees;
+                recordToUpdate.caps_SchBPostContractNewReplacement = result.PostContractNewReplacement;
+                recordToUpdate.caps_SchBPostContractRenovations = result.PostContractRenovation;
+                recordToUpdate.caps_SchBPostContractSeismic = result.PostContractSeismic;
+                //recordToUpdate.caps_SchBMunicipalFees = result.MunicipalFees;
+                recordToUpdate.caps_SchBEquipmentNew = result.EquipmentNew;
+                recordToUpdate.caps_SchBEquipmentReplacement = result.EquipmentReplacement;
+                recordToUpdate.caps_SchBProjectManagementFees = result.ProjectManagement;
+                recordToUpdate.caps_SchBLiabilityInsurance = result.LiabilityInsurance;
+                recordToUpdate.caps_SchBPayableTaxes = result.PayableTaxes;
+                service.Update(recordToUpdate);
+
+                //Return Total
+                this.total.Set(executionContext, result.Total);
                 this.error.Set(executionContext, false);
             }
             catch(Exception ex)

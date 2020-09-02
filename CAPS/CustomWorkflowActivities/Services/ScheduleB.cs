@@ -5,6 +5,35 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace CustomWorkflowActivities.Services
 {
+    internal class CalculationResult
+    {
+        internal decimal SpaceAllocationNewReplacement {get; set;}
+        internal decimal SpaceAllocationNLC {get; set;}
+        internal decimal BaseBudgetRate { get; set; }
+        internal decimal ProjectSizeFactor { get; set; }
+        internal decimal ProjectLocationFactor { get; set; }
+        internal decimal UnitRate { get; set; }
+        internal decimal ConstructionNewReplacement { get; set; }
+        internal decimal ConstructionRenovation { get; set; }
+        internal decimal SiteDevelopmentAllowance {get; set;}
+        internal decimal SiteDevelopmentLocationAllowance {get; set;}
+        internal decimal DesignFees {get; set;}
+        internal decimal SPIRFees {get; set;}
+        internal decimal PostContractNewReplacement {get; set;}
+        internal decimal PostContractRenovation {get; set;}
+        internal decimal PostContractSeismic { get; set; }
+        //internal decimal MunicipalFees {get; set;}
+        internal decimal EquipmentNew { get; set; }
+        internal decimal EquipmentReplacement { get; set; }
+        internal decimal ProjectManagement {get; set;}
+        internal decimal LiabilityInsurance {get; set;}
+        internal decimal PayableTaxes {get; set;}
+
+    internal decimal Total {get; set;}
+
+
+    //internal decimal  {get; set;}
+}
     internal class DesignCapacity
     {
         internal DesignCapacity() { }
@@ -61,8 +90,9 @@ namespace CustomWorkflowActivities.Services
         /// Function to calculate schedule b total
         /// </summary>
         /// <returns>Schedule B Total</returns>
-        internal decimal Calculate()
+        internal CalculationResult Calculate()
         {
+            CalculationResult result = new CalculationResult();
             tracingService.Trace("{0}", "Starting ScheduleB.Calculate");
 
             //variables
@@ -116,6 +146,9 @@ namespace CustomWorkflowActivities.Services
             //Get total square meterage
             decimal spaceAllocationTotalNewReplacement = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement) + spaceAllocationNewReplacement;
 
+            result.SpaceAllocationNewReplacement = spaceAllocationNewReplacement;
+            result.SpaceAllocationNLC = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement);
+
             tracingService.Trace("Space Allocation - Total New/Replacement: {0}", spaceAllocationTotalNewReplacement);
             //DB: Total space allocation doesn't seem to be needed
             //decimal spaceAllocationTotal = spaceAllocationExisting + spaceAllocationTotalNewReplacement;
@@ -126,6 +159,7 @@ namespace CustomWorkflowActivities.Services
             //Get Base Budget Rate based on School Type
             decimal constructionBaseBudgetRate = schoolTypeRecord.caps_BaseBudgetRate.Value;
 
+            result.BaseBudgetRate = constructionBaseBudgetRate;
             tracingService.Trace("Base Budget Rate: {0}", constructionBaseBudgetRate);
 
             //Get Project Size Factor based on square meterage and school type
@@ -133,11 +167,14 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Project Size Factor: {0}", constructionProjectSizeFactor);
             tracingService.Trace("Project Location Factor: {0}", ProjectLocationFactor);
+            result.ProjectSizeFactor = constructionProjectSizeFactor;
+            result.ProjectLocationFactor = ProjectLocationFactor;
 
             //Set Unit Rate = Base Budget Rate * Project Size Factor * Project Location Factor
             decimal constructionUnitRate = constructionBaseBudgetRate * constructionProjectSizeFactor * ProjectLocationFactor;
 
             tracingService.Trace("Unit Rate: {0}", constructionUnitRate);
+            result.UnitRate = constructionUnitRate;
             #endregion
 
             #region 4. Construction Items -- DONE
@@ -146,6 +183,7 @@ namespace CustomWorkflowActivities.Services
             decimal constructionNewReplacement = spaceAllocationTotalNewReplacement * constructionUnitRate;
 
             tracingService.Trace("Construction - New/Replacement: {0}", constructionNewReplacement);
+            result.ConstructionNewReplacement = constructionNewReplacement;
 
             //Only for Addition/Partial Replacement & Partial Seismic (4.2)
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.Addition ||
@@ -156,6 +194,7 @@ namespace CustomWorkflowActivities.Services
             }
 
             tracingService.Trace("Construction - Renovations: {0}", constructionRenovations);
+            result.ConstructionRenovation = constructionRenovations;
 
             //Get Site Development Allowance based on Project Type, School Type and Square meterage (4.3)
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.New)
@@ -187,16 +226,18 @@ namespace CustomWorkflowActivities.Services
                 }
                 else if (spaceAllocationNewReplacement > 500)
                 {
-                    constructionSiteDevelopmentAllowance = schoolTypeRecord.caps_Additionfor2000m2.Value;
+                    constructionSiteDevelopmentAllowance = schoolTypeRecord.caps_Additionfor500m2.Value;
                 }
             }
 
             tracingService.Trace("Site Development Allowance: {0}", constructionSiteDevelopmentAllowance);
+            result.SiteDevelopmentAllowance = constructionSiteDevelopmentAllowance;
 
             //Set Site Development Location Allowance = (Project Location Factor -1) * Site Development Allowance (4.4)
             decimal constructionSiteDevelopmentLocationAllowance = (ProjectLocationFactor - 1) * constructionSiteDevelopmentAllowance;
 
             tracingService.Trace("Site Development Location Allowance: {0}", constructionSiteDevelopmentLocationAllowance);
+            result.SiteDevelopmentLocationAllowance = constructionSiteDevelopmentLocationAllowance;
 
             //Set Total Construction Budget = All fields in region
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.SeismicUpgrade)
@@ -224,6 +265,7 @@ namespace CustomWorkflowActivities.Services
             }
 
             tracingService.Trace("Design Fees: {0}", softCostDesignFees);
+            result.DesignFees = softCostDesignFees;
 
             //Set Post-Contract Contingency = Construction % * Total Construction Budget (5.2)
 
@@ -241,6 +283,7 @@ namespace CustomWorkflowActivities.Services
             }
 
             tracingService.Trace("Post-Contract Contingency - New/Replacement: {0}", softCostContingencyNewReplacement);
+            result.PostContractNewReplacement = softCostContingencyNewReplacement;
 
             //Set Post-Contract Contingency - Renovations (5.3)
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.Addition ||
@@ -260,6 +303,9 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Post-Contract Contingency - Renovations: {0}", softCostContingencyRenovations);
             tracingService.Trace("Post-Contract Contingency - Seismic: {0}", softCostContingencySeismic);
+            result.PostContractRenovation = softCostContingencyRenovations;
+            result.PostContractSeismic = softCostContingencySeismic;
+
 
             //**Get Equipment Allowance Percentage
             //**Get School District Location Freight Percentage
@@ -268,12 +314,14 @@ namespace CustomWorkflowActivities.Services
                 BudgetCalculationType == (int)caps_BudgetCalculationType.Addition)
             {
                 softCostEquipmentAllowance = (constructionBaseBudgetRate * spaceAllocationNewReplacement * schoolTypeRecord.caps_EquipmentAllowanceNewSpace.Value) + (constructionBaseBudgetRate * spaceAllocationNewReplacement * schoolTypeRecord.caps_EquipmentAllowanceNewSpace.Value * FreightRateAllowance);
+                result.EquipmentNew = softCostEquipmentAllowance;
             }
             else if (BudgetCalculationType == (int)caps_BudgetCalculationType.Replacement ||
                 BudgetCalculationType == (int)caps_BudgetCalculationType.PartialReplacement ||
                 BudgetCalculationType == (int)caps_BudgetCalculationType.PartialSeismic)
             {
                 softCostEquipmentAllowance = (constructionBaseBudgetRate * spaceAllocationNewReplacement * schoolTypeRecord.caps_EquipmentAllowanceReplacementSpace.Value) + (constructionBaseBudgetRate * spaceAllocationNewReplacement * schoolTypeRecord.caps_EquipmentAllowanceNewSpace.Value * FreightRateAllowance);
+                result.EquipmentReplacement = softCostEquipmentAllowance;
             }
 
             tracingService.Trace("Equipment Allowance: {0}", softCostEquipmentAllowance);
@@ -290,17 +338,20 @@ namespace CustomWorkflowActivities.Services
             }
 
             tracingService.Trace("Liability Insurance: {0}", softCostWrapUpLiabilityInsurance);
+            result.LiabilityInsurance = softCostWrapUpLiabilityInsurance;
 
-            decimal softCostPayableTaxes = (constructionTotalConstructionBudget + softCostDesignFees + softCostContingencyNewReplacement + softCostContingencyRenovations + softCostEquipmentAllowance) * GetBudgetCalculationValue("Payable Taxes");
+            decimal softCostPayableTaxes = (constructionTotalConstructionBudget + softCostDesignFees + softCostContingencyNewReplacement + softCostContingencyRenovations + softCostContingencySeismic+ softCostEquipmentAllowance) * GetBudgetCalculationValue("Payable Taxes");
 
             tracingService.Trace("Payable Taxes: {0}", softCostPayableTaxes);
+            result.PayableTaxes = softCostPayableTaxes;
 
             decimal totalOwnersCost = softCostDesignFees + SPIRFees.GetValueOrDefault(0) + softCostContingencyNewReplacement + softCostContingencyRenovations + softCostContingencySeismic + MunicipalFees + softCostEquipmentAllowance + softCostWrapUpLiabilityInsurance + softCostPayableTaxes;
 
             tracingService.Trace("Total Owners Costs: {0}", totalOwnersCost);
+            
 
             var projectManagementFee = CalculateProjectManagementFeeAllowance(totalOwnersCost + constructionTotalConstructionBudget);
-
+            result.ProjectManagement = projectManagementFee;
             tracingService.Trace("Project Management Fee: {0}", projectManagementFee);
             #endregion
 
@@ -308,7 +359,9 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Supplemental Costs: {0}", supplementalCosts);
 
-            return totalOwnersCost + constructionTotalConstructionBudget +  projectManagementFee + supplementalCosts;
+            result.Total = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts;
+
+            return result;
         }
 
         /// <summary>
@@ -330,17 +383,26 @@ namespace CustomWorkflowActivities.Services
 
             EntityCollection results = service.RetrieveMultiple(query);
 
+            tracingService.Trace("Count of Results: {0}", results.Entities.Count);
+
             if (results.Entities.Count < 1) throw new Exception(string.Format("There is no space allocation record for the school type: {0} and design capacity: {1}.", schoolType, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
 
             var designCapacity = results.Entities[0].GetAttributeValue<decimal>("caps_spaceallocation");
+
+            tracingService.Trace("Design Capacity: {0}", designCapacity);
 
             if (designCapacityRecord.Kindergarten > 0)
             {
                 //now add kindergarten
                 var kClassSize = GetBudgetCalculationValue("Design Capacity Kindergarten");
-                var kRoomSize = GetBudgetCalculationValue("Design Capacity Kindergarten");
+                var kRoomSize = GetBudgetCalculationValue("Kindergarten Space Allocation");
+
+                tracingService.Trace("K Class Size: {0}", kClassSize);
+                tracingService.Trace("K Room Size: {0}", kRoomSize);
 
                 var kClassNumber = (int)Math.Ceiling(designCapacityRecord.Kindergarten / kClassSize);
+
+                tracingService.Trace("K Class Number: {0}", kClassNumber);
 
                 return designCapacity + (kRoomSize * kClassNumber);
             }
