@@ -435,6 +435,7 @@
                   <TextRun>
                     <Value>Schedule B - Capital Project Budget </Value>
                     <Style>
+                      <FontFamily>Arial</FontFamily>
                       <FontSize>16pt</FontSize>
                       <Color>White</Color>
                     </Style>
@@ -3589,7 +3590,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>="Report Created: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -3619,7 +3622,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>="PRFS Alternative Option: " &amp; First(Fields!caps_name.Value, "PRFSOption")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />

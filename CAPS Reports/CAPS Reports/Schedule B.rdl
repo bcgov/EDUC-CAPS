@@ -446,7 +446,15 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Schedule B - Capital Project Budget </Value>
+                    <Value>Schedule B - Capital Project Budget</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <Color>White</Color>
@@ -3636,7 +3644,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>="Project Request: " &amp; First(Fields!caps_projectcode.Value, "ProjectRequest")</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
