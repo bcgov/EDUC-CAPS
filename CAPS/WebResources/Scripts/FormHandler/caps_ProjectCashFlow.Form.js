@@ -18,7 +18,7 @@ CAPS.ProjectCashFlow.onLoad = function(executionContext) {
     var currentYear = null;
     var currentYearPlus1 = null;
 
-    Xrm.WebApi.retrieveMultipleRecords("edu_year", "?$select=edu_yearid,edu_startyear,statuscode&$filter=statecode eq 0&$orderby=edu_startyear").then(
+    Xrm.WebApi.retrieveMultipleRecords("edu_year", "?$select=edu_yearid,edu_startyear,statuscode&$filter=statecode eq 0 and edu_type eq 757500000&$orderby=edu_startyear").then(
         function success(result) {
             //find current year record and current year +1
 
