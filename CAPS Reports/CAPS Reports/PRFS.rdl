@@ -1356,7 +1356,6 @@
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_facilityid" /&gt;
 &lt;attribute name="caps_streetaddress" /&gt;
-&lt;attribute name="caps_facilityconditionindex" /&gt;
     &lt;attribute name="statecode" /&gt;
     &lt;attribute name="caps_designcapacitytotal" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -1420,17 +1419,9 @@
           <DataField>caps_streetaddress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_facilityconditionindex">
-          <DataField>caps_facilityconditionindex</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="statecode">
           <DataField>statecode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityconditionindexValue">
-          <DataField>caps_facilityconditionindexValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="statecodeValue">
           <DataField>statecodeValue</DataField>
@@ -1715,7 +1706,6 @@
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_facility"&gt;
     &lt;attribute name="caps_facilityid" /&gt;
-&lt;attribute name="caps_facilityconditionindex" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
     &lt;attribute name="caps_utilizationtotal_design" /&gt;
@@ -1761,17 +1751,9 @@
           <DataField>caps_facilityid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_facilityconditionindex">
-          <DataField>caps_facilityconditionindex</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_name">
           <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityconditionindexValue">
-          <DataField>caps_facilityconditionindexValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_utilizationtotal_operating">
           <DataField>caps_utilizationtotal_operating</DataField>
