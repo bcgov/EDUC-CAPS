@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_Dev:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
@@ -39,6 +40,7 @@
     &lt;attribute name="caps_constructionarea" /&gt;
     &lt;attribute name="caps_futurelowestgrade" /&gt;
     &lt;attribute name="caps_futurehighestgrade" /&gt;
+    &lt;attribute name="caps_currentfci" /&gt;
     &lt;attribute name="caps_futurefacilityconditionindex" /&gt;
     &lt;attribute name="caps_districtpriority" /&gt;
     &lt;attribute name="statuscode" /&gt;
@@ -215,6 +217,14 @@
         <Field Name="caps_futurefacilityconditionindex">
           <DataField>caps_futurefacilityconditionindex</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_currentfci">
+          <DataField>caps_currentfci</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_currentfciValue">
+          <DataField>caps_currentfciValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_futurefacilityconditionindexValue">
           <DataField>caps_futurefacilityconditionindexValue</DataField>
@@ -20050,9 +20060,10 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, First(Fields!caps_facilityconditionindex.Value, "ProjectRequestFacility"))</Value>
+                            <Value>=First(Fields!caps_currentfci.Value, "ProjectRequest")</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
+                              <Format>0.00;(0.00);'-'</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -20122,6 +20133,7 @@
                             <Value>=First(Fields!caps_futurefacilityconditionindex.Value, "ProjectRequest")</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
+                              <Format>0.00;(0.00);'-'</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
