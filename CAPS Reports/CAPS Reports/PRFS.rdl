@@ -5909,7 +5909,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_facilityconditionindex.Value</Value>
+                                          <Value>=First(Fields!caps_currentfci.Value, "ProjectRequest")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0.00;(0.00)</Format>
@@ -5930,6 +5930,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
