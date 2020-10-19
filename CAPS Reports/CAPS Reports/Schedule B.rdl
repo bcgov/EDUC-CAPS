@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_Dev:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>754c02b1-163d-452d-9cfd-3b5c46842c4f</rd:DataSourceID>
@@ -55,7 +56,7 @@
     &lt;attribute name="caps_othercost" /&gt;
     &lt;attribute name="caps_demolitioncost" /&gt;
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
-    &lt;attribute name="caps_schbspaceallocationnlc" /&gt;
+    &lt;attribute name="caps_schbnlcbudgetamount" /&gt;
     &lt;attribute name="caps_facility" /&gt;
     &lt;attribute name="caps_changeindesigncapacitytotal" /&gt;
     &lt;attribute name="caps_changeindesigncapacitysecondary" /&gt;
@@ -314,12 +315,12 @@
           <DataField>caps_abnormaltopographycostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_schbspaceallocationnlc">
-          <DataField>caps_schbspaceallocationnlc</DataField>
+        <Field Name="caps_schbnlcbudgetamount">
+          <DataField>caps_schbnlcbudgetamount</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_schbspaceallocationnlcValue">
-          <DataField>caps_schbspaceallocationnlcValue</DataField>
+        <Field Name="caps_schbnlcbudgetamountValue">
+          <DataField>caps_schbnlcbudgetamountValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_facility">
@@ -2833,6 +2834,77 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>NLC Budget Amount</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_schbnlcbudgetamountValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_schbnlcbudgetamountValue.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_schbnlcbudgetamountValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox55">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -2945,7 +3017,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value</Value>
+                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value + Fields!caps_schbnlcbudgetamountValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -2989,12 +3061,13 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
             <Top>11.26302cm</Top>
             <Left>9.29492cm</Left>
-            <Height>3.6cm</Height>
+            <Height>4.2cm</Height>
             <Width>10.41938cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -3437,78 +3510,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox83">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Space Allocation: Neighbourhood Learning Centre</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox83</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox64">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!caps_schbspaceallocationnlcValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox11</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox77">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -3548,10 +3549,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_schbspaceallocationnewreplacementValue.Value + Fields!caps_schbspaceallocationnlcValue.Value</Value>
+                                  <Value>=Fields!caps_schbspaceallocationnewreplacementValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>#,0;(#,0);'-'</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3572,6 +3573,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3589,13 +3591,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
             <Top>5.12357cm</Top>
             <Left>0.04867cm</Left>
-            <Height>2.4cm</Height>
+            <Height>1.8cm</Height>
             <Width>9.06986cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -3767,7 +3768,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
-            <Top>15.03941cm</Top>
+            <Top>15.63941cm</Top>
             <Left>9.29492cm</Left>
             <Height>0.6cm</Height>
             <Width>10.41938cm</Width>
