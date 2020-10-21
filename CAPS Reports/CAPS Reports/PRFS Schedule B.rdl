@@ -2851,9 +2851,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_schbnlcbudgetamountValue.Value)</Value>
+                                  <Value>=Fields!caps_schbnlcbudgetamountValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3530,6 +3531,7 @@
                                   <Value>=Fields!caps_schbspaceallocationnewreplacementValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
