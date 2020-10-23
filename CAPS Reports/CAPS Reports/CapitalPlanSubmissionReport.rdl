@@ -256,6 +256,7 @@
     &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;attribute name="caps_submissioncategorycode" /&gt;
     &lt;attribute name="caps_resultsreleasedreviewstatus" /&gt;
+    &lt;attribute name="caps_submission" /&gt;
     &lt;link-entity name="caps_submission" from="caps_submissionid" to="caps_submission" alias="CapitalPlan"  enableprefiltering="1"&gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
@@ -263,6 +264,9 @@
       &lt;link-entity name="caps_callforsubmission" from="caps_callforsubmissionid" to="caps_callforsubmission" alias="CallforSubmission" &gt;
         &lt;attribute name="caps_callforsubmissiontype" /&gt;
       &lt;/link-entity&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_project" from="caps_projectid" to="caps_project" alias="ParentProjectRequest" &gt;
+      &lt;attribute name="caps_submission" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -380,12 +384,24 @@
           <DataField>caps_resultsreleasedreviewstatusValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_submission">
+          <DataField>caps_submission</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CapitalPlan_caps_schooldistrictValue">
           <DataField>CapitalPlan_caps_schooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
+        <Field Name="caps_submissionValue">
+          <DataField>caps_submissionValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
         <Field Name="caps_submissioncategorycode">
           <DataField>caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissionEntityName">
+          <DataField>caps_submissionEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="CapitalPlan_caps_schooldistrictEntityName">
@@ -408,17 +424,29 @@
           <DataField>CallforSubmission_caps_callforsubmissiontypeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="ParentProjectRequest_caps_submission">
+          <DataField>ParentProjectRequest_caps_submission</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="MinorFundingRequested">
           <Value>= IIF(IsNothing(Fields!caps_fundingrequestedValue.Value), Fields!caps_busfundingrequestedValue.Value,Fields!caps_fundingrequestedValue.Value)</Value>
         </Field>
         <Field Name="MinistryReviewStatus_SD">
-          <Value>= IIF(Fields!caps_resultsreleasedreviewstatus.Value = ("Planned" or "Not Supported"), "Not Supported", "Supported")</Value>
+          <Value>= IIF(Fields!caps_submissionValue.Value = Fields!ParentProjectRequest_caps_submissionValue.Value, "Supported", "Not Supported")</Value>
+        </Field>
+        <Field Name="ParentProjectRequest_caps_submissionValue">
+          <DataField>ParentProjectRequest_caps_submissionValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
         <Field Name="SupportedTotalProjectCost">
-          <Value>= IIF(Fields!caps_resultsreleasedreviewstatus.Value = "Supported", Fields!caps_totalprojectcostValue.Value, 0)</Value>
+          <Value>= IIF(Fields!MinistryReviewStatus_SD.Value = "Supported", CDec(Fields!caps_totalprojectcostValue.Value), CDec(0))</Value>
+        </Field>
+        <Field Name="ParentProjectRequest_caps_submissionEntityName">
+          <DataField>ParentProjectRequest_caps_submissionEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SupportedFundingRequested">
-          <Value>= IIF(Fields!caps_resultsreleasedreviewstatus.Value = "Supported", Fields!MinorFundingRequested.Value, 0)</Value>
+          <Value>= IIF(Fields!MinistryReviewStatus_SD.Value = "Supported", CDec(Fields!MinorFundingRequested.Value), CDec(0))</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -452,6 +480,7 @@
                                 <TextRun>
                                   <Value>Sum Total Project Cost</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
@@ -488,6 +517,7 @@
                                 <TextRun>
                                   <Value>Sum Total Supported Project Cost</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
@@ -529,6 +559,7 @@
                                 <TextRun>
                                   <Value>=Fields!caps_totalprojectcostValue.Value</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -562,6 +593,7 @@
                                 <TextRun>
                                   <Value>=Fields!SupportedTotalProjectCost.Value</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
@@ -748,7 +780,7 @@
                 <TablixMember />
                 <TablixMember>
                   <Visibility>
-                    <Hidden>= Parameters!CapitalPlanToggle.Value = "Submitted"</Hidden>
+                    <Hidden>= Parameters!CapitalPlanStatus.Value &lt;&gt; "Results Released" or Parameters!CapitalPlanToggle.Value &lt;&gt; "Results Released"</Hidden>
                   </Visibility>
                 </TablixMember>
               </TablixMembers>
@@ -902,7 +934,7 @@
             <Top>0.1852cm</Top>
             <Left>9.35619cm</Left>
             <Height>3.69181cm</Height>
-            <Width>14.76458cm</Width>
+            <Width>14.76457cm</Width>
             <Visibility>
               <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value = "Minor"</Hidden>
             </Visibility>
@@ -1259,6 +1291,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -1291,6 +1324,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_existingfacility.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -1323,6 +1357,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -1767,6 +1802,11 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanSummaryV2</DataSetName>
+                <SortExpressions>
+                  <SortExpression>
+                    <Value>=Fields!caps_facilityview.Value</Value>
+                  </SortExpression>
+                </SortExpressions>
                 <Top>6.63445cm</Top>
                 <Left>0cm</Left>
                 <Height>3.37897cm</Height>
@@ -2045,6 +2085,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2077,6 +2118,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2109,6 +2151,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projecttype.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2417,6 +2460,11 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanSummaryV2</DataSetName>
+                <SortExpressions>
+                  <SortExpression>
+                    <Value>=Fields!caps_facilityview.Value</Value>
+                  </SortExpression>
+                </SortExpressions>
                 <Top>3.50243cm</Top>
                 <Left>0.06703cm</Left>
                 <Height>3.08792cm</Height>
@@ -2696,6 +2744,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2728,6 +2777,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -2760,6 +2810,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projecttype.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3071,6 +3122,11 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanSummaryV2</DataSetName>
+                <SortExpressions>
+                  <SortExpression>
+                    <Value>=Fields!caps_facilityview.Value</Value>
+                  </SortExpression>
+                </SortExpressions>
                 <Top>0.23813cm</Top>
                 <Left>0.03632cm</Left>
                 <Height>3.14083cm</Height>
@@ -3126,6 +3182,7 @@
                                 <TextRun>
                                   <Value>School District:</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -3159,6 +3216,7 @@
                                 <TextRun>
                                   <Value>=Fields!caps_schooldistrict.Value</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -3517,14 +3575,16 @@
                 <TextRuns>
                   <TextRun>
                     <Value>There is no Project Request data as the Capital Plan has not reached Results Released status. Once the Capital Plan status is Results Released, Supported/Not Supported Project Request data will be displayed.</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox113</rd:DefaultName>
-            <Top>7.35762cm</Top>
+            <Top>7.33424cm</Top>
             <Left>9.37432cm</Left>
             <Height>1.68479cm</Height>
             <Width>14.74645cm</Width>
@@ -3558,13 +3618,13 @@
                       <Width>3.26385cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>6.8884cm</Width>
+                      <Width>8.30613cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.84937cm</Width>
+                      <Width>3.42378cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.16065cm</Width>
+                      <Width>3.10232cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -3851,6 +3911,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3883,6 +3944,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -3915,6 +3977,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projecttype.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -4269,7 +4332,7 @@
                 <Top>0.28938cm</Top>
                 <Left>0.01602cm</Left>
                 <Height>2.98208cm</Height>
-                <Width>25.86103cm</Width>
+                <Width>25.79483cm</Width>
                 <Visibility>
                   <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major" or Count(Fields!name.Value, "SecurityRole") = 0</Hidden>
                 </Visibility>
@@ -4283,22 +4346,22 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.48898cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>5.19875cm</Width>
+                      <Width>5.18773cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.26385cm</Width>
+                      <Width>3.25283cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>6.8884cm</Width>
+                      <Width>8.17384cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.84938cm</Width>
+                      <Width>3.38857cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.16065cm</Width>
+                      <Width>3.30296cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -4585,6 +4648,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -4617,6 +4681,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -4649,6 +4714,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projecttype.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -4749,6 +4815,8 @@
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
+                                        <Format>'$'#,0;('$'#,0)</Format>
+                                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -4925,6 +4993,8 @@
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
+                                        <Format>'$'#,0;('$'#,0)</Format>
+                                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -4991,10 +5061,15 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanSummaryV2</DataSetName>
+                <SortExpressions>
+                  <SortExpression>
+                    <Value>=Fields!caps_facilityview.Value</Value>
+                  </SortExpression>
+                </SortExpressions>
                 <Top>3.31556cm</Top>
                 <Left>0.01594cm</Left>
-                <Height>3.08792cm</Height>
-                <Width>25.86103cm</Width>
+                <Height>3.08791cm</Height>
+                <Width>25.79491cm</Width>
                 <ZIndex>1</ZIndex>
                 <Visibility>
                   <Hidden>=Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major" or Count(Fields!name.Value, "SecurityRole") &lt;&gt; 0</Hidden>
@@ -5018,13 +5093,13 @@
                       <Width>3.26385cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>6.8884cm</Width>
+                      <Width>8.32215cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.84938cm</Width>
+                      <Width>3.42605cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.16065cm</Width>
+                      <Width>3.10232cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -5311,6 +5386,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -5343,6 +5419,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -5375,6 +5452,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projecttype.Value</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -5431,14 +5509,14 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_resultsreleasedreviewstatus1">
+                            <Textbox Name="MinistryReviewStatus_SD1">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_resultsreleasedreviewstatus.Value</Value>
+                                      <Value>=Fields!MinistryReviewStatus_SD.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -5448,7 +5526,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_resultsreleasedreviewstatus1</rd:DefaultName>
+                              <rd:DefaultName>MinistryReviewStatus_SD1</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -5728,8 +5806,8 @@
                 </SortExpressions>
                 <Top>6.50049cm</Top>
                 <Left>0cm</Left>
-                <Height>3.00854cm</Height>
-                <Width>25.86103cm</Width>
+                <Height>3.00855cm</Height>
+                <Width>25.81312cm</Width>
                 <ZIndex>2</ZIndex>
                 <Visibility>
                   <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Minor"</Hidden>
@@ -5759,13 +5837,13 @@
                       <Width>2.47354cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>5.23616cm</Width>
+                      <Width>6.10494cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.10216cm</Width>
+                      <Width>2.82047cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.07145cm</Width>
+                      <Width>2.43645cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -6126,6 +6204,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_projectcode.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -6191,6 +6270,7 @@
                                     <TextRun>
                                       <Value>=Fields!caps_facilityview.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -6313,15 +6393,16 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_resultsreleasedreviewstatus2">
+                            <Textbox Name="MinistryReviewStatus_SD2">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_resultsreleasedreviewstatus.Value</Value>
+                                      <Value>=Fields!MinistryReviewStatus_SD.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
@@ -6329,7 +6410,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_resultsreleasedreviewstatus2</rd:DefaultName>
+                              <rd:DefaultName>MinistryReviewStatus_SD2</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -6709,7 +6790,7 @@
                 <Top>9.55312cm</Top>
                 <Left>0cm</Left>
                 <Height>3.53771cm</Height>
-                <Width>25.86103cm</Width>
+                <Width>25.81311cm</Width>
                 <ZIndex>3</ZIndex>
                 <Visibility>
                   <Hidden>=Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "AFG"</Hidden>
@@ -6761,6 +6842,7 @@
                                 <TextRun>
                                   <Value>Sum Total Funding Requested</Value>
                                   <Style>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Color>White</Color>
                                   </Style>
@@ -6839,6 +6921,7 @@
                                 <TextRun>
                                   <Value>=Fields!MinorFundingRequested.Value</Value>
                                   <Style>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
@@ -6864,7 +6947,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SupportedFundingRequested1">
+                        <Textbox Name="SupportedFundingRequested">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6883,7 +6966,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SupportedFundingRequested1</rd:DefaultName>
+                          <rd:DefaultName>SupportedFundingRequested</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -6939,7 +7022,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SupportedFundingRequested2">
+                        <Textbox Name="SupportedFundingRequested1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -6958,7 +7041,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SupportedFundingRequested2</rd:DefaultName>
+                          <rd:DefaultName>SupportedFundingRequested1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -7060,7 +7143,7 @@
                 <TablixMember />
                 <TablixMember>
                   <Visibility>
-                    <Hidden>= Parameters!CapitalPlanToggle.Value = "Submitted"</Hidden>
+                    <Hidden>= Parameters!CapitalPlanStatus.Value &lt;&gt; "Results Released" or Parameters!CapitalPlanToggle.Value &lt;&gt; "Results Released"</Hidden>
                   </Visibility>
                 </TablixMember>
               </TablixMembers>
@@ -7213,7 +7296,7 @@
             <DataSetName>CapitalPlanSummaryV2</DataSetName>
             <Top>3.93457cm</Top>
             <Left>9.35619cm</Left>
-            <Height>3.3525cm</Height>
+            <Height>3.35251cm</Height>
             <Width>14.76458cm</Width>
             <ZIndex>5</ZIndex>
             <Visibility>
@@ -7226,7 +7309,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>33.08397cm</Height>
+        <Height>33.00459cm</Height>
         <Style />
       </Body>
       <Width>26.33417cm</Width>
@@ -7414,7 +7497,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0in</Top>
               <Left>8.97855in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
