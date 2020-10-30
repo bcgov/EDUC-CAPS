@@ -75,31 +75,12 @@ CAPS.Project.AddToSubmission = function (primaryControl) {
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
-        formContext.data.save().then(CAPS.Project.AddToSubmission(primaryControl));
+        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Project.AddToSubmission(primaryControl); });
     }
-
-    var selectedControlIds = [formContext.data.entity.getId()];
-    CAPS.Project.ShowSubmissionWindow(selectedControlIds);
-
-    //DB: This is the new way of opening a modal but it's not fully implmented yet.
-    //var pageInput = {
-    //    pageType: "webresource",
-    //    webresourceName: webResource
-    //};
-    //var navigationOptions = {
-    //    target: 2,
-    //    width: 400,
-    //    height: 300,
-    //    position: 1
-    //};
-    //Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
-    //    function success() {
-    //        // Handle dialog closed
-    //    },
-    //    function error() {
-    //        // Handle errors
-    //    }
-    //);
+    else {
+        var selectedControlIds = [formContext.data.entity.getId()];
+        CAPS.Project.ShowSubmissionWindow(selectedControlIds);
+    }
 }
 
 /**
@@ -371,7 +352,6 @@ CAPS.Project.SubmissionResult = function () {
  */
 CAPS.Project.CalculateScheduleB = function (primaryControl) {
     var formContext = primaryControl;
-    debugger;
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
@@ -399,18 +379,39 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
         };
 
         Xrm.WebApi.online.execute(req).then(
-            function (response) {
-                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
-                var alertOptions = { height: 120, width: 260 };
-                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
-                    function success(result) {
-                        console.log("Alert dialog closed");
-                        formContext.data.refresh();
-                    },
-                    function (error) {
-                        console.log(error.message);
-                    }
-                );
+            function (result) {
+                if (result.ok) {
+                    return result.json().then(
+                        function (response) {
+                            //get error message
+                            if (response.ScheduleBErrorMessage == null) {
+                                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                        formContext.data.refresh();
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                            else {
+                                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + response.ScheduleBErrorMessage, title: "Schedule B Result" };
+                                var alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                        });
+                }
+
             },
             function (e) {
 
@@ -435,7 +436,6 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
  * @return {bool} true if should be displayed, otherwise false
  */
 CAPS.Project.ShowCalculateScheduleB = function (primaryControl) {
-    debugger;
     var formContext = primaryControl;
 
     return (formContext.getAttribute("caps_requiresscheduleb").getValue() && formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT);
@@ -447,7 +447,6 @@ CAPS.Project.ShowCalculateScheduleB = function (primaryControl) {
  */
 CAPS.Project.Validate = function (primaryControl) {
     var formContext = primaryControl;
-    debugger;
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
@@ -513,7 +512,7 @@ CAPS.Project.Validate = function (primaryControl) {
  */
 CAPS.Project.ShowValidate = function (primaryControl) {
     var formContext = primaryControl;
-    debugger;
+    
     //validate for all draft projects except AFG
     if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT) {
         return true;

@@ -8,7 +8,7 @@ namespace CustomWorkflowActivities.Services
     internal class CalculationResult
     {
         internal decimal SpaceAllocationNewReplacement {get; set;}
-        internal decimal SpaceAllocationNLC {get; set;}
+        //internal decimal SpaceAllocationNLC {get; set;}
         internal decimal BaseBudgetRate { get; set; }
         internal decimal ProjectSizeFactor { get; set; }
         internal decimal ProjectLocationFactor { get; set; }
@@ -28,6 +28,7 @@ namespace CustomWorkflowActivities.Services
         internal decimal ProjectManagement {get; set;}
         internal decimal LiabilityInsurance {get; set;}
         internal decimal PayableTaxes {get; set;}
+        internal decimal NLCBudgetAmount { get; set;}
 
     internal decimal Total {get; set;}
 
@@ -59,7 +60,8 @@ namespace CustomWorkflowActivities.Services
         internal DesignCapacity ExistingAndDecreaseDesignCapacity { get; set; }
         internal DesignCapacity ApprovedDesignCapacity { get; set; }
         internal decimal ProjectLocationFactor { get; set; }
-        internal decimal? NLC { get; set; }
+        //internal decimal? NLC { get; set; }
+        internal bool IncludeNLC { get; set; }
         internal decimal MunicipalFees { get; set; }
         internal Guid Community { get; set; }
         internal decimal? ConstructionSeismicUpgrade { get; set; }
@@ -107,13 +109,14 @@ namespace CustomWorkflowActivities.Services
             decimal softCostWrapUpLiabilityInsurance = 0;
             decimal softCostDesignFees = 0;
             decimal softCostContingencyNewReplacement = 0;
+            decimal NLCAmount = 0;
 
             //Default some numbers to 0, cased on Budget Calculation type
             //if partial seismic, set NLC to 0
-            if (BudgetCalculationType == (int)caps_BudgetCalculationType.PartialSeismic)
-            {
-                NLC = 0;
-            }
+            //if (BudgetCalculationType == (int)caps_BudgetCalculationType.PartialSeismic)
+            //{
+            //    NLC = 0;
+            //}
 
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.New ||
                 BudgetCalculationType == (int)caps_BudgetCalculationType.Replacement ||
@@ -131,23 +134,23 @@ namespace CustomWorkflowActivities.Services
 
             #region 2. Space Allocations for Capital Budget -- DONE
             tracingService.Trace("{0}", "Section 2");
-            spaceAllocationNewReplacement = CalculateSpaceAllocation(ApprovedDesignCapacity, SchoolType);
+            spaceAllocationNewReplacement = CalculateSpaceAllocation(ApprovedDesignCapacity, SchoolType, schoolTypeRecord.caps_Name);
 
             //Get existing space allocation for addition and partial replacement less any reductions
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.Addition ||
                 BudgetCalculationType == (int)caps_BudgetCalculationType.PartialReplacement ||
                 BudgetCalculationType == (int)caps_BudgetCalculationType.PartialSeismic)
             {
-                spaceAllocationExisting = CalculateSpaceAllocation(ExistingAndDecreaseDesignCapacity, SchoolType);
+                spaceAllocationExisting = CalculateSpaceAllocation(ExistingAndDecreaseDesignCapacity, SchoolType, schoolTypeRecord.caps_Name);
                 spaceAllocationNewReplacement = spaceAllocationNewReplacement - spaceAllocationExisting;
             }
 
             tracingService.Trace("Space Allocation - New/Replacement: {0}", spaceAllocationNewReplacement);
             //Get total square meterage
-            decimal spaceAllocationTotalNewReplacement = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement) + spaceAllocationNewReplacement;
+            decimal spaceAllocationTotalNewReplacement = spaceAllocationNewReplacement;
 
             result.SpaceAllocationNewReplacement = spaceAllocationNewReplacement;
-            result.SpaceAllocationNLC = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement);
+            //result.SpaceAllocationNLC = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement);
 
             tracingService.Trace("Space Allocation - Total New/Replacement: {0}", spaceAllocationTotalNewReplacement);
             //DB: Total space allocation doesn't seem to be needed
@@ -163,7 +166,7 @@ namespace CustomWorkflowActivities.Services
             tracingService.Trace("Base Budget Rate: {0}", constructionBaseBudgetRate);
 
             //Get Project Size Factor based on square meterage and school type
-            decimal constructionProjectSizeFactor = CalculateProjectSizeFactor(SchoolType, spaceAllocationNewReplacement);
+            decimal constructionProjectSizeFactor = CalculateProjectSizeFactor(SchoolType, schoolTypeRecord.caps_Name, spaceAllocationNewReplacement);
 
             tracingService.Trace("Project Size Factor: {0}", constructionProjectSizeFactor);
             tracingService.Trace("Project Location Factor: {0}", ProjectLocationFactor);
@@ -190,7 +193,7 @@ namespace CustomWorkflowActivities.Services
                     BudgetCalculationType == (int)caps_BudgetCalculationType.PartialReplacement || 
                     BudgetCalculationType == (int)caps_BudgetCalculationType.PartialSeismic)
             {
-                constructionRenovations = CalculateConstructionRenovationFactor(SchoolType, spaceAllocationNewReplacement) * constructionNewReplacement;
+                constructionRenovations = CalculateConstructionRenovationFactor(SchoolType, schoolTypeRecord.caps_Name, spaceAllocationNewReplacement) * constructionNewReplacement;
             }
 
             tracingService.Trace("Construction - Renovations: {0}", constructionRenovations);
@@ -357,9 +360,19 @@ namespace CustomWorkflowActivities.Services
 
             decimal supplementalCosts = Demolition + AbnormalTopography + TempAccommodation + OtherSupplemental;
 
+            //UPDATE: Add NLC to supplemental
+            if ((BudgetCalculationType == (int)caps_BudgetCalculationType.New || BudgetCalculationType == (int)caps_BudgetCalculationType.Replacement)
+                && IncludeNLC)
+            {
+                //get ProjectLocationFactor and NLC Amount
+                NLCAmount = CalculateNLCAmount(ExistingAndDecreaseDesignCapacity, SchoolType, schoolTypeRecord.caps_Name);
+                NLCAmount = NLCAmount * ProjectLocationFactor;
+            }
+            result.NLCBudgetAmount = NLCAmount;
+
             tracingService.Trace("Supplemental Costs: {0}", supplementalCosts);
 
-            result.Total = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts;
+            result.Total = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts + NLCAmount;
 
             return result;
         }
@@ -370,7 +383,7 @@ namespace CustomWorkflowActivities.Services
         /// <param name="designCapacityRecord">Design capacity of K, E & S</param>
         /// <param name="schoolType">Type of School</param>
         /// <returns>Square metre space allocation</returns>
-        private decimal CalculateSpaceAllocation(DesignCapacity designCapacityRecord,  Guid schoolType)
+        private decimal CalculateSpaceAllocation(DesignCapacity designCapacityRecord,  Guid schoolType, string schoolTypeName)
         {
             FilterExpression filterAnd = new FilterExpression();
             filterAnd.Conditions.Add(new ConditionExpression("caps_schooltype", ConditionOperator.Equal, schoolType));
@@ -385,7 +398,7 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Count of Results: {0}", results.Entities.Count);
 
-            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no space allocation record for the school type: {0} and design capacity: {1}.", schoolType, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
+            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no space allocation record for the school type: {0} and design capacity: {1}.", schoolTypeName, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
 
             var designCapacity = results.Entities[0].GetAttributeValue<decimal>("caps_spaceallocation");
 
@@ -408,6 +421,36 @@ namespace CustomWorkflowActivities.Services
             }
 
             return designCapacity;
+        }
+
+        /// <summary>
+        /// Get NLC amount by design capacity and school type
+        /// </summary>
+        /// <param name="designCapacityRecord">Design capacity of K, E & S</param>
+        /// <param name="schoolType">Type of School</param>
+        /// <returns>NLC dollar amount</returns>
+        private decimal CalculateNLCAmount(DesignCapacity designCapacityRecord, Guid schoolType, string schoolTypeName)
+        {
+            FilterExpression filterAnd = new FilterExpression();
+            filterAnd.Conditions.Add(new ConditionExpression("caps_schooltype", ConditionOperator.Equal, schoolType));
+            filterAnd.Conditions.Add(new ConditionExpression("caps_designcapacity", ConditionOperator.GreaterEqual, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
+
+            QueryExpression query = new QueryExpression("caps_nlcfactor");
+            query.ColumnSet.AddColumns("caps_designcapacity", "caps_budget");
+            query.Criteria.AddFilter(filterAnd);
+            query.AddOrder("caps_designcapacity", OrderType.Ascending);
+
+            EntityCollection results = service.RetrieveMultiple(query);
+
+            tracingService.Trace("Count of Results: {0}", results.Entities.Count);
+
+            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no NLC Factor record for the school type: {0} and design capacity: {1}.", schoolTypeName, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
+
+            var nlcBudget = results.Entities[0].GetAttributeValue<int>("caps_budget");
+
+            tracingService.Trace("NLC Amount: {0}", nlcBudget);
+
+            return nlcBudget;
         }
 
         /// <summary>
@@ -446,9 +489,10 @@ namespace CustomWorkflowActivities.Services
         /// Lookup Project Size Factory by school type and space allocation (m²)
         /// </summary>
         /// <param name="schoolType">school type guid</param>
+        /// <param name="schoolTypeName">school type name</param>
         /// <param name="spaceAllocation">Space allocation in metres squared</param>
         /// <returns></returns>
-        private decimal CalculateProjectSizeFactor(Guid schoolType, decimal spaceAllocation)
+        private decimal CalculateProjectSizeFactor(Guid schoolType, string schoolTypeName, decimal spaceAllocation)
         {
             FilterExpression filterAnd = new FilterExpression();
             filterAnd.Conditions.Add(new ConditionExpression("caps_schooltype", ConditionOperator.Equal, schoolType));
@@ -461,7 +505,7 @@ namespace CustomWorkflowActivities.Services
 
             EntityCollection results = service.RetrieveMultiple(query);
 
-            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no project size factor record for the school type: {0} and design capacity: {1}.", schoolType, spaceAllocation));
+            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no project size factor record for the school type: {0} and design capacity: {1}.", schoolTypeName, spaceAllocation));
 
             return results.Entities[0].GetAttributeValue<decimal>("caps_factor");
         }
@@ -470,9 +514,10 @@ namespace CustomWorkflowActivities.Services
         /// Lookup Construction Renovation Factory by school type and space allocation (m²)
         /// </summary>
         /// <param name="schoolType">school type guid</param>
+        /// <param name="schoolTypeName">school type name</param>
         /// <param name="spaceAllocation">Space allocation in metres squared</param>
         /// <returns></returns>
-        private decimal CalculateConstructionRenovationFactor(Guid schoolType, decimal spaceAllocation)
+        private decimal CalculateConstructionRenovationFactor(Guid schoolType, string schoolTypeName, decimal spaceAllocation)
         {
             FilterExpression filterAnd = new FilterExpression();
             filterAnd.Conditions.Add(new ConditionExpression("caps_schooltype", ConditionOperator.Equal, schoolType));
@@ -485,7 +530,7 @@ namespace CustomWorkflowActivities.Services
 
             EntityCollection results = service.RetrieveMultiple(query);
 
-            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no construction renovation factor record for the school type: {0} and design capacity: {1}.", schoolType, spaceAllocation));
+            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no construction renovation factor record for the school type: {0} and design capacity: {1}.", schoolTypeName, spaceAllocation));
 
             return results.Entities[0].GetAttributeValue<decimal>("caps_factor");
         }

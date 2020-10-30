@@ -37,19 +37,41 @@ CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
         };
 
         Xrm.WebApi.online.execute(req).then(
-            function (response) {
-                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
-                var alertOptions = { height: 120, width: 260 };
-                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
-                    function success(result) {
-                        console.log("Alert dialog closed");
-                        formContext.data.refresh();
-                    },
-                    function (error) {
-                        console.log(error.message);
-                    }
-                );
-            },
+                        function (result) {
+                            if (result.ok) {
+                                return result.json().then(
+                                    function (response) {
+                                        debugger;
+                                        //get error message
+                                        if (response.ErrorMessage == null) {
+                                            var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
+                                            var alertOptions = { height: 120, width: 260 };
+                                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                                function success(result) {
+                                                    console.log("Alert dialog closed");
+                                                    formContext.data.refresh();
+                                                },
+                                                function (error) {
+                                                    console.log(error.message);
+                                                }
+                                            );
+                                        }
+                                        else {
+                                            var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + response.ErrorMessage, title: "Schedule B Result" };
+                                            var alertOptions = { height: 120, width: 260 };
+                                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                                function success(result) {
+                                                    console.log("Alert dialog closed");
+                                                },
+                                                function (error) {
+                                                    console.log(error.message);
+                                                }
+                                            );
+                                        }
+                                    });
+                            }
+
+                        },
             function (e) {
 
                 var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + e.message, title: "Schedule B Result" };
