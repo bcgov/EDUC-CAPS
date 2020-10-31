@@ -4,6 +4,27 @@ var CAPS = CAPS || {};
 CAPS.Submission = CAPS.Submission || {};
 
 /**
+ * Function to determine when the Submit (and Validate) button should be shown.
+ * @param {any} primaryControl primary control
+ * @returns {boolean} true if should be shown, otherwise false.
+ */
+CAPS.Submission.ShowValidate = function (primaryControl) {
+    var formContext = primaryControl;
+
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showValidation = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS School District Approver - Add On") {
+            showValidation =  true;
+        }
+    });
+
+    return showValidation;
+};
+
+/**
  * Called from Capital Plan (caps_submission) form.  This function validates the capital plan, displays any errors and submits the plan if there are no validation errors.
  * @param {any} primaryControl primary control
  */
@@ -26,7 +47,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
 
-    let checkBoardResolutionResults = await CAPS.Submission.CheckBoardResolution(formContext);
+    
 
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
 
@@ -34,7 +55,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
     //resultsArray.push(checkBEPResult);
     //resultsArray.push(checkBUSResult);
     resultsArray.push(checkProjectRequestResults);
-    resultsArray.push(checkBoardResolutionResults);
+    //resultsArray.push(checkBoardResolutionResults);
     resultsArray.push(checkAFGVariance);
 
     var allValidationPassed = true;
@@ -48,15 +69,12 @@ CAPS.Submission.Validate = async function (primaryControl) {
         }
     });
 
+    //Check if board resolution attached
+    let checkBoardResolutionResults = CAPS.Submission.CheckBoardResolution(formContext);
+
     //Show Results
-    //formContext.getControl("caps_validationresults").setVisible(true);
-    //formContext.getAttribute("caps_validationresults").setValue(resultsMessage);
-
-
     formContext.ui.tabs.forEach(function (tab, i) {
         //loop through sections
-        //if (arrTabNames.includes(tab.getName())) {
-            //loop through sections
             tab.sections.forEach(function (section, j) {
                 section.controls.forEach(function (control, k) {
 
@@ -66,22 +84,41 @@ CAPS.Submission.Validate = async function (primaryControl) {
                     }
                 });
             });
-        //}
     });
+
+    //refresh the project subgrids
+    formContext.getControl("sgd_MajorMinorProjects").refresh();
+
+    //sgd_AFGProjects
+    formContext.getControl("sgd_AFGProjects").refresh();
 
 
     if (allValidationPassed) {
         //all good so change status or display confirmation
-        var confirmStrings = { text: "This capital plan is valid and ready for submission.  Click OK to Submit or Cancel to exit.", title: "Submission Confirmation" };
-        var confirmOptions = { height: 200, width: 450 };
-        Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
-            function (success) {
-                if (success.confirmed) {
-                    formContext.getAttribute("statuscode").setValue(100000000);
-                    formContext.data.entity.save();
-                }
+        if (checkBoardResolutionResults != null && !checkBoardResolutionResults.validationResult) {
+            let confirmStrings = { text: "WARNING: No Board Resolution Attached.  The results of the Ministry review will not be released without a board resolution.  Click OK to submit or Cancel to exit.", title: "Submission Confirmation" };
+            let confirmOptions = { height: 200, width: 450 };
+            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+                function (success) {
+                    if (success.confirmed) {
+                        formContext.getAttribute("statuscode").setValue(100000000);
+                        formContext.data.entity.save();
+                    }
 
-            });
+                });
+        }
+        else {
+            let confirmStrings = { text: "This capital plan is valid and ready for submission.  Click OK to Submit or Cancel to exit.", title: "Submission Confirmation" };
+            let confirmOptions = { height: 200, width: 450 };
+            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+                function (success) {
+                    if (success.confirmed) {
+                        formContext.getAttribute("statuscode").setValue(100000000);
+                        formContext.data.entity.save();
+                    }
+
+                });
+        }
     }
     else {
         var alertStrings = { confirmButtonLabel: "Ok", text: "The validation of this capital plan failed.  Please see the Validation results section below for details.", title: "Validation Result" };

@@ -21,6 +21,7 @@ const FORM_STATE = {
 
 const TIMELINE_TAB = "tab_timeline";
 const GENERAL_TAB = "General";
+const MINISTRY_REVIEW_TAB = "tab_ministry_review";
 //const CAPITAL_EXPENDITURE_TAB = "tab_Capital_Expenditure";
 const COST_MISSMATCH_NOTIFICATION = "Cost_Missmatch_Notification";
 const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
@@ -55,6 +56,9 @@ CAPS.Project.onLoad = function (executionContext) {
             });
     }
 
+    //Get Submission Category
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+
     //Show/Hide Tabs
     CAPS.Project.ShowHideRelevantTabs(formContext);
 
@@ -82,14 +86,16 @@ CAPS.Project.onLoad = function (executionContext) {
         //sgd_EstimatedExpenditures
         formContext.getControl("sgd_EstimatedExpenditures").addOnLoad(CAPS.Project.UpdateTotalAllocated); 
 
-        //add on-change events for prfs
-        formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
-        formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
-        formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
-        formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
-        formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
+        //add on-change events for prfs if not BEP
+        if (submissionCategoryCode != "BEP") {
+            formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
 
-        CAPS.Project.ValidatePRFS(executionContext);
+            CAPS.Project.ValidatePRFS(executionContext);
+        }
     }
 
     //Only call for SEP and CNCP!
@@ -104,9 +110,6 @@ CAPS.Project.onLoad = function (executionContext) {
     }
 
     //Check if AFG Project
-    //Get Submission Category
-    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
-
     if (submissionCategoryCode === "AFG") {
         CAPS.Project.ToggleAFGFacility(executionContext);
         //add on-change function to existing facility? caps_existingfacility
@@ -245,6 +248,10 @@ CAPS.Project.SetMultipleFacility = function (executionContext) {
 
     var showMultipleFacilities = (formContext.getAttribute("caps_multiplefacilities").getValue() === true) ? true : false;
 
+    if (!showMultipleFacilities) {
+        formContext.ui.clearFormNotification(NO_FACILITY_NOTIFICATION);
+    }
+
     //loop through tabs
     formContext.ui.tabs.forEach(function (tab, i) {
         //loop through sections
@@ -310,7 +317,7 @@ CAPS.Project.SetProjectTypeValue = function (executionContext) {
  * Prevents autosave if the global prevent autosave flag is set
  * @param {any} executionContext execution context
  */
-CAPS.Project.onSave = function (executionContext) {
+CAPS.Project.onSave = function (executionContext) {    
     var eventArgs = executionContext.getEventArgs();
 
     if (CAPS.Project.PREVENT_AUTO_SAVE) {
@@ -320,6 +327,7 @@ CAPS.Project.onSave = function (executionContext) {
             eventArgs.preventDefault();
         }
     }
+    
 }
 
 /**
@@ -403,6 +411,16 @@ CAPS.Project.ShowHideRelevantTabs = function (formContext) {
         arrTabNames.forEach(function (tabName) {
             formContext.ui.tabs.get(tabName).setVisible(true);
         });
+
+        //Show Ministry Review Tab if this is the CAPS app
+        var globalContext = Xrm.Utility.getGlobalContext();
+        globalContext.getCurrentAppName().then(
+            function success(result) {
+                if (result === "CAPS") {
+                    formContext.ui.tabs.get(MINISTRY_REVIEW_TAB).setVisible(true);
+                }
+            }
+            );
 
         //set focus to first tab in list
         formContext.ui.tabs.get(arrTabNames[0]).setDisplayState("expanded");
@@ -509,57 +527,59 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
 CAPS.Project.ValidatePRFS = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
-    //Check the 4 fields
-    var projectRationale = formContext.getAttribute("caps_projectrationale").getValue();
-    var scopeOfWork = formContext.getAttribute("caps_scopeofwork").getValue();
-    var tempAccomodation = formContext.getAttribute("caps_tempaccommodationandbusingplan").getValue();
-    var municipalRequirements = formContext.getAttribute("caps_municipalrequirements").getValue();
+    if (formContext.getAttribute("caps_submissioncategorycode").getValue() != "BEP") {
+        //Check the 4 fields
+        var projectRationale = formContext.getAttribute("caps_projectrationale").getValue();
+        var scopeOfWork = formContext.getAttribute("caps_scopeofwork").getValue();
+        var tempAccomodation = formContext.getAttribute("caps_tempaccommodationandbusingplan").getValue();
+        var municipalRequirements = formContext.getAttribute("caps_municipalrequirements").getValue();
 
-    if (projectRationale !== null && scopeOfWork !== null && tempAccomodation !== null && municipalRequirements !== null) {
-        formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
-    }
-    else {
-        //Call action to validate 
-        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
-        //call action
-        var req = {};
-        var target = { entityType: "caps_project", id: recordId };
-        req.entity = target;
+        if (projectRationale !== null && scopeOfWork !== null && tempAccomodation !== null && municipalRequirements !== null) {
+            formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+        }
+        else {
+            //Call action to validate 
+            var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+            //call action
+            var req = {};
+            var target = { entityType: "caps_project", id: recordId };
+            req.entity = target;
 
-        req.getMetadata = function () {
-            return {
-                boundParameter: "entity",
-                operationType: 0,
-                operationName: "caps_ValidatePRFS",
-                parameterTypes: {
-                    "entity": {
-                        "typeName": "mscrm.caps_project",
-                        "structuralProperty": 5
+            req.getMetadata = function () {
+                return {
+                    boundParameter: "entity",
+                    operationType: 0,
+                    operationName: "caps_ValidatePRFS",
+                    parameterTypes: {
+                        "entity": {
+                            "typeName": "mscrm.caps_project",
+                            "structuralProperty": 5
+                        }
                     }
-                }
+                };
             };
-        };
 
-        Xrm.WebApi.online.execute(req).then(
-            function (result) {
-                debugger;
-                if (result.ok) {
-                    return result.json().then(
-                        function (response) {
+            Xrm.WebApi.online.execute(req).then(
+                function (result) {
+                    debugger;
+                    if (result.ok) {
+                        return result.json().then(
+                            function (response) {
 
-                            if (response.hasCashflow) {
-                                formContext.ui.setFormNotification('PRFS is not complete.', 'WARNING', PRFS_INCOMPLETE_NOTIFICATION);
-                            }
-                            else {
-                                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
-                            }
-                        });
+                                if (response.hasCashflow) {
+                                    formContext.ui.setFormNotification('PRFS is not complete.', 'WARNING', PRFS_INCOMPLETE_NOTIFICATION);
+                                }
+                                else {
+                                    formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+                                }
+                            });
+                    }
+                },
+                function (e) {
+                    formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
                 }
-            },
-            function (e) {
-                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
-            }
-        );
+            );
+        }
     }
 
 }
@@ -706,12 +726,75 @@ CAPS.Project.ToggleRequiresScheduleB = function (executionContext) {
 }
 
 /**
+ * This function displays the correct schedule b fields based on the schedule b type
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.ToggleScheduleBFields = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    //Get Schedule B Type field on Project Type
+    var projectType = formContext.getAttribute("caps_projecttype").getValue();
+
+    var hostSD = formContext.getAttribute("caps_schooldistrict").getValue();
+
+    if (hostSD !== null && !hostSD[0].name.includes("SD93")) {
+        formContext.getControl("caps_hostschooldistrict").setVisible(false);
+    }
+
+    if (projectType !== null) {
+        Xrm.WebApi.retrieveRecord("caps_projecttype", projectType[0].id, "?$select=caps_budgetcalculationtype").then(
+        function success(result) {
+            debugger;
+            var calcType = result.caps_budgetcalculationtype;
+            //New = 200,870,000
+            //Replacement = 200,870,001
+            //Partial Seismic = 200,870,004
+            //Seismic = 200,870,005
+            if (calcType === 200870000 || calcType === 200870001) {
+                //show NLC
+                formContext.getControl("caps_includenlc").setVisible(true);
+            }
+            else {
+                //hide and set NLS to false
+                formContext.getControl("caps_includenlc").setVisible(false);
+                formContext.getAttribute("caps_includenlc").setValue(null);
+            }
+            if (calcType === 200870001 || calcType === 200870004 || calcType === 200870005) {
+                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
+                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
+                formContext.getControl("caps_constructioncostsspir").setVisible(true);
+                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
+                formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(true);
+            }
+            else {
+                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
+                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
+                formContext.getControl("caps_constructioncostsspir").setVisible(false);
+                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
+                formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(false);
+
+                formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
+                formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
+                formContext.getAttribute("caps_constructioncostsspir").setValue(null);
+                formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
+                formContext.getAttribute("caps_constructioncostsnonstructuralseismicupgr").setValue(null);
+            }
+        },
+        function (error) {
+            console.log(error.message);
+            // handle error conditions
+        });
+    }
+}
+
+/**
  * This function calls all schedule b related functions
  * @param {any} executionContext Execution Context
  */
 CAPS.Project.SetupScheduleB = function (executionContext) {
-    debugger;
     var formContext = executionContext.getFormContext();
+
+    CAPS.Project.ToggleScheduleBFields(executionContext);
+    formContext.getAttribute("caps_projecttype").addOnChange(CAPS.Project.ToggleScheduleBFields);
 
     CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesdemolition", "caps_demolitioncost");
     CAPS.Project.ToggleScheduleBSupplementalField(executionContext, "caps_projectincludesabnormaltopography", "caps_abnormaltopographycost");

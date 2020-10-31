@@ -44,7 +44,7 @@ namespace CustomWorkflowActivities
 
                 var columns = new ColumnSet("caps_schooltype"
                                             , "caps_projecttype"
-                                            , "caps_nlc"
+                                            , "caps_includenlc"
                                             , "caps_communitylocation"
                                             , "caps_municipalfees"
                                             , "caps_constructioncostsnonstructuralseismicup"
@@ -111,7 +111,7 @@ namespace CustomWorkflowActivities
                 //set parameters
                 scheduleB.SchoolType = prfsOptionRecord.caps_SchoolType.Id;
                 scheduleB.BudgetCalculationType = projectTypeRecord.caps_BudgetCalculationType.Value;
-                scheduleB.NLC = prfsOptionRecord.caps_NLC;
+                scheduleB.IncludeNLC = prfsOptionRecord.caps_IncludeNLC.GetValueOrDefault(false);
                 scheduleB.ProjectLocationFactor = communityLocationRecord.caps_ProjectLocationFactor.GetValueOrDefault(1);
 
                 tracingService.Trace("Facility - K:{0} E:{1} S:{2}", adjustedDesignK, adjustedDesignE, adjustedDesignS);
@@ -144,7 +144,7 @@ namespace CustomWorkflowActivities
                 recordToUpdate.Id = recordId;
                 //Section 2
                 recordToUpdate.caps_SchBSpaceAllocationNewReplacement = result.SpaceAllocationNewReplacement;
-                recordToUpdate.caps_SchBSpaceAllocationNLC = result.SpaceAllocationNLC;
+                //recordToUpdate.caps_SchBSpaceAllocationNLC = result.SpaceAllocationNLC;
 
                 //Section 3
                 recordToUpdate.caps_SchBBaseBudgetRate = result.BaseBudgetRate;
@@ -169,6 +169,7 @@ namespace CustomWorkflowActivities
                 recordToUpdate.caps_SchBProjectManagementFees = result.ProjectManagement;
                 recordToUpdate.caps_SchBLiabilityInsurance = result.LiabilityInsurance;
                 recordToUpdate.caps_SchBPayableTaxes = result.PayableTaxes;
+                recordToUpdate.caps_SchBNLCBudgetAmount = result.NLCBudgetAmount;
                 service.Update(recordToUpdate);
 
                 //Return Total
