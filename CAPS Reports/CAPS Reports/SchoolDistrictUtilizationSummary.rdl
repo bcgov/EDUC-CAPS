@@ -539,9 +539,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_utilizationtotal_designValue.Value</Value>
+                                  <Value>=Fields!caps_utilizationtotal_designValue.Value/100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>0.00 %</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -571,9 +572,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_utilizationtotal_operatingValue.Value</Value>
+                                  <Value>=Fields!caps_utilizationtotal_operatingValue.Value/100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>0.00 %</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -883,6 +885,11 @@
                     </TablixMember>
                     <TablixMember>
                       <Group Name="Details" />
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!caps_name.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
                       <Visibility>
                         <Hidden>true</Hidden>
                         <ToggleItem>caps_schooldistrict1</ToggleItem>
@@ -896,7 +903,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>AllActiveFacilities</DataSetName>
-            <Top>0.3937cm</Top>
+            <Top>0.39369cm</Top>
             <Left>0cm</Left>
             <Height>3.48479cm</Height>
             <Width>24.28875cm</Width>
@@ -913,7 +920,7 @@
       <Width>24.28875cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.88396cm</Height>
+          <Height>2.88397cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -981,7 +988,6 @@
               <Value>BC_EDUC_H_RGB_pos</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.02556in</Top>
-              <Left>0in</Left>
               <Height>1.10986in</Height>
               <Width>1.83136in</Width>
               <ZIndex>2</ZIndex>
