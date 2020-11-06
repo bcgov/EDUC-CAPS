@@ -110,7 +110,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.5525cm</Height>
+                  <Height>1.31438cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -121,13 +121,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Action Required</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                    <Color>Brown</Color>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>. The sum of all active school districts AFG Funding does not equal 1 (or 100%). Ensure the Sum Total AFG Allocated equals 1 prior to publishing an AFG Call for Submission.</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox30</rd:DefaultName>
@@ -142,87 +151,16 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox31">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Action Required</Value>
-                                  <Style>
-                                    <Color>Brown</Color>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>. The sum of all active school districts AFG Funding does not equal 1 (or 100%). Ensure the Sum Total AFG Allocated equals 1 prior to publishing an AFG Call for Submission.</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>2</ColSpan>
+                        <ColSpan>4</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox33">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontSize>11pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Color>= IIF(ReportItems!caps_afgfundingpercentageValue_Sum.Value &lt;&gt; 1, "Brown", "White")</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.73229cm</Height>
+                  <Height>0.88cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -235,7 +173,6 @@
                                 <TextRun>
                                   <Value>Variance: </Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -254,6 +191,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#234075</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -276,10 +214,9 @@
                                 <TextRun>
                                   <Value>= 1 - ReportItems!caps_afgfundingpercentageValue_Sum.Value</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>= IIF(ReportItems!caps_afgfundingpercentageValue_Sum.Value &lt;&gt; 1, "Red", "White")</Color>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -291,7 +228,8 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
+                            <BackgroundColor>DarkRed</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -303,7 +241,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.83812cm</Height>
+                  <Height>0.88cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -334,6 +272,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#234075</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -356,7 +295,6 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_afgfundingpercentageValue.Value)</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -372,6 +310,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#234075</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -383,7 +322,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>0.88223cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -396,7 +335,6 @@
                                 <TextRun>
                                   <Value>Name</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -414,6 +352,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -433,7 +372,6 @@
                                 <TextRun>
                                   <Value>Number</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -451,6 +389,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -470,7 +409,6 @@
                                 <TextRun>
                                   <Value>Region</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -488,6 +426,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -507,7 +446,6 @@
                                 <TextRun>
                                   <Value>AFG Funding</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -525,6 +463,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -638,9 +577,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -721,7 +658,7 @@
             </SortExpressions>
             <Top>0.10583cm</Top>
             <Left>0.02647cm</Left>
-            <Height>4.32291cm</Height>
+            <Height>4.55661cm</Height>
             <Width>24.10354cm</Width>
             <Style>
               <Border>
@@ -730,7 +667,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.71097cm</Height>
+        <Height>4.73743cm</Height>
         <Style />
       </Body>
       <Width>24.13001cm</Width>
@@ -751,13 +688,15 @@
                       <Style />
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <Top>0cm</Top>
-              <Left>17.71416cm</Left>
+              <Left>14.98895cm</Left>
               <Height>0.65292cm</Height>
-              <Width>6.38938cm</Width>
+              <Width>9.11459cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
