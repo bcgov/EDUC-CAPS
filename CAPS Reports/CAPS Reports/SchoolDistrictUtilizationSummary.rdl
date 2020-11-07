@@ -189,7 +189,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Current Enrolment Total</Value>
+                                  <Value>Current Enrolment </Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -523,7 +523,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>0.00 %</Format>
+                                    <Format>0 %</Format>
                                     <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Brown", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -560,7 +560,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
-                                    <Format>0.00 %</Format>
+                                    <Format>0 %</Format>
                                     <Color>= IIF(ReportItems!Textbox116.Value &gt;= 1, "Brown", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -790,7 +790,7 @@
                                   <Value>= ReportItems!caps_total_currentenrolmentValue.Value / ReportItems!caps_adjusteddesigncapacitytotalValue1.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0.00 %</Format>
+                                    <Format>0 %</Format>
                                     <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -824,7 +824,7 @@
                                   <Value>= ReportItems!caps_total_currentenrolmentValue.Value / ReportItems!caps_operatingcapacitytotalValue1.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0.00 %</Format>
+                                    <Format>0 %</Format>
                                     <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
