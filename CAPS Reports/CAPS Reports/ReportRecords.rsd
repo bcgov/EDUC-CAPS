@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="ReportRecords">
+    <Query>
+      <DataSourceReference>CAPS_DEV</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@FacilitiesforSelection">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_capacityreporting"&gt;
+    &lt;attribute name="caps_capacityreportingid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_total_enrolment" /&gt;
+    &lt;attribute name="caps_total_operatingcapacity" /&gt;
+    &lt;attribute name="caps_total_designutilization" /&gt;
+    &lt;attribute name="caps_total_operatingutilization" /&gt;
+    &lt;attribute name="caps_total_designcapacity" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="caps_secondary_enrolment" /&gt;
+    &lt;attribute name="caps_secondary_designutilization" /&gt;
+    &lt;attribute name="caps_secondary_designcapacity" /&gt;
+    &lt;attribute name="caps_secondary_operatingcapacity" /&gt;
+    &lt;attribute name="caps_secondary_operatingutilization" /&gt;
+    &lt;attribute name="caps_schoolyear" /&gt;
+    &lt;attribute name="caps_kindergarten_operatingcapacity" /&gt;
+    &lt;attribute name="caps_kindergarten_designcapacity" /&gt;
+    &lt;attribute name="caps_kindergarten_operatingutilization" /&gt;
+    &lt;attribute name="caps_kindergarten_enrolment" /&gt;
+    &lt;attribute name="caps_kindergarten_designutilization" /&gt;
+    &lt;attribute name="caps_international_enrolment" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;attribute name="caps_elementary_operatingutilization" /&gt;
+    &lt;attribute name="caps_elementary_designcapacity" /&gt;
+    &lt;attribute name="caps_elementary_designutilization" /&gt;
+    &lt;attribute name="caps_elementary_enrolment" /&gt;
+    &lt;attribute name="caps_elementary_operatingcapacity" /&gt;
+    &lt;order attribute="caps_schoolyear" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" visible="false" link-type="outer" alias="YEAR"&gt;
+      &lt;attribute name="edu_type" /&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+      &lt;attribute name="edu_enddate" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_facilityid" operator="in" uitype="caps_facility" value="@FacilitiesforSelection" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="caps_capacityreportingid">
+        <DataField>caps_capacityreportingid</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_name">
+        <DataField>caps_name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_enrolment">
+        <DataField>caps_total_enrolment</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_designcapacity">
+        <DataField>caps_total_designcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_enrolmentValue">
+        <DataField>caps_total_enrolmentValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_designcapacityValue">
+        <DataField>caps_total_designcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_operatingcapacity">
+        <DataField>caps_total_operatingcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_designutilization">
+        <DataField>caps_total_designutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_operatingcapacityValue">
+        <DataField>caps_total_operatingcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_designutilizationValue">
+        <DataField>caps_total_designutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_designcapacity">
+        <DataField>caps_secondary_designcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_designcapacityValue">
+        <DataField>caps_secondary_designcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_designutilization">
+        <DataField>caps_secondary_designutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_operatingutilization">
+        <DataField>caps_total_operatingutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_designutilizationValue">
+        <DataField>caps_secondary_designutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_total_operatingutilizationValue">
+        <DataField>caps_total_operatingutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_schoolyear">
+        <DataField>caps_schoolyear</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_schoolyearValue">
+        <DataField>caps_schoolyearValue</DataField>
+        <rd:TypeName>System.Guid</rd:TypeName>
+      </Field>
+      <Field Name="statuscode">
+        <DataField>statuscode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_schoolyearEntityName">
+        <DataField>caps_schoolyearEntityName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_designcapacity">
+        <DataField>caps_kindergarten_designcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="statuscodeValue">
+        <DataField>statuscodeValue</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_designcapacityValue">
+        <DataField>caps_kindergarten_designcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_enrolment">
+        <DataField>caps_secondary_enrolment</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_enrolmentValue">
+        <DataField>caps_secondary_enrolmentValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_designutilization">
+        <DataField>caps_kindergarten_designutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_designutilizationValue">
+        <DataField>caps_kindergarten_designutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_facility">
+        <DataField>caps_facility</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_facilityValue">
+        <DataField>caps_facilityValue</DataField>
+        <rd:TypeName>System.Guid</rd:TypeName>
+      </Field>
+      <Field Name="caps_facilityEntityName">
+        <DataField>caps_facilityEntityName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_designcapacity">
+        <DataField>caps_elementary_designcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_operatingcapacity">
+        <DataField>caps_secondary_operatingcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_designcapacityValue">
+        <DataField>caps_elementary_designcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_operatingcapacityValue">
+        <DataField>caps_secondary_operatingcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_designutilization">
+        <DataField>caps_elementary_designutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_operatingutilization">
+        <DataField>caps_secondary_operatingutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_designutilizationValue">
+        <DataField>caps_elementary_designutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_secondary_operatingutilizationValue">
+        <DataField>caps_secondary_operatingutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_type">
+        <DataField>YEAR_edu_type</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_typeValue">
+        <DataField>YEAR_edu_typeValue</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_startyear">
+        <DataField>YEAR_edu_startyear</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_operatingcapacity">
+        <DataField>caps_kindergarten_operatingcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_startyearValue">
+        <DataField>YEAR_edu_startyearValue</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_operatingcapacityValue">
+        <DataField>caps_kindergarten_operatingcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_enddate">
+        <DataField>YEAR_edu_enddate</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="YEAR_edu_enddateValue">
+        <DataField>YEAR_edu_enddateValue</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_operatingutilization">
+        <DataField>caps_kindergarten_operatingutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_operatingutilizationValue">
+        <DataField>caps_kindergarten_operatingutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_enrolment">
+        <DataField>caps_kindergarten_enrolment</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_kindergarten_enrolmentValue">
+        <DataField>caps_kindergarten_enrolmentValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_international_enrolment">
+        <DataField>caps_international_enrolment</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_international_enrolmentValue">
+        <DataField>caps_international_enrolmentValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_operatingutilization">
+        <DataField>caps_elementary_operatingutilization</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_operatingutilizationValue">
+        <DataField>caps_elementary_operatingutilizationValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_enrolment">
+        <DataField>caps_elementary_enrolment</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_enrolmentValue">
+        <DataField>caps_elementary_enrolmentValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_operatingcapacity">
+        <DataField>caps_elementary_operatingcapacity</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="caps_elementary_operatingcapacityValue">
+        <DataField>caps_elementary_operatingcapacityValue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
