@@ -362,14 +362,58 @@
       </Fields>
     </DataSet>
     <DataSet Name="ReportRecords">
-      <SharedDataSet>
-        <SharedDataSetReference>ReportRecords</SharedDataSetReference>
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@FacilitiesforSelection">
             <Value>=Parameters!FacilitiesforSelection.Value</Value>
           </QueryParameter>
         </QueryParameters>
-      </SharedDataSet>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_capacityreporting"&gt;
+    &lt;attribute name="caps_capacityreportingid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_total_enrolment" /&gt;
+    &lt;attribute name="caps_total_operatingcapacity" /&gt;
+    &lt;attribute name="caps_total_designutilization" /&gt;
+    &lt;attribute name="caps_total_operatingutilization" /&gt;
+    &lt;attribute name="caps_total_designcapacity" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="caps_secondary_enrolment" /&gt;
+    &lt;attribute name="caps_secondary_designutilization" /&gt;
+    &lt;attribute name="caps_secondary_designcapacity" /&gt;
+    &lt;attribute name="caps_secondary_operatingcapacity" /&gt;
+    &lt;attribute name="caps_secondary_operatingutilization" /&gt;
+    &lt;attribute name="caps_schoolyear" /&gt;
+    &lt;attribute name="caps_kindergarten_operatingcapacity" /&gt;
+    &lt;attribute name="caps_kindergarten_designcapacity" /&gt;
+    &lt;attribute name="caps_kindergarten_operatingutilization" /&gt;
+    &lt;attribute name="caps_kindergarten_enrolment" /&gt;
+    &lt;attribute name="caps_kindergarten_designutilization" /&gt;
+    &lt;attribute name="caps_international_enrolment" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;attribute name="caps_elementary_operatingutilization" /&gt;
+    &lt;attribute name="caps_elementary_designcapacity" /&gt;
+    &lt;attribute name="caps_elementary_designutilization" /&gt;
+    &lt;attribute name="caps_elementary_enrolment" /&gt;
+    &lt;attribute name="caps_elementary_operatingcapacity" /&gt;
+    &lt;order attribute="caps_schoolyear" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" visible="false" link-type="outer" alias="YEAR"&gt;
+      &lt;attribute name="edu_type" /&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+      &lt;attribute name="edu_enddate" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_facilityid" operator="in" uitype="caps_facility" value="@FacilitiesforSelection" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
       <Fields>
         <Field Name="caps_capacityreportingid">
           <DataField>caps_capacityreportingid</DataField>
@@ -383,32 +427,64 @@
           <DataField>caps_total_enrolment</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_total_designcapacity">
-          <DataField>caps_total_designcapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_total_enrolmentValue">
           <DataField>caps_total_enrolmentValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_total_designcapacityValue">
-          <DataField>caps_total_designcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_total_operatingcapacity">
           <DataField>caps_total_operatingcapacity</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_total_designutilization">
-          <DataField>caps_total_designutilization</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_total_operatingcapacityValue">
           <DataField>caps_total_operatingcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_total_designutilization">
+          <DataField>caps_total_designutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_total_designutilizationValue">
           <DataField>caps_total_designutilizationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_operatingutilization">
+          <DataField>caps_total_operatingutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_operatingutilizationValue">
+          <DataField>caps_total_operatingutilizationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_designcapacity">
+          <DataField>caps_total_designcapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_designcapacityValue">
+          <DataField>caps_total_designcapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_secondary_enrolment">
+          <DataField>caps_secondary_enrolment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_secondary_enrolmentValue">
+          <DataField>caps_secondary_enrolmentValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_secondary_designutilization">
+          <DataField>caps_secondary_designutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_secondary_designutilizationValue">
+          <DataField>caps_secondary_designutilizationValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_secondary_designcapacity">
@@ -419,20 +495,20 @@
           <DataField>caps_secondary_designcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_secondary_designutilization">
-          <DataField>caps_secondary_designutilization</DataField>
+        <Field Name="caps_secondary_operatingcapacity">
+          <DataField>caps_secondary_operatingcapacity</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_total_operatingutilization">
-          <DataField>caps_total_operatingutilization</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_designutilizationValue">
-          <DataField>caps_secondary_designutilizationValue</DataField>
+        <Field Name="caps_secondary_operatingcapacityValue">
+          <DataField>caps_secondary_operatingcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_total_operatingutilizationValue">
-          <DataField>caps_total_operatingutilizationValue</DataField>
+        <Field Name="caps_secondary_operatingutilization">
+          <DataField>caps_secondary_operatingutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_secondary_operatingutilizationValue">
+          <DataField>caps_secondary_operatingutilizationValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_schoolyear">
@@ -443,117 +519,25 @@
           <DataField>caps_schoolyearValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="statuscode">
-          <DataField>statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_schoolyearEntityName">
           <DataField>caps_schoolyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_designcapacity">
-          <DataField>caps_kindergarten_designcapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statuscodeValue">
-          <DataField>statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_designcapacityValue">
-          <DataField>caps_kindergarten_designcapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_enrolment">
-          <DataField>caps_secondary_enrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_enrolmentValue">
-          <DataField>caps_secondary_enrolmentValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_designutilization">
-          <DataField>caps_kindergarten_designutilization</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_designutilizationValue">
-          <DataField>caps_kindergarten_designutilizationValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_facility">
-          <DataField>caps_facility</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityValue">
-          <DataField>caps_facilityValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityEntityName">
-          <DataField>caps_facilityEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_designcapacity">
-          <DataField>caps_elementary_designcapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_operatingcapacity">
-          <DataField>caps_secondary_operatingcapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_designcapacityValue">
-          <DataField>caps_elementary_designcapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_operatingcapacityValue">
-          <DataField>caps_secondary_operatingcapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_designutilization">
-          <DataField>caps_elementary_designutilization</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_operatingutilization">
-          <DataField>caps_secondary_operatingutilization</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_designutilizationValue">
-          <DataField>caps_elementary_designutilizationValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_operatingutilizationValue">
-          <DataField>caps_secondary_operatingutilizationValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="YEAR_edu_type">
-          <DataField>YEAR_edu_type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="YEAR_edu_typeValue">
-          <DataField>YEAR_edu_typeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="YEAR_edu_startyear">
-          <DataField>YEAR_edu_startyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_kindergarten_operatingcapacity">
           <DataField>caps_kindergarten_operatingcapacity</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="YEAR_edu_startyearValue">
-          <DataField>YEAR_edu_startyearValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_kindergarten_operatingcapacityValue">
           <DataField>caps_kindergarten_operatingcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="YEAR_edu_enddate">
-          <DataField>YEAR_edu_enddate</DataField>
+        <Field Name="caps_kindergarten_designcapacity">
+          <DataField>caps_kindergarten_designcapacity</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="YEAR_edu_enddateValue">
-          <DataField>YEAR_edu_enddateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="caps_kindergarten_designcapacityValue">
+          <DataField>caps_kindergarten_designcapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_kindergarten_operatingutilization">
           <DataField>caps_kindergarten_operatingutilization</DataField>
@@ -571,6 +555,14 @@
           <DataField>caps_kindergarten_enrolmentValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_kindergarten_designutilization">
+          <DataField>caps_kindergarten_designutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_kindergarten_designutilizationValue">
+          <DataField>caps_kindergarten_designutilizationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_international_enrolment">
           <DataField>caps_international_enrolment</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -579,12 +571,40 @@
           <DataField>caps_international_enrolmentValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_elementary_operatingutilization">
           <DataField>caps_elementary_operatingutilization</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_elementary_operatingutilizationValue">
           <DataField>caps_elementary_operatingutilizationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_elementary_designcapacity">
+          <DataField>caps_elementary_designcapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_elementary_designcapacityValue">
+          <DataField>caps_elementary_designcapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_elementary_designutilization">
+          <DataField>caps_elementary_designutilization</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_elementary_designutilizationValue">
+          <DataField>caps_elementary_designutilizationValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_elementary_enrolment">
@@ -602,6 +622,30 @@
         <Field Name="caps_elementary_operatingcapacityValue">
           <DataField>caps_elementary_operatingcapacityValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_type">
+          <DataField>YEAR_edu_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_typeValue">
+          <DataField>YEAR_edu_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyear">
+          <DataField>YEAR_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyearValue">
+          <DataField>YEAR_edu_startyearValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_enddate">
+          <DataField>YEAR_edu_enddate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_enddateValue">
+          <DataField>YEAR_edu_enddateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1005,7 +1049,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_kindergarten_enrolment</rd:DefaultName>
@@ -1038,7 +1084,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_enrolment</rd:DefaultName>
@@ -1071,7 +1119,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_enrolment</rd:DefaultName>
@@ -1104,7 +1154,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_total_enrolment</rd:DefaultName>
@@ -1137,7 +1189,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_international_enrolment</rd:DefaultName>
@@ -1245,7 +1299,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_kindergarten_designcapacity</rd:DefaultName>
@@ -1278,7 +1334,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_designcapacity</rd:DefaultName>
@@ -1311,7 +1369,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_designcapacity</rd:DefaultName>
@@ -1344,7 +1404,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_total_designcapacity</rd:DefaultName>
@@ -1376,7 +1438,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox103</rd:DefaultName>
@@ -1487,7 +1551,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_kindergarten_designutilization</rd:DefaultName>
@@ -1523,7 +1589,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_designutilization</rd:DefaultName>
@@ -1559,7 +1627,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_designutilization</rd:DefaultName>
@@ -1595,7 +1665,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_total_designutilization</rd:DefaultName>
@@ -1630,7 +1702,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox104</rd:DefaultName>
@@ -1741,7 +1815,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_kindergarten_operatingcapacity</rd:DefaultName>
@@ -1774,7 +1850,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_operatingcapacity</rd:DefaultName>
@@ -1807,7 +1885,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_operatingcapacity</rd:DefaultName>
@@ -1843,7 +1923,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_total_operatingcapacity</rd:DefaultName>
@@ -1875,7 +1957,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox105</rd:DefaultName>
@@ -1986,7 +2070,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_kindergarten_operatingutilization</rd:DefaultName>
@@ -2022,7 +2108,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_operatingutilization</rd:DefaultName>
@@ -2061,7 +2149,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_operatingutilization</rd:DefaultName>
@@ -2091,10 +2181,15 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=IIF(SUM(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, SUM(Fields!caps_total_enrolmentValue.Value) / iif(sum(Fields!caps_total_operatingcapacityValue.Value) =0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>P0</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -2103,10 +2198,14 @@
                               <Style>None</Style>
                             </Border>
                             <TopBorder>
+                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </TopBorder>
                             <LeftBorder>
+                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
+                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Style>Solid</Style>
@@ -2134,7 +2233,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox106</rd:DefaultName>
@@ -2248,7 +2349,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -2286,7 +2389,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -2324,7 +2429,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -2362,7 +2469,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
@@ -2400,7 +2509,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
