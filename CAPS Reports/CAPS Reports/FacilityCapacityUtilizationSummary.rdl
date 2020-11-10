@@ -4,363 +4,12 @@
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="CAPS_DEV">
-      <ConnectionProperties>
-        <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
-      </ConnectionProperties>
+      <DataSourceReference>CAPS_DEV</DataSourceReference>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>9602478a-36de-4c8a-a0f4-a4a6adb9ccbf</rd:DataSourceID>
+      <rd:DataSourceID>7ba79ffc-1775-467f-abc4-636dc8fe2a1b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="SchoolDistrict">
-      <Query>
-        <DataSourceName>CAPS_DEV</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_schooldistrict"&gt;
-    &lt;attribute name="edu_name" /&gt;
-    &lt;attribute name="createdon" /&gt;
-    &lt;attribute name="edu_region" /&gt;
-    &lt;attribute name="ownerid" /&gt;
-    &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;attribute name="edu_number" /&gt;
-    &lt;attribute name="edu_internalcode" /&gt;
-    &lt;attribute name="edu_commonname" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="edu_name">
-          <DataField>edu_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdon">
-          <DataField>createdon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdonValue">
-          <DataField>createdonValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="edu_region">
-          <DataField>edu_region</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionValue">
-          <DataField>edu_regionValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionEntityName">
-          <DataField>edu_regionEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_schooldistrictid">
-          <DataField>edu_schooldistrictid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_number">
-          <DataField>edu_number</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_internalcode">
-          <DataField>edu_internalcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_commonname">
-          <DataField>edu_commonname</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="Facilities">
-      <Query>
-        <DataSourceName>CAPS_DEV</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility"&gt;
-    &lt;attribute name="caps_facilityid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_utilizationtotal_operating" /&gt;
-    &lt;attribute name="caps_utilizationtotal_design" /&gt;
-    &lt;attribute name="caps_utilizationsecondary_operating" /&gt;
-    &lt;attribute name="caps_utilizationsecondary_design" /&gt;
-    &lt;attribute name="caps_utilizationkindergarten_operating" /&gt;
-    &lt;attribute name="caps_utilizationkindergarten_design" /&gt;
-    &lt;attribute name="caps_utilizationelementary_operating" /&gt;
-    &lt;attribute name="caps_utilizationelementary_design" /&gt;
-    &lt;attribute name="caps_schooldistrict" /&gt;
-    &lt;attribute name="caps_sldfacilitycode" /&gt;
-    &lt;attribute name="caps_operatingcapacitytotal" /&gt;
-    &lt;attribute name="caps_operatingcapacitysecondary" /&gt;
-    &lt;attribute name="caps_operatingcapacitykindergarten" /&gt;
-    &lt;attribute name="caps_operatingcapacityelementary" /&gt;
-    &lt;attribute name="caps_ministryassetnumber" /&gt;
-    &lt;attribute name="statuscode" /&gt;
-    &lt;attribute name="caps_total_currentenrolment" /&gt;
-    &lt;attribute name="caps_secondary_currentenrolment" /&gt;
-    &lt;attribute name="caps_kindergarten_currentenrolment" /&gt;
-    &lt;attribute name="caps_elementary_currentenrolment" /&gt;
-    &lt;attribute name="caps_commonname" /&gt;
-    &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
-    &lt;attribute name="caps_adjusteddesigncapacitysecondary" /&gt;
-    &lt;attribute name="caps_adjusteddesigncapacitykindergarten" /&gt;
-    &lt;attribute name="caps_adjusteddesigncapacityelementary" /&gt;
-    &lt;attribute name="caps_designfacilitytype" /&gt;
-    &lt;attribute name="caps_currentfacilitytype" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_facilityid">
-          <DataField>caps_facilityid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_operating">
-          <DataField>caps_utilizationtotal_operating</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_operatingValue">
-          <DataField>caps_utilizationtotal_operatingValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_design">
-          <DataField>caps_utilizationtotal_design</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_designValue">
-          <DataField>caps_utilizationtotal_designValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationsecondary_operating">
-          <DataField>caps_utilizationsecondary_operating</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationsecondary_operatingValue">
-          <DataField>caps_utilizationsecondary_operatingValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationsecondary_design">
-          <DataField>caps_utilizationsecondary_design</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationsecondary_designValue">
-          <DataField>caps_utilizationsecondary_designValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationkindergarten_operating">
-          <DataField>caps_utilizationkindergarten_operating</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationkindergarten_operatingValue">
-          <DataField>caps_utilizationkindergarten_operatingValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationkindergarten_design">
-          <DataField>caps_utilizationkindergarten_design</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationkindergarten_designValue">
-          <DataField>caps_utilizationkindergarten_designValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationelementary_operating">
-          <DataField>caps_utilizationelementary_operating</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationelementary_operatingValue">
-          <DataField>caps_utilizationelementary_operatingValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationelementary_design">
-          <DataField>caps_utilizationelementary_design</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationelementary_designValue">
-          <DataField>caps_utilizationelementary_designValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_schooldistrict">
-          <DataField>caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_schooldistrictValue">
-          <DataField>caps_schooldistrictValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_schooldistrictEntityName">
-          <DataField>caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_sldfacilitycode">
-          <DataField>caps_sldfacilitycode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitytotal">
-          <DataField>caps_operatingcapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitytotalValue">
-          <DataField>caps_operatingcapacitytotalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitysecondary">
-          <DataField>caps_operatingcapacitysecondary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitysecondaryValue">
-          <DataField>caps_operatingcapacitysecondaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitykindergarten">
-          <DataField>caps_operatingcapacitykindergarten</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitykindergartenValue">
-          <DataField>caps_operatingcapacitykindergartenValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacityelementary">
-          <DataField>caps_operatingcapacityelementary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacityelementaryValue">
-          <DataField>caps_operatingcapacityelementaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_ministryassetnumber">
-          <DataField>caps_ministryassetnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statuscode">
-          <DataField>statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statuscodeValue">
-          <DataField>statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_total_currentenrolment">
-          <DataField>caps_total_currentenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_total_currentenrolmentValue">
-          <DataField>caps_total_currentenrolmentValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_currentenrolment">
-          <DataField>caps_secondary_currentenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_secondary_currentenrolmentValue">
-          <DataField>caps_secondary_currentenrolmentValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_currentenrolment">
-          <DataField>caps_kindergarten_currentenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_kindergarten_currentenrolmentValue">
-          <DataField>caps_kindergarten_currentenrolmentValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_currentenrolment">
-          <DataField>caps_elementary_currentenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_elementary_currentenrolmentValue">
-          <DataField>caps_elementary_currentenrolmentValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_commonname">
-          <DataField>caps_commonname</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitytotal">
-          <DataField>caps_adjusteddesigncapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitytotalValue">
-          <DataField>caps_adjusteddesigncapacitytotalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitysecondary">
-          <DataField>caps_adjusteddesigncapacitysecondary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitysecondaryValue">
-          <DataField>caps_adjusteddesigncapacitysecondaryValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitykindergarten">
-          <DataField>caps_adjusteddesigncapacitykindergarten</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacitykindergartenValue">
-          <DataField>caps_adjusteddesigncapacitykindergartenValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacityelementary">
-          <DataField>caps_adjusteddesigncapacityelementary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_adjusteddesigncapacityelementaryValue">
-          <DataField>caps_adjusteddesigncapacityelementaryValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_designfacilitytype">
-          <DataField>caps_designfacilitytype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designfacilitytypeValue">
-          <DataField>caps_designfacilitytypeValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_designfacilitytypeEntityName">
-          <DataField>caps_designfacilitytypeEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_currentfacilitytype">
-          <DataField>caps_currentfacilitytype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_currentfacilitytypeValue">
-          <DataField>caps_currentfacilitytypeValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_currentfacilitytypeEntityName">
-          <DataField>caps_currentfacilitytypeEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
     <DataSet Name="ReportRecords">
       <SharedDataSet>
         <SharedDataSetReference>ReportRecords</SharedDataSetReference>
@@ -605,46 +254,142 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="Facility">
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="CRM_caps_facility">
+            <Value>=Parameters!CRM_caps_facility.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch&gt;
+  &lt;entity name="caps_facility" enableprefiltering="1"&gt;
+    &lt;attribute name="caps_total_currentenrolment" /&gt;
+    &lt;attribute name="caps_sldfacilitycode" /&gt;
+    &lt;attribute name="caps_designcapacitykindergarten" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_facilityid" /&gt;
+    &lt;attribute name="statecode" /&gt;
+    &lt;attribute name="caps_designcapacitytotal" /&gt;
+    &lt;attribute name="caps_utilizationtotal_operating" /&gt;
+    &lt;attribute name="caps_utilizationtotal_design" /&gt;
+    &lt;attribute name="caps_ministryassetnumber" /&gt;
+    &lt;attribute name="caps_designcapacitysecondary" /&gt;
+    &lt;attribute name="caps_operatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_designcapacityelementary" /&gt;
+    &lt;attribute name="caps_schooldistrict"/&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_total_currentenrolment">
+          <DataField>caps_total_currentenrolment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_currentenrolmentValue">
+          <DataField>caps_total_currentenrolmentValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_sldfacilitycode">
+          <DataField>caps_sldfacilitycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitykindergarten">
+          <DataField>caps_designcapacitykindergarten</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitykindergartenValue">
+          <DataField>caps_designcapacitykindergartenValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityid">
+          <DataField>caps_facilityid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecode">
+          <DataField>statecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecodeValue">
+          <DataField>statecodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitytotal">
+          <DataField>caps_designcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitytotalValue">
+          <DataField>caps_designcapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotal_operating">
+          <DataField>caps_utilizationtotal_operating</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotal_operatingValue">
+          <DataField>caps_utilizationtotal_operatingValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotal_design">
+          <DataField>caps_utilizationtotal_design</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotal_designValue">
+          <DataField>caps_utilizationtotal_designValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_ministryassetnumber">
+          <DataField>caps_ministryassetnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitysecondary">
+          <DataField>caps_designcapacitysecondary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitysecondaryValue">
+          <DataField>caps_designcapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitytotal">
+          <DataField>caps_operatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitytotalValue">
+          <DataField>caps_operatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacityelementary">
+          <DataField>caps_designcapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacityelementaryValue">
+          <DataField>caps_designcapacityelementaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrict">
+          <DataField>caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictValue">
+          <DataField>caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictEntityName">
+          <DataField>caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="edu_name">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!caps_schooldistrict.Value, "Facilities")</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontSize>14pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>edu_name</rd:DefaultName>
-            <Top>2.74849cm</Top>
-            <Left>5cm</Left>
-            <Height>0.6cm</Height>
-            <Width>10cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix2">
             <TablixBody>
               <TablixColumns>
@@ -991,14 +736,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_kindergarten_enrolment">
+                        <Textbox Name="caps_kindergarten_enrolment2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_kindergarten_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_kindergarten_enrolment.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1024,14 +769,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_elementary_enrolment">
+                        <Textbox Name="caps_elementary_enrolment2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_elementary_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_elementary_enrolment.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1057,14 +802,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_secondary_enrolment">
+                        <Textbox Name="caps_secondary_enrolment2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_secondary_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_secondary_enrolment.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1090,14 +835,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_enrolment">
+                        <Textbox Name="caps_total_enrolment2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_total_enrolment.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1123,14 +868,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_international_enrolment">
+                        <Textbox Name="caps_international_enrolmentValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_international_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_international_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1140,7 +885,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_international_enrolment</rd:DefaultName>
+                          <rd:DefaultName>caps_international_enrolmentValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1231,24 +976,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_kindergarten_designcapacity">
+                        <Textbox Name="caps_kindergarten_designcapacity1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_kindergarten_designcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_kindergarten_designcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_kindergarten_designcapacity</rd:DefaultName>
+                          <rd:DefaultName>caps_kindergarten_designcapacity1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1264,24 +1008,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_elementary_designcapacity">
+                        <Textbox Name="caps_elementary_designcapacity1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_elementary_designcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_elementary_designcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_elementary_designcapacity</rd:DefaultName>
+                          <rd:DefaultName>caps_elementary_designcapacity1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1297,24 +1040,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_secondary_designcapacity">
+                        <Textbox Name="caps_secondary_designcapacity1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_secondary_designcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_secondary_designcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_secondary_designcapacity</rd:DefaultName>
+                          <rd:DefaultName>caps_secondary_designcapacity1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1330,24 +1072,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_designcapacity">
+                        <Textbox Name="caps_total_designcapacity1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_total_designcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_total_designcapacity</rd:DefaultName>
+                          <rd:DefaultName>caps_total_designcapacity1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1473,14 +1214,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_kindergarten_designutilization">
+                        <Textbox Name="caps_kindergarten_designutilization1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_kindergarten_designcapacityValue.Value) = 0, 0, SUM(Fields!caps_kindergarten_enrolmentValue.Value) / iif(sum(Fields!caps_kindergarten_designcapacityValue.Value) =0, 1, Sum(Fields!caps_kindergarten_designcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_kindergarten_designutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -1490,7 +1231,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_kindergarten_designutilization</rd:DefaultName>
+                          <rd:DefaultName>caps_kindergarten_designutilization1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1509,14 +1250,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_elementary_designutilization">
+                        <Textbox Name="caps_elementary_designutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_elementary_designcapacityValue.Value) = 0, 0, SUM(Fields!caps_elementary_enrolmentValue.Value) / iif(sum(Fields!caps_elementary_designcapacityValue.Value) =0, 1, Sum(Fields!caps_elementary_designcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_elementary_designutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -1526,7 +1267,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_elementary_designutilization</rd:DefaultName>
+                          <rd:DefaultName>caps_elementary_designutilization2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1545,14 +1286,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_secondary_designutilization">
+                        <Textbox Name="caps_secondary_designutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_secondary_designcapacityValue.Value) = 0, 0, SUM(Fields!caps_secondary_enrolmentValue.Value) / iif(sum(Fields!caps_secondary_designcapacityValue.Value) =0, 1, Sum(Fields!caps_secondary_designcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_secondary_designutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -1562,7 +1303,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_secondary_designutilization</rd:DefaultName>
+                          <rd:DefaultName>caps_secondary_designutilization2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1581,14 +1322,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_designutilization">
+                        <Textbox Name="caps_total_designutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_total_designcapacityValue.Value) = 0, 0, SUM(Fields!caps_total_enrolmentValue.Value) / iif(sum(Fields!caps_total_designcapacityValue.Value) =0, 1, Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_total_designutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -1598,7 +1339,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_total_designutilization</rd:DefaultName>
+                          <rd:DefaultName>caps_total_designutilization2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1727,17 +1468,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_kindergarten_operatingcapacity">
+                        <Textbox Name="caps_kindergarten_operatingcapacity2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_kindergarten_operatingcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_kindergarten_operatingcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1760,17 +1500,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_elementary_operatingcapacity">
+                        <Textbox Name="caps_elementary_operatingcapacity2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_elementary_operatingcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_elementary_operatingcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1793,17 +1532,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_secondary_operatingcapacity">
+                        <Textbox Name="caps_secondary_operatingcapacity2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_secondary_operatingcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_secondary_operatingcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1811,9 +1549,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_secondary_operatingcapacity</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1829,17 +1564,16 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_operatingcapacity">
+                        <Textbox Name="caps_total_operatingcapacity2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_total_operatingcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_total_operatingcapacity.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1972,14 +1706,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_kindergarten_operatingutilization">
+                        <Textbox Name="caps_kindergarten_operatingutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_kindergarten_operatingcapacityValue.Value) = 0, 0, SUM(Fields!caps_kindergarten_enrolmentValue.Value) / iif(sum(Fields!caps_kindergarten_operatingcapacityValue.Value) =0, 1, Sum(Fields!caps_kindergarten_operatingcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_kindergarten_operatingutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -2008,14 +1742,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_elementary_operatingutilization">
+                        <Textbox Name="caps_elementary_operatingutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_elementary_operatingcapacityValue.Value) = 0, 0, SUM(Fields!caps_elementary_enrolmentValue.Value) / iif(sum(Fields!caps_elementary_operatingcapacityValue.Value) =0, 1, Sum(Fields!caps_elementary_operatingcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_elementary_operatingutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -2026,9 +1760,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_elementary_operatingutilization</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2047,14 +1778,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_secondary_operatingutilization">
+                        <Textbox Name="caps_secondary_operatingutilization2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_secondary_operatingcapacityValue.Value) = 0, 0, SUM(Fields!caps_secondary_enrolmentValue.Value) / iif(sum(Fields!caps_secondary_operatingcapacityValue.Value) =0, 1, Sum(Fields!caps_secondary_operatingcapacityValue.Value)))</Value>
+                                  <Value>=Fields!caps_secondary_operatingutilization.Value &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
@@ -2083,34 +1814,32 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox18">
+                        <Textbox Name="caps_total_operatingutilization">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(SUM(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, SUM(Fields!caps_total_enrolmentValue.Value) / iif(sum(Fields!caps_total_operatingcapacityValue.Value) =0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
-                                  <Style />
+                                  <Value>=Fields!caps_total_operatingutilization.Value  &amp; "%"</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>P0</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <rd:DefaultName>caps_total_operatingutilization</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Style>Solid</Style>
-                            </TopBorder>
-                            <LeftBorder>
-                              <Style>Solid</Style>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Style>Solid</Style>
-                            </RightBorder>
+                            <BottomBorder>
+                              <Style>None</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2161,7 +1890,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox4">
+                        <Textbox Name="Textbox121">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2176,7 +1905,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <rd:DefaultName>Textbox121</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2185,9 +1914,11 @@
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <RightBorder>
-                              <Style>None</Style>
-                            </RightBorder>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2198,7 +1929,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
+                        <Textbox Name="Textbox122">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2213,12 +1944,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <rd:DefaultName>Textbox122</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2236,7 +1970,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox6">
+                        <Textbox Name="Textbox123">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2251,12 +1985,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <rd:DefaultName>Textbox123</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2274,7 +2011,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox7">
+                        <Textbox Name="Textbox124">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2289,12 +2026,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <rd:DefaultName>Textbox124</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2312,7 +2052,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="Textbox125">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2327,12 +2067,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <rd:DefaultName>Textbox125</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2350,7 +2093,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox9">
+                        <Textbox Name="Textbox126">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2365,12 +2108,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <rd:DefaultName>Textbox126</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2388,7 +2134,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox10">
+                        <Textbox Name="Textbox127">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -2403,12 +2149,15 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <rd:DefaultName>Textbox127</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BottomBorder>
+                              <Color>Gray</Color>
+                            </BottomBorder>
                             <LeftBorder>
                               <Style>None</Style>
                             </LeftBorder>
@@ -2475,16 +2224,51 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ReportRecords</DataSetName>
-            <Top>3.34849cm</Top>
+            <Top>3.39259cm</Top>
+            <Left>0.02646cm</Left>
             <Height>3.72375cm</Height>
             <Width>17.5cm</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="caps_name">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!caps_name.Value, "Facility")</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_name</rd:DefaultName>
+            <Top>2.79259cm</Top>
+            <Left>5.02646cm</Left>
+            <Height>0.6cm</Height>
+            <Width>10cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Textbox Name="Textbox1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -2492,8 +2276,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>SD Capacity Utilization Summary Report</Value>
+                    <Value>Facility Capacity Utilization Summary Report</Value>
                     <Style>
+                      <FontFamily>Arial</FontFamily>
                       <FontSize>18pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -2504,7 +2289,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.37979cm</Top>
-            <Left>3.97858cm</Left>
+            <Left>3.9902cm</Left>
             <Height>1.00542cm</Height>
             <Width>13.53626cm</Width>
             <ZIndex>2</ZIndex>
@@ -2522,7 +2307,7 @@
             <Source>Embedded</Source>
             <Value>BC_EDUC_H_RGB_pos</Value>
             <Sizing>FitProportional</Sizing>
-            <Left>0.00584in</Left>
+            <Left>0.02646cm</Left>
             <Height>0.94319in</Height>
             <Width>1.56053in</Width>
             <ZIndex>3</ZIndex>
@@ -2540,14 +2325,16 @@
                 <TextRuns>
                   <TextRun>
                     <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Left>12.5cm</Left>
+            <Left>12.52646cm</Left>
             <Height>0.37979cm</Height>
             <Width>5.01484cm</Width>
             <ZIndex>4</ZIndex>
@@ -2562,10 +2349,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.92996in</Height>
+        <Height>2.86085in</Height>
         <Style />
       </Body>
-      <Width>6.97258in</Width>
+      <Width>6.94185in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -2579,21 +2366,15 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="SchoolDistrict">
+    <ReportParameter Name="CRM_caps_facility">
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="edu_schooldistrict"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
+          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="caps_facility"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Select School District</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>SchoolDistrict</DataSetName>
-          <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
+      <Prompt>CRM caps facility</Prompt>
+      <Hidden>true</Hidden>
     </ReportParameter>
     <ReportParameter Name="CapacityType">
       <DataType>String</DataType>
@@ -2613,15 +2394,15 @@
     </ReportParameter>
     <ReportParameter Name="FacilitiesforSelection">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <DefaultValue>
         <DataSetReference>
-          <DataSetName>Facilities</DataSetName>
+          <DataSetName>Facility</DataSetName>
           <ValueField>caps_facilityid</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>Facilitiesfor Selection</Prompt>
       <Hidden>true</Hidden>
-      <MultiValue>true</MultiValue>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -2632,7 +2413,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>SchoolDistrict</ParameterName>
+          <ParameterName>CRM_caps_facility</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
@@ -2640,7 +2421,7 @@
           <ParameterName>CapacityType</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>FacilitiesforSelection</ParameterName>
         </CellDefinition>
@@ -2695,5 +2476,5 @@ AABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAA
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>2dba5cdf-91a4-4818-8b8c-7fd7cc4186f5</rd:ReportID>
+  <rd:ReportID>7a18b156-1642-4dbb-909d-6ffd9edb18f4</rd:ReportID>
 </Report>
