@@ -686,7 +686,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_total_enrolment.Value), "0", Fields!caps_total_enrolment.Value)</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_enrolment.Value), "-", Fields!caps_total_enrolment.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -758,7 +758,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_international_enrolment.Value), "0", Fields!caps_international_enrolment.Value)</Value>
+                                  <Value>=iif(isnothing(Fields!caps_international_enrolment.Value), "-", Fields!caps_international_enrolment.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -830,7 +830,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_total_designcapacity.Value), "0", Fields!caps_total_designcapacity.Value)</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_designcapacity.Value), "-", Fields!caps_total_designcapacity.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -902,7 +902,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_total_designutilization.Value), "0", Fields!caps_total_designutilization.Value) &amp; "%"</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_designutilization.Value), "-", Fields!caps_total_designutilization.Value &amp; "%")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1051,7 +1051,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_total_operatingcapacity.Value), "0", Fields!caps_total_operatingcapacity.Value)</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_operatingcapacity.Value), "-", Fields!caps_total_operatingcapacity.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1123,7 +1123,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Fields!caps_total_operatingutilization.Value), "0", Fields!caps_total_operatingutilization.Value) &amp; "%"</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_operatingutilization.Value), "-", Fields!caps_total_operatingutilization.Value &amp; "%")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1278,7 +1278,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value)), "0", Sum(Fields!caps_total_enrolmentValue.Value))</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value)), "-", Sum(Fields!caps_total_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1350,7 +1350,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(SUM(Fields!caps_international_enrolmentValue.Value)), "0", SUM(Fields!caps_international_enrolmentValue.Value))</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_international_enrolmentValue.Value)), "-", SUM(Fields!caps_international_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1422,7 +1422,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Sum(Fields!caps_total_designcapacityValue.Value)), "0", Sum(Fields!caps_total_designcapacityValue.Value))</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_designcapacityValue.Value)), "-", Sum(Fields!caps_total_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1649,7 +1649,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Sum(Fields!caps_total_operatingcapacityValue.Value)), "0", Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_operatingcapacityValue.Value)), "-", Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1831,6 +1831,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
