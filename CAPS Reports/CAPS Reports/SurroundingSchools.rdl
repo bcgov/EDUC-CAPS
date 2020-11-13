@@ -686,9 +686,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_total_enrolment.Value</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_enrolment.Value), "0", Fields!caps_total_enrolment.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -709,6 +710,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -757,9 +759,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_international_enrolment.Value</Value>
+                                  <Value>=iif(isnothing(Fields!caps_international_enrolment.Value), "0", Fields!caps_international_enrolment.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -780,6 +783,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -828,9 +832,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_total_designcapacity.Value</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_designcapacity.Value), "0", Fields!caps_total_designcapacity.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -851,6 +856,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -899,9 +905,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_total_designutilization.Value &amp; "%"</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_designutilization.Value), "0", Fields!caps_total_designutilization.Value) &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -922,6 +929,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -999,6 +1007,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1047,9 +1056,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_total_operatingcapacity.Value</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_operatingcapacity.Value), "0", Fields!caps_total_operatingcapacity.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1070,6 +1080,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1118,9 +1129,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_total_operatingutilization.Value &amp; "%"</Value>
+                                  <Value>=iif(isnothing(Fields!caps_total_operatingutilization.Value), "0", Fields!caps_total_operatingutilization.Value) &amp; "%"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1141,6 +1153,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1224,6 +1237,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1272,7 +1286,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value)), "0", Sum(Fields!caps_total_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1296,6 +1310,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1344,10 +1359,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_international_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_international_enrolmentValue.Value)), "0", SUM(Fields!caps_international_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0;(0)</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1368,6 +1383,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1416,7 +1432,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_designcapacityValue.Value)), "0", Sum(Fields!caps_total_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1440,6 +1456,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1491,7 +1508,7 @@
                                   <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>P0</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1515,6 +1532,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1531,9 +1549,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Surplus \ Shortfall</Value>
+                                  <Value>Total Surplus \ </Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>Shortfall</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>Red</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1566,6 +1591,7 @@
                                   <Value>=Sum(Fields!caps_total_designcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0</Format>
                                     <Color>=iif(Sum(Fields!caps_total_designcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -1587,6 +1613,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1635,7 +1662,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_operatingcapacityValue.Value)), "0", Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1659,6 +1686,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1710,7 +1738,7 @@
                                   <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>P0</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1725,32 +1753,13 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <LeftBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1812,6 +1821,7 @@
                                   <Value>=SUM(Fields!caps_total_operatingcapacityValue.Value) - SUM(Fields!caps_total_enrolmentValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0</Format>
                                     <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -1836,6 +1846,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2492,7 +2503,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>4.77144in</Height>
+        <Height>4.59436in</Height>
         <Style />
       </Body>
       <Width>5.25225in</Width>

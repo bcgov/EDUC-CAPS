@@ -2730,51 +2730,22 @@
             <Value>=Parameters!ProjectID.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility" &gt;
-    &lt;attribute name="caps_total_currentenrolment" /&gt;
-    &lt;attribute name="caps_sldfacilitycode" /&gt;
-    &lt;attribute name="caps_designcapacitykindergarten" /&gt;
-    &lt;attribute name="caps_name" /&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true"&gt;
+  &lt;entity name="caps_facility"&gt;
     &lt;attribute name="caps_facilityid" /&gt;
-    &lt;attribute name="statecode" /&gt;
-    &lt;attribute name="caps_designcapacitytotal" /&gt;
-    &lt;attribute name="caps_utilizationtotal_operating" /&gt;
-    &lt;attribute name="caps_utilizationtotal_design" /&gt;
-    &lt;attribute name="caps_ministryassetnumber" /&gt;
-    &lt;attribute name="caps_designcapacitysecondary" /&gt;
-    &lt;attribute name="caps_operatingcapacitytotal" /&gt;
-    &lt;attribute name="caps_designcapacityelementary" /&gt;
+    &lt;attribute name="caps_name" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;link-entity name="caps_project" from="caps_facility" to="caps_facilityid" link-type="inner" alias="aa"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_projectid" operator="eq" value="@ProjectID" /&gt;
-      &lt;/filter&gt;
+    &lt;link-entity name="caps_project_caps_facility" from="caps_facilityid" to="caps_facilityid" visible="false" intersect="true"&gt;
+      &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectid" alias="af"&gt;
+        &lt;filter type="and"&gt;
+          &lt;condition attribute="caps_projectid" operator="eq" value="@ProjectID" /&gt;
+        &lt;/filter&gt;
+      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
       <Fields>
-        <Field Name="caps_total_currentenrolment">
-          <DataField>caps_total_currentenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_total_currentenrolmentValue">
-          <DataField>caps_total_currentenrolmentValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_sldfacilitycode">
-          <DataField>caps_sldfacilitycode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitykindergarten">
-          <DataField>caps_designcapacitykindergarten</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitykindergartenValue">
-          <DataField>caps_designcapacitykindergartenValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_name">
           <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2782,66 +2753,6 @@
         <Field Name="caps_facilityid">
           <DataField>caps_facilityid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statecode">
-          <DataField>statecode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statecodeValue">
-          <DataField>statecodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitytotal">
-          <DataField>caps_designcapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitytotalValue">
-          <DataField>caps_designcapacitytotalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_operating">
-          <DataField>caps_utilizationtotal_operating</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_operatingValue">
-          <DataField>caps_utilizationtotal_operatingValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_design">
-          <DataField>caps_utilizationtotal_design</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_utilizationtotal_designValue">
-          <DataField>caps_utilizationtotal_designValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_ministryassetnumber">
-          <DataField>caps_ministryassetnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitysecondary">
-          <DataField>caps_designcapacitysecondary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacitysecondaryValue">
-          <DataField>caps_designcapacitysecondaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitytotal">
-          <DataField>caps_operatingcapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitytotalValue">
-          <DataField>caps_operatingcapacitytotalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacityelementary">
-          <DataField>caps_designcapacityelementary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designcapacityelementaryValue">
-          <DataField>caps_designcapacityelementaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -8975,7 +8886,7 @@
                     <TablixBody>
                       <TablixColumns>
                         <TablixColumn>
-                          <Width>2.07668cm</Width>
+                          <Width>2.20572cm</Width>
                         </TablixColumn>
                         <TablixColumn>
                           <Width>1.52105cm</Width>
@@ -9026,9 +8937,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_total_enrolment.Value</Value>
+                                          <Value>=iif(isnothing(Fields!caps_total_enrolment.Value), "0", Fields!caps_total_enrolment.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9097,9 +9009,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_international_enrolment.Value</Value>
+                                          <Value>=iif(isnothing(Fields!caps_international_enrolment.Value), "0", Fields!caps_international_enrolment.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9168,9 +9081,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_total_designcapacity.Value</Value>
+                                          <Value>=iif(isnothing(Fields!caps_total_designcapacity.Value), "0", Fields!caps_total_designcapacity.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9239,9 +9153,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_total_designutilization.Value &amp; "%"</Value>
+                                          <Value>=iif(isnothing(Fields!caps_total_designutilization.Value), "0", Fields!caps_total_designutilization.Value) &amp; "%"</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9309,7 +9224,7 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox495">
+                                <Textbox Name="Textbox182">
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
@@ -9326,15 +9241,12 @@
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox495</rd:DefaultName>
+                                  <rd:DefaultName>Textbox6</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BottomBorder>
-                                      <Style>None</Style>
-                                    </BottomBorder>
                                     <LeftBorder>
                                       <Style>None</Style>
                                     </LeftBorder>
@@ -9393,9 +9305,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_total_operatingcapacity.Value</Value>
+                                          <Value>=iif(isnothing(Fields!caps_total_operatingcapacity.Value), "0", Fields!caps_total_operatingcapacity.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9464,9 +9377,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_total_operatingutilization.Value &amp; "%"</Value>
+                                          <Value>=iif(isnothing(Fields!caps_total_operatingutilization.Value), "0", Fields!caps_total_operatingutilization.Value) &amp; "%"</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9534,7 +9448,7 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox160">
+                                <Textbox Name="Textbox186">
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
@@ -9618,7 +9532,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value)), "0", Sum(Fields!caps_total_enrolmentValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -9683,17 +9597,17 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox165">
+                                <Textbox Name="Textbox189">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_international_enrolmentValue.Value)</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value)), "0", Sum(Fields!caps_international_enrolmentValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>0;(0)</Format>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9762,7 +9676,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_designcapacityValue.Value)), "0", Sum(Fields!caps_total_designcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -9837,7 +9751,7 @@
                                           <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>P0</Format>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9877,9 +9791,16 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Total Surplus \ Shortfall</Value>
+                                          <Value>Total Surplus \ </Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                        <TextRun>
+                                          <Value>Shortfall</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>Red</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9902,7 +9823,7 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox177">
+                                <Textbox Name="Textbox200">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
@@ -9912,6 +9833,7 @@
                                           <Value>=Sum(Fields!caps_total_designcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0</Format>
                                             <Color>=iif(Sum(Fields!caps_total_designcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -9981,7 +9903,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value)</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_operatingcapacityValue.Value)), "0", Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10046,7 +9968,7 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox180">
+                                <Textbox Name="Textbox206">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
@@ -10056,7 +9978,7 @@
                                           <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>P0</Format>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10071,26 +9993,6 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <TopBorder>
-                                      <Color>LightGrey</Color>
-                                      <Style>Solid</Style>
-                                      <Width>1pt</Width>
-                                    </TopBorder>
-                                    <BottomBorder>
-                                      <Color>LightGrey</Color>
-                                      <Style>Solid</Style>
-                                      <Width>1pt</Width>
-                                    </BottomBorder>
-                                    <LeftBorder>
-                                      <Color>LightGrey</Color>
-                                      <Style>Solid</Style>
-                                      <Width>1pt</Width>
-                                    </LeftBorder>
-                                    <RightBorder>
-                                      <Color>LightGrey</Color>
-                                      <Style>Solid</Style>
-                                      <Width>1pt</Width>
-                                    </RightBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -10113,9 +10015,16 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Total Surplus \ Shortfall</Value>
+                                          <Value>Total Surplus \ </Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                        <TextRun>
+                                          <Value>Shortfall</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>Red</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10141,7 +10050,7 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox182">
+                                <Textbox Name="Textbox224">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
@@ -10151,6 +10060,7 @@
                                           <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0</Format>
                                             <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -10231,7 +10141,7 @@
                           <TablixHeader>
                             <Size>0.6cm</Size>
                             <CellContents>
-                              <Textbox Name="Textbox36">
+                              <Textbox Name="Textbox108">
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
@@ -10286,7 +10196,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="caps_name3">
                                 <CanGrow>true</CanGrow>
@@ -10352,7 +10262,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox38">
                                 <KeepTogether>true</KeepTogether>
@@ -10397,7 +10307,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox39">
                                 <CanGrow>true</CanGrow>
@@ -10436,7 +10346,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox99">
                                 <CanGrow>true</CanGrow>
@@ -10478,7 +10388,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox101">
                                 <CanGrow>true</CanGrow>
@@ -10523,7 +10433,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox102">
                                 <CanGrow>true</CanGrow>
@@ -10568,7 +10478,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox103">
                                 <CanGrow>true</CanGrow>
@@ -10613,7 +10523,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox106">
                                 <CanGrow>true</CanGrow>
@@ -10658,7 +10568,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox123">
                                 <CanGrow>true</CanGrow>
@@ -10703,7 +10613,7 @@
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>3.69005cm</Size>
+                            <Size>3.55776cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox9">
                                 <CanGrow>true</CanGrow>
@@ -10749,7 +10659,7 @@
                     <Top>0.91737cm</Top>
                     <Left>0.01838cm</Left>
                     <Height>9.2475cm</Height>
-                    <Width>7.28778cm</Width>
+                    <Width>7.28453cm</Width>
                     <ZIndex>2</ZIndex>
                     <Style>
                       <Border>
@@ -13387,7 +13297,9 @@
                         <TextRuns>
                           <TextRun>
                             <Value>=First(Fields!LRPF_caps_lrfpdate.Value, "ProjectRequest")</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
