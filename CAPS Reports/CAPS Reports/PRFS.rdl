@@ -9751,7 +9751,7 @@
                                           <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>P0</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9775,6 +9775,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -9978,7 +9979,7 @@
                                           <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>P0</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
