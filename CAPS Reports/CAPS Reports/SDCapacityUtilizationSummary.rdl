@@ -1042,7 +1042,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_kindergarten_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_kindergarten_enrolmentValue.Value)), "0", Sum(Fields!caps_kindergarten_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1077,7 +1077,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_elementary_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_elementary_enrolmentValue.Value)), "0", Sum(Fields!caps_elementary_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1112,7 +1112,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_secondary_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_secondary_enrolmentValue.Value)), "0", Sum(Fields!caps_secondary_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1147,7 +1147,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value)), "0", Sum(Fields!caps_total_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1182,7 +1182,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_international_enrolmentValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value)), "0", Sum(Fields!caps_international_enrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1292,7 +1292,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_kindergarten_designcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_kindergarten_designcapacityValue.Value)), "0", Sum(Fields!caps_kindergarten_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1327,7 +1327,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_elementary_designcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_elementary_designcapacityValue.Value)), "0", SUM(Fields!caps_elementary_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1362,7 +1362,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_secondary_designcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_secondary_designcapacityValue.Value)), "0", SUM(Fields!caps_secondary_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1397,7 +1397,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_total_designcapacityValue.Value)), "0", Sum(Fields!caps_total_designcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1808,7 +1808,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_kindergarten_operatingcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_kindergarten_operatingcapacityValue.Value)), "0", SUM(Fields!caps_kindergarten_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1843,7 +1843,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_elementary_operatingcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_elementary_operatingcapacityValue.Value)), "0", SUM(Fields!caps_elementary_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1878,7 +1878,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_secondary_operatingcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(Sum(Fields!caps_secondary_operatingcapacityValue.Value)), "0", Sum(Fields!caps_secondary_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1916,7 +1916,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=SUM(Fields!caps_total_operatingcapacityValue.Value)</Value>
+                                  <Value>=iif(isnothing(SUM(Fields!caps_total_operatingcapacityValue.Value)), "0", SUM(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1940,6 +1940,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
