@@ -314,6 +314,7 @@
       &lt;attribute name="edu_enddate" /&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
+       &lt;attribute name="caps_facilityid" /&gt;
       &lt;filter type="or"&gt;
         &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
         &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
@@ -555,6 +556,10 @@
           <DataField>YEAR_edu_enddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="aa_caps_facilityid">
+          <DataField>aa_caps_facilityid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Portables">
@@ -581,6 +586,49 @@
         <Field Name="countPortablesValue">
           <DataField>countPortablesValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="PortablesAggregate">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Facilities">
+            <Value>=Parameters!Facilities.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_portable"&gt;
+    &lt;attribute name="caps_portableid" /&gt;
+    &lt;attribute name="caps_assetnumber" /&gt;
+    &lt;attribute name="createdon" /&gt;
+    &lt;order attribute="caps_assetnumber" descending="false" /&gt;
+    &lt;filter type="or"&gt;
+      &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
+      &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_portableid">
+          <DataField>caps_portableid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_assetnumber">
+          <DataField>caps_assetnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1831,7 +1879,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1956,7 +2003,7 @@
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>White</Color>
+                                  <Color>=iif(Fields!aa_caps_facilityid.Value = Parameters!FacilityID.Value, "White", "Black")</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1972,13 +2019,14 @@
                           <BottomBorder>
                             <Style>None</Style>
                           </BottomBorder>
-                          <BackgroundColor>#234075</BackgroundColor>
+                          <BackgroundColor>=iif(Fields!aa_caps_facilityid.Value = Parameters!FacilityID.Value, "#234075", "White")</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
+                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
@@ -2063,7 +2111,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Totals</Value>
+                                <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
@@ -2487,11 +2535,101 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="FacilityID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!FacilityID.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>FacilityID</rd:DefaultName>
+            <Top>4.30953cm</Top>
+            <Left>9.89224cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox31">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=iif(First(Fields!caps_facilityValue.Value, "SSReportingRecord") = Parameters!FacilityID.Value, "7", "8")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox31</rd:DefaultName>
+            <Top>6.13516cm</Top>
+            <Left>8.06662cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="caps_facility">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=CStr(First(Fields!caps_facilityValue.Value, "SSReportingRecord"))</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_facility</rd:DefaultName>
+            <Top>9.31016cm</Top>
+            <Left>10.31558cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>4.59436in</Height>
         <Style />
       </Body>
-      <Width>5.25225in</Width>
+      <Width>5.31634in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
