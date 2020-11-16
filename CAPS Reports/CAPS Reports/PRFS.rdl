@@ -2768,7 +2768,7 @@
     &lt;attribute name="caps_facility" /&gt;
     &lt;attribute name="createdon" /&gt;
     &lt;order attribute="caps_assetnumber" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="or"&gt;
       &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
       &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
     &lt;/filter&gt;
@@ -10282,7 +10282,6 @@
                                   <PaddingBottom>2pt</PaddingBottom>
                                 </Style>
                               </Textbox>
-                              <rd:Selected>true</rd:Selected>
                             </CellContents>
                           </TablixHeader>
                           <TablixMembers>
@@ -10391,6 +10390,7 @@
                                   <PaddingBottom>2pt</PaddingBottom>
                                 </Style>
                               </Textbox>
+                              <rd:Selected>true</rd:Selected>
                             </CellContents>
                           </TablixHeader>
                           <KeepWithGroup>Before</KeepWithGroup>
