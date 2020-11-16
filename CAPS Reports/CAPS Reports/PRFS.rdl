@@ -2750,6 +2750,62 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="PortablesAggregate">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Facilities">
+            <Value>=Parameters!Facilities.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_portable"&gt;
+    &lt;attribute name="caps_portableid" /&gt;
+    &lt;attribute name="caps_assetnumber" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;attribute name="createdon" /&gt;
+    &lt;order attribute="caps_assetnumber" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
+      &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_portableid">
+          <DataField>caps_portableid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_assetnumber">
+          <DataField>caps_assetnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -9921,7 +9977,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -10227,6 +10282,7 @@
                                   <PaddingBottom>2pt</PaddingBottom>
                                 </Style>
                               </Textbox>
+                              <rd:Selected>true</rd:Selected>
                             </CellContents>
                           </TablixHeader>
                           <TablixMembers>
@@ -10311,7 +10367,7 @@
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>Totals</Value>
+                                        <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")</Value>
                                         <Style>
                                           <FontFamily>Arial</FontFamily>
                                           <FontWeight>Bold</FontWeight>
