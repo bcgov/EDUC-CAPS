@@ -3,62 +3,86 @@
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="CAPS_DEV">
+    <DataSource Name="CAPS">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
       <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>5ef5a4d0-6d3e-4571-a200-a374cea9ea27</rd:DataSourceID>
+      <rd:DataSourceID>e8556021-2905-4e1f-8d9a-d03a85f6fe15</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ActiveSchoolDistricts">
+    <DataSet Name="AllActiveFacilities">
       <Query>
-        <DataSourceName>CAPS_DEV</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_schooldistrict" &gt;
-    &lt;attribute name="statecode" /&gt;
-    &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;attribute name="edu_region" /&gt;
-    &lt;attribute name="edu_commonname" /&gt;
+  &lt;entity name="caps_facility" &gt;
+    &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
+    &lt;attribute name="caps_utilizationtotal_operating" /&gt;
+    &lt;attribute name="caps_utilizationtotal_design" /&gt;
+    &lt;attribute name="caps_operatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="statuscode" /&gt;
-    &lt;attribute name="caps_afgfundingpercentage" /&gt;
-    &lt;attribute name="edu_name" /&gt;
-    &lt;attribute name="edu_number" /&gt;
+    &lt;attribute name="caps_total_currentenrolment" /&gt;
+    &lt;attribute name="caps_name" /&gt;
     &lt;filter&gt;
-      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;condition attribute="caps_designfacilitytype" operator="in" uiname="Elementary" uitype="caps_facilitytype" &gt;
+        &lt;value&gt;33f5d7f4-b988-ea11-a811-000d3af42496&lt;/value&gt;
+        &lt;value&gt;4b6d710a-ba88-ea11-a811-000d3af42496&lt;/value&gt;
+        &lt;value&gt;f4576312-ba88-ea11-a811-000d3af42496&lt;/value&gt;
+        &lt;value&gt;38f5d7f4-b988-ea11-a811-000d3af42496&lt;/value&gt;
+        &lt;value&gt;0dfbf526-ba88-ea11-a811-000d3af42496&lt;/value&gt;
+        &lt;value&gt;b5c6c5fb-b988-ea11-a811-000d3af42496&lt;/value&gt;
+      &lt;/condition&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
       <Fields>
-        <Field Name="statecode">
-          <DataField>statecode</DataField>
+        <Field Name="caps_adjusteddesigncapacitytotal">
+          <DataField>caps_adjusteddesigncapacitytotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="statecodeValue">
-          <DataField>statecodeValue</DataField>
+        <Field Name="caps_adjusteddesigncapacitytotalValue">
+          <DataField>caps_adjusteddesigncapacitytotalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="edu_schooldistrictid">
-          <DataField>edu_schooldistrictid</DataField>
+        <Field Name="caps_utilizationtotal_operating">
+          <DataField>caps_utilizationtotal_operating</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="edu_region">
-          <DataField>edu_region</DataField>
+        <Field Name="caps_utilizationtotal_operatingValue">
+          <DataField>caps_utilizationtotal_operatingValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotal_design">
+          <DataField>caps_utilizationtotal_design</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="edu_regionValue">
-          <DataField>edu_regionValue</DataField>
+        <Field Name="caps_utilizationtotal_designValue">
+          <DataField>caps_utilizationtotal_designValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitytotal">
+          <DataField>caps_operatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitytotalValue">
+          <DataField>caps_operatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrict">
+          <DataField>caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictValue">
+          <DataField>caps_schooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="edu_regionEntityName">
-          <DataField>edu_regionEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_commonname">
-          <DataField>edu_commonname</DataField>
+        <Field Name="caps_schooldistrictEntityName">
+          <DataField>caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="statuscode">
@@ -69,20 +93,16 @@
           <DataField>statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_afgfundingpercentage">
-          <DataField>caps_afgfundingpercentage</DataField>
+        <Field Name="caps_total_currentenrolment">
+          <DataField>caps_total_currentenrolment</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_afgfundingpercentageValue">
-          <DataField>caps_afgfundingpercentageValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="caps_total_currentenrolmentValue">
+          <DataField>caps_total_currentenrolmentValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="edu_name">
-          <DataField>edu_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_number">
-          <DataField>edu_number</DataField>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -92,45 +112,49 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="Tablix1">
+          <Tablix Name="Tablix2">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>7.43479cm</Width>
+                  <Width>1.36259cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.80458cm</Width>
+                  <Width>5.91313cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>8.89cm</Width>
+                  <Width>3.9026cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.97417cm</Width>
+                  <Width>3.9026cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.90261cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.90261cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4.37886cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.31438cm</Height>
+                  <Height>0.99688cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox30">
+                        <Textbox Name="Textbox101">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Action Required</Value>
+                                  <Value />
                                   <Style>
-                                    <FontSize>12pt</FontSize>
-                                    <Color>Brown</Color>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>. The sum of all active school districts AFG Funding does not equal 1 (or 100%). Ensure the Sum Total AFG Allocated equals 1 prior to publishing an AFG Call for Submission.</Value>
-                                  <Style>
-                                    <FontSize>12pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -139,84 +163,228 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox30</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <BackgroundColor>White</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>4</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.88cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox24">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Variance: </Value>
-                                  <Style>
-                                    <FontSize>11pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>Textbox101</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#234075</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>3</ColSpan>
+                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
-                    <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Variance">
+                        <Textbox Name="Textbox40">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= 1 - ReportItems!caps_afgfundingpercentageValue_Sum.Value</Value>
+                                  <Value>Current Enrolment </Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox34</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox41">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Design Capacity</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox35</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox42">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Operating Capacity</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox36</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox43">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Design Utilization %</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox44">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Operating Utilization %</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox38</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.94396cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Group_SchoolDistrict">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_schooldistrict.Value</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -228,7 +396,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>DarkRed</BackgroundColor>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -236,68 +404,23 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.88cm</Height>
-                  <TablixCells>
+                    <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox21">
+                        <Textbox Name="SD_TotalCurrentEnrolment_Sum">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sum Total AFG Allocated: </Value>
+                                  <Value>=Sum(Fields!caps_total_currentenrolmentValue.Value)</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>3</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="caps_afgfundingpercentageValue_Sum">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Sum(Fields!caps_afgfundingpercentageValue.Value)</Value>
-                                  <Style>
-                                    <FontSize>11pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -309,7 +432,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -319,33 +442,25 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.88223cm</Height>
-                  <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox25">
+                        <Textbox Name="SD_DesignCapacity_Sum">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Name</Value>
+                                  <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value)</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -363,26 +478,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox26">
+                        <Textbox Name="SD_OperatingCapacity_Sum">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Number</Value>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value)</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox26</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -400,26 +512,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox27">
+                        <Textbox Name="Textbox115">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Region</Value>
+                                  <Value>= ReportItems!SD_TotalCurrentEnrolment_Sum.Value / ReportItems!SD_DesignCapacity_Sum.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>0 %</Format>
+                                    <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Brown", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <rd:DefaultName>Textbox115</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -437,26 +549,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox28">
+                        <Textbox Name="Textbox116">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>AFG Funding</Value>
+                                  <Value>= ReportItems!SD_TotalCurrentEnrolment_Sum.Value / ReportItems!SD_OperatingCapacity_Sum.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
+                                    <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>0 %</Format>
+                                    <Color>= IIF(ReportItems!Textbox116.Value &gt;= 1, "Brown", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox28</rd:DefaultName>
+                          <rd:DefaultName>Textbox116</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -479,21 +591,118 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="edu_name">
+                        <Textbox Name="caps_name1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!edu_name.Value</Value>
-                                  <Style />
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_name</rd:DefaultName>
+                          <rd:DefaultName>caps_name1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>None</Style>
+                            </RightBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_name.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_total_currentenrolmentValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_total_currentenrolmentValue.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_total_currentenrolmentValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -509,21 +718,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="edu_number">
+                        <Textbox Name="caps_adjusteddesigncapacitytotalValue1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!edu_number.Value</Value>
+                                  <Value>=Fields!caps_adjusteddesigncapacitytotalValue.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_number</rd:DefaultName>
+                          <rd:DefaultName>caps_adjusteddesigncapacitytotalValue1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -539,21 +748,23 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="edu_region">
+                        <Textbox Name="caps_operatingcapacitytotalValue1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!edu_region.Value</Value>
-                                  <Style />
+                                  <Value>=Fields!caps_operatingcapacitytotalValue.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_region</rd:DefaultName>
+                          <rd:DefaultName>caps_operatingcapacitytotalValue1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -569,21 +780,59 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_afgfundingpercentageValue">
+                        <Textbox Name="Textbox14">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
-                                  <Style />
+                                  <Value>= ReportItems!caps_total_currentenrolmentValue.Value / ReportItems!caps_adjusteddesigncapacitytotalValue1.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>0 %</Format>
+                                    <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Red", "Black")</Color>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_afgfundingpercentageValue</rd:DefaultName>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>= ReportItems!caps_total_currentenrolmentValue.Value / ReportItems!caps_operatingcapacitytotalValue1.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>0 %</Format>
+                                    <Color>= IIF(ReportItems!Textbox115.Value &gt;= 1, "Red", "Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox16</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -607,59 +856,49 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember>
-                  <Group Name="statecode">
+                  <Group Name="caps_schooldistrict1">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!statecode.Value</GroupExpression>
+                      <GroupExpression>=Fields!caps_schooldistrict.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!statecode.Value</Value>
+                      <Value>=Fields!caps_schooldistrict.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
                     <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details1" />
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
                       <Visibility>
-                        <Hidden>= ReportItems!caps_afgfundingpercentageValue_Sum.Value = 1</Hidden>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>Group_SchoolDistrict</ToggleItem>
                       </Visibility>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>= ReportItems!caps_afgfundingpercentageValue_Sum.Value = 1</Hidden>
-                      </Visibility>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="Details" />
                     </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatRowHeaders>true</RepeatRowHeaders>
-            <KeepTogether>true</KeepTogether>
-            <DataSetName>ActiveSchoolDistricts</DataSetName>
-            <SortExpressions>
-              <SortExpression>
-                <Value>=Fields!edu_number.Value</Value>
-              </SortExpression>
-            </SortExpressions>
-            <Top>0.10583cm</Top>
-            <Left>0.02647cm</Left>
-            <Height>4.55661cm</Height>
-            <Width>24.10354cm</Width>
+            <DataSetName>AllActiveFacilities</DataSetName>
+            <Top>0.17639cm</Top>
+            <Left>0cm</Left>
+            <Height>2.54084cm</Height>
+            <Width>27.265cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -667,17 +906,17 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.73743cm</Height>
+        <Height>2.79604cm</Height>
         <Style />
       </Body>
-      <Width>24.13001cm</Width>
+      <Width>27.265cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.81904cm</Height>
+          <Height>2.88397cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="ReportRunTime">
+            <Textbox Name="Textbox2">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -693,10 +932,11 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0cm</Top>
-              <Left>14.98895cm</Left>
-              <Height>0.65292cm</Height>
-              <Width>9.11459cm</Width>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.06492cm</Top>
+              <Left>16.17895cm</Left>
+              <Height>0.6cm</Height>
+              <Width>11.08605cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -707,16 +947,30 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Header_Title">
+            <Image Name="Image8">
+              <Source>Embedded</Source>
+              <Value>BC_EDUC_H_RGB_pos</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.02556in</Top>
+              <Height>1.10986in</Height>
+              <Width>1.83136in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox4">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>AFG Funding Summary Report</Value>
+                      <Value>School District Capacity Utilization Summary Report</Value>
                       <Style>
-                        <FontSize>18pt</FontSize>
+                        <FontSize>15pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -725,65 +979,54 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.16071cm</Top>
-              <Left>4.75749cm</Left>
-              <Height>1.26146cm</Height>
-              <Width>15.74772cm</Width>
-              <ZIndex>1</ZIndex>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>1.15853cm</Top>
+              <Left>4.82804cm</Left>
+              <Height>1.65488cm</Height>
+              <Width>17.26057cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="MoE_BC_Logo_image">
-              <Source>Embedded</Source>
-              <Value>BC_EDUC_H_RGB_pos</Value>
-              <Sizing>FitProportional</Sizing>
-              <Height>1.10986in</Height>
-              <Width>1.83136in</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
           </ReportItems>
           <Style>
             <Border>
               <Style>None</Style>
             </Border>
-            <BackgroundColor>White</BackgroundColor>
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.63528cm</Height>
+          <Height>0.70499cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="PageNumber_Footer">
+            <Textbox Name="Textbox1">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
                       <Style />
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.03528cm</Top>
-              <Left>19.69854cm</Left>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0cm</Top>
+              <Left>24.28875cm</Left>
               <Height>0.6cm</Height>
-              <Width>4.405cm</Width>
+              <Width>2.97625cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -866,5 +1109,5 @@ AABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAA
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>7abca4e4-8ebc-4787-9a04-b94079467ccf</rd:ReportID>
+  <rd:ReportID>316dde43-08b1-49ad-a62c-baa8d1de1a19</rd:ReportID>
 </Report>
