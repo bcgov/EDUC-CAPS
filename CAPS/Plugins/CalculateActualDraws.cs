@@ -98,48 +98,24 @@ namespace Plugins
                             //get all actual draws for this project and this year
                             var actualDrawRecords = crmContext.caps_ActualDrawSet.Where(r => r.caps_Project.Id == projectToUpdate.Id && r.caps_FiscalYear.Id == fiscalYear.Id);
 
-                            decimal Q1, Q2, Q3, Q4;
-                            Q1 = Q2 = Q3 = Q4 = 0;
+                            //decimal Q1, Q2, Q3, Q4;
+                            //Q1 = Q2 = Q3 = Q4 = 0;
+                            decimal total = 0;
                             
                             foreach(var actualDrawRecord in actualDrawRecords)
                             {
                                 if (actualDrawRecord.caps_DrawDate.HasValue)
                                 {
-                                    switch (actualDrawRecord.caps_DrawDate.Value.Month)
-                                    {
-                                        case 1:
-                                        case 2:
-                                        case 3:
-                                            Q4 += actualDrawRecord.caps_Amount.GetValueOrDefault(0);
-                                            break;
-                                        case 4:
-                                        case 5:
-                                        case 6:
-                                            Q1 += actualDrawRecord.caps_Amount.GetValueOrDefault(0);
-                                            break;
-                                        case 7:
-                                        case 8:
-                                        case 9:
-                                            Q2 += actualDrawRecord.caps_Amount.GetValueOrDefault(0);
-                                            break;
-                                        case 10:
-                                        case 11:
-                                        case 12:
-                                            Q3 += actualDrawRecord.caps_Amount.GetValueOrDefault(0);
-                                            break;
-                                    }
+                                    total += actualDrawRecord.caps_Amount.GetValueOrDefault(0);
+
                                 }
                             }
-                            tracingService.Trace("{0}:{1}:{2}:{3}", Q1, Q2, Q3, Q4);
+                            tracingService.Trace("{0}", total);
 
                             //Now update the cash flow record
                             var cashFlowToUpdate = new caps_projectcashflow();
                             cashFlowToUpdate.Id = cashFlowRecord.Id;
-                            cashFlowToUpdate.caps_Q1ActualDraws = Q1;
-                            cashFlowToUpdate.caps_Q2ActualDraws = Q2;
-                            cashFlowToUpdate.caps_Q3ActualDraws = Q3;
-                            cashFlowToUpdate.caps_Q4ActualDraws = Q4;
-                            cashFlowToUpdate.caps_TotalActualDraws = Q1 + Q2 + Q3 + Q4;
+                            cashFlowToUpdate.caps_TotalActualDraws = total;
                             service.Update(cashFlowToUpdate);
 
                         }

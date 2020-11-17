@@ -17,30 +17,61 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
 
     //Format the form by showing and hiding the relevant sections and fields
     CAPS.ProjectTracker.showHideCategoryRelevantSections(formContext);
+
+    CAPS.ProjectTracker.ShowHideProgressReport(executionContext);
 }
 
 /**
  * Function to embed the SSRS Monthly Summary Report on the form.
  * @param {any} formContext the form context
  */
-CAPS.ProjectTracker.showSummaryReport = function (formContext) {
+CAPS.ProjectTracker.showSummaryReport = function (formContext) {    
     debugger;
-    //Get iframe 
-    var iframeObject = formContext.getControl("IFRAME_SummaryReport");
+    var requestUrl = "/api/data/v9.1/EntityDefinitions?$filter=LogicalName eq 'caps_projecttracker'&$select=ObjectTypeCode";
 
-    if (iframeObject !== null) {
-        var strURL = "/crmreports/viewer/viewer.aspx"
-            + "?id=ed1744bc-98a6-ea11-a813-000d3af42496"
-            + "&action=run"
-            + "&context=records"
-            + "&recordstype=10078"
-            + "&records=" + formContext.data.entity.getId()
-            + "&helpID=Monthly%20Project%20Summary.rdl";
+    var globalContext = Xrm.Utility.getGlobalContext();
 
-        //Set URL of iframe
-        iframeObject.setSrc(strURL);
-    }
-}
+    var req = new XMLHttpRequest();
+    req.open("GET", globalContext.getClientUrl() + requestUrl, true);
+    req.setRequestHeader("OData-MaxVersion", "4.0");
+    req.setRequestHeader("OData-Version", "4.0");
+    req.setRequestHeader("Accept", "application/json");
+    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    req.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            req.onreadystatechange = null;
+            if (this.status === 200) {
+                debugger;
+                var result = JSON.parse(this.response);
+                var objectTypeCode = result.value[0].ObjectTypeCode;
+                //use retrieved objectTypeCode
+                //Get iframe 
+                var iframeObject = formContext.getControl("IFRAME_SummaryReport");
+
+                if (iframeObject !== null) {
+                    var strURL = "/crmreports/viewer/viewer.aspx"
+                        + "?id=ed1744bc-98a6-ea11-a813-000d3af42496"
+                        + "&action=run"
+                        + "&context=records"
+                        + "&recordstype="+objectTypeCode
+                        + "&records=" + formContext.data.entity.getId()
+                        + "&helpID=Monthly%20Project%20Summary.rdl";
+
+                    //Set URL of iframe
+                    iframeObject.setSrc(strURL);
+                }
+                
+            } else {
+                var errorText = this.responseText;
+                //handle error here
+                //display error
+                Xrm.Navigation.openErrorDialog({ message: errorText });
+            }
+        }
+    };
+    req.send();
+};
+
 
 /**
  * Shows and hides appropriate sections and fields for Major/Minor and AFG Projects.
@@ -94,4 +125,18 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
     }
 
 }
+
+/**
+Shows the progress report for major projects, otherwise hides the tab.
+*/
+CAPS.ProjectTracker.ShowHideProgressReport = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute("caps_showprogressreports").getValue()) {
+        formContext.ui.tabs.get("tab_progressreports").setVisible(true);
+    }
+    else {
+        formContext.ui.tabs.get("tab_progressreports").setVisible(false);
+    }
+};
 

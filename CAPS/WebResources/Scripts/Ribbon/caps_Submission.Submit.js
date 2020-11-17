@@ -41,22 +41,16 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     let checkEnrolmentResult = await CAPS.Submission.CheckEnrolmentProjections(formContext);
 
-    //let checkBEPResult = await CAPS.Submission.CheckBEPProjects(formContext);
-
-    //let checkBUSResult = await CAPS.Submission.CheckBUSProjects(formContext);
-
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
 
-    
+    let checkProjectCountResults = await CAPS.Submission.CheckNothingToSubmit(formContext);
 
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
 
     resultsArray.push(checkEnrolmentResult);
-    //resultsArray.push(checkBEPResult);
-    //resultsArray.push(checkBUSResult);
     resultsArray.push(checkProjectRequestResults);
-    //resultsArray.push(checkBoardResolutionResults);
     resultsArray.push(checkAFGVariance);
+    resultsArray.push(checkProjectCountResults);
 
     var allValidationPassed = true;
     //loop through results
@@ -129,43 +123,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
     //close the indicator
     Xrm.Utility.closeProgressIndicator();
 
-    ////Get flag to identify if enrolment validation is required
-    //var doEnrolmentValidation = formContext.getAttribute("caps_validateenrolment").getValue();
 
-    //if (doEnrolmentValidation) {
-    //    //Do Enrolment Validation
-    //    let checkEnrolmentResult = CAPS.Submission.CheckEnrolmentProjections(formContext);
-    //    enrolmentResults = await checkEnrolmentResult;
-
-    //    //Show Results
-    //    formContext.getControl("caps_validationresults").setVisible(true);
-
-    //    resultsMessage += "Enrolment Validation: " + enrolmentResults.validationMessage + "\r\n";
-    //}
-
-    //formContext.getAttribute("caps_validationresults").setValue(resultsMessage);
-
-    //if (!doEnrolmentValidation || enrolmentResults.validationResult) {
-    //    //all good so change status or display confirmation
-    //    var confirmStrings = { text: "This capital plan is valid and ready for submission.  Click OK to Submit or Cancel to exit.", title: "Submission Confirmation" };
-    //    var confirmOptions = { height: 200, width: 450 };
-    //    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
-    //        function (success) {
-    //            if (success.confirmed) {
-    //                formContext.getAttribute("statuscode").setValue(100000000);
-    //                formContext.data.entity.save();
-    //            }
-
-    //        });
-    //}
-    //else {
-    //    var alertStrings = { confirmButtonLabel: "Ok", text: "The validation of this capital plan failed.  Please see the Validation results section below for details.", title: "Validation Result" };
-    //    var alertOptions = { height: 120, width: 260 };
-    //    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-    //}
-    
-    ////close the indicator
-    //Xrm.Utility.closeProgressIndicator();
 }
 
 /**
@@ -390,7 +348,7 @@ CAPS.Submission.CheckBoardResolution = function (formContext) {
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
 
     if (callForSubmissionType === 100000000 || callForSubmissionType === 100000001) {
-        if (formContext.getAttribute("caps_boardofresolutionattached").getValue()) {
+        if (formContext.getAttribute("caps_boardresolution").getValue()) {
             return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
         }
         else {
@@ -411,5 +369,44 @@ CAPS.Submission.CheckAFGTotal = function (formContext) {
             return new CAPS.Submission.ValidationResult(false, "AFG Allocation Validation Failed.  The variance should be 0.");
         }
     }
+}
+
+
+CAPS.Submission.CheckNothingToSubmit = function (formContext) {
+    debugger;
+    //Get flag to identify if enrolment validation is required
+    var nothingToSubmit = formContext.getAttribute("caps_noprojectstosubmit").getValue();
+
+
+    //Get record ID
+    var submissionId = formContext.data.entity.getId();
+
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
+        "<entity name = \"caps_project\" >" +
+        "<attribute name=\"caps_projectid\" />" +
+        "<attribute name=\"caps_projectcode\" />" +
+        "<order attribute=\"caps_projectcode\" descending=\"false\" />" +
+        "<filter type=\"and\">" +
+        "<condition attribute=\"caps_submission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+        "</filter>" +
+        "</entity>" +
+        "</fetch >";
+
+    //Get all Facilities on the school district
+    return Xrm.WebApi.retrieveMultipleRecords("caps_project", "?fetchXml=" + fetchXML).then(
+        function success(result) {
+            if (result.entities.length > 0 && nothingToSubmit) {
+                
+                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are project requests on this capital plan.  Please set Nothing to Submit to No or remove the project requests.");
+            }
+            else if (result.entities.length == 0 && !nothingToSubmit) {
+                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are no project requests on this capital plan.  Please set Nothing to Submit to Yes or add a project request.");
+            }
+            return new CAPS.Submission.ValidationResult(true, "Project Count Validation: Success");
+        },
+        function (error) {
+            alert(error.message);
+        }
+    );
 }
 

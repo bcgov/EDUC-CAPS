@@ -324,13 +324,14 @@ CAPS.Project.SubmissionResult = function () {
 
     Promise.all(promises).then(
         function (results) {
+            debugger;
             //Close Popup
             Alert.hide();
             //refesh view
-            if (CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
+            if (CAPS.Project.VIEW_SELECTED_CONTROL !== undefined && CAPS.Project.VIEW_SELECTED_CONTROL !== null) {
                 CAPS.Project.VIEW_SELECTED_CONTROL.refresh();
             }
-            if (CAPS.Project.GLOBAL_FORM_CONTEXT !== null) {
+            if (CAPS.Project.GLOBAL_FORM_CONTEXT !== undefined && CAPS.Project.GLOBAL_FORM_CONTEXT !== null) {
                 CAPS.Project.GLOBAL_FORM_CONTEXT.data.refresh();
             }
         }

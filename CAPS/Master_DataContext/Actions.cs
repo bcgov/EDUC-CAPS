@@ -1203,25 +1203,6 @@ namespace CAPS.DataContext
 			}
 		}
 		
-		public Microsoft.Xrm.Sdk.EntityReference recordId
-		{
-			get
-			{
-				if (this.Parameters.Contains("recordId"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["recordId"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["recordId"] = value;
-			}
-		}
-		
 		public Microsoft.Xrm.Sdk.Entity requestv2
 		{
 			get
@@ -4033,6 +4014,79 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveCascadeDeleteAsyncJobId")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveCascadeDeleteAsyncJobIdRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid ParentEntityId
+		{
+			get
+			{
+				if (this.Parameters.Contains("ParentEntityId"))
+				{
+					return ((System.Guid)(this.Parameters["ParentEntityId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["ParentEntityId"] = value;
+			}
+		}
+		
+		public RetrieveCascadeDeleteAsyncJobIdRequest()
+		{
+			this.RequestName = "RetrieveCascadeDeleteAsyncJobId";
+			this.ParentEntityId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveCascadeDeleteAsyncJobId")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveCascadeDeleteAsyncJobIdResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveCascadeDeleteAsyncJobIdResponse()
+		{
+		}
+		
+		public System.Guid AsyncJobId
+		{
+			get
+			{
+				if (this.Results.Contains("AsyncJobId"))
+				{
+					return ((System.Guid)(this.Results["AsyncJobId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+		}
+		
+		public string AsyncJobName
+		{
+			get
+			{
+				if (this.Results.Contains("AsyncJobName"))
+				{
+					return ((string)(this.Results["AsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExtractKeyPhrases")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -4284,6 +4338,21 @@ namespace CAPS.DataContext
 		{
 		}
 		
+		public string response
+		{
+			get
+			{
+				if (this.Results.Contains("response"))
+				{
+					return ((string)(this.Results["response"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
 		public Microsoft.Xrm.Sdk.Entity responsev2
 		{
 			get
@@ -4461,25 +4530,6 @@ namespace CAPS.DataContext
 			}
 		}
 		
-		public string ConnectionId
-		{
-			get
-			{
-				if (this.Parameters.Contains("ConnectionId"))
-				{
-					return ((string)(this.Parameters["ConnectionId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["ConnectionId"] = value;
-			}
-		}
-		
 		public string Value
 		{
 			get
@@ -4537,13 +4587,13 @@ namespace CAPS.DataContext
 			}
 		}
 		
-		public string AppId
+		public string ApiId
 		{
 			get
 			{
-				if (this.Parameters.Contains("AppId"))
+				if (this.Parameters.Contains("ApiId"))
 				{
-					return ((string)(this.Parameters["AppId"]));
+					return ((string)(this.Parameters["ApiId"]));
 				}
 				else
 				{
@@ -4552,7 +4602,7 @@ namespace CAPS.DataContext
 			}
 			set
 			{
-				this.Parameters["AppId"] = value;
+				this.Parameters["ApiId"] = value;
 			}
 		}
 		
@@ -6670,13 +6720,13 @@ namespace CAPS.DataContext
 			}
 		}
 		
-		public string ParentConnectionId
+		public string ParentApiId
 		{
 			get
 			{
-				if (this.Parameters.Contains("ParentConnectionId"))
+				if (this.Parameters.Contains("ParentApiId"))
 				{
-					return ((string)(this.Parameters["ParentConnectionId"]));
+					return ((string)(this.Parameters["ParentApiId"]));
 				}
 				else
 				{
@@ -6685,7 +6735,7 @@ namespace CAPS.DataContext
 			}
 			set
 			{
-				this.Parameters["ParentConnectionId"] = value;
+				this.Parameters["ParentApiId"] = value;
 			}
 		}
 		
@@ -6924,6 +6974,79 @@ namespace CAPS.DataContext
 				else
 				{
 					return default(decimal);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveCascadeAssignAsyncJobId")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveCascadeAssignAsyncJobIdRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid ParentEntityId
+		{
+			get
+			{
+				if (this.Parameters.Contains("ParentEntityId"))
+				{
+					return ((System.Guid)(this.Parameters["ParentEntityId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["ParentEntityId"] = value;
+			}
+		}
+		
+		public RetrieveCascadeAssignAsyncJobIdRequest()
+		{
+			this.RequestName = "RetrieveCascadeAssignAsyncJobId";
+			this.ParentEntityId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveCascadeAssignAsyncJobId")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveCascadeAssignAsyncJobIdResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveCascadeAssignAsyncJobIdResponse()
+		{
+		}
+		
+		public System.Guid AsyncJobId
+		{
+			get
+			{
+				if (this.Results.Contains("AsyncJobId"))
+				{
+					return ((System.Guid)(this.Results["AsyncJobId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+		}
+		
+		public string AsyncJobName
+		{
+			get
+			{
+				if (this.Results.Contains("AsyncJobName"))
+				{
+					return ((string)(this.Results["AsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
 				}
 			}
 		}

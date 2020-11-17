@@ -15,8 +15,8 @@ const SUBMISSION_STAUS = {
  * @param {any} executionContext execution context
  */
 CAPS.Submission.onLoad = function (executionContext) {
-    var formContext = executionContext.getFormContext();
     debugger;
+    var formContext = executionContext.getFormContext();
 
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
     var selectedForm = formContext.ui.formSelector.getCurrentItem().getLabel(); //Ministry Capital Plan
@@ -87,23 +87,50 @@ CAPS.Submission.onLoad = function (executionContext) {
 CAPS.Submission.embedCapitalPlanReport = function (executionContext) {
     var formContext = executionContext.getFormContext();
     debugger;
-    fetch("/api/data/v9.1/EntityDefinitions(Name='myglobaloptionset')").then(a=>a.json().then((b) =>console.log(b)));
-    //Get iframe 
-    var iframeObject = formContext.getControl("IFRAME_CapitalPlanReport");
+    var requestUrl = "/api/data/v9.1/EntityDefinitions?$filter=LogicalName eq 'caps_submission'&$select=ObjectTypeCode";
 
-    if (iframeObject !== null) {
-        var strURL = "/crmreports/viewer/viewer.aspx"
-            + "?id=a3365e88-c014-eb11-a813-000d3af43595"
-            + "&action=run"
-            + "&context=records"
-            + "&recordstype=10049"
-            + "&records=" + formContext.data.entity.getId()
-            + "&helpID=CapitalPlanSubmissionReport.rdl";
+    var globalContext = Xrm.Utility.getGlobalContext();
 
-        //Set URL of iframe
-        iframeObject.setSrc(strURL);
-    }
-}
+    var req = new XMLHttpRequest();
+    req.open("GET", globalContext.getClientUrl() + requestUrl, true);
+    req.setRequestHeader("OData-MaxVersion", "4.0");
+    req.setRequestHeader("OData-Version", "4.0");
+    req.setRequestHeader("Accept", "application/json");
+    req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    req.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            req.onreadystatechange = null;
+            if (this.status === 200) {
+                debugger;
+                var result = JSON.parse(this.response);
+                var objectTypeCode = result.value[0].ObjectTypeCode;
+                //use retrieved objectTypeCode
+                //Get iframe 
+                var iframeObject = formContext.getControl("IFRAME_CapitalPlanReport");
+
+                if (iframeObject !== null) {
+                    var strURL = "/crmreports/viewer/viewer.aspx"
+                        + "?id=a3365e88-c014-eb11-a813-000d3af43595"
+                        + "&action=run"
+                        + "&context=records"
+                        + "&recordstype=" + objectTypeCode
+                        + "&records=" + formContext.data.entity.getId()
+                        + "&helpID=CapitalPlanSubmissionReport.rdl";
+
+                    //Set URL of iframe
+                    iframeObject.setSrc(strURL);
+                }
+            } else {
+                var errorText = this.responseText;
+                //handle error here
+                    //display error
+                Xrm.Navigation.openErrorDialog({ message: errorText });
+            }
+        }
+    };
+    req.send();
+};
+
 
 /**
  * Triggered when AFG PCF is updated, this function updates the AFG total and the variance.

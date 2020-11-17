@@ -88,10 +88,25 @@ CAPS.Project.onLoad = function (executionContext) {
 
         //add on-change events for prfs if not BEP
         if (submissionCategoryCode != "BEP") {
+            debugger;
+            //majors
             formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
             formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
             formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
             formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
+
+            //demolition
+            formContext.getAttribute("caps_demolitioncompletedinonefiscalyear").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_hazmatenvassesscomplete").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_datebuildingportionbecameunoccupied").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_hasschoolbeenpermanentlyclosed").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_estimatedmarketvalueofpropertywbuilding").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_estimatedmarketvalueoflandwobuilding").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_summaryofhazardousmaterialsenvassessment").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_challengestheexistingbuildingpresents").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_benefitsofafullorpartialdemolition").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_potentialplanforvacantsite").addOnChange(CAPS.Project.ValidatePRFS);
+
             formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
 
             CAPS.Project.ValidatePRFS(executionContext);
@@ -525,9 +540,11 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
  * @param {any} executionContext execution context
  */
 CAPS.Project.ValidatePRFS = function (executionContext) {
+    debugger;
     var formContext = executionContext.getFormContext();
+    var prfsFieldsComplete = true;
 
-    if (formContext.getAttribute("caps_submissioncategorycode").getValue() != "BEP") {
+    if (formContext.getAttribute("caps_submissioncategorycode").getValue() != "BEP" && formContext.getAttribute("caps_submissioncategorycode").getValue() != "DEMOLITION") {
         //Check the 4 fields
         var projectRationale = formContext.getAttribute("caps_projectrationale").getValue();
         var scopeOfWork = formContext.getAttribute("caps_scopeofwork").getValue();
@@ -535,9 +552,38 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
         var municipalRequirements = formContext.getAttribute("caps_municipalrequirements").getValue();
 
         if (projectRationale !== null && scopeOfWork !== null && tempAccomodation !== null && municipalRequirements !== null) {
+            prfsFieldsComplete = true;
             formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
         }
         else {
+            prfsFieldsComplete = false;
+        }
+    }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "DEMOLITION") {
+
+        var demo1 = formContext.getAttribute("caps_demolitioncompletedinonefiscalyear").getValue();
+        var demo2 = formContext.getAttribute("caps_hazmatenvassesscomplete").getValue();
+        var demo3 = formContext.getAttribute("caps_datebuildingportionbecameunoccupied").getValue();
+        var demo4 = formContext.getAttribute("caps_hasschoolbeenpermanentlyclosed").getValue();
+        var demo5 = formContext.getAttribute("caps_estimatedmarketvalueofpropertywbuilding").getValue();
+        var demo6 = formContext.getAttribute("caps_estimatedmarketvalueoflandwobuilding").getValue();
+        var demo7 = formContext.getAttribute("caps_summaryofhazardousmaterialsenvassessment").getValue();
+        var demo8 = formContext.getAttribute("caps_challengestheexistingbuildingpresents").getValue();
+        var demo9 = formContext.getAttribute("caps_benefitsofafullorpartialdemolition").getValue();
+        var demo10 = formContext.getAttribute("caps_potentialplanforvacantsite").getValue();
+
+        if (demo1 !== null && demo2 !==null && demo3 !== null && demo4 !== null && demo5 !== null && demo6 !== null && demo7 !== null && demo8 !== null && demo9 !== null && demo10 !== null) {
+            prfsFieldsComplete = true;
+            formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+        }
+        else {
+            prfsFieldsComplete = false;
+        }
+
+    }
+
+
+        if (!prfsFieldsComplete) {
             //Call action to validate 
             var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
             //call action
@@ -581,8 +627,6 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
             );
         }
     }
-
-}
 
 /**
  * This function waits for the Facilities subgrid to load and adds an event listener to the grid for validating that at least one facility was added.
