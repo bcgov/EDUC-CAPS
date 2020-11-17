@@ -27,14 +27,6 @@
     &lt;attribute name="caps_total_currentenrolment" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;filter&gt;
-      &lt;condition attribute="caps_designfacilitytype" operator="in" uiname="Elementary" uitype="caps_facilitytype" &gt;
-        &lt;value&gt;33f5d7f4-b988-ea11-a811-000d3af42496&lt;/value&gt;
-        &lt;value&gt;4b6d710a-ba88-ea11-a811-000d3af42496&lt;/value&gt;
-        &lt;value&gt;f4576312-ba88-ea11-a811-000d3af42496&lt;/value&gt;
-        &lt;value&gt;38f5d7f4-b988-ea11-a811-000d3af42496&lt;/value&gt;
-        &lt;value&gt;0dfbf526-ba88-ea11-a811-000d3af42496&lt;/value&gt;
-        &lt;value&gt;b5c6c5fb-b988-ea11-a811-000d3af42496&lt;/value&gt;
-      &lt;/condition&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
@@ -421,6 +413,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -455,6 +448,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -489,6 +483,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -696,6 +691,7 @@
                                   <Value>=Fields!caps_total_currentenrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -726,7 +722,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_adjusteddesigncapacitytotalValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -758,6 +756,7 @@
                                   <Value>=Fields!caps_operatingcapacitytotalValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -895,7 +894,7 @@
             </TablixRowHierarchy>
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>AllActiveFacilities</DataSetName>
-            <Top>0.17639cm</Top>
+            <Top>0cm</Top>
             <Left>0cm</Left>
             <Height>2.54084cm</Height>
             <Width>27.265cm</Width>
@@ -906,7 +905,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.79604cm</Height>
+        <Height>2.61993cm</Height>
         <Style />
       </Body>
       <Width>27.265cm</Width>
@@ -952,6 +951,7 @@
               <Value>BC_EDUC_H_RGB_pos</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.02556in</Top>
+              <Left>0in</Left>
               <Height>1.10986in</Height>
               <Width>1.83136in</Width>
               <ZIndex>1</ZIndex>
@@ -968,7 +968,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>School District Capacity Utilization Summary Report</Value>
+                      <Value>Provincial Utilization Summary</Value>
                       <Style>
                         <FontSize>15pt</FontSize>
                       </Style>
