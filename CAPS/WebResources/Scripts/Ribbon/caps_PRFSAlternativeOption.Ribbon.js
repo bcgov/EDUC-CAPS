@@ -44,7 +44,7 @@ CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
                                         debugger;
                                         //get error message
                                         if (response.ErrorMessage == null) {
-                                            var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B completed successfully.", title: "Schedule B Result" };
+                                            var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation has completed successfully.", title: "Preliminary Budget Result" };
                                             var alertOptions = { height: 120, width: 260 };
                                             Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                                                 function success(result) {
@@ -57,7 +57,7 @@ CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
                                             );
                                         }
                                         else {
-                                            var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + response.ErrorMessage, title: "Schedule B Result" };
+                                            var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation ran into a problem. Details: " + response.ErrorMessage, title: "Preliminary Budget Result" };
                                             var alertOptions = { height: 120, width: 260 };
                                             Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                                                 function success(result) {
