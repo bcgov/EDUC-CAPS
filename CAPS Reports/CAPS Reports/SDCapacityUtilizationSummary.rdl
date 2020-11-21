@@ -649,6 +649,48 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="UserSD">
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="systemuser"&gt;
+    &lt;attribute name="businessunitid" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="systemuserid" operator="eq-userid" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="businessunit" from="businessunitid" to="businessunitid" link-type="inner" alias="BU"&gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="businessunitid">
+          <DataField>businessunitid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="businessunitidValue">
+          <DataField>businessunitidValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="businessunitidEntityName">
+          <DataField>businessunitidEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrict">
+          <DataField>BU_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrictValue">
+          <DataField>BU_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrictEntityName">
+          <DataField>BU_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -2736,9 +2778,10 @@
     <ReportParameter Name="SchoolDistrict">
       <DataType>String</DataType>
       <DefaultValue>
-        <Values>
-          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="edu_schooldistrict"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
-        </Values>
+        <DataSetReference>
+          <DataSetName>UserSD</DataSetName>
+          <ValueField>BU_caps_schooldistrictValue</ValueField>
+        </DataSetReference>
       </DefaultValue>
       <Prompt>Select School District</Prompt>
       <ValidValues>
