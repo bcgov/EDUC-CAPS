@@ -3147,6 +3147,91 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_UpdateCapacityReporting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateCapacityReportingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_UpdateCapacityReportingRequest()
+		{
+			this.RequestName = "caps_UpdateCapacityReporting";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_UpdateCapacityReporting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateCapacityReportingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_UpdateCapacityReportingResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_BulkDeleteCapacityReporting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_BulkDeleteCapacityReportingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_BulkDeleteCapacityReportingRequest()
+		{
+			this.RequestName = "caps_BulkDeleteCapacityReporting";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_BulkDeleteCapacityReporting")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_BulkDeleteCapacityReportingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_BulkDeleteCapacityReportingResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ProjectSubmission")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ProjectSubmissionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -4078,6 +4163,59 @@ namespace CAPS.DataContext
 				if (this.Results.Contains("AsyncJobName"))
 				{
 					return ((string)(this.Results["AsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_MigrateSlaProactiveRun")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class msdyn_MigrateSlaProactiveRunRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public msdyn_MigrateSlaProactiveRunRequest()
+		{
+			this.RequestName = "msdyn_MigrateSlaProactiveRun";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_MigrateSlaProactiveRun")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class msdyn_MigrateSlaProactiveRunResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public msdyn_MigrateSlaProactiveRunResponse()
+		{
+		}
+		
+		public string Exception
+		{
+			get
+			{
+				if (this.Results.Contains("Exception"))
+				{
+					return ((string)(this.Results["Exception"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		public string OutputString
+		{
+			get
+			{
+				if (this.Results.Contains("OutputString"))
+				{
+					return ((string)(this.Results["OutputString"]));
 				}
 				else
 				{

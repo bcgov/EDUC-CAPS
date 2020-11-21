@@ -28,6 +28,7 @@ namespace CustomWorkflowActivities.Services
         internal decimal ProjectManagement {get; set;}
         internal decimal LiabilityInsurance {get; set;}
         internal decimal PayableTaxes {get; set;}
+        internal decimal RiskReserve { get; set; }
         internal decimal NLCBudgetAmount { get; set;}
 
     internal decimal Total {get; set;}
@@ -372,7 +373,13 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Supplemental Costs: {0}", supplementalCosts);
 
-            result.Total = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts + NLCAmount;
+            var subTotal = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts + NLCAmount;
+            
+            var riskReserve = subTotal * GetBudgetCalculationValue("Risk Reserve and Escalation");
+
+            result.RiskReserve = riskReserve;
+
+            result.Total = subTotal + riskReserve;
 
             return result;
         }
