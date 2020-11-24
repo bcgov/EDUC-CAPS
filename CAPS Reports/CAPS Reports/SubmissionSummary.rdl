@@ -28,6 +28,7 @@
     &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="caps_callforsubmission" /&gt;
     &lt;attribute name="caps_submittedon" /&gt;
+   &lt;attribute name="caps_submissiontype"/&gt;
      &lt;attribute name="statuscode" /&gt;
     &lt;link-entity name="caps_callforsubmission" from="caps_callforsubmissionid" to="caps_callforsubmission" alias="CallforSubmission" &gt;
       &lt;attribute name="caps_callforsubmissiontype" /&gt;
@@ -85,6 +86,10 @@
           <DataField>caps_submissionid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_submissiontype">
+          <DataField>caps_submissiontype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="statuscode">
           <DataField>statuscode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -92,6 +97,10 @@
         <Field Name="CallforSubmission_caps_callforsubmissiontype">
           <DataField>CallforSubmission_caps_callforsubmissiontype</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissiontypeValue">
+          <DataField>caps_submissiontypeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CallforSubmission_caps_callforsubmissiontypeValue">
           <DataField>CallforSubmission_caps_callforsubmissiontypeValue</DataField>
@@ -3986,8 +3995,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>20.96768cm</Top>
-                <Left>0.08266cm</Left>
+                <Top>20.25331cm</Top>
+                <Left>0.1462cm</Left>
                 <Height>13.32835cm</Height>
                 <Width>25.95902cm</Width>
                 <Visibility>
@@ -6198,8 +6207,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>10.62226cm</Top>
-                <Left>0.12458cm</Left>
+                <Top>9.88143cm</Top>
+                <Left>0.19397cm</Left>
                 <Height>10.22508cm</Height>
                 <Width>25.95902cm</Width>
                 <ZIndex>1</ZIndex>
@@ -6235,7 +6244,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Capital Plan:</Value>
+                                      <Value>Submission Summary:</Value>
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -6280,6 +6289,78 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>caps_name</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.86458cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox3">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Submission Type:</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontSize>11pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox3</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_submissiontype">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_submissiontype.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontSize>11pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_submissiontype</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -6758,13 +6839,16 @@
                     <TablixMember>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanDetails</DataSetName>
                 <Top>0.08754cm</Top>
                 <Left>0.04644cm</Left>
-                <Height>6.04802cm</Height>
-                <Width>10.9817cm</Width>
+                <Height>6.9126cm</Height>
+                <Width>10.98171cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -7270,7 +7354,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>There is no Project Request data as the Capital Plan has not reached Results Released status. Once the Capital Plan status is Results Released, Supported/Not Supported Project Request data will be displayed.</Value>
+                        <Value>There is no Project Request data as the Capital Plan has not reached Results Released status. Once the Capital Plan status is Results Released, Project Request data will be displayed.</Value>
                         <Style>
                           <FontFamily>arial</FontFamily>
                         </Style>
@@ -7279,14 +7363,17 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>7.24106cm</Top>
-                <Left>11.2771cm</Left>
-                <Height>1.68479cm</Height>
+                <Top>7.2058cm</Top>
+                <Left>11.29523cm</Left>
+                <Height>0.99687cm</Height>
                 <Width>14.74645cm</Width>
                 <ZIndex>4</ZIndex>
                 <Visibility>
-                  <Hidden>= (Parameters!CapitalPlanToggle.Value &lt;&gt; "Results Released") or 
-(Parameters!CapitalPlanToggle.Value = "Results Released" and Parameters!CapitalPlanStatus.Value = "Results Released")</Hidden>
+                  <Hidden>= ((Parameters!CapitalPlanStatus.Value = "Results Released") or
+(Parameters!CapitalPlanStatus.Value = "Results Released" and Parameters!CapitalPlanToggle.Value = "Results Released") or
+(Parameters!CapitalPlanStatus.Value = "Results Released" and Parameters!CapitalPlanToggle.Value = "Minister Approved") or 
+(Parameters!CapitalPlanToggle.Value = "Draft") or
+(Parameters!CapitalPlanToggle.Value = "Submitted"))</Hidden>
                 </Visibility>
                 <Style>
                   <Border>
@@ -7805,8 +7892,8 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <Style />
                   </Paragraph>
                 </Paragraphs>
-                <Top>9.0317cm</Top>
-                <Left>11.29523cm</Left>
+                <Top>8.37906cm</Top>
+                <Left>11.33715cm</Left>
                 <Height>1.39375cm</Height>
                 <Width>14.74645cm</Width>
                 <ZIndex>6</ZIndex>
@@ -7827,7 +7914,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
             <KeepTogether>true</KeepTogether>
             <Top>0.07938cm</Top>
             <Left>0.08772cm</Left>
-            <Height>34.49887cm</Height>
+            <Height>33.67866cm</Height>
             <Width>26.20533cm</Width>
             <Visibility>
               <Hidden>= Parameters!CapitalPlanStatus.Value = "Draft"</Hidden>
@@ -9998,7 +10085,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>There is no Project Request data as your Capital Plan is still in Draft. The Submitted and Results Released Capital Plan is not applicable, as it has not reached that stage yet. Select "Draft" in the parameter to see the Capital Plan Draft Summary. </Value>
+                        <Value>There is no Project Request data as your Capital Plan is still in Draft. The Submitted  / Results Released / Minister Approved Capital Plan is not applicable, as it has not reached that stage yet. Select "Draft" in the parameter to see the Capital Plan Draft Summary. </Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -10025,8 +10112,8 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>41.38201cm</Top>
-            <Left>0.04386cm</Left>
+            <Top>40.77045cm</Top>
+            <Left>0.08772cm</Left>
             <Height>11.52229cm</Height>
             <Width>26.24623cm</Width>
             <ZIndex>1</ZIndex>
@@ -10664,7 +10751,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <Top>0.02646cm</Top>
                 <Left>0.04386cm</Left>
                 <Height>3.16061cm</Height>
-                <Width>26.08554cm</Width>
+                <Width>26.08553cm</Width>
                 <Visibility>
                   <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value = "Minor"</Hidden>
                 </Visibility>
@@ -11297,7 +11384,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <Top>3.31722cm</Top>
                 <Left>0.04386cm</Left>
                 <Height>3.16062cm</Height>
-                <Width>26.08554cm</Width>
+                <Width>26.08553cm</Width>
                 <ZIndex>1</ZIndex>
                 <Visibility>
                   <Hidden>=Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Minor"</Hidden>
@@ -11310,13 +11397,13 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               </Tablix>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>34.73718cm</Top>
-            <Left>0cm</Left>
+            <Top>34.12562cm</Top>
+            <Left>0.04386cm</Left>
             <Height>6.47784cm</Height>
             <Width>26.29305cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
-              <Hidden>= Parameters!CapitalPlanToggle.Value &lt;&gt; "Minister Approved"</Hidden>
+              <Hidden>= Parameters!CapitalPlanToggle.Value &lt;&gt; "Minister Approved" or Parameters!CapitalPlanStatus.Value &lt;&gt; "Results Released"</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -11325,7 +11412,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>53.06214cm</Height>
+        <Height>52.42714cm</Height>
         <Style />
       </Body>
       <Width>26.43263cm</Width>
@@ -11375,7 +11462,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Capital Plan Summary</Value>
+                      <Value>Submission Summary</Value>
                       <Style>
                         <FontFamily>Segoe UI Light</FontFamily>
                         <FontSize>18pt</FontSize>
@@ -11559,7 +11646,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
           <Value>= Parameters!CapitalPlanStatus.Value</Value>
         </Values>
       </DefaultValue>
-      <Prompt>Which Capital Plan Summary report do you want to see?</Prompt>
+      <Prompt>Which Submission Summary report do you want to see?</Prompt>
       <ValidValues>
         <ParameterValues>
           <ParameterValue>
