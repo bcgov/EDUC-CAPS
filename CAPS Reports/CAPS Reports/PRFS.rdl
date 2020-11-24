@@ -7781,6 +7781,10 @@
                                     <Color>LightGrey</Color>
                                     <Style>Solid</Style>
                                   </Border>
+                                  <RightBorder>
+                                    <Style>None</Style>
+                                  </RightBorder>
+                                  <BackgroundColor>#e3a82b</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
@@ -7918,7 +7922,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Constant" />
+                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -8360,7 +8364,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -8575,6 +8579,10 @@
                                     <Color>LightGrey</Color>
                                     <Style>Solid</Style>
                                   </Border>
+                                  <LeftBorder>
+                                    <Style>None</Style>
+                                  </LeftBorder>
+                                  <BackgroundColor>#e3a82b</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
@@ -8606,10 +8614,16 @@
                                     <TextRuns>
                                       <TextRun>
                                         <Value>=Fields!caps_schoolyear.Value</Value>
-                                        <Style />
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                          <FontSize>8pt</FontSize>
+                                          <FontWeight>Bold</FontWeight>
+                                        </Style>
                                       </TextRun>
                                     </TextRuns>
-                                    <Style />
+                                    <Style>
+                                      <TextAlign>Right</TextAlign>
+                                    </Style>
                                   </Paragraph>
                                 </Paragraphs>
                                 <rd:DefaultName>caps_schoolyear1</rd:DefaultName>
@@ -8618,6 +8632,7 @@
                                     <Color>LightGrey</Color>
                                     <Style>Solid</Style>
                                   </Border>
+                                  <BackgroundColor>#e3a82b</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
@@ -8650,6 +8665,7 @@
                                         <Value>=First(Fields!caps_projectcode.Value, "SSProjectRequest")</Value>
                                         <Style>
                                           <FontFamily>Arial</FontFamily>
+                                          <FontWeight>Bold</FontWeight>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -8675,11 +8691,27 @@
                             <TablixMember />
                             <TablixMember />
                             <TablixMember />
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
                             <TablixMember />
-                            <TablixMember />
-                            <TablixMember />
-                            <TablixMember />
-                            <TablixMember />
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                              </Visibility>
+                            </TablixMember>
                             <TablixMember />
                           </TablixMembers>
                         </TablixMember>
