@@ -57,6 +57,7 @@
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
+      &lt;attribute name="statuscode" /&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
       &lt;filter type="and"&gt;
@@ -298,6 +299,14 @@
         <Field Name="YEAR_edu_enddateValue">
           <DataField>YEAR_edu_enddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscode">
+          <DataField>YEAR_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscodeValue">
+          <DataField>YEAR_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -726,7 +735,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>White</Color>
+                                    <Color>=iif(Fields!YEAR_statuscodeValue.Value = 1, "Black", "White")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -739,7 +748,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#234075")</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>

@@ -2881,6 +2881,7 @@
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
+      &lt;attribute name="statuscode" /&gt;
  &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="ne" value="757500001" /&gt;
       &lt;/filter&gt;
@@ -3126,6 +3127,14 @@
         <Field Name="YEAR_edu_enddateValue">
           <DataField>YEAR_edu_enddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscode">
+          <DataField>YEAR_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscodeValue">
+          <DataField>YEAR_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -7867,7 +7876,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), "Yellow", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -7939,6 +7948,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8011,6 +8021,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8083,6 +8094,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8155,6 +8167,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8230,6 +8243,7 @@
                                     <BottomBorder>
                                       <Style>None</Style>
                                     </BottomBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8310,6 +8324,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8381,6 +8396,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8453,6 +8469,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8539,6 +8556,7 @@
                                     <TopBorder>
                                       <Style>None</Style>
                                     </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8632,7 +8650,7 @@
                                     <Color>LightGrey</Color>
                                     <Style>Solid</Style>
                                   </Border>
-                                  <BackgroundColor>#e3a82b</BackgroundColor>
+                                  <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
