@@ -7862,6 +7862,7 @@
                                           <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -7934,6 +7935,7 @@
                                           <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -8382,6 +8384,7 @@
                                           <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -8563,6 +8566,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
