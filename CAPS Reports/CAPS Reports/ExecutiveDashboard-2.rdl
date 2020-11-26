@@ -643,7 +643,7 @@
                                   <Value>=Fields!PRJ_caps_maxpotentialprojectbudgetValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0,,;(0,,)</Format>
+                                    <Format>0;(0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -662,7 +662,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1037,7 +1036,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!owneridValue.Value</Value>
+                      <Value>=Fields!ownerid.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
@@ -1069,6 +1068,7 @@
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
+                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
