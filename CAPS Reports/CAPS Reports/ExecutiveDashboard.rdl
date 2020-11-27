@@ -16,20 +16,25 @@
     <DataSet Name="ProjectPDRDev">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projecttracker"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projecttracker" &gt;
     &lt;attribute name="caps_projecttrackerid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_totaldesigncapacity" /&gt;
     &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
     &lt;attribute name="statuscode" /&gt;
-    &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
+    &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
     &lt;order attribute="caps_schooldistrict" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
+    &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -82,12 +87,12 @@
           <DataField>statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_maxpotentialprojectbudget">
-          <DataField>caps_maxpotentialprojectbudget</DataField>
+        <Field Name="caps_maxpotential_fundingsource">
+          <DataField>caps_maxpotential_fundingsource</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_maxpotentialprojectbudgetValue">
-          <DataField>caps_maxpotentialprojectbudgetValue</DataField>
+        <Field Name="caps_maxpotential_fundingsourceValue">
+          <DataField>caps_maxpotential_fundingsourceValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -95,422 +100,36 @@
     <DataSet Name="ProjectOccupancy">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projectmilestone"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_projecttracker" /&gt;
     &lt;attribute name="caps_expectedactualdate" /&gt;
-     &lt;attribute name="ownerid" /&gt;
+    &lt;attribute name="ownerid" /&gt;
     &lt;order attribute="ownerid" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="caps_complete" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="ac"&gt;
-      &lt;filter type="and"&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="ac" &gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ" &gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="caps_projecttype" /&gt;
       &lt;attribute name="statuscode" /&gt;
       &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
+      &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
-      &lt;filter type="and"&gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870003" /&gt;
       &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_projectmilestoneid">
-          <DataField>caps_projectmilestoneid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttracker">
-          <DataField>caps_projecttracker</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerValue">
-          <DataField>caps_projecttrackerValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerEntityName">
-          <DataField>caps_projecttrackerEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdate">
-          <DataField>caps_expectedactualdate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdateValue">
-          <DataField>caps_expectedactualdateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrict">
-          <DataField>PRJ_caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictValue">
-          <DataField>PRJ_caps_schooldistrictValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictEntityName">
-          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttype">
-          <DataField>PRJ_caps_projecttype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeValue">
-          <DataField>PRJ_caps_projecttypeValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeEntityName">
-          <DataField>PRJ_caps_projecttypeEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscode">
-          <DataField>PRJ_statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscodeValue">
-          <DataField>PRJ_statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_name">
-          <DataField>PRJ_caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudget">
-          <DataField>PRJ_caps_maxpotentialprojectbudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudgetValue">
-          <DataField>PRJ_caps_maxpotentialprojectbudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacity">
-          <DataField>PRJ_caps_totaldesigncapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacityValue">
-          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="ProjectUnderConstruction">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projectmilestone"&gt;
-    &lt;attribute name="caps_projectmilestoneid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_projecttracker" /&gt;
-    &lt;attribute name="caps_expectedactualdate" /&gt;
-     &lt;attribute name="ownerid" /&gt;
-    &lt;order attribute="ownerid" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_complete" operator="eq" value="1" /&gt;
-    &lt;/filter&gt;
-    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="ae"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONSTRUCTION_DOCUMENTS" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
-      &lt;attribute name="caps_schooldistrict" /&gt;
-      &lt;attribute name="caps_projecttype" /&gt;
-      &lt;attribute name="statuscode" /&gt;
-     &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
-      &lt;attribute name="caps_totaldesigncapacity" /&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="200870002" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_projectmilestoneid">
-          <DataField>caps_projectmilestoneid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttracker">
-          <DataField>caps_projecttracker</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerValue">
-          <DataField>caps_projecttrackerValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerEntityName">
-          <DataField>caps_projecttrackerEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdate">
-          <DataField>caps_expectedactualdate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdateValue">
-          <DataField>caps_expectedactualdateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrict">
-          <DataField>PRJ_caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictValue">
-          <DataField>PRJ_caps_schooldistrictValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictEntityName">
-          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttype">
-          <DataField>PRJ_caps_projecttype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeValue">
-          <DataField>PRJ_caps_projecttypeValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeEntityName">
-          <DataField>PRJ_caps_projecttypeEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscode">
-          <DataField>PRJ_statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscodeValue">
-          <DataField>PRJ_statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_name">
-          <DataField>PRJ_caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudget">
-          <DataField>PRJ_caps_maxpotentialprojectbudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudgetValue">
-          <DataField>PRJ_caps_maxpotentialprojectbudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacity">
-          <DataField>PRJ_caps_totaldesigncapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacityValue">
-          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="ProjectDesignDev">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projectmilestone"&gt;
-    &lt;attribute name="caps_projectmilestoneid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_projecttracker" /&gt;
-    &lt;attribute name="caps_expectedactualdate" /&gt;
-    &lt;attribute name="ownerid" /&gt;
-    &lt;order attribute="ownerid" descending="false" /&gt;
-    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="af"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_milestonecode" operator="eq" value="DESIGN_DEVELOPMENT" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
-      &lt;attribute name="caps_schooldistrict" /&gt;
-      &lt;attribute name="caps_projecttype" /&gt;
-      &lt;attribute name="statuscode" /&gt;
-      &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
-      &lt;attribute name="caps_totaldesigncapacity" /&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="200870001" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_projectmilestoneid">
-          <DataField>caps_projectmilestoneid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttracker">
-          <DataField>caps_projecttracker</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerValue">
-          <DataField>caps_projecttrackerValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerEntityName">
-          <DataField>caps_projecttrackerEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdate">
-          <DataField>caps_expectedactualdate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_expectedactualdateValue">
-          <DataField>caps_expectedactualdateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrict">
-          <DataField>PRJ_caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictValue">
-          <DataField>PRJ_caps_schooldistrictValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_schooldistrictEntityName">
-          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttype">
-          <DataField>PRJ_caps_projecttype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeValue">
-          <DataField>PRJ_caps_projecttypeValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_projecttypeEntityName">
-          <DataField>PRJ_caps_projecttypeEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscode">
-          <DataField>PRJ_statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_statuscodeValue">
-          <DataField>PRJ_statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_name">
-          <DataField>PRJ_caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudget">
-          <DataField>PRJ_caps_maxpotentialprojectbudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudgetValue">
-          <DataField>PRJ_caps_maxpotentialprojectbudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacity">
-          <DataField>PRJ_caps_totaldesigncapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PRJ_caps_totaldesigncapacityValue">
-          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="ProjectApprovedNoAnnounced">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true"&gt;
-  &lt;entity name="caps_projectmilestone"&gt;
-    &lt;attribute name="caps_projectmilestoneid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_projecttracker" /&gt;
-    &lt;attribute name="caps_expectedactualdate" /&gt;
-    &lt;attribute name="ownerid" /&gt;
-    &lt;order attribute="caps_expectedactualdate" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_complete" operator="ne" value="1" /&gt;
-    &lt;/filter&gt;
-    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="bc"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_milestonecode" operator="eq" value="ANNOUNCED" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
-      &lt;attribute name="caps_schooldistrict" /&gt;
-      &lt;attribute name="caps_projecttype" /&gt;
-      &lt;attribute name="statuscode" /&gt;
-      &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
-      &lt;attribute name="caps_totaldesigncapacity" /&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
-      &lt;/filter&gt;
-      &lt;link-entity name="caps_projectmilestone" from="caps_projecttracker" to="caps_projecttrackerid" link-type="inner" alias="bd"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_complete" operator="eq" value="1" /&gt;
+      &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+        &lt;filter&gt;
+          &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
         &lt;/filter&gt;
-        &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="be"&gt;
-          &lt;filter type="and"&gt;
-            &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
-          &lt;/filter&gt;
-        &lt;/link-entity&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -593,12 +212,418 @@
           <DataField>PRJ_caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudget">
-          <DataField>PRJ_caps_maxpotentialprojectbudget</DataField>
+        <Field Name="PRJ_caps_maxpotential_fundingsource">
+          <DataField>PRJ_caps_maxpotential_fundingsource</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudgetValue">
-          <DataField>PRJ_caps_maxpotentialprojectbudgetValue</DataField>
+        <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
+          <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacity">
+          <DataField>PRJ_caps_totaldesigncapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacityValue">
+          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectUnderConstruction">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_projectmilestone"&gt;
+    &lt;attribute name="caps_projectmilestoneid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_projecttracker" /&gt;
+    &lt;attribute name="caps_expectedactualdate" /&gt;
+     &lt;attribute name="ownerid" /&gt;
+    &lt;order attribute="ownerid" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_complete" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="ae"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONSTRUCTION_DOCUMENTS" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+      &lt;attribute name="caps_projecttype" /&gt;
+      &lt;attribute name="statuscode" /&gt;
+     &lt;attribute name="caps_name" /&gt;
+      &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
+      &lt;attribute name="caps_totaldesigncapacity" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="statuscode" operator="eq" value="200870002" /&gt;
+      &lt;/filter&gt;
+      &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+        &lt;filter&gt;
+          &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+        &lt;/filter&gt;
+      &lt;/link-entity&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_projectmilestoneid">
+          <DataField>caps_projectmilestoneid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttracker">
+          <DataField>caps_projecttracker</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerValue">
+          <DataField>caps_projecttrackerValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerEntityName">
+          <DataField>caps_projecttrackerEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdate">
+          <DataField>caps_expectedactualdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdateValue">
+          <DataField>caps_expectedactualdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ownerid">
+          <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owneridValue">
+          <DataField>owneridValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owneridEntityName">
+          <DataField>owneridEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrict">
+          <DataField>PRJ_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictValue">
+          <DataField>PRJ_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictEntityName">
+          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttype">
+          <DataField>PRJ_caps_projecttype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeValue">
+          <DataField>PRJ_caps_projecttypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeEntityName">
+          <DataField>PRJ_caps_projecttypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscode">
+          <DataField>PRJ_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscodeValue">
+          <DataField>PRJ_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_name">
+          <DataField>PRJ_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsource">
+          <DataField>PRJ_caps_maxpotential_fundingsource</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
+          <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacity">
+          <DataField>PRJ_caps_totaldesigncapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacityValue">
+          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectDesignDev">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_projectmilestone"&gt;
+    &lt;attribute name="caps_projectmilestoneid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_projecttracker" /&gt;
+    &lt;attribute name="caps_expectedactualdate" /&gt;
+    &lt;attribute name="ownerid" /&gt;
+    &lt;order attribute="ownerid" descending="false" /&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="af"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="DESIGN_DEVELOPMENT" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ"&gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+      &lt;attribute name="caps_projecttype" /&gt;
+      &lt;attribute name="statuscode" /&gt;
+      &lt;attribute name="caps_name" /&gt;
+      &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
+      &lt;attribute name="caps_totaldesigncapacity" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="statuscode" operator="eq" value="200870001" /&gt;
+      &lt;/filter&gt;
+      &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+        &lt;filter&gt;
+          &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+        &lt;/filter&gt;
+      &lt;/link-entity&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_projectmilestoneid">
+          <DataField>caps_projectmilestoneid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttracker">
+          <DataField>caps_projecttracker</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerValue">
+          <DataField>caps_projecttrackerValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerEntityName">
+          <DataField>caps_projecttrackerEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdate">
+          <DataField>caps_expectedactualdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdateValue">
+          <DataField>caps_expectedactualdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ownerid">
+          <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owneridValue">
+          <DataField>owneridValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owneridEntityName">
+          <DataField>owneridEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrict">
+          <DataField>PRJ_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictValue">
+          <DataField>PRJ_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictEntityName">
+          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttype">
+          <DataField>PRJ_caps_projecttype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeValue">
+          <DataField>PRJ_caps_projecttypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeEntityName">
+          <DataField>PRJ_caps_projecttypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscode">
+          <DataField>PRJ_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscodeValue">
+          <DataField>PRJ_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_name">
+          <DataField>PRJ_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsource">
+          <DataField>PRJ_caps_maxpotential_fundingsource</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
+          <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacity">
+          <DataField>PRJ_caps_totaldesigncapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_totaldesigncapacityValue">
+          <DataField>PRJ_caps_totaldesigncapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectApprovedNoAnnounced">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" &gt;
+  &lt;entity name="caps_projectmilestone" &gt;
+    &lt;attribute name="caps_projectmilestoneid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_projecttracker" /&gt;
+    &lt;attribute name="caps_expectedactualdate" /&gt;
+    &lt;attribute name="ownerid" /&gt;
+    &lt;order attribute="caps_expectedactualdate" descending="false" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="caps_complete" operator="ne" value="1" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="bc" &gt;
+      &lt;filter type="and" &gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="ANNOUNCED" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PRJ" &gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+      &lt;attribute name="caps_projecttype" /&gt;
+      &lt;attribute name="statuscode" /&gt;
+      &lt;attribute name="caps_name" /&gt;
+      &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
+      &lt;attribute name="caps_totaldesigncapacity" /&gt;
+      &lt;filter type="and" &gt;
+        &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
+      &lt;/filter&gt;
+      &lt;link-entity name="caps_projectmilestone" from="caps_projecttracker" to="caps_projecttrackerid" link-type="inner" alias="bd" &gt;
+        &lt;filter type="and" &gt;
+          &lt;condition attribute="caps_complete" operator="eq" value="1" /&gt;
+        &lt;/filter&gt;
+        &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="be" &gt;
+          &lt;filter type="and" &gt;
+            &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
+          &lt;/filter&gt;
+        &lt;/link-entity&gt;
+      &lt;/link-entity&gt;
+      &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+        &lt;filter&gt;
+          &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+        &lt;/filter&gt;
+      &lt;/link-entity&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_projectmilestoneid">
+          <DataField>caps_projectmilestoneid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttracker">
+          <DataField>caps_projecttracker</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerValue">
+          <DataField>caps_projecttrackerValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerEntityName">
+          <DataField>caps_projecttrackerEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdate">
+          <DataField>caps_expectedactualdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdateValue">
+          <DataField>caps_expectedactualdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ownerid">
+          <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owneridValue">
+          <DataField>owneridValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owneridEntityName">
+          <DataField>owneridEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrict">
+          <DataField>PRJ_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictValue">
+          <DataField>PRJ_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictEntityName">
+          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttype">
+          <DataField>PRJ_caps_projecttype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeValue">
+          <DataField>PRJ_caps_projecttypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_projecttypeEntityName">
+          <DataField>PRJ_caps_projecttypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscode">
+          <DataField>PRJ_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_statuscodeValue">
+          <DataField>PRJ_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_name">
+          <DataField>PRJ_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsource">
+          <DataField>PRJ_caps_maxpotential_fundingsource</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
+          <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PRJ_caps_totaldesigncapacity">
@@ -636,10 +661,15 @@
       &lt;attribute name="caps_projecttype" /&gt;
       &lt;attribute name="statuscode" /&gt;
       &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
+      &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
       &lt;/filter&gt;
+      &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
+        &lt;filter&gt;
+          &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+        &lt;/filter&gt;
+      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -729,12 +759,12 @@
           <DataField>PRJ_caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudget">
-          <DataField>PRJ_caps_maxpotentialprojectbudget</DataField>
+        <Field Name="PRJ_caps_maxpotential_fundingsource">
+          <DataField>PRJ_caps_maxpotential_fundingsource</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PRJ_caps_maxpotentialprojectbudgetValue">
-          <DataField>PRJ_caps_maxpotentialprojectbudgetValue</DataField>
+        <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
+          <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -760,7 +790,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -962,14 +992,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget </Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -1131,9 +1163,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!PRJ_caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1152,6 +1185,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1367,10 +1401,7 @@
             <DataSetName>ProjectPendingTBApproval</DataSetName>
             <Top>2.7146cm</Top>
             <Height>1.92375cm</Height>
-            <Width>16.66749cm</Width>
-            <Visibility>
-              <Hidden>=isnothing(Fields!caps_projectmilestoneid.Value)</Hidden>
-            </Visibility>
+            <Width>16.52166cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1393,7 +1424,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1592,14 +1623,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -1761,9 +1794,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!PRJ_caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1923,6 +1957,9 @@
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -1994,7 +2031,7 @@
             <DataSetName>ProjectUnderConstruction</DataSetName>
             <Top>8.9971cm</Top>
             <Height>1.92375cm</Height>
-            <Width>16.66749cm</Width>
+            <Width>16.52166cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
               <Hidden>=isnothing(Fields!caps_projectmilestoneid.Value)</Hidden>
@@ -2021,7 +2058,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2220,14 +2257,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -2389,9 +2428,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!PRJ_caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2551,6 +2591,9 @@
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -2622,7 +2665,7 @@
             <DataSetName>ProjectOccupancy</DataSetName>
             <Top>11.09641cm</Top>
             <Height>1.92375cm</Height>
-            <Width>16.66749cm</Width>
+            <Width>16.52166cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
               <Hidden>=isnothing(Fields!caps_projectmilestoneid.Value)</Hidden>
@@ -2646,7 +2689,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2813,14 +2856,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -2836,6 +2881,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -2950,9 +2996,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2971,6 +3018,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -3167,6 +3215,9 @@
                       </TablixHeader>
                     </TablixMember>
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
@@ -3264,7 +3315,7 @@
             <DataSetName>ProjectPDRDev</DataSetName>
             <Top>13.19655cm</Top>
             <Height>1.8cm</Height>
-            <Width>16.66749cm</Width>
+            <Width>16.52166cm</Width>
             <ZIndex>3</ZIndex>
             <Visibility>
               <Hidden>=isnothing(Fields!caps_projecttrackerid.Value)</Hidden>
@@ -3383,7 +3434,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -3585,14 +3636,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -3754,9 +3807,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!PRJ_caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3919,6 +3973,9 @@
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -3990,7 +4047,7 @@
             <DataSetName>ProjectApprovedNoAnnounced</DataSetName>
             <Top>4.79682cm</Top>
             <Height>1.92375cm</Height>
-            <Width>16.66749cm</Width>
+            <Width>16.52166cm</Width>
             <ZIndex>7</ZIndex>
             <Visibility>
               <Hidden>=isnothing(Fields!caps_projectmilestoneid.Value)</Hidden>
@@ -4017,7 +4074,7 @@
                   <Width>2.07667cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.35417cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -4219,14 +4276,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget ($M)</Value>
+                                  <Value>Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox22</rd:DefaultName>
@@ -4388,9 +4447,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_maxpotentialprojectbudget.Value</Value>
+                                  <Value>=Fields!PRJ_caps_maxpotential_fundingsourceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -4553,6 +4613,9 @@
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -4624,7 +4687,7 @@
             <DataSetName>ProjectDesignDev</DataSetName>
             <Top>6.89696cm</Top>
             <Height>1.92375cm</Height>
-            <Width>16.66749cm</Width>
+            <Width>16.52166cm</Width>
             <ZIndex>8</ZIndex>
             <Visibility>
               <Hidden>=isnothing(Fields!caps_projectmilestoneid.Value)</Hidden>
@@ -4639,7 +4702,7 @@
         <Height>5.92162in</Height>
         <Style />
       </Body>
-      <Width>6.59834in</Width>
+      <Width>6.50459in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
