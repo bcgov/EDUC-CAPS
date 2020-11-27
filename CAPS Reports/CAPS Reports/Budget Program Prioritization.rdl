@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>d27a0bf5-3028-47fb-a6b9-568e0da93ce3</rd:DataSourceID>
@@ -4705,10 +4706,11 @@
             <PageName>Additions</PageName>
             <Filters>
               <Filter>
-                <FilterExpression>=Fields!caps_ministryassessmentstatus.Value</FilterExpression>
-                <Operator>Equal</Operator>
+                <FilterExpression>=Fields!caps_ministryassessmentstatusValue.Value</FilterExpression>
+                <Operator>In</Operator>
                 <FilterValues>
-                  <FilterValue>Under Review</FilterValue>
+                  <FilterValue DataType="Integer">100000002</FilterValue>
+                  <FilterValue DataType="Integer">100000000</FilterValue>
                 </FilterValues>
               </Filter>
             </Filters>
