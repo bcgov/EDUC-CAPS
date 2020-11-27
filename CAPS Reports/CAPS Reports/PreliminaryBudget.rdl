@@ -36,6 +36,7 @@
     &lt;attribute name="caps_schbprojectlocationfactor" /&gt;
     &lt;attribute name="caps_schbpostcontractnewreplacement" /&gt;
     &lt;attribute name="caps_schbpostcontractrenovations" /&gt;
+    &lt;attribute name="caps_schbriskreserve" /&gt;
     &lt;attribute name="caps_schbpayabletaxes" /&gt;
     &lt;attribute name="caps_municipalfees" /&gt;
     &lt;attribute name="caps_schbliabilityinsurance" /&gt;
@@ -155,9 +156,17 @@
           <DataField>caps_schbpostcontractrenovationsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_schbriskreserve">
+          <DataField>caps_schbriskreserve</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_schbpayabletaxes">
           <DataField>caps_schbpayabletaxes</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbriskreserveValue">
+          <DataField>caps_schbriskreserveValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_schbpayabletaxesValue">
           <DataField>caps_schbpayabletaxesValue</DataField>
@@ -2906,6 +2915,77 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Risk Reserve/Escalation</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_schbriskreserveValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_schbriskreserveValue.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_schbriskreserveValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox55">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -3018,7 +3098,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value + Fields!caps_schbnlcbudgetamountValue.Value</Value>
+                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value + Fields!caps_schbnlcbudgetamountValue.Value + Fields!caps_schbriskreserveValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -3042,6 +3122,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3063,12 +3144,13 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
             <Top>11.26302cm</Top>
             <Left>9.29492cm</Left>
-            <Height>4.2cm</Height>
+            <Height>4.8cm</Height>
             <Width>10.41938cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -3768,7 +3850,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
-            <Top>15.63941cm</Top>
+            <Top>16.06302cm</Top>
             <Left>9.29492cm</Left>
             <Height>0.6cm</Height>
             <Width>10.41938cm</Width>

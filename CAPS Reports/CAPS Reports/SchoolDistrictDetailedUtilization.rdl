@@ -405,6 +405,7 @@
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
+      &lt;attribute name="statuscode" /&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
       &lt;filter type="and"&gt;
@@ -646,6 +647,56 @@
         <Field Name="YEAR_edu_enddateValue">
           <DataField>YEAR_edu_enddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscode">
+          <DataField>YEAR_statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_statuscodeValue">
+          <DataField>YEAR_statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SD_User">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="systemuser"&gt;
+    &lt;attribute name="businessunitid" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="systemuserid" operator="eq-userid" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="businessunit" from="businessunitid" to="businessunitid" link-type="inner" alias="BU"&gt;
+      &lt;attribute name="caps_schooldistrict" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="businessunitid">
+          <DataField>businessunitid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="businessunitidValue">
+          <DataField>businessunitidValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="businessunitidEntityName">
+          <DataField>businessunitidEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrict">
+          <DataField>BU_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrictValue">
+          <DataField>BU_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="BU_caps_schooldistrictEntityName">
+          <DataField>BU_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2324,7 +2375,6 @@
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
-                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
@@ -2389,7 +2439,7 @@
                                     <Style>
                                       <FontFamily>ARIAL</FontFamily>
                                       <FontSize>11pt</FontSize>
-                                      <Color>White</Color>
+                                      <Color>= IIF(Fields!YEAR_statuscodeValue.Value = 1, "Black","White")</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -2404,7 +2454,7 @@
                                 <Color>LightGrey</Color>
                                 <Style>Solid</Style>
                               </Border>
-                              <BackgroundColor>#234075</BackgroundColor>
+                              <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#ffa82b", "#234075")</BackgroundColor>
                               <VerticalAlign>Middle</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
@@ -2751,6 +2801,12 @@
   <ReportParameters>
     <ReportParameter Name="SchoolDistrict">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>SD_User</DataSetName>
+          <ValueField>BU_caps_schooldistrictValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Select a School District</Prompt>
       <ValidValues>
         <DataSetReference>

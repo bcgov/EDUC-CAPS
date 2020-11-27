@@ -1848,6 +1848,2254 @@
               </Border>
             </Style>
           </Tablix>
+          <Tablix Name="Tablix5">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>5.75201cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.52105cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_name1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_name.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_name1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox110">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox110</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox72">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox72</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox112">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox112</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox119">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox119</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox154">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox154</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox133">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox133</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox147">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox147</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox126">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox126</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox140">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox140</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.63716cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox75">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Revised Total Capacity</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox74</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox76">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox75</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox77">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox113">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox113</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox120">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox120</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox155">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox155</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox134">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox134</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox148">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox148</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox127">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox127</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox141">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox141</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox97">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox86</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.63716cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox78">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Projected Enrolment Total</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox77</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox79">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox78</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox81">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox79</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox114">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox114</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox121">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox121</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox156">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox156</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox135">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox135</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox149">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox149</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox128">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox128</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox142">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox142</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox100">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox100</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.63716cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox82">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Projected Overall Utilization %</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox80</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox83">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox81</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox84">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox82</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox115">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox115</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox122">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox122</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox157">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox157</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox136">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox136</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox150">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox150</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox129">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox129</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox143">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox143</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox104">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>P0</Format>
+                                    <Color>#234075</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox104</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.63716cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox85">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Revised Surplus\ </Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>-Shortfall</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>Red</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox83</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox105">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox84</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox107">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox85</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox116">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox116</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox111">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox73</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox137">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox137</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox151">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox151</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox130">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox130</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox144">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox144</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox124">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox105</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.14708cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox125">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox97</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox132">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox124</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox163">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox163</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox168">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox168</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox169">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox169</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox170">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox170</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox171">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox171</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox172">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox172</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox175">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox175</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox245">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox245</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details1" />
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>PRFSAlternativeOption</DataSetName>
+            <Top>7.51919cm</Top>
+            <Left>2.58664cm</Left>
+            <Height>3.29572cm</Height>
+            <Width>20.96251cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
         </ReportItems>
         <Height>4.44732in</Height>
         <Style />
