@@ -97,114 +97,6 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="CompleteAggregate">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch mapping="logical" aggregate="true" &gt;
-  &lt;entity name="edu_schooldistrict" &gt;
-    &lt;attribute name="edu_schooldistrictid" alias="SchoolDistrict" groupby="true" /&gt;
-    &lt;link-entity name="caps_facility" from="caps_schooldistrict" to="edu_schooldistrictid" link-type="outer" alias="Fac" &gt;
-      &lt;attribute name="caps_seismicmitigationprogram" alias="countSMPComplete" aggregate="countcolumn" /&gt;
-      &lt;filter&gt;
-        &lt;condition attribute="caps_seismicmitigationprogram" operator="eq" value="200870000" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="SchoolDistrict">
-          <DataField>SchoolDistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="countSMPComplete">
-          <DataField>countSMPComplete</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="countSMPCompleteValue">
-          <DataField>countSMPCompleteValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SchoolDistricts">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_schooldistrict"&gt;
-    &lt;attribute name="edu_name" /&gt;
-    &lt;attribute name="edu_region" /&gt;
-    &lt;attribute name="ownerid" /&gt;
-    &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;attribute name="caps_smptotal" /&gt;
-    &lt;attribute name="caps_smpcompletionpercentage" /&gt;
-    &lt;attribute name="caps_smpcomplete" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="edu_name">
-          <DataField>edu_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_region">
-          <DataField>edu_region</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionValue">
-          <DataField>edu_regionValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionEntityName">
-          <DataField>edu_regionEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_schooldistrictid">
-          <DataField>edu_schooldistrictid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_smptotal">
-          <DataField>caps_smptotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_smptotalValue">
-          <DataField>caps_smptotalValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_smpcompletionpercentage">
-          <DataField>caps_smpcompletionpercentage</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_smpcompletionpercentageValue">
-          <DataField>caps_smpcompletionpercentageValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_smpcomplete">
-          <DataField>caps_smpcomplete</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_smpcompleteValue">
-          <DataField>caps_smpcompleteValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
     <DataSet Name="SDSMP100">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
@@ -642,7 +534,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Facilities</DataSetName>
-            <Top>4.54848cm</Top>
+            <Top>6.13596cm</Top>
             <Left>0cm</Left>
             <Height>1.2cm</Height>
             <Width>9.88125cm</Width>
@@ -671,7 +563,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>2.59855cm</Top>
+            <Top>3.36583cm</Top>
             <Height>0.6cm</Height>
             <Width>6.52167cm</Width>
             <ZIndex>1</ZIndex>
@@ -704,7 +596,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>3.19855cm</Top>
+            <Top>3.96583cm</Top>
             <Height>0.6cm</Height>
             <Width>6.52167cm</Width>
             <ZIndex>2</ZIndex>
@@ -737,8 +629,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>3.79855cm</Top>
-            <Left>0cm</Left>
+            <Top>4.56583cm</Top>
             <Height>0.6cm</Height>
             <Width>6.52167cm</Width>
             <ZIndex>3</ZIndex>
@@ -846,8 +737,74 @@
               </Border>
             </Style>
           </Image>
+          <Textbox Name="Textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Detail</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#234075</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.34222cm</Top>
+            <Left>0cm</Left>
+            <Height>0.61735cm</Height>
+            <Width>3.75525cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Summary</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#234075</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.57209cm</Top>
+            <Left>0cm</Left>
+            <Height>0.61735cm</Height>
+            <Width>3.75525cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>2.31158in</Height>
+        <Height>2.97825in</Height>
         <Style />
       </Body>
       <Width>4.89942in</Width>
