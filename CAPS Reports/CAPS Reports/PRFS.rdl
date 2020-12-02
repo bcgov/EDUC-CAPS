@@ -3318,6 +3318,102 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="PRFSOptionFacilityActualEnrolment">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Facilities">
+            <Value>=Parameters!Facilities.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_facilityenrolment"&gt;
+    &lt;attribute name="caps_facilityenrolmentid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_totalenrolment" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="caps_schoolyear" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" link-type="inner" alias="YEAR"&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="FAC"&gt;
+      &lt;filter type="and"&gt;
+        &lt;filter type="or"&gt;
+        &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
+          &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
+        &lt;/filter&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_facilityenrolmentid">
+          <DataField>caps_facilityenrolmentid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalenrolment">
+          <DataField>caps_totalenrolment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalenrolmentValue">
+          <DataField>caps_totalenrolmentValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyear">
+          <DataField>caps_schoolyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyearValue">
+          <DataField>caps_schoolyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyearEntityName">
+          <DataField>caps_schoolyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyear">
+          <DataField>YEAR_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyearValue">
+          <DataField>YEAR_edu_startyearValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -4471,8 +4567,8 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>73.1463cm</Top>
-            <Left>0.22348cm</Left>
+            <Top>73.80776cm</Top>
+            <Left>0.30256cm</Left>
             <Height>19.78299cm</Height>
             <Width>26.82514cm</Width>
             <Visibility>
@@ -8131,7 +8227,7 @@
                                           <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>0;(0);'-'</Format>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -8204,7 +8300,7 @@
                                           <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>0;(0);'-'</Format>
+                                            <Format>0;(0)</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -9141,7 +9237,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Year(Globals!ExecutionTime) &amp; "/" &amp; Year(Globals!ExecutionTime) +1</Value>
+                                          <Value>=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1,year(Globals!ExecutionTime)) &amp; "/" &amp; iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontSize>8pt</FontSize>
@@ -9697,7 +9793,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -9714,7 +9810,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), "Yellow", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "Yellow", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -10156,7 +10252,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -10173,7 +10269,7 @@
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "Yellow")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "Yellow", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -10616,7 +10712,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Sum(Fields!caps_enrolmentprojectiontotalValue.Value, "SSEnrolmentProjections"), "-")</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Sum(Fields!caps_totalenrolmentValue.Value, "PRFSOptionFacilityActualEnrolment"), "-")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -11514,7 +11610,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -11985,7 +12081,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -12474,7 +12570,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeindesigncapacitytotal.Value, 0) - Sum(iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections"))</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12945,7 +13041,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -13416,7 +13512,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -13902,7 +13998,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_changeinoperatingcapacity_total.Value, 0) - Sum(iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections"))</Value>
+                                          <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -14797,10 +14893,43 @@
                       </Border>
                     </Style>
                   </Tablix>
+                  <Textbox Name="Textbox15">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>International Students are not included in Total numbers</Value>
+                            <Style>
+                              <FontStyle>Italic</FontStyle>
+                              <FontFamily>Arial</FontFamily>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox2</rd:DefaultName>
+                    <Top>25.82795cm</Top>
+                    <Left>18.41904cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>5cm</Width>
+                    <ZIndex>5</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>27.65336cm</Top>
-                <Height>25.82795cm</Height>
+                <Height>26.45644cm</Height>
                 <Width>26.76726cm</Width>
                 <ZIndex>9</ZIndex>
                 <Visibility>
@@ -15345,7 +15474,7 @@
             <KeepTogether>true</KeepTogether>
             <Top>19.52157cm</Top>
             <Left>0.26914cm</Left>
-            <Height>53.48131cm</Height>
+            <Height>54.1098cm</Height>
             <Width>26.76726cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
@@ -20610,7 +20739,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>94.94012cm</Height>
+        <Height>93.59075cm</Height>
         <Style />
       </Body>
       <Width>27.25896cm</Width>
