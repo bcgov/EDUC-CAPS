@@ -6884,7 +6884,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>AFG Total:</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -7948,9 +7948,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <ZIndex>3</ZIndex>
                     <Visibility>
                       <Hidden>= ((Parameters!CapitalPlanStatus.Value = "Complete") or
-(Parameters!CapitalPlanToggle.Value = "Draft") or
-(Parameters!CapitalPlanToggle.Value = "Submitted") or
-(Parameters!CapitalPlanToggle.Value = "Results Released"))</Hidden>
+(Parameters!CapitalPlanToggle.Value &lt;&gt; "Complete"))</Hidden>
                     </Visibility>
                     <Style>
                       <Border>
@@ -7970,7 +7968,9 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                         <TextRuns>
                           <TextRun>
                             <Value>The Minister Approved version of Submission Summary is not applicable for Expenditure Plans. Please select the Complete version of the Submission Summary. </Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>arial</FontFamily>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style>
@@ -8016,7 +8016,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0cm</Top>
-            <Left>0cm</Left>
+            <Left>0.00729cm</Left>
             <Height>38.86603cm</Height>
             <Width>26.38879cm</Width>
             <Visibility>
@@ -9124,6 +9124,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_projectnumber.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -9156,6 +9157,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_facilityview.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -9221,6 +9223,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_projectdescription.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -9777,6 +9780,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_projectnumber.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -9809,6 +9813,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_facilityview.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -9874,6 +9879,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                         <TextRun>
                                           <Value>=Fields!caps_projectdescription.Value</Value>
                                           <Style>
+                                            <FontFamily>arial</FontFamily>
                                             <FontSize>9pt</FontSize>
                                           </Style>
                                         </TextRun>
@@ -10189,7 +10195,9 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <TextRuns>
                       <TextRun>
                         <Value>There is no Project Request data as your Capital Plan is still in Draft. All other Submission Summaries are not applicable as it has not reached that stage yet. Select "Draft" in the parameter to see the Draft Submission Summary. </Value>
-                        <Style />
+                        <Style>
+                          <FontFamily>arial</FontFamily>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style />
@@ -10216,7 +10224,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>46.7228cm</Top>
-            <Left>0.04386cm</Left>
+            <Left>0.05115cm</Left>
             <Height>11.52229cm</Height>
             <Width>26.24623cm</Width>
             <ZIndex>1</ZIndex>
@@ -11506,7 +11514,9 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <TextRuns>
                       <TextRun>
                         <Value>The Complete version of Submission Summary is not applicable to Capital Plans as it is used exclusively by Expenditure Plans.</Value>
-                        <Style />
+                        <Style>
+                          <FontFamily>arial</FontFamily>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
@@ -11536,7 +11546,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>38.97771cm</Top>
-            <Left>0cm</Left>
+            <Left>0.00729cm</Left>
             <Height>7.66846cm</Height>
             <Width>26.29305cm</Width>
             <ZIndex>2</ZIndex>
@@ -11553,7 +11563,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
         <Height>58.325cm</Height>
         <Style />
       </Body>
-      <Width>26.56669cm</Width>
+      <Width>26.39609cm</Width>
       <Page>
         <PageHeader>
           <Height>2.96017cm</Height>
@@ -11569,6 +11579,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <TextRun>
                       <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
                       <Style>
+                        <FontFamily>arial</FontFamily>
                         <Format>yyyy-MM-dd</Format>
                       </Style>
                     </TextRun>
@@ -11580,7 +11591,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               </Paragraphs>
               <rd:DefaultName>Textbox49</rd:DefaultName>
               <Top>0.01389in</Top>
-              <Left>7.55591in</Left>
+              <Left>7.55878in</Left>
               <Height>0.25in</Height>
               <Width>2.83335in</Width>
               <Style>
@@ -11602,7 +11613,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     <TextRun>
                       <Value>Submission Summary</Value>
                       <Style>
-                        <FontFamily>Segoe UI Light</FontFamily>
+                        <FontFamily>arial</FontFamily>
                         <FontSize>18pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -11615,7 +11626,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.44097in</Top>
-              <Left>1.86354in</Left>
+              <Left>1.86641in</Left>
               <Height>0.42708in</Height>
               <Width>6.60743in</Width>
               <ZIndex>1</ZIndex>
@@ -11634,7 +11645,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               <Value>BC_EDUC_H_RGB_pos</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.01389in</Top>
-              <Left>0.01829in</Left>
+              <Left>0.02116in</Left>
               <Height>1.10986in</Height>
               <Width>1.83136in</Width>
               <ZIndex>2</ZIndex>
@@ -11652,7 +11663,9 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <TextRuns>
                     <TextRun>
                       <Value>="Run By: " &amp; First(Fields!fullname.Value, "UserInfo")</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
@@ -11662,7 +11675,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
               </Paragraphs>
               <rd:DefaultName>fullname</rd:DefaultName>
               <Top>0.26389in</Top>
-              <Left>7.55594in</Left>
+              <Left>7.55881in</Left>
               <Height>0.25in</Height>
               <Width>2.83335in</Width>
               <ZIndex>3</ZIndex>
@@ -11684,7 +11697,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.68792cm</Height>
+          <Height>0.64409cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -11696,7 +11709,9 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <TextRuns>
                     <TextRun>
                       <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
@@ -11705,9 +11720,39 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Left>9.05075in</Left>
+              <Left>9.05362in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Source: CAPS</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.04409cm</Top>
+              <Left>0.14145cm</Left>
+              <Height>0.6cm</Height>
+              <Width>4.7054cm</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

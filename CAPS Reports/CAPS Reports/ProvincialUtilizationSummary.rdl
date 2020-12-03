@@ -723,6 +723,7 @@
                                 <TextRun>
                                   <Value>=Fields!caps_adjusteddesigncapacitytotalValue.Value</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
@@ -923,7 +924,9 @@
                   <TextRuns>
                     <TextRun>
                       <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
@@ -951,7 +954,6 @@
               <Value>BC_EDUC_H_RGB_pos</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.02556in</Top>
-              <Left>0in</Left>
               <Height>1.10986in</Height>
               <Width>1.83136in</Width>
               <ZIndex>1</ZIndex>
@@ -970,6 +972,7 @@
                     <TextRun>
                       <Value>Provincial Utilization Summary</Value>
                       <Style>
+                        <FontFamily>arial</FontFamily>
                         <FontSize>15pt</FontSize>
                       </Style>
                     </TextRun>
@@ -1016,7 +1019,9 @@
                   <TextRuns>
                     <TextRun>
                       <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -1027,6 +1032,38 @@
               <Left>24.28875cm</Left>
               <Height>0.6cm</Height>
               <Width>2.97625cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Source: CAPS</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.05249cm</Top>
+              <Left>0cm</Left>
+              <Height>0.6cm</Height>
+              <Width>4.7054cm</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

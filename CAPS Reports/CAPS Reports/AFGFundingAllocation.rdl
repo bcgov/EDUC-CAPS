@@ -173,6 +173,7 @@
                                 <TextRun>
                                   <Value>Variance: </Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -214,6 +215,7 @@
                                 <TextRun>
                                   <Value>= 1 - ReportItems!caps_afgfundingpercentageValue_Sum.Value</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -254,6 +256,7 @@
                                 <TextRun>
                                   <Value>Sum Total AFG Allocated: </Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -295,6 +298,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_afgfundingpercentageValue.Value)</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -335,6 +339,7 @@
                                 <TextRun>
                                   <Value>Name</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -372,6 +377,7 @@
                                 <TextRun>
                                   <Value>Number</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -409,6 +415,7 @@
                                 <TextRun>
                                   <Value>Region</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -446,6 +453,7 @@
                                 <TextRun>
                                   <Value>AFG Funding</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -487,7 +495,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!edu_name.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -517,7 +527,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!edu_number.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -547,7 +559,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!edu_region.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -577,7 +591,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -667,7 +683,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.73743cm</Height>
+        <Height>4.68451cm</Height>
         <Style />
       </Body>
       <Width>24.13001cm</Width>
@@ -685,7 +701,9 @@
                   <TextRuns>
                     <TextRun>
                       <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
@@ -716,6 +734,7 @@
                     <TextRun>
                       <Value>AFG Funding Summary Report</Value>
                       <Style>
+                        <FontFamily>arial</FontFamily>
                         <FontSize>18pt</FontSize>
                       </Style>
                     </TextRun>
@@ -774,7 +793,9 @@
                   <TextRuns>
                     <TextRun>
                       <Value>= "Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -784,6 +805,38 @@
               <Left>19.69854cm</Left>
               <Height>0.6cm</Height>
               <Width>4.405cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Source: CAPS</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.01764cm</Top>
+              <Left>0.02647cm</Left>
+              <Height>0.6cm</Height>
+              <Width>4.7054cm</Width>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
