@@ -726,7 +726,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>edu_name</rd:DefaultName>
-            <Top>2.74849cm</Top>
+            <Top>2.35162cm</Top>
             <Left>5cm</Left>
             <Height>0.6cm</Height>
             <Width>10cm</Width>
@@ -2637,7 +2637,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ReportRecords</DataSetName>
-            <Top>3.34849cm</Top>
+            <Top>2.95162cm</Top>
             <Height>3.72375cm</Height>
             <Width>17.5cm</Width>
             <ZIndex>1</ZIndex>
@@ -2665,7 +2665,6 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.37979cm</Top>
             <Left>3.97858cm</Left>
             <Height>1.00542cm</Height>
             <Width>13.53626cm</Width>
@@ -2684,7 +2683,7 @@
             <Source>Embedded</Source>
             <Value>BC_EDUC_H_RGB_pos</Value>
             <Sizing>FitProportional</Sizing>
-            <Left>0.00584in</Left>
+            <Left>0.01168in</Left>
             <Height>0.94319in</Height>
             <Width>1.56053in</Width>
             <ZIndex>3</ZIndex>
@@ -2709,6 +2708,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
+            <Top>1.00542cm</Top>
             <Left>12.5cm</Left>
             <Height>0.37979cm</Height>
             <Width>5.01484cm</Width>
@@ -2724,13 +2724,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.80496in</Height>
+        <Height>2.67996in</Height>
         <Style />
       </Body>
-      <Width>6.94133in</Width>
+      <Width>6.92634in</Width>
       <Page>
         <PageFooter>
-          <Height>0.68792cm</Height>
+          <Height>1.34938cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2741,7 +2741,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>International Students are not included in Total numbers</Value>
+                      <Value>International Students are not included in Total numbers or other calculations</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
                         <FontFamily>Arial</FontFamily>
@@ -2752,9 +2752,78 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Left>12.5cm</Left>
+              <Top>0cm</Top>
+              <Left>11.37713cm</Left>
               <Height>0.6cm</Height>
-              <Width>5cm</Width>
+              <Width>6.13771cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="PageNumber2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value EvaluationMode="Constant">Source: CAPS</Value>
+                      <Style>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0cm</Top>
+              <Left>0.02967cm</Left>
+              <Height>0.23622in</Height>
+              <Width>1.33854in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="PageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>Arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.63528cm</Top>
+              <Left>5.55707in</Left>
+              <Height>0.25in</Height>
+              <Width>1.33854in</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

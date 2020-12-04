@@ -12,6 +12,9 @@ const FORM_STATE = {
     BULK_EDIT: 6
 };
 
+/***
+Main Function for PRFS Alternative Option.  This function calls all other form functions.
+**/
 CAPS.PRFSOption.onLoad = function (executionContext) {
     debugger;
     // Set variables
@@ -72,6 +75,9 @@ CAPS.PRFSOption.DefaultSchoolDistrict = function (executionContext) {
     );
 }
 
+/***
+Show's and hides the appropriate schedule B fields on PRFS based on Project Type.
+*/
 CAPS.PRFSOption.ToggleScheduleBFields = function (executionContext) {
     var formContext = executionContext.getFormContext();
     //Get Schedule B Type field on Project Type

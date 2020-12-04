@@ -8,6 +8,8 @@ const SUBMISSION_STAUS = {
     SUBMITTED: 2,
     CANCELLED: 100000001,
     RESULTS_RELEASED: 200870000,
+    ACCEPTED: 200870001,
+    COMPLETE: 200870002
 };
 
 /**
@@ -22,7 +24,7 @@ CAPS.Submission.onLoad = function (executionContext) {
     var selectedForm = formContext.ui.formSelector.getCurrentItem().getLabel(); //Ministry Capital Plan
     var status = formContext.getAttribute("statuscode").getValue();
     
-    if (status === SUBMISSION_STAUS.DRAFT) {
+    if (status === SUBMISSION_STAUS.DRAFT || status === SUBMISSION_STAUS.ACCEPTED) {
         //hide report tab
         formContext.ui.tabs.get("tab_capitalplan").setVisible(false);
 
@@ -42,20 +44,30 @@ CAPS.Submission.onLoad = function (executionContext) {
             formContext.ui.tabs.get("tab_general").sections.get("sec_major_minor_projects").setVisible(true);
         }
     }
-    else if (status === SUBMISSION_STAUS.RESULTS_RELEASED || status === SUBMISSION_STAUS.CANCELLED) {
+    else if (status === SUBMISSION_STAUS.RESULTS_RELEASED || status === SUBMISSION_STAUS.CANCELLED || status === SUBMISSION_STAUS.COMPLETE) {
         //show report and hide all else
         formContext.ui.tabs.get("tab_capitalplan").setVisible(true);
         CAPS.Submission.embedCapitalPlanReport(executionContext);
+
         formContext.ui.tabs.get("tab_general").setVisible(false);
         formContext.ui.tabs.get("tab_afg").setVisible(false);
+        
+        if (callForSubmissionType === 100000002) {
+            formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
+        }
     }
     else if (status === SUBMISSION_STAUS.SUBMITTED) {
         if (selectedForm === 'SD Capital Plan') {
             //show report and hide all else
             formContext.ui.tabs.get("tab_capitalplan").setVisible(true);
             CAPS.Submission.embedCapitalPlanReport(executionContext);
+
             formContext.ui.tabs.get("tab_general").setVisible(false);
             formContext.ui.tabs.get("tab_afg").setVisible(false);
+
+            if (callForSubmissionType === 100000002) {
+                formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
+            }
         }
         else {
             //hide report tab
