@@ -12,6 +12,9 @@ using Microsoft.Xrm.Sdk.Messages;
 
 namespace CustomWorkflowActivities
 {
+    /// <summary>
+    /// This action bulk deletes all Capacity Reporting records.
+    /// </summary>
     public class DeleteAllCapacityReportingRecords : CodeActivity
     {
         protected override void Execute(CodeActivityContext executionContext)

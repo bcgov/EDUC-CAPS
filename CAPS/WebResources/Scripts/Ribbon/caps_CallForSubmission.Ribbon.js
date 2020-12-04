@@ -7,6 +7,7 @@ const PROJECT_STATE = {
     DRAFT: 1,
     PUBLISHED: 2,
     RESULTS_RELEASED: 200870000,
+    ACCEPTED: 200870001,
     CANCELLED: 100000001
 };
 
@@ -49,7 +50,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             if (result.entities.length > 0) {
                 //Some bad projects
                 //return new CAPS.Submission.ValidationResult(false, "Bus Validation: One or more BUS projects is a replacement for a bus that is not eligible for replacement.");
-                let alertStrings = { confirmButtonLabel: "OK", text: "Unable to release results as one or more Capital Plans is in a draft state and/or missing a board resolution.", title: "Call For Submission" };
+                let alertStrings = { confirmButtonLabel: "OK", text: "Unable to release results as one or more Submission is in a draft state and/or missing a board resolution.", title: "Call For Submission" };
                 let alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                     function success(result) {
@@ -72,7 +73,12 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                             if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.PUBLISHED) {
 
                                 formContext.getAttribute("statecode").setValue(1);
-                                formContext.getAttribute("statuscode").setValue(PROJECT_STATE.RESULTS_RELEASED);
+                                if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+                                    formContext.getAttribute("statuscode").setValue(PROJECT_STATE.ACCEPTED);
+                                }
+                                else {
+                                    formContext.getAttribute("statuscode").setValue(PROJECT_STATE.RESULTS_RELEASED);
+                                }
                                 formContext.data.entity.save();
                             }
 

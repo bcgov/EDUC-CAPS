@@ -352,6 +352,7 @@ CAPS.Project.SubmissionResult = function () {
  * @param {any} primaryControl primary control
  */
 CAPS.Project.CalculateScheduleB = function (primaryControl) {
+    debugger;
     var formContext = primaryControl;
 
     //If dirty, then save and call again
@@ -384,6 +385,7 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
                 if (result.ok) {
                     return result.json().then(
                         function (response) {
+                            debugger;
                             //get error message
                             if (response.ScheduleBErrorMessage == null) {
                                 var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation has completed successfully.", title: "Preliminary Budget Result" };
@@ -399,7 +401,7 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
                                 );
                             }
                             else {
-                                var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation ran into a problem. Details: " + response.ErrorMessage, title: "Preliminary Budget Result" };
+                                var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation ran into a problem. Details: " + response.ScheduleBErrorMessage, title: "Preliminary Budget Result" };
                                 var alertOptions = { height: 120, width: 260 };
                                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                                     function success(result) {
@@ -416,7 +418,7 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
             },
             function (e) {
 
-                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + e.message, title: "Schedule B Result" };
+                var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget failed. Details: " + e.message, title: "Preliminary Budget Result" };
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                     function success(result) {

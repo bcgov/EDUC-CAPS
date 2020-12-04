@@ -3,13 +3,111 @@
 var CAPS = CAPS || {};
 CAPS.Submission = CAPS.Submission || {};
 
+CAPS.Submission.ShowComplete = function (primaryControl) {
+    debugger;
+    var formContext = primaryControl;
+
+    //If not in status of accepted
+    if (formContext.getAttribute("statuscode").getValue() !== 200870001) {
+        return false;
+    }
+    //200,870,001
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showValidation = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS School District Approver - Add On") {
+            showValidation =  true;
+        }
+    });
+
+    return showValidation;
+};
+
+/*  For AFG Only.
+*/
+CAPS.Submission.Complete = async function (primaryControl) {
+    var formContext = primaryControl;
+
+    //Declare variables
+    var resultsArray = [];
+
+    Xrm.Utility.showProgressIndicator("Validating Submission...");
+
+    var resultsMessage = "Validation Errors\r\n";
+
+    let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
+
+    let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
+
+    resultsArray.push(checkProjectRequestResults);
+    resultsArray.push(checkAFGVariance);
+
+    var allValidationPassed = true;
+    //loop through results
+    resultsArray.forEach(function (item, index) {
+        if (typeof item !== 'undefined' && item !== null) {
+            if (!item.validationResult) {
+                allValidationPassed = false;
+                resultsMessage += item.validationMessage + "\r\n";
+            }
+        }
+    });
+    
+    //Show Results
+    formContext.ui.tabs.forEach(function (tab, i) {
+        //loop through sections
+        tab.sections.forEach(function (section, j) {
+            section.controls.forEach(function (control, k) {
+
+                if (control.getAttribute().getName() === "caps_validationresults") {
+                    control.getAttribute().setValue(resultsMessage);
+                    control.setVisible(true);
+                }
+            });
+        });
+    });
+
+    //sgd_AFGProjects
+    formContext.getControl("sgd_AFGProjects").refresh();
+
+    if (allValidationPassed) {
+        let confirmStrings = { text: "This submission is valid and ready for completion.  Click OK to Complete or Cancel to exit.", title: "Submission Confirmation" };
+        let confirmOptions = { height: 200, width: 450 };
+        Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+            function (success) {
+                if (success.confirmed) {
+                    formContext.getAttribute("statecode").setValue(1);
+                    formContext.getAttribute("statuscode").setValue(200870002);
+                    formContext.data.entity.save();
+                }
+            });
+    }
+    else {
+        var alertStrings = { confirmButtonLabel: "Ok", text: "The validation of this submission failed.  Please see the Validation results section below for details.", title: "Validation Result" };
+        var alertOptions = { height: 120, width: 260 };
+        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+    }
+
+    //close the indicator
+    Xrm.Utility.closeProgressIndicator();
+    
+};
+
 /**
  * Function to determine when the Submit (and Validate) button should be shown.
  * @param {any} primaryControl primary control
  * @returns {boolean} true if should be shown, otherwise false.
  */
 CAPS.Submission.ShowValidate = function (primaryControl) {
+    debugger;
     var formContext = primaryControl;
+
+    //If not in status of draft
+    if (formContext.getAttribute("statuscode").getValue() !== 1) {
+        return false;
+    }
 
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
@@ -35,7 +133,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
     //Declare variables
     var resultsArray = [];
 
-    Xrm.Utility.showProgressIndicator("Validating Capital Plan...");
+    Xrm.Utility.showProgressIndicator("Validating Submission...");
 
     var resultsMessage = "Validation Errors\r\n";
 
@@ -102,7 +200,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
                 });
         }
         else {
-            let confirmStrings = { text: "This capital plan is valid and ready for submission.  Click OK to Submit or Cancel to exit.", title: "Submission Confirmation" };
+            let confirmStrings = { text: "This submission is valid and ready for submission.  Click OK to Submit or Cancel to exit.", title: "Submission Confirmation" };
             let confirmOptions = { height: 200, width: 450 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
@@ -115,7 +213,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
         }
     }
     else {
-        var alertStrings = { confirmButtonLabel: "Ok", text: "The validation of this capital plan failed.  Please see the Validation results section below for details.", title: "Validation Result" };
+        var alertStrings = { confirmButtonLabel: "Ok", text: "The validation of this submission failed.  Please see the Validation results section below for details.", title: "Validation Result" };
         var alertOptions = { height: 120, width: 260 };
         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
     }
