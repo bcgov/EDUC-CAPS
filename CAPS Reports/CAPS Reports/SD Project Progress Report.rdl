@@ -62,10 +62,41 @@
     &lt;attribute name="createdby" /&gt;
     &lt;attribute name="caps_contractawardcomplete" /&gt;
     &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
+    &lt;attribute name="caps_previousyearendprogressreport" /&gt;
+    &lt;attribute name="caps_previousprogressreport" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="outer" alias="YEAR"&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_name" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_progressreport" from="caps_progressreportid" to="caps_previousprogressreport" visible="false" link-type="outer" alias="PREVIOUSPROGRESSREPORT"&gt;
+      &lt;attribute name="caps_totalprovincialactualdraws" /&gt;
+      &lt;attribute name="caps_totalagencyactuals" /&gt;
+      &lt;attribute name="caps_totalprovincialprojection" /&gt;
+      &lt;attribute name="caps_totalprovincialbudget" /&gt;
+      &lt;attribute name="caps_totalfutureprovincialprojection" /&gt;
+      &lt;attribute name="caps_totalfutureagencyprojection" /&gt;
+      &lt;attribute name="caps_totalcurrentyearcashflowprojection" /&gt;
+      &lt;attribute name="caps_totalagencyprojection" /&gt;
+      &lt;attribute name="caps_totalagencybudget" /&gt;
+      &lt;attribute name="caps_q4cashflowprojection" /&gt;
+      &lt;attribute name="caps_q3cashflowprojection" /&gt;
+      &lt;attribute name="caps_q2cashflowprojection" /&gt;
+      &lt;attribute name="caps_q1cashflowprojection" /&gt;
+      &lt;attribute name="caps_projectedoccupancydate" /&gt;
+      &lt;attribute name="caps_projecteddistrictcontributioncurrentyear" /&gt;
+      &lt;attribute name="caps_projectedcontractawarddate" /&gt;
+      &lt;attribute name="caps_projectphase" /&gt;
+      &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_progressreport" from="caps_progressreportid" to="caps_previousyearendprogressreport" visible="false" link-type="outer" alias="PREVIOUSYEARENDPROGRESSREPORT"&gt;
+      &lt;attribute name="caps_totalprovincialactualdraws" /&gt;
+      &lt;attribute name="caps_totalprovincialprojection" /&gt;
+      &lt;attribute name="caps_projectedoccupancydate" /&gt;
+      &lt;attribute name="caps_projecteddistrictcontributioncurrentyear" /&gt;
+      &lt;attribute name="caps_projectedcontractawarddate" /&gt;
+      &lt;attribute name="caps_projectphase" /&gt;
+      &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -384,6 +415,10 @@
           <DataField>caps_actualdistrictcontributionforcurrentyearValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_previousyearendprogressreport">
+          <DataField>caps_previousyearendprogressreport</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="YEAR_edu_startyear">
           <DataField>YEAR_edu_startyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -392,349 +427,228 @@
           <DataField>YEAR_edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_previousyearendprogressreportValue">
+          <DataField>caps_previousyearendprogressreportValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_previousyearendprogressreportEntityName">
+          <DataField>caps_previousyearendprogressreportEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="YEAR_edu_name">
           <DataField>YEAR_edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="PreviousYearEndReport">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectRequest">
-            <Value>=Parameters!ProjectRequest.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@ProgressReport">
-            <Value>=Parameters!ProgressReport.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_progressreport"&gt;
-    &lt;attribute name="caps_progressreportid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="createdon" /&gt;
-    &lt;attribute name="caps_totalprovincialactualdraws" /&gt;
-    &lt;attribute name="caps_totalfutureprovincialprojection" /&gt;
-    &lt;attribute name="caps_totalcurrentyearcashflowprojection" /&gt;
-    &lt;attribute name="caps_totalagencyprojection" /&gt;
-    &lt;attribute name="caps_totalagencybudget" /&gt;
-    &lt;attribute name="caps_q4cashflowprojection" /&gt;
-    &lt;attribute name="caps_q3cashflowprojection" /&gt;
-    &lt;attribute name="caps_q2cashflowprojection" /&gt;
-    &lt;attribute name="caps_q1cashflowprojection" /&gt;
-    &lt;attribute name="caps_projectedoccupancydate" /&gt;
-    &lt;attribute name="caps_projecteddistrictcontributioncurrentyear" /&gt;
-    &lt;attribute name="caps_projectedcontractawarddate" /&gt;
-    &lt;attribute name="caps_projectphase" /&gt;
-    &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
-    &lt;order attribute="createdon" descending="true" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_project" operator="eq" uitype="caps_projecttracker" value="@ProjectRequest" /&gt;
-      &lt;condition attribute="caps_name" operator="like" value="%March%" /&gt;
-      &lt;condition attribute="caps_progressreportid" operator="ne"  uitype="caps_progressreport" value="@ProgressReport" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_progressreportid">
-          <DataField>caps_progressreportid</DataField>
+        <Field Name="caps_previousprogressreport">
+          <DataField>caps_previousprogressreport</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdraws">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdraws</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="createdon">
-          <DataField>createdon</DataField>
+        <Field Name="caps_previousprogressreportValue">
+          <DataField>caps_previousprogressreportValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdrawsValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdrawsValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_previousprogressreportEntityName">
+          <DataField>caps_previousprogressreportEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="createdonValue">
-          <DataField>createdonValue</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencyactuals">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencyactuals</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencyactualsValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencyactualsValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialbudget">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialbudget</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialbudgetValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalprovincialbudgetValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalfutureprovincialprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalfutureprovincialprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalfutureprovincialprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalfutureprovincialprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalfutureagencyprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalfutureagencyprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalfutureagencyprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalfutureagencyprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalcurrentyearcashflowprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalcurrentyearcashflowprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalcurrentyearcashflowprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalcurrentyearcashflowprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencyprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencyprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencyprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencyprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencybudget">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencybudget</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_totalagencybudgetValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_totalagencybudgetValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q4cashflowprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q4cashflowprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q4cashflowprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q4cashflowprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q3cashflowprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q3cashflowprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q3cashflowprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q3cashflowprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q2cashflowprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q2cashflowprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q2cashflowprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q2cashflowprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q1cashflowprojection">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q1cashflowprojection</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_q1cashflowprojectionValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_q1cashflowprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectedoccupancydate">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectedoccupancydate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectedoccupancydateValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectedoccupancydateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="caps_totalprovincialactualdraws">
-          <DataField>caps_totalprovincialactualdraws</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyear">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_totalprovincialactualdrawsValue">
-          <DataField>caps_totalprovincialactualdrawsValue</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyearValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyearValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_totalfutureprovincialprojection">
-          <DataField>caps_totalfutureprovincialprojection</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddate">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_totalfutureprovincialprojectionValue">
-          <DataField>caps_totalfutureprovincialprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalcurrentyearcashflowprojection">
-          <DataField>caps_totalcurrentyearcashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalcurrentyearcashflowprojectionValue">
-          <DataField>caps_totalcurrentyearcashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyprojection">
-          <DataField>caps_totalagencyprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyprojectionValue">
-          <DataField>caps_totalagencyprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudget">
-          <DataField>caps_totalagencybudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudgetValue">
-          <DataField>caps_totalagencybudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4cashflowprojection">
-          <DataField>caps_q4cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4cashflowprojectionValue">
-          <DataField>caps_q4cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3cashflowprojection">
-          <DataField>caps_q3cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3cashflowprojectionValue">
-          <DataField>caps_q3cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2cashflowprojection">
-          <DataField>caps_q2cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2cashflowprojectionValue">
-          <DataField>caps_q2cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1cashflowprojection">
-          <DataField>caps_q1cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1cashflowprojectionValue">
-          <DataField>caps_q1cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedoccupancydate">
-          <DataField>caps_projectedoccupancydate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedoccupancydateValue">
-          <DataField>caps_projectedoccupancydateValue</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddateValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="caps_projecteddistrictcontributioncurrentyear">
-          <DataField>caps_projecteddistrictcontributioncurrentyear</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectphase">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectphase</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_projecteddistrictcontributioncurrentyearValue">
-          <DataField>caps_projecteddistrictcontributioncurrentyearValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedcontractawarddate">
-          <DataField>caps_projectedcontractawarddate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedcontractawarddateValue">
-          <DataField>caps_projectedcontractawarddateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectphase">
-          <DataField>caps_projectphase</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectphaseValue">
-          <DataField>caps_projectphaseValue</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_projectphaseValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_projectphaseValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_actualdistrictcontributionforcurrentyear">
-          <DataField>caps_actualdistrictcontributionforcurrentyear</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyear">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_actualdistrictcontributionforcurrentyearValue">
-          <DataField>caps_actualdistrictcontributionforcurrentyearValue</DataField>
+        <Field Name="PREVIOUSPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyearValue">
+          <DataField>PREVIOUSPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyearValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="LastProgressReport">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectRequest">
-            <Value>=Parameters!ProjectRequest.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@ProgressReport">
-            <Value>=Parameters!ProgressReport.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_progressreport"&gt;
-    &lt;attribute name="caps_progressreportid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="createdon" /&gt;
-    &lt;attribute name="caps_totalprovincialactualdraws" /&gt;
-    &lt;attribute name="caps_totalfutureprovincialprojection" /&gt;
-    &lt;attribute name="caps_totalcurrentyearcashflowprojection" /&gt;
-    &lt;attribute name="caps_totalagencyprojection" /&gt;
-    &lt;attribute name="caps_totalagencybudget" /&gt;
-    &lt;attribute name="caps_q4cashflowprojection" /&gt;
-    &lt;attribute name="caps_q3cashflowprojection" /&gt;
-    &lt;attribute name="caps_q2cashflowprojection" /&gt;
-    &lt;attribute name="caps_q1cashflowprojection" /&gt;
-    &lt;attribute name="caps_projectedoccupancydate" /&gt;
-    &lt;attribute name="caps_projecteddistrictcontributioncurrentyear" /&gt;
-    &lt;attribute name="caps_projectedcontractawarddate" /&gt;
-    &lt;attribute name="caps_projectphase" /&gt;
-    &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
-    &lt;order attribute="createdon" descending="true" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_project" operator="eq" uitype="caps_projecttracker" value="@ProjectRequest" /&gt;
-      &lt;condition attribute="caps_progressreportid" operator="ne"  uitype="caps_progressreport" value="@ProgressReport" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_progressreportid">
-          <DataField>caps_progressreportid</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialactualdraws">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialactualdraws</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialactualdrawsValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialactualdrawsValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialprojection">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialprojection</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="createdon">
-          <DataField>createdon</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialprojectionValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialprojectionValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydate">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="createdonValue">
-          <DataField>createdonValue</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydateValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="caps_totalprovincialactualdraws">
-          <DataField>caps_totalprovincialactualdraws</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyear">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_totalprovincialactualdrawsValue">
-          <DataField>caps_totalprovincialactualdrawsValue</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyearValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projecteddistrictcontributioncurrentyearValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_totalfutureprovincialprojection">
-          <DataField>caps_totalfutureprovincialprojection</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddate">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_totalfutureprovincialprojectionValue">
-          <DataField>caps_totalfutureprovincialprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalcurrentyearcashflowprojection">
-          <DataField>caps_totalcurrentyearcashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalcurrentyearcashflowprojectionValue">
-          <DataField>caps_totalcurrentyearcashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyprojection">
-          <DataField>caps_totalagencyprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyprojectionValue">
-          <DataField>caps_totalagencyprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudget">
-          <DataField>caps_totalagencybudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudgetValue">
-          <DataField>caps_totalagencybudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4cashflowprojection">
-          <DataField>caps_q4cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4cashflowprojectionValue">
-          <DataField>caps_q4cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3cashflowprojection">
-          <DataField>caps_q3cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3cashflowprojectionValue">
-          <DataField>caps_q3cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2cashflowprojection">
-          <DataField>caps_q2cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2cashflowprojectionValue">
-          <DataField>caps_q2cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1cashflowprojection">
-          <DataField>caps_q1cashflowprojection</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1cashflowprojectionValue">
-          <DataField>caps_q1cashflowprojectionValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedoccupancydate">
-          <DataField>caps_projectedoccupancydate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedoccupancydateValue">
-          <DataField>caps_projectedoccupancydateValue</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddateValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="caps_projecteddistrictcontributioncurrentyear">
-          <DataField>caps_projecteddistrictcontributioncurrentyear</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectphase">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectphase</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_projecteddistrictcontributioncurrentyearValue">
-          <DataField>caps_projecteddistrictcontributioncurrentyearValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedcontractawarddate">
-          <DataField>caps_projectedcontractawarddate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectedcontractawarddateValue">
-          <DataField>caps_projectedcontractawarddateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectphase">
-          <DataField>caps_projectphase</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectphaseValue">
-          <DataField>caps_projectphaseValue</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectphaseValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_projectphaseValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_actualdistrictcontributionforcurrentyear">
-          <DataField>caps_actualdistrictcontributionforcurrentyear</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyear">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_actualdistrictcontributionforcurrentyearValue">
-          <DataField>caps_actualdistrictcontributionforcurrentyearValue</DataField>
+        <Field Name="PREVIOUSYEARENDPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyearValue">
+          <DataField>PREVIOUSYEARENDPROGRESSREPORT_caps_actualdistrictcontributionforcurrentyearValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -758,154 +672,6 @@
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="caps_progressreport" operator="eq" uitype="caps_progressreport" value="@ProgressReport" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_cashflowprojectionid">
-          <DataField>caps_cashflowprojectionid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_year">
-          <DataField>caps_year</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_yearValue">
-          <DataField>caps_yearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_yearEntityName">
-          <DataField>caps_yearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_provincialamount">
-          <DataField>caps_provincialamount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_provincialamountValue">
-          <DataField>caps_provincialamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreport">
-          <DataField>caps_progressreport</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreportValue">
-          <DataField>caps_progressreportValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreportEntityName">
-          <DataField>caps_progressreportEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_agencyamount">
-          <DataField>caps_agencyamount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_agencyamountValue">
-          <DataField>caps_agencyamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="LastCashFlowProjections">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@LastProgressReport">
-            <Value>=Parameters!LastProgressReport.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_cashflowprojection"&gt;
-    &lt;attribute name="caps_cashflowprojectionid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_year" /&gt;
-    &lt;attribute name="caps_provincialamount" /&gt;
-    &lt;attribute name="caps_progressreport" /&gt;
-    &lt;attribute name="caps_agencyamount" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_progressreport" operator="eq" uitype="caps_progressreport" value="@LastProgressReport" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_cashflowprojectionid">
-          <DataField>caps_cashflowprojectionid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_year">
-          <DataField>caps_year</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_yearValue">
-          <DataField>caps_yearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_yearEntityName">
-          <DataField>caps_yearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_provincialamount">
-          <DataField>caps_provincialamount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_provincialamountValue">
-          <DataField>caps_provincialamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreport">
-          <DataField>caps_progressreport</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreportValue">
-          <DataField>caps_progressreportValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_progressreportEntityName">
-          <DataField>caps_progressreportEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_agencyamount">
-          <DataField>caps_agencyamount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_agencyamountValue">
-          <DataField>caps_agencyamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="PreviousYearEndCashFlowProjections">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@PreviousYearEndProgressReport">
-            <Value>=Parameters!PreviousYearEndProgressReport.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_cashflowprojection"&gt;
-    &lt;attribute name="caps_cashflowprojectionid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_year" /&gt;
-    &lt;attribute name="caps_provincialamount" /&gt;
-    &lt;attribute name="caps_progressreport" /&gt;
-    &lt;attribute name="caps_agencyamount" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_progressreport" operator="eq" uitype="caps_progressreport" value="@PreviousYearEndProgressReport" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -1059,6 +825,196 @@
         <Field Name="PROJECT_caps_projectEntityName">
           <DataField>PROJECT_caps_projectEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="PreviousCashFlowProjections">
+      <Query>
+        <DataSourceName>MoE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProgressReport">
+            <Value>=Parameters!ProgressReport.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ParentProject">
+            <Value>=Parameters!ParentProject.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_cashflowprojection"&gt;
+    &lt;attribute name="caps_cashflowprojectionid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_year" /&gt;
+    &lt;attribute name="caps_provincialamount" /&gt;
+    &lt;attribute name="caps_progressreport" /&gt;
+    &lt;attribute name="caps_agencyamount" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_progressreport" operator="ne" value="@ProgressReport" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_progressreport" from="caps_progressreportid" to="caps_progressreport" link-type="inner" alias="PROGRESSREPORT"&gt;
+      &lt;attribute name="caps_project" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_project" operator="eq" uitype="caps_projecttracker" value="@ParentProject" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_year" visible="false" link-type="outer" alias="YEAR"&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="caps_cashflowprojectionid">
+          <DataField>caps_cashflowprojectionid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_year">
+          <DataField>caps_year</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_yearValue">
+          <DataField>caps_yearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_yearEntityName">
+          <DataField>caps_yearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_provincialamount">
+          <DataField>caps_provincialamount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_provincialamountValue">
+          <DataField>caps_provincialamountValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_progressreport">
+          <DataField>caps_progressreport</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_progressreportValue">
+          <DataField>caps_progressreportValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_progressreportEntityName">
+          <DataField>caps_progressreportEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_agencyamount">
+          <DataField>caps_agencyamount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_agencyamountValue">
+          <DataField>caps_agencyamountValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PROGRESSREPORT_caps_project">
+          <DataField>PROGRESSREPORT_caps_project</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PROGRESSREPORT_caps_projectValue">
+          <DataField>PROGRESSREPORT_caps_projectValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PROGRESSREPORT_caps_projectEntityName">
+          <DataField>PROGRESSREPORT_caps_projectEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyear">
+          <DataField>YEAR_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyearValue">
+          <DataField>YEAR_edu_startyearValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ActualDraws">
+      <Query>
+        <DataSourceName>MoE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ParentProject">
+            <Value>=Parameters!ParentProject.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_actualdraw"&gt;
+    &lt;attribute name="caps_actualdrawid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="createdon" /&gt;
+    &lt;attribute name="caps_fiscalyear" /&gt;
+    &lt;attribute name="caps_drawdate" /&gt;
+    &lt;attribute name="caps_amount" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_project" operator="eq" uitype="caps_projecttracker" value="@ParentProject" /&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="outer" alias="YEAR"&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="caps_actualdrawid">
+          <DataField>caps_actualdrawid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_fiscalyear">
+          <DataField>caps_fiscalyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_fiscalyearValue">
+          <DataField>caps_fiscalyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_fiscalyearEntityName">
+          <DataField>caps_fiscalyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_drawdate">
+          <DataField>caps_drawdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_drawdateValue">
+          <DataField>caps_drawdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_amount">
+          <DataField>caps_amount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_amountValue">
+          <DataField>caps_amountValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyear">
+          <DataField>YEAR_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyearValue">
+          <DataField>YEAR_edu_startyearValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1377,14 +1333,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox93">
+                        <Textbox Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectedcontractawarddate.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddate.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1393,7 +1349,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox93</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedcontractawarddate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1409,14 +1365,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox91">
+                        <Textbox Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectedoccupancydate.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydate.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1425,7 +1381,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox91</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSYEARENDPROGRESSREPORT_caps_projectedoccupancydate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1441,14 +1397,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox100">
+                        <Textbox Name="PREVIOUSYEARENDPROGRESSREPORT_caps_projectphase">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectphase.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_projectphase.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1457,7 +1413,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox100</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSYEARENDPROGRESSREPORT_caps_projectphase</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1510,14 +1466,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox5">
+                        <Textbox Name="PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectedcontractawarddate.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddate.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1526,7 +1482,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSPROGRESSREPORT_caps_projectedcontractawarddate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1542,14 +1498,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox94">
+                        <Textbox Name="PREVIOUSPROGRESSREPORT_caps_projectedoccupancydate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectedoccupancydate.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_projectedoccupancydate.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1558,7 +1514,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox94</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSPROGRESSREPORT_caps_projectedoccupancydate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1574,14 +1530,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox111">
+                        <Textbox Name="PREVIOUSPROGRESSREPORT_caps_projectphase">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_projectphase.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_projectphase.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1590,7 +1546,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox111</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSPROGRESSREPORT_caps_projectphase</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1832,7 +1788,7 @@
             <DataSetName>ProgressReport</DataSetName>
             <Top>2.32167in</Top>
             <Height>1.86646in</Height>
-            <Width>7.03561in</Width>
+            <Width>7.03562in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1983,384 +1939,24 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>4</ColSpan>
+                        <ColSpan>16</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox150">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox150</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox158">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox158</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox166">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox166</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox174">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox174</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox182">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox182</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox190">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox190</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox25">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox34">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox34</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox43">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox43</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox61">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox61</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox70">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox70</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox79">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox79</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2422,11 +2018,9 @@
                           <rd:DefaultName>Textbox10</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <RightBorder>
+                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
-                            </RightBorder>
+                            </Border>
                             <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -2445,7 +2039,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Current Year</Value>
+                                  <Value>=Fields!YEAR_edu_name.Value &amp; "(Current Year)"</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Color>White</Color>
@@ -2511,227 +2105,17 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>3</ColSpan>
+                        <ColSpan>9</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox26">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox26</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox35">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox35</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox44">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox44</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox62">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox62</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox71">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox71</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox80">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Color>White</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox80</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -3317,23 +2701,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox143">
+                        <Textbox Name="caps_totalprovincialactualdrawsValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!caps_totalprovincialactualdrawsValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox143</rd:DefaultName>
+                          <rd:DefaultName>caps_totalprovincialactualdrawsValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3349,16 +2734,149 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox144">
+                        <Textbox Name="Textbox76">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 3) AND (month(Fields!caps_drawdateValue.Value) &lt; 7) , CDbl(Fields!caps_amountValue.Value),CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox78">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 6) And (month(Fields!caps_drawdateValue.Value) &lt; 10), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox79">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 9) And (month(Fields!caps_drawdateValue.Value) &lt; 13), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox80">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 0) And (month(Fields!caps_drawdateValue.Value) &lt; 4), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox150">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_amountValue.Value, "ActualDraws")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3366,134 +2884,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox144</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox145">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox145</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox152">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox152</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox160">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox160</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox168">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox168</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3531,6 +2921,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3563,6 +2954,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3595,6 +2987,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3627,6 +3020,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3659,6 +3053,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3691,6 +3086,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3723,6 +3119,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3755,6 +3152,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3787,6 +3185,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3841,14 +3240,16 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_totalprovincialactualdraws.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_totalprovincialactualdraws.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox90</rd:DefaultName>
@@ -3874,7 +3275,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q1cashflowprojection.Value, "PreviousYearEndReport")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3889,6 +3290,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3906,7 +3308,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q2cashflowprojection.Value, "PreviousYearEndReport")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3921,6 +3323,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3931,14 +3334,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox153">
+                        <Textbox Name="Textbox30">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q3cashflowprojection.Value, "PreviousYearEndReport")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3947,7 +3350,76 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox153</rd:DefaultName>
+                          <rd:DefaultName>Textbox30</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox36">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox36</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox33">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=trim(join(lookupset(Fields!caps_previousyearendprogressreport.Value,Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value,Fields!caps_provincialamount.Value,""), "PreviousCashFlowProjections")))</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3963,23 +3435,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox161">
+                        <Textbox Name="Textbox34">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q4cashflowprojection.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox161</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3995,23 +3470,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox169">
+                        <Textbox Name="Textbox35">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_totalcurrentyearcashflowprojection.Value, "PreviousYearEndReport")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox169</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4027,23 +3505,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox213">
+                        <Textbox Name="Textbox43">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 1 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 2, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4059,23 +3540,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox214">
+                        <Textbox Name="Textbox44">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 2 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 3, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4091,23 +3575,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox215">
+                        <Textbox Name="Textbox45">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 3 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 4, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4123,23 +3610,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox218">
+                        <Textbox Name="Textbox47">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 4 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 5, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4155,23 +3645,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox219">
+                        <Textbox Name="Textbox48">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 5 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 6, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4187,23 +3680,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox220">
+                        <Textbox Name="Textbox49">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 6 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 7, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4219,14 +3715,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox221">
+                        <Textbox Name="Textbox17">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 7 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 8, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -4235,76 +3731,13 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox17</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox222">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 8 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 9, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox223">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 9 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 10, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "PreviousYearEndCashFlowProjections")</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -4352,23 +3785,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox116">
+                        <Textbox Name="PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdrawsValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_totalprovincialactualdraws.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdrawsValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox93</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSPROGRESSREPORT_caps_totalprovincialactualdrawsValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4384,23 +3818,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox117">
+                        <Textbox Name="PREVIOUSPROGRESSREPORT_caps_q1cashflowprojectionValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q1cashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_q1cashflowprojectionValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox94</rd:DefaultName>
+                          <rd:DefaultName>PREVIOUSPROGRESSREPORT_caps_q1cashflowprojectionValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4416,23 +3851,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox216">
+                        <Textbox Name="Textbox42">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q2cashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_q2cashflowprojectionValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox216</rd:DefaultName>
+                          <rd:DefaultName>Textbox42</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -4447,23 +3883,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox154">
+                        <Textbox Name="Textbox40">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q3cashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_q3cashflowprojectionValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox154</rd:DefaultName>
+                          <rd:DefaultName>Textbox40</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4479,23 +3916,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox162">
+                        <Textbox Name="Textbox39">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_q4cashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_q4cashflowprojectionValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox162</rd:DefaultName>
+                          <rd:DefaultName>Textbox39</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4511,23 +3949,24 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox170">
+                        <Textbox Name="Textbox38">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=First(Fields!caps_totalcurrentyearcashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value>=Fields!PREVIOUSPROGRESSREPORT_caps_totalcurrentyearcashflowprojectionValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox170</rd:DefaultName>
+                          <rd:DefaultName>Textbox38</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4543,23 +3982,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox191">
+                        <Textbox Name="Textbox51">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 1 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 2, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4575,23 +4017,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox195">
+                        <Textbox Name="Textbox52">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 2 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 3, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4607,23 +4052,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox217">
+                        <Textbox Name="Textbox53">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 3 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 4, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4639,23 +4087,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox224">
+                        <Textbox Name="Textbox54">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 4 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 5, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4671,23 +4122,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox225">
+                        <Textbox Name="Textbox55">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 5 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 6, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4703,23 +4157,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox226">
+                        <Textbox Name="Textbox56">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 6 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 7, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4735,23 +4192,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox227">
+                        <Textbox Name="Textbox57">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 7 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 8, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4767,23 +4227,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox228">
+                        <Textbox Name="Textbox58">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 8 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 9, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -4799,23 +4262,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox229">
+                        <Textbox Name="Textbox59">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Lookup(Fields!YEAR_edu_startyear.Value + 9 &amp; "/" &amp; Fields!YEAR_edu_startyear.Value + 10, Fields!caps_year.Value, Fields!caps_provincialamount.Value, "LastCashFlowProjections")</Value>
+                                  <Value>=trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 9, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox176</rd:DefaultName>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -5398,7 +4864,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_totalprovincialactualdrawsValue.Value - First(Fields!caps_totalprovincialactualdraws.Value, "LastProgressReport")</Value>
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -5428,7 +4894,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_q1cashflowprojectionValue.Value - First(Fields!caps_q1cashflowprojection.Value, "LastProgressReport")</Value>
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -6167,29 +5633,15 @@
       </DefaultValue>
       <Prompt>Progress Report</Prompt>
     </ReportParameter>
-    <ReportParameter Name="LastProgressReport">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
+    <ReportParameter Name="FiscalStartYear">
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
-          <DataSetName>LastProgressReport</DataSetName>
-          <ValueField>caps_progressreportid</ValueField>
+          <DataSetName>ProgressReport</DataSetName>
+          <ValueField>YEAR_edu_startyearValue</ValueField>
         </DataSetReference>
       </DefaultValue>
-      <Prompt>LastProgressReport</Prompt>
-      <Hidden>true</Hidden>
-    </ReportParameter>
-    <ReportParameter Name="PreviousYearEndProgressReport">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>PreviousYearEndReport</DataSetName>
-          <ValueField>caps_progressreportid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>PreviousYearEndProgressReport</Prompt>
+      <Prompt>FiscalStartYear</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
   </ReportParameters>
@@ -6216,12 +5668,7 @@
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>LastProgressReport</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>PreviousYearEndProgressReport</ParameterName>
+          <ParameterName>FiscalStartYear</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
