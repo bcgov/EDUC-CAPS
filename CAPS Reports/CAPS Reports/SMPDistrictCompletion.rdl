@@ -24,10 +24,14 @@
     &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_seismicmitigationprogram" operator="in"&gt;
-        &lt;value&gt;200870001&lt;/value&gt;
+       &lt;condition attribute="statuscode" operator="in"&gt;
+        &lt;value&gt;1&lt;/value&gt;
         &lt;value&gt;200870000&lt;/value&gt;
-      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+        &lt;value&gt;2&lt;/value&gt;
+      &lt;/condition&gt;
+      &lt;condition attribute="caps_seismicmitigationprogram" operator="in"&gt;
+        &lt;value&gt;200870000&lt;/value&gt;
+        &lt;value&gt;200870001&lt;/value&gt;
       &lt;/condition&gt;
     &lt;/filter&gt;
     &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" visible="false" link-type="outer" alias="SD"&gt;
