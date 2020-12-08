@@ -27,6 +27,7 @@
       &lt;condition attribute="caps_seismicmitigationprogram" operator="in"&gt;
         &lt;value&gt;200870001&lt;/value&gt;
         &lt;value&gt;200870000&lt;/value&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
       &lt;/condition&gt;
     &lt;/filter&gt;
     &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" visible="false" link-type="outer" alias="SD"&gt;
@@ -421,7 +422,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_schooldistrict.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -451,7 +454,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Sum(iif(Fields!caps_seismicmitigationprogram.Value = "Complete", 1, 0)) &amp; "/" &amp; Count(Fields!caps_seismicmitigationprogram.Value)</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -482,6 +487,7 @@
                                 <TextRun>
                                   <Value>=Sum(iif(Fields!caps_seismicmitigationprogram.Value = "Complete", 1, 0)) / Count(Fields!caps_seismicmitigationprogram.Value)</Value>
                                   <Style>
+                                    <FontFamily>Arial</FontFamily>
                                     <Format>P0</Format>
                                   </Style>
                                 </TextRun>
@@ -830,7 +836,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>3.53597in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>

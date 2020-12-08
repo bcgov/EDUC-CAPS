@@ -179,7 +179,7 @@
     &lt;attribute name="caps_seismicmitigationprogram" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-      &lt;condition attribute="caps_seismicmitigationprogram" operator="eq" value="200870000" /&gt;
+      &lt;condition attribute="caps_seismicmitigationprogram" operator="eq" value="200870001" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -315,7 +315,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_schooldistrict.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -345,7 +347,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!caps_name.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
