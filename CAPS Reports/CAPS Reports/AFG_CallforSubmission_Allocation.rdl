@@ -891,7 +891,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_TotalAFG.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_TotalAFG.Value,Fields!calculated_TotalAFG.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -926,7 +926,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_CapitalPortion.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_CapitalPortion.Value,Fields!calculated_CapitalPortion.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -961,7 +961,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_GrossOperating.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_GrossOperating.Value,Fields!calculated_GrossOperating.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -996,7 +996,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_WithheldCAMS.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_WithheldCAMS.Value,Fields!calculated_WithheldCAMS.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1031,7 +1031,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_NetOperating.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_NetOperating.Value,Fields!calculated_NetOperating.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1066,7 +1066,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!calculated_TotalAllocationDistricts.Value</Value>
+                                  <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_TotalAllocationDistricts.Value,Fields!calculated_TotalAllocationDistricts.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2330,7 +2330,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox35">
+                        <Textbox Name="Adjusted_HighestSD_TotalAFG">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2351,7 +2351,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox35</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2368,7 +2367,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox36">
+                        <Textbox Name="Adjusted_HighestSD_CapitalPortion">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2389,7 +2388,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox36</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2406,7 +2404,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox37">
+                        <Textbox Name="Adjusted_HighestSD_GrossOperating">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2427,7 +2425,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox37</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2444,7 +2441,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox38">
+                        <Textbox Name="Adjusted_HighestSD_WithheldCAMS">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2465,7 +2462,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2482,7 +2478,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox39">
+                        <Textbox Name="Adjusted_HighestSD_NetOperating">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2503,7 +2499,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox39</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2520,7 +2515,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox40">
+                        <Textbox Name="Adjusted_HighestSD_TotalAllocationDistricts">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2541,7 +2536,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox40</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2552,6 +2546,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -2592,9 +2587,6 @@
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
-                  <Visibility>
-                    <Hidden>= (ReportItems!Adjusted_HighestSDNumber.Value = ReportItems!edu_number.Value)</Hidden>
-                  </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
@@ -2612,7 +2604,11 @@
                     <Hidden>true</Hidden>
                   </Visibility>
                 </TablixMember>
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                  </Visibility>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
@@ -2634,7 +2630,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.66319cm</Height>
+        <Height>5.73402cm</Height>
         <Style />
       </Body>
       <Width>18.06445cm</Width>
