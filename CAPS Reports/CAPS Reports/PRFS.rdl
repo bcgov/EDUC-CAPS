@@ -9548,7 +9548,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Sum(Fields!caps_totalenrolmentValue.Value, "PRFSOptionFacilityActualEnrolment"), "-")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9572,7 +9572,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9584,7 +9583,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime) +1), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9608,7 +9607,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9620,7 +9618,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9644,7 +9642,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9656,7 +9653,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9680,7 +9677,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9692,7 +9688,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9716,7 +9712,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9728,7 +9723,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9752,7 +9747,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9764,7 +9758,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9788,7 +9782,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9800,7 +9793,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime)+7), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9824,7 +9817,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9836,7 +9828,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9860,7 +9852,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9872,7 +9863,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9896,7 +9887,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -9908,7 +9898,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_total_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), CDBL(Fields!caps_total_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0);'-'</Format>
@@ -9932,7 +9922,6 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -10019,9 +10008,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10053,9 +10043,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10087,9 +10078,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime) + 2), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10121,9 +10113,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime) + 3), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10155,9 +10148,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime) + 4), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10189,9 +10183,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime) + 5), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10223,9 +10218,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime) + 6), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10257,9 +10253,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime) + 7), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10291,9 +10288,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime) + 8), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10325,9 +10323,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime) + 9), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10359,9 +10358,10 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec"))</Value>
+                                          <Value>=iif(isnothing(Sum(Fields!caps_international_enrolmentValue.Value, "ProjectOptionCapacityReportingRec")), "-", Sum(iif(Fields!YEAR_edu_startyearValue.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime) + 10), CDBL(Fields!caps_international_enrolmentValue.Value), CDBL(0)), "ProjectOptionCapacityReportingRec"))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0);'-'</Format>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -10468,7 +10468,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10503,7 +10503,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10538,7 +10538,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10573,7 +10573,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10608,7 +10608,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10643,7 +10643,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10678,7 +10678,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10713,7 +10713,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10748,7 +10748,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10783,7 +10783,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10818,7 +10818,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeindesigncapacitytotal.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -10939,7 +10939,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -10976,7 +10976,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11013,7 +11013,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11050,7 +11050,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11087,7 +11087,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11124,7 +11124,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11161,7 +11161,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11198,7 +11198,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11235,7 +11235,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11272,7 +11272,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11309,7 +11309,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")  + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeindesigncapacitytotal.Value, 0))</Value>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") / (Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -11428,7 +11428,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11464,7 +11464,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11500,7 +11500,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11536,7 +11536,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11572,7 +11572,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11608,7 +11608,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11644,7 +11644,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11680,7 +11680,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11716,7 +11716,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11752,7 +11752,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11788,7 +11788,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeindesigncapacitytotal.Value, 0)) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_enrolmentprojectiontotalValue.Value, 0), "SSEnrolmentProjections")</Value>
+                                          <Value>=(Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeindesigncapacitytotal.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -11899,7 +11899,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -11934,7 +11934,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -11969,7 +11969,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12004,7 +12004,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12039,7 +12039,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12074,7 +12074,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12109,7 +12109,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12144,7 +12144,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12179,7 +12179,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12214,7 +12214,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12249,7 +12249,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
+                                          <Value>=Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), Fields!caps_changeinoperatingcapacity_total.Value, 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -12273,6 +12273,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -21196,6 +21197,16 @@
         </ParameterValues>
       </ValidValues>
     </ReportParameter>
+    <ReportParameter Name="MonthRollover">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>9</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>MonthRollover</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -21236,6 +21247,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>CapacityType</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>MonthRollover</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
