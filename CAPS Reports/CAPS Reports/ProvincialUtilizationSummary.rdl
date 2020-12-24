@@ -16,7 +16,7 @@
     <DataSet Name="AllActiveFacilities">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_facility" &gt;
     &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -26,10 +26,17 @@
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="caps_total_currentenrolment" /&gt;
     &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_currentfacilitytype" /&gt;
+    &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;filter&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
+    &lt;link-entity name="caps_facilitytype" from="caps_facilitytypeid" to="caps_currentfacilitytype" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="caps_schooltype" operator="not-null" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -96,6 +103,30 @@
         </Field>
         <Field Name="caps_name">
           <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_currentfacilitytype">
+          <DataField>caps_currentfacilitytype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_currentfacilitytypeValue">
+          <DataField>caps_currentfacilitytypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_currentfacilitytypeEntityName">
+          <DataField>caps_currentfacilitytypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designfacilitytype">
+          <DataField>caps_designfacilitytype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designfacilitytypeValue">
+          <DataField>caps_designfacilitytypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_designfacilitytypeEntityName">
+          <DataField>caps_designfacilitytypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
