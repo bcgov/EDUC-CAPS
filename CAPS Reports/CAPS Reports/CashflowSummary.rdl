@@ -419,14 +419,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="PRJ_caps_schooldistrict">
+                        <Textbox Name="ownerid">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PRJ_caps_schooldistrict.Value</Value>
+                                  <Value>=Fields!ownerid.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -436,7 +436,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>PRJ_caps_schooldistrict</rd:DefaultName>
+                          <rd:DefaultName>ownerid</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -448,6 +448,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -880,12 +881,12 @@
                 <TablixMember>
                   <Group Name="Details">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!PRJ_caps_schooldistrict.Value</GroupExpression>
+                      <GroupExpression>=Fields!ownerid.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!PRJ_caps_schooldistrict.Value</Value>
+                      <Value>=Fields!ownerid.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                 </TablixMember>

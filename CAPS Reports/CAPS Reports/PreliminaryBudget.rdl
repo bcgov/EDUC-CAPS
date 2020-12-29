@@ -7,9 +7,8 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
-        <Prompt>Specify a user name and password for data source CAPS_Dev:</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>754c02b1-163d-452d-9cfd-3b5c46842c4f</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -33,6 +32,7 @@
     &lt;attribute name="caps_schbspaceallocationnewreplacement" /&gt;
     &lt;attribute name="caps_schbprojectsizefactor" /&gt;
     &lt;attribute name="caps_schbprojectmanagementfees" /&gt;
+    &lt;attribute name="caps_schbadditionalspaceallocation" /&gt;
     &lt;attribute name="caps_schbprojectlocationfactor" /&gt;
     &lt;attribute name="caps_schbpostcontractnewreplacement" /&gt;
     &lt;attribute name="caps_schbpostcontractrenovations" /&gt;
@@ -44,6 +44,7 @@
     &lt;attribute name="caps_schbequipmentnew" /&gt;
     &lt;attribute name="caps_schbdesignfees" /&gt;
     &lt;attribute name="caps_spircostestimate" /&gt;
+    &lt;attribute name="caps_schbadditionalspaceallocation" /&gt;
     &lt;attribute name="caps_constructioncostsspiradjustments" /&gt;
     &lt;attribute name="caps_constructioncostsspir" /&gt;
     &lt;attribute name="caps_constructioncostsnonstructuralseismicupgr" /&gt;
@@ -132,6 +133,14 @@
           <DataField>caps_schbprojectmanagementfeesValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_schbadditionalspaceallocation">
+          <DataField>caps_schbadditionalspaceallocation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbadditionalspaceallocationValue">
+          <DataField>caps_schbadditionalspaceallocationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_schbprojectlocationfactor">
           <DataField>caps_schbprojectlocationfactor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -160,13 +169,13 @@
           <DataField>caps_schbriskreserve</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_schbpayabletaxes">
-          <DataField>caps_schbpayabletaxes</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_schbriskreserveValue">
           <DataField>caps_schbriskreserveValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbpayabletaxes">
+          <DataField>caps_schbpayabletaxes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schbpayabletaxesValue">
           <DataField>caps_schbpayabletaxesValue</DataField>
@@ -218,6 +227,14 @@
         </Field>
         <Field Name="caps_spircostestimateValue">
           <DataField>caps_spircostestimateValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbadditionalspaceallocation0">
+          <DataField>caps_schbadditionalspaceallocation0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbadditionalspaceallocationValue0">
+          <DataField>caps_schbadditionalspaceallocationValue0</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_constructioncostsspiradjustments">
@@ -4975,7 +4992,7 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox97">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -4983,6 +5000,109 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>2.2</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Additional Space Allocation</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_schbadditionalspaceallocationValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_schbadditionalspaceallocationValue.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_schbadditionalspaceallocationValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox97">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>2.3</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -5088,12 +5208,13 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
             <Top>5.12357cm</Top>
             <Left>0.04867cm</Left>
-            <Height>1.8cm</Height>
+            <Height>2.4cm</Height>
             <Width>9.98237cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
