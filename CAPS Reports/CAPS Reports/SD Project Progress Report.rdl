@@ -3689,7 +3689,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-",trim(join(lookupset(Fields!caps_previousyearendprogressreport.Value,Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value,Fields!caps_provincialamount.Value,""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-",trim(join(lookupset(Fields!caps_previousyearendprogressreportValue.Value,Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value,Fields!caps_provincialamount.Value,""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3725,7 +3725,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3761,7 +3761,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3797,7 +3797,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3833,7 +3833,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3869,7 +3869,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3905,7 +3905,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3941,7 +3941,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3977,7 +3977,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousyearendprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousyearendprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4047,7 +4047,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_totalfutureprovincialprojectionValue.Value - trim(join(lookupset(Fields!caps_previousyearendprogressreport.Value,Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value,Fields!caps_provincialamount.Value,""), "PreviousCashFlowProjections")))</Value>
+                                  <Value>=Fields!PREVIOUSYEARENDPROGRESSREPORT_caps_totalfutureprovincialprojectionValue.Value - trim(join(lookupset(Fields!caps_previousyearendprogressreportValue.Value,Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value,Fields!caps_provincialamount.Value,""), "PreviousCashFlowProjections")))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4071,6 +4071,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -4144,7 +4145,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4181,7 +4181,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4217,7 +4216,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4254,7 +4252,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4291,7 +4288,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4328,7 +4324,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4340,7 +4335,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4376,7 +4371,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4412,7 +4407,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4448,7 +4443,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4484,7 +4479,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4520,7 +4515,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4556,7 +4551,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4592,7 +4587,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4628,7 +4623,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 9, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 9, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5539,7 +5534,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", lookup(Fields!YEAR_edu_startyearValue.Value+1,Fields!YEAR_edu_startyearValue.Value,Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value="","-", lookup(Fields!YEAR_edu_startyearValue.Value+1,Fields!YEAR_edu_startyearValue.Value,Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 1, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5576,7 +5571,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 2, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 2, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 2, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5613,7 +5608,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 3, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 3, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 3, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5650,7 +5645,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 4, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 4, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 4, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5687,7 +5682,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 5, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 5, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 5, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5724,7 +5719,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 6, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 6, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 6, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5761,7 +5756,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 7, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 7, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 7, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5798,7 +5793,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 8, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 8, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 8, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5835,7 +5830,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 9, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreport.Value, Fields!caps_progressreport.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 9, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
+                                  <Value>=iif(Fields!caps_previousprogressreport.Value = "", "-", Lookup(Fields!YEAR_edu_startyearValue.Value + 9, Fields!YEAR_edu_startyearValue.Value, Fields!caps_provincialamount.Value, "ThisCashFlowProjections") - trim(join(LookupSet(Fields!caps_previousprogressreportValue.Value, Fields!caps_progressreportValue.Value, iif(Fields!YEAR_edu_startyearValue.Value = Parameters!FiscalStartYear.Value + 9, Fields!caps_provincialamount.Value, ""), "PreviousCashFlowProjections"))))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
