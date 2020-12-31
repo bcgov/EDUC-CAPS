@@ -2344,7 +2344,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>=First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)</Value>
+                                  <Value>=IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
+0,
+First(Fields!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
+                                  <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -2684,7 +2687,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_designcapacityValue2.Value</Value>
+                                  <Value>=IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
+"N/A",
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_designcapacityValue2.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
@@ -2785,7 +2790,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_operatingcapacityValue2.Value</Value>
+                                  <Value>=IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
+"N/A",
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_operatingcapacityValue2.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
@@ -2887,7 +2894,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_totalenrolmentValue.Value</Value>
+                                  <Value>= IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0, 
+0,
+ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_totalenrolmentValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -2992,7 +3001,12 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= ReportItems!Variance_Difference.Value / ReportItems!SDEnrolment_caps_totalenrolmentValue.Value</Value>
+                                  <Value>= IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
+"N/A",
+ReportItems!Variance_Difference.Value/ 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0,
+1,
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
@@ -3012,18 +3026,12 @@
                             </Border>
                             <BottomBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </RightBorder>
                             <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
                             <VerticalAlign>Bottom</VerticalAlign>
@@ -3491,7 +3499,6 @@
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
-                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
