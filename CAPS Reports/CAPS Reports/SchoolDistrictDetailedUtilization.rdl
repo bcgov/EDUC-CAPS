@@ -2344,9 +2344,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>=IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
+                                  <Value>=CInt(IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
 0,
-First(Fields!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
+First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
@@ -2894,9 +2894,11 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0, 
+                                  <Value>= IIF(
+(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0, 
 0,
-ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_totalenrolmentValue.Value)</Value>
+ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_totalenrolmentValue.Value 
+)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -3003,7 +3005,7 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                                 <TextRun>
                                   <Value>= IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
 "N/A",
-ReportItems!Variance_Difference.Value/ 
+ReportItems!Variance_Difference.Value / 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0,
 1,
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
