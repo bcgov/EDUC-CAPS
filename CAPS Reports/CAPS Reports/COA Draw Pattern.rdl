@@ -254,12 +254,6 @@
     &lt;attribute name="caps_submissioncategoryid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_type" operator="in"&gt;
-        &lt;value&gt;200870000&lt;/value&gt;
-        &lt;value&gt;200870003&lt;/value&gt;
-      &lt;/condition&gt;
-    &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -1374,7 +1368,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>5.5268in</Top>
+            <Top>6.5018in</Top>
             <Left>0.1071cm</Left>
             <Height>3.0625in</Height>
             <Width>9.97916in</Width>
@@ -1402,7 +1396,6 @@
                       <TextRun>
                         <Value>=iif(count(Fields!caps_totalprovincialValue.Value, "CurrentYearProjections") = 0,0,Sum(Fields!caps_totalprovincialValue.Value, "CurrentYearProjections"))</Value>
                         <Style>
-                          <FontWeight>Bold</FontWeight>
                           <Format>'$'#,0;('$'#,0)</Format>
                         </Style>
                       </TextRun>
@@ -1415,7 +1408,7 @@
                 <rd:DefaultName>Textbox35</rd:DefaultName>
                 <Left>2.00404in</Left>
                 <Height>0.25in</Height>
-                <Width>4.27964in</Width>
+                <Width>1.28854in</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1436,7 +1429,9 @@
                     <TextRuns>
                       <TextRun>
                         <Value>Total Current Year Projection:</Value>
-                        <Style />
+                        <Style>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
@@ -1647,7 +1642,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=iif(countrows("SubmissionCategories")=Parameters!SubmissionCategories.count,"All Major Categories incl. BEP",join(lookupset(True,True,Fields!caps_name.Value, "SubmissionCategoriesSelected"),", "))</Value>
+                        <Value>=iif(countrows("SubmissionCategories")=Parameters!SubmissionCategories.count,"All",join(lookupset(True,True,Fields!caps_name.Value, "SubmissionCategoriesSelected"),", "))</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -2058,7 +2053,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>8.5893in</Top>
+            <Top>9.5643in</Top>
             <Left>0.1071cm</Left>
             <Height>3.56in</Height>
             <Width>9.97917in</Width>
@@ -2451,7 +2446,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>12.1493in</Top>
+            <Top>13.1243in</Top>
             <Left>0.1071cm</Left>
             <Height>3.5in</Height>
             <Width>9.97917in</Width>
@@ -2900,10 +2895,10 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>15.6493in</Height>
+        <Height>16.6618in</Height>
         <Style />
       </Body>
-      <Width>10.02133in</Width>
+      <Width>10.02134in</Width>
       <Page>
         <PageHeader>
           <Height>0.78694in</Height>
