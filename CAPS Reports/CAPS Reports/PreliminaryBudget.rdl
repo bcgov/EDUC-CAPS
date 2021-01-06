@@ -5087,7 +5087,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -5136,7 +5135,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Space Allocation: New School or Full Replacement School</Value>
+                                  <Value>Total Space Allocation</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -5168,7 +5167,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_schbspaceallocationnewreplacementValue.Value</Value>
+                                  <Value>=Fields!caps_schbspaceallocationnewreplacementValue.Value + Fields!caps_schbadditionalspaceallocationValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0);'-'</Format>
@@ -5192,6 +5191,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
