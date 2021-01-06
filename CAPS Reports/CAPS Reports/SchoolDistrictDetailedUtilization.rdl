@@ -2351,6 +2351,7 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2367,25 +2368,15 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                             </Border>
                             <TopBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </TopBorder>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2464,6 +2455,7 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2478,27 +2470,14 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2577,6 +2556,7 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2591,27 +2571,14 @@ First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2693,7 +2660,11 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!MinProjected_DesginUtil.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>= IIF(
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray",
+IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_designcapacityValue2.Value) &gt;= 1, 
+"Red","Black")
+)</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2707,27 +2678,14 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <LeftBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </LeftBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2796,7 +2754,11 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!MinProjected_OperatingUtil.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>= IIF(
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray",
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_operatingcapacityValue2.Value &gt;= 1,
+ "Red", "Black")
+ )</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2810,7 +2772,6 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                               <Style>None</Style>
                             </Border>
                             <BottomBorder>
-                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </BottomBorder>
@@ -2820,7 +2781,8 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_
                             <RightBorder>
                               <Style>Solid</Style>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2902,6 +2864,7 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2915,7 +2878,6 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                               <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Color>Black</Color>
                               <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </TopBorder>
@@ -2925,7 +2887,8 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                             <RightBorder>
                               <Style>Solid</Style>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3003,15 +2966,17 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
+                                  <Value>=abs( 
+IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value) = 0,
 "N/A",
 ReportItems!Variance_Difference.Value / 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0,
 1,
-ReportItems!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
+ReportItems!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3035,7 +3000,8 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value))</Value>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
