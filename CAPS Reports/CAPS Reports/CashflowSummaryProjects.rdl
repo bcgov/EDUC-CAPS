@@ -834,7 +834,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 1 OR month(Fields!caps_drawdate.Value) = 2 OR month(Fields!caps_drawdate.Value) = 3, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 4 OR month(Fields!caps_drawdate.Value) = 5 OR month(Fields!caps_drawdate.Value) = 6, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -868,7 +868,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 4 OR month(Fields!caps_drawdate.Value) = 5 OR month(Fields!caps_drawdate.Value) = 6, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 7 OR month(Fields!caps_drawdate.Value) = 8 OR month(Fields!caps_drawdate.Value) = 9, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -902,7 +902,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 7 OR month(Fields!caps_drawdate.Value) = 8 OR month(Fields!caps_drawdate.Value) = 9, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 10 OR month(Fields!caps_drawdate.Value) = 11 OR month(Fields!caps_drawdate.Value) = 12, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -936,7 +936,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 10 OR month(Fields!caps_drawdate.Value) = 11 OR month(Fields!caps_drawdate.Value) = 12, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 1 OR month(Fields!caps_drawdate.Value) = 2 OR month(Fields!caps_drawdate.Value) = 3, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1237,7 +1237,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 1 Or month(Fields!caps_drawdate.Value) = 2 Or month(Fields!caps_drawdate.Value) = 3, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 4 Or month(Fields!caps_drawdate.Value) = 5 Or month(Fields!caps_drawdate.Value) = 6, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1276,7 +1276,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 4 Or month(Fields!caps_drawdate.Value) = 5 Or month(Fields!caps_drawdate.Value) = 6, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 7 Or month(Fields!caps_drawdate.Value) = 8 Or month(Fields!caps_drawdate.Value) = 9, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1315,7 +1315,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 7 Or month(Fields!caps_drawdate.Value) = 8 Or month(Fields!caps_drawdate.Value) = 9, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 10 Or month(Fields!caps_drawdate.Value) = 11 Or month(Fields!caps_drawdate.Value) = 12, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1354,7 +1354,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 10 Or month(Fields!caps_drawdate.Value) = 11 Or month(Fields!caps_drawdate.Value) = 12, cdbl(Fields!caps_amount.Value), 0))</Value>
+                                  <Value>=Sum(iif(month(Fields!caps_drawdate.Value) = 1 Or month(Fields!caps_drawdate.Value) = 2 Or month(Fields!caps_drawdate.Value) = 3, cdbl(Fields!caps_amount.Value), 0))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1382,6 +1382,7 @@
                             <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
