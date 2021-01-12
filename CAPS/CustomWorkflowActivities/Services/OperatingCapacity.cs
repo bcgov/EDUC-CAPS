@@ -1,5 +1,6 @@
 ﻿using CAPS.DataContext;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,6 @@ namespace CustomWorkflowActivities.Services
 {
     internal class CapacityFactors
     {
-        internal CapacityFactors() { }
-        internal CapacityFactors(decimal design_k, decimal design_e, decimal design_s, decimal operating_k, decimal operating_low_e, decimal operating_high_e, decimal operating_s)
-        {
-            DesignKindergarten = design_k;
-            DesignElementary = design_e;
-            DesignSecondary = design_s;
-        }
         internal decimal DesignKindergarten { get; set; }
         internal decimal DesignElementary { get; set; }
         internal decimal DesignSecondary { get; set; }
@@ -24,11 +18,52 @@ namespace CustomWorkflowActivities.Services
         internal decimal OperatingLowElementary { get; set; }
         internal decimal OperatingHighElementary { get; set; }
         internal decimal OperatingSecondary { get; set; }
+
+        internal CapacityFactors(IOrganizationService service) {
+            DesignKindergarten = GetBudgetCalculationValue(service, "Design Capacity Kindergarten");
+            DesignElementary = GetBudgetCalculationValue(service, "Design Capacity Elementary");
+            DesignSecondary = GetBudgetCalculationValue(service, "Design Capacity Secondary");
+
+            OperatingKindergarten = GetBudgetCalculationValue(service, "Kindergarten Operating Capacity");
+            OperatingLowElementary = GetBudgetCalculationValue(service, "Elementary Lower Operating Capacity");
+            OperatingHighElementary = GetBudgetCalculationValue(service, "Elementary Upper Operating Capacity");
+            OperatingSecondary = GetBudgetCalculationValue(service, "Secondary Operating Capacity");
+        }
+
+        internal CapacityFactors(decimal design_k, decimal design_e, decimal design_s, decimal operating_k, decimal operating_low_e, decimal operating_high_e, decimal operating_s)
+        {
+            DesignKindergarten = design_k;
+            DesignElementary = design_e;
+            DesignSecondary = design_s;
+
+            OperatingKindergarten = operating_k;
+            OperatingLowElementary = operating_low_e;
+            OperatingHighElementary = operating_high_e;
+            OperatingSecondary = operating_s;
+        }
+
+        private decimal GetBudgetCalculationValue(IOrganizationService service, string name)
+        {
+
+            FilterExpression filterName = new FilterExpression();
+            filterName.Conditions.Add(new ConditionExpression("caps_name", ConditionOperator.Equal, name));
+
+            QueryExpression query = new QueryExpression("caps_budgetcalc_value");
+            query.ColumnSet.AddColumns("caps_value");
+            query.Criteria.AddFilter(filterName);
+
+            EntityCollection results = service.RetrieveMultiple(query);
+
+            if (results.Entities.Count != 1) throw new Exception("Missing Budget Calculation Value: " + name);
+
+            return results.Entities[0].GetAttributeValue<decimal>("caps_value");
+        }
     }
 
     internal class OperatingCapacity
     {
         CapacityFactors Capacity { get; set; }
+
         IOrganizationService service { get; set; }
         ITracingService tracingService { get; set; }
 
@@ -38,8 +73,6 @@ namespace CustomWorkflowActivities.Services
             internal decimal ElementaryCapacity { get; set; }
             internal decimal SecondaryCapacity { get; set; }
         }
-
-
 
 
         /// <summary>
@@ -119,6 +152,8 @@ namespace CustomWorkflowActivities.Services
         }
 
     }
+
+
 
 
 }

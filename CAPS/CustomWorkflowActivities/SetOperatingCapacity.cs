@@ -37,15 +37,7 @@ namespace CustomWorkflowActivities
             try
             {
                 //Get Global Capacity values
-                var capacity = new Services.CapacityFactors();
-                capacity.DesignKindergarten = GetBudgetCalculationValue(service, "Design Capacity Kindergarten");
-                capacity.DesignElementary = GetBudgetCalculationValue(service, "Design Capacity Elementary");
-                capacity.DesignSecondary = GetBudgetCalculationValue(service, "Design Capacity Secondary");
-
-                capacity.OperatingKindergarten = GetBudgetCalculationValue(service, "Kindergarten Operating Capacity");
-                capacity.OperatingLowElementary = GetBudgetCalculationValue(service, "Elementary Lower Operating Capacity");
-                capacity.OperatingHighElementary = GetBudgetCalculationValue(service, "Elementary Upper Operating Capacity");
-                capacity.OperatingSecondary = GetBudgetCalculationValue(service, "Secondary Operating Capacity");
+                var capacity = new Services.CapacityFactors(service);
 
                 Services.OperatingCapacity capacityService = new Services.OperatingCapacity(service, tracingService, capacity);
 
@@ -63,7 +55,9 @@ namespace CustomWorkflowActivities
                                 "<order attribute=\"caps_name\" descending=\"false\" /> " +
                                     "<filter type=\"and\" > " +
                                            "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" /> " +
-                                    "</filter> " +
+                                           "<condition attribute=\"caps_lowestgrade\" operator=\"not-null\" />"+
+                                           "<condition attribute=\"caps_highestgrade\" operator=\"not-null\" />" +
+                                       "</filter> " +
                                 "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ac\" > " +
                                         "<filter type=\"and\" > " +
                                             "<condition attribute=\"caps_schooltype\" operator=\"not-null\" /> " +
@@ -94,29 +88,30 @@ namespace CustomWorkflowActivities
                     recordToUpdate.caps_OperatingCapacityElementary = result.ElementaryCapacity;
                     recordToUpdate.caps_OperatingCapacitySecondary = result.SecondaryCapacity;
                     service.Update(recordToUpdate);
-                } 
+                }
                 #endregion
 
+                #region Update Capacity Reporting
                 //Update Capacity Reporting
-                var capacityFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >"+
-                                       "<entity name=\"caps_capacityreporting\" > "+
-                                        "<attribute name=\"caps_capacityreportingid\" /> "+
-                                        "<attribute name=\"caps_secondary_designcapacity\" /> "+
-                                        "<attribute name=\"caps_kindergarten_designcapacity\" /> "+
-                                        "<attribute name=\"caps_elementary_designcapacity\" /> "+
-                                         "<order attribute=\"caps_secondary_designutilization\" descending=\"false\" /> "+
-                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"outer\" alias=\"facility\" > "+
-                                                "<attribute name=\"caps_lowestgrade\" /> "+
-                                                "<attribute name=\"caps_highestgrade\" /> "+
-                                            "</link-entity> "+
-                                                "<link-entity name=\"edu_year\" from=\"edu_yearid\" to=\"caps_schoolyear\" link-type=\"inner\" alias=\"ab\" >"+
-                                                "<filter type=\"and\"> "+
-                                                    "<condition attribute=\"statuscode\" operator=\"in\">"+
-                                                       "<value>1</value> "+
-                                                       "<value>757500000</value> "+
-                                                     "</condition>"+
-                                                   "</filter>"+
-                                                 "</link-entity>"+
+                var capacityFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >" +
+                                       "<entity name=\"caps_capacityreporting\" > " +
+                                        "<attribute name=\"caps_capacityreportingid\" /> " +
+                                        "<attribute name=\"caps_secondary_designcapacity\" /> " +
+                                        "<attribute name=\"caps_kindergarten_designcapacity\" /> " +
+                                        "<attribute name=\"caps_elementary_designcapacity\" /> " +
+                                         "<order attribute=\"caps_secondary_designutilization\" descending=\"false\" /> " +
+                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"outer\" alias=\"facility\" > " +
+                                                "<attribute name=\"caps_lowestgrade\" /> " +
+                                                "<attribute name=\"caps_highestgrade\" /> " +
+                                            "</link-entity> " +
+                                                "<link-entity name=\"edu_year\" from=\"edu_yearid\" to=\"caps_schoolyear\" link-type=\"inner\" alias=\"ab\" >" +
+                                                "<filter type=\"and\"> " +
+                                                    "<condition attribute=\"statuscode\" operator=\"in\">" +
+                                                       "<value>1</value> " +
+                                                       "<value>757500000</value> " +
+                                                     "</condition>" +
+                                                   "</filter>" +
+                                                 "</link-entity>" +
                                             "</entity> " +
                                      "</fetch> ";
 
@@ -127,7 +122,7 @@ namespace CustomWorkflowActivities
                     var kDesign = capacityRecord.caps_Kindergarten_designcapacity.GetValueOrDefault(0);
                     var eDesign = capacityRecord.caps_Elementary_designcapacity.GetValueOrDefault(0);
                     var sDesign = capacityRecord.caps_Secondary_designcapacity.GetValueOrDefault(0);
-                    var lowestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_lowestgrade"]).Value).Value; 
+                    var lowestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_lowestgrade"]).Value).Value;
                     var highestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_highestgrade"]).Value).Value;
 
                     var result = capacityService.Calculate(kDesign, eDesign, sDesign, lowestGrade, highestGrade);
@@ -139,6 +134,76 @@ namespace CustomWorkflowActivities
                     recordToUpdate.caps_Elementary_operatingcapacity = result.ElementaryCapacity;
                     recordToUpdate.caps_Secondary_operatingcapacity = result.SecondaryCapacity;
                     service.Update(recordToUpdate);
+                }
+                #endregion
+
+                //Update Draft Project Requests
+                var projectRequestFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
+                                            "<entity name=\"caps_project\" > "+
+                                               "<attribute name=\"caps_facility\" /> " +
+                                                "<attribute name=\"caps_changeindesigncapacitykindergarten\" /> " +
+                                                 "<attribute name=\"caps_changeindesigncapacityelementary\" /> " +
+                                                  "<attribute name=\"caps_changeindesigncapacitysecondary\" /> " +
+                                                  "<attribute name=\"caps_futurelowestgrade\" /> " +
+                                                  "<attribute name=\"caps_futurehighestgrade\" /> " +
+                                                    "<order attribute=\"caps_projectcode\" descending=\"false\" /> " +
+                                                       "<filter type=\"and\" > "+
+                                                          "<condition attribute=\"statuscode\" operator=\"eq\" value=\"1\" /> "+
+                                                              "<filter type=\"or\" > "+
+                                                                 "<condition attribute=\"caps_changeinoperatingcapacitykindergarten\" operator=\"not-null\" /> "+
+                                                                    "<condition attribute=\"caps_changeinoperatingcapacityelementary\" operator=\"not-null\" /> "+
+                                                                       "<condition attribute=\"caps_changeinoperatingcapacitysecondary\" operator=\"not-null\" /> "+
+                                                                        "</filter> " +
+                                                                      "</filter> " +
+                                                                    "</entity> " +
+                                                                  "</fetch> ";
+
+                EntityCollection projectResults = service.RetrieveMultiple(new FetchExpression(projectRequestFetchXML));
+
+                foreach (caps_Project projectRecord in projectResults.Entities)
+                {
+                    if (projectRecord.caps_FutureLowestGrade != null && projectRecord.caps_FutureHighestGrade != null)
+                    {
+                        var startingDesign_K = 0;
+                        var startingDesign_E = 0;
+                        var startingDesign_S = 0;
+
+                        //if facility exists, then retrieve it
+                        if (projectRecord.caps_Facility != null && projectRecord.caps_Facility.Id != Guid.Empty)
+                        {
+                            var facility = service.Retrieve(caps_Facility.EntityLogicalName, projectRecord.caps_Facility.Id, new ColumnSet("caps_adjusteddesigncapacitykindergarten", "caps_adjusteddesigncapacityelementary", "caps_adjusteddesigncapacitysecondary")) as caps_Facility;
+
+                            if (facility != null)
+                            {
+                                startingDesign_K = facility.caps_AdjustedDesignCapacityKindergarten.GetValueOrDefault(0);
+                                startingDesign_E = facility.caps_AdjustedDesignCapacityElementary.GetValueOrDefault(0);
+                                startingDesign_S = facility.caps_AdjustedDesignCapacitySecondary.GetValueOrDefault(0);
+                            }
+                        }
+
+                        var changeInDesign_K = startingDesign_K + projectRecord.caps_ChangeinDesignCapacityKindergarten.GetValueOrDefault(0);
+                        var changeInDesign_E = startingDesign_E + projectRecord.caps_ChangeinDesignCapacityElementary.GetValueOrDefault(0);
+                        var changeInDesign_S = startingDesign_S + projectRecord.caps_ChangeinDesignCapacitySecondary.GetValueOrDefault(0);
+
+                        var result = capacityService.Calculate(changeInDesign_K, changeInDesign_E, changeInDesign_S, projectRecord.caps_FutureLowestGrade.Value, projectRecord.caps_FutureHighestGrade.Value);
+
+                        var recordToUpdate = new caps_Project();
+                        recordToUpdate.Id = recordId;
+                        recordToUpdate.caps_ChangeinOperatingCapacityKindergarten = Convert.ToInt32(result.KindergartenCapacity);
+                        recordToUpdate.caps_ChangeinOperatingCapacityElementary = Convert.ToInt32(result.ElementaryCapacity);
+                        recordToUpdate.caps_ChangeinOperatingCapacitySecondary = Convert.ToInt32(result.SecondaryCapacity);
+                        service.Update(recordToUpdate);
+                    }
+                    else
+                    {
+                        //blank out operating capacity
+                        var recordToUpdate = new caps_Project();
+                        recordToUpdate.Id = recordId;
+                        recordToUpdate.caps_ChangeinOperatingCapacityKindergarten = null;
+                        recordToUpdate.caps_ChangeinOperatingCapacityElementary = null;
+                        recordToUpdate.caps_ChangeinOperatingCapacitySecondary = null;
+                        service.Update(recordToUpdate);
+                    }
                 }
 
                 this.error.Set(executionContext, false);

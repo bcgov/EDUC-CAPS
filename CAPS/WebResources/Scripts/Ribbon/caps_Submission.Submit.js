@@ -3,6 +3,9 @@
 var CAPS = CAPS || {};
 CAPS.Submission = CAPS.Submission || {};
 
+/***
+Function to determine when the Complete button should be shown.
+*/
 CAPS.Submission.ShowComplete = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
@@ -25,7 +28,7 @@ CAPS.Submission.ShowComplete = function (primaryControl) {
     return showValidation;
 };
 
-/*  For AFG Only.
+/*  For AFG Only.  This function validates the submission and completes it if it's valid.
 */
 CAPS.Submission.Complete = async function (primaryControl) {
     var formContext = primaryControl;
@@ -38,7 +41,6 @@ CAPS.Submission.Complete = async function (primaryControl) {
     var resultsMessage = "Validation Errors\r\n";
 
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
-
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
 
     resultsArray.push(checkProjectRequestResults);
@@ -73,7 +75,7 @@ CAPS.Submission.Complete = async function (primaryControl) {
     formContext.getControl("sgd_AFGProjects").refresh();
 
     if (allValidationPassed) {
-        let confirmStrings = { text: "This submission is valid and ready for completion.  Click OK to Complete or Cancel to exit.", title: "Submission Confirmation" };
+        let confirmStrings = { text: "This is your year end expenditure plan. By completing your expenditure plan, you are reporting your AFG actual spending for the year. Press OK to proceed with completing your expenditure plan or Cancel to exit.", title: "Submission Confirmation" };
         let confirmOptions = { height: 200, width: 450 };
         Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
             function (success) {
@@ -138,17 +140,16 @@ CAPS.Submission.Validate = async function (primaryControl) {
     var resultsMessage = "Validation Errors\r\n";
 
     let checkEnrolmentResult = await CAPS.Submission.CheckEnrolmentProjections(formContext);
-
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
-
     let checkProjectCountResults = await CAPS.Submission.CheckNothingToSubmit(formContext);
-
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
+    let checkAFGPreviousSubmission = await CAPS.Submission.CheckAFGProjects(formContext);
 
     resultsArray.push(checkEnrolmentResult);
     resultsArray.push(checkProjectRequestResults);
     resultsArray.push(checkAFGVariance);
     resultsArray.push(checkProjectCountResults);
+    resultsArray.push(checkAFGPreviousSubmission);
 
     var allValidationPassed = true;
     //loop through results
@@ -249,7 +250,7 @@ CAPS.Submission.CheckEnrolmentProjections = function (formContext) {
     //Get the School District
     var schoolDistrict = formContext.getAttribute("caps_schooldistrict").getValue();
     var schoolDistrictId = schoolDistrict[0].id;
-
+    /*
     var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">"+
          "<entity name=\"caps_enrolmentprojections_sd\" >" +
             "<attribute name=\"caps_enrolmentprojections_sdid\" />" +
@@ -266,10 +267,29 @@ CAPS.Submission.CheckEnrolmentProjections = function (formContext) {
                 "</filter>"+
             "</link-entity>" +
   "</entity>"+
-        "</fetch>";
+        "</fetch>";*/
+
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
+                  "<entity name=\"caps_facility\">"+
+                    "<attribute name=\"caps_facilityid\" />"+
+                    "<attribute name=\"caps_name\" />"+
+                    "<attribute name=\"createdon\" />"+
+                    "<order attribute=\"caps_name\" descending=\"false\" />"+
+                    "<filter type=\"and\">"+
+                      "<condition attribute=\"caps_outstandingenrolmentprojection\" operator=\"ne\" value=\"1\" />"+
+                      "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />"+
+                      "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" /> " +
+                    "</filter>"+
+                        "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ab\">" +
+                          "<filter type=\"and\">" +
+                            "<condition attribute=\"caps_schooltype\" operator=\"not-null\" />" +
+                          "</filter>" +
+                        "</link-entity>" +
+                  "</entity>"+
+                "</fetch>";
 
     //Get all Facilities on the school district
-    return Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?fetchXml=" + fetchXML).then(
+    return Xrm.WebApi.retrieveMultipleRecords("caps_facility", "?fetchXml=" + fetchXML).then(
         function success(result) {
             if (result.entities.length > 0) {
                 //Some enrolment projections aren't finished
@@ -354,7 +374,7 @@ CAPS.Submission.CheckBUSProjects = function (formContext) {
 
         "<link-entity name=\"caps_bus\" from=\"caps_busid\" to=\"caps_bus\" link-type=\"inner\" alias=\"ab\">" +
         "<filter type=\"and\">" +
-        "<condition attribute=\"caps_nonreplaceable\" operator=\"eq\" value=\"1\" />" +
+        "<condition attribute=\"caps_nonreplaceable\" operator=\"eq\" value=\"0\" />" +
         "</filter>" +
         "</link-entity>" +
 
@@ -469,7 +489,10 @@ CAPS.Submission.CheckAFGTotal = function (formContext) {
     }
 }
 
-
+/***
+Called from CAPS.Submission.Validate, this function checks that Nothing to Submit is selected if there are no related project requests
+and not selected if there are.
+*/
 CAPS.Submission.CheckNothingToSubmit = function (formContext) {
     debugger;
     //Get flag to identify if enrolment validation is required
@@ -501,6 +524,49 @@ CAPS.Submission.CheckNothingToSubmit = function (formContext) {
                 return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are no project requests on this capital plan.  Please set Nothing to Submit to Yes or add a project request.");
             }
             return new CAPS.Submission.ValidationResult(true, "Project Count Validation: Success");
+        },
+        function (error) {
+            alert(error.message);
+        }
+    );
+}
+
+CAPS.Submission.CheckAFGProjects = function (formContext) {
+    //Get record ID
+    var submissionId = formContext.data.entity.getId();
+
+    //Get Submission type
+    var submissionType = formContext.getAttribute("caps_submissiontype").getValue();
+
+    //get School District
+    var schoolDistrict = formContext.getAttribute("caps_schooldistrict").getValue();
+    var schoolDistrictId = schoolDistrict[0].id;
+
+    if (submissionType !== 200870001) return;
+
+    //Check if any projects are BEP Projects, if they are check that their facility is tagged as BEP Eligible
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
+        "<entity name = \"caps_submission\" >" +
+        "<attribute name=\"caps_submissionid\" />" +
+        "<attribute name=\"caps_name\" />" +
+        "<order attribute=\"caps_name\" descending=\"false\" />" +
+        "<filter type=\"and\">"+
+          "<condition attribute=\"caps_submissiontype\" operator=\"eq\" value=\"200870001\" />"+
+          "<condition attribute=\"statuscode\" operator=\"eq\" value=\"200870001\" />"+
+          "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" />"+
+        "</filter>"+
+        "</entity>" +
+        "</fetch >";
+
+    //Get all BEP Projects who's facilities aren't eligible
+    return Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
+        function success(result) {
+
+            if (result.entities.length > 0) {
+                //Some bad projects
+                return new CAPS.Submission.ValidationResult(false, "AFG Validation: You must complete your previous AFG expenditure plan before submitting a new one.");
+            }
+            return new CAPS.Submission.ValidationResult(true, "AFG Validation: Success");
         },
         function (error) {
             alert(error.message);

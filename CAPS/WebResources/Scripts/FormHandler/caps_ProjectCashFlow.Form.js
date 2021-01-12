@@ -16,7 +16,6 @@ CAPS.ProjectCashFlow.onLoad = function(executionContext) {
     if (fiscalYear === null || fiscalYear[0] === null) return;
 
     var currentYear = null;
-    var currentYearPlus1 = null;
 
     Xrm.WebApi.retrieveMultipleRecords("edu_year", "?$select=edu_yearid,edu_startyear,statuscode&$filter=statecode eq 0 and edu_type eq 757500000&$orderby=edu_startyear").then(
         function success(result) {
@@ -26,15 +25,11 @@ CAPS.ProjectCashFlow.onLoad = function(executionContext) {
                 if (result.entities[x].statuscode === 1) {
                     //this is the current year
                     currentYear = result.entities[x].edu_yearid;
-
-                    if (result.entities.length > x + 1) {
-                        currentYearPlus1 = result.entities[x + 1].edu_yearid;
-                    }
                     break;
                 }
             }
 
-            CAPS.ProjectCashFlow.showHideValuesBasedOnYear(formContext, currentYear, currentYearPlus1);
+            CAPS.ProjectCashFlow.showHideValuesBasedOnYear(formContext, currentYear);
 
         },
         function (error) {
@@ -45,13 +40,12 @@ CAPS.ProjectCashFlow.onLoad = function(executionContext) {
 }
 
 /**
- * Display function for project cash flow, this method shows Quarterly fields for provincial (forecast) for current year and current year + 1.  Shows actual draws by quarter and remaining draws for current year only.
+ * Display function for project cash flow, this method shows Quarterly fields for provincial (forecast) for current year.  Shows actual draws by quarter and remaining draws for current year only.
  * Shows agency by quarter for current year only, otherwise shows only total.
  * @param {any} formContext the form's context
  * @param {any} currentYear the current fiscal year
- * @param {any} currentYearPlus1 the current fiscal year + 1
  */
-CAPS.ProjectCashFlow.showHideValuesBasedOnYear = function(formContext, currentYear, currentYearPlus1) {
+CAPS.ProjectCashFlow.showHideValuesBasedOnYear = function(formContext, currentYear) {
     debugger;
     //Check if fiscal Year is set, if so check if it's the current year or current year plus 1
     var fiscalYear = formContext.getAttribute("caps_fiscalyear").getValue();
@@ -60,85 +54,22 @@ CAPS.ProjectCashFlow.showHideValuesBasedOnYear = function(formContext, currentYe
 
     var stateCode = formContext.getAttribute("statecode").getValue();
     
-    if (fiscalYearValue === currentYear || fiscalYearValue === currentYearPlus1) {
-        if (fiscalYearValue === currentYear) {
-            formContext.getControl("caps_q1actualdraws").setVisible(true);
-            formContext.getControl("caps_q2actualdraws").setVisible(true);
-            formContext.getControl("caps_q3actualdraws").setVisible(true);
-            formContext.getControl("caps_q4actualdraws").setVisible(true);
+    if (fiscalYearValue === currentYear) {
+
             formContext.getControl("caps_totalactualdraws").setVisible(true);
 
             formContext.getControl("caps_remainingdraws").setVisible(true);
-
-            formContext.getControl("caps_q1agency").setVisible(true);
-            formContext.getControl("caps_q2agency").setVisible(true);
-            formContext.getControl("caps_q3agency").setVisible(true);
-            formContext.getControl("caps_q4agency").setVisible(true);
-
-            formContext.getControl("caps_totalagency").setDisabled(true);
-
-            formContext.getAttribute("caps_q1agency").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-            formContext.getAttribute("caps_q2agency").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-            formContext.getAttribute("caps_q3agency").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-            formContext.getAttribute("caps_q4agency").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-
             //Show Actual Draws Chart
             formContext.ui.tabs.get("tab_general").sections.get("sec_actual_draws").setVisible(true);
-        }
-
-        formContext.getControl("caps_q1provincial").setVisible(true);
-        formContext.getControl("caps_q2provincial").setVisible(true);
-        formContext.getControl("caps_q3provincial").setVisible(true);
-        formContext.getControl("caps_q4provincial").setVisible(true);
-
-
-
-        formContext.getControl("caps_totalactualdraws").setDisabled(true);
-        formContext.getControl("caps_totalprovincial").setDisabled(true);
-
-
-        formContext.getAttribute("caps_q1provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-        formContext.getAttribute("caps_q2provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-        formContext.getAttribute("caps_q3provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-        formContext.getAttribute("caps_q4provincial").addOnChange(CAPS.ProjectCashFlow.calculateYearly);
-
-
     }
     else if (stateCode === 1) {
-        formContext.getControl("caps_q1actualdraws").setVisible(true);
-        formContext.getControl("caps_q2actualdraws").setVisible(true);
-        formContext.getControl("caps_q3actualdraws").setVisible(true);
-        formContext.getControl("caps_q4actualdraws").setVisible(true);
+
         formContext.getControl("caps_totalactualdraws").setVisible(true);
 
         formContext.getControl("caps_remainingdraws").setVisible(true);
 
-        formContext.getControl("caps_q1agency").setVisible(true);
-        formContext.getControl("caps_q2agency").setVisible(true);
-        formContext.getControl("caps_q3agency").setVisible(true);
-        formContext.getControl("caps_q4agency").setVisible(true);
-
-        formContext.getControl("caps_q1provincial").setVisible(true);
-        formContext.getControl("caps_q2provincial").setVisible(true);
-        formContext.getControl("caps_q3provincial").setVisible(true);
-        formContext.getControl("caps_q4provincial").setVisible(true);
-
     }
     else {
-        formContext.getControl("caps_q1actualdraws").setVisible(false);
-        formContext.getControl("caps_q2actualdraws").setVisible(false);
-        formContext.getControl("caps_q3actualdraws").setVisible(false);
-        formContext.getControl("caps_q4actualdraws").setVisible(false);
-
-        formContext.getControl("caps_q1provincial").setVisible(false);
-        formContext.getControl("caps_q2provincial").setVisible(false);
-        formContext.getControl("caps_q3provincial").setVisible(false);
-        formContext.getControl("caps_q4provincial").setVisible(false);
-
-        formContext.getControl("caps_q1agency").setVisible(false);
-        formContext.getControl("caps_q2agency").setVisible(false);
-        formContext.getControl("caps_q3agency").setVisible(false);
-        formContext.getControl("caps_q4agency").setVisible(false);
 
         formContext.getControl("caps_totalactualdraws").setDisabled(false);
         formContext.getControl("caps_totalprovincial").setDisabled(false);

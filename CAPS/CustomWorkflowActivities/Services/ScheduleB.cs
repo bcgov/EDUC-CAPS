@@ -60,6 +60,7 @@ namespace CustomWorkflowActivities.Services
         internal int BudgetCalculationType { get; set; }
         internal DesignCapacity ExistingAndDecreaseDesignCapacity { get; set; }
         internal DesignCapacity ApprovedDesignCapacity { get; set; }
+        internal decimal? ExtraSpaceAllocation { get; set; }
         internal decimal ProjectLocationFactor { get; set; }
         //internal decimal? NLC { get; set; }
         internal bool IncludeNLC { get; set; }
@@ -147,11 +148,14 @@ namespace CustomWorkflowActivities.Services
             }
 
             tracingService.Trace("Space Allocation - New/Replacement: {0}", spaceAllocationNewReplacement);
-            //Get total square meterage
-            decimal spaceAllocationTotalNewReplacement = spaceAllocationNewReplacement;
+
 
             result.SpaceAllocationNewReplacement = spaceAllocationNewReplacement;
-            //result.SpaceAllocationNLC = (NLC.GetValueOrDefault(0) * spaceAllocationNewReplacement);
+
+            //add extra space allocation
+            spaceAllocationNewReplacement += ExtraSpaceAllocation.GetValueOrDefault(0);
+            //Get total square meterage
+            decimal spaceAllocationTotalNewReplacement = spaceAllocationNewReplacement;
 
             tracingService.Trace("Space Allocation - Total New/Replacement: {0}", spaceAllocationTotalNewReplacement);
             //DB: Total space allocation doesn't seem to be needed

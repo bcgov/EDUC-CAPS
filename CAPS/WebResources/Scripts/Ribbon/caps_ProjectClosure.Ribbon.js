@@ -56,7 +56,7 @@ CAPS.ProjectClosure.ShowSubmit = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS School District User") {
+        if (item.name === "CAPS School District Approver - Add On") {
             showButton = true;
         }
     });

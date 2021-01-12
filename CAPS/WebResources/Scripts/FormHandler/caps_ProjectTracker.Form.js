@@ -1,9 +1,11 @@
 ﻿"use strict";
 
-/* INCLUDE CAPS.Common.js */
-
 var CAPS = CAPS || {};
 CAPS.ProjectTracker = CAPS.ProjectTracker || {};
+
+const MAX_BUDGET_NOTIFICATION = "Max_Budget_Notification";
+const PROVINCIAL_BUDGET_NOTIFICATION = "Provincial_Budget_Notification";
+const STALE_DATES_NOTIFICATION = "Stale_Dates_Notification";
 
 /**
  * Main function for Project Tracker.  This function calls all other form functions.
@@ -19,6 +21,15 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
     CAPS.ProjectTracker.showHideCategoryRelevantSections(formContext);
 
     CAPS.ProjectTracker.ShowHideProgressReport(executionContext);
+
+    CAPS.ProjectTracker.ShowBudgetMissmatch(executionContext);
+
+    CAPS.ProjectTracker.ShowStaleDates(executionContext);
+
+    formContext.getAttribute("caps_maxpotential_fundingsource").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
+    formContext.getAttribute("caps_maxpotentialprojectbudget").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
+    formContext.getAttribute("caps_provincial").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
+    formContext.getAttribute("caps_totalprovincialbudget").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
 }
 
 /**
@@ -102,6 +113,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         }
 
         formContext.ui.tabs.get("tab_general").sections.get("sec_afg_budget").setVisible(true);
+        formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
 
     }
     else if (submissionCategoryCode === 'BUS' || submissionCategoryCode === 'SEP' || submissionCategoryCode === 'PEP' || submissionCategoryCode === 'CNCP') {
@@ -122,6 +134,8 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
             formContext.getControl("caps_variancefromagencybudgeted").setVisible(false);
         }
 
+        formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
+
     }
 
 }
@@ -138,5 +152,66 @@ CAPS.ProjectTracker.ShowHideProgressReport = function (executionContext) {
     else {
         formContext.ui.tabs.get("tab_progressreports").setVisible(false);
     }
+};
+
+/**
+Shows a warning if the Max Potential Budget and Max Potential don't match or if the Provincial Funding Source or Total Provincial Budget don't match.
+*/
+CAPS.ProjectTracker.ShowBudgetMissmatch = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
+        formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'WARNING', MAX_BUDGET_NOTIFICATION);
+    }
+    else {
+        formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
+    }
+
+    if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
+        formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'WARNING', PROVINCIAL_BUDGET_NOTIFICATION);
+    }
+    else {
+        formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
+    }
+};
+
+/**
+Shows a warning if any Milestones dates are in the past but are not flagged as complete.
+**/
+CAPS.ProjectTracker.ShowStaleDates = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var recordId = formContext.data.entity.getId();
+
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
+              "<entity name=\"caps_projectmilestone\">"+
+                "<attribute name=\"caps_projectmilestoneid\" />"+
+                "<attribute name=\"caps_name\" />"+
+                "<attribute name=\"createdon\" />"+
+                "<order attribute=\"caps_name\" descending=\"false\" />"+
+                "<filter type=\"and\">"+
+                  "<condition attribute=\"caps_complete\" operator=\"eq\" value=\"0\" />"+
+                  "<condition attribute=\"caps_expectedactualdate\" operator=\"olderthan-x-days\" value=\"1\" />" +
+                  "<condition attribute=\"caps_projecttracker\" operator=\"eq\"  value=\""+recordId+"\" />"+
+                "</filter>"+
+              "</entity>"+
+            "</fetch>";
+
+
+    Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", "?fetchXml=" + fetchXML).then(
+                  function success(result) {
+                      if (result.entities.length > 0) {
+                          formContext.ui.setFormNotification('One or more project milestone dates requires updating.', 'WARNING', STALE_DATES_NOTIFICATION);
+                    
+                      }
+                      else {
+                          formContext.ui.clearFormNotification(STALE_DATES_NOTIFICATION);
+                      }
+                  },
+                  function (error) {
+                      Xrm.Navigation.openErrorDialog({ message: error.message });
+                  }
+                  );
+
 };
 

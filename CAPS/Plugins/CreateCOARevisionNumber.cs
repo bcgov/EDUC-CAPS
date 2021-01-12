@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Plugins
 {
     /// <summary>
-    /// This plugin runs on pre-create of COA.
+    /// This plugin runs on pre-create sync of COA.
     /// </summary>
     public class CreateCOARevisionNumber : IPlugin
     {
@@ -40,16 +40,22 @@ namespace Plugins
                     //Check if there are any other COAs for this project in a Draft  or Submitted State
                     var records = crmContext.caps_CertificateofApprovalSet.Where(r => r.caps_PTR.Id == projectTracker.Id
                                 && r.caps_CertificateofApprovalId != context.PrimaryEntityId
-                                && r.StatusCode.Value != (int)caps_CertificateofApproval_StatusCode.Cancelled
-                                && r.StatusCode.Value !=(int)caps_CertificateofApproval_StatusCode.Rejected).ToList();
+                                && r.StatusCode.Value == (int)caps_CertificateofApproval_StatusCode.Approved).ToList();
 
                     var revisionNumber = 1;
+                    string coaNumber = "";
                     if (records.Count() > 0)
                     {
                         //Get top value
                         var topRecord = records.OrderByDescending(r => r.caps_RevisionNumber).Take(1).ToList();
                         revisionNumber = topRecord[0].caps_RevisionNumber.Value + 1;
+                        coaNumber = topRecord[0].caps_Name;
                     }
+                    else
+                    {
+                        coaNumber = "062-"+entity.GetAttributeValue<string>("caps_autonumber");
+                    }
+                    entity["caps_name"] = coaNumber;
                     entity["caps_revisionnumber"] = revisionNumber;
 
                 }

@@ -18,7 +18,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?$select=caps_submissionid,caps_name&$filter=statuscode eq 1").then(
+            Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?$select=caps_submissionid,caps_name&$filter=statuscode eq 1 or statuscode eq 200870001").then(
                 function success(result) {
                     var options = $("#submissionCategory");
 

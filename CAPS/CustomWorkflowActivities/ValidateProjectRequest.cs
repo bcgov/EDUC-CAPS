@@ -140,8 +140,8 @@ namespace CustomWorkflowActivities
             {
                 //get related bus record
                 var bus = service.Retrieve(projectRequest.caps_bus.LogicalName, projectRequest.caps_bus.Id, new ColumnSet("caps_nonreplaceable")) as caps_Bus;
-
-                if (bus.caps_NonReplaceable.GetValueOrDefault(false))
+                tracingService.Trace("{0}:{1}", "Check if Bus is replaceable", bus.caps_NonReplaceable);
+                if (!bus.caps_NonReplaceable.GetValueOrDefault(true))
                 {
                     isValid = false;
                     validationMessage.AppendLine("This Bus project request is for a bus that is not eligible for replacement.");

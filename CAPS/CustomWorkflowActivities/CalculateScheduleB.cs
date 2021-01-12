@@ -80,7 +80,8 @@ namespace CustomWorkflowActivities
                                         , "caps_demolitioncost"
                                         , "caps_abnormaltopographycost"
                                         , "caps_temporaryaccommodationcost"
-                                        , "caps_othercost");
+                                        , "caps_othercost"
+                                        , "caps_schbadditionalspaceallocation");
 
 
 
@@ -138,6 +139,7 @@ namespace CustomWorkflowActivities
             tracingService.Trace("Approved - K:{0} E:{1} S:{2}", subtotalDesignK + increaseDesignK, subtotalDesignE + increaseDesignE, subtotalDesignS + increaseDesignS);
 
             scheduleB.ExistingAndDecreaseDesignCapacity = new Services.DesignCapacity(subtotalDesignK, subtotalDesignE, subtotalDesignS);
+            scheduleB.ExtraSpaceAllocation = projectRequestRecord.caps_SchBAdditionalSpaceAllocation;
             scheduleB.ApprovedDesignCapacity = new Services.DesignCapacity(subtotalDesignK + increaseDesignK, subtotalDesignE + increaseDesignE, subtotalDesignS + increaseDesignS);
 
             scheduleB.MunicipalFees = projectRequestRecord.caps_MunicipalFees.GetValueOrDefault(0);

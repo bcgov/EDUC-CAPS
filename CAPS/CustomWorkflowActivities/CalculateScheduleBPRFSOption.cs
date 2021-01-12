@@ -62,7 +62,8 @@ namespace CustomWorkflowActivities
                                             , "caps_demolitioncost"
                                             , "caps_abnormaltopographycost"
                                             , "caps_temporaryaccommodationcost"
-                                            , "caps_othercost");
+                                            , "caps_othercost"
+                                            , "caps_schbadditionalspaceallocation");
 
                 var prfsOptionRecord = service.Retrieve(context.PrimaryEntityName, context.PrimaryEntityId, columns) as caps_PRFSAlternativeOption;
 
@@ -120,6 +121,7 @@ namespace CustomWorkflowActivities
 
                 scheduleB.ExistingAndDecreaseDesignCapacity = new Services.DesignCapacity(subtotalDesignK, subtotalDesignE, subtotalDesignS);
                 scheduleB.ApprovedDesignCapacity = new Services.DesignCapacity(subtotalDesignK + increaseDesignK, subtotalDesignE + increaseDesignE, subtotalDesignS + increaseDesignS);
+                scheduleB.ExtraSpaceAllocation = prfsOptionRecord.caps_SchBAdditionalSpaceAllocation;
 
                 scheduleB.MunicipalFees = prfsOptionRecord.caps_MunicipalFees.GetValueOrDefault(0);
                 scheduleB.ConstructionNonStructuralSeismicUpgrade = prfsOptionRecord.caps_ConstructionCostsNonStructuralSeismicUp;

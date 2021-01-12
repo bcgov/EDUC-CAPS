@@ -45,15 +45,7 @@ namespace CustomWorkflowActivities
 
                 var facilityRecord = service.Retrieve(context.PrimaryEntityName, context.PrimaryEntityId, columns) as caps_Facility;
 
-                var capacity = new Services.CapacityFactors();
-                capacity.DesignKindergarten = GetBudgetCalculationValue(service, "Design Capacity Kindergarten");
-                capacity.DesignElementary = GetBudgetCalculationValue(service, "Design Capacity Elementary");
-                capacity.DesignSecondary = GetBudgetCalculationValue(service, "Design Capacity Secondary");
-
-                capacity.OperatingKindergarten = GetBudgetCalculationValue(service, "Kindergarten Operating Capacity");
-                capacity.OperatingLowElementary = GetBudgetCalculationValue(service, "Elementary Lower Operating Capacity");
-                capacity.OperatingHighElementary = GetBudgetCalculationValue(service, "Elementary Upper Operating Capacity");
-                capacity.OperatingSecondary = GetBudgetCalculationValue(service, "Secondary Operating Capacity");
+                var capacity = new Services.CapacityFactors(service);
 
                 Services.OperatingCapacity capacityService = new Services.OperatingCapacity(service, tracingService, capacity);
 

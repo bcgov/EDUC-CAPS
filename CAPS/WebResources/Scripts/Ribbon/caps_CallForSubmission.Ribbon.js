@@ -20,37 +20,43 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
     var formContext = primaryControl;
     var submissionId = formContext.data.entity.getId();
 
-    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
-                  "<entity name=\"caps_submission\">"+
-                    "<attribute name=\"caps_submissionid\" />"+
-                    "<attribute name=\"caps_name\" />"+
-                    "<attribute name=\"createdon\" />"+
-                    "<order attribute=\"caps_name\" descending=\"false\" />" +
 
-                    "<filter type=\"and\">"+
-                      "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\""+submissionId+"\" />"+
-                      "<filter type=\"or\">" +
-                        "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>"+
-                        "<filter type=\"and\">"+
-                          "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">"+
-                            "<value>100000000</value>"+
-                            "<value>100000001</value>"+
-                          "</condition>" +
-                          "<condition attribute=\"caps_boardofresolutionattached\" operator=\"ne\" value=\"1\" />" +
-                        "</filter>"+
-                      "</filter>" +
+
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+                    "<entity name=\"caps_submission\">" +
+                    "<attribute name=\"caps_submissionid\" />" +
+                    "<attribute name=\"caps_name\" />" +
+                    "<attribute name=\"createdon\" />" +
+                    "<order attribute=\"caps_name\" descending=\"false\" />" +
+                    "<filter type=\"and\">" +
+                        "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                        "<filter type=\"or\">" +
+                        "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
+                        "<filter type=\"and\">" +
+                            "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
+                            "<value>100000000</value>" +
+                            "<value>100000001</value>" +
+                            "</condition>" +
+                            "<condition attribute=\"caps_boardofresolutionattached\" operator=\"ne\" value=\"1\" />" +
+                        "</filter>" +
+                        "</filter>" +
                     "</filter>" +
-                  "</entity>"+
+                    "</entity>" +
                 "</fetch>";
 
     //Get all Capital Plans without board resolutions
     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
         function success(result) {
 
+            var errorText = "Unable to release results as one or more Submission is in a draft state and/or missing a board resolution.";
+
+            if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+                errorText = "Unable to release results as one or more Submission is in a draft state and/or a project request is flagged for review.";
+            }
+
             if (result.entities.length > 0) {
                 //Some bad projects
-                //return new CAPS.Submission.ValidationResult(false, "Bus Validation: One or more BUS projects is a replacement for a bus that is not eligible for replacement.");
-                let alertStrings = { confirmButtonLabel: "OK", text: "Unable to release results as one or more Submission is in a draft state and/or missing a board resolution.", title: "Call For Submission" };
+                let alertStrings = { confirmButtonLabel: "OK", text: errorText, title: "Call For Submission" };
                 let alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                     function success(result) {
@@ -62,39 +68,93 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                 );
             }
             else {
-                var confirmStrings = { text: "Do you wish to release results? Click OK to continue.  ", title: "Confirm Releasing Results" };
-                var confirmOptions = { height: 200, width: 450 };
-                Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
-                    function (success) {
-                        if (success.confirmed) {
-                            //show cancel tab 
-                            var currentStatus = formContext.getAttribute("statuscode").getValue().toString();
+                //now if this is AFG, check if there are any projects requests that are flagged for review.
+                if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+                    var fetchXML2 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
+                                      "<entity name=\"caps_submission\">" +
+                                        "<attribute name=\"caps_submissionid\" />" +
+                                        "<attribute name=\"caps_name\" />" +
+                                        "<attribute name=\"createdon\" />" +
+                                        "<attribute name=\"caps_submissiontype\" />" +
+                                        "<order attribute=\"caps_name\" descending=\"false\" />" +
+                                        "<filter type=\"and\">" +
+                                          "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                                        "</filter>" +
+                                        "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
+                                          "<filter type=\"and\">" +
+                                            "<condition attribute=\"caps_flaggedforreview\" operator=\"eq\" value=\"1\" />" +
+                                          "</filter>" +
+                                        "</link-entity>" +
+                                      "</entity>" +
+                                    "</fetch>";
 
-                            if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.PUBLISHED) {
-
-                                formContext.getAttribute("statecode").setValue(1);
-                                if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
-                                    formContext.getAttribute("statuscode").setValue(PROJECT_STATE.ACCEPTED);
-                                }
-                                else {
-                                    formContext.getAttribute("statuscode").setValue(PROJECT_STATE.RESULTS_RELEASED);
-                                }
-                                formContext.data.entity.save();
+                    Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML2).then(
+                        function success(result) {
+                            if (result.entities.length > 0) {
+                                //Some bad projects
+                                let alertStrings = { confirmButtonLabel: "OK", text: errorText, title: "Call For Submission" };
+                                let alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
                             }
-
-                        }
-                    },
-                    function (error) {
-                        Xrm.Navigation.openErrorDialog({ message: error });
-                    }
-
-                );
+                            else {
+                                CAPS.CallForSubmission.ConfirmResultsReleased(formContext);
+                            }
+                        },
+                        function (error) {
+                            Xrm.Navigation.openErrorDialog({ message: error });
+                        });
+                }
+                else {
+                    CAPS.CallForSubmission.ConfirmResultsReleased(formContext);
+                }
             }
-            
+
         },
         function (error) {
             alert(error.message);
         }
+    );
+    
+}
+
+/**
+Function called to display the confirmation message when user clicks Release Results.
+*/
+CAPS.CallForSubmission.ConfirmResultsReleased = function (formContext) {
+
+    var confirmStrings = { text: "Do you wish to release results? Click OK to continue.  ", title: "Confirm Releasing Results" };
+    var confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                //show cancel tab 
+                var currentStatus = formContext.getAttribute("statuscode").getValue().toString();
+
+                if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.PUBLISHED) {
+
+                    formContext.getAttribute("statecode").setValue(1);
+                    if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+                        formContext.getAttribute("statuscode").setValue(PROJECT_STATE.ACCEPTED);
+                    }
+                    else {
+                        formContext.getAttribute("statuscode").setValue(PROJECT_STATE.RESULTS_RELEASED);
+                    }
+                    formContext.data.entity.save();
+                }
+
+            }
+        },
+        function (error) {
+            Xrm.Navigation.openErrorDialog({ message: error });
+        }
+
     );
 }
 

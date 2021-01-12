@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\Deanna\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /generateActions /out:"C:\Projects\CAPS\Source Code\GIT\CAPS\Master_DataContext\Actions.cs" /namespace:"CAPS.DataContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Action.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Action.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Action.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
+// Created via this command line: "C:\Users\deann\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://caps-dev.api.crm3.dynamics.com/XRMServices/2011/Organization.svc" /generateActions /out:"C:\Users\deann\Documents\GitHub\EDUC-CAPS\CAPS\Master_DataContext\Actions.cs" /namespace:"CAPS.DataContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Action.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Action.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Action.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"admin@itksb4.onmicrosoft.com" /password:"**************" 
 //------------------------------------------------------------------------------
 
 namespace CAPS.DataContext
@@ -3232,6 +3232,177 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CreateUpdateActualDraws")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CreateUpdateActualDrawsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string COA
+		{
+			get
+			{
+				if (this.Parameters.Contains("COA"))
+				{
+					return ((string)(this.Parameters["COA"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["COA"] = value;
+			}
+		}
+		
+		public string Revision
+		{
+			get
+			{
+				if (this.Parameters.Contains("Revision"))
+				{
+					return ((string)(this.Parameters["Revision"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["Revision"] = value;
+			}
+		}
+		
+		public string ProcessDate
+		{
+			get
+			{
+				if (this.Parameters.Contains("ProcessDate"))
+				{
+					return ((string)(this.Parameters["ProcessDate"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["ProcessDate"] = value;
+			}
+		}
+		
+		public string PaymentDate
+		{
+			get
+			{
+				if (this.Parameters.Contains("PaymentDate"))
+				{
+					return ((string)(this.Parameters["PaymentDate"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["PaymentDate"] = value;
+			}
+		}
+		
+		public string Amount
+		{
+			get
+			{
+				if (this.Parameters.Contains("Amount"))
+				{
+					return ((string)(this.Parameters["Amount"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["Amount"] = value;
+			}
+		}
+		
+		public string PaymentStatus
+		{
+			get
+			{
+				if (this.Parameters.Contains("PaymentStatus"))
+				{
+					return ((string)(this.Parameters["PaymentStatus"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["PaymentStatus"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CreateUpdateActualDrawsRequest()
+		{
+			this.RequestName = "caps_CreateUpdateActualDraws";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CreateUpdateActualDraws")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CreateUpdateActualDrawsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CreateUpdateActualDrawsResponse()
+		{
+		}
+		
+		public string ErrorMessage
+		{
+			get
+			{
+				if (this.Results.Contains("ErrorMessage"))
+				{
+					return ((string)(this.Results["ErrorMessage"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ProjectSubmission")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ProjectSubmissionRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -3372,6 +3543,96 @@ namespace CAPS.DataContext
 		public caps_CalculateSDAFGAmountsV2Response()
 		{
 		}
+		
+		public int CapitalPortion
+		{
+			get
+			{
+				if (this.Results.Contains("CapitalPortion"))
+				{
+					return ((int)(this.Results["CapitalPortion"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
+		
+		public int OperatingGross
+		{
+			get
+			{
+				if (this.Results.Contains("OperatingGross"))
+				{
+					return ((int)(this.Results["OperatingGross"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
+		
+		public int OperatingNet
+		{
+			get
+			{
+				if (this.Results.Contains("OperatingNet"))
+				{
+					return ((int)(this.Results["OperatingNet"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
+		
+		public int TotalAFG
+		{
+			get
+			{
+				if (this.Results.Contains("TotalAFG"))
+				{
+					return ((int)(this.Results["TotalAFG"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
+		
+		public int TotalAllocationDistricts
+		{
+			get
+			{
+				if (this.Results.Contains("TotalAllocationDistricts"))
+				{
+					return ((int)(this.Results["TotalAllocationDistricts"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
+		
+		public int WithheldCAMS
+		{
+			get
+			{
+				if (this.Results.Contains("WithheldCAMS"))
+				{
+					return ((int)(this.Results["WithheldCAMS"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+		}
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
@@ -3414,6 +3675,148 @@ namespace CAPS.DataContext
 		
 		public caps_CloseCapitalPlanResponse()
 		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_UpdateOperatingCapacityValuesSingleFacility")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesSingleFacilityRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_UpdateOperatingCapacityValuesSingleFacilityRequest()
+		{
+			this.RequestName = "caps_UpdateOperatingCapacityValuesSingleFacility";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_UpdateOperatingCapacityValuesSingleFacility")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesSingleFacilityResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_UpdateOperatingCapacityValuesSingleFacilityResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_UpdateOperatingCapacityValuesAllSchoolFacilities")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesAllSchoolFacilitiesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_UpdateOperatingCapacityValuesAllSchoolFacilitiesRequest()
+		{
+			this.RequestName = "caps_UpdateOperatingCapacityValuesAllSchoolFacilities";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_UpdateOperatingCapacityValuesAllSchoolFacilities")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesAllSchoolFacilitiesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_UpdateOperatingCapacityValuesAllSchoolFacilitiesResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_GetFinanceTeam")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_GetFinanceTeamRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_GetFinanceTeamRequest()
+		{
+			this.RequestName = "caps_GetFinanceTeam";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_GetFinanceTeam")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_GetFinanceTeamResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_GetFinanceTeamResponse()
+		{
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference FinanceTeam
+		{
+			get
+			{
+				if (this.Results.Contains("FinanceTeam"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Results["FinanceTeam"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
 		}
 	}
 	
@@ -4225,6 +4628,49 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cds_cascadeAsyncSuccessAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cds_cascadeAsyncSuccessAPIRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string cds_casadeAsyncJobName
+		{
+			get
+			{
+				if (this.Parameters.Contains("cds_casadeAsyncJobName"))
+				{
+					return ((string)(this.Parameters["cds_casadeAsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["cds_casadeAsyncJobName"] = value;
+			}
+		}
+		
+		public cds_cascadeAsyncSuccessAPIRequest()
+		{
+			this.RequestName = "cds_cascadeAsyncSuccessAPI";
+			this.cds_casadeAsyncJobName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cds_cascadeAsyncSuccessAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cds_cascadeAsyncSuccessAPIResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cds_cascadeAsyncSuccessAPIResponse()
+		{
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExtractKeyPhrases")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -4630,6 +5076,25 @@ namespace CAPS.DataContext
 	public partial class UpsertEnvironmentVariableRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
 		
+		public string DisplayName
+		{
+			get
+			{
+				if (this.Parameters.Contains("DisplayName"))
+				{
+					return ((string)(this.Parameters["DisplayName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["DisplayName"] = value;
+			}
+		}
+		
 		public string ParameterKey
 		{
 			get
@@ -4646,6 +5111,25 @@ namespace CAPS.DataContext
 			set
 			{
 				this.Parameters["ParameterKey"] = value;
+			}
+		}
+		
+		public string SolutionUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionUniqueName"))
+				{
+					return ((string)(this.Parameters["SolutionUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionUniqueName"] = value;
 			}
 		}
 		
@@ -4759,6 +5243,69 @@ namespace CAPS.DataContext
 	{
 		
 		public UpsertEnvironmentVariableResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cds_cascadeAsyncFailureAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cds_cascadeAsyncFailureAPIRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string cds_casadeAsyncJobName
+		{
+			get
+			{
+				if (this.Parameters.Contains("cds_casadeAsyncJobName"))
+				{
+					return ((string)(this.Parameters["cds_casadeAsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["cds_casadeAsyncJobName"] = value;
+			}
+		}
+		
+		public string cds_casadeAsyncExceptionDetails
+		{
+			get
+			{
+				if (this.Parameters.Contains("cds_casadeAsyncExceptionDetails"))
+				{
+					return ((string)(this.Parameters["cds_casadeAsyncExceptionDetails"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["cds_casadeAsyncExceptionDetails"] = value;
+			}
+		}
+		
+		public cds_cascadeAsyncFailureAPIRequest()
+		{
+			this.RequestName = "cds_cascadeAsyncFailureAPI";
+			this.cds_casadeAsyncJobName = default(string);
+			this.cds_casadeAsyncExceptionDetails = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cds_cascadeAsyncFailureAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cds_cascadeAsyncFailureAPIResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cds_cascadeAsyncFailureAPIResponse()
 		{
 		}
 	}
@@ -6187,6 +6734,25 @@ namespace CAPS.DataContext
 			}
 		}
 		
+		public Microsoft.Xrm.Sdk.ExportComponentsParams ExportComponentsParams
+		{
+			get
+			{
+				if (this.Parameters.Contains("ExportComponentsParams"))
+				{
+					return ((Microsoft.Xrm.Sdk.ExportComponentsParams)(this.Parameters["ExportComponentsParams"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.ExportComponentsParams);
+				}
+			}
+			set
+			{
+				this.Parameters["ExportComponentsParams"] = value;
+			}
+		}
+		
 		public ExportSolutionAsyncRequest()
 		{
 			this.RequestName = "ExportSolutionAsync";
@@ -6858,6 +7424,44 @@ namespace CAPS.DataContext
 			}
 		}
 		
+		public string SolutionUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionUniqueName"))
+				{
+					return ((string)(this.Parameters["SolutionUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionUniqueName"] = value;
+			}
+		}
+		
+		public string ChildDisplayName
+		{
+			get
+			{
+				if (this.Parameters.Contains("ChildDisplayName"))
+				{
+					return ((string)(this.Parameters["ChildDisplayName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["ChildDisplayName"] = value;
+			}
+		}
+		
 		public string ParentApiId
 		{
 			get
@@ -6950,6 +7554,25 @@ namespace CAPS.DataContext
 			set
 			{
 				this.Parameters["ParentParameterKey"] = value;
+			}
+		}
+		
+		public string ParentDisplayName
+		{
+			get
+			{
+				if (this.Parameters.Contains("ParentDisplayName"))
+				{
+					return ((string)(this.Parameters["ParentDisplayName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["ParentDisplayName"] = value;
 			}
 		}
 		
