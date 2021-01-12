@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>009502d4-7e2b-4982-bfd8-01d2ebf79af3</rd:DataSourceID>
@@ -800,7 +801,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Sponsoring Ministry:</Value>
+                        <Value EvaluationMode="Constant">Sponsoring Ministry: Ministry of Education</Value>
                         <Style>
                           <FontSize>9pt</FontSize>
                         </Style>
@@ -813,7 +814,7 @@
                 <Top>0.4382in</Top>
                 <Left>0.19531in</Left>
                 <Height>0.25in</Height>
-                <Width>1.34375in</Width>
+                <Width>2.48072in</Width>
                 <ZIndex>20</ZIndex>
                 <Style>
                   <Border>
@@ -832,7 +833,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Government Body:</Value>
+                        <Value>= "Government Body: " &amp; First(Fields!project_caps_schooldistrict.Value, "CAPS")</Value>
                         <Style>
                           <FontSize>9pt</FontSize>
                         </Style>
@@ -845,7 +846,7 @@
                 <Top>0.75764in</Top>
                 <Left>0.19531in</Left>
                 <Height>0.25in</Height>
-                <Width>1.34375in</Width>
+                <Width>2.48072in</Width>
                 <ZIndex>21</ZIndex>
                 <Style>
                   <Border>
