@@ -5797,7 +5797,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5,trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value,iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime),Fields!caps_yearlyexpenditure.Value,""), "EstYearlyExp"),"")),trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value,iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime)+1,Fields!caps_yearlyexpenditure.Value,""), "EstYearlyExp"),"")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -5817,6 +5817,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -5833,7 +5834,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime)+1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -5869,7 +5870,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>'$'0;('$'0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -5906,7 +5907,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -5942,7 +5943,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -5978,7 +5979,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -6014,7 +6015,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -6050,7 +6051,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -6086,7 +6087,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -6122,7 +6123,7 @@
                                   <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 10, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                   <Style>
                                     <FontFamily />
-                                    <Format>0;(0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -6158,6 +6159,7 @@
                                   <Value>=Fields!caps_totalprojectcost.Value</Value>
                                   <Style>
                                     <FontFamily />
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -10380,7 +10382,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10402,6 +10404,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10416,7 +10419,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10438,6 +10441,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10452,7 +10456,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>'$'0;('$'0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10475,6 +10479,7 @@
                                 <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10489,7 +10494,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10511,6 +10516,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10525,7 +10531,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10547,6 +10553,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10561,7 +10568,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10583,6 +10590,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10597,7 +10605,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10619,6 +10627,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10633,7 +10642,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10655,6 +10664,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10669,7 +10679,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10691,6 +10701,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10705,7 +10716,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 10, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10727,6 +10738,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -10741,6 +10753,7 @@
                                       <Value>=Fields!caps_totalprojectcost.Value</Value>
                                       <Style>
                                         <FontFamily />
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -10762,6 +10775,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -14878,7 +14892,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -14914,7 +14928,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -14950,7 +14964,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>'$'0;('$'0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -14987,7 +15001,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15023,7 +15037,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15059,7 +15073,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15095,7 +15109,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15131,7 +15145,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15167,7 +15181,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15203,7 +15217,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 10, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -15239,6 +15253,7 @@
                                       <Value>=Fields!caps_totalprojectcost.Value</Value>
                                       <Style>
                                         <FontFamily />
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20223,7 +20238,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime), Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20259,7 +20274,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 1, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20295,7 +20310,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 2, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>'$'0;('$'0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20332,7 +20347,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 3, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20368,7 +20383,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 4, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20404,7 +20419,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 5, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20440,7 +20455,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 6, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20476,7 +20491,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 7, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20512,7 +20527,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 8, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20548,7 +20563,7 @@
                                       <Value>=iif(month(Globals!ExecutionTime) &lt; 5, trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 9, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")), trim(Join(LookupSet(Fields!caps_projectcode.Value, Fields!PROJECTREQUEST_caps_projectcode.Value, iif(Fields!YEAR_edu_startyear.Value = year(Globals!ExecutionTime) + 10, Fields!caps_yearlyexpenditure.Value, ""), "EstYearlyExp"), "")))</Value>
                                       <Style>
                                         <FontFamily />
-                                        <Format>0;(0)</Format>
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>
@@ -20584,6 +20599,7 @@
                                       <Value>=Fields!caps_totalprojectcost.Value</Value>
                                       <Style>
                                         <FontFamily />
+                                        <Format>'$'#,0;('$'#,0)</Format>
                                         <Color>#333333</Color>
                                       </Style>
                                     </TextRun>

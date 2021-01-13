@@ -409,7 +409,7 @@
                                 <TextRun>
                                   <Value>=sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -493,7 +493,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -513,6 +513,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -576,7 +577,7 @@
                                 <TextRun>
                                   <Value>=sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -609,6 +610,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                       <DataElementOutput>Output</DataElementOutput>
                     </TablixCell>
@@ -671,7 +673,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -697,6 +699,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
