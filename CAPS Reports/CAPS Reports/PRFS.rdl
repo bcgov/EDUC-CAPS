@@ -7427,7 +7427,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
+                                          <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -7512,7 +7512,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_total_designcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -7661,7 +7661,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 1, Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
+                                          <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -7746,7 +7746,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -7775,6 +7775,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
