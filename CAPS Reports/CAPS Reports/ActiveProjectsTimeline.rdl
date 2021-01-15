@@ -194,7 +194,7 @@
       &lt;filter type="or" &gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="PDR" /&gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
-        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONSTRUCTION_DOCUMENTS" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONTRACT_AWARD" /&gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -308,6 +308,47 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="ProjectType">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_projecttype"&gt;
+    &lt;attribute name="caps_projecttypeid" /&gt;
+    &lt;attribute name="caps_type" /&gt;
+    &lt;attribute name="caps_submissioncategory" /&gt;
+    &lt;order attribute="caps_type" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_projecttypeid">
+          <DataField>caps_projecttypeid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_type">
+          <DataField>caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategory">
+          <DataField>caps_submissioncategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryValue">
+          <DataField>caps_submissioncategoryValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryEntityName">
+          <DataField>caps_submissioncategoryEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjectTypeLabel">
+          <Value>=Fields!caps_submissioncategory.Value &amp; " / " &amp; Fields!caps_type.Value</Value>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -416,6 +457,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1626,10 +1668,48 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="SchoolDistrict">
+      <DataType>String</DataType>
+      <Prompt>Select School District</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SchoolDistricts</DataSetName>
+          <ValueField>edu_schooldistrictid</ValueField>
+          <LabelField>edu_name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ProjectType">
+      <DataType>String</DataType>
+      <Prompt>Select Project Type</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ProjectType</DataSetName>
+          <ValueField>caps_projecttypeid</ValueField>
+          <LabelField>ProjectTypeLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>SchoolDistrict</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ProjectType</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
