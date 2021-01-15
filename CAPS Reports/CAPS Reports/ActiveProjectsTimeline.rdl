@@ -159,6 +159,14 @@
     <DataSet Name="ProjectMilestones">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -181,7 +189,9 @@
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="createdon" /&gt;
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
-      &lt;filter&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
         &lt;condition attribute="statuscode" operator="neq" value="200870004" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
@@ -457,7 +467,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
