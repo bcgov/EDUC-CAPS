@@ -7,9 +7,9 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
-        <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
+        <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>Integrated</rd:SecurityType>
       <rd:DataSourceID>f692dd30-57dd-4891-9c4e-bd5bd2c2dfa9</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -357,18 +357,6 @@
     &lt;attribute name="caps_totalagency" /&gt;
     &lt;attribute name="caps_totalactualdraws" /&gt;
     &lt;attribute name="caps_remainingdraws" /&gt;
-    &lt;attribute name="caps_q4provincial" /&gt;
-    &lt;attribute name="caps_q4agency" /&gt;
-    &lt;attribute name="caps_q4actualdraws" /&gt;
-    &lt;attribute name="caps_q3provincial" /&gt;
-    &lt;attribute name="caps_q3agency" /&gt;
-    &lt;attribute name="caps_q3actualdraws" /&gt;
-    &lt;attribute name="caps_q2provincial" /&gt;
-    &lt;attribute name="caps_q2agency" /&gt;
-    &lt;attribute name="caps_q2actualdraws" /&gt;
-    &lt;attribute name="caps_q1provincial" /&gt;
-    &lt;attribute name="caps_q1agency" /&gt;
-    &lt;attribute name="caps_q1actualdraws" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
 &lt;filter type="and"&gt;&lt;condition attribute="statecode" operator="eq" value="0" /&gt;&lt;/filter&gt;
@@ -420,102 +408,6 @@
         <Field Name="caps_remainingdrawsValue">
           <DataField>caps_remainingdrawsValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4provincial">
-          <DataField>caps_q4provincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4provincialValue">
-          <DataField>caps_q4provincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4agency">
-          <DataField>caps_q4agency</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4agencyValue">
-          <DataField>caps_q4agencyValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4actualdraws">
-          <DataField>caps_q4actualdraws</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q4actualdrawsValue">
-          <DataField>caps_q4actualdrawsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3provincial">
-          <DataField>caps_q3provincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3provincialValue">
-          <DataField>caps_q3provincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3agency">
-          <DataField>caps_q3agency</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3agencyValue">
-          <DataField>caps_q3agencyValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3actualdraws">
-          <DataField>caps_q3actualdraws</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q3actualdrawsValue">
-          <DataField>caps_q3actualdrawsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2provincial">
-          <DataField>caps_q2provincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2provincialValue">
-          <DataField>caps_q2provincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2agency">
-          <DataField>caps_q2agency</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2agencyValue">
-          <DataField>caps_q2agencyValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2actualdraws">
-          <DataField>caps_q2actualdraws</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q2actualdrawsValue">
-          <DataField>caps_q2actualdrawsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1provincial">
-          <DataField>caps_q1provincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1provincialValue">
-          <DataField>caps_q1provincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1agency">
-          <DataField>caps_q1agency</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1agencyValue">
-          <DataField>caps_q1agencyValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1actualdraws">
-          <DataField>caps_q1actualdraws</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_q1actualdrawsValue">
-          <DataField>caps_q1actualdrawsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_fiscalyear">
           <DataField>caps_fiscalyear</DataField>
