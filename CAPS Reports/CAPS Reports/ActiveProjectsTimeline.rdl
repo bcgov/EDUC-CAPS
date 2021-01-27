@@ -67,6 +67,9 @@
           <DataField>edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Projects">
@@ -715,7 +718,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1691,7 +1693,7 @@
         <DataSetReference>
           <DataSetName>SchoolDistricts</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>

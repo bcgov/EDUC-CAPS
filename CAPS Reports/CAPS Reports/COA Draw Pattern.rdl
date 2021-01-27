@@ -231,7 +231,8 @@
   &lt;entity name="edu_schooldistrict"&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+&lt;attribute name="edu_number" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -243,6 +244,13 @@
         <Field Name="edu_schooldistrictid">
           <DataField>edu_schooldistrictid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_number">
+          <DataField>edu_number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -610,7 +618,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                       <DataElementOutput>Output</DataElementOutput>
                     </TablixCell>
@@ -3091,7 +3098,7 @@
         <DataSetReference>
           <DataSetName>SchoolDistricts</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>

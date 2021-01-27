@@ -262,6 +262,9 @@
           <DataField>edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -1941,7 +1944,7 @@
         <DataSetReference>
           <DataSetName>SchoolDistrict</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>
