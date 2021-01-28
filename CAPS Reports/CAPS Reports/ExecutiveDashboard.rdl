@@ -16,6 +16,14 @@
     <DataSet Name="ProjectPDRDev">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projecttracker" &gt;
     &lt;attribute name="caps_projecttrackerid" /&gt;
@@ -23,12 +31,15 @@
     &lt;attribute name="caps_totaldesigncapacity" /&gt;
     &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
+    &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
     &lt;order attribute="caps_schooldistrict" descending="false" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
       &lt;filter&gt;
@@ -79,13 +90,25 @@
           <DataField>caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_schooldistrict0">
+          <DataField>caps_schooldistrict0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="statuscode">
           <DataField>statuscode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_schooldistrictValue0">
+          <DataField>caps_schooldistrictValue0</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
         <Field Name="statuscodeValue">
           <DataField>statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictEntityName0">
+          <DataField>caps_schooldistrictEntityName0</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_maxpotential_fundingsource">
           <DataField>caps_maxpotential_fundingsource</DataField>
@@ -100,6 +123,14 @@
     <DataSet Name="ProjectOccupancy">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -125,6 +156,8 @@
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
       &lt;filter type="and" &gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870003" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -233,6 +266,14 @@
     <DataSet Name="ProjectUnderConstruction">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projectmilestone"&gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -258,6 +299,8 @@
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870002" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -366,6 +409,14 @@
     <DataSet Name="ProjectDesignDev">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projectmilestone"&gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -388,6 +439,8 @@
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870001" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -496,6 +549,14 @@
     <DataSet Name="ProjectApprovedNoAnnounced">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" &gt;
   &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -521,6 +582,8 @@
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
       &lt;filter type="and" &gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_projectmilestone" from="caps_projecttracker" to="caps_projecttrackerid" link-type="inner" alias="bd" &gt;
         &lt;filter type="and" &gt;
@@ -639,6 +702,14 @@
     <DataSet Name="ProjectPendingTBApproval">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projectmilestone"&gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
@@ -664,6 +735,8 @@
       &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
+ &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -766,6 +839,111 @@
         <Field Name="PRJ_caps_maxpotential_fundingsourceValue">
           <DataField>PRJ_caps_maxpotential_fundingsourceValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectType">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_projecttype"&gt;
+    &lt;attribute name="caps_projecttypeid" /&gt;
+    &lt;attribute name="caps_type" /&gt;
+    &lt;attribute name="caps_submissioncategory" /&gt;
+    &lt;order attribute="caps_type" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="ac"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_projecttypeid">
+          <DataField>caps_projecttypeid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_type">
+          <DataField>caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategory">
+          <DataField>caps_submissioncategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryValue">
+          <DataField>caps_submissioncategoryValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryEntityName">
+          <DataField>caps_submissioncategoryEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjectTypeLabel">
+          <Value>=Fields!caps_submissioncategory.Value &amp; " / " &amp; Fields!caps_type.Value</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SchoolDistricts">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="edu_schooldistrict"&gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;attribute name="edu_region" /&gt;
+    &lt;attribute name="ownerid" /&gt;
+    &lt;attribute name="edu_schooldistrictid" /&gt;
+    &lt;attribute name="edu_number" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_region">
+          <DataField>edu_region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_regionValue">
+          <DataField>edu_regionValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="edu_regionEntityName">
+          <DataField>edu_regionEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ownerid">
+          <DataField>ownerid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="owneridValue">
+          <DataField>owneridValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="owneridEntityName">
+          <DataField>owneridEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_schooldistrictid">
+          <DataField>edu_schooldistrictid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_number">
+          <DataField>edu_number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -4792,10 +4970,48 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="SchoolDistrict">
+      <DataType>String</DataType>
+      <Prompt>Select School District(s)</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SchoolDistricts</DataSetName>
+          <ValueField>edu_schooldistrictid</ValueField>
+          <LabelField>SDLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="ProjectType">
+      <DataType>String</DataType>
+      <Prompt>Select Projet Type(s)</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>ProjectType</DataSetName>
+          <ValueField>caps_projecttypeid</ValueField>
+          <LabelField>ProjectTypeLabel</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>SchoolDistrict</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ProjectType</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
