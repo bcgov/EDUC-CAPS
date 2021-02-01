@@ -231,6 +231,7 @@
   &lt;entity name="edu_schooldistrict"&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_schooldistrictid" /&gt;
+  &lt;attribute name="edu_commonname" /&gt;
 &lt;attribute name="edu_number" /&gt;
     &lt;order attribute="edu_number" descending="false" /&gt;
   &lt;/entity&gt;
@@ -245,12 +246,16 @@
           <DataField>edu_schooldistrictid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="edu_commonname">
+          <DataField>edu_commonname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="edu_number">
           <DataField>edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SDLabel">
-          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_commonname.Value</Value>
         </Field>
       </Fields>
     </DataSet>

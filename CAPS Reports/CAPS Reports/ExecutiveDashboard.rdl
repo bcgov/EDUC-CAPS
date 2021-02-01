@@ -898,6 +898,7 @@
     &lt;attribute name="ownerid" /&gt;
     &lt;attribute name="edu_schooldistrictid" /&gt;
     &lt;attribute name="edu_number" /&gt;
+  &lt;attribute name="edu_commonname" /&gt;
     &lt;order attribute="edu_number" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
@@ -943,7 +944,11 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SDLabel">
-          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_name.Value</Value>
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_commonname.Value</Value>
+        </Field>
+        <Field Name="edu_commonname">
+          <DataField>edu_commonname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
