@@ -195,7 +195,7 @@
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt; 
         &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
-        &lt;condition attribute="statuscode" operator="neq" value="200870004" /&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -1688,7 +1688,7 @@
   <ReportParameters>
     <ReportParameter Name="SchoolDistrict">
       <DataType>String</DataType>
-      <Prompt>Select School District</Prompt>
+      <Prompt>Select School District(s)</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>SchoolDistricts</DataSetName>
@@ -1700,7 +1700,7 @@
     </ReportParameter>
     <ReportParameter Name="ProjectType">
       <DataType>String</DataType>
-      <Prompt>Select Project Type</Prompt>
+      <Prompt>Select Project Type(s)</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>ProjectType</DataSetName>
