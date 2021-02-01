@@ -63,6 +63,7 @@
     &lt;attribute name="address1_telephone1" /&gt;
     &lt;attribute name="systemuserid" /&gt;
     &lt;attribute name="internalemailaddress" /&gt;
+    &lt;attribute name="personalemailaddress" /&gt;
     &lt;order attribute="fullname" descending="false" /&gt;
     &lt;link-entity name="businessunit" from="businessunitid" to="businessunitid" visible="false" link-type="outer" alias="BU"&gt;
       &lt;attribute name="name" /&gt;
@@ -103,6 +104,10 @@
           <DataField>internalemailaddress</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="personalemailaddress">
+          <DataField>personalemailaddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="BU_name">
           <DataField>BU_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -130,7 +135,10 @@
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.88125cm</Width>
+                  <Width>5.17229cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.17229cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -282,7 +290,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Email</Value>
+                                  <Value>Primary Email</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Color>White</Color>
@@ -293,6 +301,40 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Alternate Email</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -470,12 +512,45 @@
                         </Textbox>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="personalemailaddress">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!personalemailaddress.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>personalemailaddress</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -496,7 +571,7 @@
             <DataSetName>User</DataSetName>
             <Top>2.85433cm</Top>
             <Height>1.2cm</Height>
-            <Width>17.44771cm</Width>
+            <Width>22.91104cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -698,10 +773,10 @@
             </Style>
           </Image>
         </ReportItems>
-        <Height>2.15398in</Height>
+        <Height>2.14764in</Height>
         <Style />
       </Body>
-      <Width>6.93067in</Width>
+      <Width>9.04093in</Width>
       <Page>
         <PageFooter>
           <Height>0.68792cm</Height>
@@ -760,7 +835,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.03528cm</Top>
-              <Left>5.53064in</Left>
+              <Left>7.68156in</Left>
               <Height>0.21935in</Height>
               <Width>1.33854in</Width>
               <ZIndex>1</ZIndex>
