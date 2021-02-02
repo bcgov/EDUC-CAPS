@@ -389,6 +389,7 @@
     &lt;attribute name="caps_adjusteddesigncapacitysecondary" /&gt;
     &lt;attribute name="caps_adjusteddesigncapacitykindergarten" /&gt;
     &lt;attribute name="caps_adjusteddesigncapacityelementary" /&gt;
+ &lt;attribute name="caps_designcapacitytotal" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="caps_facilityid" operator="eq" uitype="caps_facility" value="@PRFSFacility" /&gt;
@@ -435,6 +436,14 @@
         </Field>
         <Field Name="caps_adjusteddesigncapacityelementaryValue">
           <DataField>caps_adjusteddesigncapacityelementaryValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitytotal">
+          <DataField>caps_designcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designcapacitytotalValue">
+          <DataField>caps_designcapacitytotalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -885,7 +894,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -4491,7 +4499,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(isnothing(Parameters!PRFSFacility.Value), 0, First(Fields!caps_adjusteddesigncapacitytotal.Value, "PRFSFacility"))</Value>
+                                  <Value>=iif(isnothing(Parameters!PRFSFacility.Value), 0, First(Fields!caps_designcapacitytotal.Value, "PRFSFacility"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -4709,7 +4717,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_adjusteddesigncapacitytotalValue.Value, "PRFSFacility") + Sum(Fields!caps_changeindesigncapacitytotalValue.Value, "PRFSOption")</Value>
+                                  <Value>=Sum(Fields!caps_designcapacitytotalValue.Value, "PRFSFacility") + Sum(Fields!caps_changeindesigncapacitytotalValue.Value, "PRFSOption")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -4732,6 +4740,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
