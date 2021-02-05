@@ -53,13 +53,9 @@
     &lt;attribute name="caps_othercost" /&gt;
     &lt;attribute name="caps_facility" /&gt;
     &lt;attribute name="caps_demolitioncost" /&gt;
-    &lt;attribute name="caps_constructioncostsspiradjustments" /&gt;
     &lt;attribute name="caps_constructioncostsspir" /&gt;
-    &lt;attribute name="caps_constructioncostsnonstructuralseismicup" /&gt;
     &lt;attribute name="caps_changeindesigncapacitytotal" /&gt;
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
-    &lt;attribute name="caps_seismicupgradespaceallocation" /&gt;
-    &lt;attribute name="caps_seismicprojectidentificationreportfees" /&gt;
     &lt;attribute name="caps_schedulebtotal" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
   &lt;/entity&gt;
@@ -81,22 +77,6 @@
         </Field>
         <Field Name="caps_temporaryaccommodationcostValue">
           <DataField>caps_temporaryaccommodationcostValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicupgradespaceallocation">
-          <DataField>caps_seismicupgradespaceallocation</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicupgradespaceallocationValue">
-          <DataField>caps_seismicupgradespaceallocationValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicprojectidentificationreportfees">
-          <DataField>caps_seismicprojectidentificationreportfees</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicprojectidentificationreportfeesValue">
-          <DataField>caps_seismicprojectidentificationreportfeesValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_schooltype">
@@ -323,28 +303,12 @@
           <DataField>caps_demolitioncostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_constructioncostsspiradjustments">
-          <DataField>caps_constructioncostsspiradjustments</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructioncostsspiradjustmentsValue">
-          <DataField>caps_constructioncostsspiradjustmentsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_constructioncostsspir">
           <DataField>caps_constructioncostsspir</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_constructioncostsspirValue">
           <DataField>caps_constructioncostsspirValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructioncostsnonstructuralseismicup">
-          <DataField>caps_constructioncostsnonstructuralseismicup</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructioncostsnonstructuralseismicupValue">
-          <DataField>caps_constructioncostsnonstructuralseismicupValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitytotal">
@@ -1373,7 +1337,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Seismic Upgrade</Value>
+                                  <Value>Seismic Construction Cost</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1438,214 +1402,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox112">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>4.4</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox107</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox113">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>SPIR Adjustment</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox90</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="caps_constructioncostsspiradjustments">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!caps_constructioncostsspiradjustmentsValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>caps_constructioncostsspiradjustments</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox114">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>4.5</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox108</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox115">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Non-Structural Seismic Upgrade</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox88</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="caps_constructioncostsnonstructuralseismicup">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!caps_constructioncostsnonstructuralseismicupValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>caps_constructioncostsnonstructuralseismicup</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox116">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1653,7 +1409,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>4.6</Value>
+                                  <Value>4.4</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1757,7 +1513,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>4.7</Value>
+                                  <Value>4.5</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1927,7 +1683,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_schbconstructionnewspacereplacementValue.Value + Fields!caps_schbconstructionrenovationsValue.Value + Fields!caps_constructioncostsspirValue.Value + Fields!caps_constructioncostsspiradjustmentsValue.Value + Fields!caps_constructioncostsnonstructuralseismicupValue.Value + Fields!caps_schbsitedevelopmentallowanceValue.Value + Fields!caps_schbsitedevelopmentlocationallowanceValue.Value</Value>
+                                  <Value>=Fields!caps_schbconstructionnewspacereplacementValue.Value + Fields!caps_schbconstructionrenovationsValue.Value + Fields!caps_constructioncostsspirValue.Value + Fields!caps_schbsitedevelopmentallowanceValue.Value + Fields!caps_schbsitedevelopmentlocationallowanceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1973,14 +1729,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
             <Top>11.24935cm</Top>
             <Left>0.03772cm</Left>
-            <Height>5.4cm</Height>
+            <Height>4.2cm</Height>
             <Width>9.98237cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -2187,110 +1941,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox120">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>5.2</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox114</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox35">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Seismic Project Identifcation Report Fees</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox29">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!caps_seismicprojectidentificationreportfeesValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox11</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox121">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -2298,7 +1948,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.3</Value>
+                                  <Value>5.2</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2402,7 +2052,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.4</Value>
+                                  <Value>5.3</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2506,7 +2156,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.5</Value>
+                                  <Value>5.4</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2610,7 +2260,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.6</Value>
+                                  <Value>5.5</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2714,7 +2364,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.7</Value>
+                                  <Value>5.6</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2818,7 +2468,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.8</Value>
+                                  <Value>5.7</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -2922,7 +2572,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.9</Value>
+                                  <Value>5.8</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3026,7 +2676,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.10</Value>
+                                  <Value>5.9</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3130,7 +2780,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.11</Value>
+                                  <Value>5.10</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3234,7 +2884,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>5.12</Value>
+                                  <Value>5.11</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3298,7 +2948,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_schbdesignfeesValue.Value + Fields!caps_seismicprojectidentificationreportfeesValue.Value + Fields!caps_schbpostcontractnewreplacementValue.Value + Fields!caps_schbpostcontractrenovationsValue.Value + Fields!caps_schbpostcontractseismicValue.Value + Fields!caps_municipalfeesValue.Value + Fields!caps_schbequipmentnewValue.Value + Fields!caps_schbequipmentreplacementValue.Value + Fields!caps_schbprojectmanagementfeesValue.Value + Fields!caps_schbliabilityinsuranceValue.Value + Fields!caps_schbpayabletaxesValue.Value</Value>
+                                  <Value>=Fields!caps_schbdesignfeesValue.Value + Fields!caps_schbpostcontractnewreplacementValue.Value + Fields!caps_schbpostcontractrenovationsValue.Value + Fields!caps_schbpostcontractseismicValue.Value + Fields!caps_municipalfeesValue.Value + Fields!caps_schbequipmentnewValue.Value + Fields!caps_schbequipmentreplacementValue.Value + Fields!caps_schbprojectmanagementfeesValue.Value + Fields!caps_schbliabilityinsuranceValue.Value + Fields!caps_schbpayabletaxesValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -3456,13 +3106,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
             <Top>2.35713cm</Top>
             <Left>10.18355cm</Left>
-            <Height>8.4cm</Height>
+            <Height>7.8cm</Height>
             <Width>11.33189cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -4740,7 +4389,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
