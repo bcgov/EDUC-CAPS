@@ -25,6 +25,7 @@
   &lt;entity name="caps_prfsalternativeoption" enableprefiltering="1"&gt;
     &lt;attribute name="caps_prfsalternativeoptionid" /&gt;
     &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_projecttype" /&gt;
     &lt;attribute name="caps_temporaryaccommodationcost" /&gt;
     &lt;attribute name="caps_schooltype" /&gt;
     &lt;attribute name="caps_schedulebtotal" /&gt;
@@ -71,13 +72,25 @@
           <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_projecttype">
+          <DataField>caps_projecttype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_temporaryaccommodationcost">
           <DataField>caps_temporaryaccommodationcost</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_projecttypeValue">
+          <DataField>caps_projecttypeValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
         <Field Name="caps_temporaryaccommodationcostValue">
           <DataField>caps_temporaryaccommodationcostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttypeEntityName">
+          <DataField>caps_projecttypeEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schooltype">
           <DataField>caps_schooltype</DataField>
@@ -985,7 +998,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>7.93351cm</Top>
+            <Top>8.52922cm</Top>
             <Left>0.03772cm</Left>
             <Height>3cm</Height>
             <Width>9.98237cm</Width>
@@ -1617,7 +1630,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>4.6</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1732,7 +1745,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>11.24935cm</Top>
+            <Top>11.84506cm</Top>
             <Left>0.03772cm</Left>
             <Height>4.2cm</Height>
             <Width>9.98237cm</Width>
@@ -2887,6 +2900,7 @@
                                   <Value>5.11</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2919,6 +2933,7 @@
                                   <Value>Total Owner's Costs Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2951,6 +2966,7 @@
                                   <Value>=Fields!caps_schbdesignfeesValue.Value + Fields!caps_schbpostcontractnewreplacementValue.Value + Fields!caps_schbpostcontractrenovationsValue.Value + Fields!caps_schbpostcontractseismicValue.Value + Fields!caps_municipalfeesValue.Value + Fields!caps_schbequipmentnewValue.Value + Fields!caps_schbequipmentreplacementValue.Value + Fields!caps_schbprojectmanagementfeesValue.Value + Fields!caps_schbliabilityinsuranceValue.Value + Fields!caps_schbpayabletaxesValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
@@ -2961,112 +2977,6 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox288</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox204">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox204</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox52">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>TOTAL CAPITAL PROJECT BUDGET</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox52</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox53">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=ReportItems!Textbox288.Value + ReportItems!Textbox28.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox53</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3105,13 +3015,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>2.35713cm</Top>
+            <Top>2.95284cm</Top>
             <Left>10.18355cm</Left>
-            <Height>7.8cm</Height>
+            <Height>7.2cm</Height>
             <Width>11.33189cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -3641,110 +3550,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox136">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>6.5</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox131</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox6">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Risk Reserve/Escalation</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="caps_schbriskreserveValue">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!caps_schbriskreserveValue.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>caps_schbriskreserveValue</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox137">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -3752,7 +3557,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>6.6</Value>
+                                  <Value>6.5</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -3856,7 +3661,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>6.6</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -3922,7 +3727,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value + Fields!caps_schbnlcbudgetamountValue.Value + Fields!caps_schbriskreserveValue.Value</Value>
+                                  <Value>=Fields!caps_demolitioncostValue.Value + Fields!caps_temporaryaccommodationcostValue.Value + Fields!caps_abnormaltopographycostValue.Value + Fields!caps_othercostValue.Value + Fields!caps_schbnlcbudgetamountValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -3968,13 +3773,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>11.31562cm</Top>
+            <Top>11.91133cm</Top>
             <Left>10.18355cm</Left>
-            <Height>4.8cm</Height>
+            <Height>4.2cm</Height>
             <Width>11.33189cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -4411,7 +4215,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>2.35713cm</Top>
+            <Top>2.95284cm</Top>
             <Left>0.03772cm</Left>
             <Height>2.4cm</Height>
             <Width>9.98237cm</Width>
@@ -4841,7 +4645,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>5.1099cm</Top>
+            <Top>5.70561cm</Top>
             <Left>0.03772cm</Left>
             <Height>2.4cm</Height>
             <Width>9.98237cm</Width>
@@ -4939,7 +4743,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Preliminary Budget Total</Value>
+                                  <Value>PRELIMINARY BUDGET TOTAL</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -4972,7 +4776,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=ReportItems!Textbox288.Value + ReportItems!Textbox28.Value + ReportItems!Textbox85.Value</Value>
+                                  <Value>=ReportItems!Textbox288.Value + ReportItems!Textbox28.Value + ReportItems!Textbox85.Value + Fields!caps_schbriskreserve.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -5014,7 +4818,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
-            <Top>16.11562cm</Top>
+            <Top>17.48772cm</Top>
             <Left>10.18355cm</Left>
             <Height>0.6cm</Height>
             <Width>11.33189cm</Width>
@@ -5025,14 +4829,336 @@
               </Border>
             </Style>
           </Tablix>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>8.49675cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.83514cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox20">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Preliminary Budget Subtotal</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox29">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=ReportItems!Textbox288.Value + ReportItems!Textbox28.Value + ReportItems!Textbox85.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0);'-'</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox42">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Risk Reserve/Escalation</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox41</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_schbriskreserveValue2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_schbriskreserveValue.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_schbriskreserveValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ProjectRequest</DataSetName>
+            <Top>16.28772cm</Top>
+            <Left>10.18355cm</Left>
+            <Height>1.2cm</Height>
+            <Width>11.33189cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="caps_name2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Preliminary Budget Type: " &amp; First(Fields!caps_projecttype.Value, "PRFSOption")</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>caps_name</rd:DefaultName>
+            <Top>1.94056cm</Top>
+            <Height>0.6cm</Height>
+            <Width>9.10758cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix3">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>8.49674cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.83515cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox63">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>TOTAL CAPITAL PROJECT BUDGET</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox45</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox65">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=ReportItems!Textbox288.Value + ReportItems!Textbox28.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox53</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ProjectRequest</DataSetName>
+            <Top>10.32923cm</Top>
+            <Left>10.18355cm</Left>
+            <Height>0.6cm</Height>
+            <Width>11.33189cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
         </ReportItems>
-        <Height>6.60873in</Height>
+        <Height>7.15387in</Height>
         <Style />
       </Body>
       <Width>8.49148in</Width>
       <Page>
         <PageFooter>
-          <Height>0.71437cm</Height>
+          <Height>7.73465cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -5145,6 +5271,22 @@
       <Prompt>Facility</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
+    <ReportParameter Name="ShowExplanation">
+      <DataType>String</DataType>
+      <Prompt>Show Report Explanation?</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>Yes</Value>
+            <Label>Yes</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>No</Value>
+            <Label>No</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -5160,6 +5302,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>PRFSFacility</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ShowExplanation</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
