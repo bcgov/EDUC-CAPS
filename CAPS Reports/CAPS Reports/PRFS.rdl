@@ -639,9 +639,17 @@
 &lt;/fetch&gt;</CommandText>
       </Query>
       <Fields>
+        <Field Name="caps_schbadditionalspaceallocation">
+          <DataField>caps_schbadditionalspaceallocation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="owninguser">
           <DataField>owninguser</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbadditionalspaceallocationValue">
+          <DataField>caps_schbadditionalspaceallocationValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="owninguserValue">
           <DataField>owninguserValue</DataField>
@@ -719,14 +727,6 @@
           <DataField>caps_municipalfeesValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_constructioncostsspiradjustments">
-          <DataField>caps_constructioncostsspiradjustments</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructioncostsspiradjustmentsValue">
-          <DataField>caps_constructioncostsspiradjustmentsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_requiresscheduleb">
           <DataField>caps_requiresscheduleb</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -771,12 +771,20 @@
           <DataField>caps_constructioncostsspir</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_schbtotalspaceallocation">
+          <DataField>caps_schbtotalspaceallocation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_occupancyyearValue">
           <DataField>caps_occupancyyearValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
         <Field Name="caps_constructioncostsspirValue">
           <DataField>caps_constructioncostsspirValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbtotalspaceallocationValue">
+          <DataField>caps_schbtotalspaceallocationValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_projectrequestValue">
@@ -795,10 +803,6 @@
           <DataField>caps_changeindesigncapacitytotalValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_seismicupgradespaceallocation">
-          <DataField>caps_seismicupgradespaceallocation</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_schbliabilityinsurance">
           <DataField>caps_schbliabilityinsurance</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -814,10 +818,6 @@
         <Field Name="utcconversiontimezonecode">
           <DataField>utcconversiontimezonecode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicupgradespaceallocationValue">
-          <DataField>caps_seismicupgradespaceallocationValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="utcconversiontimezonecodeValue">
           <DataField>utcconversiontimezonecodeValue</DataField>
@@ -862,6 +862,14 @@
         <Field Name="caps_schbpayabletaxes">
           <DataField>caps_schbpayabletaxes</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbriskreserve">
+          <DataField>caps_schbriskreserve</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbriskreserveValue">
+          <DataField>caps_schbriskreserveValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacityknegative">
           <DataField>caps_changeindesigncapacityknegative</DataField>
@@ -991,10 +999,6 @@
           <DataField>caps_schbequipmentreplacementValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_seismicprojectidentificationreportfees">
-          <DataField>caps_seismicprojectidentificationreportfees</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_schbsitedevelopmentallowance">
           <DataField>caps_schbsitedevelopmentallowance</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1005,10 +1009,6 @@
         </Field>
         <Field Name="caps_schbsitedevelopmentallowanceValue">
           <DataField>caps_schbsitedevelopmentallowanceValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_seismicprojectidentificationreportfeesValue">
-          <DataField>caps_seismicprojectidentificationreportfeesValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="modifiedonValue">
@@ -1179,6 +1179,14 @@
           <DataField>modifiedonbehalfbyEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_sracostestimate">
+          <DataField>caps_sracostestimate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_sracostestimateValue">
+          <DataField>caps_sracostestimateValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="caps_changeindesigncapacitykpositive">
           <DataField>caps_changeindesigncapacitykpositive</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1199,16 +1207,16 @@
           <DataField>caps_schbprojectmanagementfeesValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_importid">
+          <DataField>caps_importid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_changeindesigncapacitysecondary">
           <DataField>caps_changeindesigncapacitysecondary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schbbasebudgetrate">
           <DataField>caps_schbbasebudgetrate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructionarea">
-          <DataField>caps_constructionarea</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacitysecondaryValue">
@@ -1218,10 +1226,6 @@
         <Field Name="caps_schbbasebudgetrateValue">
           <DataField>caps_schbbasebudgetrateValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructionareaValue">
-          <DataField>caps_constructionareaValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="owneridValue">
           <DataField>owneridValue</DataField>
@@ -1295,14 +1299,6 @@
           <DataField>caps_othercostdescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_constructioncostsnonstructuralseismicup">
-          <DataField>caps_constructioncostsnonstructuralseismicup</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructioncostsnonstructuralseismicupValue">
-          <DataField>caps_constructioncostsnonstructuralseismicupValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_temporaryaccommodationcost">
           <DataField>caps_temporaryaccommodationcost</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1334,6 +1330,10 @@
         <Field Name="caps_hostschooldistrictValue">
           <DataField>caps_hostschooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_importsource">
+          <DataField>caps_importsource</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schbpostcontractseismicValue">
           <DataField>caps_schbpostcontractseismicValue</DataField>
@@ -15080,7 +15080,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_constructionarea.Value &amp; "m²"</Value>
+                                      <Value>=Fields!caps_schbtotalspaceallocation &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15150,7 +15150,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_constructionareaValue.Value) &amp; "m²"</Value>
+                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue) &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15172,6 +15172,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -17173,7 +17174,6 @@
                                 <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
-                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
