@@ -26,6 +26,7 @@
   &lt;entity name="caps_project" enableprefiltering="1"&gt;
    &lt;attribute name="caps_includedinlrfpasneed" /&gt;
     &lt;attribute name="caps_projectyear" /&gt;
+    &lt;attribute name="caps_sracostestimate" /&gt;
     &lt;attribute name="caps_projectedchangetofacilityconditionindex" /&gt;
     &lt;attribute name="caps_totalprojectcost" /&gt;
     &lt;attribute name="caps_anticipatedsitepurchaseclosingyear" /&gt;
@@ -36,7 +37,6 @@
     &lt;attribute name="caps_municipalrequirements" /&gt;
     &lt;attribute name="caps_submissioncategorycode" /&gt;
     &lt;attribute name="caps_facilityview" /&gt;
-    &lt;attribute name="caps_constructionarea" /&gt;
     &lt;attribute name="caps_futurelowestgrade" /&gt;
     &lt;attribute name="caps_futurehighestgrade" /&gt;
     &lt;attribute name="caps_currentfci" /&gt;
@@ -121,9 +121,17 @@
           <DataField>caps_projectyearEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_sracostestimate">
+          <DataField>caps_sracostestimate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_projectedchangetofacilityconditionindex">
           <DataField>caps_projectedchangetofacilityconditionindex</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_sracostestimateValue">
+          <DataField>caps_sracostestimateValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_projectedchangetofacilityconditionindexValue">
           <DataField>caps_projectedchangetofacilityconditionindexValue</DataField>
@@ -188,14 +196,6 @@
         <Field Name="caps_facilityview">
           <DataField>caps_facilityview</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructionarea">
-          <DataField>caps_constructionarea</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_constructionareaValue">
-          <DataField>caps_constructionareaValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_futurelowestgrade">
           <DataField>caps_futurelowestgrade</DataField>
@@ -17092,7 +17092,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Estimated SPIR Cost</Value>
+                                      <Value>Estimated Cost</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -17150,7 +17150,7 @@
                                       <Value>=Sum(Fields!caps_spircostestimateValue.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
-                                        <Format>'$'0;('$'0)</Format>
+                                        <Format>'$'#,0;('$'#,0);'-'</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -17173,56 +17173,39 @@
                                 <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox149">
+                            <Textbox Name="caps_sracostestimateValue">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value />
+                                      <Value>=Sum(Fields!caps_sracostestimateValue.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
+                                        <Format>'$'#,0;('$'#,0);'-'</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox149</rd:DefaultName>
+                              <rd:DefaultName>caps_sracostestimateValue</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
                                   <Style>Solid</Style>
                                 </Border>
-                                <TopBorder>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </TopBorder>
-                                <BottomBorder>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
-                                <LeftBorder>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </LeftBorder>
-                                <RightBorder>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </RightBorder>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
                                 <PaddingBottom>2pt</PaddingBottom>
+                                <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                               </Style>
                             </Textbox>
                           </CellContents>
