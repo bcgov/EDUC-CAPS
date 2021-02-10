@@ -15080,7 +15080,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_schbtotalspaceallocation &amp; "m²"</Value>
+                                      <Value>=IIF(Fields!caps_schbtotalspaceallocation.Value = "", 0, Fields!caps_schbtotalspaceallocation.Value) &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15102,6 +15102,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -15150,7 +15151,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue) &amp; "m²"</Value>
+                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue.Value) &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15172,7 +15173,6 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -17192,7 +17192,9 @@
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>caps_sracostestimateValue</rd:DefaultName>

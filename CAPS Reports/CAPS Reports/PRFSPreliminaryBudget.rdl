@@ -1375,7 +1375,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_constructioncostsspir">
+                        <Textbox Name="caps_constructioncostsspirValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1385,7 +1385,7 @@
                                   <Value>=Fields!caps_constructioncostsspirValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0);'-'</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1394,7 +1394,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_constructioncostsspir</rd:DefaultName>
+                          <rd:DefaultName>caps_constructioncostsspirValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1404,8 +1404,10 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1696,7 +1698,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_schbconstructionnewspacereplacementValue.Value + Fields!caps_schbconstructionrenovationsValue.Value + Fields!caps_constructioncostsspirValue.Value + Fields!caps_schbsitedevelopmentallowanceValue.Value + Fields!caps_schbsitedevelopmentlocationallowanceValue.Value</Value>
+                                  <Value>=Fields!caps_schbconstructionnewspacereplacementValue.Value + Fields!caps_schbconstructionrenovationsValue.Value + Fields!caps_constructioncostsspir.Value + Fields!caps_schbsitedevelopmentallowanceValue.Value + Fields!caps_schbsitedevelopmentlocationallowanceValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
