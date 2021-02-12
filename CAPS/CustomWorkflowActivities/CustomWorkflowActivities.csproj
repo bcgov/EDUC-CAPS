@@ -81,18 +81,24 @@
     </Compile>
     <Compile Include="AddSchoolDistrictsToCallForSubmission.cs" />
     <Compile Include="AddSubmissionCategoriesToCallForSubmission.cs" />
+    <Compile Include="CalculateFacilityReplacementCost.cs" />
     <Compile Include="CalculateProjectRequestOperatingCapacity.cs" />
     <Compile Include="CalculateScheduleBPRFSOption.cs" />
     <Compile Include="CalculateScheduleB.cs" />
     <Compile Include="CheckCOACreationRules.cs" />
     <Compile Include="CheckPhasedProjectYear.cs" />
     <Compile Include="CheckPRFS.cs" />
+    <Compile Include="CheckPRFSAlternativeOptions.cs" />
+    <Compile Include="CheckPRFSSurroundingSchools.cs" />
     <Compile Include="DeleteAllCapacityReportingRecords.cs" />
     <Compile Include="GetCapitalPlanYear.cs" />
     <Compile Include="GetOperatingCapacityByFacility.cs" />
     <Compile Include="Services\OperatingCapacity.cs" />
     <Compile Include="SetCapacityReporting.cs" />
     <Compile Include="SetOperatingCapacity.cs" />
+    <Compile Include="SetOperatingCapacityForCapacityReporting.cs" />
+    <Compile Include="SetOperatingCapacityForFacilities.cs" />
+    <Compile Include="SetOperatingCapacityForProjectRequests.cs" />
     <Compile Include="UpsertActualDraws.cs" />
     <Compile Include="ValidateCallForSubmission.cs" />
     <Compile Include="CheckSubmissionCategoryLimit.cs" />
@@ -102,6 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ScheduleB.cs" />
     <Compile Include="ValidateCapitalPlan.cs" />
+    <Compile Include="ValidateDesignCapacity.cs" />
     <Compile Include="ValidateProjectRequest.cs" />
     <Compile Include="ValidateSchoolEnrolment.cs" />
   </ItemGroup>

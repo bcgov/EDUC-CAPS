@@ -14,7 +14,7 @@ const PROJECT_STATE = {
     DRAFT: 1,
     SUBMITTED: 100000009,
     PLANNED: 100000004,
-    SUPPORTED: 100000003,
+    SUPPORTED: 200870002,
     APPROVED: 100000005,
     COMPLETE: 100000009
 };
@@ -47,7 +47,7 @@ CAPS.Project.AddListToSubmission = function (selectedControlIds, selectedControl
             });
 
             if (unqualifiedRecordFound) {
-                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the capital plan.  This is because they are either already in a capital plan or they are not in a draft/published state.", title: "Error" };
+                var alertStrings = { confirmButtonLabel: "OK", text: "One or more projects can't be added to the submission.  This is because they are either already in a submission or they are not in a draft/published state.", title: "Error" };
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
             }
@@ -297,7 +297,7 @@ CAPS.Project.ShowSubmissionWindow = function (selectedControlIds) {
     
     var webResource = '/caps_/Apps/OpenSubmissionList.htm';
 
-    Alert.showWebResource(webResource, 500, 230, "Add to Capital Plan", [
+    Alert.showWebResource(webResource, 500, 230, "Add to Submission", [
         new Alert.Button("Add", CAPS.Project.SubmissionResult, true, true),
         new Alert.Button("Cancel")
     ], clientUrl, true, null);

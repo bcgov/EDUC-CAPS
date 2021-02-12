@@ -30,14 +30,233 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
     formContext.getAttribute("caps_maxpotentialprojectbudget").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
     formContext.getAttribute("caps_provincial").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
     formContext.getAttribute("caps_totalprovincialbudget").addOnChange(CAPS.ProjectTracker.ShowBudgetMissmatch);
+
+    formContext.getControl("Subgrid_5").addOnLoad(CAPS.ProjectTracker.CalculateTotalCashFlowFields);
+
+    //Design Capacity Checks
+    CAPS.ProjectTracker.ValidateKindergartenDesignCapacity(executionContext);
+    formContext.getAttribute("caps_designcapacitykindergarten").addOnChange(CAPS.ProjectTracker.ValidateKindergartenDesignCapacity);
+
+    CAPS.ProjectTracker.ValidateElementaryDesignCapacity(executionContext);
+    formContext.getAttribute("caps_designcapacityelementary").addOnChange(CAPS.ProjectTracker.ValidateElementaryDesignCapacity);
+
+    CAPS.ProjectTracker.ValidateSecondaryDesignCapacity(executionContext);
+    formContext.getAttribute("caps_designcapacitysecondary").addOnChange(CAPS.ProjectTracker.ValidateSecondaryDesignCapacity);
+
+    //Show/Hide Facilities Grid
+    CAPS.ProjectTracker.ShowHideFacilities(executionContext);
+
+    //Show/Hide Project Closure Tab
+    CAPS.ProjectTracker.ShowHideProjectClosureTab(executionContext);
+    formContext.getAttribute("caps_projectclosure").addOnChange(CAPS.ProjectTracker.ShowHideProjectClosureTab);
 }
 
+/**
+Called on the SD form only, this function calls all other form functions that are SD form specific.
+*/
+CAPS.ProjectTracker.onLoadSD = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    //get project phase
+    var projectStatus = formContext.getAttribute("statuscode").getValue();
+
+    if (projectStatus === 1) {
+        //PDR development
+        //Hide COA, Funding Sources, Budget Breakdown, Change in Design Capacity, and Provincial Budget
+        formContext.ui.tabs.get("tab_general").sections.get("sec_coa").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_other_funding").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
+        formContext.ui.tabs.get("tab_general").sections.get("sec_provincial_budget").setVisible(false);
+    }
+}
+
+/**
+Shows either the facility lookup or the facility sub-grid depending on if multiple facilities are specified for the project.
+*/
+CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
+        formContext.getControl("caps_facilitysite").setVisible(true);
+    }
+    else {
+        formContext.getControl("caps_facilitysite").setVisible(false);
+    }
+
+    formContext.getControl("sgd_facilities").addOnLoad(function (gridContext) {
+        debugger;
+        var filteredRecordCount = gridContext.getFormContext().getControl("sgd_facilities").getGrid().getTotalRecordCount();
+
+        if (filteredRecordCount > 0) {
+            formContext.getControl("sgd_facilities").setVisible(true);
+            formContext.getControl("caps_facility").setVisible(false);
+        }
+        else {
+            formContext.getControl("sgd_facilities").setVisible(false);
+            formContext.getControl("caps_facility").setVisible(true);
+        }
+    });
+
+
+}
+
+/***
+This function is called on load of the project cash flow grid and calculates the total provincial cash flow and total agency projected values.
+*/
+CAPS.ProjectTracker.CalculateTotalCashFlowFields = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_totalagency,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
+        function success(result) {
+            debugger;
+            //var totalActualDraws = 0;
+            var totalProvincial = 0;
+            var totalAgency = 0;
+            for (var i = 0; i < result.entities.length; i++) {
+                if (result.entities[i].statecode == 0) {
+                    totalProvincial += result.entities[i].caps_totalprovincial;
+                }
+                else {
+                    totalProvincial += result.entities[i].caps_totalactualdraws;
+                }
+                totalAgency += result.entities[i].caps_totalagency;
+            }
+
+            // perform operations on record retrieval
+            formContext.getAttribute('caps_totalagencyprojected').setValue(totalAgency);
+            formContext.getAttribute('caps_totalprovincialcashflow').setValue(totalProvincial);
+
+        },
+        function (error) {
+            console.log(error.message);
+            // handle error conditions
+        }
+    );
+}
+
+/***
+This function validates that the kindergarten design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+***/
+CAPS.ProjectTracker.ValidateKindergartenDesignCapacity = function (executionContext) {
+    
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_designcapacitykindergarten").getValue();
+    var validateDesignCapacityKRequest = new CAPS.ProjectTracker.ValidateDesignCapacityRequest("Kindergarten", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'KINDERGARTEN DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('KINDERGARTEN DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+}
+
+/***
+This function validates that the elementary design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+**/
+CAPS.ProjectTracker.ValidateElementaryDesignCapacity = function (executionContext) {
+    
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_designcapacityelementary").getValue();
+    var validateDesignCapacityKRequest = new CAPS.ProjectTracker.ValidateDesignCapacityRequest("Elementary", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'ELEMENTARY DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('ELEMENTARY DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+};
+
+/***
+This function validates that the secondary design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+**/
+CAPS.ProjectTracker.ValidateSecondaryDesignCapacity = function (executionContext) {
+    
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_designcapacitysecondary").getValue();
+    var validateDesignCapacityKRequest = new CAPS.ProjectTracker.ValidateDesignCapacityRequest("Secondary", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'SECONDARY DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('SECONDARY DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+};
+
+CAPS.ProjectTracker.ValidateDesignCapacityRequest = function (capacityType, capacityCount) {
+    this.Type = capacityType;
+    this.Count = capacityCount;
+};
+
+CAPS.ProjectTracker.ValidateDesignCapacityRequest.prototype.getMetadata = function () {
+    return {
+        boundParameter: null,
+        parameterTypes: {
+            "Type": {
+                "typeName": "Edm.String",
+                "structuralProperty": 1
+            },
+            "Count": {
+                "typeName": "Edm.Int32",
+                "structuralProperty": 1
+            }
+        },
+        operationType: 0, // This is a function. Use '0' for actions and '2' for CRUD
+        operationName: "caps_ValidateDesignCapacity"
+    };
+};
 /**
  * Function to embed the SSRS Monthly Summary Report on the form.
  * @param {any} formContext the form context
  */
 CAPS.ProjectTracker.showSummaryReport = function (formContext) {    
-    debugger;
     var requestUrl = "/api/data/v9.1/EntityDefinitions?$filter=LogicalName eq 'caps_projecttracker'&$select=ObjectTypeCode";
 
     var globalContext = Xrm.Utility.getGlobalContext();
@@ -52,7 +271,6 @@ CAPS.ProjectTracker.showSummaryReport = function (formContext) {
         if (this.readyState === 4) {
             req.onreadystatechange = null;
             if (this.status === 200) {
-                debugger;
                 var result = JSON.parse(this.response);
                 var objectTypeCode = result.value[0].ObjectTypeCode;
                 //use retrieved objectTypeCode
@@ -89,7 +307,6 @@ CAPS.ProjectTracker.showSummaryReport = function (formContext) {
  * @param {any} formContext the form context
  */
 CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
-    debugger;
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
     if (submissionCategoryCode === 'AFG') {
@@ -136,6 +353,9 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
 
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
 
+    }
+    else if (submissionCategoryCode === 'SITE_ACQUISITION') {
+        formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
     }
 
 }
@@ -214,4 +434,19 @@ CAPS.ProjectTracker.ShowStaleDates = function (executionContext) {
                   );
 
 };
+
+CAPS.ProjectTracker.ShowHideProjectClosureTab = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    var projectClosure = formContext.getAttribute("caps_projectclosure").getValue();
+
+    if (projectClosure != null) {
+        //show tab
+        formContext.ui.tabs.get("tab_projectclosure").setVisible(true);
+    }
+    else {
+        formContext.ui.tabs.get("tab_projectclosure").setVisible(false);
+    }
+}
 

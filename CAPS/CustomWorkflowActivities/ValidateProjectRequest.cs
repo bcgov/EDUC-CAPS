@@ -64,7 +64,7 @@ namespace CustomWorkflowActivities
             if (!projectRequest.caps_PublishProject.GetValueOrDefault(false))
             {
                 isValid = false;
-                validationMessage.AppendLine("Project Request is a part of a capital plan, it needs to be published in order to be submitted.");
+                validationMessage.AppendLine("Project Request needs to be published in order to be submitted.");
             } 
             #endregion
 
@@ -91,12 +91,12 @@ namespace CustomWorkflowActivities
                 catch(Exception ex)
                 {
                     isValid = false;
-                    validationMessage.AppendLine("Schedule B failed to run sucessfully.  Please manually trigger the process by clicking the button to see the detailed error.");
+                    validationMessage.AppendLine("Preliminary Budget failed to run sucessfully.  Please manually trigger the process by clicking the button to see the detailed error.");
                 }
             }
             #endregion
 
-            tracingService.Trace("{0}", "Check Cash Fully Allocated");
+            
             #region Check Cash Fully Allocated
             //Check that cash flow is fully allocated if needed
             if (submissionCategory.caps_RequireCostAllocation.GetValueOrDefault(false))
@@ -112,6 +112,52 @@ namespace CustomWorkflowActivities
                         tracingService.Trace("Total Estimated Expenditures: {0}", estimatedExpenditures);
                         isValid = false;
                         validationMessage.AppendLine("Total Project Cost is not fully allocated.");
+                    }
+                }
+            }
+            #endregion
+
+            tracingService.Trace("{0}", "Check Cash Only in Current and Future Years based on Capital Plan year");
+            #region Check Cash Only in Current and Future Years based on Capital Plan year
+            //Check if Major Project has cash flow in first 5 years
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
+            {
+                if (projectRequest.caps_Submission != null
+                    && projectRequest.caps_Projectyear != callForSubmission.caps_CapitalPlanYear)
+                {
+                    //get capital plan year
+                    var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
+
+                    int startYear = capitalPlanYear.edu_StartYear.Value;
+                    tracingService.Trace("Start Year: {0}", startYear);
+
+                    var fetchXML = "<fetch version = '1.0' output-format = 'xml-platform' mapping = 'logical' distinct = 'false' >" +
+                                    "<entity name = 'caps_estimatedyearlycapitalexpenditure' >" +
+                                        "<attribute name = 'caps_estimatedyearlycapitalexpenditureid' />" +
+                                        "<attribute name = 'caps_name' />" +
+                                        "<attribute name = 'createdon' />" +
+                                        "<order attribute = 'caps_name' descending = 'false' />" +
+                                        "<filter type = 'and' >" +
+                                            "<condition attribute = 'statecode' operator= 'eq' value = '0' />" +
+                                            "<condition attribute = 'caps_project' operator= 'eq' value = '{" + recordId + "}' />" +
+                                           // "<condition attribute = 'caps_yearlyexpenditure' operator='not-null' />" +
+                                            "<condition attribute = 'caps_yearlyexpenditure' operator='gt' value='0' />" +
+                                        "</filter>" +
+                                        "<link-entity name='edu_year' from='edu_yearid' to='caps_year' link-type='inner' alias='ad' >" +
+                                            "<filter type = 'and' >" +
+                                                "<condition attribute = 'edu_startyear' operator= 'lt' value='" + startYear + "' />" +
+                                                "<condition attribute = 'edu_type' operator= 'eq' value = '757500000' />" +
+                                            "</filter></link-entity></entity></fetch>";
+
+                    //Find out if there is cash flow in any of those 5 years
+                    var estimatedExpenditures = service.RetrieveMultiple(new FetchExpression(fetchXML));
+
+                    tracingService.Trace("Record Count: {0}", estimatedExpenditures.Entities.Count());
+
+                    if (estimatedExpenditures.Entities.Count() > 0)
+                    {
+                        isValid = false;
+                        validationMessage.AppendLine("There is cashflow entered in years preceeding the Capital Plan Start Year.  Please adjust or remove the project request from the capital plan.");
                     }
                 }
             }
@@ -166,7 +212,7 @@ namespace CustomWorkflowActivities
                     if (relatedFacilities.Entities.Count() < 1)
                     {
                         isValid = false;
-                        validationMessage.AppendLine("Project request is part of a capital plan, it needs at least one facility in order to be submitted.");
+                        validationMessage.AppendLine("Project request needs at least one facility in order to be submitted.");
                     }
                 }
             } 
@@ -230,29 +276,68 @@ namespace CustomWorkflowActivities
                         validationMessage.AppendLine("There are no estimated yearly expenditures in the first 5 years.  Please adjust or remove the project request from the capital plan.");
                     }
                 }
-            } 
+            }
             #endregion
 
-            //Check if major project has occupancy year before anticipated start year
-
-            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major 
-                && projectRequest.caps_AnticipatedOccupancyYear != null
-                && projectRequest.caps_Projectyear != null)
+            #region Check if Major Project has occupancy year before anticipated start year
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major
+        && projectRequest.caps_AnticipatedOccupancyYear != null
+        && projectRequest.caps_Projectyear != null)
             {
                 //get both anticipated occupancy year and project year
                 var anticipatedOccupancyYear = service.Retrieve(projectRequest.caps_AnticipatedOccupancyYear.LogicalName, projectRequest.caps_AnticipatedOccupancyYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
 
                 var anticipatedStartYear = service.Retrieve(projectRequest.caps_Projectyear.LogicalName, projectRequest.caps_Projectyear.Id, new ColumnSet("edu_startyear")) as edu_Year;
-                
+
                 if (anticipatedOccupancyYear.edu_StartYear < anticipatedStartYear.edu_StartYear)
                 {
                     isValid = false;
                     validationMessage.AppendLine("Anticipated Occupancy Year should be equal or After Anticipated Project Start Year.");
                 }
-                  
+
+            }
+            #endregion
+
+            //Check if major project has any prfs options with a start date before the capital plan year
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
+            {
+                if (projectRequest.caps_Submission != null)
+                {
+                    //get capital plan year
+                    var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
+
+                    int startYear = capitalPlanYear.edu_StartYear.Value;
+
+                    var fetchXMLPRFS = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
+                                        "<entity name=\"caps_prfsalternativeoption\" > "+
+                                           "<attribute name=\"caps_prfsalternativeoptionid\" /> "+
+                                            "<attribute name=\"caps_name\" /> "+
+                                            "<attribute name=\"createdon\" /> "+
+                                             " <order attribute=\"caps_name\" descending=\"false\" /> "+
+                                                 "<filter type=\"and\" > "+
+                                                    "<condition attribute = \"statuscode\" operator=\"eq\" value = \"1\" /> "+
+                                                        "<condition attribute = \"caps_projectrequest\" operator= \"eq\"  value = '{" + recordId + "}' /> " +
+                                                              "</filter > " +
+                                                              "<link-entity name = \"edu_year\" from = \"edu_yearid\" to = \"caps_anticipatedoptionstartyear\" link-type = \"inner\" alias = \"ad\" > "+
+                                                                            " <filter type = \"and\" > "+
+                                                                               " <condition attribute = \"edu_startyear\" operator= \"lt\" value = \""+ startYear + "\" /> "+
+                                                                                 " </filter > " +
+                                                                                "</link-entity > " +
+                                                                              "</entity > " +
+                                                                            "</fetch > ";
+                    //Find out if there are any PRFSs with early start dates
+                    var prfsOptions = service.RetrieveMultiple(new FetchExpression(fetchXMLPRFS));
+
+                    if (prfsOptions.Entities.Count() > 0)
+                    {
+                        isValid = false;
+                        validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the PRFS Alternative Option from the Project Request.");
+                    }
+                }
             }
 
-            this.valid.Set(executionContext, isValid);
+
+                    this.valid.Set(executionContext, isValid);
             this.message.Set(executionContext, validationMessage.ToString());
         }
     }

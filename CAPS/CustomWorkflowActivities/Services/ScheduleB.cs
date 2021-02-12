@@ -67,9 +67,9 @@ namespace CustomWorkflowActivities.Services
         internal decimal MunicipalFees { get; set; }
         internal Guid Community { get; set; }
         internal decimal? ConstructionSeismicUpgrade { get; set; }
-        internal decimal? ConstructionSPIRAdjustment { get; set; }
-        internal decimal? ConstructionNonStructuralSeismicUpgrade { get; set; }
-        internal decimal? SPIRFees { get; set; } //5.1b
+        //internal decimal? ConstructionSPIRAdjustment { get; set; }
+        //internal decimal? ConstructionNonStructuralSeismicUpgrade { get; set; }
+       // internal decimal? SPIRFees { get; set; } //5.1b
         internal decimal FreightRateAllowance { get; set; }
         internal decimal Demolition { get; set; }
         internal decimal AbnormalTopography { get; set; }
@@ -100,6 +100,7 @@ namespace CustomWorkflowActivities.Services
             tracingService.Trace("{0}", "Starting ScheduleB.Calculate");
 
             //variables
+            decimal constructionNewReplacement = 0;
             decimal spaceAllocationExisting = 0;
             decimal constructionRenovations = 0;
             decimal constructionSiteDevelopmentAllowance = 0;
@@ -127,8 +128,8 @@ namespace CustomWorkflowActivities.Services
             {
                 //default seismic fields to 0
                 ConstructionSeismicUpgrade = 0;
-                ConstructionSPIRAdjustment = 0;
-                ConstructionNonStructuralSeismicUpgrade = 0;
+                //ConstructionSPIRAdjustment = 0;
+                //ConstructionNonStructuralSeismicUpgrade = 0;
             }
 
             //Get School Type
@@ -188,7 +189,10 @@ namespace CustomWorkflowActivities.Services
             #region 4. Construction Items -- DONE
             tracingService.Trace("{0}", "Section 4");
             //Set Construction: New/Replacement = total space allocation * unit rate
-            decimal constructionNewReplacement = spaceAllocationTotalNewReplacement * constructionUnitRate;
+            if (BudgetCalculationType != (int)caps_BudgetCalculationType.SeismicUpgrade)
+            {
+                constructionNewReplacement = spaceAllocationTotalNewReplacement * constructionUnitRate;
+            }
 
             tracingService.Trace("Construction - New/Replacement: {0}", constructionNewReplacement);
             result.ConstructionNewReplacement = constructionNewReplacement;
@@ -250,11 +254,11 @@ namespace CustomWorkflowActivities.Services
             //Set Total Construction Budget = All fields in region
             if (BudgetCalculationType == (int)caps_BudgetCalculationType.SeismicUpgrade)
             {
-                constructionTotalConstructionBudget = ConstructionSeismicUpgrade.GetValueOrDefault(0) + ConstructionSPIRAdjustment.GetValueOrDefault(0) + ConstructionNonStructuralSeismicUpgrade.GetValueOrDefault(0);
+                constructionTotalConstructionBudget = ConstructionSeismicUpgrade.GetValueOrDefault(0);
             }
             else
             {
-                constructionTotalConstructionBudget = constructionNewReplacement + constructionRenovations + constructionSiteDevelopmentAllowance + constructionSiteDevelopmentLocationAllowance + ConstructionSeismicUpgrade.GetValueOrDefault(0) + ConstructionSPIRAdjustment.GetValueOrDefault(0) + ConstructionNonStructuralSeismicUpgrade.GetValueOrDefault(0);
+                constructionTotalConstructionBudget = constructionNewReplacement + constructionRenovations + constructionSiteDevelopmentAllowance + constructionSiteDevelopmentLocationAllowance + ConstructionSeismicUpgrade.GetValueOrDefault(0);
             }
 
             tracingService.Trace("Total Construction Budget: {0}", constructionTotalConstructionBudget);
@@ -306,7 +310,7 @@ namespace CustomWorkflowActivities.Services
                 BudgetCalculationType == (int)caps_BudgetCalculationType.SeismicUpgrade)
             {
                 
-                softCostContingencySeismic = GetBudgetCalculationValue("Post Contract Contingency Seismic") * (ConstructionSeismicUpgrade.GetValueOrDefault(0) + ConstructionSPIRAdjustment.GetValueOrDefault(0) + ConstructionNonStructuralSeismicUpgrade.GetValueOrDefault(0));
+                softCostContingencySeismic = GetBudgetCalculationValue("Post Contract Contingency Seismic") * (ConstructionSeismicUpgrade.GetValueOrDefault(0));
             }
 
             tracingService.Trace("Post-Contract Contingency - Renovations: {0}", softCostContingencyRenovations);
@@ -353,7 +357,7 @@ namespace CustomWorkflowActivities.Services
             tracingService.Trace("Payable Taxes: {0}", softCostPayableTaxes);
             result.PayableTaxes = softCostPayableTaxes;
 
-            decimal totalOwnersCost = softCostDesignFees + SPIRFees.GetValueOrDefault(0) + softCostContingencyNewReplacement + softCostContingencyRenovations + softCostContingencySeismic + MunicipalFees + softCostEquipmentAllowance + softCostWrapUpLiabilityInsurance + softCostPayableTaxes;
+            decimal totalOwnersCost = softCostDesignFees + softCostContingencyNewReplacement + softCostContingencyRenovations + softCostContingencySeismic + MunicipalFees + softCostEquipmentAllowance + softCostWrapUpLiabilityInsurance + softCostPayableTaxes;
 
             tracingService.Trace("Total Owners Costs: {0}", totalOwnersCost);
             
@@ -370,7 +374,7 @@ namespace CustomWorkflowActivities.Services
                 && IncludeNLC)
             {
                 //get ProjectLocationFactor and NLC Amount
-                NLCAmount = CalculateNLCAmount(ExistingAndDecreaseDesignCapacity, SchoolType, schoolTypeRecord.caps_Name);
+                NLCAmount = CalculateNLCAmount(ApprovedDesignCapacity, SchoolType, schoolTypeRecord.caps_Name);
                 NLCAmount = NLCAmount * ProjectLocationFactor;
             }
             result.NLCBudgetAmount = NLCAmount;
@@ -444,7 +448,7 @@ namespace CustomWorkflowActivities.Services
         {
             FilterExpression filterAnd = new FilterExpression();
             filterAnd.Conditions.Add(new ConditionExpression("caps_schooltype", ConditionOperator.Equal, schoolType));
-            filterAnd.Conditions.Add(new ConditionExpression("caps_designcapacity", ConditionOperator.GreaterEqual, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
+            filterAnd.Conditions.Add(new ConditionExpression("caps_designcapacity", ConditionOperator.GreaterEqual, designCapacityRecord.Kindergarten+ designCapacityRecord.Elementary + designCapacityRecord.Secondary));
 
             QueryExpression query = new QueryExpression("caps_nlcfactor");
             query.ColumnSet.AddColumns("caps_designcapacity", "caps_budget");
@@ -455,7 +459,7 @@ namespace CustomWorkflowActivities.Services
 
             tracingService.Trace("Count of Results: {0}", results.Entities.Count);
 
-            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no NLC Factor record for the school type: {0} and design capacity: {1}.", schoolTypeName, designCapacityRecord.Elementary + designCapacityRecord.Secondary));
+            if (results.Entities.Count < 1) throw new Exception(string.Format("There is no NLC Factor record for the school type: {0} and design capacity: {1}.", schoolTypeName, designCapacityRecord.Kindergarten+ designCapacityRecord.Elementary + designCapacityRecord.Secondary));
 
             var nlcBudget = results.Entities[0].GetAttributeValue<int>("caps_budget");
 

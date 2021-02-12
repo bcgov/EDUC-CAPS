@@ -59,9 +59,15 @@ namespace CustomWorkflowActivities
                 var amountValue = this.amount.Get(executionContext);
                 var statusValue = (this.status.Get(executionContext) == "ACTUAL") ? (int)caps_ActualDraw_StatusCode.Approved : (int)caps_ActualDraw_StatusCode.Pending;
 
+
+                tracingService.Trace("Processed Date: {0}", processDateValue);
+                tracingService.Trace("Paid Date: {0}", paymentDateValue);
+
                 //Parse values
                 var dateProcessed = DateTime.ParseExact(processDateValue, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                tracingService.Trace("Line {0}", "68");
                 var datePaid = DateTime.ParseExact(paymentDateValue, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                tracingService.Trace("Line {0}", "70");
 
                 tracingService.Trace("Processed Date: {0}", dateProcessed.ToShortDateString());
                 tracingService.Trace("Paid Date: {0}", datePaid.ToShortDateString());
@@ -70,6 +76,7 @@ namespace CustomWorkflowActivities
 
                 tracingService.Trace("Amount: {0}", paymentAmount);
                 tracingService.Trace("COA: {0}", coaValue);
+                tracingService.Trace("Revision: {0}", revisionValue);
 
                 //Get Project by COA number
                 QueryExpression query = new QueryExpression("caps_certificateofapproval");

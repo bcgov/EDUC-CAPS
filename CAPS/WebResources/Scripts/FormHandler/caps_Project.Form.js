@@ -22,10 +22,11 @@ const FORM_STATE = {
 const TIMELINE_TAB = "tab_timeline";
 const GENERAL_TAB = "General";
 const MINISTRY_REVIEW_TAB = "tab_ministry_review";
-//const CAPITAL_EXPENDITURE_TAB = "tab_Capital_Expenditure";
 const COST_MISSMATCH_NOTIFICATION = "Cost_Missmatch_Notification";
 const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
 const PRFS_INCOMPLETE_NOTIFICATION = "PRFS_Incomplete_Notification";
+const PRFS_NOSCHOOLS_NOTIFICATION = "PRFS_No_Surrounding_Schools_Notification";
+const PRFS_NOALTERNATIVES_NOTIFICATION = "PRFS_No_Alternatives_Notification";
 
 /**
  * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events.
@@ -108,8 +109,17 @@ CAPS.Project.onLoad = function (executionContext) {
             formContext.getAttribute("caps_potentialplanforvacantsite").addOnChange(CAPS.Project.ValidatePRFS);
 
             formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
+            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFS);
+
+            formContext.getControl("Subgrid_PRFS_Alt_Options").addOnLoad(CAPS.Project.ValidatePRFSAlternativeOptions);
+            formContext.getControl("sgd_surroundingschools").addOnLoad(CAPS.Project.ValidatePRFSSurroundingSchools);
+            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSAlternativeOptions);
+            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSSurroundingSchools);
 
             CAPS.Project.ValidatePRFS(executionContext);
+            CAPS.Project.ValidatePRFSAlternativeOptions(executionContext);
+            CAPS.Project.ValidatePRFSSurroundingSchools(executionContext);
+
         }
     }
 
@@ -137,6 +147,12 @@ CAPS.Project.onLoad = function (executionContext) {
         formContext.getControl("caps_ministryassessmentstatus").removeOption(200870000);
     }
 
+    //Hide Funding Awarded if not Minor
+    if (submissionCategoryCode == "ADDITION" || submissionCategoryCode == "DEMOLITION" || submissionCategoryCode == "NEW_SCHOOL" || submissionCategoryCode == "REPLACEMENT_RENOVATION" || submissionCategoryCode == "SEISMIC" || submissionCategoryCode == "SITE_ACQUISITION" || submissionCategoryCode == "BEP") {
+        formContext.getControl("caps_fundingawarded").setVisible(false);
+    }
+
+
     //Adding Schedule B Toggles & general setup of schedule B    
     CAPS.Project.SetupScheduleB(executionContext);
 
@@ -161,6 +177,33 @@ CAPS.Project.onLoad = function (executionContext) {
     CAPS.Project.ToggleLRFP(executionContext);
     formContext.getAttribute("caps_longrangefacilityplan").addOnChange(CAPS.Project.ToggleLRFP);
 
+    //Design Capacity Checks
+    CAPS.Project.ValidateKindergartenDesignCapacity(executionContext);
+    formContext.getAttribute("caps_changeindesigncapacitykindergarten").addOnChange(CAPS.Project.ValidateKindergartenDesignCapacity);
+
+    CAPS.Project.ValidateElementaryDesignCapacity(executionContext);
+    formContext.getAttribute("caps_changeindesigncapacityelementary").addOnChange(CAPS.Project.ValidateElementaryDesignCapacity);
+
+    CAPS.Project.ValidateSecondaryDesignCapacity(executionContext);
+    formContext.getAttribute("caps_changeindesigncapacitysecondary").addOnChange(CAPS.Project.ValidateSecondaryDesignCapacity);
+
+}
+
+/**
+ * Prevents autosave if the global prevent autosave flag is set
+ * @param {any} executionContext execution context
+ */
+CAPS.Project.onSave = function (executionContext) {
+    var eventArgs = executionContext.getEventArgs();
+
+    if (CAPS.Project.PREVENT_AUTO_SAVE) {
+
+        //auto-save = 70
+        if (eventArgs.getSaveMode() === 70) {
+            eventArgs.preventDefault();
+        }
+    }
+
 }
 
 /**
@@ -171,7 +214,7 @@ CAPS.Project.UpdateTotalAllocated = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
-    Xrm.WebApi.retrieveMultipleRecords("caps_estimatedyearlycapitalexpenditure", "?$select=caps_yearlyexpenditure&$filter=caps_Project/caps_projectid eq "+id).then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_estimatedyearlycapitalexpenditure", "?$select=caps_yearlyexpenditure&$filter=caps_Project/caps_projectid eq "+id+" and statecode eq 0").then(
         function success(result) {
             var totalAllocated = 0;
             for (var i = 0; i < result.entities.length; i++) {
@@ -309,7 +352,6 @@ CAPS.Project.SetMultipleFacility = function (executionContext) {
  * @param {any} executionContext execution context
  */
 CAPS.Project.SetProjectTypeValue = function (executionContext) {
-
     var formContext = executionContext.getFormContext();
 
     //Get Submission Category
@@ -328,22 +370,7 @@ CAPS.Project.SetProjectTypeValue = function (executionContext) {
     }
 }
 
-/**
- * Prevents autosave if the global prevent autosave flag is set
- * @param {any} executionContext execution context
- */
-CAPS.Project.onSave = function (executionContext) {    
-    var eventArgs = executionContext.getEventArgs();
 
-    if (CAPS.Project.PREVENT_AUTO_SAVE) {
-
-        //auto-save = 70
-        if (eventArgs.getSaveMode() === 70) {
-            eventArgs.preventDefault();
-        }
-    }
-    
-}
 
 /**
  * Sets the projects School District to the user's business unit's school district if it's set
@@ -525,7 +552,7 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
     var sumOfEstimatedExpenditures = formContext.getAttribute("caps_totalallocated").getValue();
 
     if (totalProjectCost !== null && totalProjectCost !== sumOfEstimatedExpenditures) {
-        formContext.ui.setFormNotification('Total Project Cost Not Fully Allocated', 'WARNING', COST_MISSMATCH_NOTIFICATION);
+        formContext.ui.setFormNotification('Total Project Cost not fully allocated  on the Cashflow tab.', 'WARNING', COST_MISSMATCH_NOTIFICATION);
         //formContext.getControl("caps_totalprojectcost").setNotification('Total Project Cost Not Fully Allocated', COST_MISSMATCH_NOTIFICATION);
     }
     else {
@@ -626,7 +653,114 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
                 }
             );
         }
+}
+
+/**
+This function checks if there is at least one PRFS alternative option specified if there is cashflow in the first 3 years.
+*/
+CAPS.Project.ValidatePRFSAlternativeOptions = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    //call action
+    var req = {};
+    var target = { entityType: "caps_project", id: recordId };
+    req.entity = target;
+
+    req.getMetadata = function () {
+        return {
+            boundParameter: "entity",
+            operationType: 0,
+            operationName: "caps_ValidatePRFSAlternativeOptions",
+            parameterTypes: {
+                "entity": {
+                    "typeName": "mscrm.caps_project",
+                    "structuralProperty": 5
+                }
+            }
+        };
+    };
+
+    Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            debugger;
+            if (result.ok) {
+                return result.json().then(
+                    function (response) {
+
+                        if (response.displayError) {
+                            formContext.ui.setFormNotification('No PRFS Alternative Options have been provided on the PRFS tab.', 'WARNING', PRFS_NOALTERNATIVES_NOTIFICATION);
+                        }
+                        else {
+                            formContext.ui.clearFormNotification(PRFS_NOALTERNATIVES_NOTIFICATION);
+                        }
+                    });
+            }
+        },
+        function (e) {
+            formContext.ui.clearFormNotification(PRFS_NOALTERNATIVES_NOTIFICATION);
+        }
+    );
+}
+
+/**
+This function checks if there is at least one surrounding school specified if there is cashflow in the first 3 years.
+*/
+CAPS.Project.ValidatePRFSSurroundingSchools = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    //call action
+    var req = {};
+    var target = { entityType: "caps_project", id: recordId };
+    req.entity = target;
+
+    req.getMetadata = function () {
+        return {
+            boundParameter: "entity",
+            operationType: 0,
+            operationName: "caps_ValidatePRFSSurroundingSchools",
+            parameterTypes: {
+                "entity": {
+                    "typeName": "mscrm.caps_project",
+                    "structuralProperty": 5
+                }
+            }
+        };
+    };
+
+    Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            debugger;
+            if (result.ok) {
+                return result.json().then(
+                    function (response) {
+
+                        if (response.displayError) {
+                            formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'WARNING', PRFS_NOSCHOOLS_NOTIFICATION);
+                        }
+                        else {
+                            formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
+                        }
+                    });
+            }
+        },
+        function (e) {
+            formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
+        }
+    );
+    /*
+    var formContext = executionContext.getFormContext();
+
+    var filteredRecordCount = formContext.getControl("sgd_surroundingschools").getGrid().getTotalRecordCount();
+
+    if (filteredRecordCount < 1) {
+        formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'WARNING', PRFS_NOSCHOOLS_NOTIFICATION);
     }
+    else {
+        formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
+    }*/
+}
 
 /**
  * This function waits for the Facilities subgrid to load and adds an event listener to the grid for validating that at least one facility was added.
@@ -917,7 +1051,7 @@ CAPS.Project.ToggleLRFP = function (executionContext) {
 }
 
 /**
- * This function makes the Bus New Route Information file field manadatory or if the issue type is New Route.
+ * This function makes the Bus New Route Information file field manadatory or if the issue type is New Route.  It also makes inspection report mandatory if issue type is Mechanical or Safety
  * @param {any} executionContext execution context
  */
 CAPS.Project.ToggleBusIssueType = function (executionContext) {
@@ -930,6 +1064,133 @@ CAPS.Project.ToggleBusIssueType = function (executionContext) {
     else {
         formContext.getAttribute("caps_bus_newrouteinformation").setRequiredLevel("none");
     }
+
+    //Mechanical = 100000000; Safety = 100000001
+    if (formContext.getAttribute("caps_issuetype").getValue() === 100000000 || formContext.getAttribute("caps_issuetype").getValue() === 100000001) {
+        formContext.getAttribute("caps_bus_inspectionreport").setRequiredLevel("required");
+    }
+    else {
+        formContext.getAttribute("caps_bus_inspectionreport").setRequiredLevel("none");
+    }
 }
+
+/***
+This function validates that the kindergarten design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+***/
+CAPS.Project.ValidateKindergartenDesignCapacity = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_changeindesigncapacitykindergarten").getValue();
+    var validateDesignCapacityKRequest = new CAPS.Project.ValidateDesignCapacityRequest("Kindergarten", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    debugger;
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'KINDERGARTEN DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('KINDERGARTEN DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+}
+
+/***
+This function validates that the elementary design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+**/
+CAPS.Project.ValidateElementaryDesignCapacity = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_changeindesigncapacityelementary").getValue();
+    var validateDesignCapacityKRequest = new CAPS.Project.ValidateDesignCapacityRequest("Elementary", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    debugger;
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'ELEMENTARY DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('ELEMENTARY DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+};
+
+/***
+This function validates that the secondary design capacity is a multiple of the specified design capacity and shows a warning if it isn't.
+**/
+CAPS.Project.ValidateSecondaryDesignCapacity = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var designCapacity = formContext.getAttribute("caps_changeindesigncapacitysecondary").getValue();
+    var validateDesignCapacityKRequest = new CAPS.Project.ValidateDesignCapacityRequest("Secondary", designCapacity);
+
+    Xrm.WebApi.online.execute(validateDesignCapacityKRequest).then(
+    function (result) {
+        if (result.ok) {
+
+            return result.json().then(
+                function (response) {
+                    debugger;
+                    if (!response.IsValid) {
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'SECONDARY DESIGN WARNING');
+                    }
+                    else {
+                        formContext.ui.clearFormNotification('SECONDARY DESIGN WARNING');
+                    }
+                });
+        }
+    },
+    function (error) {
+        console.log(error.message);
+        // handle error conditions
+    }
+);
+};
+
+CAPS.Project.ValidateDesignCapacityRequest = function (capacityType, capacityCount) {
+    this.Type = capacityType;
+    this.Count = capacityCount;
+};
+
+CAPS.Project.ValidateDesignCapacityRequest.prototype.getMetadata = function () {
+    return {
+        boundParameter: null,
+        parameterTypes: {
+            "Type": {
+                "typeName": "Edm.String",
+                "structuralProperty": 1
+            },
+            "Count": {
+                "typeName": "Edm.Int32",
+                "structuralProperty": 1
+            }
+        },
+        operationType: 0, // This is a function. Use '0' for actions and '2' for CRUD
+        operationName: "caps_ValidateDesignCapacity"
+    };
+};
 
 

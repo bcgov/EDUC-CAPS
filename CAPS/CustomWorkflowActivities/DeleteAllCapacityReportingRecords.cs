@@ -38,7 +38,7 @@ namespace CustomWorkflowActivities
                     Settings = new ExecuteMultipleSettings()
                     {
                         ContinueOnError = true,
-                        ReturnResponses = true
+                        ReturnResponses = false
                     },
                     // Create an empty organization request collection.
                     Requests = new OrganizationRequestCollection()
