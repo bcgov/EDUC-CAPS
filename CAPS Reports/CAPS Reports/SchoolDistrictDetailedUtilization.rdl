@@ -26,7 +26,7 @@
     &lt;attribute name="edu_number" /&gt;
     &lt;attribute name="edu_internalcode" /&gt;
     &lt;attribute name="edu_commonname" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
@@ -85,6 +85,9 @@
         <Field Name="edu_commonname">
           <DataField>edu_commonname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_commonname.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -3481,7 +3484,6 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>ReportingRecords</DataSetName>
             <Top>0.0441cm</Top>
-            <Left>0cm</Left>
             <Height>16.55562cm</Height>
             <Width>10.54271cm</Width>
             <Style>
@@ -3520,7 +3522,6 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>15.30646cm</Left>
               <Height>0.6cm</Height>
               <Width>8.18854cm</Width>
@@ -3614,7 +3615,6 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>17.34375cm</Left>
               <Height>0.6cm</Height>
               <Width>6.15125cm</Width>
@@ -3646,7 +3646,6 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.09701cm</Top>
-              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>
@@ -3692,7 +3691,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
         <DataSetReference>
           <DataSetName>SchoolDistricts</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
     </ReportParameter>

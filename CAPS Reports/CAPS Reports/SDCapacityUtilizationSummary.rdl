@@ -26,7 +26,7 @@
     &lt;attribute name="edu_number" /&gt;
     &lt;attribute name="edu_internalcode" /&gt;
     &lt;attribute name="edu_commonname" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
@@ -85,6 +85,9 @@
         <Field Name="edu_commonname">
           <DataField>edu_commonname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_commonname.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -2752,7 +2755,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>11.37713cm</Left>
               <Height>0.6cm</Height>
               <Width>6.13771cm</Width>
@@ -2785,7 +2787,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>0.02967cm</Left>
               <Height>0.23622in</Height>
               <Width>1.33854in</Width>
@@ -2866,7 +2867,7 @@
         <DataSetReference>
           <DataSetName>SchoolDistrict</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
     </ReportParameter>

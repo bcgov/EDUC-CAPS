@@ -231,7 +231,9 @@
   &lt;entity name="edu_schooldistrict"&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+  &lt;attribute name="edu_commonname" /&gt;
+&lt;attribute name="edu_number" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -243,6 +245,17 @@
         <Field Name="edu_schooldistrictid">
           <DataField>edu_schooldistrictid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_commonname">
+          <DataField>edu_commonname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_number">
+          <DataField>edu_number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SDLabel">
+          <Value>=Fields!edu_number.Value &amp; " - " &amp; Fields!edu_commonname.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -409,7 +422,7 @@
                                 <TextRun>
                                   <Value>=sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -493,7 +506,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -513,6 +526,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -576,7 +590,7 @@
                                 <TextRun>
                                   <Value>=sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -671,7 +685,7 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_amountValue.Value)</Value>
                                   <Style>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>#333333</Color>
                                   </Style>
                                 </TextRun>
@@ -697,6 +711,7 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -3088,7 +3103,7 @@
         <DataSetReference>
           <DataSetName>SchoolDistricts</DataSetName>
           <ValueField>edu_schooldistrictid</ValueField>
-          <LabelField>edu_name</LabelField>
+          <LabelField>SDLabel</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>
