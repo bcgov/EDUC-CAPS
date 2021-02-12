@@ -480,7 +480,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=iif(isnothing(Fields!Role_roleid.Value),"","X")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -529,6 +531,7 @@
                               <TextRun>
                                 <Value>=Fields!Role_name.Value</Value>
                                 <Style>
+                                  <FontFamily>Arial</FontFamily>
                                   <Color>White</Color>
                                 </Style>
                               </TextRun>
