@@ -220,23 +220,10 @@
                 </TextRuns>
                 <Style />
               </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>CPS Budget and CAPS Projection Comparision</Value>
-                    <Style>
-                      <FontFamily>Segoe UI Light</FontFamily>
-                      <FontSize>16pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
             <Left>5.4737cm</Left>
-            <Height>1.02306in</Height>
+            <Height>0.60639in</Height>
             <Width>5.57292in</Width>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
@@ -598,7 +585,8 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "EMERGENT_CLAIMS"
                                   <Value>=ReportItems!Textbox5.Value - ReportItems!Textbox27.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0</Format>
+                                    <Color>=iif(ReportItems!Textbox11.Value&gt;0,"red","black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -615,7 +603,6 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "EMERGENT_CLAIMS"
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
-                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -675,6 +662,7 @@ OR Fields!FUNDINGPROGRAM_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalbudgetValue.Value),0.00), "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -711,7 +699,9 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BEP"
 OR Fields!PROJECT_caps_fundingprogramcode.Value = "AFG"
 OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalactualdrawsValue.Value),0.00), "ProjectCashFlows")</Value>
-                                  <Style />
+                                  <Style>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -749,6 +739,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalprovincialValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -781,7 +772,8 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=ReportItems!Textbox13.Value - ReportItems!Textbox40.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0</Format>
+                                    <Color>=iif(ReportItems!Textbox14.Value&gt;0,"red","black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -886,6 +878,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalactualdrawsValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -919,7 +912,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalprovincialValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -952,7 +945,8 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=ReportItems!Textbox18.Value - ReportItems!Textbox20.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0</Format>
+                                    <Color>=iif(ReportItems!Textbox15.Value&gt;0,"red","black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1058,6 +1052,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalactualdrawsValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1092,6 +1087,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalprovincialValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1195,6 +1191,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=Sum(Fields!caps_totalbudgetValue.Value, "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1227,7 +1224,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=Sum(Fields!caps_totalactualdrawsValue.Value, "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1260,7 +1257,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=Sum(Fields!caps_totalprovincialValue.Value, "ProjectCashFlows")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1293,7 +1290,8 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=ReportItems!Textbox23.Value - ReportItems!Textbox25.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <Format>#,0</Format>
+                                    <TextDecoration>=iif(ReportItems!Textbox16.Value&gt;0,"red","black")</TextDecoration>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1313,6 +1311,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1334,12 +1333,19 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif((sum(iif(Fields!PROJECT_caps_fundingprogramcode.Value = "" 
+,cdbl(Fields!caps_totalactualdrawsValue.Value),0.00), "ProjectCashFlows")&gt;0) AND
+(sum(iif(Fields!PROJECT_caps_fundingprogramcode.Value = "" 
+,cdbl(Fields!caps_totalprovincialValue.Value),0.00), "ProjectCashFlows")&gt;0),false,true)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectCashFlows</DataSetName>
-            <Top>1.45708in</Top>
+            <Top>1.0977in</Top>
             <Height>1.5in</Height>
             <Width>8.06375in</Width>
             <ZIndex>1</ZIndex>
@@ -1379,7 +1385,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox83</rd:DefaultName>
-            <Top>2.77495cm</Top>
+            <Top>1.7957cm</Top>
             <Left>5.4737cm</Left>
             <Height>0.6cm</Height>
             <Width>6.87536cm</Width>
