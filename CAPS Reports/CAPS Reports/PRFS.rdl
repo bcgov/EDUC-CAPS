@@ -13110,7 +13110,7 @@
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Value>
+                                          <Value>=(Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -13135,6 +13135,7 @@
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -15080,7 +15081,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_schbtotalspaceallocation &amp; "m²"</Value>
+                                      <Value>=IIF(Fields!caps_schbtotalspaceallocation.Value = "", 0, Fields!caps_schbtotalspaceallocation.Value) &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15150,7 +15151,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue) &amp; "m²"</Value>
+                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue.Value) &amp; "m²"</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>#,0</Format>
@@ -15172,7 +15173,6 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
-                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -17192,7 +17192,9 @@
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>caps_sracostestimateValue</rd:DefaultName>

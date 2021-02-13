@@ -5,7 +5,7 @@ CAPS.ProjectClosure = CAPS.ProjectClosure || {};
 
 const PROJECT_STATE = {
     DRAFT: 1,
-    SUBMIT: 2,
+    SUBMIT: 200870001,
     COMPLETE: 200870000
 };
 
@@ -24,7 +24,7 @@ CAPS.ProjectClosure.Submit = function (primaryControl) {
 
                 if (formContext.getAttribute("statuscode").getValue() === PROJECT_STATE.DRAFT) {
 
-                    formContext.getAttribute("statecode").setValue(1);
+                    formContext.getAttribute("statecode").setValue(0);
                     formContext.getAttribute("statuscode").setValue(PROJECT_STATE.SUBMIT);
                     formContext.data.entity.save();
                 }

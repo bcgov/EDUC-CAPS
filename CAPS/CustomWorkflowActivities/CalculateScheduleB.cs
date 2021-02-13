@@ -65,10 +65,7 @@ namespace CustomWorkflowActivities
                                         , "caps_includenlc"
                                         , "caps_communitylocation"
                                         , "caps_municipalfees"
-                                        , "caps_constructioncostsnonstructuralseismicupgr"
                                         , "caps_constructioncostsspir"
-                                        , "caps_constructioncostsspiradjustments"
-                                        , "caps_seismicprojectidentificationreportfees"
                                         , "caps_hostschooldistrict"
                                         , "caps_changeindesigncapacitykpositive"
                                         , "caps_changeindesigncapacityepositive"
@@ -143,11 +140,11 @@ namespace CustomWorkflowActivities
             scheduleB.ApprovedDesignCapacity = new Services.DesignCapacity(subtotalDesignK + increaseDesignK, subtotalDesignE + increaseDesignE, subtotalDesignS + increaseDesignS);
 
             scheduleB.MunicipalFees = projectRequestRecord.caps_MunicipalFees.GetValueOrDefault(0);
-            scheduleB.ConstructionNonStructuralSeismicUpgrade = projectRequestRecord.caps_ConstructionCostsNonStructuralSeismicUpgr;
+            //scheduleB.ConstructionNonStructuralSeismicUpgrade = projectRequestRecord.caps_ConstructionCostsNonStructuralSeismicUpgr;
             scheduleB.ConstructionSeismicUpgrade = projectRequestRecord.caps_ConstructionCostsSPIR;
-            scheduleB.ConstructionSPIRAdjustment = projectRequestRecord.caps_ConstructionCostsSPIRAdjustments;
+            //scheduleB.ConstructionSPIRAdjustment = projectRequestRecord.caps_ConstructionCostsSPIRAdjustments;
 
-            scheduleB.SPIRFees = projectRequestRecord.caps_SeismicProjectIdentificationReportFees;
+             //scheduleB.SPIRFees = projectRequestRecord.caps_SeismicProjectIdentificationReportFees;
 
             scheduleB.FreightRateAllowance = hostSchoolDistrictRecord.caps_FreightRateAllowance.GetValueOrDefault(0);
 
@@ -166,6 +163,7 @@ namespace CustomWorkflowActivities
             recordToUpdate.Id = recordId;
             //Section 2
             recordToUpdate.caps_SchBSpaceAllocationNewReplacement = result.SpaceAllocationNewReplacement;
+            recordToUpdate.caps_SchBTotalSpaceAllocation = result.SpaceAllocationNewReplacement + projectRequestRecord.caps_SchBAdditionalSpaceAllocation.GetValueOrDefault(0);
             //recordToUpdate.caps_SchBSpaceAllocationNLC = result.SpaceAllocationNLC;
 
             //Section 3

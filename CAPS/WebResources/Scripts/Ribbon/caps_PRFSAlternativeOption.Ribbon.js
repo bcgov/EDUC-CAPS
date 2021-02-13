@@ -98,5 +98,55 @@ CAPS.PRFSOption.ShowCalculateScheduleB = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
 
+    if (!(formContext.getAttribute("statuscode").getValue() == 1)) {
+        return false;
+    }
+
     return formContext.getAttribute("caps_requiresscheduleb").getValue();
+}
+
+/**
+ * This function deactivates the record
+ * @param {any} primaryControl primary control
+ */
+CAPS.PRFSOption.Deactivate = function (primaryControl) {
+    var formContext = primaryControl;
+    //Change status to DRAFT
+    let confirmStrings = { text: "The selected PRFS Alternative Option record's status will be changed to Cancelled and cannot be undone.  Click OK to continue or Cancel to exit.", title: "Deactivate Confirmation" };
+    let confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                debugger;
+                formContext.getAttribute("statecode").setValue(1);
+                formContext.getAttribute("statuscode").setValue(2);
+                formContext.data.entity.save();
+            }
+
+        });
+}
+
+/**
+ * This function determines if the Deactivate button should be displayed
+ * @param {any} primaryControl primary control
+ * @return {bool} true if should be displayed, otherwise false
+ */
+CAPS.PRFSOption.ShowDeactivate = function (primaryControl) {
+    var formContext = primaryControl;
+
+    //TODO: Check current state of capital plan
+    if (!(formContext.getAttribute("statuscode").getValue() == 1)) {
+        return false;
+    }
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS School District User") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
 }

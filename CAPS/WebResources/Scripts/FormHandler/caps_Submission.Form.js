@@ -23,6 +23,8 @@ CAPS.Submission.onLoad = function (executionContext) {
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
     var selectedForm = formContext.ui.formSelector.getCurrentItem().getLabel(); //Ministry Capital Plan
     var status = formContext.getAttribute("statuscode").getValue();
+
+    formContext.getAttribute("caps_boardresolution").addOnChange(CAPS.Submission.FlagBoardResolutionAsUploaded);
     
     if (status === SUBMISSION_STAUS.DRAFT || status === SUBMISSION_STAUS.ACCEPTED) {
         //hide report tab
@@ -33,7 +35,8 @@ CAPS.Submission.onLoad = function (executionContext) {
             formContext.ui.tabs.get("tab_afg").setVisible(true);
             formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(true);
             formContext.ui.tabs.get("tab_general").setVisible(false);
-            formContext.ui.tabs.get("tab_general").sections.get("sec_major_minor_projects").setVisible(false);
+            formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
+            formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
 
             formContext.getControl("sgd_AFGProjects").addOnLoad(CAPS.Submission.UpdateTotalAllocated);
         }
@@ -41,7 +44,17 @@ CAPS.Submission.onLoad = function (executionContext) {
             formContext.ui.tabs.get("tab_afg").setVisible(false);
             formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(false);
             formContext.ui.tabs.get("tab_general").setVisible(true);
-            formContext.ui.tabs.get("tab_general").sections.get("sec_major_minor_projects").setVisible(true);
+            if (callForSubmissionType === 100000000) {
+                //Major
+                formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(true);
+                formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
+            }
+            else {
+                //Minor
+                formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
+                formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(true);
+            }
+            
         }
     }
     else if (status === SUBMISSION_STAUS.RESULTS_RELEASED || status === SUBMISSION_STAUS.CANCELLED || status === SUBMISSION_STAUS.COMPLETE) {
@@ -78,7 +91,8 @@ CAPS.Submission.onLoad = function (executionContext) {
                 formContext.ui.tabs.get("tab_afg").setVisible(true);
                 formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(true);
                 formContext.ui.tabs.get("tab_general").setVisible(false);
-                formContext.ui.tabs.get("tab_general").sections.get("sec_major_minor_projects").setVisible(false);
+                formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
+                formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
 
                 formContext.getControl("sgd_AFGProjects").addOnLoad(CAPS.Submission.UpdateTotalAllocated);
             }
@@ -86,7 +100,16 @@ CAPS.Submission.onLoad = function (executionContext) {
                 formContext.ui.tabs.get("tab_afg").setVisible(false);
                 formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(false);
                 formContext.ui.tabs.get("tab_general").setVisible(true);
-                formContext.ui.tabs.get("tab_general").sections.get("sec_major_minor_projects").setVisible(true);
+                if (callForSubmissionType === 100000000) {
+                    //Major
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(true);
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
+                }
+                else {
+                    //Minor
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(true);
+                }
             }
         }
     }
@@ -168,6 +191,7 @@ CAPS.Submission.UpdateTotalAllocated = function (executionContext) {
                 variance = totalCost - totalAllocated;
                 formContext.getAttribute('caps_variance').setValue(variance);
             }
+            formContext.data.entity.save();
         },
         function (error) {
             console.log(error.message);
@@ -176,3 +200,19 @@ CAPS.Submission.UpdateTotalAllocated = function (executionContext) {
     );
 
 };
+
+/**
+Set caps_boardofresolutionattached field to true when file added and false when removed.
+*/
+CAPS.Submission.FlagBoardResolutionAsUploaded = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var bylaw = formContext.getAttribute("caps_boardresolution").getValue();
+
+    if (bylaw !== null) {
+        formContext.getAttribute("caps_boardofresolutionattached").setValue(true);
+    }
+    else {
+        formContext.getAttribute("caps_boardofresolutionattached").setValue(false);
+    }
+}

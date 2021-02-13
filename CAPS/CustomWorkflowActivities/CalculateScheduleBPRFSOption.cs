@@ -47,10 +47,7 @@ namespace CustomWorkflowActivities
                                             , "caps_includenlc"
                                             , "caps_communitylocation"
                                             , "caps_municipalfees"
-                                            , "caps_constructioncostsnonstructuralseismicup"
                                             , "caps_constructioncostsspir"
-                                            , "caps_constructioncostsspiradjustments"
-                                            , "caps_seismicprojectidentificationreportfees"
                                             , "caps_hostschooldistrict"
                                             , "caps_changeindesigncapacitykpositive"
                                             , "caps_changeindesigncapacityepositive"
@@ -124,10 +121,10 @@ namespace CustomWorkflowActivities
                 scheduleB.ExtraSpaceAllocation = prfsOptionRecord.caps_SchBAdditionalSpaceAllocation;
 
                 scheduleB.MunicipalFees = prfsOptionRecord.caps_MunicipalFees.GetValueOrDefault(0);
-                scheduleB.ConstructionNonStructuralSeismicUpgrade = prfsOptionRecord.caps_ConstructionCostsNonStructuralSeismicUp;
+                //scheduleB.ConstructionNonStructuralSeismicUpgrade = prfsOptionRecord.caps_ConstructionCostsNonStructuralSeismicUp;
                 scheduleB.ConstructionSeismicUpgrade = prfsOptionRecord.caps_ConstructionCostsSPIR;
-                scheduleB.ConstructionSPIRAdjustment = prfsOptionRecord.caps_ConstructionCostsSPIRAdjustments;
-                scheduleB.SPIRFees = prfsOptionRecord.caps_SeismicProjectIdentificationReportFees;
+                //scheduleB.ConstructionSPIRAdjustment = prfsOptionRecord.caps_ConstructionCostsSPIRAdjustments;
+                //scheduleB.SPIRFees = prfsOptionRecord.caps_SeismicProjectIdentificationReportFees;
 
                 scheduleB.FreightRateAllowance = hostSchoolDistrictRecord.caps_FreightRateAllowance.GetValueOrDefault(0);
 
@@ -146,6 +143,7 @@ namespace CustomWorkflowActivities
                 recordToUpdate.Id = recordId;
                 //Section 2
                 recordToUpdate.caps_SchBSpaceAllocationNewReplacement = result.SpaceAllocationNewReplacement;
+                recordToUpdate.caps_SchBTotalSpaceAllocation = result.SpaceAllocationNewReplacement + prfsOptionRecord.caps_SchBAdditionalSpaceAllocation.GetValueOrDefault(0);
                 //recordToUpdate.caps_SchBSpaceAllocationNLC = result.SpaceAllocationNLC;
 
                 //Section 3

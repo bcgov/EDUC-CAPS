@@ -769,6 +769,277 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ValidateDesignCapacity")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidateDesignCapacityRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string Type
+		{
+			get
+			{
+				if (this.Parameters.Contains("Type"))
+				{
+					return ((string)(this.Parameters["Type"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["Type"] = value;
+			}
+		}
+		
+		public int Count
+		{
+			get
+			{
+				if (this.Parameters.Contains("Count"))
+				{
+					return ((int)(this.Parameters["Count"]));
+				}
+				else
+				{
+					return default(int);
+				}
+			}
+			set
+			{
+				this.Parameters["Count"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ValidateDesignCapacityRequest()
+		{
+			this.RequestName = "caps_ValidateDesignCapacity";
+			this.Type = default(string);
+			this.Count = default(int);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ValidateDesignCapacity")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidateDesignCapacityResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ValidateDesignCapacityResponse()
+		{
+		}
+		
+		public bool IsValid
+		{
+			get
+			{
+				if (this.Results.Contains("IsValid"))
+				{
+					return ((bool)(this.Results["IsValid"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+		}
+		
+		public string ValidationMessage
+		{
+			get
+			{
+				if (this.Results.Contains("ValidationMessage"))
+				{
+					return ((string)(this.Results["ValidationMessage"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CalculateFacilitiesReplacementCost")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CalculateFacilitiesReplacementCostRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CalculateFacilitiesReplacementCostRequest()
+		{
+			this.RequestName = "caps_CalculateFacilitiesReplacementCost";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CalculateFacilitiesReplacementCost")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_CalculateFacilitiesReplacementCostResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CalculateFacilitiesReplacementCostResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ValidatePRFSSurroundingSchools")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidatePRFSSurroundingSchoolsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ValidatePRFSSurroundingSchoolsRequest()
+		{
+			this.RequestName = "caps_ValidatePRFSSurroundingSchools";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ValidatePRFSSurroundingSchools")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidatePRFSSurroundingSchoolsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ValidatePRFSSurroundingSchoolsResponse()
+		{
+		}
+		
+		public bool displayError
+		{
+			get
+			{
+				if (this.Results.Contains("displayError"))
+				{
+					return ((bool)(this.Results["displayError"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ValidatePRFSAlternativeOptions")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidatePRFSAlternativeOptionsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ValidatePRFSAlternativeOptionsRequest()
+		{
+			this.RequestName = "caps_ValidatePRFSAlternativeOptions";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ValidatePRFSAlternativeOptions")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_ValidatePRFSAlternativeOptionsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ValidatePRFSAlternativeOptionsResponse()
+		{
+		}
+		
+		public bool displayError
+		{
+			get
+			{
+				if (this.Results.Contains("displayError"))
+				{
+					return ((bool)(this.Results["displayError"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CancelTraining")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -7380,6 +7651,64 @@ namespace CAPS.DataContext
 	{
 		
 		public RetrieveUserSetOfPrivilegesByIdsResponse()
+		{
+		}
+		
+		public Microsoft.Crm.Sdk.Messages.RolePrivilege[] RolePrivileges
+		{
+			get
+			{
+				if (this.Results.Contains("RolePrivileges"))
+				{
+					return ((Microsoft.Crm.Sdk.Messages.RolePrivilege[])(this.Results["RolePrivileges"]));
+				}
+				else
+				{
+					return default(Microsoft.Crm.Sdk.Messages.RolePrivilege[]);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveAadUserPrivileges")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAadUserPrivilegesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid DirectoryObjectId
+		{
+			get
+			{
+				if (this.Parameters.Contains("DirectoryObjectId"))
+				{
+					return ((System.Guid)(this.Parameters["DirectoryObjectId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["DirectoryObjectId"] = value;
+			}
+		}
+		
+		public RetrieveAadUserPrivilegesRequest()
+		{
+			this.RequestName = "RetrieveAadUserPrivileges";
+			this.DirectoryObjectId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveAadUserPrivileges")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAadUserPrivilegesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveAadUserPrivilegesResponse()
 		{
 		}
 		

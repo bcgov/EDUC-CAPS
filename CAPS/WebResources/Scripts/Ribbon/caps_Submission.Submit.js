@@ -172,15 +172,22 @@ CAPS.Submission.Validate = async function (primaryControl) {
                 section.controls.forEach(function (control, k) {
 
                     if (control.getAttribute().getName() === "caps_validationresults") {
+                        if (allValidationPassed) {
+                            control.getAttribute().setValue(null);
+                            control.setVisible(false);
+                        }
+                        else {
                             control.getAttribute().setValue(resultsMessage);
                             control.setVisible(true);
+                        }
                     }
                 });
             });
     });
 
     //refresh the project subgrids
-    formContext.getControl("sgd_MajorMinorProjects").refresh();
+    formContext.getControl("sgd_Major_Projects").refresh();
+    formContext.getControl("sgd_Minor_Projects").refresh();
 
     //sgd_AFGProjects
     formContext.getControl("sgd_AFGProjects").refresh();
@@ -531,6 +538,9 @@ CAPS.Submission.CheckNothingToSubmit = function (formContext) {
     );
 }
 
+/*
+Checking that there isn't already an approved AFG Expenditure plan
+*/
 CAPS.Submission.CheckAFGProjects = function (formContext) {
     //Get record ID
     var submissionId = formContext.data.entity.getId();
@@ -544,7 +554,7 @@ CAPS.Submission.CheckAFGProjects = function (formContext) {
 
     if (submissionType !== 200870001) return;
 
-    //Check if any projects are BEP Projects, if they are check that their facility is tagged as BEP Eligible
+    
     var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
         "<entity name = \"caps_submission\" >" +
         "<attribute name=\"caps_submissionid\" />" +
@@ -558,7 +568,7 @@ CAPS.Submission.CheckAFGProjects = function (formContext) {
         "</entity>" +
         "</fetch >";
 
-    //Get all BEP Projects who's facilities aren't eligible
+    
     return Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
         function success(result) {
 

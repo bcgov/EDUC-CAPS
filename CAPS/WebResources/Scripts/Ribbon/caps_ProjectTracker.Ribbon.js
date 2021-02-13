@@ -11,26 +11,37 @@ CAPS.ProjectTracker.Closure = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
 
-    var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    var projectClosureField = formContext.getAttribute("caps_projectclosure").getValue();
 
-    var data =
-    {
-        "caps_Project@odata.bind": "/caps_projecttrackers(" + recordId + ")"
+    //Check if projectclosure existis
+    if (projectClosureField != null) {
+        var projectClosureId = projectClosureField[0].id.replace("{", "").replace("}", "");
+
+        Xrm.Navigation.navigateTo({ pageType: "entityrecord", entityName: "caps_projectclosure", entityId:projectClosureId, formType: 2 }, { target: 2, position: 1, width: { value: 95, unit: "%" } });
     }
+    else {
+        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
 
-    // create account record
-    Xrm.WebApi.createRecord("caps_projectclosure", data).then(
-        function success(result) {
-            debugger;
-            //console.log("Account created with ID: " + result.id);
-            Xrm.Navigation.navigateTo({ pageType: "entityrecord", entityName: "caps_projectclosure", formType: 2, entityId: result.id}, { target: 2, position: 1, width: { value: 95, unit: "%" } });
-            // perform operations on record creation
-        },
-        function (error) {
-            console.log(error.message);
-            // handle error conditions
+        var data =
+        {
+            "caps_Project@odata.bind": "/caps_projecttrackers(" + recordId + ")"
         }
-    );
+
+        // create account record
+        Xrm.WebApi.createRecord("caps_projectclosure", data).then(
+            function success(result) {
+                debugger;
+                //console.log("Account created with ID: " + result.id);
+                Xrm.Navigation.navigateTo({ pageType: "entityrecord", entityName: "caps_projectclosure", formType: 2, entityId: result.id }, { target: 2, position: 1, width: { value: 95, unit: "%" } });
+                formContext.ui.tabs.get("tab_projectclosure").setVisible(true);
+                // perform operations on record creation
+            },
+            function (error) {
+                console.log(error.message);
+                // handle error conditions
+            }
+        );
+    }
 
     
 }
@@ -44,7 +55,7 @@ CAPS.ProjectTracker.ShowClosure = function (primaryControl) {
     //check that record is draft & user's roles
     var formContext = primaryControl;
 
-    if (formContext.getAttribute("statecode").getValue() !== 0) {
+    if (formContext.getAttribute("statecode").getValue() !== 0 || formContext.getAttribute("caps_showprogressreports").getValue() !== true) {
         return false;
     }
 

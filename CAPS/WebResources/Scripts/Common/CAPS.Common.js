@@ -40,6 +40,10 @@ CAPS.Common.DefaultLookupIfSingle = function (formContext, fieldName, entityLogi
 
                         formContext.getAttribute(fieldName).setValue([{ id: recordId, name: recordValue, entityType: entityLogicalName}]);
                     }
+                    else {
+                        //blank out lookup
+                        formContext.getAttribute(fieldName).setValue(null);
+                    }
                 },
                 function (error) {
                 }

@@ -12,16 +12,17 @@ using System.Threading.Tasks;
 namespace CustomWorkflowActivities
 {
     /// <summary>
-    /// Called via javascript on project request form when specific PRFS fields are changed.  This CWA returns true if there are expenditures in the first 3 years.
+    /// Called via javascript on project request form when specific PRFS fields are changed.  
+    /// This CWA returns true if there are expenditures in the first 3 years and there are no Surrounding School records.
     /// </summary>
-    public class CheckPRFS : CodeActivity
+    public class CheckPRFSSurroundingSchools : CodeActivity
     {
         [Input("Capital Plan")]
         [ReferenceTarget("caps_submission")]
         public InArgument<EntityReference> capitalPlan { get; set; }
 
-        [Output("Contains Expenditures in First 3 Years")]
-        public OutArgument<bool> containsExpenditures { get; set; }
+        [Output("Display Error")]
+        public OutArgument<bool> displayError { get; set; }
 
         protected override void Execute(CodeActivityContext executionContext)
         {
@@ -31,11 +32,9 @@ namespace CustomWorkflowActivities
             IOrganizationServiceFactory serviceFactory = executionContext.GetExtension<IOrganizationServiceFactory>();
             IOrganizationService service = serviceFactory.CreateOrganizationService(context.UserId);
 
-            tracingService.Trace("{0}{1}", "Start Custom Workflow Activity: CheckPRFS", DateTime.Now.ToLongTimeString());
+            tracingService.Trace("{0}{1}", "Start Custom Workflow Activity: CheckPRFSSurroundingSchools", DateTime.Now.ToLongTimeString());
 
             var recordId = context.PrimaryEntityId;
-
-            var projectRequestRecord = service.Retrieve(context.PrimaryEntityName, recordId, new ColumnSet("caps_projectrationale", "caps_scopeofwork", "caps_tempaccommodationandbusingplan", "caps_municipalrequirements")) as caps_Project;
 
             EntityReference capitalPlanReference = this.capitalPlan.Get(executionContext);
 
@@ -70,15 +69,45 @@ namespace CustomWorkflowActivities
             //Find out if there is cash flow in any of those 5 years
             var estimatedExpenditures = service.RetrieveMultiple(new FetchExpression(fetchXML));
 
-            if (estimatedExpenditures.Entities.Count() < 1)
+            if (estimatedExpenditures.Entities.Count() > 0)
             {
-                tracingService.Trace("{0}", "Doesn't contain expendiures, return false");
-                this.containsExpenditures.Set(executionContext, false);
+                //check if there is at least one surrounding school
+                var fetchFacilties = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">"+
+                                        "<entity name=\"caps_facility\">"+
+                                           "<attribute name=\"caps_facilityid\" /> "+
+                                            "<attribute name =\"caps_name\" /> "+
+                                             "<attribute name = \"createdon\" /> "+
+                                              "<order attribute = \"caps_name\" descending = \"false\" /> "+
+                                                 "<link-entity name = \"caps_project_caps_facilityss\" from = \"caps_facilityid\" to = \"caps_facilityid\" visible = \"false\" intersect = \"true\" > "+
+                                                              "<link-entity name = \"caps_project\" from = \"caps_projectid\" to = \"caps_projectid\" alias=\"ad\" > "+
+                                                     "<filter type = \"and\" > "+
+                                                     "<condition attribute = 'statecode' operator= 'eq' value = '0' />" +
+                                                        "<condition attribute = \"caps_projectid\" operator= \"eq\"  value = \"{" +recordId+"}\" /> "+
+                                                              "</filter > " +
+                                                            "</link-entity > " +
+                                                          "</link-entity > " +
+                                                        "</entity> " +
+                                                      "</fetch> ";
+
+                tracingService.Trace("Fetch: {0}", fetchFacilties);
+                var surroundingSchools = service.RetrieveMultiple(new FetchExpression(fetchFacilties));
+
+                if (surroundingSchools.Entities.Count() > 0)
+                {
+                    tracingService.Trace("{0}", "Surrounding School records found");
+                    this.displayError.Set(executionContext, false);
+                }
+                else
+                {
+                    tracingService.Trace("{0}", "No Surrounding School records found");
+                    this.displayError.Set(executionContext, true);
+                }
             }
             else
             {
-                tracingService.Trace("{0}", "Contains expenditure, return true");
-                this.containsExpenditures.Set(executionContext, true);
+
+                tracingService.Trace("{0}", "No cashflow in the first 3 years");
+                this.displayError.Set(executionContext, false);
             }
         }
     }

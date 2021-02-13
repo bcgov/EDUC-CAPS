@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 namespace CustomWorkflowActivities
 {
     /// <summary>
-    /// Updates the operating capacity on all active facilities and their capacity reporting records.
+    /// Updates the operating capacity on all project request records.
     /// </summary>
-    public class SetOperatingCapacity : CodeActivity
+    public class SetOperatingCapacityForProjectRequests : CodeActivity
     {
         [Output("Error")]
         public OutArgument<bool> error { get; set; }
@@ -40,102 +40,6 @@ namespace CustomWorkflowActivities
                 var capacity = new Services.CapacityFactors(service);
 
                 Services.OperatingCapacity capacityService = new Services.OperatingCapacity(service, tracingService, capacity);
-
-                #region Update Facilities
-                //get Facilities
-                var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >" +
-                           "<entity name=\"caps_facility\">" +
-                                "<attribute name=\"caps_facilityid\" /> " +
-                                "<attribute name=\"caps_name\" /> " +
-                                "<attribute name=\"caps_lowestgrade\" /> " +
-                                "<attribute name=\"caps_highestgrade\" /> " +
-                                "<attribute name=\"caps_adjusteddesigncapacitysecondary\" /> " +
-                                "<attribute name=\"caps_adjusteddesigncapacitykindergarten\" /> " +
-                                "<attribute name=\"caps_adjusteddesigncapacityelementary\" /> " +
-                                "<order attribute=\"caps_name\" descending=\"false\" /> " +
-                                    "<filter type=\"and\" > " +
-                                           "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" /> " +
-                                           "<condition attribute=\"caps_lowestgrade\" operator=\"not-null\" />"+
-                                           "<condition attribute=\"caps_highestgrade\" operator=\"not-null\" />" +
-                                       "</filter> " +
-                                "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ac\" > " +
-                                        "<filter type=\"and\" > " +
-                                            "<condition attribute=\"caps_schooltype\" operator=\"not-null\" /> " +
-                                        "</filter> " +
-                                "</link-entity> " +
-                            "</entity> " +
-                            "</fetch>";
-
-
-                EntityCollection results = service.RetrieveMultiple(new FetchExpression(fetchXML));
-
-                foreach (caps_Facility facilityRecord in results.Entities)
-                {
-                    tracingService.Trace("Facility:{0}", facilityRecord.caps_Name);
-
-                    var kDesign = facilityRecord.caps_AdjustedDesignCapacityKindergarten.GetValueOrDefault(0);
-                    var eDesign = facilityRecord.caps_AdjustedDesignCapacityElementary.GetValueOrDefault(0);
-                    var sDesign = facilityRecord.caps_AdjustedDesignCapacitySecondary.GetValueOrDefault(0);
-                    var lowestGrade = facilityRecord.caps_LowestGrade.Value;
-                    var highestGrade = facilityRecord.caps_HighestGrade.Value;
-
-                    var result = capacityService.Calculate(kDesign, eDesign, sDesign, lowestGrade, highestGrade);
-
-                    //Update Facility
-                    var recordToUpdate = new caps_Facility();
-                    recordToUpdate.Id = facilityRecord.Id;
-                    recordToUpdate.caps_OperatingCapacityKindergarten = result.KindergartenCapacity;
-                    recordToUpdate.caps_OperatingCapacityElementary = result.ElementaryCapacity;
-                    recordToUpdate.caps_OperatingCapacitySecondary = result.SecondaryCapacity;
-                    service.Update(recordToUpdate);
-                }
-                #endregion
-                
-                #region Update Capacity Reporting
-                //Update Capacity Reporting
-                var capacityFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >" +
-                                       "<entity name=\"caps_capacityreporting\" > " +
-                                        "<attribute name=\"caps_capacityreportingid\" /> " +
-                                        "<attribute name=\"caps_secondary_designcapacity\" /> " +
-                                        "<attribute name=\"caps_kindergarten_designcapacity\" /> " +
-                                        "<attribute name=\"caps_elementary_designcapacity\" /> " +
-                                         "<order attribute=\"caps_secondary_designutilization\" descending=\"false\" /> " +
-                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"outer\" alias=\"facility\" > " +
-                                                "<attribute name=\"caps_lowestgrade\" /> " +
-                                                "<attribute name=\"caps_highestgrade\" /> " +
-                                            "</link-entity> " +
-                                                "<link-entity name=\"edu_year\" from=\"edu_yearid\" to=\"caps_schoolyear\" link-type=\"inner\" alias=\"ab\" >" +
-                                                "<filter type=\"and\"> " +
-                                                    "<condition attribute=\"statuscode\" operator=\"in\">" +
-                                                       "<value>1</value> " +
-                                                       "<value>757500000</value> " +
-                                                     "</condition>" +
-                                                   "</filter>" +
-                                                 "</link-entity>" +
-                                            "</entity> " +
-                                     "</fetch> ";
-
-                EntityCollection capacityResults = service.RetrieveMultiple(new FetchExpression(capacityFetchXML));
-
-                foreach (caps_CapacityReporting capacityRecord in capacityResults.Entities)
-                {
-                    var kDesign = capacityRecord.caps_Kindergarten_designcapacity.GetValueOrDefault(0);
-                    var eDesign = capacityRecord.caps_Elementary_designcapacity.GetValueOrDefault(0);
-                    var sDesign = capacityRecord.caps_Secondary_designcapacity.GetValueOrDefault(0);
-                    var lowestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_lowestgrade"]).Value).Value;
-                    var highestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_highestgrade"]).Value).Value;
-
-                    var result = capacityService.Calculate(kDesign, eDesign, sDesign, lowestGrade, highestGrade);
-
-                    //Update Capacity Reporting
-                    var recordToUpdate = new caps_CapacityReporting();
-                    recordToUpdate.Id = capacityRecord.Id;
-                    recordToUpdate.caps_Kindergarten_operatingcapacity = result.KindergartenCapacity;
-                    recordToUpdate.caps_Elementary_operatingcapacity = result.ElementaryCapacity;
-                    recordToUpdate.caps_Secondary_operatingcapacity = result.SecondaryCapacity;
-                    service.Update(recordToUpdate);
-                }
-                #endregion
 
                 #region Update Draft Project Requests
                 //Update Draft Project Requests
@@ -205,9 +109,9 @@ namespace CustomWorkflowActivities
                         recordToUpdate.caps_ChangeinOperatingCapacitySecondary = null;
                         service.Update(recordToUpdate);
                     }
-                } 
+                }
                 #endregion
-    
+
 
                 this.error.Set(executionContext, false);
             }
