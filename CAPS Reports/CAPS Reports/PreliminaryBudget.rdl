@@ -25,14 +25,15 @@
             <rd:UserDefined>true</rd:UserDefined>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_project" enableprefiltering="1"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_project" enableprefiltering="1" &gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
     &lt;attribute name="caps_schedulebtotal" /&gt;
     &lt;attribute name="caps_schbunitrate" /&gt;
     &lt;attribute name="caps_schbspaceallocationnewreplacement" /&gt;
+    &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;attribute name="caps_schbprojectsizefactor" /&gt;
     &lt;attribute name="caps_schbprojectmanagementfees" /&gt;
     &lt;attribute name="caps_schbadditionalspaceallocation" /&gt;
@@ -65,6 +66,13 @@
     &lt;attribute name="caps_changeindesigncapacitykindergarten" /&gt;
     &lt;attribute name="caps_changeindesigncapacityelementary" /&gt;
     &lt;order attribute="caps_projectcode" descending="false" /&gt;
+    &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCAT" &gt;
+      &lt;attribute name="caps_categorycode" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_projecttype" from="caps_projecttypeid" to="caps_projecttype" link-type="inner" alias="ProjTyp" &gt;
+      &lt;attribute name="caps_type" /&gt;
+      &lt;attribute name="caps_budgetcalculationtype" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -113,13 +121,25 @@
           <DataField>caps_schbspaceallocationnewreplacementValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_submissioncategory">
+          <DataField>caps_submissioncategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_schbprojectsizefactor">
           <DataField>caps_schbprojectsizefactor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_submissioncategoryValue">
+          <DataField>caps_submissioncategoryValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
         <Field Name="caps_schbprojectsizefactorValue">
           <DataField>caps_schbprojectsizefactorValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryEntityName">
+          <DataField>caps_submissioncategoryEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_schbprojectmanagementfees">
           <DataField>caps_schbprojectmanagementfees</DataField>
@@ -364,6 +384,22 @@
         <Field Name="caps_changeindesigncapacityelementaryValue">
           <DataField>caps_changeindesigncapacityelementaryValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SubCAT_caps_categorycode">
+          <DataField>SubCAT_caps_categorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_type">
+          <DataField>ProjTyp_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_budgetcalculationtype">
+          <DataField>ProjTyp_caps_budgetcalculationtype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_budgetcalculationtypeValue">
+          <DataField>ProjTyp_caps_budgetcalculationtypeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1028,6 +1064,9 @@
             <Height>3cm</Height>
             <Width>9.71779cm</Width>
             <ZIndex>1</ZIndex>
+            <Visibility>
+              <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1762,11 +1801,31 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!SubCAT_caps_categorycode.Value &lt;&gt; "SEISMIC"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
@@ -3029,12 +3088,32 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!SubCAT_caps_categorycode.Value &lt;&gt; "SEISMIC"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -4237,8 +4316,16 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
