@@ -1065,7 +1065,7 @@
             <Width>9.71779cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
-              <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+              <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
             </Visibility>
             <Style>
               <Border>
@@ -1808,12 +1808,12 @@
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!SubCAT_caps_categorycode.Value &lt;&gt; "SEISMIC"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005" , False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
@@ -3095,23 +3095,23 @@
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!SubCAT_caps_categorycode.Value &lt;&gt; "SEISMIC"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005" , False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870000" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" , False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870001" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
@@ -4318,12 +4318,12 @@
                 <TablixMember />
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
                   </Visibility>
                 </TablixMember>
                 <TablixMember>
                   <Visibility>
-                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
                   </Visibility>
                 </TablixMember>
               </TablixMembers>
@@ -5134,7 +5134,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Preliminary Budget Type: " &amp; First(Fields!caps_projecttype.Value, "ProjectRequest")</Value>
+                    <Value>="Preliminary Budget Type: " &amp; First(Fields!ProjTyp_caps_budgetcalculationtype.Value, "ProjectRequest")</Value>
                     <Style>
                       <FontFamily>Arial</FontFamily>
                       <FontWeight>Bold</FontWeight>
