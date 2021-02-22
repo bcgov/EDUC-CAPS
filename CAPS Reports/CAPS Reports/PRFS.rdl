@@ -82,6 +82,10 @@
     &lt;attribute name="caps_summaryofhazardousmaterialsenvassessment" /&gt;
     &lt;attribute name="caps_challengestheexistingbuildingpresents" /&gt;
     &lt;attribute name="caps_scopeofwork" /&gt;
+    &lt;attribute name="caps_numberofp4blocks" /&gt;
+    &lt;attribute name="caps_numberofp3blocks" /&gt;
+    &lt;attribute name="caps_numberofp2blocks" /&gt;
+    &lt;attribute name="caps_numberofp1blocks" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacitykindergarten" /&gt;
     &lt;attribute name="caps_hasschoolbeenpermanentlyclosed" /&gt;
     &lt;attribute name="caps_changeinoperatingcapacitytotal" /&gt;
@@ -549,21 +553,41 @@
           <DataField>caps_scopeofwork</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofp4blocks">
+          <DataField>caps_numberofp4blocks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_changeinoperatingcapacitykindergarten">
           <DataField>caps_changeinoperatingcapacitykindergarten</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofp4blocksValue">
+          <DataField>caps_numberofp4blocksValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacitykindergartenValue">
           <DataField>caps_changeinoperatingcapacitykindergartenValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofp3blocks">
+          <DataField>caps_numberofp3blocks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_hasschoolbeenpermanentlyclosed">
           <DataField>caps_hasschoolbeenpermanentlyclosed</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofp3blocksValue">
+          <DataField>caps_numberofp3blocksValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="caps_hasschoolbeenpermanentlyclosedValue">
           <DataField>caps_hasschoolbeenpermanentlyclosedValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofp2blocks">
+          <DataField>caps_numberofp2blocks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="LRPF_caps_description">
           <DataField>LRPF_caps_description</DataField>
@@ -573,12 +597,24 @@
           <DataField>caps_changeinoperatingcapacitytotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofp2blocksValue">
+          <DataField>caps_numberofp2blocksValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofp1blocks">
+          <DataField>caps_numberofp1blocks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="LRPF_caps_lrfpdate">
           <DataField>LRPF_caps_lrfpdate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacitytotalValue">
           <DataField>caps_changeinoperatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofp1blocksValue">
+          <DataField>caps_numberofp1blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="LRPF_caps_lrfpdateValue">
@@ -3421,345 +3457,6 @@
         <ReportItems>
           <Rectangle Name="PrimaryOptionPRFSAggregate">
             <ReportItems>
-              <Textbox Name="Textbox22">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Project Rationale</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>1.09335cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>0.6cm</Height>
-                <Width>4.60133cm</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox23">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!caps_projectrationale.Value, "ProjectRequest")</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>1.69335cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>1.64979cm</Height>
-                <Width>18.05606cm</Width>
-                <ZIndex>1</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                  <TopBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </TopBorder>
-                  <BottomBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </BottomBorder>
-                  <LeftBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </LeftBorder>
-                  <RightBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </RightBorder>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox24">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Scope of Work</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>3.51953cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>0.6cm</Height>
-                <Width>4.60133cm</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox25">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!caps_scopeofwork.Value, "ProjectRequest")</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>4.11953cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>1.64979cm</Height>
-                <Width>18.02077cm</Width>
-                <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                  <TopBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </TopBorder>
-                  <BottomBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </BottomBorder>
-                  <LeftBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </LeftBorder>
-                  <RightBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </RightBorder>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox26">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Temporary Accomodation and Busing Plan</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>5.9457cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>0.6cm</Height>
-                <Width>7.6705cm</Width>
-                <ZIndex>4</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox27">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!caps_tempaccommodationandbusingplan.Value, "ProjectRequest")</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>6.5457cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>1.64979cm</Height>
-                <Width>18.02077cm</Width>
-                <ZIndex>5</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                  <TopBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </TopBorder>
-                  <BottomBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </BottomBorder>
-                  <LeftBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </LeftBorder>
-                  <RightBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </RightBorder>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox28">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Municipal Requirements</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>8.37189cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>0.6cm</Height>
-                <Width>4.60133cm</Width>
-                <ZIndex>6</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox29">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=First(Fields!caps_municipalrequirements.Value, "ProjectRequest")</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox23</rd:DefaultName>
-                <Top>8.97188cm</Top>
-                <Left>0.07785cm</Left>
-                <Height>1.64979cm</Height>
-                <Width>18.02077cm</Width>
-                <ZIndex>7</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>Solid</Style>
-                  </Border>
-                  <TopBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </TopBorder>
-                  <BottomBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </BottomBorder>
-                  <LeftBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </LeftBorder>
-                  <RightBorder>
-                    <Color>Black</Color>
-                    <Style>Solid</Style>
-                    <Width>1pt</Width>
-                  </RightBorder>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Rectangle Name="SurroundingSchoolsRectangle">
                 <ReportItems>
                   <Textbox Name="Textbox238">
@@ -12573,10 +12270,10 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>25.93357cm</Top>
+                <Top>22.97024cm</Top>
+                <Left>0.03502cm</Left>
                 <Height>26.527cm</Height>
                 <Width>25.7056cm</Width>
-                <ZIndex>8</ZIndex>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
                 </Visibility>
@@ -12586,50 +12283,14 @@
                   </Border>
                 </Style>
               </Rectangle>
-              <Textbox Name="Textbox10">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>="Primary Option: " &amp; First(Fields!caps_projecttype.Value, "ProjectRequest") &amp; " - " &amp; First(Fields!caps_projectcode.Value, "ProjectRequest")</Value>
-                        <Style>
-                          <FontFamily>Arial</FontFamily>
-                          <FontSize>16pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                          <Color>White</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>0.15988cm</Top>
-                <Left>0.07816cm</Left>
-                <Height>0.6cm</Height>
-                <Width>18.05603cm</Width>
-                <ZIndex>9</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <BackgroundColor>#234075</BackgroundColor>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Tablix Name="Tablix17">
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>7.35037cm</Width>
+                      <Width>7.4297cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>10.68747cm</Width>
+                      <Width>10.78502cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -13277,11 +12938,11 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>11.19016cm</Top>
-                <Left>0.09635cm</Left>
+                <Top>8.3062cm</Top>
+                <Left>0.03342cm</Left>
                 <Height>4.66458cm</Height>
-                <Width>18.03784cm</Width>
-                <ZIndex>10</ZIndex>
+                <Width>18.21472cm</Width>
+                <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -13312,10 +12973,10 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>7.22688cm</Width>
+                      <Width>7.46034cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>10.81068cm</Width>
+                      <Width>10.75772cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -14453,11 +14114,588 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>PRFSAlternativeOption</DataSetName>
-                <Top>16.04058cm</Top>
-                <Left>0.13163cm</Left>
+                <Top>13.15662cm</Top>
+                <Left>0.03342cm</Left>
                 <Height>9.66458cm</Height>
-                <Width>18.03756cm</Width>
-                <ZIndex>11</ZIndex>
+                <Width>18.21806cm</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                  <TopBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </TopBorder>
+                  <BottomBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </BottomBorder>
+                  <LeftBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </LeftBorder>
+                  <RightBorder>
+                    <Color>Black</Color>
+                    <Style>Solid</Style>
+                    <Width>1pt</Width>
+                  </RightBorder>
+                </Style>
+              </Tablix>
+              <Tablix Name="Tablix24">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>18.21472cm</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>1.12019cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox40">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="Primary Option: " &amp; Fields!caps_projecttype.Value &amp; " - " &amp; Fields!caps_projectcode.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>White</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox7</rd:DefaultName>
+                              <ZIndex>9</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>#234075</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.59102cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox407">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Project Rationale</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox397</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>1.12019cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox41">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_projectrationale.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox23</rd:DefaultName>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.59102cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox442">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Scope of Work</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox442</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>1.12019cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox43">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_scopeofwork.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox23</rd:DefaultName>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.59102cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox448">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Temporary Accomodation and Busing Plan</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox448</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>1.12019cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox44">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_tempaccommodationandbusingplan.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox23</rd:DefaultName>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.59102cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox47">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Municipal Requirements</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox22</rd:DefaultName>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>1.12019cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox46">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_municipalrequirements.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox23</rd:DefaultName>
+                              <ZIndex>7</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!caps_projectid.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <TablixMembers>
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixRowHierarchy>
+                <DataSetName>ProjectRequest</DataSetName>
+                <Top>0.19101cm</Top>
+                <Left>0.03342cm</Left>
+                <Height>7.96503cm</Height>
+                <Width>18.21472cm</Width>
+                <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -14487,8 +14725,8 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>21.50143cm</Top>
-            <Left>0.00131cm</Left>
-            <Height>52.56641cm</Height>
+            <Left>0.04522cm</Left>
+            <Height>49.65599cm</Height>
             <Width>25.84489cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -14523,9 +14761,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Left>0.0517cm</Left>
+                <Left>0.03419cm</Left>
                 <Height>0.6cm</Height>
-                <Width>18.09135cm</Width>
+                <Width>18.13579cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -14560,9 +14798,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.74111cm</Top>
-                <Left>0.0517cm</Left>
+                <Left>0.03419cm</Left>
                 <Height>0.6cm</Height>
-                <Width>18.12663cm</Width>
+                <Width>18.13913cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -14584,16 +14822,16 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.26347cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.26347cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>3.10078cm</Width>
+                      <Width>2.86425cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.73437cm</Width>
+                      <Width>2.49784cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -14976,9 +15214,9 @@
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
                 <Top>1.5175cm</Top>
-                <Left>0.0517cm</Left>
+                <Left>0.03419cm</Left>
                 <Height>1.2cm</Height>
-                <Width>10.83515cm</Width>
+                <Width>9.88903cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -15311,7 +15549,7 @@
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
                 <Top>2.80202cm</Top>
-                <Left>0.0517cm</Left>
+                <Left>0.03419cm</Left>
                 <Height>1.2cm</Height>
                 <Width>7.5cm</Width>
                 <ZIndex>3</ZIndex>
@@ -16016,7 +16254,7 @@
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
                 <Top>4.14696cm</Top>
-                <Left>0.0517cm</Left>
+                <Left>0.03419cm</Left>
                 <Height>3cm</Height>
                 <Width>9.88904cm</Width>
                 <ZIndex>4</ZIndex>
@@ -16071,10 +16309,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>7.81964cm</Top>
-                <Left>0.04254cm</Left>
+                <Top>8.17242cm</Top>
                 <Height>0.6cm</Height>
-                <Width>18.13579cm</Width>
+                <Width>18.17332cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -16096,10 +16333,10 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.53419cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>2.50916cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -16346,10 +16583,9 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>8.5616cm</Top>
-                <Left>0.0517cm</Left>
+                <Top>8.8791cm</Top>
                 <Height>1.8cm</Height>
-                <Width>5cm</Width>
+                <Width>5.04335cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -16630,8 +16866,8 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>10.53799cm</Top>
-                <Left>0.04256cm</Left>
+                <Top>10.85549cm</Top>
+                <Left>0.03421cm</Left>
                 <Height>1.8cm</Height>
                 <Width>5.00914cm</Width>
                 <ZIndex>7</ZIndex>
@@ -17048,8 +17284,8 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.30745cm</Top>
-                    <Left>0.07744cm</Left>
+                    <Top>4.30583cm</Top>
+                    <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>1</ZIndex>
@@ -17339,8 +17575,8 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.47218cm</Top>
-                    <Left>0.07744cm</Left>
+                    <Top>2.47056cm</Top>
+                    <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>2</ZIndex>
@@ -17630,8 +17866,8 @@
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>0.67056cm</Top>
-                    <Left>0.07744cm</Left>
+                    <Top>0.63528cm</Top>
+                    <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>3</ZIndex>
@@ -17643,8 +17879,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>12.53578cm</Top>
-                <Left>0.04256cm</Left>
+                <Top>12.85328cm</Top>
+                <Left>0.03421cm</Left>
                 <Height>6.18189cm</Height>
                 <Width>5.00914cm</Width>
                 <ZIndex>8</ZIndex>
@@ -17696,7 +17932,6 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
-                    <Left>0cm</Left>
                     <Height>0.6cm</Height>
                     <Width>5.0895cm</Width>
                     <Style>
@@ -18063,6 +18298,7 @@
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
                     <Top>4.30583cm</Top>
+                    <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>1</ZIndex>
@@ -18079,10 +18315,10 @@
                           <Width>1.19701cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.19701cm</Width>
+                          <Width>1.00299cm</Width>
                         </TablixColumn>
                         <TablixColumn>
-                          <Width>1.19701cm</Width>
+                          <Width>1.39104cm</Width>
                         </TablixColumn>
                       </TablixColumns>
                       <TablixRows>
@@ -18356,6 +18592,7 @@
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
                     <Top>2.47056cm</Top>
+                    <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>2</ZIndex>
@@ -18646,7 +18883,7 @@
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
                     <Top>0.63528cm</Top>
-                    <Left>0cm</Left>
+                    <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>3</ZIndex>
@@ -18658,8 +18895,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>12.5374cm</Top>
-                <Left>5.3694cm</Left>
+                <Top>12.8549cm</Top>
+                <Left>5.36105cm</Left>
                 <Height>6.18027cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>9</ZIndex>
@@ -19671,8 +19908,8 @@
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>12.5374cm</Top>
-                <Left>10.79997cm</Left>
+                <Top>12.8549cm</Top>
+                <Left>10.79162cm</Left>
                 <Height>6.18027cm</Height>
                 <Width>5.08922cm</Width>
                 <ZIndex>10</ZIndex>
@@ -19803,8 +20040,8 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>FacilityPortables</DataSetName>
-                <Top>8.59603cm</Top>
-                <Left>5.3694cm</Left>
+                <Top>8.91353cm</Top>
+                <Left>5.36105cm</Left>
                 <Height>1.2cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>11</ZIndex>
@@ -19975,8 +20212,8 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequestFacility</DataSetName>
-                <Top>10.53799cm</Top>
-                <Left>5.3694cm</Left>
+                <Top>10.85549cm</Top>
+                <Left>5.36105cm</Left>
                 <Height>1.2cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>12</ZIndex>
@@ -19986,11 +20223,29 @@
                   </Border>
                 </Style>
               </Tablix>
-              <Tablix Name="SeismicRisk">
+              <Tablix Name="Tablix4">
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>6.7366cm</Width>
+                      <Width>2.95595cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>0.79127cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>0.79127cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>0.79127cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>0.79127cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>0.79127cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>1.00294cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -19999,7 +20254,7 @@
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox204">
+                            <Textbox Name="Textbox349">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -20008,6 +20263,7 @@
                                     <TextRun>
                                       <Value>Seismic Risk Rating</Value>
                                       <Style>
+                                        <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -20017,7 +20273,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox204</rd:DefaultName>
+                              <rd:DefaultName>Textbox349</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -20030,64 +20286,558 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <ColSpan>7</ColSpan>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>0.9cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox244">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Seismic Risk Rating</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox244</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox262">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>H1</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox262</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox263">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>H2</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox263</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox264">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>H3</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox264</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox265">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>M</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox265</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox266">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>L</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox266</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox267">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Unk</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox267</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>1.8cm</Height>
+                      <Height>0.59125cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
-                            <Tablix Name="Tablix4">
+                            <Textbox Name="Textbox247">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Number of Blocks</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox247</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofh1blocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofh1blocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofh1blocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofh2blocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofh2blocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofh2blocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofh3blocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofh3blocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofh3blocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofmediumblocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofmediumblocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofmediumblocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberoflowblocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberoflowblocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberoflowblocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofunknownblocks_seismicriskValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofunknownblocks_seismicriskValue.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofunknownblocks_seismicriskValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
+                      <Height>1.12042cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox314">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Sub-Categories of H1 Blocks</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox312</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Tablix Name="Tablix23">
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>1.77314cm</Width>
+                                    <Width>1.23982cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.79127cm</Width>
+                                    <Width>1.23982cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.79127cm</Width>
+                                    <Width>1.23982cm</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.79127cm</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>0.79127cm</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>0.79127cm</Width>
-                                  </TablixColumn>
-                                  <TablixColumn>
-                                    <Width>1.00713cm</Width>
+                                    <Width>1.23982cm</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
                                   <TablixRow>
-                                    <Height>0.9cm</Height>
+                                    <Height>0.56021cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox244">
+                                          <Textbox Name="Textbox300">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Seismic Risk Rating</Value>
+                                                    <Value>P1 </Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox244</rd:DefaultName>
+                                            <rd:DefaultName>Textbox300</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20103,24 +20853,23 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox262">
+                                          <Textbox Name="Textbox302">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>H1</Value>
+                                                    <Value>P2 </Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox262</rd:DefaultName>
+                                            <rd:DefaultName>Textbox302</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20136,24 +20885,23 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox263">
+                                          <Textbox Name="Textbox315">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>H2</Value>
+                                                    <Value>P3 </Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox263</rd:DefaultName>
+                                            <rd:DefaultName>Textbox308</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20169,123 +20917,23 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox264">
+                                          <Textbox Name="Textbox319">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>H3</Value>
+                                                    <Value>P4 </Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox264</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox265">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>M</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox265</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox266">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>L</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox266</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="Textbox267">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>Unk</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                      <FontWeight>Bold</FontWeight>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>Textbox267</rd:DefaultName>
+                                            <rd:DefaultName>Textbox310</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20302,18 +20950,18 @@
                                     </TablixCells>
                                   </TablixRow>
                                   <TablixRow>
-                                    <Height>0.9cm</Height>
+                                    <Height>0.56021cm</Height>
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox247">
+                                          <Textbox Name="caps_numberofp1blocks">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Number of Blocks</Value>
+                                                    <Value>=Fields!caps_numberofp1blocks.Value</Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
                                                     </Style>
@@ -20322,7 +20970,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox247</rd:DefaultName>
+                                            <rd:DefaultName>caps_numberofp1blocks</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20338,14 +20986,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="caps_numberofh1blocks_seismicriskValue">
+                                          <Textbox Name="caps_numberofp2blocks">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!caps_numberofh1blocks_seismicriskValue.Value</Value>
+                                                    <Value>=Fields!caps_numberofp2blocks.Value</Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
                                                     </Style>
@@ -20354,7 +21002,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>caps_numberofh1blocks_seismicriskValue</rd:DefaultName>
+                                            <rd:DefaultName>caps_numberofp2blocks</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20370,14 +21018,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="caps_numberofh2blocks_seismicriskValue">
+                                          <Textbox Name="caps_numberofp3blocks">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!caps_numberofh2blocks_seismicriskValue.Value</Value>
+                                                    <Value>=Fields!caps_numberofp3blocks.Value</Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
                                                     </Style>
@@ -20386,7 +21034,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>caps_numberofh2blocks_seismicriskValue</rd:DefaultName>
+                                            <rd:DefaultName>caps_numberofp3blocks</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20402,14 +21050,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="caps_numberofh3blocks_seismicriskValue">
+                                          <Textbox Name="caps_numberofp4blocks">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!caps_numberofh3blocks_seismicriskValue.Value</Value>
+                                                    <Value>=Fields!caps_numberofp4blocks.Value</Value>
                                                     <Style>
                                                       <FontFamily>Arial</FontFamily>
                                                     </Style>
@@ -20418,103 +21066,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>caps_numberofh3blocks_seismicriskValue</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="caps_numberofmediumblocks_seismicriskValue">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>=Fields!caps_numberofmediumblocks_seismicriskValue.Value</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>caps_numberofmediumblocks_seismicriskValue</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="caps_numberoflowblocks_seismicriskValue">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>=Fields!caps_numberoflowblocks_seismicriskValue.Value</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>caps_numberoflowblocks_seismicriskValue</rd:DefaultName>
-                                            <Style>
-                                              <Border>
-                                                <Color>LightGrey</Color>
-                                                <Style>Solid</Style>
-                                              </Border>
-                                              <PaddingLeft>2pt</PaddingLeft>
-                                              <PaddingRight>2pt</PaddingRight>
-                                              <PaddingTop>2pt</PaddingTop>
-                                              <PaddingBottom>2pt</PaddingBottom>
-                                            </Style>
-                                          </Textbox>
-                                        </CellContents>
-                                      </TablixCell>
-                                      <TablixCell>
-                                        <CellContents>
-                                          <Textbox Name="caps_numberofunknownblocks_seismicriskValue">
-                                            <CanGrow>true</CanGrow>
-                                            <KeepTogether>true</KeepTogether>
-                                            <Paragraphs>
-                                              <Paragraph>
-                                                <TextRuns>
-                                                  <TextRun>
-                                                    <Value>=Fields!caps_numberofunknownblocks_seismicriskValue.Value</Value>
-                                                    <Style>
-                                                      <FontFamily>Arial</FontFamily>
-                                                    </Style>
-                                                  </TextRun>
-                                                </TextRuns>
-                                                <Style />
-                                              </Paragraph>
-                                            </Paragraphs>
-                                            <rd:DefaultName>caps_numberofunknownblocks_seismicriskValue</rd:DefaultName>
+                                            <rd:DefaultName>caps_numberofp4blocks</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -20538,31 +21090,29 @@
                                   <TablixMember />
                                   <TablixMember />
                                   <TablixMember />
-                                  <TablixMember />
-                                  <TablixMember />
-                                  <TablixMember />
                                 </TablixMembers>
                               </TablixColumnHierarchy>
                               <TablixRowHierarchy>
                                 <TablixMembers>
-                                  <TablixMember>
-                                    <KeepWithGroup>After</KeepWithGroup>
-                                  </TablixMember>
-                                  <TablixMember>
-                                    <Group Name="Details3" />
-                                  </TablixMember>
+                                  <TablixMember />
+                                  <TablixMember />
                                 </TablixMembers>
                               </TablixRowHierarchy>
                               <DataSetName>ProjectRequest</DataSetName>
-                              <ZIndex>7</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
                               </Style>
                             </Tablix>
+                            <ColSpan>6</ColSpan>
                           </CellContents>
                         </TablixCell>
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
                       </TablixCells>
                     </TablixRow>
                   </TablixRows>
@@ -20570,19 +21120,36 @@
                 <TablixColumnHierarchy>
                   <TablixMembers>
                     <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
                   <TablixMembers>
-                    <TablixMember />
-                    <TablixMember />
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details3" />
+                      <TablixMembers>
+                        <TablixMember />
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
                 <Top>4.14696cm</Top>
-                <Left>10.18936cm</Left>
-                <Height>3cm</Height>
-                <Width>6.7366cm</Width>
+                <Left>10.17501cm</Left>
+                <Height>3.81167cm</Height>
+                <Width>7.91524cm</Width>
                 <ZIndex>13</ZIndex>
                 <Visibility>
                   <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "SEISMIC"</Hidden>
@@ -20619,9 +21186,9 @@
             </PageBreak>
             <KeepTogether>true</KeepTogether>
             <Top>2.14876cm</Top>
-            <Left>0.30387cm</Left>
+            <Left>0.07947cm</Left>
             <Height>19.17628cm</Height>
-            <Width>18.17833cm</Width>
+            <Width>18.17332cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -20653,7 +21220,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox240</rd:DefaultName>
-                <Left>4.05422cm</Left>
+                <Top>0cm</Top>
+                <Left>4.07927cm</Left>
                 <Height>0.6cm</Height>
                 <Width>8.65699cm</Width>
                 <Style>
@@ -20685,7 +21253,7 @@
                 </Paragraphs>
                 <rd:DefaultName>caps_schooldistrictValue</rd:DefaultName>
                 <Top>0.63528cm</Top>
-                <Left>4.05422cm</Left>
+                <Left>4.07927cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.90982cm</Width>
                 <ZIndex>1</ZIndex>
@@ -20718,7 +21286,7 @@
                 </Paragraphs>
                 <rd:DefaultName>caps_facilityview</rd:DefaultName>
                 <Top>1.27056cm</Top>
-                <Left>4.05422cm</Left>
+                <Left>4.07927cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.90982cm</Width>
                 <ZIndex>2</ZIndex>
@@ -20736,7 +21304,8 @@
                 <Source>Embedded</Source>
                 <Value>BC_EDUC_H_RGB_pos</Value>
                 <Sizing>FitProportional</Sizing>
-                <Left>0.00914cm</Left>
+                <Top>0cm</Top>
+                <Left>0.03419cm</Left>
                 <Height>0.73644in</Height>
                 <Width>1.56053in</Width>
                 <ZIndex>3</ZIndex>
@@ -20764,7 +21333,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox83</rd:DefaultName>
                 <Top>1.27056cm</Top>
-                <Left>10.99932cm</Left>
+                <Left>11.02437cm</Left>
                 <Height>0.6cm</Height>
                 <Width>7.06588cm</Width>
                 <ZIndex>4</ZIndex>
@@ -20780,9 +21349,9 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Left>0.34643cm</Left>
+            <Left>0.07947cm</Left>
             <Height>1.9489cm</Height>
-            <Width>18.10077cm</Width>
+            <Width>18.16998cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -20794,7 +21363,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>74.26283cm</Height>
+        <Height>71.37887cm</Height>
         <Style />
       </Body>
       <Width>25.983cm</Width>
