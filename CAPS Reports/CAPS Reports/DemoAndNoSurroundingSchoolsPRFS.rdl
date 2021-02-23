@@ -10595,7 +10595,7 @@
                 <Top>8.24173cm</Top>
                 <Left>0.08865cm</Left>
                 <Height>4.66458cm</Height>
-                <Width>18.13579cm</Width>
+                <Width>18.1358cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -12326,26 +12326,15 @@
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
                   <TablixMembers>
-                    <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="Details">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!caps_projectid.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <TablixMembers>
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                        <TablixMember />
-                      </TablixMembers>
-                    </TablixMember>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
@@ -12873,7 +12862,7 @@
                 <Top>1.5175cm</Top>
                 <Left>0.02681cm</Left>
                 <Height>1.2cm</Height>
-                <Width>9.88904cm</Width>
+                <Width>9.88903cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -18808,7 +18797,7 @@
                 <Top>4.14696cm</Top>
                 <Left>10.20357cm</Left>
                 <Height>3.81167cm</Height>
-                <Width>7.95903cm</Width>
+                <Width>7.95904cm</Width>
                 <ZIndex>13</ZIndex>
                 <Visibility>
                   <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "SEISMIC"</Hidden>
@@ -20906,6 +20895,13 @@
     </ReportParameter>
     <ReportParameter Name="CapacityType">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>Design</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
       <Prompt>Capacity Type</Prompt>
       <ValidValues>
         <ParameterValues>
