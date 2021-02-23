@@ -20848,6 +20848,28 @@
       <Prompt>CRM caps project</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
+    <ReportParameter Name="CapacityType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Design</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Capacity Type</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>Design</Value>
+            <Label>Design</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Operating</Value>
+            <Label>Operating</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
     <ReportParameter Name="PRFSAlternativeOptionID">
       <DataType>String</DataType>
       <DefaultValue>
@@ -20893,29 +20915,6 @@
       <Prompt>FacilityID</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
-    <ReportParameter Name="CapacityType">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <DefaultValue>
-        <Values>
-          <Value>Design</Value>
-        </Values>
-      </DefaultValue>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>Capacity Type</Prompt>
-      <ValidValues>
-        <ParameterValues>
-          <ParameterValue>
-            <Value>Design</Value>
-            <Label>Design</Label>
-          </ParameterValue>
-          <ParameterValue>
-            <Value>Operating</Value>
-            <Label>Operating</Label>
-          </ParameterValue>
-        </ParameterValues>
-      </ValidValues>
-    </ReportParameter>
     <ReportParameter Name="MonthRollover">
       <DataType>Integer</DataType>
       <DefaultValue>
@@ -20940,27 +20939,27 @@
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>PRFSAlternativeOptionID</ParameterName>
+          <ParameterName>CapacityType</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>ProjectID</ParameterName>
+          <ParameterName>PRFSAlternativeOptionID</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>SchoolDistrict</ParameterName>
+          <ParameterName>ProjectID</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>FacilityID</ParameterName>
+          <ParameterName>SchoolDistrict</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>CapacityType</ParameterName>
+          <ParameterName>FacilityID</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
