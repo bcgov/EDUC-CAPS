@@ -1431,6 +1431,9 @@
           <DataField>caps_schbprojectlocationfactorValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="SchoolAreaafterProject">
+          <Value>=Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue.Value</Value>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="ProjectRequestFacility">
@@ -11243,24 +11246,26 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox403">
+                            <Textbox Name="SchoolAreaafterProject">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=(Fields!FACILITY_caps_areaValue.Value + Fields!caps_schbtotalspaceallocationValue.Value) &amp; "m²"</Value>
+                                      <Value>=IIF(isnothing(Fields!SchoolAreaafterProject.Value), 0, Fields!SchoolAreaafterProject.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
-                                        <Format>N0</Format>
+                                        <Format>#,0'm²';(#,0'm²')</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox403</rd:DefaultName>
+                              <rd:DefaultName>SchoolAreaafterProject</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -11272,6 +11277,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -18856,7 +18862,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Project Request Fact Sheet </Value>
+                        <Value>Concept Plan</Value>
                         <Style>
                           <FontFamily>Arial</FontFamily>
                           <FontSize>18pt</FontSize>
@@ -19017,7 +19023,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Project Request Fact Sheet </Value>
+                        <Value>Concept Plan</Value>
                         <Style>
                           <FontSize>18pt</FontSize>
                           <FontWeight>Bold</FontWeight>
@@ -19125,7 +19131,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>="Demolition Project Request Fact Sheet" &amp; " - " &amp; Fields!caps_projectcode.Value</Value>
+                                      <Value>="Demolition Concept Plan" &amp; " - " &amp; Fields!caps_projectcode.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>16pt</FontSize>
