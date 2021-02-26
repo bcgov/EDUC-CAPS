@@ -10409,6 +10409,45 @@
               </Border>
             </Style>
           </Rectangle>
+          <Textbox Name="Textbox42">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="TOTAL APPROVED BORROWING HAS BEEN REDUCED BY " &amp; Cint((Fields!ReducedAmount.Value, "CAPS")) &amp; " FUNDED FROM MINISTRY OF EDUCATION - RESTRICTED CAPITAL AND/OR LAND CAPITAL RESERVE."</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <Format>'$'#,0;('$'#,0)</Format>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>Blue</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox42</rd:DefaultName>
+            <Top>4.3671in</Top>
+            <Left>10.07855in</Left>
+            <Height>0.30746in</Height>
+            <Width>5.75566in</Width>
+            <ZIndex>38</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+              <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>9.04165in</Height>
         <Style />
