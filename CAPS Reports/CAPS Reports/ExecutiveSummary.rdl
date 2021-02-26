@@ -16,8 +16,8 @@
     <DataSet Name="ProjectCashFlows">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projectcashflow"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projectcashflow" &gt;
     &lt;attribute name="caps_projectcashflowid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_totalprovincial" /&gt;
@@ -26,23 +26,29 @@
     &lt;attribute name="caps_ptr" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" link-type="inner" alias="ar"&gt;
-      &lt;filter type="and"&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" link-type="inner" alias="ar" &gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="PROJECT"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="PROJECT" &gt;
       &lt;attribute name="caps_fundingprogram" /&gt;
       &lt;attribute name="caps_fundingprogramcode" /&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="not-in"&gt;
+      &lt;filter type="and" &gt;
+        &lt;condition attribute="statuscode" operator="not-in" &gt;
           &lt;value&gt;200870007&lt;/value&gt;
           &lt;value&gt;2&lt;/value&gt;
         &lt;/condition&gt;
       &lt;/filter&gt;
+      &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
+        &lt;attribute name="caps_fundingprogramid" /&gt;
+        &lt;attribute name="caps_name" /&gt;
+        &lt;attribute name="caps_type" /&gt;
+        &lt;attribute name="caps_fundingprogramcode" /&gt;
+      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -121,6 +127,26 @@
           <DataField>PROJECT_caps_fundingprogramcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FUNDINGPROGRAM_caps_fundingprogramid">
+          <DataField>FUNDINGPROGRAM_caps_fundingprogramid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_name">
+          <DataField>FUNDINGPROGRAM_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_type">
+          <DataField>FUNDINGPROGRAM_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_typeValue">
+          <DataField>FUNDINGPROGRAM_caps_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_fundingprogramcode">
+          <DataField>FUNDINGPROGRAM_caps_fundingprogramcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="ProgramBudgetsCurrentYear">
@@ -129,11 +155,12 @@
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_programbudget"&gt;
     &lt;attribute name="caps_programbudgetid" /&gt;
-    &lt;attribute name="caps_unallocatedamount" /&gt;
-    &lt;attribute name="caps_totalbudget" /&gt;
     &lt;attribute name="caps_fundingprogram" /&gt;
-    &lt;attribute name="caps_allocatedamount" /&gt;
-    &lt;order attribute="caps_allocatedamount" descending="false" /&gt;
+    &lt;attribute name="caps_totalbudget" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+    &lt;order attribute="caps_fundingprogram" descending="false" /&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_cycleyear" link-type="inner" alias="ae"&gt;
       &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
@@ -156,22 +183,6 @@
           <DataField>caps_programbudgetid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_unallocatedamount">
-          <DataField>caps_unallocatedamount</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_unallocatedamountValue">
-          <DataField>caps_unallocatedamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalbudget">
-          <DataField>caps_totalbudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalbudgetValue">
-          <DataField>caps_totalbudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_fundingprogram">
           <DataField>caps_fundingprogram</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -184,16 +195,59 @@
           <DataField>caps_fundingprogramEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_allocatedamount">
-          <DataField>caps_allocatedamount</DataField>
+        <Field Name="caps_totalbudget">
+          <DataField>caps_totalbudget</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_allocatedamountValue">
-          <DataField>caps_allocatedamountValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="FUNDINGPROGRAM_caps_fundingprogramcode">
           <DataField>FUNDINGPROGRAM_caps_fundingprogramcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalbudgetValue">
+          <DataField>caps_totalbudgetValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CurrentFiscalYear">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;attribute name="edu_type" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="edu_yearid" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_type">
+          <DataField>edu_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_typeValue">
+          <DataField>edu_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -433,7 +487,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Priority Investment</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -471,6 +527,7 @@ OR Fields!FUNDINGPROGRAM_caps_fundingprogramcode.Value = "CSF_LEASES"
 OR Fields!FUNDINGPROGRAM_caps_fundingprogramcode.Value = "EMERGENT_CLAIMS"
 ,cdbl(Fields!caps_totalbudgetValue.Value),0.00), "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
@@ -511,6 +568,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "CSF_LEASES"
 OR Fields!PROJECT_caps_fundingprogramcode.Value = "EMERGENT_CLAIMS"
 ,cdbl(Fields!caps_totalactualdrawsValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
@@ -551,6 +609,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "CSF_LEASES"
 OR Fields!PROJECT_caps_fundingprogramcode.Value = "EMERGENT_CLAIMS"
 ,cdbl(Fields!caps_totalprovincialValue.Value),0.00), "ProjectCashFlows")</Value>
                                   <Style>
+                                    <FontFamily>arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
@@ -662,7 +721,7 @@ OR Fields!FUNDINGPROGRAM_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalbudgetValue.Value),0.00), "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -679,6 +738,7 @@ OR Fields!FUNDINGPROGRAM_caps_fundingprogramcode.Value = "BUS"
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -845,6 +905,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
 ,cdbl(Fields!caps_totalbudgetValue.Value),0.00), "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -861,6 +922,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1191,7 +1253,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                                   <Value>=Sum(Fields!caps_totalbudgetValue.Value, "ProgramBudgetsCurrentYear")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>'$'#,0;('$'#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1208,6 +1270,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1311,7 +1374,6 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                             <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1345,7 +1407,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectCashFlows</DataSetName>
-            <Top>1.0977in</Top>
+            <Top>1.08728in</Top>
             <Height>1.5in</Height>
             <Width>8.06375in</Width>
             <ZIndex>1</ZIndex>
@@ -1400,8 +1462,38 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox160">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CurrentFiscalYear.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox160</rd:DefaultName>
+            <Top>3.12375in</Top>
+            <Left>0.33854in</Left>
+            <Height>0.25in</Height>
+            <Width>1in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.05792in</Height>
+        <Height>5.79041in</Height>
         <Style />
       </Body>
       <Width>8.06375in</Width>
@@ -1430,7 +1522,7 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.07056cm</Top>
+              <Top>0.05291cm</Top>
               <Height>0.24306in</Height>
               <Width>1.33854in</Width>
               <Style>
@@ -1492,10 +1584,29 @@ OR Fields!PROJECT_caps_fundingprogramcode.Value = "BUS"
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="CurrentFiscalYear">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear</DataSetName>
+          <ValueField>edu_name</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>CurrentFiscalYear</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CurrentFiscalYear</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
