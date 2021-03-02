@@ -13,202 +13,6 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ProjectCashFlows">
-      <Query>
-        <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
-  &lt;entity name="caps_projectcashflow" &gt;
-    &lt;attribute name="caps_projectcashflowid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_totalprovincial" /&gt;
-    &lt;attribute name="caps_totalagency" /&gt;
-    &lt;attribute name="caps_totalactualdraws" /&gt;
-    &lt;attribute name="caps_ptr" /&gt;
-    &lt;attribute name="caps_fiscalyear" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and" &gt;
-      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-    &lt;/filter&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" link-type="inner" alias="ar" &gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="PROJECT" &gt;
-      &lt;attribute name="caps_fundingprogram" /&gt;
-      &lt;attribute name="caps_fundingprogramcode" /&gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="statuscode" operator="not-in" &gt;
-          &lt;value&gt;200870007&lt;/value&gt;
-          &lt;value&gt;2&lt;/value&gt;
-        &lt;/condition&gt;
-      &lt;/filter&gt;
-      &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
-        &lt;attribute name="caps_fundingprogramid" /&gt;
-        &lt;attribute name="caps_name" /&gt;
-        &lt;attribute name="caps_type" /&gt;
-        &lt;attribute name="caps_fundingprogramcode" /&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_projectcashflowid">
-          <DataField>caps_projectcashflowid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprovincial">
-          <DataField>caps_totalprovincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalprovincialValue">
-          <DataField>caps_totalprovincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagency">
-          <DataField>caps_totalagency</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyValue">
-          <DataField>caps_totalagencyValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalactualdraws">
-          <DataField>caps_totalactualdraws</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalactualdrawsValue">
-          <DataField>caps_totalactualdrawsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_ptr">
-          <DataField>caps_ptr</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_ptrValue">
-          <DataField>caps_ptrValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_ptrEntityName">
-          <DataField>caps_ptrEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_fiscalyear">
-          <DataField>caps_fiscalyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_fiscalyearValue">
-          <DataField>caps_fiscalyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_fiscalyearEntityName">
-          <DataField>caps_fiscalyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PROJECT_caps_fundingprogram">
-          <DataField>PROJECT_caps_fundingprogram</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PROJECT_caps_fundingprogramValue">
-          <DataField>PROJECT_caps_fundingprogramValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="PROJECT_caps_fundingprogramEntityName">
-          <DataField>PROJECT_caps_fundingprogramEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PROJECT_caps_fundingprogramcode">
-          <DataField>PROJECT_caps_fundingprogramcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_fundingprogramid">
-          <DataField>FUNDINGPROGRAM_caps_fundingprogramid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_name">
-          <DataField>FUNDINGPROGRAM_caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_type">
-          <DataField>FUNDINGPROGRAM_caps_type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_typeValue">
-          <DataField>FUNDINGPROGRAM_caps_typeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_fundingprogramcode">
-          <DataField>FUNDINGPROGRAM_caps_fundingprogramcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="ProgramBudgetsCurrentYear">
-      <Query>
-        <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_programbudget"&gt;
-    &lt;attribute name="caps_programbudgetid" /&gt;
-    &lt;attribute name="caps_fundingprogram" /&gt;
-    &lt;attribute name="caps_totalbudget" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-    &lt;/filter&gt;
-    &lt;order attribute="caps_fundingprogram" descending="false" /&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_cycleyear" link-type="inner" alias="ae"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_projectionyear" link-type="inner" alias="af"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" visible="false" link-type="outer" alias="FUNDINGPROGRAM"&gt;
-      &lt;attribute name="caps_fundingprogramcode" /&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_programbudgetid">
-          <DataField>caps_programbudgetid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_fundingprogram">
-          <DataField>caps_fundingprogram</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_fundingprogramValue">
-          <DataField>caps_fundingprogramValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_fundingprogramEntityName">
-          <DataField>caps_fundingprogramEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalbudget">
-          <DataField>caps_totalbudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FUNDINGPROGRAM_caps_fundingprogramcode">
-          <DataField>FUNDINGPROGRAM_caps_fundingprogramcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalbudgetValue">
-          <DataField>caps_totalbudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
     <DataSet Name="CurrentFiscalYear">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
@@ -252,7 +56,7 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="ProgramBudgetCurrentYearV2">
+    <DataSet Name="ProgramBudgetCurrentYear">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
@@ -365,7 +169,7 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="ProjectCashFlowsV2">
+    <DataSet Name="ProjectCashFlows">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
@@ -517,6 +321,41 @@
         <Field Name="ActualDrawsValue">
           <DataField>ActualDrawsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectCashflow_NoFundingPogram">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
+  &lt;entity name="caps_projectcashflow" &gt;
+    &lt;attribute name="caps_name" alias="Count" aggregate="count" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="caps_totalactualdraws" operator="not-null" /&gt;
+      &lt;condition attribute="caps_totalprovincial" operator="not-null" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="caps_fundingprogram" operator="null" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Count">
+          <DataField>Count</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CountValue">
+          <DataField>CountValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -930,7 +769,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_fundingprogram</rd:DefaultName>
@@ -964,7 +805,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -990,16 +833,18 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=IIF(IsNothing(
-Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!actualdrawsValue.Value, "ProjectCashFlowsV2")),
+Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!actualdrawsValue.Value, "ProjectCashFlows")),
 0,
-Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!actualdrawsValue.Value, "ProjectCashFlowsV2"))</Value>
+Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!actualdrawsValue.Value, "ProjectCashFlows"))</Value>
                                   <Style>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1025,9 +870,9 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!act
                               <TextRuns>
                                 <TextRun>
                                   <Value>=IIF(IsNothing(
-Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!provincialValue.Value, "ProjectCashFlowsV2")),
+Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!provincialValue.Value, "ProjectCashFlows")),
 0,
-Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!provincialValue.Value, "ProjectCashFlowsV2"))</Value>
+Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!provincialValue.Value, "ProjectCashFlows"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>'$'#,0;('$'#,0)</Format>
@@ -1035,7 +880,9 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1068,7 +915,9 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1087,7 +936,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.29in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1143,7 +992,9 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1181,7 +1032,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1219,7 +1072,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox62</rd:DefaultName>
@@ -1254,7 +1109,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox55</rd:DefaultName>
@@ -1330,7 +1187,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox77</rd:DefaultName>
@@ -1364,7 +1223,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox78</rd:DefaultName>
@@ -1398,7 +1259,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox79</rd:DefaultName>
@@ -1432,7 +1295,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox80</rd:DefaultName>
@@ -1453,7 +1318,7 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.39247in</Height>
+                  <Height>0.4in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1508,7 +1373,9 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1545,7 +1412,9 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1580,7 +1449,9 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
@@ -1614,7 +1485,9 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox68</rd:DefaultName>
@@ -2157,7 +2030,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                     <TablixMember />
                     <TablixMember>
                       <Visibility>
-                        <Hidden>= (ReportItems!NoFundingProgram_ActualDraws.Value = "0" )</Hidden>
+                        <Hidden>=Parameters!NoFundingProgramCashflows.Value = 0</Hidden>
                       </Visibility>
                     </TablixMember>
                   </TablixMembers>
@@ -2212,10 +2085,10 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>ProgramBudgetCurrentYearV2</DataSetName>
+            <DataSetName>ProgramBudgetCurrentYear</DataSetName>
             <Top>0.11333in</Top>
             <Left>0.01389in</Left>
-            <Height>2.05946in</Height>
+            <Height>2.107in</Height>
             <Width>7.28521in</Width>
             <Style>
               <Border>
@@ -2224,7 +2097,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.9687cm</Height>
+        <Height>5.99524cm</Height>
         <Style />
       </Body>
       <Width>21.11058cm</Width>
@@ -2417,6 +2290,17 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
       </DefaultValue>
       <Prompt>CurrentFiscalYear</Prompt>
     </ReportParameter>
+    <ReportParameter Name="NoFundingProgramCashflows">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>ProjectCashflow_NoFundingPogram</DataSetName>
+          <ValueField>CountValue</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>NoFundingProgramCashflows</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2427,6 +2311,11 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>CurrentFiscalYear</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>NoFundingProgramCashflows</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
