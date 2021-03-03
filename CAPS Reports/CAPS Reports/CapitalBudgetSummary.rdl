@@ -40,13 +40,16 @@
         &lt;attribute name="caps_fiscalyear" /&gt;
         &lt;filter type="and" &gt;
           &lt;condition attribute="caps_fiscalyear" operator="eq" value="@CurrentFiscalYear" /&gt;
+        &lt;/filter&gt;
+        &lt;filter type="or" &gt;
           &lt;condition attribute="caps_totalactualdraws" operator="gt" value="0" /&gt;
+          &lt;condition attribute="caps_totalprovincial" operator="gt" value="0" /&gt;
         &lt;/filter&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" link-type="inner" alias="Year" &gt;
       &lt;attribute name="statuscode" /&gt;
-&lt;filter type="or" &gt;
+      &lt;filter type="or" &gt;
         &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
         &lt;condition attribute="statuscode" operator="eq" value="757500000" /&gt;
       &lt;/filter&gt;
