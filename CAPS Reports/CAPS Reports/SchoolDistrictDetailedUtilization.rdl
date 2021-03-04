@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>d3ae00b1-387d-498c-a0f5-6c086771c022</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -2347,9 +2347,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>=CInt(IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
+                                  <Value>=Format(
+CInt(IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
 0,
-First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
+First(Fields!SDEnrolment_caps_totalenrolmentValue.Value))),"#,###0")</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
@@ -2458,6 +2459,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                                   <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                     <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -2559,6 +2561,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                                   <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                     <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>

@@ -42,13 +42,15 @@
     &lt;attribute name="caps_expirydate" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" visible="false" link-type="outer" alias="a_77c825787491ea11a811000d3af43595"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" visible="false" link-type="outer" alias="project"&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_projectnumber" /&gt;
       &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
       &lt;attribute name="caps_facilitysite" /&gt;
       &lt;attribute name="caps_description" /&gt;
+      &lt;attribute name="caps_landcapital" /&gt;
+      &lt;attribute name="caps_restrictedcapital" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -180,40 +182,59 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="project_caps_schooldistrict">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrict</DataField>
+          <DataField>project_caps_schooldistrict</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_schooldistrictValue">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrictValue</DataField>
+          <DataField>project_caps_schooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
         <Field Name="project_caps_schooldistrictEntityName">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_schooldistrictEntityName</DataField>
+          <DataField>project_caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_name">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_name</DataField>
+          <DataField>project_caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_projectnumber">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_projectnumber</DataField>
+          <DataField>project_caps_projectnumber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_maxpotentialprojectbudget">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_maxpotentialprojectbudget</DataField>
+          <DataField>project_caps_maxpotentialprojectbudget</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_maxpotentialprojectbudgetValue">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_maxpotentialprojectbudgetValue</DataField>
+          <DataField>project_caps_maxpotentialprojectbudgetValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="project_caps_facilitysite">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_facilitysite</DataField>
+          <DataField>project_caps_facilitysite</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="project_caps_description">
-          <DataField>a_77c825787491ea11a811000d3af43595_caps_description</DataField>
+          <DataField>project_caps_description</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_landcapital">
+          <DataField>project_caps_landcapital</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_landcapitalValue">
+          <DataField>project_caps_landcapitalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_restrictedcapital">
+          <DataField>project_caps_restrictedcapital</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="project_caps_restrictedcapitalValue">
+          <DataField>project_caps_restrictedcapitalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ReducedAmount">
+          <Value>=Format((Fields!project_caps_landcapitalValue.Value + Fields!project_caps_restrictedcapitalValue.Value), "C0")</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -243,7 +264,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=FormatDateTime(First(Fields!createdon.Value, "CAPS"),DateFormat.ShortDate)</Value>
+                        <Value>=FormatDateTime(First(Fields!caps_signedon.Value, "CAPS"),DateFormat.ShortDate)</Value>
                         <Style>
                           <Color>Blue</Color>
                         </Style>
@@ -1715,43 +1736,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="Textbox42">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>TOTAL APPROVED BORROWING HAS BEEN REDUCED BY 1,000,000.00 FUNDED FROM MINISTRY OF EDUCATION - RESTRICTED CAPITAL AND/OR LAND CAPITAL RESERVE.</Value>
-                        <Style>
-                          <FontStyle>Normal</FontStyle>
-                          <FontFamily>Arial</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Normal</FontWeight>
-                          <TextDecoration>None</TextDecoration>
-                          <Color>Blue</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox42</rd:DefaultName>
-                <Top>8.45574in</Top>
-                <Left>0.27759in</Left>
-                <Height>0.30746in</Height>
-                <Width>5.75566in</Width>
-                <ZIndex>49</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Textbox Name="caps_previoustotalapprovedadvance">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1773,7 +1757,7 @@
                 <Left>4.15705in</Left>
                 <Height>0.25in</Height>
                 <Width>1.77203in</Width>
-                <ZIndex>50</ZIndex>
+                <ZIndex>49</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1805,7 +1789,7 @@
                 <Left>5.12153in</Left>
                 <Height>0.25in</Height>
                 <Width>1.67796in</Width>
-                <ZIndex>51</ZIndex>
+                <ZIndex>50</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1837,7 +1821,7 @@
                 <Left>2.10178in</Left>
                 <Height>0.25in</Height>
                 <Width>1.52229in</Width>
-                <ZIndex>52</ZIndex>
+                <ZIndex>51</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1869,7 +1853,7 @@
                 <Left>1.7356in</Left>
                 <Height>0.25in</Height>
                 <Width>1.7453in</Width>
-                <ZIndex>53</ZIndex>
+                <ZIndex>52</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1901,7 +1885,7 @@
                 <Left>4.17094in</Left>
                 <Height>0.25in</Height>
                 <Width>1.77203in</Width>
-                <ZIndex>54</ZIndex>
+                <ZIndex>53</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1933,7 +1917,7 @@
                 <Left>4.15705in</Left>
                 <Height>0.25in</Height>
                 <Width>1.77203in</Width>
-                <ZIndex>55</ZIndex>
+                <ZIndex>54</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1953,7 +1937,7 @@
                 <Left>0.32118in</Left>
                 <Height>0.39236in</Height>
                 <Width>3.15972in</Width>
-                <ZIndex>56</ZIndex>
+                <ZIndex>55</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1965,7 +1949,7 @@
                 <Left>0.22396in</Left>
                 <Height>0in</Height>
                 <Width>6.60417in</Width>
-                <ZIndex>57</ZIndex>
+                <ZIndex>56</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1993,7 +1977,7 @@
                 <Left>0.98785in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
-                <ZIndex>58</ZIndex>
+                <ZIndex>57</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2025,7 +2009,7 @@
                 <Left>2.10178in</Left>
                 <Height>0.25in</Height>
                 <Width>3.33572in</Width>
-                <ZIndex>59</ZIndex>
+                <ZIndex>58</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2036,6 +2020,74 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
+              <Tablix Name="Tablix1">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>6.20467in</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>0.25in</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox38">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>="TOTAL APPROVED BORROWING HAS BEEN REDUCED BY " &amp; Fields!ReducedAmount.Value &amp; " FUNDED FROM MINISTRY OF EDUCATION - RESTRICTED CAPITAL AND/OR LAND CAPITAL RESERVE."</Value>
+                                      <Style>
+                                        <Color>Blue</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox38</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixRowHierarchy>
+                <DataSetName>CAPS</DataSetName>
+                <Top>8.42517in</Top>
+                <Left>0.19531in</Left>
+                <Height>0.25in</Height>
+                <Width>6.20467in</Width>
+                <ZIndex>59</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Tablix>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.12445in</Top>
