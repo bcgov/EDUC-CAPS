@@ -368,19 +368,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.27688in</Width>
+                  <Width>1.42966in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.2in</Width>
+                  <Width>1.35278in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.2in</Width>
+                  <Width>1.35278in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.2in</Width>
+                  <Width>1.35278in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.40833in</Width>
+                  <Width>1.56111in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1883,7 +1883,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1in</Size>
+                    <Size>1.15278in</Size>
                     <CellContents>
                       <Textbox Name="Textbox30">
                         <CanGrow>true</CanGrow>
@@ -1932,7 +1932,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1in</Size>
+                    <Size>1.15278in</Size>
                     <CellContents>
                       <Textbox Name="FUNDINGPROGRAM_caps_type">
                         <CanGrow>true</CanGrow>
@@ -1988,7 +1988,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1in</Size>
+                    <Size>1.15278in</Size>
                     <CellContents>
                       <Textbox Name="Textbox75">
                         <CanGrow>true</CanGrow>
@@ -2038,7 +2038,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1in</Size>
+                    <Size>1.15278in</Size>
                     <CellContents>
                       <Textbox Name="Textbox81">
                         <CanGrow>true</CanGrow>
@@ -2086,10 +2086,112 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProgramBudgetCurrentYear</DataSetName>
-            <Top>0.11333in</Top>
-            <Left>0.01389in</Left>
+            <Top>0.52789in</Top>
             <Height>2.107in</Height>
-            <Width>7.28521in</Width>
+            <Width>8.20188in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix3">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.88806cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.63133cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Fiscal Year</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="edu_name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!edu_name.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>edu_name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>CurrentFiscalYear</DataSetName>
+            <Top>0.56445cm</Top>
+            <Left>0.04cm</Left>
+            <Height>0.6cm</Height>
+            <Width>6.51939cm</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2097,7 +2199,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.99524cm</Height>
+        <Height>6.73607cm</Height>
         <Style />
       </Body>
       <Width>21.11058cm</Width>
@@ -2191,7 +2293,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.68793cm</Height>
+          <Height>0.77611cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2246,8 +2348,8 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.03528cm</Top>
-              <Left>6.54813in</Left>
+              <Top>0.10583cm</Top>
+              <Left>6.97271in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <ZIndex>1</ZIndex>
