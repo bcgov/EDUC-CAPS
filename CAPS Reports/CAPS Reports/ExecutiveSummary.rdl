@@ -22,6 +22,7 @@
     &lt;attribute name="edu_type" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="edu_yearid" /&gt;
+    &lt;attribute name="edu_startdate" /&gt;
     &lt;filter&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
       &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
@@ -53,6 +54,14 @@
         <Field Name="edu_yearid">
           <DataField>edu_yearid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_startdate">
+          <DataField>edu_startdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_startdateValue">
+          <DataField>edu_startdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -176,6 +185,9 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@CurrentFiscalStartDate">
+            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -188,6 +200,10 @@
     &lt;/filter&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="PROJECT" &gt;
       &lt;attribute name="caps_fundingprogram" alias="fundingprogram" groupby="true" /&gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
+      &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -238,6 +254,9 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@CurrentFiscalStartDate">
+            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -248,6 +267,10 @@
       &lt;condition attribute="caps_fiscalyear" operator="eq" value="@CurrentFiscalYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" alias="PROJECT" &gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
+      &lt;/filter&gt;
       &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="outer" alias="FUNDINGPROGRAM" &gt;
         &lt;attribute name="caps_type" alias="FundingProgramType" groupby="true" /&gt;
         &lt;order alias="FundingProgramType" /&gt;
@@ -290,6 +313,9 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@CurrentFiscalStartDate">
+            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -300,6 +326,10 @@
       &lt;condition attribute="caps_fiscalyear" operator="eq" value="@CurrentFiscalYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" alias="PROJECT" &gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
+      &lt;/filter&gt;
       &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="outer" alias="FUNDINGPROGRAM" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -335,8 +365,9 @@
       &lt;condition attribute="caps_totalprovincial" operator="not-null" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" &gt;
-      &lt;filter&gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_fundingprogram" operator="null" /&gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" &gt;
@@ -1052,7 +1083,7 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox62">
+                        <Textbox Name="Type_Projections">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1077,7 +1108,6 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox62</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1100,7 +1130,7 @@ Lookup(Fields!FUNDINGPROGRAM_caps_type.Value, Fields!FundingProgramType.Value, F
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= ReportItems!Type_Budget.Value - ReportItems!Type_Draws.Value</Value>
+                                  <Value>= ReportItems!Type_Budget.Value - ReportItems!Type_Projections.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2088,7 +2118,7 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
             <DataSetName>ProgramBudgetCurrentYear</DataSetName>
             <Top>0.52789in</Top>
             <Height>2.107in</Height>
-            <Width>8.20188in</Width>
+            <Width>8.20189in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2404,6 +2434,17 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
       <Prompt>NoFundingProgramCashflows</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
+    <ReportParameter Name="CurrentFiscalStartDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear</DataSetName>
+          <ValueField>edu_startdate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>CurrentFiscalStartDate</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2419,6 +2460,11 @@ First(Fields!FundingProgramType.Value, "ProjectCashFlow_FundingProgramTypeSums")
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>NoFundingProgramCashflows</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CurrentFiscalStartDate</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
