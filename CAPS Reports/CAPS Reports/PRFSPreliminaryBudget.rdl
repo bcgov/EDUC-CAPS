@@ -21,8 +21,8 @@
             <Value>=Parameters!CRM_caps_prfsalternativeoption.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_prfsalternativeoption" enableprefiltering="1"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_prfsalternativeoption" enableprefiltering="1" &gt;
     &lt;attribute name="caps_prfsalternativeoptionid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
@@ -58,7 +58,15 @@
     &lt;attribute name="caps_changeindesigncapacitytotal" /&gt;
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
     &lt;attribute name="caps_schedulebtotal" /&gt;
+    &lt;attribute name="caps_submissioncategory" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCAT" &gt;
+      &lt;attribute name="caps_categorycode" /&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_projecttype" from="caps_projecttypeid" to="caps_projecttype" link-type="inner" alias="ProjTyp" &gt;
+      &lt;attribute name="caps_type" /&gt;
+      &lt;attribute name="caps_budgetcalculationtype" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -347,6 +355,34 @@
         <Field Name="caps_schedulebtotalValue0">
           <DataField>caps_schedulebtotalValue0</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategory">
+          <DataField>caps_submissioncategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryValue">
+          <DataField>caps_submissioncategoryValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_submissioncategoryEntityName">
+          <DataField>caps_submissioncategoryEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SubCAT_caps_categorycode">
+          <DataField>SubCAT_caps_categorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_type">
+          <DataField>ProjTyp_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_budgetcalculationtype">
+          <DataField>ProjTyp_caps_budgetcalculationtype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProjTyp_caps_budgetcalculationtypeValue">
+          <DataField>ProjTyp_caps_budgetcalculationtypeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1003,6 +1039,9 @@
             <Height>3cm</Height>
             <Width>9.71779cm</Width>
             <ZIndex>1</ZIndex>
+            <Visibility>
+              <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1737,11 +1776,31 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005" , False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!SubCAT_caps_categorycode.Value &lt;&gt; "SEISMIC"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
@@ -3006,12 +3065,32 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtype.Value = "Seismic Upgrade"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005" , False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870000" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870002" , False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=iif(Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870001" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870003" or Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870004", False, True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -3768,10 +3847,22 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
               </TablixMembers>
@@ -4211,8 +4302,16 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=Fields!ProjTyp_caps_budgetcalculationtypeValue.Value = "200870005"</Hidden>
+                  </Visibility>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>PRFSOption</DataSetName>
@@ -5021,7 +5120,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="Preliminary Budget Type: " &amp; First(Fields!caps_projecttype.Value, "PRFSOption")</Value>
+                    <Value>="Preliminary Budget Type: " &amp; First(Fields!ProjTyp_caps_budgetcalculationtype.Value, "PRFSOption")</Value>
                     <Style>
                       <FontFamily>Arial</FontFamily>
                       <FontWeight>Bold</FontWeight>
