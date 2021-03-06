@@ -110,15 +110,18 @@ CAPS.Project.onLoad = function (executionContext) {
 
             formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
             formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFS);
-
-            formContext.getControl("Subgrid_PRFS_Alt_Options").addOnLoad(CAPS.Project.ValidatePRFSAlternativeOptions);
-            formContext.getControl("sgd_surroundingschools").addOnLoad(CAPS.Project.ValidatePRFSSurroundingSchools);
-            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSAlternativeOptions);
-            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSSurroundingSchools);
-
             CAPS.Project.ValidatePRFS(executionContext);
-            CAPS.Project.ValidatePRFSAlternativeOptions(executionContext);
-            CAPS.Project.ValidatePRFSSurroundingSchools(executionContext);
+
+            if (submissionCategoryCode != "DEMOLITION") {
+                formContext.getControl("Subgrid_PRFS_Alt_Options").addOnLoad(CAPS.Project.ValidatePRFSAlternativeOptions);
+                formContext.getControl("sgd_surroundingschools").addOnLoad(CAPS.Project.ValidatePRFSSurroundingSchools);
+                formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSAlternativeOptions);
+                formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSSurroundingSchools);
+
+
+                CAPS.Project.ValidatePRFSAlternativeOptions(executionContext);
+                CAPS.Project.ValidatePRFSSurroundingSchools(executionContext);
+            }
 
         }
     }
@@ -640,7 +643,7 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
                             function (response) {
 
                                 if (response.hasCashflow) {
-                                    formContext.ui.setFormNotification('PRFS is not complete.', 'WARNING', PRFS_INCOMPLETE_NOTIFICATION);
+                                    formContext.ui.setFormNotification('PRFS is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
                                 }
                                 else {
                                     formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
@@ -689,7 +692,7 @@ CAPS.Project.ValidatePRFSAlternativeOptions = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No PRFS Alternative Options have been provided on the PRFS tab.', 'WARNING', PRFS_NOALTERNATIVES_NOTIFICATION);
+                            formContext.ui.setFormNotification('No PRFS Alternative Options have been provided on the PRFS tab.', 'INFO', PRFS_NOALTERNATIVES_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOALTERNATIVES_NOTIFICATION);
@@ -737,7 +740,7 @@ CAPS.Project.ValidatePRFSSurroundingSchools = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'WARNING', PRFS_NOSCHOOLS_NOTIFICATION);
+                            formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'INFO', PRFS_NOSCHOOLS_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
@@ -936,25 +939,25 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
                 formContext.getControl("caps_includenlc").setVisible(false);
                 formContext.getAttribute("caps_includenlc").setValue(null);
             }
-            if (calcType === 200870001 || calcType === 200870004 || calcType === 200870005) {
-                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
-                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
+            if (calcType === 200870004 || calcType === 200870005) {
+                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
+                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
                 formContext.getControl("caps_constructioncostsspir").setVisible(true);
-                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
-                formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(true);
+                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
+                //formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(true);
             }
             else {
-                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
-                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
+                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
+                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
                 formContext.getControl("caps_constructioncostsspir").setVisible(false);
-                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
-                formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(false);
+                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
+                //formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(false);
 
-                formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
-                formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
+                //formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
+                //formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
                 formContext.getAttribute("caps_constructioncostsspir").setValue(null);
-                formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
-                formContext.getAttribute("caps_constructioncostsnonstructuralseismicupgr").setValue(null);
+                //formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
+                //formContext.getAttribute("caps_constructioncostsnonstructuralseismicupgr").setValue(null);
             }
         },
         function (error) {

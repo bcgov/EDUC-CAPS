@@ -116,6 +116,11 @@ namespace CustomWorkflowActivities
                     }
                 }
 
+                if (schoolRecordErrorMessage.Length > 4000)
+                {
+                    schoolRecordErrorMessage = schoolRecordErrorMessage.Substring(0, 4000);
+                }
+
 
                 var recordToUpdate = new edu_SchoolEnrolment();
                 recordToUpdate.Id = record.Id;

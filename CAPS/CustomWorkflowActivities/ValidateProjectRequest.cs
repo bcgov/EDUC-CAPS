@@ -236,9 +236,9 @@ namespace CustomWorkflowActivities
             }
             #endregion
 
-            #region Check if Major Project has cash flow in first 5 years
-            //Check if Major Project has cash flow in first 5 years
-            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
+            #region Check if Major Project has cash flow in first 5 years and not lease
+            //Check if Major Project has cash flow in first 5 years and not lease
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major && submissionCategory.caps_CategoryCode != "LEASE")
             {
                 if (projectRequest.caps_Submission != null
                     && projectRequest.caps_Projectyear != callForSubmission.caps_CapitalPlanYear)
@@ -298,7 +298,7 @@ namespace CustomWorkflowActivities
             }
             #endregion
 
-            //Check if major project has any prfs options with a start date before the capital plan year
+            #region Check if major project has any prfs options with a start date before the capital plan year
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
             {
                 if (projectRequest.caps_Submission != null)
@@ -308,19 +308,19 @@ namespace CustomWorkflowActivities
 
                     int startYear = capitalPlanYear.edu_StartYear.Value;
 
-                    var fetchXMLPRFS = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
-                                        "<entity name=\"caps_prfsalternativeoption\" > "+
-                                           "<attribute name=\"caps_prfsalternativeoptionid\" /> "+
-                                            "<attribute name=\"caps_name\" /> "+
-                                            "<attribute name=\"createdon\" /> "+
-                                             " <order attribute=\"caps_name\" descending=\"false\" /> "+
-                                                 "<filter type=\"and\" > "+
-                                                    "<condition attribute = \"statuscode\" operator=\"eq\" value = \"1\" /> "+
+                    var fetchXMLPRFS = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+                                        "<entity name=\"caps_prfsalternativeoption\" > " +
+                                           "<attribute name=\"caps_prfsalternativeoptionid\" /> " +
+                                            "<attribute name=\"caps_name\" /> " +
+                                            "<attribute name=\"createdon\" /> " +
+                                             " <order attribute=\"caps_name\" descending=\"false\" /> " +
+                                                 "<filter type=\"and\" > " +
+                                                    "<condition attribute = \"statuscode\" operator=\"eq\" value = \"1\" /> " +
                                                         "<condition attribute = \"caps_projectrequest\" operator= \"eq\"  value = '{" + recordId + "}' /> " +
                                                               "</filter > " +
-                                                              "<link-entity name = \"edu_year\" from = \"edu_yearid\" to = \"caps_anticipatedoptionstartyear\" link-type = \"inner\" alias = \"ad\" > "+
-                                                                            " <filter type = \"and\" > "+
-                                                                               " <condition attribute = \"edu_startyear\" operator= \"lt\" value = \""+ startYear + "\" /> "+
+                                                              "<link-entity name = \"edu_year\" from = \"edu_yearid\" to = \"caps_anticipatedoptionstartyear\" link-type = \"inner\" alias = \"ad\" > " +
+                                                                            " <filter type = \"and\" > " +
+                                                                               " <condition attribute = \"edu_startyear\" operator= \"lt\" value = \"" + startYear + "\" /> " +
                                                                                  " </filter > " +
                                                                                 "</link-entity > " +
                                                                               "</entity > " +
@@ -334,10 +334,33 @@ namespace CustomWorkflowActivities
                         validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the PRFS Alternative Option from the Project Request.");
                     }
                 }
+            } 
+            #endregion
+
+            //Check if Lease occupancy year on or after submission year
+            if (submissionCategory.caps_CategoryCode == "LEASE"
+                && projectRequest.caps_Submission != null
+                && projectRequest.caps_AnticipatedOccupancyYear != callForSubmission.caps_CapitalPlanYear)
+            {
+                //get occupancy year
+                var occupancyYear = service.Retrieve(projectRequest.caps_AnticipatedOccupancyYear.LogicalName, projectRequest.caps_AnticipatedOccupancyYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
+
+                //get capital plan year
+                var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
+
+                int startYear = capitalPlanYear.edu_StartYear.Value;
+
+                if (occupancyYear.edu_StartYear.HasValue && capitalPlanYear.edu_StartYear.HasValue)
+                {
+                    if (occupancyYear.edu_StartYear.Value < capitalPlanYear.edu_StartYear.Value)
+                    {
+                        isValid = false;
+                        validationMessage.AppendLine("Lease project requests added to a capital plan must have an Anticipated Occupancy Year on or after the Capital Plan Start Year.");
+                    }
+                }
             }
 
-
-                    this.valid.Set(executionContext, isValid);
+            this.valid.Set(executionContext, isValid);
             this.message.Set(executionContext, validationMessage.ToString());
         }
     }

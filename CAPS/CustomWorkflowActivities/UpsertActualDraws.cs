@@ -86,7 +86,7 @@ namespace CustomWorkflowActivities
                 filterName.Conditions.Add(new ConditionExpression("caps_name", ConditionOperator.Equal, coaValue));
                 filterName.Conditions.Add(new ConditionExpression("caps_ptr", ConditionOperator.NotNull));
                 filterName.Conditions.Add(new ConditionExpression("caps_revisionnumber", ConditionOperator.Equal, revisionValue));
-                filterName.Conditions.Add(new ConditionExpression("statuscode", ConditionOperator.In, (int)caps_CertificateofApproval_StatusCode.Approved, (int)caps_CertificateofApproval_StatusCode.Revised, (int)caps_CertificateofApproval_StatusCode.Closed ));
+                filterName.Conditions.Add(new ConditionExpression("statuscode", ConditionOperator.In, (int)caps_CertificateofApproval_StatusCode.Registered, (int)caps_CertificateofApproval_StatusCode.Revised, (int)caps_CertificateofApproval_StatusCode.Closed ));
                 query.Criteria.AddFilter(filterName);
 
                 EntityCollection results = service.RetrieveMultiple(query);

@@ -32,6 +32,7 @@ namespace CustomWorkflowActivities
 
             tracingService.Trace("{0}{1}", "Start Custom Workflow Activity: SetOperatingCapacity", DateTime.Now.ToLongTimeString());
 
+            //Update to run on school district
             var recordId = context.PrimaryEntityId;
 
             try
@@ -41,6 +42,7 @@ namespace CustomWorkflowActivities
 
                 Services.OperatingCapacity capacityService = new Services.OperatingCapacity(service, tracingService, capacity);
 
+                tracingService.Trace("Section: {0}", "Update Facilities");
                 #region Update Facilities
                 //get Facilities
                 var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >" +
@@ -57,6 +59,7 @@ namespace CustomWorkflowActivities
                                            "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" /> " +
                                            "<condition attribute=\"caps_lowestgrade\" operator=\"not-null\" />"+
                                            "<condition attribute=\"caps_highestgrade\" operator=\"not-null\" />" +
+                                           "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"{" + recordId + "}\" />" +
                                        "</filter> " +
                                 "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ac\" > " +
                                         "<filter type=\"and\" > " +
@@ -90,7 +93,8 @@ namespace CustomWorkflowActivities
                     service.Update(recordToUpdate);
                 }
                 #endregion
-                
+
+                tracingService.Trace("Section: {0}", "Update Capacity Reporting");
                 #region Update Capacity Reporting
                 //Update Capacity Reporting
                 var capacityFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\" >" +
@@ -100,9 +104,15 @@ namespace CustomWorkflowActivities
                                         "<attribute name=\"caps_kindergarten_designcapacity\" /> " +
                                         "<attribute name=\"caps_elementary_designcapacity\" /> " +
                                          "<order attribute=\"caps_secondary_designutilization\" descending=\"false\" /> " +
-                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"outer\" alias=\"facility\" > " +
+                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"inner\" alias=\"facility\" > " +
                                                 "<attribute name=\"caps_lowestgrade\" /> " +
                                                 "<attribute name=\"caps_highestgrade\" /> " +
+                                                "<filter type=\"and\" > " +
+                                                    "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"{" + recordId + "}\" />" +
+                                                    "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" /> " +
+                                                    "<condition attribute=\"caps_lowestgrade\" operator=\"not-null\" />" +
+                                                    "<condition attribute=\"caps_highestgrade\" operator=\"not-null\" />" +
+                                                "</filter> " +
                                             "</link-entity> " +
                                                 "<link-entity name=\"edu_year\" from=\"edu_yearid\" to=\"caps_schoolyear\" link-type=\"inner\" alias=\"ab\" >" +
                                                 "<filter type=\"and\"> " +
@@ -115,6 +125,8 @@ namespace CustomWorkflowActivities
                                             "</entity> " +
                                      "</fetch> ";
 
+                tracingService.Trace("Capacity Reporting Fetch: {0}", capacityFetchXML);
+
                 EntityCollection capacityResults = service.RetrieveMultiple(new FetchExpression(capacityFetchXML));
 
                 foreach (caps_CapacityReporting capacityRecord in capacityResults.Entities)
@@ -122,10 +134,17 @@ namespace CustomWorkflowActivities
                     var kDesign = capacityRecord.caps_Kindergarten_designcapacity.GetValueOrDefault(0);
                     var eDesign = capacityRecord.caps_Elementary_designcapacity.GetValueOrDefault(0);
                     var sDesign = capacityRecord.caps_Secondary_designcapacity.GetValueOrDefault(0);
+
+                    tracingService.Trace("Capacity Reporting: {0}", capacityRecord.Id);
+                    tracingService.Trace("Lowest: {0}", ((AliasedValue)capacityRecord["facility.caps_lowestgrade"]).Value);
+                    tracingService.Trace("Highest: {0}", ((AliasedValue)capacityRecord["facility.caps_highestgrade"]).Value);
+
                     var lowestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_lowestgrade"]).Value).Value;
                     var highestGrade = ((OptionSetValue)((AliasedValue)capacityRecord["facility.caps_highestgrade"]).Value).Value;
 
+                    tracingService.Trace("Start Calculate: {0}", capacityRecord.Id);
                     var result = capacityService.Calculate(kDesign, eDesign, sDesign, lowestGrade, highestGrade);
+                    tracingService.Trace("End Calculate: {0}", capacityRecord.Id);
 
                     //Update Capacity Reporting
                     var recordToUpdate = new caps_CapacityReporting();
@@ -137,6 +156,7 @@ namespace CustomWorkflowActivities
                 }
                 #endregion
 
+                tracingService.Trace("Section: {0}", "Update Draft Project Requests");
                 #region Update Draft Project Requests
                 //Update Draft Project Requests
                 var projectRequestFetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
@@ -150,6 +170,7 @@ namespace CustomWorkflowActivities
                                                     "<order attribute=\"caps_projectcode\" descending=\"false\" /> " +
                                                        "<filter type=\"and\" > " +
                                                           "<condition attribute=\"statuscode\" operator=\"eq\" value=\"1\" /> " +
+                                                          "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"{" + recordId + "}\" />" +
                                                               "<filter type=\"or\" > " +
                                                                  "<condition attribute=\"caps_changeinoperatingcapacitykindergarten\" operator=\"not-null\" /> " +
                                                                     "<condition attribute=\"caps_changeinoperatingcapacityelementary\" operator=\"not-null\" /> " +
@@ -189,7 +210,7 @@ namespace CustomWorkflowActivities
                         var result = capacityService.Calculate(changeInDesign_K, changeInDesign_E, changeInDesign_S, projectRecord.caps_FutureLowestGrade.Value, projectRecord.caps_FutureHighestGrade.Value);
 
                         var recordToUpdate = new caps_Project();
-                        recordToUpdate.Id = recordId;
+                        recordToUpdate.Id = projectRecord.Id;
                         recordToUpdate.caps_ChangeinOperatingCapacityKindergarten = Convert.ToInt32(result.KindergartenCapacity);
                         recordToUpdate.caps_ChangeinOperatingCapacityElementary = Convert.ToInt32(result.ElementaryCapacity);
                         recordToUpdate.caps_ChangeinOperatingCapacitySecondary = Convert.ToInt32(result.SecondaryCapacity);
@@ -199,7 +220,7 @@ namespace CustomWorkflowActivities
                     {
                         //blank out operating capacity
                         var recordToUpdate = new caps_Project();
-                        recordToUpdate.Id = recordId;
+                        recordToUpdate.Id = projectRecord.Id;
                         recordToUpdate.caps_ChangeinOperatingCapacityKindergarten = null;
                         recordToUpdate.caps_ChangeinOperatingCapacityElementary = null;
                         recordToUpdate.caps_ChangeinOperatingCapacitySecondary = null;

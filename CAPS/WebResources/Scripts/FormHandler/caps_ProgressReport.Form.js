@@ -18,6 +18,7 @@ CAPS.ProgressReport.onLoad = function (executionContext) {
 Sums up the total projected provincial forecast and projected actuals.
 */
 CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
+    debugger;
 
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");

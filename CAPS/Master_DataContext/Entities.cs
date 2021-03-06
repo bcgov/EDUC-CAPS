@@ -16869,7 +16869,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Projected agency funds to be spent.
+		/// Projected Other Funding Sources funds to be spent.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_agencyamount")]
 		public System.Nullable<decimal> caps_AgencyAmount
@@ -21148,7 +21148,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Estimated Expenditure for the designated year
+		/// Estimated Cash Flow for the designated year
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_yearlyexpenditure")]
 		public System.Nullable<decimal> caps_YearlyExpenditure
@@ -21589,6 +21589,7 @@ namespace CAPS.DataContext
 			public const string caps_MinistryAssetNumber = "caps_ministryassetnumber";
 			public const string caps_Name = "caps_name";
 			public const string caps_NeighbourhoodLearningCentre = "caps_neighbourhoodlearningcentre";
+			public const string caps_NumberofModulars = "caps_numberofmodulars";
 			public const string caps_OpenDate = "caps_opendate";
 			public const string caps_OperatingCapacityElementary = "caps_operatingcapacityelementary";
 			public const string caps_OperatingCapacityKindergarten = "caps_operatingcapacitykindergarten";
@@ -22308,6 +22309,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_NeighbourhoodLearningCentre");
 				this.SetAttributeValue("caps_neighbourhoodlearningcentre", value);
 				this.OnPropertyChanged("caps_NeighbourhoodLearningCentre");
+			}
+		}
+		
+		/// <summary>
+		/// The number of modulars located at the desiganted facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofmodulars")]
+		public System.Nullable<decimal> caps_NumberofModulars
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_numberofmodulars");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofModulars");
+				this.SetAttributeValue("caps_numberofmodulars", value);
+				this.OnPropertyChanged("caps_NumberofModulars");
 			}
 		}
 		
@@ -26983,6 +27002,7 @@ namespace CAPS.DataContext
 			public const string caps_FundingProgramId = "caps_fundingprogramid";
 			public const string Id = "caps_fundingprogramid";
 			public const string caps_Name = "caps_name";
+			public const string caps_Type = "caps_type";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -27111,6 +27131,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Name");
 				this.SetAttributeValue("caps_name", value);
 				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// Categorization of funding programs.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_type")]
+		public Microsoft.Xrm.Sdk.OptionSetValue caps_Type
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_type");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Type");
+				this.SetAttributeValue("caps_type", value);
+				this.OnPropertyChanged("caps_Type");
 			}
 		}
 		
@@ -32054,7 +32092,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// the total cost associated with a given Option
+		/// the total cost associated with a given Option.  If using the budget calculator, copy the total amount from that tab here.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totaloptioncost")]
 		public System.Nullable<decimal> caps_TotalOptionCost
@@ -33105,7 +33143,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total amount of Agency contributions as of the date this progress report was created.
+		/// Total amount of Other Funding Sources contributions as of the date this progress report was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalagencyactuals")]
 		public System.Nullable<decimal> caps_TotalAgencyActuals
@@ -33123,7 +33161,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total Agency Budget from the Project as of the time this progress report was created.
+		/// Total Other Funding Sources Budget from the Project as of the time this progress report was created.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalagencybudget")]
 		public System.Nullable<decimal> caps_TotalAgencyBudget
@@ -33141,7 +33179,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total Agency actuals from historical cash flow records on the project + Total Current Year Agency Projection from this Progress Report.
+		/// Total Other Funding Sources actuals from historical cash flow records on the project + Total Current Year Other Funding Sources Projection from this Progress Report.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalagencyprojection")]
 		public System.Nullable<decimal> caps_TotalAgencyProjection
@@ -33267,7 +33305,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total Agency Budget - Total Agency Projection
+		/// Total Other Funding Sources Budget - Total Other Funding Sources Projection
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_variancefromagencybudget")]
 		public System.Nullable<decimal> caps_VariancefromAgencyBudget
@@ -33896,6 +33934,10 @@ namespace CAPS.DataContext
 			public const string caps_NumberofH3Blocks_seismicrisk = "caps_numberofh3blocks_seismicrisk";
 			public const string caps_NumberofLowBlocks_seismicrisk = "caps_numberoflowblocks_seismicrisk";
 			public const string caps_NumberofMediumBlocks_seismicrisk = "caps_numberofmediumblocks_seismicrisk";
+			public const string caps_NumberofP1Blocks = "caps_numberofp1blocks";
+			public const string caps_NumberofP2Blocks = "caps_numberofp2blocks";
+			public const string caps_NumberofP3Blocks = "caps_numberofp3blocks";
+			public const string caps_NumberofP4Blocks = "caps_numberofp4blocks";
 			public const string caps_NumberofPortablesEliminated = "caps_numberofportableseliminated";
 			public const string caps_NumberofUnknownBlocks_seismicrisk = "caps_numberofunknownblocks_seismicrisk";
 			public const string caps_OtherCost = "caps_othercost";
@@ -35779,6 +35821,78 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_NumberofMediumBlocks_seismicrisk");
 				this.SetAttributeValue("caps_numberofmediumblocks_seismicrisk", value);
 				this.OnPropertyChanged("caps_NumberofMediumBlocks_seismicrisk");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp1blocks")]
+		public System.Nullable<int> caps_NumberofP1Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_numberofp1blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP1Blocks");
+				this.SetAttributeValue("caps_numberofp1blocks", value);
+				this.OnPropertyChanged("caps_NumberofP1Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp2blocks")]
+		public System.Nullable<int> caps_NumberofP2Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_numberofp2blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP2Blocks");
+				this.SetAttributeValue("caps_numberofp2blocks", value);
+				this.OnPropertyChanged("caps_NumberofP2Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp3blocks")]
+		public System.Nullable<int> caps_NumberofP3Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_numberofp3blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP3Blocks");
+				this.SetAttributeValue("caps_numberofp3blocks", value);
+				this.OnPropertyChanged("caps_NumberofP3Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp4blocks")]
+		public System.Nullable<int> caps_NumberofP4Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_numberofp4blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP4Blocks");
+				this.SetAttributeValue("caps_numberofp4blocks", value);
+				this.OnPropertyChanged("caps_NumberofP4Blocks");
 			}
 		}
 		
@@ -38795,6 +38909,7 @@ namespace CAPS.DataContext
 		
 		public static class Fields
 		{
+			public const string caps_AgencyActual = "caps_agencyactual";
 			public const string caps_FiscalYear = "caps_fiscalyear";
 			public const string caps_importID = "caps_importid";
 			public const string caps_ImportSource = "caps_importsource";
@@ -38861,6 +38976,24 @@ namespace CAPS.DataContext
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Actual Other Funding spend for this year - auto set from the value on Project Progress Reports sent by the school district.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_agencyactual")]
+		public System.Nullable<decimal> caps_AgencyActual
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_agencyactual");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AgencyActual");
+				this.SetAttributeValue("caps_agencyactual", value);
+				this.OnPropertyChanged("caps_AgencyActual");
 			}
 		}
 		
@@ -39030,7 +39163,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total agency spend for the fiscal year.
+		/// Total Other Funding spend for the fiscal year.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalagency")]
 		public System.Nullable<decimal> caps_TotalAgency
@@ -39454,6 +39587,7 @@ namespace CAPS.DataContext
 		
 		public static class Fields
 		{
+			public const string caps_DateCashFlowUpdated = "caps_datecashflowupdated";
 			public const string caps_FiscalYear = "caps_fiscalyear";
 			public const string caps_Name = "caps_name";
 			public const string caps_Project = "caps_project";
@@ -39520,6 +39654,24 @@ namespace CAPS.DataContext
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// The date in which the cashflow record was last updated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_datecashflowupdated")]
+		public System.Nullable<System.DateTime> caps_DateCashFlowUpdated
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_datecashflowupdated");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DateCashFlowUpdated");
+				this.SetAttributeValue("caps_datecashflowupdated", value);
+				this.OnPropertyChanged("caps_DateCashFlowUpdated");
 			}
 		}
 		
@@ -47159,6 +47311,7 @@ namespace CAPS.DataContext
 			public const string caps_CapitalProjectBudget = "caps_capitalprojectbudget";
 			public const string caps_CPSNumber = "caps_cpsnumber";
 			public const string caps_CurrentCOA = "caps_currentcoa";
+			public const string caps_DateCashFlowUpdated = "caps_datecashflowupdated";
 			public const string caps_Description = "caps_description";
 			public const string caps_DesignCapacityElementary = "caps_designcapacityelementary";
 			public const string caps_DesignCapacityKindergarten = "caps_designcapacitykindergarten";
@@ -47166,6 +47319,7 @@ namespace CAPS.DataContext
 			public const string caps_EconomicAdjustment = "caps_economicadjustment";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_FacilitySite = "caps_facilitysite";
+			public const string caps_Federal = "caps_federal";
 			public const string caps_FundingProgram = "caps_fundingprogram";
 			public const string caps_FundingProgramCode = "caps_fundingprogramcode";
 			public const string caps_importID = "caps_importid";
@@ -47206,6 +47360,7 @@ namespace CAPS.DataContext
 			public const string caps_TotalProvincialBudget = "caps_totalprovincialbudget";
 			public const string caps_TotalProvincialCashFlow = "caps_totalprovincialcashflow";
 			public const string caps_UnapprovedReserve = "caps_unapprovedreserve";
+			public const string caps_UpdateCompletedButton = "caps_updatecompletedbutton";
 			public const string caps_VariancefromAgencyBudgeted = "caps_variancefromagencybudgeted";
 			public const string caps_VariancefromProvincial = "caps_variancefromprovincial";
 			public const string CreatedBy = "createdby";
@@ -47383,6 +47538,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// The date project cash flow records were updated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_datecashflowupdated")]
+		public System.Nullable<System.DateTime> caps_DateCashFlowUpdated
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_datecashflowupdated");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DateCashFlowUpdated");
+				this.SetAttributeValue("caps_datecashflowupdated", value);
+				this.OnPropertyChanged("caps_DateCashFlowUpdated");
+			}
+		}
+		
+		/// <summary>
 		/// A project description area, that is populated originally from the project request 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_description")]
@@ -47505,6 +47678,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_FacilitySite");
 				this.SetAttributeValue("caps_facilitysite", value);
 				this.OnPropertyChanged("caps_FacilitySite");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_federal")]
+		public System.Nullable<decimal> caps_Federal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_federal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Federal");
+				this.SetAttributeValue("caps_federal", value);
+				this.OnPropertyChanged("caps_Federal");
 			}
 		}
 		
@@ -48106,7 +48297,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The sum of the Yearly Agency column for all years. 
+		/// The sum of the Yearly Total Other Funding Sources column for all years. 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalagencyprojected")]
 		public System.Nullable<decimal> caps_TotalAgencyProjected
@@ -48233,7 +48424,25 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// 	• Difference between Total Agency Projected ($) and Total Agency Budget. Total Agency budget is calculated by taking the sum of Restricted Capital ($), Land Capital ($), AFG ($), and SD Other ($).
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_updatecompletedbutton")]
+		public string caps_UpdateCompletedButton
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_updatecompletedbutton");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UpdateCompletedButton");
+				this.SetAttributeValue("caps_updatecompletedbutton", value);
+				this.OnPropertyChanged("caps_UpdateCompletedButton");
+			}
+		}
+		
+		/// <summary>
+		/// Difference between Total Other Funding Sources Projected ($) and Total Other Funding Sources Budget. Total Other Funding Sources budget is calculated by taking the sum of Restricted Capital ($), Land Capital ($), AFG ($), and SD Other ($).
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_variancefromagencybudgeted")]
 		public System.Nullable<decimal> caps_VariancefromAgencyBudgeted
