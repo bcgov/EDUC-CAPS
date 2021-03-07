@@ -684,7 +684,11 @@ namespace CAPS.DataContext
 		Approved = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Inactive", 2, "#0000ff")]
+		[OptionSetMetadataAttribute("Federal Adjustment", 2, "#0000ff")]
+		FederalAdjustment = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Inactive", 3, "#0000ff")]
 		Inactive = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1124,10 +1128,6 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Approved", 2, "#0000ff")]
-		Approved = 200870001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Cancelled", 5, "#0000ff")]
 		Cancelled = 200870003,
 		
@@ -1138,6 +1138,10 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Draft", 0, "#0000ff")]
 		Draft = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Registered", 2, "#0000ff")]
+		Registered = 200870001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Rejected", 4, "#0000ff")]
@@ -1426,6 +1430,24 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Inactive", 1)]
 		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public enum caps_FundingProgramType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Priority Investment", 0)]
+		PriorityInvestment = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Routine Capital", 1)]
+		RoutineCapital = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Seismic", 2)]
+		Seismic = 200870002,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1846,15 +1868,15 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Accepted", 3, "#0000ff")]
+		[OptionSetMetadataAttribute("Accepted", 2, "#0000ff")]
 		Accepted = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Cancelled", 5, "#0000ff")]
+		[OptionSetMetadataAttribute("Cancelled", 4, "#0000ff")]
 		Cancelled = 100000010,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Complete", 6, "#0000ff")]
+		[OptionSetMetadataAttribute("Complete", 5, "#0000ff")]
 		Complete = 200870001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1862,7 +1884,7 @@ namespace CAPS.DataContext
 		Draft = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Inactive", 4, "#0000ff")]
+		[OptionSetMetadataAttribute("Inactive", 3, "#0000ff")]
 		Inactive = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1870,12 +1892,8 @@ namespace CAPS.DataContext
 		Submitted = 100000002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Supported", 7, "#0000ff")]
+		[OptionSetMetadataAttribute("Supported", 6, "#0000ff")]
 		Supported = 200870002,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Supported to delete", 2, "#0000ff")]
-		Supportedtodelete = 100000003,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2008,19 +2026,23 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Approval", 1, "#0000ff")]
+		[OptionSetMetadataAttribute("Approval", 1, "#03C575")]
 		Approval = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Cancelled", 9, "#0000ff")]
+		Cancelled = 200870008,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Complete", 8, "#0000ff")]
 		Complete = 200870007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Construction", 3, "#0000ff")]
+		[OptionSetMetadataAttribute("Construction", 3, "#DD33FF")]
 		Construction = 200870002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Design Development", 2, "#0000ff")]
+		[OptionSetMetadataAttribute("Design Development", 2, "#3386FF")]
 		DesignDevelopment = 200870001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2028,11 +2050,11 @@ namespace CAPS.DataContext
 		Inactive = 2,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("PDR Development", 0, "#0000ff")]
+		[OptionSetMetadataAttribute("PDR Development", 0, "#FF5733")]
 		PDRDevelopment = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Planned", 5, "#0000ff")]
+		[OptionSetMetadataAttribute("Planned", 5, "#F6FF33")]
 		Planned = 200870005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]

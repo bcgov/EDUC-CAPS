@@ -40,7 +40,7 @@ namespace Plugins
                     //Check if there are any other COAs for this project in a Draft  or Submitted State
                     var records = crmContext.caps_CertificateofApprovalSet.Where(r => r.caps_PTR.Id == projectTracker.Id
                                 && r.caps_CertificateofApprovalId != context.PrimaryEntityId
-                                && r.StatusCode.Value == (int)caps_CertificateofApproval_StatusCode.Approved).ToList();
+                                && r.StatusCode.Value == (int)caps_CertificateofApproval_StatusCode.Registered).ToList();
 
                     var revisionNumber = 1;
                     string coaNumber = "";

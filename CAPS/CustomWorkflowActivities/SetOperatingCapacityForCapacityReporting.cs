@@ -50,7 +50,7 @@ namespace CustomWorkflowActivities
                                         "<attribute name=\"caps_kindergarten_designcapacity\" /> " +
                                         "<attribute name=\"caps_elementary_designcapacity\" /> " +
                                          "<order attribute=\"caps_secondary_designutilization\" descending=\"false\" /> " +
-                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"outer\" alias=\"facility\" > " +
+                                            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" visible=\"false\" link-type=\"inner\" alias=\"facility\" > " +
                                                 "<attribute name=\"caps_lowestgrade\" /> " +
                                                 "<attribute name=\"caps_highestgrade\" /> " +
                                             "</link-entity> " +

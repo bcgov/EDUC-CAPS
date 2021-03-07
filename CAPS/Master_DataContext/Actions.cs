@@ -4383,6 +4383,64 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PowerAutomateProxy")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class PowerAutomateProxyRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string BatchRequestContent
+		{
+			get
+			{
+				if (this.Parameters.Contains("BatchRequestContent"))
+				{
+					return ((string)(this.Parameters["BatchRequestContent"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["BatchRequestContent"] = value;
+			}
+		}
+		
+		public PowerAutomateProxyRequest()
+		{
+			this.RequestName = "PowerAutomateProxy";
+			this.BatchRequestContent = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PowerAutomateProxy")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class PowerAutomateProxyResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public PowerAutomateProxyResponse()
+		{
+		}
+		
+		public string BatchResponseContent
+		{
+			get
+			{
+				if (this.Results.Contains("BatchResponseContent"))
+				{
+					return ((string)(this.Results["BatchResponseContent"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_SendEmailFromTemplate")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -4939,6 +4997,84 @@ namespace CAPS.DataContext
 		
 		public cds_cascadeAsyncSuccessAPIResponse()
 		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveAadUserRoles")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAadUserRolesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.Query.ColumnSet ColumnSet
+		{
+			get
+			{
+				if (this.Parameters.Contains("ColumnSet"))
+				{
+					return ((Microsoft.Xrm.Sdk.Query.ColumnSet)(this.Parameters["ColumnSet"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.Query.ColumnSet);
+				}
+			}
+			set
+			{
+				this.Parameters["ColumnSet"] = value;
+			}
+		}
+		
+		public System.Guid DirectoryObjectId
+		{
+			get
+			{
+				if (this.Parameters.Contains("DirectoryObjectId"))
+				{
+					return ((System.Guid)(this.Parameters["DirectoryObjectId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["DirectoryObjectId"] = value;
+			}
+		}
+		
+		public RetrieveAadUserRolesRequest()
+		{
+			this.RequestName = "RetrieveAadUserRoles";
+			this.ColumnSet = default(Microsoft.Xrm.Sdk.Query.ColumnSet);
+			this.DirectoryObjectId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveAadUserRoles")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class RetrieveAadUserRolesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RetrieveAadUserRolesResponse()
+		{
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityCollection EntityCollection
+		{
+			get
+			{
+				if (this.Results.Contains("EntityCollection"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Results["EntityCollection"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityCollection);
+				}
+			}
 		}
 	}
 	
@@ -8286,6 +8422,99 @@ namespace CAPS.DataContext
 				if (this.Results.Contains("Result"))
 				{
 					return ((string)(this.Results["Result"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("install")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class installRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public string connectionReferences
+		{
+			get
+			{
+				if (this.Parameters.Contains("connectionReferences"))
+				{
+					return ((string)(this.Parameters["connectionReferences"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["connectionReferences"] = value;
+			}
+		}
+		
+		public installRequest()
+		{
+			this.RequestName = "install";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+			this.connectionReferences = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("install")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class installResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public installResponse()
+		{
+		}
+		
+		public string connectionId
+		{
+			get
+			{
+				if (this.Results.Contains("connectionId"))
+				{
+					return ((string)(this.Results["connectionId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+		
+		public string flowTriggerUri
+		{
+			get
+			{
+				if (this.Results.Contains("flowTriggerUri"))
+				{
+					return ((string)(this.Results["flowTriggerUri"]));
 				}
 				else
 				{

@@ -29,6 +29,11 @@ CAPS.PRFSOption.onLoad = function (executionContext) {
 
     CAPS.PRFSOption.ToggleScheduleBFields(executionContext);
     formContext.getAttribute("caps_projecttype").addOnChange(CAPS.PRFSOption.ToggleScheduleBFields);
+
+    formContext.getAttribute("caps_submissioncategory").addOnChange(CAPS.PRFSOption.ClearProjectType);
+
+    formContext.getAttribute("caps_requiresscheduleb").addOnChange(CAPS.PRFSOption.ToggleScheduleBTab);
+    CAPS.PRFSOption.ToggleScheduleBTab(executionContext);
 }
 
 /**
@@ -107,25 +112,25 @@ CAPS.PRFSOption.ToggleScheduleBFields = function (executionContext) {
                 formContext.getControl("caps_includenlc").setVisible(false);
                 formContext.getAttribute("caps_includenlc").setValue(null);
             }
-            if (calcType === 200870001 || calcType === 200870004 || calcType === 200870005) {
-                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
-                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
+            if (calcType === 200870004 || calcType === 200870005) {
+                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
+                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
                 formContext.getControl("caps_constructioncostsspir").setVisible(true);
-                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
-                formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(true);
+                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
+                //formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(true);
             }
             else {
-                formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
-                formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
+                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
+                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
                 formContext.getControl("caps_constructioncostsspir").setVisible(false);
-                formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
-                formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(false);
+                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
+                //formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(false);
 
-                formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
-                formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
+                //formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
+                //formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
                 formContext.getAttribute("caps_constructioncostsspir").setValue(null);
-                formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
-                formContext.getAttribute("caps_constructioncostsnonstructuralseismicup").setValue(null);
+                //formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
+                //formContext.getAttribute("caps_constructioncostsnonstructuralseismicup").setValue(null);
             }
         },
         function (error) {
@@ -133,4 +138,27 @@ CAPS.PRFSOption.ToggleScheduleBFields = function (executionContext) {
             // handle error conditions
         });
     }
+}
+
+/***
+Shows/Hides the Schedule B tab if based on caps_requiresscheduleb field value.
+*/
+CAPS.PRFSOption.ToggleScheduleBTab = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    if (formContext.getAttribute("caps_requiresscheduleb").getValue()) {
+        formContext.ui.tabs.get("tab_budget").setVisible(true);
+    }
+    else {
+        formContext.ui.tabs.get("tab_budget").setVisible(false);
+    }
+}
+
+/****
+Clears the Project Type field when Submission Category is changed.
+*/
+CAPS.PRFSOption.ClearProjectType = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    formContext.getAttribute("caps_projecttype").setValue(null);
 }

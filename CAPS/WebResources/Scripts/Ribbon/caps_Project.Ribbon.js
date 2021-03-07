@@ -16,7 +16,8 @@ const PROJECT_STATE = {
     PLANNED: 100000004,
     SUPPORTED: 200870002,
     APPROVED: 100000005,
-    COMPLETE: 100000009
+    COMPLETE: 100000009,
+    ACCEPTED: 200870000
 };
 
 
@@ -119,16 +120,12 @@ CAPS.Project.ShowCancelButton = function (primaryControl) {
             
             var recordStatus = formContext.getAttribute("statuscode").getValue();
             if (result === "MyCAPS") {
-                if (recordStatus === PROJECT_STATE.DRAFT) {
+                if (recordStatus === PROJECT_STATE.DRAFT || recordStatus === PROJECT_STATE.ACCEPTED) {
                     CAPS.Project.SHOW_CANCEL_BUTTON = true;
                 }
                 
             }
-            else if (result === "CAPS") {
-                if (recordStatus === PROJECT_STATE.PLANNED || recordStatus === PROJECT_STATE.SUPPORTED || recordStatus === PROJECT_STATE.APPROVED) {
-                    CAPS.Project.SHOW_CANCEL_BUTTON = true;
-                }
-            }
+
 
             if (CAPS.Project.SHOW_CANCEL_BUTTON) {
                 formContext.ui.refreshRibbon();
@@ -149,7 +146,7 @@ CAPS.Project.ShowCancelButton = function (primaryControl) {
 CAPS.Project.CancelProject = function (primaryControl) {
     var formContext = primaryControl;
 
-    var confirmStrings = { text: "Do you wish to deactivate this project? Click OK to continue or Cancel to keep the project.  ", title: "Confirm Project Cancellation" };
+    var confirmStrings = { text: "Do you wish to cancel this project request? Click OK to continue or Cancel to keep the project request. \n\r⠀\n\rPlease note, AFG Project Requests will be permanently deleted. ", title: "Confirm Project Request Cancellation" };
     var confirmOptions = { height: 200, width: 450 };
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {

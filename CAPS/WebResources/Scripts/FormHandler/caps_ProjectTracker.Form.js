@@ -49,6 +49,11 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
     //Show/Hide Project Closure Tab
     CAPS.ProjectTracker.ShowHideProjectClosureTab(executionContext);
     formContext.getAttribute("caps_projectclosure").addOnChange(CAPS.ProjectTracker.ShowHideProjectClosureTab);
+
+    //Register Cashflow Update Completed Button Event
+    if (formContext.getAttribute("caps_updatecompletedbutton") != null) {
+        formContext.getAttribute("caps_updatecompletedbutton").addOnChange(CAPS.ProjectTracker.SetCashflowCompletedOn);
+    }
 }
 
 /**
@@ -78,26 +83,32 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
 
-    if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
-        formContext.getControl("caps_facilitysite").setVisible(true);
+    if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "LEASE") {
+        formContext.getControl("sgd_facilities").setVisible(false);
+        formContext.getControl("caps_facility").setVisible(false);
     }
     else {
-        formContext.getControl("caps_facilitysite").setVisible(false);
-    }
-
-    formContext.getControl("sgd_facilities").addOnLoad(function (gridContext) {
-        debugger;
-        var filteredRecordCount = gridContext.getFormContext().getControl("sgd_facilities").getGrid().getTotalRecordCount();
-
-        if (filteredRecordCount > 0) {
-            formContext.getControl("sgd_facilities").setVisible(true);
-            formContext.getControl("caps_facility").setVisible(false);
+        if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
+            formContext.getControl("caps_facilitysite").setVisible(true);
         }
         else {
-            formContext.getControl("sgd_facilities").setVisible(false);
-            formContext.getControl("caps_facility").setVisible(true);
+            formContext.getControl("caps_facilitysite").setVisible(false);
         }
-    });
+
+        formContext.getControl("sgd_facilities").addOnLoad(function (gridContext) {
+            debugger;
+            var filteredRecordCount = gridContext.getFormContext().getControl("sgd_facilities").getGrid().getTotalRecordCount();
+
+            if (filteredRecordCount > 0) {
+                formContext.getControl("sgd_facilities").setVisible(true);
+                formContext.getControl("caps_facility").setVisible(false);
+            }
+            else {
+                formContext.getControl("sgd_facilities").setVisible(false);
+                formContext.getControl("caps_facility").setVisible(true);
+            }
+        });
+    }
 
 
 }
@@ -357,6 +368,26 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
     else if (submissionCategoryCode === 'SITE_ACQUISITION') {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
     }
+    else if (submissionCategoryCode === 'LEASE') {
+        formContext.getControl("caps_facility").setVisible(false);
+        formContext.getControl("caps_submission").setVisible(false);
+        formContext.getControl("caps_sdprojectnumber").setVisible(false);
+        formContext.getControl("caps_requestedfunding").setVisible(false);
+
+        if (formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity") != null) {
+            formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
+        }
+
+        if (formContext.ui.tabs.get("tab_general").sections.get("sec_ministry_dates") != null) {
+            formContext.ui.tabs.get("tab_general").sections.get("sec_ministry_dates").setVisible(false);
+        }
+        if (formContext.ui.tabs.get("tab_general").sections.get("sec_agreement_dates") != null) {
+            formContext.ui.tabs.get("tab_general").sections.get("sec_agreement_dates").setVisible(false);
+        }
+        if (formContext.ui.tabs.get("tab_emr") != null) {
+            formContext.ui.tabs.get("tab_emr").setVisible(false);
+        }
+    }
 
 }
 
@@ -380,18 +411,21 @@ Shows a warning if the Max Potential Budget and Max Potential don't match or if 
 CAPS.ProjectTracker.ShowBudgetMissmatch = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
-    if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
-        formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'WARNING', MAX_BUDGET_NOTIFICATION);
-    }
-    else {
-        formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
-    }
+    if (formContext.getAttribute('caps_showprogressreports').getValue()) {
 
-    if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
-        formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'WARNING', PROVINCIAL_BUDGET_NOTIFICATION);
-    }
-    else {
-        formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
+        if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
+            formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'WARNING', MAX_BUDGET_NOTIFICATION);
+        }
+        else {
+            formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
+        }
+
+        if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
+            formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'WARNING', PROVINCIAL_BUDGET_NOTIFICATION);
+        }
+        else {
+            formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
+        }
     }
 };
 
@@ -435,6 +469,9 @@ CAPS.ProjectTracker.ShowStaleDates = function (executionContext) {
 
 };
 
+/***
+Show/Hide Project Closure Tab based on if caps_projectclosure has a value (show if it does).
+*/
 CAPS.ProjectTracker.ShowHideProjectClosureTab = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
@@ -448,5 +485,22 @@ CAPS.ProjectTracker.ShowHideProjectClosureTab = function (executionContext) {
     else {
         formContext.ui.tabs.get("tab_projectclosure").setVisible(false);
     }
+}
+
+/***
+Set's caps_datecashflowupdated to the current date.  Called on button click.
+*/
+CAPS.ProjectTracker.SetCashflowCompletedOn = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    let attribute = executionContext.getEventSource();
+    let value = attribute.getValue();
+    if (value === "Cashflow Update Completed") {
+        var currentDate = new Date();
+        formContext.getAttribute("caps_datecashflowupdated").setValue(currentDate);
+    }
+    // Clear the value and avoid to submit data
+    attribute.setValue(null);
+    formContext.data.entity.save();
 }
 

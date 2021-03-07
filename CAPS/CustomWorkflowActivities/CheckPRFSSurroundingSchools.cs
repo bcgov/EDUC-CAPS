@@ -81,7 +81,6 @@ namespace CustomWorkflowActivities
                                                  "<link-entity name = \"caps_project_caps_facilityss\" from = \"caps_facilityid\" to = \"caps_facilityid\" visible = \"false\" intersect = \"true\" > "+
                                                               "<link-entity name = \"caps_project\" from = \"caps_projectid\" to = \"caps_projectid\" alias=\"ad\" > "+
                                                      "<filter type = \"and\" > "+
-                                                     "<condition attribute = 'statecode' operator= 'eq' value = '0' />" +
                                                         "<condition attribute = \"caps_projectid\" operator= \"eq\"  value = \"{" +recordId+"}\" /> "+
                                                               "</filter > " +
                                                             "</link-entity > " +
