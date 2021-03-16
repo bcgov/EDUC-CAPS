@@ -274,8 +274,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_signedon</rd:DefaultName>
-                <Top>9.02083in</Top>
-                <Left>4.6059in</Left>
+                <Top>9.03057in</Top>
+                <Left>4.60752in</Left>
                 <Height>0.25in</Height>
                 <Width>1.58507in</Width>
                 <ZIndex>1</ZIndex>
@@ -604,8 +604,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>8.83959in</Top>
-                <Left>4.59201in</Left>
+                <Top>8.86737in</Top>
+                <Left>4.60752in</Left>
                 <Height>0.14931in</Height>
                 <Width>1in</Width>
                 <ZIndex>12</ZIndex>
@@ -854,7 +854,8 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>= "Government Body: " &amp; First(Fields!project_caps_schooldistrict.Value, "CAPS")</Value>
+                        <Value>= "Government Body: " &amp; "&lt;font color = 'blue'&gt;" &amp; First(Fields!project_caps_schooldistrict.Value, "CAPS")  &amp;"&lt;/font&gt;"</Value>
+                        <MarkupType>HTML</MarkupType>
                         <Style>
                           <FontSize>9pt</FontSize>
                         </Style>
@@ -1933,10 +1934,10 @@
                 <Value>=IIF(NOT IsNothing(First(Fields!caps_signature.Value, "CAPS")),First(Fields!caps_signature.Value, "CAPS").ToString().Split(“,”).GetValue(1),””)</Value>
                 <MIMEType>image/x-png</MIMEType>
                 <Sizing>FitProportional</Sizing>
-                <Top>8.90625in</Top>
-                <Left>0.32118in</Left>
-                <Height>0.39236in</Height>
-                <Width>3.15972in</Width>
+                <Top>8.97084in</Top>
+                <Left>0.22396in</Left>
+                <Height>0.36458in</Height>
+                <Width>3.25694in</Width>
                 <ZIndex>55</ZIndex>
                 <Style>
                   <Border>
@@ -2092,7 +2093,7 @@
             <KeepTogether>true</KeepTogether>
             <Top>0.12445in</Top>
             <Left>0.22791in</Left>
-            <Height>9.32153in</Height>
+            <Height>9.34931in</Height>
             <Width>7.15786in</Width>
             <Style>
               <Border>
@@ -2137,8 +2138,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>9.43695in</Top>
-            <Left>1.45188in</Left>
+            <Top>9.51542in</Top>
+            <Left>1.60638in</Left>
             <Height>0.14931in</Height>
             <Width>4.21354in</Width>
             <ZIndex>1</ZIndex>
@@ -2186,7 +2187,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>10.0134in</Height>
+        <Height>9.69048in</Height>
         <Style />
       </Body>
       <Width>7.51958in</Width>
