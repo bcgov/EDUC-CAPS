@@ -85,6 +85,7 @@
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_submissioncategory" /&gt;
       &lt;attribute name="caps_projecttype" /&gt;
+ &lt;attribute name="caps_schooldistrict" /&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_certificateofapproval" from="caps_certificateofapprovalid" to="caps_certificateofapproval" link-type="inner" alias="COA" &gt;
       &lt;attribute name="caps_name" /&gt;
@@ -201,8 +202,20 @@
           <DataField>PRJ_caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="PRJ_caps_schooldistrict">
+          <DataField>PRJ_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="COA_caps_name">
           <DataField>COA_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictValue">
+          <DataField>PRJ_caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="PRJ_caps_schooldistrictEntityName">
+          <DataField>PRJ_caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -634,14 +647,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ownerid">
+                        <Textbox Name="PRJ_caps_schooldistrict">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ownerid.Value</Value>
+                                  <Value>=Fields!PRJ_caps_schooldistrict.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -651,7 +664,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ownerid</rd:DefaultName>
+                          <rd:DefaultName>PRJ_caps_schooldistrict</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1450,12 +1463,12 @@
                 <TablixMember>
                   <Group Name="Details">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!PRJ_caps_name.Value</GroupExpression>
+                      <GroupExpression>=Fields!PRJ_caps_schooldistrict.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ownerid.Value</Value>
+                      <Value>=Fields!PRJ_caps_schooldistrict.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                 </TablixMember>
