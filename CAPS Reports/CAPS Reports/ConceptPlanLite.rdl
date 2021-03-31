@@ -3185,7 +3185,7 @@
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_procurementanalysis" &gt;
     &lt;attribute name="caps_designbidbuilddescription" /&gt;
-    &lt;attribute name="caps_designbidbuild" /&gt;
+    &lt;attribute name="caps_designbidbuildrank" /&gt;
     &lt;attribute name="caps_designbuilddescription" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_constructionmanagementrank" /&gt;
@@ -3204,12 +3204,12 @@
           <DataField>caps_designbidbuilddescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_designbidbuild">
-          <DataField>caps_designbidbuild</DataField>
+        <Field Name="caps_designbidbuildrank">
+          <DataField>caps_designbidbuildrank</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_designbidbuildValue">
-          <DataField>caps_designbidbuildValue</DataField>
+        <Field Name="caps_designbidbuildrankValue">
+          <DataField>caps_designbidbuildrankValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_designbuilddescription">
@@ -3247,6 +3247,27 @@
         <Field Name="caps_sortorderValue">
           <DataField>caps_sortorderValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CMPoints_Integer">
+          <Value>= Switch(
+Fields!caps_constructionmanagementrankValue.Value = "200870000", 0,
+Fields!caps_constructionmanagementrankValue.Value = "200870001", 1,
+Fields!caps_constructionmanagementrankValue.Value = "200870002", 2,
+Fields!caps_constructionmanagementrankValue.Value = "200870003", 3)</Value>
+        </Field>
+        <Field Name="DBPoints_Integer">
+          <Value>= Switch(
+Fields!caps_designbuildrankValue.Value = "200870000", 0,
+Fields!caps_designbuildrankValue.Value = "200870001", 1,
+Fields!caps_designbuildrankValue.Value = "200870002", 2,
+Fields!caps_designbuildrankValue.Value = "200870003", 3)</Value>
+        </Field>
+        <Field Name="DBBPoints_Integer">
+          <Value>= Switch(
+Fields!caps_designbidbuildrankValue.Value = "200870000", 0,
+Fields!caps_designbidbuildrankValue.Value = "200870001", 1,
+Fields!caps_designbidbuildrankValue.Value = "200870002", 2,
+Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -12623,8 +12644,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>25.73681cm</Top>
-                <Left>0.40992cm</Left>
+                <Top>27.90639cm</Top>
+                <Left>0.40993cm</Left>
                 <Height>20.87254cm</Height>
                 <Width>22.75949cm</Width>
                 <Visibility>
@@ -13291,8 +13312,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>11.12569cm</Top>
-                <Left>0.47149cm</Left>
+                <Top>11.99882cm</Top>
+                <Left>0.55596cm</Left>
                 <Height>4.66458cm</Height>
                 <Width>18.1358cm</Width>
                 <ZIndex>1</ZIndex>
@@ -14473,8 +14494,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>PRFSAlternativeOption</DataSetName>
-                <Top>15.97611cm</Top>
-                <Left>0.47149cm</Left>
+                <Top>17.14028cm</Top>
+                <Left>0.63568cm</Left>
                 <Height>9.66458cm</Height>
                 <Width>18.13579cm</Width>
                 <ZIndex>2</ZIndex>
@@ -15087,8 +15108,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>46.76699cm</Top>
-                <Left>0.45384cm</Left>
+                <Top>48.96303cm</Top>
+                <Left>0.41906cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.44671cm</Width>
                 <ZIndex>4</ZIndex>
@@ -15170,8 +15191,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>CM Rank</Value>
+                                      <Value>CM Points</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -15208,6 +15230,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                     <TextRun>
                                       <Value>CM Description</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -15242,7 +15265,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>DB Rank</Value>
+                                      <Value>DB Points</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -15316,7 +15339,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>DBB Rank</Value>
+                                      <Value>DBB Points</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -15397,6 +15420,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                     <TextRun>
                                       <Value>=Fields!caps_name.Value</Value>
                                       <Style>
+                                        <FontFamily>arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
                                         <Color>White</Color>
                                       </Style>
@@ -15433,7 +15457,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!caps_constructionmanagementrank.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>arial</FontFamily>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -15466,7 +15492,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   <TextRuns>
                                     <TextRun>
                                       <Value>=Fields!caps_constructionmanagementdescription.Value</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontFamily>arial</FontFamily>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -15561,14 +15589,14 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_designbidbuild">
+                            <Textbox Name="caps_designbidbuildrank">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_designbidbuild.Value</Value>
+                                      <Value>=Fields!caps_designbidbuildrank.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                       </Style>
@@ -15579,7 +15607,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_designbidbuild</rd:DefaultName>
+                              <rd:DefaultName>caps_designbidbuildrank</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -15631,6 +15659,258 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                         </TablixCell>
                       </TablixCells>
                     </TablixRow>
+                    <TablixRow>
+                      <Height>0.6cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox224">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>TOTAL POINTS</Value>
+                                      <Style>
+                                        <FontFamily>arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>White</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox224</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#234075</BackgroundColor>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="CMPoints_Integer">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!CMPoints_Integer.Value)</Value>
+                                      <Style>
+                                        <FontFamily>arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>CMPoints_Integer</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox227">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox227</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="DBPoints_Integer">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!DBPoints_Integer.Value)</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>DBPoints_Integer</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox229">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox229</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="DBBPoints_Integer">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!DBBPoints_Integer.Value)</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>DBBPoints_Integer</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <rd:Selected>true</rd:Selected>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox291">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox291</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
                   </TablixRows>
                 </TablixBody>
                 <TablixColumnHierarchy>
@@ -15652,12 +15932,15 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                     <TablixMember>
                       <Group Name="Details5" />
                     </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProcurementAnalysis</DataSetName>
                 <Top>8.2576cm</Top>
                 <Left>0.01029cm</Left>
-                <Height>2.36417cm</Height>
+                <Height>2.96417cm</Height>
                 <Width>23.76118cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
@@ -15670,7 +15953,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
             <KeepTogether>true</KeepTogether>
             <Top>22.17445cm</Top>
             <Left>0cm</Left>
-            <Height>49.01541cm</Height>
+            <Height>49.88854cm</Height>
             <Width>24.13557cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>

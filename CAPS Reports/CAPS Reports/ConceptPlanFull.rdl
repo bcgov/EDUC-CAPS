@@ -91,6 +91,7 @@
     &lt;attribute name="caps_changeinoperatingcapacitytotal" /&gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
+    &lt;attribute name="caps_changeindistrictoperatingcapacitytotal" /&gt;
     &lt;order attribute="caps_projectcode" descending="false" /&gt;
     &lt;link-entity name="caps_longrangefacilityplan" from="caps_longrangefacilityplanid" to="caps_longrangefacilityplan" visible="false" link-type="outer" alias="LRPF"&gt;
       &lt;attribute name="caps_description" /&gt;
@@ -617,6 +618,10 @@
           <DataField>caps_numberofp1blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindistrictoperatingcapacitytotal">
+          <DataField>caps_changeindistrictoperatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="LRPF_caps_lrfpdateValue">
           <DataField>LRPF_caps_lrfpdateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -624,6 +629,10 @@
         <Field Name="caps_projectcode">
           <DataField>caps_projectcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindistrictoperatingcapacitytotalValue">
+          <DataField>caps_changeindistrictoperatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_projectid">
           <DataField>caps_projectid</DataField>
@@ -794,6 +803,14 @@
         <Field Name="caps_occupancyyear">
           <DataField>caps_occupancyyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindistrictoperatingcapacity_total">
+          <DataField>caps_changeindistrictoperatingcapacity_total</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindistrictoperatingcapacity_totalValue">
+          <DataField>caps_changeindistrictoperatingcapacity_totalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_scopeofwork">
           <DataField>caps_scopeofwork</DataField>
@@ -1984,6 +2001,8 @@
     &lt;attribute name="caps_adjusteddesigncapacityelementary" /&gt;
     &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;attribute name="caps_currentfacilitytype" /&gt;
+    &lt;attribute name="caps_utilizationtotaldistrictoperating" /&gt;
+    &lt;attribute name="caps_districtoperatingcapacitytotal" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;filter type="or"&gt;
@@ -2234,6 +2253,22 @@
         <Field Name="caps_currentfacilitytypeEntityName">
           <DataField>caps_currentfacilitytypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotaldistrictoperating">
+          <DataField>caps_utilizationtotaldistrictoperating</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_utilizationtotaldistrictoperatingValue">
+          <DataField>caps_utilizationtotaldistrictoperatingValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_districtoperatingcapacitytotal">
+          <DataField>caps_districtoperatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_districtoperatingcapacitytotalValue">
+          <DataField>caps_districtoperatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -3572,7 +3607,7 @@
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_procurementanalysis" &gt;
     &lt;attribute name="caps_designbidbuilddescription" /&gt;
-    &lt;attribute name="caps_designbidbuild" /&gt;
+    &lt;attribute name="caps_designbidbuildrank" /&gt;
     &lt;attribute name="caps_designbuilddescription" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_constructionmanagementrank" /&gt;
@@ -3591,17 +3626,17 @@
           <DataField>caps_designbidbuilddescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_designbidbuild">
-          <DataField>caps_designbidbuild</DataField>
+        <Field Name="caps_designbidbuildrank">
+          <DataField>caps_designbidbuildrank</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_designbidbuildValue">
-          <DataField>caps_designbidbuildValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_designbuilddescription">
           <DataField>caps_designbuilddescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_designbidbuildrankValue">
+          <DataField>caps_designbidbuildrankValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_name">
           <DataField>caps_name</DataField>
@@ -3634,6 +3669,27 @@
         <Field Name="caps_sortorderValue">
           <DataField>caps_sortorderValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CMrank_integer">
+          <Value>=Switch(
+Fields!caps_constructionmanagementrankValue.Value = "200870000", 0,
+Fields!caps_constructionmanagementrankValue.Value = "200870001", 1,
+Fields!caps_constructionmanagementrankValue.Value = "200870002", 2,
+Fields!caps_constructionmanagementrankValue.Value = "200870002", 3)</Value>
+        </Field>
+        <Field Name="DBrank_integer">
+          <Value>=Switch(
+Fields!caps_designbuildrankValue.Value = "200870000", 0,
+Fields!caps_designbuildrankValue.Value = "200870001", 1,
+Fields!caps_designbuildrankValue.Value = "200870002", 2,
+Fields!caps_designbuildrankValue.Value = "200870003", 3)</Value>
+        </Field>
+        <Field Name="DBBrank_integer">
+          <Value>=Switch(
+Fields!caps_designbidbuildrankValue.Value = "200870000", 0,
+Fields!caps_designbidbuildrankValue.Value = "200870001", 1,
+Fields!caps_designbidbuildrankValue.Value = "200870002", 2,
+Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -3668,6 +3724,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox238</rd:DefaultName>
+                    <Top>0.23958in</Top>
                     <Left>0.04256cm</Left>
                     <Height>0.90238cm</Height>
                     <Width>25.66304cm</Width>
@@ -4174,17 +4231,18 @@
                           </TablixCells>
                         </TablixRow>
                         <TablixRow>
-                          <Height>0.09729cm</Height>
+                          <Height>0.6cm</Height>
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox159">
+                                <Textbox Name="Textbox53">
+                                  <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>District Operating Capacity</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -4193,18 +4251,165 @@
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox16</rd:DefaultName>
+                                  <rd:DefaultName>Textbox53</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <LeftBorder>
-                                      <Style>None</Style>
-                                    </LeftBorder>
-                                    <RightBorder>
-                                      <Style>None</Style>
-                                    </RightBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox55">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>= iif(isnothing(
+Fields!caps_total_operatingcapacity_districtValue.Value),
+ "-",
+Fields!caps_total_operatingcapacity_districtValue.Value)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>0;(0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox55</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox38">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>% Utilization</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox38</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox52">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>= iif(isnothing(
+Fields!caps_total_operatingutilization_districtValue.Value),
+"-",
+Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox52</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.15021cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox23">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <FontSize>1pt</FontSize>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox23</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
                                     <BackgroundColor>#234075</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
@@ -4216,7 +4421,8 @@
                             </TablixCell>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox186">
+                                <Textbox Name="Textbox25">
+                                  <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
@@ -4225,6 +4431,7 @@
                                           <Value />
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontSize>1pt</FontSize>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -4233,18 +4440,12 @@
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox17</rd:DefaultName>
+                                  <rd:DefaultName>Textbox25</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <LeftBorder>
-                                      <Style>None</Style>
-                                    </LeftBorder>
-                                    <RightBorder>
-                                      <Style>None</Style>
-                                    </RightBorder>
                                     <BackgroundColor>#234075</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
@@ -4865,6 +5066,251 @@
                             </TablixCell>
                           </TablixCells>
                         </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox59">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>District Operating Capacity</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox59</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox61">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=iif(isnothing(
+Sum(Fields!caps_total_operatingutilization_districtValue.Value)),
+"-",
+Sum(Fields!caps_total_operatingutilization_districtValue.Value))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox61</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox112">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>% Utilization</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox112</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox126">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Sum(Fields!caps_total_operatingcapacity_districtValue.Value) = 0,
+0,
+Sum(Fields!caps_total_enrolmentValue.Value) / IIF(Sum(Fields!caps_total_operatingcapacity_districtValue.Value) = 0,
+1,
+Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox126</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox140">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Total Surplus</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox140</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox142">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>= Sum(Fields!caps_total_operatingcapacity_districtValue.Value) - 
+Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox142</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
                       </TablixRows>
                     </TablixBody>
                     <TablixColumnHierarchy>
@@ -5033,52 +5479,10 @@
                                 <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
+                            <TablixMember />
+                            <TablixMember />
+                            <TablixMember />
                           </TablixMembers>
-                        </TablixMember>
-                        <TablixMember>
-                          <TablixHeader>
-                            <Size>3.55776cm</Size>
-                            <CellContents>
-                              <Textbox Name="Textbox38">
-                                <KeepTogether>true</KeepTogether>
-                                <Paragraphs>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value />
-                                        <Style>
-                                          <FontFamily>Arial</FontFamily>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style />
-                                  </Paragraph>
-                                </Paragraphs>
-                                <rd:DefaultName>Textbox15</rd:DefaultName>
-                                <Style>
-                                  <Border>
-                                    <Color>LightGrey</Color>
-                                    <Style>Solid</Style>
-                                  </Border>
-                                  <TopBorder>
-                                    <Style>None</Style>
-                                  </TopBorder>
-                                  <BottomBorder>
-                                    <Style>None</Style>
-                                  </BottomBorder>
-                                  <RightBorder>
-                                    <Style>None</Style>
-                                  </RightBorder>
-                                  <BackgroundColor>#234075</BackgroundColor>
-                                  <PaddingLeft>2pt</PaddingLeft>
-                                  <PaddingRight>2pt</PaddingRight>
-                                  <PaddingTop>2pt</PaddingTop>
-                                  <PaddingBottom>2pt</PaddingBottom>
-                                </Style>
-                              </Textbox>
-                            </CellContents>
-                          </TablixHeader>
-                          <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                         <TablixMember>
                           <TablixHeader>
@@ -5428,12 +5832,129 @@
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>3.55776cm</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox58">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value />
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>Textbox58</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <TopBorder>
+                                    <Style>None</Style>
+                                  </TopBorder>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <KeepWithGroup>Before</KeepWithGroup>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>3.55776cm</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox62">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value />
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>Textbox62</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <TopBorder>
+                                    <Style>None</Style>
+                                  </TopBorder>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <KeepWithGroup>Before</KeepWithGroup>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>3.55776cm</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox128">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value />
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>Textbox128</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <TopBorder>
+                                    <Style>None</Style>
+                                  </TopBorder>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <KeepWithGroup>Before</KeepWithGroup>
+                        </TablixMember>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSReportingRecord</DataSetName>
-                    <Top>0.91737cm</Top>
+                    <Top>1.52591cm</Top>
                     <Left>0.03342cm</Left>
-                    <Height>9.09729cm</Height>
+                    <Height>12.15021cm</Height>
                     <Width>7.28453cm</Width>
                     <ZIndex>1</ZIndex>
                     <Style>
@@ -5464,7 +5985,7 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox238</rd:DefaultName>
-                    <Top>10.45606cm</Top>
+                    <Top>13.89564cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>0.90238cm</Height>
                     <Width>22.75949cm</Width>
@@ -6369,6 +6890,264 @@
                             </TablixCell>
                           </TablixCells>
                         </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox154">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>District Operating Capacity</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox154</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox156">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(
+Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"),
+First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
+Sum(Fields!caps_total_operatingcapacity_districtValue.Value))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox156</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox390">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>% Utilization</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
+                                            <Color>#234075</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox36</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox182">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>= IIF(Sum(Fields!caps_total_operatingcapacity_districtValue.Value) = 0,
+0,
+Sum(Fields!caps_total_enrolmentValue.Value) / 
+IIF(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"),
+Sum(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
+Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>P0</Format>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox182</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox389">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Total Surplus \ </Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                        <TextRun>
+                                          <Value>Shortfall</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>Red</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox9</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox167">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(
+Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), 
+First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
+Sum(Fields!caps_total_operatingcapacity_districtValue.Value)) - 
+Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox167</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
                       </TablixRows>
                     </TablixBody>
                     <TablixColumnHierarchy>
@@ -6552,14 +7331,17 @@
                                 <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
+                            <TablixMember />
+                            <TablixMember />
+                            <TablixMember />
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectOptionCapacityReportingRec</DataSetName>
-                    <Top>11.40065cm</Top>
+                    <Top>14.84023cm</Top>
                     <Left>0.04256cm</Left>
-                    <Height>6.67938cm</Height>
+                    <Height>8.47938cm</Height>
                     <Width>7.28453cm</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
@@ -11836,6 +12618,1621 @@
                           </TablixCells>
                         </TablixRow>
                         <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox192">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox192</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox193">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Distrtict Operating</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox193</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox197">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value,
+year(Globals!ExecutionTime)-1, year(Globals!ExecutionTime)),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox197</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox204">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox204</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox205">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox205</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox207">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox207</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox208">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox208</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox209">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox209</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox210">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox210</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox211">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox211</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox212">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox212</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox213">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox213</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox214">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox214</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox217">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox217</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox149">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>% </Value>
+                                          <Style>
+                                            <FontWeight>Bold</FontWeight>
+                                            <Color>#234075</Color>
+                                          </Style>
+                                        </TextRun>
+                                        <TextRun>
+                                          <Value>Utilization </Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
+                                            <Color>#234075</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox80</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox219">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, 
+year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), "ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>P0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox219</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox221">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox221</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox237">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox237</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox268">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox268</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox284">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox284</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox286">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox286</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox287">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox287</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox288">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox288</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox289">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox289</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox290">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox290</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox291">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), 
+cdbl(Fields!caps_total_enrolmentValue.Value), 
+cdbl(0)), 
+"ProjectOptionCapacityReportingRec") / 
+(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities") + 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), 
+cdbl(0)))</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox291</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox292">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox292</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox159">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Total Surplus\ </Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                        <TextRun>
+                                          <Value>-Shortfall</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Color>Red</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox83</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox294">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox294</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox295">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox295</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox297">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox297</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox298">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox298</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox299">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox299</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox301">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox301</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox303">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox303</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox304">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox304</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox305">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox305</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox306">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox306</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox336">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=(Sum(Fields!caps_districtoperatingcapacitytotalValue.Value, "SSFacilities")+ 
+IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), 
+cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value), cdbl(0))) - 
+Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), 
+cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox336</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
                           <Height>0.14708cm</Height>
                           <TablixCells>
                             <TablixCell>
@@ -12325,14 +14722,17 @@
                               </Visibility>
                             </TablixMember>
                             <TablixMember />
+                            <TablixMember />
+                            <TablixMember />
+                            <TablixMember />
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>18.36939cm</Top>
+                    <Top>23.68752cm</Top>
                     <Left>0.03342cm</Left>
-                    <Height>7.45856cm</Height>
+                    <Height>9.25856cm</Height>
                     <Width>22.51255cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
@@ -12359,8 +14759,8 @@
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox2</rd:DefaultName>
-                    <Top>25.82795cm</Top>
-                    <Left>0.07733cm</Left>
+                    <Top>33.15013cm</Top>
+                    <Left>0.03342cm</Left>
                     <Height>0.6cm</Height>
                     <Width>6.44671cm</Width>
                     <ZIndex>5</ZIndex>
@@ -12376,9 +14776,9 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>26.85962cm</Top>
+                <Top>27.574cm</Top>
                 <Left>0.04391cm</Left>
-                <Height>26.71221cm</Height>
+                <Height>33.75013cm</Height>
                 <Width>25.7056cm</Width>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -13044,7 +15444,7 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>11.90453cm</Top>
+                <Top>12.59245cm</Top>
                 <Left>0.07733cm</Left>
                 <Height>4.66458cm</Height>
                 <Width>18.21472cm</Width>
@@ -14222,7 +16622,7 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>PRFSAlternativeOption</DataSetName>
-                <Top>16.75495cm</Top>
+                <Top>17.44287cm</Top>
                 <Left>0.07733cm</Left>
                 <Height>9.66458cm</Height>
                 <Width>18.21806cm</Width>
@@ -14898,7 +17298,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>CM Rank</Value>
+                                      <Value>CM Points</Value>
                                       <Style>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
@@ -14970,7 +17370,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>DB Rank</Value>
+                                      <Value>DB Points</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -15044,7 +17444,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>DBB Rank</Value>
+                                      <Value>DBB Points</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -15285,14 +17685,14 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_designbidbuild1">
+                            <Textbox Name="caps_designbidbuildrank">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_designbidbuild.Value</Value>
+                                      <Value>=Fields!caps_designbidbuildrank.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                       </Style>
@@ -15303,7 +17703,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_designbidbuild1</rd:DefaultName>
+                              <rd:DefaultName>caps_designbidbuildrank</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -15353,6 +17753,248 @@
                         </TablixCell>
                       </TablixCells>
                     </TablixRow>
+                    <TablixRow>
+                      <Height>0.6cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox403">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>TOTAL POINTS</Value>
+                                      <Style>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>White</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox403</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#234075</BackgroundColor>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="CMrank_integer">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!CMrank_integer.Value)</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>CMrank_integer</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox424">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox424</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox426">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!DBrank_integer.Value)</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox426</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox428">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox428</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_designbidbuildrankValue">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!caps_designbidbuildrankValue.Value)</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_designbidbuildrankValue</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox430">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox430</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
                   </TablixRows>
                 </TablixBody>
                 <TablixColumnHierarchy>
@@ -15374,12 +18016,15 @@
                     <TablixMember>
                       <Group Name="Details4" />
                     </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProcurementAnalysis</DataSetName>
                 <Top>8.47269cm</Top>
                 <Left>0.07733cm</Left>
-                <Height>3.02562cm</Height>
+                <Height>3.62563cm</Height>
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
@@ -15392,7 +18037,7 @@
             <KeepTogether>true</KeepTogether>
             <Top>21.50143cm</Top>
             <Left>0.03633cm</Left>
-            <Height>54.02162cm</Height>
+            <Height>61.98558cm</Height>
             <Width>25.85378cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -23060,7 +25705,7 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>75.79742cm</Height>
+        <Height>84.87263cm</Height>
         <Style />
       </Body>
       <Width>25.983cm</Width>
@@ -23243,6 +25888,10 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
           <ParameterValue>
             <Value>Operating</Value>
             <Label>Operating</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>District_Operating</Value>
+            <Label>District Operating</Label>
           </ParameterValue>
         </ParameterValues>
       </ValidValues>
