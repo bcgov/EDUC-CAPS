@@ -4096,7 +4096,7 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Operating Capacity</Value>
+                                          <Value>Calculated Operating Capacity</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -4845,7 +4845,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Operating</Value>
+                                          <Value>Calculated Operating Capacity</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -5202,6 +5202,7 @@ Sum(Fields!caps_total_enrolmentValue.Value) / IIF(Sum(Fields!caps_total_operatin
 Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <Format>p0</Format>
                                             <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -5461,26 +5462,34 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             <TablixMember />
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
-                            <TablixMember />
-                            <TablixMember />
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
                             <TablixMember />
                           </TablixMembers>
                         </TablixMember>
@@ -5606,7 +5615,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5651,7 +5660,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5696,7 +5705,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5741,7 +5750,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5786,7 +5795,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5828,7 +5837,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5869,6 +5878,9 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                               </Textbox>
                             </CellContents>
                           </TablixHeader>
+                          <Visibility>
+                            <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                          </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                         <TablixMember>
@@ -5908,6 +5920,9 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                               </Textbox>
                             </CellContents>
                           </TablixHeader>
+                          <Visibility>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                          </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                         <TablixMember>
@@ -5947,6 +5962,9 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                               </Textbox>
                             </CellContents>
                           </TablixHeader>
+                          <Visibility>
+                            <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                          </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
                       </TablixMembers>
@@ -6212,7 +6230,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value EvaluationMode="Constant">Change in Operating</Value>
+                                          <Value>Change in  Calculated Operating</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -6257,6 +6275,82 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox457</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <BackgroundColor>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox20">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Change in District Operating</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox20</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox27">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=iif(
+Fields!caps_schoolyear.Value &gt;= 
+First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), 
+First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest"), 
+0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox27</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -7027,8 +7121,9 @@ Sum(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReque
 Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>P0</Format>
-                                            <Color>=iif(Sum(Fields!caps_total_operatingcapacityValue.Value) - Sum(Fields!caps_total_enrolmentValue.Value) &lt;0, "Red", "Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -7053,6 +7148,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -7291,49 +7387,66 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             <TablixMember />
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember />
                             <TablixMember />
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
-                            <TablixMember />
-                            <TablixMember />
-                            <TablixMember />
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
@@ -7341,7 +7454,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                     <DataSetName>ProjectOptionCapacityReportingRec</DataSetName>
                     <Top>14.84023cm</Top>
                     <Left>0.04256cm</Left>
-                    <Height>8.47938cm</Height>
+                    <Height>9.07938cm</Height>
                     <Width>7.28453cm</Width>
                     <ZIndex>3</ZIndex>
                     <Style>
@@ -8427,7 +8540,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Change in Operating </Value>
+                                          <Value>Change in Calculated Operating </Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Normal</FontWeight>
@@ -8828,6 +8941,489 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Style>Solid</Style>
                                     </Border>
                                     <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                          </TablixCells>
+                        </TablixRow>
+                        <TablixRow>
+                          <Height>0.6cm</Height>
+                          <TablixCells>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox29">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox29</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>None</Style>
+                                    </TopBorder>
+                                    <BottomBorder>
+                                      <Style>None</Style>
+                                    </BottomBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox162">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Change in District Operating</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style />
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox162</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox174">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(
+Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 
+Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)),
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox174</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox186">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox186</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox191">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 1, year(Globals!ExecutionTime) + 2), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox191</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox218">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 2, year(Globals!ExecutionTime) + 3), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox218</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox293">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 3, year(Globals!ExecutionTime) + 4), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox293</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox342">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 4, year(Globals!ExecutionTime) + 5), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox342</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox348">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 5, year(Globals!ExecutionTime) + 6), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox348</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox423">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 6, year(Globals!ExecutionTime) + 7), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox423</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox429">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 7, year(Globals!ExecutionTime) + 8), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox429</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox431">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 8, year(Globals!ExecutionTime) + 9), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox431</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                              </CellContents>
+                            </TablixCell>
+                            <TablixCell>
+                              <CellContents>
+                                <Textbox Name="Textbox432">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, 
+year(Globals!ExecutionTime) + 9, year(Globals!ExecutionTime) + 10), 
+Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                            <Format>#,0;(#,0)</Format>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox432</rd:DefaultName>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>Solid</Style>
+                                    </Border>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -11239,7 +11835,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Operating </Value>
+                                          <Value>Calculated Operating </Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -13215,8 +13811,9 @@ year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_c
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>P0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13260,8 +13857,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13305,8 +13903,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13350,8 +13949,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13395,8 +13995,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13440,8 +14041,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13485,8 +14087,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13530,8 +14133,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13575,8 +14179,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13620,8 +14225,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13665,8 +14271,9 @@ cdbl(Fields!caps_changeindistrictoperatingcapacity_totalValue.Value),
 cdbl(0)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
+                                            <FontWeight>Bold</FontWeight>
                                             <Format>p0</Format>
-                                            <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
+                                            <Color>#234075</Color>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -13786,7 +14393,7 @@ year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -13828,7 +14435,7 @@ year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -13870,7 +14477,7 @@ year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -13912,7 +14519,7 @@ year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -13954,7 +14561,7 @@ year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -13996,7 +14603,7 @@ year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14038,7 +14645,7 @@ year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14080,7 +14687,7 @@ year(Globals!ExecutionTime)+6, year(Globals!ExecutionTime)+7),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities") + IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0)) - (sum(iif(Fields!YEAR_edu_startyear.Value=iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7),Fields!caps_enrolmentprojectiontotalValue.Value,0),"SSEnrolmentProjections")) &lt;0, "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14122,7 +14729,7 @@ year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14164,7 +14771,7 @@ year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14206,7 +14813,7 @@ year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10),
 cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec")</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <Format>#,0;(#,0)</Format>
+                                            <Format>#,0;(#,0);'-'</Format>
                                             <Color>=IIF((Sum(Fields!caps_operatingcapacitytotalValue.Value, "SSFacilities")+ IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_changeinoperatingcapacity_total.Value), cdbl(0))) - Sum(iif(Fields!YEAR_edu_startyear.Value = iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityReportingRec") &lt;0,  "Red","Black")</Color>
                                           </Style>
                                         </TextRun>
@@ -14681,58 +15288,75 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                             <TablixMember />
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember />
                             <TablixMember />
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Operating"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
                             <TablixMember>
                               <Visibility>
-                                <Hidden>=Parameters!CapacityType.Value = "Design"</Hidden>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
                               </Visibility>
                             </TablixMember>
-                            <TablixMember />
-                            <TablixMember />
-                            <TablixMember />
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
+                            <TablixMember>
+                              <Visibility>
+                                <Hidden>= Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
+                              </Visibility>
+                            </TablixMember>
                             <TablixMember />
                           </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>23.68752cm</Top>
+                    <Top>24.16377cm</Top>
                     <Left>0.03342cm</Left>
-                    <Height>9.25856cm</Height>
+                    <Height>9.85856cm</Height>
                     <Width>22.51255cm</Width>
                     <ZIndex>4</ZIndex>
                     <Style>
@@ -14759,7 +15383,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox2</rd:DefaultName>
-                    <Top>33.15013cm</Top>
+                    <Top>34.39367cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>0.6cm</Height>
                     <Width>6.44671cm</Width>
@@ -14776,9 +15400,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>27.574cm</Top>
+                <Top>27.54754cm</Top>
                 <Left>0.04391cm</Left>
-                <Height>33.75013cm</Height>
+                <Height>34.99367cm</Height>
                 <Width>25.7056cm</Width>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -17927,14 +18551,14 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_designbidbuildrankValue">
+                            <Textbox Name="DBBrank_integer">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(Fields!caps_designbidbuildrankValue.Value)</Value>
+                                      <Value>=Sum(Fields!DBBrank_integer.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                       </Style>
@@ -17945,7 +18569,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_designbidbuildrankValue</rd:DefaultName>
+                              <rd:DefaultName>DBBrank_integer</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -18035,9 +18659,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
               </Tablix>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>21.50143cm</Top>
+            <Top>21.68664cm</Top>
             <Left>0.03633cm</Left>
-            <Height>61.98558cm</Height>
+            <Height>63.0096cm</Height>
             <Width>25.85378cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -20230,7 +20854,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
-                    <Height>0.6cm</Height>
+                    <Left>0.00361in</Left>
+                    <Height>0.86127cm</Height>
                     <Width>5cm</Width>
                     <Style>
                       <Border>
@@ -20595,8 +21220,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.30583cm</Top>
-                    <Left>0.07737cm</Left>
+                    <Top>4.70821cm</Top>
+                    <Left>0cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>1</ZIndex>
@@ -20886,8 +21511,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.47056cm</Top>
-                    <Left>0.07737cm</Left>
+                    <Top>2.87294cm</Top>
+                    <Left>0cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>2</ZIndex>
@@ -21177,8 +21802,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>0.63528cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Top>1.03766cm</Top>
+                    <Left>0.00001cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>3</ZIndex>
@@ -21191,9 +21816,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>12.85328cm</Top>
-                <Left>0.03421cm</Left>
-                <Height>6.18189cm</Height>
-                <Width>5.00914cm</Width>
+                <Left>0.03419cm</Left>
+                <Height>6.50821cm</Height>
+                <Width>5.00916cm</Width>
                 <ZIndex>8</ZIndex>
                 <Style>
                   <Border>
@@ -21230,7 +21855,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Operating Capacity</Value>
+                            <Value>Calculated Operating Capacity</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <FontWeight>Bold</FontWeight>
@@ -21243,7 +21868,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
-                    <Height>0.6cm</Height>
+                    <Height>0.86127cm</Height>
                     <Width>5.0895cm</Width>
                     <Style>
                       <Border>
@@ -21608,7 +22233,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.30583cm</Top>
+                    <Top>4.70821cm</Top>
                     <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -21902,7 +22527,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.47056cm</Top>
+                    <Top>2.87294cm</Top>
                     <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -22193,7 +22818,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>0.63528cm</Top>
+                    <Top>1.03766cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -22206,9 +22831,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Tablix>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>12.8549cm</Top>
+                <Top>12.85328cm</Top>
                 <Left>5.36105cm</Left>
-                <Height>6.18027cm</Height>
+                <Height>6.50821cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>9</ZIndex>
                 <Style>
@@ -22259,7 +22884,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
-                    <Height>0.59821cm</Height>
+                    <Height>0.84009cm</Height>
                     <Width>5.08922cm</Width>
                     <Style>
                       <Border>
@@ -22551,7 +23176,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.47056cm</Top>
+                    <Top>2.85176cm</Top>
                     <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -22842,7 +23467,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>0.63528cm</Top>
+                    <Top>1.01648cm</Top>
                     <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -23206,7 +23831,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.30583cm</Top>
+                    <Top>4.68703cm</Top>
                     <Left>0.07737cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
@@ -23220,8 +23845,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>12.87446cm</Top>
-                <Left>16.99261cm</Left>
-                <Height>6.18027cm</Height>
+                <Left>16.4899cm</Left>
+                <Height>6.48703cm</Height>
                 <Width>5.08922cm</Width>
                 <ZIndex>10</ZIndex>
                 <Style>
@@ -24500,7 +25125,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Operating Capacity</Value>
+                            <Value>District Operating Capacity</Value>
                             <Style>
                               <FontFamily>Arial</FontFamily>
                               <FontWeight>Bold</FontWeight>
@@ -24513,7 +25138,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox350</rd:DefaultName>
-                    <Height>0.6cm</Height>
+                    <Height>0.84009cm</Height>
                     <Width>5.0895cm</Width>
                     <Style>
                       <Border>
@@ -24877,8 +25502,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSProjectRequest</DataSetName>
-                    <Top>4.30583cm</Top>
-                    <Left>0.07737cm</Left>
+                    <Top>4.68703cm</Top>
+                    <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>1</ZIndex>
@@ -25180,8 +25805,8 @@ First(Fields!caps_changeindistrictoperatingcapacity_sValue.Value, "SSProjectRequ
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>2.47056cm</Top>
-                    <Left>0.07737cm</Left>
+                    <Top>2.85176cm</Top>
+                    <Left>0.07738cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>2</ZIndex>
@@ -25480,8 +26105,8 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectRequestFacility</DataSetName>
-                    <Top>0.63528cm</Top>
-                    <Left>0.07738cm</Left>
+                    <Top>1.01648cm</Top>
+                    <Left>0.07739cm</Left>
                     <Height>1.8cm</Height>
                     <Width>3.59104cm</Width>
                     <ZIndex>3</ZIndex>
@@ -25494,8 +26119,8 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>12.87446cm</Top>
-                <Left>11.04509cm</Left>
-                <Height>6.18027cm</Height>
+                <Left>10.85357cm</Left>
+                <Height>6.48703cm</Height>
                 <Width>5.0895cm</Width>
                 <ZIndex>14</ZIndex>
                 <Style>
@@ -25529,10 +26154,10 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
               <BreakLocation>End</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>2.14876cm</Top>
+            <Top>2.1223cm</Top>
             <Left>0.07947cm</Left>
-            <Height>19.17628cm</Height>
-            <Width>22.54674cm</Width>
+            <Height>19.39677cm</Height>
+            <Width>21.80591cm</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -25886,8 +26511,8 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
             <Label>Design</Label>
           </ParameterValue>
           <ParameterValue>
-            <Value>Operating</Value>
-            <Label>Operating</Label>
+            <Value>Calculated_Operating</Value>
+            <Label>Calculated Operating</Label>
           </ParameterValue>
           <ParameterValue>
             <Value>District_Operating</Value>
