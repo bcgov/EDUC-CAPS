@@ -76,8 +76,15 @@
     &lt;filter type="and"&gt;
       &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
     &lt;/filter&gt;
+    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="inner" alias="FUNDING_PROGRAM"&gt;
+      &lt;attribute name="caps_fundingprogramcode" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_fundingprogramcode" operator="ne" value="CSF_LEASES" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_projecttrackerid">
@@ -160,6 +167,10 @@
           <DataField>caps_thirdpartyValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="FUNDING_PROGRAM_caps_fundingprogramcode">
+          <DataField>FUNDING_PROGRAM_caps_fundingprogramcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Milestones">
@@ -232,6 +243,66 @@
         <Field Name="caps_completeValue">
           <DataField>caps_completeValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProjectProgressReports">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@LastQEndProgressReportName">
+            <Value>=Parameters!LastQEndProgressReportName.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_progressreport"&gt;
+    &lt;attribute name="caps_progressreportid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_project" /&gt;
+    &lt;attribute name="caps_actualdistrictcontributionforcurrentyear" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_name" operator="like" value="@LastQEndProgressReportName"/&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="2" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" link-type="inner" alias="ad"&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="caps_progressreportid">
+          <DataField>caps_progressreportid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_project">
+          <DataField>caps_project</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectValue">
+          <DataField>caps_projectValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectEntityName">
+          <DataField>caps_projectEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualdistrictcontributionforcurrentyear">
+          <DataField>caps_actualdistrictcontributionforcurrentyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualdistrictcontributionforcurrentyearValue">
+          <DataField>caps_actualdistrictcontributionforcurrentyearValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -408,6 +479,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <ToolTip>Year value from the Occupancy Date milestone</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -431,7 +503,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Actual Draws to " &amp; iif(month(Globals!ExecutionTime) &lt; 4,"Dec 31, " &amp; year(Globals!ExecutionTime)-1,iif(month(Globals!ExecutionTime) &lt; 7,"Mar 31, " &amp; year(Globals!ExecutionTime),iif(month(Globals!ExecutionTime) &lt; 10,"June 30, " &amp; year(Globals!ExecutionTime),"Sept 30, " &amp; year(Globals!ExecutionTime))))</Value>
+                                  <Value>="Project Cost to " &amp; iif(month(Globals!ExecutionTime) &lt; 4,"Dec 31, " &amp; year(Globals!ExecutionTime)-1,iif(month(Globals!ExecutionTime) &lt; 7,"Mar 31, " &amp; year(Globals!ExecutionTime),iif(month(Globals!ExecutionTime) &lt; 10,"June 30, " &amp; year(Globals!ExecutionTime),"Sept 30, " &amp; year(Globals!ExecutionTime))))</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -443,7 +515,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
-                          <ToolTip>Shows sum of actual draws up to the end of the last quarter</ToolTip>
+                          <ToolTip>Shows sum of all actuals (Prov and Other) up to the end of the last quarter</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -480,6 +552,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <ToolTip>Calculated based on Anticipated Total Cost less Project Cost to last quarter end</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -516,6 +589,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox55</rd:DefaultName>
+                          <ToolTip>Max Potential</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -735,6 +809,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <ToolTip>Expected/Actual date of the Occupancy milestone</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -757,11 +832,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=lookup(Fields!caps_projecttrackerid.Value,Fields!ProjectValue.Value,Fields!SumActualDrawsValue.Value, "ActualDrawsAndProjects")</Value>
+                                  <Value>=lookup(Fields!caps_projecttrackerid.Value,Fields!ProjectValue.Value,Fields!SumActualDrawsValue.Value, "ActualDrawsAndProjects") + lookup(Fields!caps_projecttrackerid.Value,Fields!caps_projectValue.Value,Fields!caps_actualdistrictcontributionforcurrentyearValue.Value, "ProjectProgressReports")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.0;(#,0,,.0)</Format>
+                                    <Format>#,0,,.000;(#,0,,.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -791,11 +866,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_maxpotential_fundingsourceValue.Value - lookup(Fields!caps_projecttrackerid.Value,Fields!ProjectValue.Value,Fields!SumActualDraws.Value, "ActualDrawsAndProjects")</Value>
+                                  <Value>=Fields!caps_maxpotential_fundingsourceValue.Value - (lookup(Fields!caps_projecttrackerid.Value,Fields!ProjectValue.Value,Fields!SumActualDrawsValue.Value, "ActualDrawsAndProjects") + lookup(Fields!caps_projecttrackerid.Value,Fields!caps_projectValue.Value,Fields!caps_actualdistrictcontributionforcurrentyearValue.Value, "ProjectProgressReports"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.0;(#,0,,.0)</Format>
+                                    <Format>#,0,,.000;(#,0,,.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -829,7 +904,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.0;(#,0,,.0)</Format>
+                                    <Format>#,0,,.000;(#,0,,.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1071,7 +1146,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!SumActualDrawsValue.Value, "ActualDrawsAndProjects")</Value>
+                                  <Value>=Sum(Fields!SumActualDrawsValue.Value, "ActualDrawsAndProjects") + Sum(Fields!caps_actualdistrictcontributionforcurrentyearValue.Value, "ProjectProgressReports")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1094,12 +1169,14 @@
                               <Style>Solid</Style>
                               <Width>1pt</Width>
                             </TopBorder>
+                            <BackgroundColor>Khaki</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1134,12 +1211,14 @@
                               <Style>Solid</Style>
                               <Width>1pt</Width>
                             </TopBorder>
+                            <BackgroundColor>Khaki</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1417,7 +1496,7 @@
         <Height>2.30979in</Height>
         <Style />
       </Body>
-      <Width>9.88755in</Width>
+      <Width>10.88755in</Width>
       <Page>
         <PageFooter>
           <Height>0.30556in</Height>
@@ -1508,10 +1587,28 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="LastQEndProgressReportName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=iif(month(Globals!ExecutionTime) &lt; 4,year(Globals!ExecutionTime)-1 &amp; " - December","to do")</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>LastQEndProgressReportName</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
