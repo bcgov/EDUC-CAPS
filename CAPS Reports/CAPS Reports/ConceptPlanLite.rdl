@@ -104,10 +104,6 @@
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_name" /&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="FAC" &gt;
-      &lt;attribute name="caps_name" /&gt;
-      &lt;attribute name="caps_closedate" /&gt;
-    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -676,18 +672,6 @@
         <Field Name="YEAR_edu_startyearValue">
           <DataField>YEAR_edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="FAC_caps_name">
-          <DataField>FAC_caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FAC_caps_closedate">
-          <DataField>FAC_caps_closedate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="FAC_caps_closedateValue">
-          <DataField>FAC_caps_closedateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -3268,6 +3252,58 @@ Fields!caps_designbidbuildrankValue.Value = "200870000", 0,
 Fields!caps_designbidbuildrankValue.Value = "200870001", 1,
 Fields!caps_designbidbuildrankValue.Value = "200870002", 2,
 Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SchoolInfoPortable">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_portable"&gt;
+    &lt;attribute name="caps_portableid" /&gt;
+    &lt;attribute name="caps_assetnumber" /&gt;
+    &lt;attribute name="caps_facility" /&gt;
+    &lt;attribute name="createdon" /&gt;
+    &lt;order attribute="caps_assetnumber" descending="false" /&gt;
+    &lt;filter type="or"&gt;
+      &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_portableid">
+          <DataField>caps_portableid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_assetnumber">
+          <DataField>caps_assetnumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facility">
+          <DataField>caps_facility</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityValue">
+          <DataField>caps_facilityValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_facilityEntityName">
+          <DataField>caps_facilityEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdon">
+          <DataField>createdon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="createdonValue">
+          <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -18184,7 +18220,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=iif(isnothing(Parameters!FacilityID.Value), 0, Sum(Fields!countPortablesValue.Value))</Value>
+                                      <Value>=Count(Fields!caps_portableid.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                       </Style>
@@ -18207,6 +18243,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -18224,7 +18261,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                     <TablixMember />
                   </TablixMembers>
                 </TablixRowHierarchy>
-                <DataSetName>FacilityPortables</DataSetName>
+                <DataSetName>SchoolInfoPortable</DataSetName>
                 <Top>8.8077cm</Top>
                 <Left>5.35367cm</Left>
                 <Height>1.2cm</Height>
