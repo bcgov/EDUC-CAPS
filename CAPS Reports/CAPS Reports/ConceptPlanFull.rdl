@@ -3675,7 +3675,7 @@
 Fields!caps_constructionmanagementrankValue.Value = "200870000", 0,
 Fields!caps_constructionmanagementrankValue.Value = "200870001", 1,
 Fields!caps_constructionmanagementrankValue.Value = "200870002", 2,
-Fields!caps_constructionmanagementrankValue.Value = "200870002", 3)</Value>
+Fields!caps_constructionmanagementrankValue.Value = "200870003", 3)</Value>
         </Field>
         <Field Name="DBrank_integer">
           <Value>=Switch(
@@ -3776,7 +3776,7 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox238</rd:DefaultName>
-                    <Top>0.23958in</Top>
+                    <Top>0.05208in</Top>
                     <Left>0.04256cm</Left>
                     <Height>0.90238cm</Height>
                     <Width>25.66304cm</Width>
@@ -6022,7 +6022,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>SSReportingRecord</DataSetName>
-                    <Top>1.52591cm</Top>
+                    <Top>1.04966cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>12.15021cm</Height>
                     <Width>7.28453cm</Width>
@@ -6055,7 +6055,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox238</rd:DefaultName>
-                    <Top>13.89564cm</Top>
+                    <Top>13.41939cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>0.90238cm</Height>
                     <Width>22.75949cm</Width>
@@ -7503,7 +7503,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>ProjectOptionCapacityReportingRec</DataSetName>
-                    <Top>14.84023cm</Top>
+                    <Top>14.36398cm</Top>
                     <Left>0.04256cm</Left>
                     <Height>9.07938cm</Height>
                     <Width>7.28453cm</Width>
@@ -15405,7 +15405,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>24.16377cm</Top>
+                    <Top>23.68752cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>9.85856cm</Height>
                     <Width>22.51255cm</Width>
@@ -15434,7 +15434,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox2</rd:DefaultName>
-                    <Top>34.39367cm</Top>
+                    <Top>33.91742cm</Top>
                     <Left>0.03342cm</Left>
                     <Height>0.6cm</Height>
                     <Width>6.44671cm</Width>
@@ -15451,9 +15451,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>27.54754cm</Top>
+                <Top>28.02379cm</Top>
                 <Left>0.04391cm</Left>
-                <Height>34.99367cm</Height>
+                <Height>34.51742cm</Height>
                 <Width>25.7056cm</Width>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -16119,7 +16119,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>ProjectRequest</DataSetName>
-                <Top>12.59245cm</Top>
+                <Top>13.35974cm</Top>
                 <Left>0.07733cm</Left>
                 <Height>4.66458cm</Height>
                 <Width>18.21472cm</Width>
@@ -17297,7 +17297,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>PRFSAlternativeOption</DataSetName>
-                <Top>17.44287cm</Top>
+                <Top>18.21016cm</Top>
                 <Left>0.07733cm</Left>
                 <Height>9.66458cm</Height>
                 <Width>18.21806cm</Width>
@@ -17932,6 +17932,56 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
+                      <Height>0.94396cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox433">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Procurement Analysis</Value>
+                                      <Style>
+                                        <FontFamily>arial</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                        <Color>White</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox433</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#234075</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <ColSpan>7</ColSpan>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                        <TablixCell />
+                      </TablixCells>
+                    </TablixRow>
+                    <TablixRow>
                       <Height>1.28792cm</Height>
                       <TablixCells>
                         <TablixCell>
@@ -17956,6 +18006,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   <Color>LightGrey</Color>
                                   <Style>Solid</Style>
                                 </Border>
+                                <BackgroundColor>#e3a82b</BackgroundColor>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -18689,6 +18740,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <KeepWithGroup>After</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
                       <Group Name="Details4" />
                     </TablixMember>
                     <TablixMember>
@@ -18698,8 +18752,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 </TablixRowHierarchy>
                 <DataSetName>ProcurementAnalysis</DataSetName>
                 <Top>8.47269cm</Top>
-                <Left>0.07733cm</Left>
-                <Height>3.62563cm</Height>
+                <Left>0.10992cm</Left>
+                <Height>4.56959cm</Height>
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
