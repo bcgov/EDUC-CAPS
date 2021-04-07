@@ -55,7 +55,6 @@
     &lt;attribute name="caps_numberofh3blocks_seismicrisk" /&gt;
     &lt;attribute name="caps_numberofh2blocks_seismicrisk" /&gt;
     &lt;attribute name="caps_numberofh1blocks_seismicrisk" /&gt;
-    &lt;attribute name="caps_futurefacilityconditionindex" /&gt;
     &lt;attribute name="caps_spircostestimate" /&gt;
     &lt;attribute name="caps_availablesitesize_hectares" /&gt;
     &lt;attribute name="caps_availablesitesize_acres" /&gt;
@@ -345,14 +344,6 @@
         <Field Name="caps_numberofh1blocks_seismicriskValue">
           <DataField>caps_numberofh1blocks_seismicriskValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurefacilityconditionindex0">
-          <DataField>caps_futurefacilityconditionindex0</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_futurefacilityconditionindexValue0">
-          <DataField>caps_futurefacilityconditionindexValue0</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_spircostestimate">
           <DataField>caps_spircostestimate</DataField>
@@ -5667,7 +5658,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5712,7 +5703,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -5757,7 +5748,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                             </CellContents>
                           </TablixHeader>
                           <Visibility>
-                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District"</Hidden>
+                            <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                           </Visibility>
                           <KeepWithGroup>Before</KeepWithGroup>
                         </TablixMember>
@@ -20841,7 +20832,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_currentfci.Value</Value>
+                                      <Value>=Fields!caps_futurefacilityconditionindexValue.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>0.00;(0.00);'-'</Format>
