@@ -51,8 +51,8 @@
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@FiscalYear">
-            <Value>=Parameters!FiscalYear.Value</Value>
+          <QueryParameter Name="@BudgetYear">
+            <Value>=Parameters!BudgetYear.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
@@ -64,7 +64,7 @@
     &lt;attribute name="caps_projectionyear" /&gt;
     &lt;attribute name="caps_totalbudget" /&gt;
     &lt;filter&gt;
-      &lt;condition attribute="caps_cycleyear" operator="eq" value="@FiscalYear" uitype="edu_year" /&gt;
+      &lt;condition attribute="caps_cycleyear" operator="eq" value="@BudgetYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
       &lt;attribute name="caps_name" /&gt;
@@ -144,8 +144,8 @@
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@FiscalYear">
-            <Value>=Parameters!FiscalYear.Value</Value>
+          <QueryParameter Name="@BudgetYear">
+            <Value>=Parameters!BudgetYear.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
@@ -153,7 +153,7 @@
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;filter&gt;
-      &lt;condition attribute="edu_yearid" operator="eq" value="@FiscalYear" uitype="edu_year" /&gt;
+      &lt;condition attribute="edu_yearid" operator="eq" value="@BudgetYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -658,7 +658,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Selected Cycle Fiscal Year</Value>
+                                  <Value>Selected Budget Year</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -812,7 +812,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Program Budget</Value>
+                      <Value>Program Budget Per CPS Q3</Value>
                       <Style>
                         <FontSize>24pt</FontSize>
                       </Style>
@@ -945,9 +945,9 @@
       <Prompt>Today</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
-    <ReportParameter Name="FiscalYear">
+    <ReportParameter Name="BudgetYear">
       <DataType>String</DataType>
-      <Prompt>Select a Fiscal Year</Prompt>
+      <Prompt>Select a Budget Year</Prompt>
       <ValidValues>
         <DataSetReference>
           <DataSetName>Current_Historical_FiscalYears</DataSetName>
@@ -970,7 +970,7 @@
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>FiscalYear</ParameterName>
+          <ParameterName>BudgetYear</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
