@@ -170,9 +170,11 @@
     &lt;attribute name="caps_totalagency" /&gt;
     &lt;attribute name="caps_agencyactual" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="caps_totalprovincial" operator="gt" value="0" /&gt;
-      &lt;condition attribute="caps_totalagency" operator="gt" value="0" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;filter type="or"&gt;
+        &lt;condition attribute="caps_totalagency" operator="gt" value="0" /&gt;
+        &lt;condition attribute="caps_totalprovincial" operator="gt" value="0" /&gt;
+      &lt;/filter&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_ptr" link-type="inner" alias="PROJECT" &gt;
@@ -184,7 +186,7 @@
       &lt;filter&gt;
         &lt;condition attribute="statecode" operator="eq" value="1" /&gt;
       &lt;/filter&gt;
-      &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" &gt;
+      &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SCHOOL_DISTRICT" &gt;
         &lt;attribute name="edu_commonname" /&gt;
         &lt;attribute name="edu_number" /&gt;
       &lt;/link-entity&gt;
@@ -304,12 +306,12 @@
           <DataField>PROJECT_caps_dateprojectclosedValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="edu_schooldistrict6c97fe48_edu_commonname">
-          <DataField>edu_schooldistrict6c97fe48_edu_commonname</DataField>
+        <Field Name="SCHOOL_DISTRICT_edu_commonname">
+          <DataField>SCHOOL_DISTRICT_edu_commonname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="edu_schooldistrict6c97fe48_edu_number">
-          <DataField>edu_schooldistrict6c97fe48_edu_number</DataField>
+        <Field Name="SCHOOL_DISTRICT_edu_number">
+          <DataField>SCHOOL_DISTRICT_edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -685,7 +687,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1620,7 +1621,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>SD Number</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1651,7 +1652,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>SD Name</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -2037,14 +2038,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox47">
+                        <Textbox Name="SCHOOL_DISTRICT_edu_number1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!SCHOOL_DISTRICT_edu_number.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2054,7 +2055,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox47</rd:DefaultName>
+                          <rd:DefaultName>SCHOOL_DISTRICT_edu_number1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2070,14 +2071,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox42">
+                        <Textbox Name="SCHOOL_DISTRICT_edu_commonname1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!SCHOOL_DISTRICT_edu_commonname.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2087,7 +2088,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox42</rd:DefaultName>
+                          <rd:DefaultName>SCHOOL_DISTRICT_edu_commonname1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2507,6 +2508,14 @@
             </TablixRowHierarchy>
             <DataSetName>ClosedProjectCashflow</DataSetName>
             <PageName>Cashflow Variance</PageName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!SCHOOL_DISTRICT_edu_number.Value</Value>
+              </SortExpression>
+              <SortExpression>
+                <Value>=Fields!SCHOOL_DISTRICT_edu_commonname.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>1.02138in</Top>
             <Left>0.00001cm</Left>
             <Height>0.88542in</Height>
