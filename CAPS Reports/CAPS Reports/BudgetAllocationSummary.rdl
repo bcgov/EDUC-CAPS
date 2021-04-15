@@ -185,9 +185,6 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@CurrentFiscalStartDate">
-            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -206,10 +203,6 @@
           &lt;value&gt;200870003&lt;/value&gt;
           &lt;value&gt;200870007&lt;/value&gt;
         &lt;/condition&gt;
-        &lt;filter type="or" &gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
-        &lt;/filter&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -245,9 +238,6 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@CurrentFiscalStartDate">
-            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -263,10 +253,6 @@
           &lt;value&gt;1&lt;/value&gt;
           &lt;value&gt;200870005&lt;/value&gt;
         &lt;/condition&gt;
-        &lt;filter type="or" &gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
-        &lt;/filter&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -302,9 +288,6 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@CurrentFiscalStartDate">
-            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -323,10 +306,6 @@
           &lt;value&gt;200870007&lt;/value&gt;
         &lt;/condition&gt;
         &lt;condition attribute="caps_fundingprogram" operator="null" /&gt;
-        &lt;filter type="or" &gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
-        &lt;/filter&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -350,9 +329,6 @@
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@CurrentFiscalStartDate">
-            <Value>=Parameters!CurrentFiscalStartDate.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" aggregate="true" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
@@ -368,10 +344,6 @@
           &lt;value&gt;200870005&lt;/value&gt;
         &lt;/condition&gt;
         &lt;condition attribute="caps_fundingprogram" operator="null" /&gt;
-        &lt;filter type="or" &gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@CurrentFiscalStartDate" /&gt;
-          &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
-        &lt;/filter&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -397,7 +369,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.45792cm</Width>
+                  <Width>5.83375cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>5.62208cm</Width>
@@ -566,7 +538,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Budget</Value>
+                                  <Value>Budget per CPS Q3</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -638,7 +610,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Approved Projects</Value>
+                                  <Value>Approved Projects - Projection</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -649,6 +621,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <ToolTip>Captures Projects in from the Approved phase onwards</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -686,6 +659,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                               <Style />
                             </Paragraph>
                           </Paragraphs>
+                          <ToolTip>Projected Values</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -713,7 +687,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Supported &amp; Planned</Value>
+                                  <Value>Supported &amp; Planned - Projection</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -724,6 +698,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <ToolTip>Captures projects in a PDR Development or Planned phase</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -761,6 +736,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                               <Style />
                             </Paragraph>
                           </Paragraphs>
+                          <ToolTip>Projected Values</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -768,8 +744,6 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                             </Border>
                             <BottomBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -793,7 +767,7 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Unallocated</Value>
+                                  <Value>Unallocated Budget</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -945,14 +919,14 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox10">
+                        <Textbox Name="Textbox37">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Approved Projects</Value>
+                                  <Value>Approved Projects - Projection</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -962,7 +936,8 @@ Lookup(Fields!caps_fundingprogram.Value, Fields!fundingprogram.Value, Fields!pro
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <ToolTip>Captures Projects in from the Approved phase onwards</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1001,6 +976,7 @@ First(Fields!provincialValue.Value, "Approved_NoFundingProgram_ProjectCashFlows"
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <ToolTip>Projected Values</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1021,14 +997,14 @@ First(Fields!provincialValue.Value, "Approved_NoFundingProgram_ProjectCashFlows"
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox14">
+                        <Textbox Name="Textbox40">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Supported &amp; Planned</Value>
+                                  <Value>Supported &amp; Planned - Projection</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1038,7 +1014,8 @@ First(Fields!provincialValue.Value, "Approved_NoFundingProgram_ProjectCashFlows"
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <ToolTip>Captures projects in a PDR Development or Planned phase</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1077,6 +1054,7 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <ToolTip>Projected Values</ToolTip>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1086,6 +1064,339 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.12375cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox24">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>1pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox24</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox57">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Budget per CPS Q3</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox56</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="GrandTotal_Budget">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox36">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Approved Projects - Projection</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <ToolTip>Captures Projects in from the Approved phase onwards</ToolTip>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="GrantTotal_Approved">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!provincialValue.Value, "Approved_ProjectCashFlows") + Sum(Fields!provincialValue.Value, "Approved_NoFundingProgram_ProjectCashFlows")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox39">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Supported &amp; Planned - Projection</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <ToolTip>Captures projects in a PDR Development or Planned phase</ToolTip>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="GrandTotal_Supported">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!provincialValue.Value, "PDR_Planned_ProjectCashFlows") + Sum(Fields!provincialValue.Value, "Approved_NoFundingProgram_ProjectCashFlows")</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox42">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Unallocated Budget</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>= ReportItems!GrandTotal_Budget.Value - ReportItems!GrantTotal_Approved.Value - ReportItems!GrandTotal_Supported.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1113,13 +1424,18 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value />
+                                <Value>Program</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
-                            <Style />
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
                           </Paragraph>
                         </Paragraphs>
                         <rd:DefaultName>Textbox11</rd:DefaultName>
@@ -1129,6 +1445,7 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                             <Style>Solid</Style>
                           </Border>
                           <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -1262,13 +1579,63 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                   </TablixMembers>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>4.28125cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox23">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Grand Totals</Value>
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox23</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProgramBudgetCurrentYear</DataSetName>
             <Top>0.14111cm</Top>
             <Left>0cm</Left>
-            <Height>4.58521cm</Height>
-            <Width>14.36125cm</Width>
+            <Height>7.10896cm</Height>
+            <Width>15.73708cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1276,10 +1643,10 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.9684cm</Height>
+        <Height>8.11694cm</Height>
         <Style />
       </Body>
-      <Width>18.86289cm</Width>
+      <Width>16.64039cm</Width>
       <Page>
         <PageHeader>
           <Height>2.59855cm</Height>
@@ -1347,7 +1714,7 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
               </Paragraphs>
               <rd:DefaultName>Textbox83</rd:DefaultName>
               <Top>0cm</Top>
-              <Left>11.98753cm</Left>
+              <Left>9.76503cm</Left>
               <Height>0.6cm</Height>
               <Width>6.87536cm</Width>
               <ZIndex>2</ZIndex>
@@ -1393,7 +1760,7 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0cm</Top>
-              <Left>6.08779in</Left>
+              <Left>5.21279in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <Style>
