@@ -542,7 +542,7 @@
                                   <Value>=Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value</Value>
                                   <Style>
                                     <Format>0%</Format>
-                                    <Color>#333333</Color>
+                                    <Color>=iif(ReportItems!Textbox35.Value = 0,"White","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -724,11 +724,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(ReportItems!Textbox35.Value = "0", "-", Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value)</Value>
+                                  <Value>=Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>0%</Format>
-                                    <Color>#333333</Color>
+                                    <Color>=iif(ReportItems!Textbox35.Value = 0,"White","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
