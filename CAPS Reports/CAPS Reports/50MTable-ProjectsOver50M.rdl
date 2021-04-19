@@ -6,7 +6,7 @@
     <DataSource Name="CAPS">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>c9950daa-d064-4bc5-89c1-496513080c78</rd:DataSourceID>
@@ -59,8 +59,8 @@
     <DataSet Name="Project">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projecttracker"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projecttracker" &gt;
     &lt;attribute name="caps_projecttrackerid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_sdother" /&gt;
@@ -73,12 +73,16 @@
     &lt;attribute name="caps_afg" /&gt;
     &lt;attribute name="caps_thirdparty" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="caps_dateprojectclosed" operator="this-fiscal-year" /&gt;
+      &lt;/filter&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="inner" alias="FUNDING_PROGRAM"&gt;
+    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="inner" alias="FUNDING_PROGRAM" &gt;
       &lt;attribute name="caps_fundingprogramcode" /&gt;
-      &lt;filter type="and"&gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_fundingprogramcode" operator="ne" value="CSF_LEASES" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -836,7 +840,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.000;(#,0,,.000)</Format>
+                                    <Format>#,0,,.0;(#,0,,.0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -870,7 +874,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.000;(#,0,,.000)</Format>
+                                    <Format>#,0,,.0;(#,0,,.0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -904,7 +908,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <Format>#,0,,.000;(#,0,,.000)</Format>
+                                    <Format>#,0,,.0;(#,0,,.0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1176,7 +1180,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1218,7 +1221,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1492,11 +1494,71 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Includes projects closed this fiscal year.</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Does not include CSF Lease projects.</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Does not include seismic program totals as have been historically included.</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.25424in</Top>
+            <Left>5.55898in</Left>
+            <Height>0.53618in</Height>
+            <Width>4.32858in</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>2.30979in</Height>
+        <Height>2.79042in</Height>
         <Style />
       </Body>
-      <Width>10.88755in</Width>
+      <Width>9.88755in</Width>
       <Page>
         <PageFooter>
           <Height>0.30556in</Height>
@@ -1592,7 +1654,9 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>=iif(month(Globals!ExecutionTime) &lt; 4,year(Globals!ExecutionTime)-1 &amp; " - December","to do")</Value>
+          <Value>=iif(month(Globals!ExecutionTime) &lt; 4, (year(Globals!ExecutionTime)-1) &amp; " - December",
+	iif(month(Globals!ExecutionTime) &lt; 7, year(Globals!ExecutionTime) &amp; " - March",
+		iif(month(Globals!ExecutionTime) &lt; 10, year(Globals!ExecutionTime) &amp; " - June", iif(month(Globals!ExecutionTime) &lt; 13,year(Globals!ExecutionTime) &amp; " - September",""))))</Value>
         </Values>
       </DefaultValue>
       <Prompt>ReportParameter1</Prompt>
