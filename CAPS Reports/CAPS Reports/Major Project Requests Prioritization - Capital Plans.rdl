@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>d27a0bf5-3028-47fb-a6b9-568e0da93ce3</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -14501,7 +14501,6 @@ Fields!caps_total_operatingutilization_district.Value, ""),
                                                                                                                                     <Color>LightGrey</Color>
                                                                                                                                     <Style>Solid</Style>
                                                                                                                                   </Border>
-                                                                                                                                  <BackgroundColor>White</BackgroundColor>
                                                                                                                                   <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                   <PaddingRight>2pt</PaddingRight>
                                                                                                                                   <PaddingTop>2pt</PaddingTop>
@@ -14558,7 +14557,7 @@ Fields!caps_total_operatingutilization_district.Value, ""),
                                                                                                                                           <Paragraph>
                                                                                                                                             <TextRuns>
                                                                                                                                               <TextRun>
-                                                                                                                                                <Value>=trim(join(lookupset(Fields!PROJECT_caps_facilityValue.Value,Fields!caps_facilityValue.Value, IIF(Fields!YEAR_edu_startyearValue.Value = Parameters!CurrentFiscalYearStart.Value+2, Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
+                                                                                                                                                <Value>=trim(join(lookupset(Fields!PROJECT_caps_facilityValue.Value,Fields!caps_facilityValue.Value, IIF(Fields!YEAR_caps_schoolyear.Value = ReportItems!PROJECT_caps_anticipatedoccupancyyear1.Value, Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -14611,7 +14610,6 @@ Fields!caps_total_operatingutilization_district.Value, ""),
                                                                                                                                                 <Color>LightGrey</Color>
                                                                                                                                                 <Style>Solid</Style>
                                                                                                                                               </Border>
-                                                                                                                                              <BackgroundColor>=iif(ReportItems!Textbox510.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                               <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                               <PaddingRight>2pt</PaddingRight>
                                                                                                                                               <PaddingTop>2pt</PaddingTop>
@@ -14656,7 +14654,6 @@ Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
                                                                                                                                                     <Color>LightGrey</Color>
                                                                                                                                                     <Style>Solid</Style>
                                                                                                                                                   </Border>
-                                                                                                                                                  <BackgroundColor>=iif(ReportItems!Textbox504.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                                   <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                                   <PaddingRight>2pt</PaddingRight>
                                                                                                                                                   <PaddingTop>2pt</PaddingTop>
@@ -14694,7 +14691,6 @@ Fields!FACILITY_caps_total_currentenrolmentValue.Value</Value>
                                                                                                                                                         <Color>LightGrey</Color>
                                                                                                                                                         <Style>Solid</Style>
                                                                                                                                                       </Border>
-                                                                                                                                                      <BackgroundColor>=iif(ReportItems!Textbox505.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                                       <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                                       <PaddingRight>2pt</PaddingRight>
                                                                                                                                                       <PaddingTop>2pt</PaddingTop>
@@ -14738,7 +14734,6 @@ Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
                                                                                                                                                             <Color>LightGrey</Color>
                                                                                                                                                             <Style>Solid</Style>
                                                                                                                                                           </Border>
-                                                                                                                                                          <BackgroundColor>=iif(ReportItems!Textbox505.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                                           <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                                           <PaddingRight>2pt</PaddingRight>
                                                                                                                                                           <PaddingTop>2pt</PaddingTop>
@@ -14776,7 +14771,6 @@ Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value</Value>
                                                                                                                                                                 <Color>LightGrey</Color>
                                                                                                                                                                 <Style>Solid</Style>
                                                                                                                                                               </Border>
-                                                                                                                                                              <BackgroundColor>=iif(ReportItems!Textbox505.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                                               <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                                               <PaddingRight>2pt</PaddingRight>
                                                                                                                                                               <PaddingTop>2pt</PaddingTop>
@@ -14820,7 +14814,6 @@ Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
                                                                                                                                                                     <Color>LightGrey</Color>
                                                                                                                                                                     <Style>Solid</Style>
                                                                                                                                                                   </Border>
-                                                                                                                                                                  <BackgroundColor>=iif(ReportItems!Textbox505.Value &lt;0,"Bisque","Transparent")</BackgroundColor>
                                                                                                                                                                   <PaddingLeft>2pt</PaddingLeft>
                                                                                                                                                                   <PaddingRight>2pt</PaddingRight>
                                                                                                                                                                   <PaddingTop>2pt</PaddingTop>
