@@ -3,22 +3,22 @@
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="MoE">
+    <DataSource Name="EDUC">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>54180316-c497-4eb8-9804-51200afdb2bb</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="FiveYearsActualDraws">
       <Query>
-        <DataSourceName>MoE</DataSourceName>
+        <DataSourceName>EDUC</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@SubmissionCategories">
-            <Value>=Parameters!SubmissionCategories.Value</Value>
+          <QueryParameter Name="@Programs">
+            <Value>=Parameters!Programs.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
@@ -46,7 +46,7 @@
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="caps_submissioncategory" /&gt;
       &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_submissioncategory" operator="in" uitype="caps_submissioncategory" value="@SubmissionCategories"/&gt;
+        &lt;condition attribute="caps_fundingprogram" operator="in" uitype="caps_fundingprogram" value="@Programs"/&gt;
         &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict"/&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -127,10 +127,10 @@
     </DataSet>
     <DataSet Name="CurrentYearProjections">
       <Query>
-        <DataSourceName>MoE</DataSourceName>
+        <DataSourceName>EDUC</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@SubmissionCategories">
-            <Value>=Parameters!SubmissionCategories.Value</Value>
+          <QueryParameter Name="@Programs">
+            <Value>=Parameters!Programs.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
@@ -153,7 +153,7 @@
       &lt;attribute name="caps_submissioncategory" /&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_submissioncategory" operator="in" uitype="caps_submissioncategory" value="@SubmissionCategories"/&gt;
+        &lt;condition attribute="caps_fundingprogram" operator="in" uitype="caps_fundingprogram" value="@Programs"/&gt;
         &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict"/&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -226,7 +226,7 @@
     </DataSet>
     <DataSet Name="SchoolDistricts">
       <Query>
-        <DataSourceName>MoE</DataSourceName>
+        <DataSourceName>EDUC</DataSourceName>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="edu_schooldistrict"&gt;
     &lt;attribute name="edu_name" /&gt;
@@ -259,63 +259,9 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="SubmissionCategories">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_submissioncategory"&gt;
-    &lt;attribute name="caps_submissioncategoryid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_submissioncategoryid">
-          <DataField>caps_submissioncategoryid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SubmissionCategoriesSelected">
-      <Query>
-        <DataSourceName>MoE</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SubmissionCategories">
-            <Value>=Parameters!SubmissionCategories.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_submissioncategory"&gt;
-    &lt;attribute name="caps_submissioncategoryid" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;condition attribute="caps_submissioncategoryid" operator="in" uitype="caps_submissioncategory" value="@SubmissionCategories"/&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
-      </Query>
-      <Fields>
-        <Field Name="caps_submissioncategoryid">
-          <DataField>caps_submissioncategoryid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
     <DataSet Name="SchoolDistrictsSelected">
       <Query>
-        <DataSourceName>MoE</DataSourceName>
+        <DataSourceName>EDUC</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
@@ -339,6 +285,58 @@
         </Field>
         <Field Name="edu_schooldistrictid">
           <DataField>edu_schooldistrictid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Programs">
+      <Query>
+        <DataSourceName>EDUC</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_fundingprogram"&gt;
+    &lt;attribute name="caps_fundingprogramid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_fundingprogramid">
+          <DataField>caps_fundingprogramid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProgramsSelected">
+      <Query>
+        <DataSourceName>EDUC</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Programs">
+            <Value>=Parameters!Programs.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_fundingprogram"&gt;
+    &lt;attribute name="caps_fundingprogramid" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;order attribute="caps_name" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="caps_fundingprogramid" operator="in" uitype="caps_fundingprogram" value="@Programs"/&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_fundingprogramid">
+          <DataField>caps_fundingprogramid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -544,7 +542,7 @@
                                   <Value>=Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value</Value>
                                   <Style>
                                     <Format>0%</Format>
-                                    <Color>#333333</Color>
+                                    <Color>=iif(ReportItems!Textbox35.Value = 0,"White","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -726,11 +724,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(ReportItems!Textbox35.Value = "0", "-", Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value)</Value>
+                                  <Value>=Sum(Fields!caps_amountValue.Value) / ReportItems!Textbox35.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>0%</Format>
-                                    <Color>#333333</Color>
+                                    <Color>=iif(ReportItems!Textbox35.Value = 0,"White","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1626,7 +1624,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Submission Categories:</Value>
+                        <Value>Programs:</Value>
                         <Style>
                           <FontWeight>Bold</FontWeight>
                         </Style>
@@ -1657,7 +1655,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=iif(countrows("SubmissionCategories")=Parameters!SubmissionCategories.count,"All",join(lookupset(True,True,Fields!caps_name.Value, "SubmissionCategoriesSelected"),", "))</Value>
+                        <Value>=iif(countrows("Programs")=Parameters!Programs.count,"All",join(lookupset(True,True,Fields!caps_name.Value, "ProgramsSelected"),", "))</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -3108,19 +3106,19 @@
       </ValidValues>
       <MultiValue>true</MultiValue>
     </ReportParameter>
-    <ReportParameter Name="SubmissionCategories">
+    <ReportParameter Name="Programs">
       <DataType>String</DataType>
       <DefaultValue>
         <DataSetReference>
-          <DataSetName>SubmissionCategories</DataSetName>
-          <ValueField>caps_submissioncategoryid</ValueField>
+          <DataSetName>Programs</DataSetName>
+          <ValueField>caps_fundingprogramid</ValueField>
         </DataSetReference>
       </DefaultValue>
-      <Prompt>Select Submission Categories</Prompt>
+      <Prompt>Select Program(s)</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>SubmissionCategories</DataSetName>
-          <ValueField>caps_submissioncategoryid</ValueField>
+          <DataSetName>Programs</DataSetName>
+          <ValueField>caps_fundingprogramid</ValueField>
           <LabelField>caps_name</LabelField>
         </DataSetReference>
       </ValidValues>
@@ -3138,9 +3136,9 @@
           <ParameterName>SchoolDistrict</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>SubmissionCategories</ParameterName>
+          <ParameterName>Programs</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

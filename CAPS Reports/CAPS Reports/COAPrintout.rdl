@@ -6,7 +6,7 @@
     <DataSource Name="CAPS_DEV">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
         <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
@@ -274,10 +274,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>caps_signedon</rd:DefaultName>
-                <Top>9.02083in</Top>
-                <Left>4.6059in</Left>
+                <Top>9.03057in</Top>
+                <Left>4.66307in</Left>
                 <Height>0.25in</Height>
-                <Width>1.58507in</Width>
+                <Width>1.52952in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -604,8 +604,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
-                <Top>8.83959in</Top>
-                <Left>4.59201in</Left>
+                <Top>8.86737in</Top>
+                <Left>4.60752in</Left>
                 <Height>0.14931in</Height>
                 <Width>1in</Width>
                 <ZIndex>12</ZIndex>
@@ -854,7 +854,8 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>= "Government Body: " &amp; First(Fields!project_caps_schooldistrict.Value, "CAPS")</Value>
+                        <Value>= "Government Body: " &amp; "&lt;font color = 'blue'&gt;" &amp; First(Fields!project_caps_schooldistrict.Value, "CAPS")  &amp;"&lt;/font&gt;"</Value>
+                        <MarkupType>HTML</MarkupType>
                         <Style>
                           <FontSize>9pt</FontSize>
                         </Style>
@@ -1928,28 +1929,12 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Image Name="Image2">
-                <Source>Database</Source>
-                <Value>=IIF(NOT IsNothing(First(Fields!caps_signature.Value, "CAPS")),First(Fields!caps_signature.Value, "CAPS").ToString().Split(“,”).GetValue(1),””)</Value>
-                <MIMEType>image/x-png</MIMEType>
-                <Sizing>FitProportional</Sizing>
-                <Top>8.90625in</Top>
-                <Left>0.32118in</Left>
-                <Height>0.39236in</Height>
-                <Width>3.15972in</Width>
-                <ZIndex>55</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Image>
               <Line Name="Line1">
                 <Top>8.83681in</Top>
                 <Left>0.22396in</Left>
                 <Height>0in</Height>
                 <Width>6.60417in</Width>
-                <ZIndex>56</ZIndex>
+                <ZIndex>55</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1977,7 +1962,7 @@
                 <Left>0.98785in</Left>
                 <Height>0.25in</Height>
                 <Width>1in</Width>
-                <ZIndex>57</ZIndex>
+                <ZIndex>56</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2009,7 +1994,7 @@
                 <Left>2.10178in</Left>
                 <Height>0.25in</Height>
                 <Width>3.33572in</Width>
-                <ZIndex>58</ZIndex>
+                <ZIndex>57</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -2081,18 +2066,50 @@
                 <Left>0.19531in</Left>
                 <Height>0.25in</Height>
                 <Width>6.20467in</Width>
-                <ZIndex>59</ZIndex>
+                <ZIndex>58</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
                 </Style>
               </Tablix>
+              <Textbox Name="Textbox39">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!caps_signedby.Value, "CAPS")</Value>
+                        <Style>
+                          <Color>Blue</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox39</rd:DefaultName>
+                <Top>9.03057in</Top>
+                <Left>0.27756in</Left>
+                <Height>0.23056in</Height>
+                <Width>3.20334in</Width>
+                <ZIndex>59</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>3pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.12445in</Top>
             <Left>0.22791in</Left>
-            <Height>9.32153in</Height>
+            <Height>9.32152in</Height>
             <Width>7.15786in</Width>
             <Style>
               <Border>
@@ -2137,15 +2154,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>9.43695in</Top>
-            <Left>1.45188in</Left>
-            <Height>0.14931in</Height>
+            <Top>9.45986in</Top>
+            <Left>1.60638in</Left>
+            <Height>0.13195in</Height>
             <Width>4.21354in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -2186,7 +2204,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>10.0134in</Height>
+        <Height>9.59181in</Height>
         <Style />
       </Body>
       <Width>7.51958in</Width>

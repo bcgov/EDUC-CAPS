@@ -21,8 +21,8 @@
             <Value>=Parameters!FiscalYear.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_actualdraw"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_actualdraw" &gt;
     &lt;attribute name="caps_actualdrawid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="createdon" /&gt;
@@ -32,12 +32,16 @@
     &lt;attribute name="caps_project" /&gt;
     &lt;attribute name="caps_processdate" /&gt;
     &lt;attribute name="ownerid" /&gt;
-    &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="caps_fiscalyear" operator="eq" value="@FiscalYear" /&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" visible="false" link-type="outer" alias="PRJ"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" visible="false" link-type="outer" alias="PRJ" &gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
+      &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SD" &gt;
+        &lt;attribute name="edu_commonname" /&gt;
+        &lt;attribute name="edu_number" /&gt;
+        &lt;order attribute="edu_number" /&gt;
+      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -131,6 +135,14 @@
           <DataField>PRJ_caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="SD_edu_commonname">
+          <DataField>SD_edu_commonname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SD_edu_number">
+          <DataField>SD_edu_number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="FiscalYears">
@@ -203,8 +215,125 @@
                 <TablixColumn>
                   <Width>2.5cm</Width>
                 </TablixColumn>
+                <TablixColumn>
+                  <Width>2.5cm</Width>
+                </TablixColumn>
               </TablixColumns>
               <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox27">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox28">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox28</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox29">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Provincial Draws</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>5</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
                 <TablixRow>
                   <Height>0.6cm</Height>
                   <TablixCells>
@@ -228,6 +357,40 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox24">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Number</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox24</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -419,24 +582,60 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ownerid">
+                        <Textbox Name="SD_edu_commonname">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ownerid.Value</Value>
+                                  <Value>=Fields!SD_edu_commonname.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ownerid</rd:DefaultName>
+                          <rd:DefaultName>SD_edu_commonname</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="SD_edu_number">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!SD_edu_number.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>SD_edu_number</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -665,6 +864,43 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox26">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox26</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Double</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox18">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -817,7 +1053,6 @@
                             <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -871,6 +1106,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -879,14 +1115,17 @@
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
                   <Group Name="Details">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!ownerid.Value</GroupExpression>
+                      <GroupExpression>=Fields!PRJ_caps_schooldistrict.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ownerid.Value</Value>
+                      <Value>=Fields!SD_edu_number.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                 </TablixMember>
@@ -896,9 +1135,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ActualDraws</DataSetName>
-            <Top>2.24578cm</Top>
-            <Height>1.8cm</Height>
-            <Width>15cm</Width>
+            <Top>2.56328cm</Top>
+            <Height>2.4cm</Height>
+            <Width>17.5cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -939,7 +1178,7 @@
             <rd:DefaultName>Textbox240</rd:DefaultName>
             <Left>3.96375cm</Left>
             <Height>0.6cm</Height>
-            <Width>11.40866cm</Width>
+            <Width>14.26616cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1017,13 +1256,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>1.64236in</Height>
+        <Height>1.95405in</Height>
         <Style />
       </Body>
-      <Width>6.05213in</Width>
+      <Width>7.17713in</Width>
       <Page>
         <PageFooter>
-          <Height>0.68792cm</Height>
+          <Height>0.67028cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1079,7 +1318,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.03528cm</Top>
-              <Left>4.57392in</Left>
+              <Left>5.82392in</Left>
               <Height>0.25in</Height>
               <Width>1.33159in</Width>
               <ZIndex>1</ZIndex>
