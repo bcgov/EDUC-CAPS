@@ -139,13 +139,13 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     var resultsMessage = "Validation Errors\r\n";
 
-    let checkEnrolmentResult = await CAPS.Submission.CheckEnrolmentProjections(formContext);
+    
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
     let checkProjectCountResults = await CAPS.Submission.CheckNothingToSubmit(formContext);
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
     let checkAFGPreviousSubmission = await CAPS.Submission.CheckAFGProjects(formContext);
 
-    resultsArray.push(checkEnrolmentResult);
+   // resultsArray.push(checkEnrolmentResult);
     resultsArray.push(checkProjectRequestResults);
     resultsArray.push(checkAFGVariance);
     resultsArray.push(checkProjectCountResults);
@@ -164,6 +164,8 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     //Check if board resolution attached
     let checkBoardResolutionResults = CAPS.Submission.CheckBoardResolution(formContext);
+
+    let checkEnrolmentResult = await CAPS.Submission.CheckEnrolmentProjections(formContext);
 
     //Show Results
     formContext.ui.tabs.forEach(function (tab, i) {
@@ -195,13 +197,24 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     if (allValidationPassed) {
         //all good so change status or display confirmation
-        if (checkBoardResolutionResults != null && !checkBoardResolutionResults.validationResult) {
-            let confirmStrings = { text: "WARNING: No Board Resolution Attached.  The results of the Ministry review will not be released without a board resolution.  Click OK to submit or Cancel to exit.", title: "Submission Confirmation" };
-            let confirmOptions = { height: 200, width: 450 };
+        if ((checkBoardResolutionResults != null && !checkBoardResolutionResults.validationResult)
+            || (checkEnrolmentResult !=null && !checkEnrolmentResult.validationResult)) {
+            let warningText = "WARNING: MISSING INFORMATION";
+            if (!checkBoardResolutionResults.validationResult) {
+                warningText = warningText+ "\n\r⠀\n\rNo Board Resolution was attached. This will need to be submitted in order for the Ministry to consider approving projects on the capital plan submission.";
+            }
+            if (!checkEnrolmentResult.validationResult) {
+                warningText = warningText+ "\n\r⠀\n\rEnrolment Projections are not complete. These will need to be submitted in order for the Ministry to review and process the capital plan submission.";
+            }
+
+            warningText = warningText + "\n\r⠀\n\rClick OK to submit or Cancel to exit.";
+            let confirmStrings = { text: warningText, title: "Submission Confirmation" };
+            let confirmOptions = { height: 350, width: 550 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
                     if (success.confirmed) {
-                        formContext.getAttribute("statuscode").setValue(100000000);
+                        formContext.getAttribute("statecode").setValue(1);
+                        formContext.getAttribute("statuscode").setValue(2);
                         formContext.data.entity.save();
                     }
 
@@ -213,7 +226,8 @@ CAPS.Submission.Validate = async function (primaryControl) {
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
                     if (success.confirmed) {
-                        formContext.getAttribute("statuscode").setValue(100000000);
+                        formContext.getAttribute("statecode").setValue(1);
+                        formContext.getAttribute("statuscode").setValue(2);
                         formContext.data.entity.save();
                     }
 
@@ -252,29 +266,12 @@ CAPS.Submission.CheckEnrolmentProjections = function (formContext) {
     //Get flag to identify if enrolment validation is required
     var doEnrolmentValidation = formContext.getAttribute("caps_validateenrolment").getValue();
 
-    if (!doEnrolmentValidation) return;
+    if (!doEnrolmentValidation) return new CAPS.Submission.ValidationResult(true, "Enrolment Validation: Not Required");
 
     //Get the School District
     var schoolDistrict = formContext.getAttribute("caps_schooldistrict").getValue();
     var schoolDistrictId = schoolDistrict[0].id;
-    /*
-    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">"+
-         "<entity name=\"caps_enrolmentprojections_sd\" >" +
-            "<attribute name=\"caps_enrolmentprojections_sdid\" />" +
-            "<attribute name=\"caps_name\" />" +
-            "<attribute name=\"createdon\" />" +
-            "<order attribute=\"caps_name\" descending=\"false\" />" +
-            "<filter type=\"and\">" +
-        "<condition attribute=\"caps_isvalid\" operator=\"eq\" value=\"0\" />" +
-        "<condition attribute=\"statecode\" operator=\"eq\"  value=\"0\" />" +
-            "</filter>" +
-            "<link-entity name=\"caps_facility\" from=\"caps_facilityid\" to=\"caps_facility\" link-type=\"inner\" alias=\"ab\">"+
-                "<filter type=\"and\">"+
-        "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" /> " +
-                "</filter>"+
-            "</link-entity>" +
-  "</entity>"+
-        "</fetch>";*/
+
 
     var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
                   "<entity name=\"caps_facility\">"+
@@ -525,10 +522,10 @@ CAPS.Submission.CheckNothingToSubmit = function (formContext) {
         function success(result) {
             if (result.entities.length > 0 && nothingToSubmit) {
                 
-                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are project requests on this capital plan.  Please set Nothing to Submit to No or remove the project requests.");
+                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are project requests on this capital plan.  Please set \"I confirm I am submitting an empty plan\" to No or remove the project requests.");
             }
             else if (result.entities.length == 0 && !nothingToSubmit) {
-                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are no project requests on this capital plan.  Please set Nothing to Submit to Yes or add a project request.");
+                return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are no project requests on this capital plan.  Please set \"I confirm I am submitting an empty plan\" to Yes or add a project request.");
             }
             return new CAPS.Submission.ValidationResult(true, "Project Count Validation: Success");
         },

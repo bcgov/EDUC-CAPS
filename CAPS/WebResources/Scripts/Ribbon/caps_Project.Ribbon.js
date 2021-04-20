@@ -349,7 +349,7 @@ CAPS.Project.SubmissionResult = function () {
  * @param {any} primaryControl primary control
  */
 CAPS.Project.CalculateScheduleB = function (primaryControl) {
-    debugger;
+
     var formContext = primaryControl;
 
     //If dirty, then save and call again
@@ -357,6 +357,8 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
         formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Project.CalculateScheduleB(primaryControl); });
     }
     else {
+        Xrm.Utility.showProgressIndicator("Calculating Cost...");
+
         var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
         //call action
         var req = {};
@@ -382,7 +384,9 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
                 if (result.ok) {
                     return result.json().then(
                         function (response) {
-                            debugger;
+                            //close the indicator
+                            Xrm.Utility.closeProgressIndicator();
+                            
                             //get error message
                             if (response.ScheduleBErrorMessage == null) {
                                 var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation has completed successfully.", title: "Preliminary Budget Result" };
@@ -414,9 +418,10 @@ CAPS.Project.CalculateScheduleB = function (primaryControl) {
 
             },
             function (e) {
-
-                var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget failed. Details: " + e.message, title: "Preliminary Budget Result" };
-                var alertOptions = { height: 120, width: 260 };
+                //close the indicator
+                Xrm.Utility.closeProgressIndicator();
+                var alertStrings = { confirmButtonLabel: "OK", text:  e.message, title: "Preliminary Budget Result" };
+                var alertOptions = { height: 350, width: 450 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                     function success(result) {
                         console.log("Alert dialog closed");
@@ -521,6 +526,185 @@ CAPS.Project.ShowValidate = function (primaryControl) {
         return false;
     }
 }
+
+/*
+Function to check if the current user has CAPS CMB User Role.
+*/
+CAPS.Project.IsMinistryUser = function () {
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB User") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
+
+/*
+Function to mark all selected project requests as Supported.  This is done via an action "caps_SetProjectRequesttoSupported" which checks if the project is submitted and updates it only if it is.
+*/
+CAPS.Project.MarkAsSupported = function (selectedControlIds, selectedControl) {
+    
+    //call action
+    var promises = [];
+
+    selectedControlIds.forEach((record) => {
+        let req = {};
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_SetProjectRequesttoSupported",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+        req.entity = { entityType: "caps_project", id: record };
+        promises.push(Xrm.WebApi.online.execute(req));
+    });
+
+    Promise.all(promises).then(
+    function (results) {
+        selectedControl.refresh();
+    }
+    , function (error) {
+        console.log(error);
+    }
+    );
+}
+
+/*
+Function to mark all selected project requests as UnSupported.  This is done via an action "caps_SetProjectRequesttoUnsupported" which checks if the project is submitted and updates it only if it is.
+*/
+CAPS.Project.MarkAsUnsupported = function (selectedControlIds, selectedControl) {
+    //call action
+    var promises = [];
+    selectedControlIds.forEach((record) => {
+        let req = {};
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_SetProjectRequesttoUnsupported",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+        req.entity = { entityType: "caps_project", id: record };
+        promises.push(Xrm.WebApi.online.execute(req));
+    });
+
+    Promise.all(promises).then(
+    function (results) {
+        selectedControl.refresh();
+    }
+    , function (error) {
+        console.log(error);
+    }
+);
+}
+
+/*
+Function to check if the current user has CAPS School District User Role.
+*/
+CAPS.Project.IsSDUser = function () {
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS School District User") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
+
+/*
+Function to mark all selected project requests as Published.  This is done via an action "caps_PublishProjectRequest" which checks if the project is published and updates it if it isn't.
+*/
+CAPS.Project.MarkAsPublished = function (selectedControlIds, selectedControl) {
+
+    //call action
+    var promises = [];
+
+    selectedControlIds.forEach((record) => {
+        let req = {};
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_PublishProjectRequest",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+        req.entity = { entityType: "caps_project", id: record };
+        promises.push(Xrm.WebApi.online.execute(req));
+    });
+
+    Promise.all(promises).then(
+    function (results) {
+        selectedControl.refresh();
+    }
+    , function (error) {
+        console.log(error);
+    }
+    );
+}
+
+/*
+Function to mark all selected project requests as Unpublished.  This is done via an action "caps_UnpublishProjectRequest" which checks if the project is unpublished and updates it if it's not.
+*/
+CAPS.Project.MarkAsUnpublished = function (selectedControlIds, selectedControl) {
+    //call action
+    var promises = [];
+    selectedControlIds.forEach((record) => {
+        let req = {};
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_UnpublishProjectRequest",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+        req.entity = { entityType: "caps_project", id: record };
+        promises.push(Xrm.WebApi.online.execute(req));
+    });
+
+    Promise.all(promises).then(
+    function (results) {
+        selectedControl.refresh();
+    }
+    , function (error) {
+        console.log(error);
+    }
+);
+}
+
 
 
 

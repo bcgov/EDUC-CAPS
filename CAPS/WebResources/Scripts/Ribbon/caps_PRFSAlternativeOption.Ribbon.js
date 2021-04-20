@@ -9,13 +9,14 @@ CAPS.PRFSOption = CAPS.PRFSOption || {};
  */
 CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
     var formContext = primaryControl;
-    debugger;
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
         formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.PRFSOption.CalculateScheduleB(primaryControl); });
     }
     else {
+        Xrm.Utility.showProgressIndicator("Calculating Cost...");
+
         var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
         //call action
         var req = {};
@@ -41,7 +42,8 @@ CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
                             if (result.ok) {
                                 return result.json().then(
                                     function (response) {
-                                        debugger;
+                                        Xrm.Utility.closeProgressIndicator();
+                                        
                                         //get error message
                                         if (response.ErrorMessage == null) {
                                             var alertStrings = { confirmButtonLabel: "OK", text: "The preliminary budget calculation has completed successfully.", title: "Preliminary Budget Result" };
@@ -73,8 +75,8 @@ CAPS.PRFSOption.CalculateScheduleB = function (primaryControl) {
 
                         },
             function (e) {
-
-                var alertStrings = { confirmButtonLabel: "OK", text: "Schedule B failed. Details: " + e.message, title: "Schedule B Result" };
+                Xrm.Utility.closeProgressIndicator();
+                var alertStrings = { confirmButtonLabel: "OK", text: e.message, title: "Preliminary Budget Result" };
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                     function success(result) {
@@ -112,7 +114,7 @@ CAPS.PRFSOption.ShowCalculateScheduleB = function (primaryControl) {
 CAPS.PRFSOption.Deactivate = function (primaryControl) {
     var formContext = primaryControl;
     //Change status to DRAFT
-    let confirmStrings = { text: "The selected PRFS Alternative Option record's status will be changed to Cancelled and cannot be undone.  Click OK to continue or Cancel to exit.", title: "Deactivate Confirmation" };
+    let confirmStrings = { text: "The selected Concept Plan Alternative Option record's status will be changed to Cancelled and cannot be undone.  Click OK to continue or Cancel to exit.", title: "Deactivate Confirmation" };
     let confirmOptions = { height: 200, width: 450 };
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {

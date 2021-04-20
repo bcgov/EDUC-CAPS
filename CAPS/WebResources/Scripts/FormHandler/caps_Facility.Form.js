@@ -48,7 +48,7 @@ CAPS.Facility.ValidateKindergartenDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'KINDERGARTEN DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'KINDERGARTEN DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('KINDERGARTEN DESIGN WARNING');
@@ -80,7 +80,7 @@ CAPS.Facility.ValidateElementaryDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'ELEMENTARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'ELEMENTARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('ELEMENTARY DESIGN WARNING');
@@ -112,7 +112,7 @@ CAPS.Facility.ValidateSecondaryDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'SECONDARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'SECONDARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('SECONDARY DESIGN WARNING');
@@ -161,7 +161,7 @@ CAPS.Facility.ShowStatusMissmatch = function (executionContext) {
     //statecode
     if (formContext.getAttribute("statecode").getValue() == 0 
         && (formContext.getAttribute("caps_closedate").getValue() != null || formContext.getAttribute("caps_closuredescription").getValue() != null)) {
-        formContext.ui.setFormNotification('You have Close Date and/or Close Description set on an open facility. Either close this facility record or clear those closure fields.', 'WARNING', STATUS_MISSMATCH_NOTIFICATION);
+        formContext.ui.setFormNotification('You have Close Date and/or Close Description set on an open facility. Either close this facility record or clear those closure fields.', 'INFO', STATUS_MISSMATCH_NOTIFICATION);
     }
     else {
         formContext.ui.clearFormNotification(STATUS_MISSMATCH_NOTIFICATION);

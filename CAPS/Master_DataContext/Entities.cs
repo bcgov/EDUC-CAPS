@@ -10883,6 +10883,8 @@ namespace CAPS.DataContext
 		public static class Fields
 		{
 			public const string caps_ActualKilometers = "caps_actualkilometers";
+			public const string caps_AnnualFuelCosts = "caps_annualfuelcosts";
+			public const string caps_AnnualRepairMaintenanceCost = "caps_annualrepairmaintenancecost";
 			public const string caps_AverageAnnualKilometersDriven = "caps_averageannualkilometersdriven";
 			public const string caps_BrakeSystemType = "caps_brakesystemtype";
 			public const string caps_BusId = "caps_busid";
@@ -10993,6 +10995,42 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ActualKilometers");
 				this.SetAttributeValue("caps_actualkilometers", value);
 				this.OnPropertyChanged("caps_ActualKilometers");
+			}
+		}
+		
+		/// <summary>
+		/// An estimated amount spent on fuel per year.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_annualfuelcosts")]
+		public System.Nullable<decimal> caps_AnnualFuelCosts
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_annualfuelcosts");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AnnualFuelCosts");
+				this.SetAttributeValue("caps_annualfuelcosts", value);
+				this.OnPropertyChanged("caps_AnnualFuelCosts");
+			}
+		}
+		
+		/// <summary>
+		/// The average annual amount spent on repairing and maintenance cost of a bus.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_annualrepairmaintenancecost")]
+		public System.Nullable<decimal> caps_AnnualRepairMaintenanceCost
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_annualrepairmaintenancecost");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AnnualRepairMaintenanceCost");
+				this.SetAttributeValue("caps_annualrepairmaintenancecost", value);
+				this.OnPropertyChanged("caps_AnnualRepairMaintenanceCost");
 			}
 		}
 		
@@ -15284,13 +15322,17 @@ namespace CAPS.DataContext
 			public const string caps_Elementary_designutilization = "caps_elementary_designutilization";
 			public const string caps_Elementary_enrolment = "caps_elementary_enrolment";
 			public const string caps_Elementary_operatingcapacity = "caps_elementary_operatingcapacity";
+			public const string caps_elementary_operatingcapacity_district = "caps_elementary_operatingcapacity_district";
 			public const string caps_Elementary_operatingutilization = "caps_elementary_operatingutilization";
+			public const string caps_elementary_operatingutilization_district = "caps_elementary_operatingutilization_district";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_International_enrolment = "caps_international_enrolment";
 			public const string caps_Kindergarten_designcapacity = "caps_kindergarten_designcapacity";
 			public const string caps_Kindergarten_designutilization = "caps_kindergarten_designutilization";
 			public const string caps_Kindergarten_enrolment = "caps_kindergarten_enrolment";
 			public const string caps_Kindergarten_operatingcapacity = "caps_kindergarten_operatingcapacity";
+			public const string caps_kindergarten_operatingcapacity_district = "caps_kindergarten_operatingcapacity_district";
+			public const string caps_kindergarten_operatingutilizatio_district = "caps_kindergarten_operatingutilizatio_district";
 			public const string caps_Kindergarten_operatingutilization = "caps_kindergarten_operatingutilization";
 			public const string caps_Name = "caps_name";
 			public const string caps_SchoolYear = "caps_schoolyear";
@@ -15298,12 +15340,16 @@ namespace CAPS.DataContext
 			public const string caps_Secondary_designutilization = "caps_secondary_designutilization";
 			public const string caps_Secondary_enrolment = "caps_secondary_enrolment";
 			public const string caps_Secondary_operatingcapacity = "caps_secondary_operatingcapacity";
+			public const string caps_secondary_operatingcapacity_district = "caps_secondary_operatingcapacity_district";
 			public const string caps_Secondary_operatingutilization = "caps_secondary_operatingutilization";
+			public const string caps_secondary_operatingutilization_district = "caps_secondary_operatingutilization_district";
 			public const string caps_Total_designcapacity = "caps_total_designcapacity";
 			public const string caps_Total_designutilization = "caps_total_designutilization";
 			public const string caps_Total_enrolment = "caps_total_enrolment";
 			public const string caps_Total_operatingcapacity = "caps_total_operatingcapacity";
+			public const string caps_total_operatingcapacity_district = "caps_total_operatingcapacity_district";
 			public const string caps_Total_operatingutilization = "caps_total_operatingutilization";
+			public const string caps_total_operatingutilization_district = "caps_total_operatingutilization_district";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -15474,6 +15520,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_elementary_operatingcapacity_district")]
+		public System.Nullable<decimal> caps_elementary_operatingcapacity_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_elementary_operatingcapacity_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_elementary_operatingcapacity_district");
+				this.SetAttributeValue("caps_elementary_operatingcapacity_district", value);
+				this.OnPropertyChanged("caps_elementary_operatingcapacity_district");
+			}
+		}
+		
+		/// <summary>
 		/// a place for Elementary Operating Capacity Utilization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_elementary_operatingutilization")]
@@ -15488,6 +15552,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Elementary_operatingutilization");
 				this.SetAttributeValue("caps_elementary_operatingutilization", value);
 				this.OnPropertyChanged("caps_Elementary_operatingutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_elementary_operatingutilization_district")]
+		public System.Nullable<decimal> caps_elementary_operatingutilization_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_elementary_operatingutilization_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_elementary_operatingutilization_district");
+				this.SetAttributeValue("caps_elementary_operatingutilization_district", value);
+				this.OnPropertyChanged("caps_elementary_operatingutilization_district");
 			}
 		}
 		
@@ -15596,6 +15678,42 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Kindergarten_operatingcapacity");
 				this.SetAttributeValue("caps_kindergarten_operatingcapacity", value);
 				this.OnPropertyChanged("caps_Kindergarten_operatingcapacity");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_kindergarten_operatingcapacity_district")]
+		public System.Nullable<decimal> caps_kindergarten_operatingcapacity_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_kindergarten_operatingcapacity_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_kindergarten_operatingcapacity_district");
+				this.SetAttributeValue("caps_kindergarten_operatingcapacity_district", value);
+				this.OnPropertyChanged("caps_kindergarten_operatingcapacity_district");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_kindergarten_operatingutilizatio_district")]
+		public System.Nullable<decimal> caps_kindergarten_operatingutilizatio_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_kindergarten_operatingutilizatio_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_kindergarten_operatingutilizatio_district");
+				this.SetAttributeValue("caps_kindergarten_operatingutilizatio_district", value);
+				this.OnPropertyChanged("caps_kindergarten_operatingutilizatio_district");
 			}
 		}
 		
@@ -15726,6 +15844,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_secondary_operatingcapacity_district")]
+		public System.Nullable<decimal> caps_secondary_operatingcapacity_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_secondary_operatingcapacity_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_secondary_operatingcapacity_district");
+				this.SetAttributeValue("caps_secondary_operatingcapacity_district", value);
+				this.OnPropertyChanged("caps_secondary_operatingcapacity_district");
+			}
+		}
+		
+		/// <summary>
 		/// a place for Secondary Operating Capacity Utilization
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_secondary_operatingutilization")]
@@ -15740,6 +15876,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Secondary_operatingutilization");
 				this.SetAttributeValue("caps_secondary_operatingutilization", value);
 				this.OnPropertyChanged("caps_Secondary_operatingutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_secondary_operatingutilization_district")]
+		public System.Nullable<decimal> caps_secondary_operatingutilization_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_secondary_operatingutilization_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_secondary_operatingutilization_district");
+				this.SetAttributeValue("caps_secondary_operatingutilization_district", value);
+				this.OnPropertyChanged("caps_secondary_operatingutilization_district");
 			}
 		}
 		
@@ -15816,6 +15970,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_total_operatingcapacity_district")]
+		public System.Nullable<decimal> caps_total_operatingcapacity_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_total_operatingcapacity_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_total_operatingcapacity_district");
+				this.SetAttributeValue("caps_total_operatingcapacity_district", value);
+				this.OnPropertyChanged("caps_total_operatingcapacity_district");
+			}
+		}
+		
+		/// <summary>
 		/// a place for the Total Capacity Utilization based on Operating Capacity
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_total_operatingutilization")]
@@ -15830,6 +16002,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Total_operatingutilization");
 				this.SetAttributeValue("caps_total_operatingutilization", value);
 				this.OnPropertyChanged("caps_Total_operatingutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_total_operatingutilization_district")]
+		public System.Nullable<decimal> caps_total_operatingutilization_district
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_total_operatingutilization_district");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_total_operatingutilization_district");
+				this.SetAttributeValue("caps_total_operatingutilization_district", value);
+				this.OnPropertyChanged("caps_total_operatingutilization_district");
 			}
 		}
 		
@@ -21576,6 +21766,10 @@ namespace CAPS.DataContext
 			public const string caps_DesignCapacitySecondary = "caps_designcapacitysecondary";
 			public const string caps_DesignCapacityTotal = "caps_designcapacitytotal";
 			public const string caps_DesignFacilityType = "caps_designfacilitytype";
+			public const string caps_DistrictOperatingCapacityElementary = "caps_districtoperatingcapacityelementary";
+			public const string caps_DistrictOperatingCapacityKindergarten = "caps_districtoperatingcapacitykindergarten";
+			public const string caps_DistrictOperatingCapacitySecondary = "caps_districtoperatingcapacitysecondary";
+			public const string caps_DistrictOperatingCapacityTotal = "caps_districtoperatingcapacitytotal";
 			public const string caps_Elementary_currentenrolment = "caps_elementary_currentenrolment";
 			public const string caps_FacilityId = "caps_facilityid";
 			public const string Id = "caps_facilityid";
@@ -21612,13 +21806,17 @@ namespace CAPS.DataContext
 			public const string caps_StrongStartCapacityTotal = "caps_strongstartcapacitytotal";
 			public const string caps_Total_currentenrolment = "caps_total_currentenrolment";
 			public const string caps_UtilizationElementary_design = "caps_utilizationelementary_design";
+			public const string caps_UtilizationElementary_DistrictOperating = "caps_utilizationelementary_districtoperating";
 			public const string caps_UtilizationElementary_operating = "caps_utilizationelementary_operating";
 			public const string caps_UtilizationKindergarten_design = "caps_utilizationkindergarten_design";
+			public const string caps_UtilizationKindergarten_DistrictOperating = "caps_utilizationkindergarten_districtoperating";
 			public const string caps_UtilizationKindergarten_operating = "caps_utilizationkindergarten_operating";
 			public const string caps_UtilizationSecondary_design = "caps_utilizationsecondary_design";
+			public const string caps_UtilizationSecondary_DistrictOperating = "caps_utilizationsecondary_districtoperating";
 			public const string caps_UtilizationSecondary_operating = "caps_utilizationsecondary_operating";
 			public const string caps_UtilizationTotal_design = "caps_utilizationtotal_design";
 			public const string caps_UtilizationTotal_operating = "caps_utilizationtotal_operating";
+			public const string caps_UtilizationTotalDistrictOperating = "caps_utilizationtotaldistrictoperating";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -22076,6 +22274,78 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// The district (inputted) elementary operating capacity for the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacityelementary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacityelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityElementary");
+				this.SetAttributeValue("caps_districtoperatingcapacityelementary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityElementary");
+			}
+		}
+		
+		/// <summary>
+		/// The district (inputted) kindergarten operating capacity for the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitykindergarten")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitykindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityKindergarten");
+				this.SetAttributeValue("caps_districtoperatingcapacitykindergarten", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// The district (inputted) secondary operating capacity for the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitysecondary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacitySecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitysecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacitySecondary");
+				this.SetAttributeValue("caps_districtoperatingcapacitysecondary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacitySecondary");
+			}
+		}
+		
+		/// <summary>
+		/// This field is a sum of the three District Operating Capacity fields Kindergarten, Elementary and Secondary.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitytotal")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityTotal");
+				this.SetAttributeValue("caps_districtoperatingcapacitytotal", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityTotal");
+			}
+		}
+		
+		/// <summary>
 		/// Copy of Sum of Elementary on Current Facility Enrolment record
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_elementary_currentenrolment")]
@@ -22349,7 +22619,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for the designated elementary facility
+		/// The calculated operating capacity for the designated elementary facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacityelementary")]
 		public System.Nullable<decimal> caps_OperatingCapacityElementary
@@ -22367,7 +22637,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for a designated kindergarten facility
+		/// The calculated operating capacity for a designated kindergarten facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitykindergarten")]
 		public System.Nullable<decimal> caps_OperatingCapacityKindergarten
@@ -22385,7 +22655,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for the designated secondary facility
+		/// The calculated operating capacity for the designated secondary facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitysecondary")]
 		public System.Nullable<decimal> caps_OperatingCapacitySecondary
@@ -22403,7 +22673,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total operating capacity for the designated facility
+		/// Total calculated operating capacity for the designated facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitytotal")]
 		public System.Nullable<int> caps_OperatingCapacityTotal
@@ -22715,6 +22985,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Calculated based on the Actual Elementary Enrolment divided by the District Elementary  Operating Capacity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationelementary_districtoperating")]
+		public System.Nullable<decimal> caps_UtilizationElementary_DistrictOperating
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_utilizationelementary_districtoperating");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UtilizationElementary_DistrictOperating");
+				this.SetAttributeValue("caps_utilizationelementary_districtoperating", value);
+				this.OnPropertyChanged("caps_UtilizationElementary_DistrictOperating");
+			}
+		}
+		
+		/// <summary>
 		/// Elementary Capacity Utilization as calculated from Operating Capacity Elementary 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationelementary_operating")]
@@ -22751,6 +23039,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Calculated based on the Actual Kindergarten Enrolment divided by the District Kindergarten Operating Capacity.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationkindergarten_districtoperating")]
+		public System.Nullable<decimal> caps_UtilizationKindergarten_DistrictOperating
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_utilizationkindergarten_districtoperating");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UtilizationKindergarten_DistrictOperating");
+				this.SetAttributeValue("caps_utilizationkindergarten_districtoperating", value);
+				this.OnPropertyChanged("caps_UtilizationKindergarten_DistrictOperating");
+			}
+		}
+		
+		/// <summary>
 		/// Kindergarten Capacity Utilization as calculated from Operating Capacity Kindergarten
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationkindergarten_operating")]
@@ -22783,6 +23089,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_UtilizationSecondary_design");
 				this.SetAttributeValue("caps_utilizationsecondary_design", value);
 				this.OnPropertyChanged("caps_UtilizationSecondary_design");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationsecondary_districtoperating")]
+		public System.Nullable<decimal> caps_UtilizationSecondary_DistrictOperating
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_utilizationsecondary_districtoperating");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UtilizationSecondary_DistrictOperating");
+				this.SetAttributeValue("caps_utilizationsecondary_districtoperating", value);
+				this.OnPropertyChanged("caps_UtilizationSecondary_DistrictOperating");
 			}
 		}
 		
@@ -22837,6 +23161,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_UtilizationTotal_operating");
 				this.SetAttributeValue("caps_utilizationtotal_operating", value);
 				this.OnPropertyChanged("caps_UtilizationTotal_operating");
+			}
+		}
+		
+		/// <summary>
+		/// Calculated by taking the Actual Total Enrolment divided by the Total District Operating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationtotaldistrictoperating")]
+		public System.Nullable<decimal> caps_UtilizationTotalDistrictOperating
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_utilizationtotaldistrictoperating");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UtilizationTotalDistrictOperating");
+				this.SetAttributeValue("caps_utilizationtotaldistrictoperating", value);
+				this.OnPropertyChanged("caps_UtilizationTotalDistrictOperating");
 			}
 		}
 		
@@ -24671,6 +25013,14 @@ namespace CAPS.DataContext
 			public const string caps_DesignCapacitySecondary = "caps_designcapacitysecondary";
 			public const string caps_DesignCapacitytotal = "caps_designcapacitytotal";
 			public const string caps_DesignFacilityType = "caps_designfacilitytype";
+			public const string caps_DistrcitOperatingCapacityTotal = "caps_distrcitoperatingcapacitytotal";
+			public const string caps_DistrictOperatingCapacityElementary = "caps_districtoperatingcapacityelementary";
+			public const string caps_DistrictOperatingCapacityKindergarten = "caps_districtoperatingcapacitykindergarten";
+			public const string caps_DistrictOperatingCapacitySecondary = "caps_districtoperatingcapacitysecondary";
+			public const string caps_DistrictOperatingUtilizationElementary = "caps_districtoperatingutilizationelementary";
+			public const string caps_DistrictOperatingUtilizationKindergarten = "caps_districtoperatingutilizationkindergarten";
+			public const string caps_DistrictOperatingUtilizationSecondary = "caps_districtoperatingutilizationsecondary";
+			public const string caps_DistrictOperatingUtilizationTotal = "caps_districtoperatingutilizationtotal";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_FacilityEnrolment = "caps_facilityenrolment";
 			public const string caps_FacilityHistoryId = "caps_facilityhistoryid";
@@ -24886,6 +25236,150 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// This field is a sum of the three district operating capacity fields on Elementary, Kindergarten and Secondary. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_distrcitoperatingcapacitytotal")]
+		public System.Nullable<decimal> caps_DistrcitOperatingCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_distrcitoperatingcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrcitOperatingCapacityTotal");
+				this.SetAttributeValue("caps_distrcitoperatingcapacitytotal", value);
+				this.OnPropertyChanged("caps_DistrcitOperatingCapacityTotal");
+			}
+		}
+		
+		/// <summary>
+		/// The district (inputted) elementary operating capacity for a designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacityelementary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacityelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityElementary");
+				this.SetAttributeValue("caps_districtoperatingcapacityelementary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityElementary");
+			}
+		}
+		
+		/// <summary>
+		/// The district (inputted) kindergarten operating capacity for a designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitykindergarten")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitykindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityKindergarten");
+				this.SetAttributeValue("caps_districtoperatingcapacitykindergarten", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// The district (inputted) Secondary operating capacity for a designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitysecondary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacitySecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitysecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacitySecondary");
+				this.SetAttributeValue("caps_districtoperatingcapacitysecondary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacitySecondary");
+			}
+		}
+		
+		/// <summary>
+		/// Derived by taking the Kindergarten Actual Enrolment divided by Kindergarten District Operating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingutilizationelementary")]
+		public System.Nullable<decimal> caps_DistrictOperatingUtilizationElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingutilizationelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingUtilizationElementary");
+				this.SetAttributeValue("caps_districtoperatingutilizationelementary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingUtilizationElementary");
+			}
+		}
+		
+		/// <summary>
+		/// Derived by taking the Kindergarten Actual Enrolment divided by Kindergarten District Operating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingutilizationkindergarten")]
+		public System.Nullable<decimal> caps_DistrictOperatingUtilizationKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingutilizationkindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingUtilizationKindergarten");
+				this.SetAttributeValue("caps_districtoperatingutilizationkindergarten", value);
+				this.OnPropertyChanged("caps_DistrictOperatingUtilizationKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// Derived by taking the Secondary Actual Enrolment divided by Secondary District Operating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingutilizationsecondary")]
+		public System.Nullable<decimal> caps_DistrictOperatingUtilizationSecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingutilizationsecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingUtilizationSecondary");
+				this.SetAttributeValue("caps_districtoperatingutilizationsecondary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingUtilizationSecondary");
+			}
+		}
+		
+		/// <summary>
+		/// Derived by taking the Total Actual Enrolment divided by Total District Operating.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingutilizationtotal")]
+		public System.Nullable<decimal> caps_DistrictOperatingUtilizationTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingutilizationtotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingUtilizationTotal");
+				this.SetAttributeValue("caps_districtoperatingutilizationtotal", value);
+				this.OnPropertyChanged("caps_DistrictOperatingUtilizationTotal");
+			}
+		}
+		
+		/// <summary>
 		/// The linked Facility record
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_facility")]
@@ -25087,7 +25581,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for the designated elementary facility
+		/// The calculated operating capacity for the designated elementary facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacityelementary")]
 		public System.Nullable<decimal> caps_OperatingCapacityElementary
@@ -25105,7 +25599,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for a designated kindergarten facility
+		/// The calculated operating capacity for a designated kindergarten facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitykindergarten")]
 		public System.Nullable<decimal> caps_OperatingCapacityKindergarten
@@ -25123,7 +25617,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The operating capacity for the designated secondary facility
+		/// The calculated operating capacity for the designated secondary facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitysecondary")]
 		public System.Nullable<decimal> caps_OperatingCapacitySecondary
@@ -25141,7 +25635,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total operating capacity for the designated facility
+		/// Total calculated operating capacity for the designated facility
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingcapacitytotal")]
 		public System.Nullable<int> caps_OperatingCapacityTotal
@@ -25195,7 +25689,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Elementary Capacity Utilization as calculated from Operating Capacity Elementary 
+		/// Calculated Elementary Capacity Utilization as derived from Operating Capacity Elementary 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationelementary_operating")]
 		public System.Nullable<decimal> caps_UtilizationElementary_operating
@@ -25231,7 +25725,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Kindergarten Capacity Utilization as calculated from Operating Capacity Kindergarten
+		/// Calculated Kindergarten Capacity Utilization as derived from Operating Capacity Kindergarten
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationkindergarten_operating")]
 		public System.Nullable<decimal> caps_UtilizationKindergarten_operating
@@ -25267,7 +25761,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Secondary Capacity Utilization as calculated from Operating Capacity Secondary
+		/// Calculated Secondary Capacity Utilization as derived from Operating Capacity Secondary
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationsecondary_operating")]
 		public System.Nullable<decimal> caps_UtilizationSecondary_operating
@@ -25303,7 +25797,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total Capacity Utilization as calculated from Operating Capacity Total
+		/// Calculated Total Operating Capacity Utilization as derived from Operating Capacity Total
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_utilizationtotal_operating")]
 		public System.Nullable<decimal> caps_UtilizationTotal_operating
@@ -31135,7 +31629,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Link to related Facility
+		/// The impacted facility of this alternative option.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_facility")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_Facility
@@ -32038,7 +32532,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Link to related Submission Category
+		/// The submission category of this alternative option if known.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_submissioncategory")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_SubmissionCategory
@@ -32092,7 +32586,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// the total cost associated with a given Option.  If using the budget calculator, copy the total amount from that tab here.
+		/// the total cost associated with a given Option.  If using the budget calculator, the value will be copied here and can be updated if needed.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totaloptioncost")]
 		public System.Nullable<decimal> caps_TotalOptionCost
@@ -33840,7 +34334,7 @@ namespace CAPS.DataContext
 		public static class Fields
 		{
 			public const string caps_AbnormalTopographyCost = "caps_abnormaltopographycost";
-			public const string caps_AdditionalFundingSource = "caps_additionalfundingsource";
+			public const string caps_AdditionalFundingSources = "caps_additionalfundingsources";
 			public const string caps_AgeofExistingPlayground = "caps_ageofexistingplayground";
 			public const string caps_AlignwithVFApriorities = "caps_alignwithvfapriorities";
 			public const string caps_AnnualElectricityCostSavings = "caps_annualelectricitycostsavings";
@@ -33851,6 +34345,7 @@ namespace CAPS.DataContext
 			public const string caps_AnnualOperationalMaintenanceCosts_Est = "caps_annualoperationalmaintenancecosts_est";
 			public const string caps_AnticipatedOccupancyYear = "caps_anticipatedoccupancyyear";
 			public const string caps_AnticipatedSitePurchaseClosingYear = "caps_anticipatedsitepurchaseclosingyear";
+			public const string caps_AnyOtherBuildingUses = "caps_anyotherbuildinguses";
 			public const string caps_AvailableSiteSize_Acres = "caps_availablesitesize_acres";
 			public const string caps_AvailableSiteSize_Hectares = "caps_availablesitesize_hectares";
 			public const string caps_BenefitsofaFullorPartialDemolition = "caps_benefitsofafullorpartialdemolition";
@@ -33871,6 +34366,10 @@ namespace CAPS.DataContext
 			public const string caps_ChangeinDesignCapacitySNegative = "caps_changeindesigncapacitysnegative";
 			public const string caps_ChangeinDesignCapacitySPositive = "caps_changeindesigncapacityspositive";
 			public const string caps_ChangeinDesignCapacityTotal = "caps_changeindesigncapacitytotal";
+			public const string caps_ChangeinDistrictOperatingCapacity_E = "caps_changeindistrictoperatingcapacity_e";
+			public const string caps_ChangeinDistrictOperatingCapacity_K = "caps_changeindistrictoperatingcapacity_k";
+			public const string caps_ChangeinDistrictOperatingCapacity_S = "caps_changeindistrictoperatingcapacity_s";
+			public const string caps_ChangeinDistrictOperatingCapacityTotal = "caps_changeindistrictoperatingcapacitytotal";
 			public const string caps_ChangeinOperatingCapacityElementary = "caps_changeinoperatingcapacityelementary";
 			public const string caps_ChangeinOperatingCapacityKindergarten = "caps_changeinoperatingcapacitykindergarten";
 			public const string caps_ChangeinOperatingCapacitySecondary = "caps_changeinoperatingcapacitysecondary";
@@ -33879,6 +34378,7 @@ namespace CAPS.DataContext
 			public const string caps_CommunityName = "caps_communityname";
 			public const string caps_ConnectProjectRequest = "caps_connectprojectrequest";
 			public const string caps_ConstructionCostsSPIR = "caps_constructioncostsspir";
+			public const string caps_CrownLandGrant = "caps_crownlandgrant";
 			public const string caps_CurrentConsultantReport = "caps_currentconsultantreport";
 			public const string caps_CurrentFCI = "caps_currentfci";
 			public const string caps_DateBuildingPortionbecameUnoccupied = "caps_datebuildingportionbecameunoccupied";
@@ -33918,14 +34418,15 @@ namespace CAPS.DataContext
 			public const string caps_JobsCreatedDirect = "caps_jobscreateddirect";
 			public const string caps_JobsCreatedIndirect = "caps_jobscreatedindirect";
 			public const string caps_JobsCreatedTotal = "caps_jobscreatedtotal";
+			public const string caps_JustificationofSurroundingSchools = "caps_justificationofsurroundingschools";
 			public const string caps_LastScheduleBRunStatus = "caps_lastschedulebrunstatus";
+			public const string caps_LeaseLength = "caps_leaselength";
 			public const string caps_LevelofConsultation = "caps_levelofconsultation";
 			public const string caps_LongRangeFacilityPlan = "caps_longrangefacilityplan";
 			public const string caps_MinistryAssessmentStatus = "caps_ministryassessmentstatus";
 			public const string caps_MinistryComments = "caps_ministrycomments";
 			public const string caps_MinistryPortfolioPriority = "caps_ministryportfoliopriority";
 			public const string caps_MinistryPriority = "caps_ministrypriority";
-			public const string caps_MinistryProgramPriority = "caps_ministryprogrampriority";
 			public const string caps_MultipleFacilities = "caps_multiplefacilities";
 			public const string caps_MunicipalFees = "caps_municipalfees";
 			public const string caps_MunicipalRequirements = "caps_municipalrequirements";
@@ -33949,6 +34450,7 @@ namespace CAPS.DataContext
 			public const string caps_Population = "caps_population";
 			public const string caps_PotentialPlanforVacantSite = "caps_potentialplanforvacantsite";
 			public const string caps_PreCancellationStatus = "caps_precancellationstatus";
+			public const string caps_PreviouslyApprovedforDisposal = "caps_previouslyapprovedfordisposal";
 			public const string caps_PrimaryDriver = "caps_primarydriver";
 			public const string caps_ProjectCode = "caps_projectcode";
 			public const string caps_ProjectDescription = "caps_projectdescription";
@@ -34037,6 +34539,7 @@ namespace CAPS.DataContext
 			public const string caps_VFANeworReplacement = "caps_vfaneworreplacement";
 			public const string caps_VFARequirementIDNo = "caps_vfarequirementidno";
 			public const string caps_WheelchairSpaces = "caps_wheelchairspaces";
+			public const string caps_YearlyLeaseAmount = "caps_yearlyleaseamount";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -34133,20 +34636,20 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Indicates if and from who external funding is being utilized.
+		/// Select all applicable Additional Funding Sources.
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_additionalfundingsource")]
-		public Microsoft.Xrm.Sdk.OptionSetValue caps_AdditionalFundingSource
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_additionalfundingsources")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_AdditionalFundingSources
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_additionalfundingsource");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_additionalfundingsources");
 			}
 			set
 			{
-				this.OnPropertyChanging("caps_AdditionalFundingSource");
-				this.SetAttributeValue("caps_additionalfundingsource", value);
-				this.OnPropertyChanged("caps_AdditionalFundingSource");
+				this.OnPropertyChanging("caps_AdditionalFundingSources");
+				this.SetAttributeValue("caps_additionalfundingsources", value);
+				this.OnPropertyChanged("caps_AdditionalFundingSources");
 			}
 		}
 		
@@ -34331,7 +34834,27 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Please provide the available site size in acres
+		/// Identify any/all other current uses of the facility. (e.g. Community Programs) 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_anyotherbuildinguses")]
+		public string caps_AnyOtherBuildingUses
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_anyotherbuildinguses");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AnyOtherBuildingUses");
+				this.SetAttributeValue("caps_anyotherbuildinguses", value);
+				this.OnPropertyChanged("caps_AnyOtherBuildingUses");
+			}
+		}
+		
+		/// <summary>
+		/// Please provide the available site size in acres. 
+		///
+		///1 Acre is approximately 0.4 Hectares
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_availablesitesize_acres")]
 		public System.Nullable<decimal> caps_AvailableSiteSize_Acres
@@ -34349,7 +34872,9 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Please provide the available site size in hectares 
+		/// Please provide the available site size in hectares.
+		///
+		///1 hectare is approximately 2.47 acres
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_availablesitesize_hectares")]
 		public System.Nullable<decimal> caps_AvailableSiteSize_Hectares
@@ -34691,7 +35216,79 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// To track the change in elementary operating capacity of a facility due to a project.
+		/// To track the change in district (inputted) elementary operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_e")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_E
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_e");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_E");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_e", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_E");
+			}
+		}
+		
+		/// <summary>
+		/// To track the change in district (inputted) kindergarten operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_k")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_K
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_k");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_K");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_k", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_K");
+			}
+		}
+		
+		/// <summary>
+		/// To track the change in district (inputted) secondary operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_s")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_S
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_s");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_S");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_s", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_S");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of the values in the fields Change in District Operating Capacity K, E, and S. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacitytotal")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacityTotal");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacitytotal", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacityTotal");
+			}
+		}
+		
+		/// <summary>
+		/// To track the change in calculated elementary operating capacity of a facility due to a project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeinoperatingcapacityelementary")]
 		public System.Nullable<int> caps_ChangeinOperatingCapacityElementary
@@ -34709,7 +35306,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// To track the change in kindergarten operating capacity of a facility due to a project.
+		/// To track the change in calculated kindergarten operating capacity of a facility due to a project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeinoperatingcapacitykindergarten")]
 		public System.Nullable<int> caps_ChangeinOperatingCapacityKindergarten
@@ -34727,7 +35324,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// To track the change in secondary operating capacity of a facility due to a project.
+		/// To track the change in calculated secondary operating capacity of a facility due to a project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeinoperatingcapacitysecondary")]
 		public System.Nullable<int> caps_ChangeinOperatingCapacitySecondary
@@ -34745,7 +35342,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Total change in operating capacity due to a project.
+		/// Total change in calculated operating capacity due to a project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeinoperatingcapacitytotal")]
 		public System.Nullable<int> caps_ChangeinOperatingCapacityTotal
@@ -34831,6 +35428,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ConstructionCostsSPIR");
 				this.SetAttributeValue("caps_constructioncostsspir", value);
 				this.OnPropertyChanged("caps_ConstructionCostsSPIR");
+			}
+		}
+		
+		/// <summary>
+		/// Is the identified facility on a Crown Land Grant?
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_crownlandgrant")]
+		public System.Nullable<bool> caps_CrownLandGrant
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_crownlandgrant");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CrownLandGrant");
+				this.SetAttributeValue("caps_crownlandgrant", value);
+				this.OnPropertyChanged("caps_CrownLandGrant");
 			}
 		}
 		
@@ -35537,6 +36152,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Provide the rationale behind the Surrounding Schools selected
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_justificationofsurroundingschools")]
+		public string caps_JustificationofSurroundingSchools
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_justificationofsurroundingschools");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_JustificationofSurroundingSchools");
+				this.SetAttributeValue("caps_justificationofsurroundingschools", value);
+				this.OnPropertyChanged("caps_JustificationofSurroundingSchools");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_lastschedulebrunstatus")]
@@ -35555,14 +36188,32 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Indicates the type of consultation conducted for a PEP project
+		/// The length of a lease in terms in years.
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_levelofconsultation")]
-		public Microsoft.Xrm.Sdk.OptionSetValue caps_LevelofConsultation
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_leaselength")]
+		public System.Nullable<decimal> caps_LeaseLength
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_levelofconsultation");
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_leaselength");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LeaseLength");
+				this.SetAttributeValue("caps_leaselength", value);
+				this.OnPropertyChanged("caps_LeaseLength");
+			}
+		}
+		
+		/// <summary>
+		/// Select all applicable consultations.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_levelofconsultation")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_LevelofConsultation
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_levelofconsultation");
 			}
 			set
 			{
@@ -35663,24 +36314,6 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Ministry Project Request priority by Funding Program for building the 10 year capital plan.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_ministryprogrampriority")]
-		public System.Nullable<int> caps_MinistryProgramPriority
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<int>>("caps_ministryprogrampriority");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_MinistryProgramPriority");
-				this.SetAttributeValue("caps_ministryprogrampriority", value);
-				this.OnPropertyChanged("caps_MinistryProgramPriority");
-			}
-		}
-		
-		/// <summary>
 		/// Please select Yes if this project is related to multiple facilities.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_multiplefacilities")]
@@ -35735,7 +36368,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// A place for the User to indicate the number of blocks deemed a H1 seismic risk
+		/// A place for the User to indicate the number of blocks deemed a H1 seismic risk. This number should equal the sum of all P blocks. 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofh1blocks_seismicrisk")]
 		public System.Nullable<int> caps_NumberofH1Blocks_seismicrisk
@@ -35825,7 +36458,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a H1 sub-category 
+		/// a H1 sub-category. Contributes to the total H1 blocks.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp1blocks")]
 		public System.Nullable<int> caps_NumberofP1Blocks
@@ -35843,7 +36476,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a H1 sub-category 
+		/// a H1 sub-category. Contributes to the total H1 blocks.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp2blocks")]
 		public System.Nullable<int> caps_NumberofP2Blocks
@@ -35861,7 +36494,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a H1 sub-category 
+		/// a H1 sub-category. Contributes to the total H1 blocks.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp3blocks")]
 		public System.Nullable<int> caps_NumberofP3Blocks
@@ -35879,7 +36512,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a H1 sub-category 
+		/// a H1 sub-category. Contributes to the total H1 blocks.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp4blocks")]
 		public System.Nullable<int> caps_NumberofP4Blocks
@@ -36023,7 +36656,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Add this project to a group of projects to indicate that they are individually phases to achieve a larger outcome.
+		/// Add this project to a group of projects to indicate that they are individual phases to achieve a larger outcome.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_phasedprojectgroup")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_PhasedProjectGroup
@@ -36091,6 +36724,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_PreCancellationStatus");
 				this.SetAttributeValue("caps_precancellationstatus", value);
 				this.OnPropertyChanged("caps_PreCancellationStatus");
+			}
+		}
+		
+		/// <summary>
+		/// Has the facility been previously approved by the ministry for disposal? 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_previouslyapprovedfordisposal")]
+		public System.Nullable<bool> caps_PreviouslyApprovedforDisposal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_previouslyapprovedfordisposal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_PreviouslyApprovedforDisposal");
+				this.SetAttributeValue("caps_previouslyapprovedfordisposal", value);
+				this.OnPropertyChanged("caps_PreviouslyApprovedforDisposal");
 			}
 		}
 		
@@ -36362,7 +37013,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// A place for the User to describe the need for a particular project
+		/// Ensure that the following questions are answered in the Project Rationale. Has a Grade Reconfiguration been considered? Adjustment of the Catchment Area? Program of Choice Movement?
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectrationale")]
 		public string caps_ProjectRationale
@@ -36398,7 +37049,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// To reference the fiscal year a project is in.
+		/// To reference the the fiscal year a Project is anticipated to begin.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectyear")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_Projectyear
@@ -37154,7 +37805,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Estimated Cost based on SRA information
+		/// Estimated Cost from SRA information
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sracostestimate")]
 		public System.Nullable<decimal> caps_SRAcostestimate
@@ -37478,7 +38129,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Populated by the Schedule B calculation, this is the total amount of Ministry funding requested by the SD for a specific Project request. 
+		/// Usually populated by the Preliminary Budget calculation, this is the total amount of Ministry funding requested by the SD for a specific Project request. Demolition is one exception, where a Preliminary Budget calculation is not required, and a value is entered manually.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalprojectcost")]
 		public System.Nullable<decimal> caps_TotalProjectCost
@@ -37630,6 +38281,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_WheelchairSpaces");
 				this.SetAttributeValue("caps_wheelchairspaces", value);
 				this.OnPropertyChanged("caps_WheelchairSpaces");
+			}
+		}
+		
+		/// <summary>
+		/// The yearly cost of a lease agreement.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_yearlyleaseamount")]
+		public System.Nullable<decimal> caps_YearlyLeaseAmount
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_yearlyleaseamount");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_YearlyLeaseAmount");
+				this.SetAttributeValue("caps_yearlyleaseamount", value);
+				this.OnPropertyChanged("caps_YearlyLeaseAmount");
 			}
 		}
 		
@@ -38899,7 +39568,7 @@ namespace CAPS.DataContext
 	}
 	
 	/// <summary>
-	/// The cash flow for supported and approved projects.
+	/// The cashflow for supported and approved projects.
 	/// </summary>
 	[System.Runtime.Serialization.DataContractAttribute()]
 	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_projectcashflow")]
@@ -41475,7 +42144,7 @@ namespace CAPS.DataContext
 		public static class Fields
 		{
 			public const string caps_AbnormalTopographyCost = "caps_abnormaltopographycost";
-			public const string caps_AdditionalFundingSource = "caps_additionalfundingsource";
+			public const string caps_AdditionalFundingSources = "caps_additionalfundingsources";
 			public const string caps_AgeofExistingPlayground = "caps_ageofexistingplayground";
 			public const string caps_AlignwithVFAPriorities = "caps_alignwithvfapriorities";
 			public const string caps_AnnualElectricityCostSavings = "caps_annualelectricitycostsavings";
@@ -41486,6 +42155,7 @@ namespace CAPS.DataContext
 			public const string caps_annualoperationalmaintenancecosts_est = "caps_annualoperationalmaintenancecosts_est";
 			public const string caps_AnticipatedOccupancyYear = "caps_anticipatedoccupancyyear";
 			public const string caps_AnticipatedSitePurchaseClosingYear = "caps_anticipatedsitepurchaseclosingyear";
+			public const string caps_AnyOtherBuildingUses = "caps_anyotherbuildinguses";
 			public const string caps_AvailableSiteSize_Acres = "caps_availablesitesize_acres";
 			public const string caps_AvailableSiteSize_Hectares = "caps_availablesitesize_hectares";
 			public const string caps_BenefitsofaFullorPartialDemolition = "caps_benefitsofafullorpartialdemolition";
@@ -41508,6 +42178,10 @@ namespace CAPS.DataContext
 			public const string caps_ChangeinDesignCapacitySNegative = "caps_changeindesigncapacitysnegative";
 			public const string caps_ChangeinDesignCapacitySPositive = "caps_changeindesigncapacityspositive";
 			public const string caps_ChangeinDesignCapacityTotal = "caps_changeindesigncapacitytotal";
+			public const string caps_ChangeinDistrictOperatingCapacity_E = "caps_changeindistrictoperatingcapacity_e";
+			public const string caps_ChangeinDistrictOperatingCapacity_K = "caps_changeindistrictoperatingcapacity_k";
+			public const string caps_ChangeinDistrictOperatingCapacity_S = "caps_changeindistrictoperatingcapacity_s";
+			public const string caps_ChangeinDistrictOperatingCapacityTotal = "caps_changeindistrictoperatingcapacitytotal";
 			public const string caps_ChangeinOperatingCapacityElementary = "caps_changeinoperatingcapacityelementary";
 			public const string caps_ChangeinOperatingCapacityKindergarten = "caps_changeinoperatingcapacitykindergarten";
 			public const string caps_ChangeinOperatingCapacitySecondary = "caps_changeinoperatingcapacitysecondary";
@@ -41515,10 +42189,7 @@ namespace CAPS.DataContext
 			public const string caps_CommunityLocation = "caps_communitylocation";
 			public const string caps_CommunityName = "caps_communityname";
 			public const string caps_ConnectedProjectRequest = "caps_connectedprojectrequest";
-			public const string caps_ConstructionArea = "caps_constructionarea";
-			public const string caps_ConstructionCostsNonStructuralSeismicUpgr = "caps_constructioncostsnonstructuralseismicupgr";
-			public const string caps_ConstructionCostsSPIR = "caps_constructioncostsspir";
-			public const string caps_ConstructionCostsSPIRAdjustments = "caps_constructioncostsspiradjustments";
+			public const string caps_CrownLandGrant = "caps_crownlandgrant";
 			public const string caps_CurrentConsultantReport = "caps_currentconsultantreport";
 			public const string caps_CurrentFacilityConditionIndex = "caps_currentfacilityconditionindex";
 			public const string caps_CurrentLRFP = "caps_currentlrfp";
@@ -41560,6 +42231,8 @@ namespace CAPS.DataContext
 			public const string caps_HasSchoolbeenPermanentlyClosed = "caps_hasschoolbeenpermanentlyclosed";
 			public const string caps_HazMatEnvAssesscomplete = "caps_hazmatenvassesscomplete";
 			public const string caps_HostSchoolDistrict = "caps_hostschooldistrict";
+			public const string caps_ImportID = "caps_importid";
+			public const string caps_ImportSource = "caps_importsource";
 			public const string caps_includedinLRFPasneed = "caps_includedinlrfpasneed";
 			public const string caps_IncludeNLC = "caps_includenlc";
 			public const string caps_IssueDetail = "caps_issuedetail";
@@ -41567,7 +42240,9 @@ namespace CAPS.DataContext
 			public const string caps_JobsCreatedDirect = "caps_jobscreateddirect";
 			public const string caps_JobsCreatedIndirect = "caps_jobscreatedindirect";
 			public const string caps_JobsCreatedTotal = "caps_jobscreatedtotal";
+			public const string caps_JustificationofSurroundingSchools = "caps_justificationofsurroundingschools";
 			public const string caps_LastScheduleBRunStatus = "caps_lastschedulebrunstatus";
+			public const string caps_LeaseLength = "caps_leaselength";
 			public const string caps_LevelofConsultation = "caps_levelofconsultation";
 			public const string caps_MinistryComments = "caps_ministrycomments";
 			public const string caps_MinistryPortfolioPriority = "caps_ministryportfoliopriority";
@@ -41583,6 +42258,10 @@ namespace CAPS.DataContext
 			public const string caps_NumberofH3Blocks_seismicrisk = "caps_numberofh3blocks_seismicrisk";
 			public const string caps_NumberofLowBlocks_seismicrisk = "caps_numberoflowblocks_seismicrisk";
 			public const string caps_NumberofMediumBlocks_seismicrisk = "caps_numberofmediumblocks_seismicrisk";
+			public const string caps_NumberofP1Blocks = "caps_numberofp1blocks";
+			public const string caps_NumberofP2Blocks = "caps_numberofp2blocks";
+			public const string caps_NumberofP3Blocks = "caps_numberofp3blocks";
+			public const string caps_NumberofP4Blocks = "caps_numberofp4blocks";
 			public const string caps_NumberofPortablesEliminated_seismicrisk = "caps_numberofportableseliminated_seismicrisk";
 			public const string caps_NumberofUnknownBlocks_seismicrisk = "caps_numberofunknownblocks_seismicrisk";
 			public const string caps_OtherCost = "caps_othercost";
@@ -41595,6 +42274,7 @@ namespace CAPS.DataContext
 			public const string caps_Population = "caps_population";
 			public const string caps_PotentialPlanforVacantSite = "caps_potentialplanforvacantsite";
 			public const string caps_PreCancellationStatus = "caps_precancellationstatus";
+			public const string caps_PreviouslyApprovedforDisposal = "caps_previouslyapprovedfordisposal";
 			public const string caps_PRFSAlternativeOption = "caps_prfsalternativeoption";
 			public const string caps_PrimaryDriver = "caps_primarydriver";
 			public const string caps_Project = "caps_project";
@@ -41621,6 +42301,7 @@ namespace CAPS.DataContext
 			public const string caps_ReasonforCancellation = "caps_reasonforcancellation";
 			public const string caps_RequiresScheduleB = "caps_requiresscheduleb";
 			public const string caps_ResultsReleasedReviewStatus = "caps_resultsreleasedreviewstatus";
+			public const string caps_SchBAdditionalSpaceAllocation = "caps_schbadditionalspaceallocation";
 			public const string caps_SchBBaseBudgetRate = "caps_schbbasebudgetrate";
 			public const string caps_SchBConstructionNewSpaceReplacement = "caps_schbconstructionnewspacereplacement";
 			public const string caps_SchBConstructionRenovations = "caps_schbconstructionrenovations";
@@ -41637,24 +42318,26 @@ namespace CAPS.DataContext
 			public const string caps_SchBProjectLocationFactor = "caps_schbprojectlocationfactor";
 			public const string caps_SchBProjectManagementFees = "caps_schbprojectmanagementfees";
 			public const string caps_SchBProjectSizeFactor = "caps_schbprojectsizefactor";
+			public const string caps_SchBRiskReserve = "caps_schbriskreserve";
 			public const string caps_SchBSiteDevelopmentAllowance = "caps_schbsitedevelopmentallowance";
 			public const string caps_SchBSiteDevelopmentLocationAllowance = "caps_schbsitedevelopmentlocationallowance";
 			public const string caps_SchBSpaceAllocationNewReplacement = "caps_schbspaceallocationnewreplacement";
 			public const string caps_SchBSpaceAllocationNLC = "caps_schbspaceallocationnlc";
+			public const string caps_SchBTotalSpaceAllocation = "caps_schbtotalspaceallocation";
 			public const string caps_SchBUnitRate = "caps_schbunitrate";
 			public const string caps_ScheduleBTotal = "caps_schedulebtotal";
 			public const string caps_SchoolDistrict = "caps_schooldistrict";
 			public const string caps_ScopeofWork = "caps_scopeofwork";
 			public const string caps_SDProjectNumber = "caps_sdprojectnumber";
+			public const string caps_SeismicConstructionCost = "caps_seismicconstructioncost";
 			public const string caps_SeismicProjectIdentificationReport = "caps_seismicprojectidentificationreport";
-			public const string caps_SeismicProjectIdentificationReportFees = "caps_seismicprojectidentificationreportfees";
 			public const string caps_SeismicRapidAssessmentComplete = "caps_seismicrapidassessmentcomplete";
 			public const string caps_SeismicRapidAssessmentCompletionDate = "caps_seismicrapidassessmentcompletiondate";
 			public const string caps_SeismicRiskRating = "caps_seismicriskrating";
-			public const string caps_SeismicUpgradeSpaceAllocation = "caps_seismicupgradespaceallocation";
 			public const string caps_SiteRequirement = "caps_siterequirement";
 			public const string caps_SPIRCompletionDate = "caps_spircompletiondate";
 			public const string caps_SPIRCostEstimate = "caps_spircostestimate";
+			public const string caps_SRAcostestimate = "caps_sracostestimate";
 			public const string caps_StartDate = "caps_startdate";
 			public const string caps_Submission = "caps_submission";
 			public const string caps_SubmissionCategory = "caps_submissioncategory";
@@ -41666,6 +42349,7 @@ namespace CAPS.DataContext
 			public const string caps_SubmissionCategoryTabName = "caps_submissioncategorytabname";
 			public const string caps_SumEstimatedYearlyExpenditures = "caps_sumestimatedyearlyexpenditures";
 			public const string caps_SummaryofHazardousMaterialsEnvAssessment = "caps_summaryofhazardousmaterialsenvassessment";
+			public const string caps_SurroundingSchools = "caps_surroundingschools";
 			public const string caps_TechnologyIndustryProven = "caps_technologyindustryproven";
 			public const string caps_TechnologyPreviouslyUsedbySD = "caps_technologypreviouslyusedbysd";
 			public const string caps_TempAccommodationandBusingPlan = "caps_tempaccommodationandbusingplan";
@@ -41683,6 +42367,7 @@ namespace CAPS.DataContext
 			public const string caps_VFANeworReplacement = "caps_vfaneworreplacement";
 			public const string caps_VFARequirementIDNo = "caps_vfarequirementidno";
 			public const string caps_WheelchairSpaces = "caps_wheelchairspaces";
+			public const string caps_YearlyLeaseAmount = "caps_yearlyleaseamount";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -41779,20 +42464,20 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Indicates if and from who external funding is being utilized.
+		/// All applicable Additional Funding Sources.
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_additionalfundingsource")]
-		public Microsoft.Xrm.Sdk.OptionSetValue caps_AdditionalFundingSource
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_additionalfundingsources")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_AdditionalFundingSources
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_additionalfundingsource");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_additionalfundingsources");
 			}
 			set
 			{
-				this.OnPropertyChanging("caps_AdditionalFundingSource");
-				this.SetAttributeValue("caps_additionalfundingsource", value);
-				this.OnPropertyChanged("caps_AdditionalFundingSource");
+				this.OnPropertyChanging("caps_AdditionalFundingSources");
+				this.SetAttributeValue("caps_additionalfundingsources", value);
+				this.OnPropertyChanged("caps_AdditionalFundingSources");
 			}
 		}
 		
@@ -41977,6 +42662,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Identify any/all other current uses of the facility. (e.g. Community Programs) 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_anyotherbuildinguses")]
+		public string caps_AnyOtherBuildingUses
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_anyotherbuildinguses");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AnyOtherBuildingUses");
+				this.SetAttributeValue("caps_anyotherbuildinguses", value);
+				this.OnPropertyChanged("caps_AnyOtherBuildingUses");
+			}
+		}
+		
+		/// <summary>
 		/// Please provide the available site size in acres
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_availablesitesize_acres")]
@@ -42121,7 +42824,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Fiscal Capital Plan year the project has been submitted on to determine when the capital expenditure records begin.
+		/// Fiscal Year the project was submitted in to determine when the capital expenditure records begin.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capitalplanyear")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_CapitalPlanYear
@@ -42373,6 +43076,78 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// To track the change in district (inputted) elementary operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_e")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_E
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_e");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_E");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_e", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_E");
+			}
+		}
+		
+		/// <summary>
+		/// To track the change in district (inputted) kindergarten operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_k")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_K
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_k");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_K");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_k", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_K");
+			}
+		}
+		
+		/// <summary>
+		/// To track the change in district (inputted) secondary operating capacity of a facility due to a project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacity_s")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacity_S
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacity_s");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacity_S");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacity_s", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacity_S");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeindistrictoperatingcapacitytotal")]
+		public System.Nullable<decimal> caps_ChangeinDistrictOperatingCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_changeindistrictoperatingcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChangeinDistrictOperatingCapacityTotal");
+				this.SetAttributeValue("caps_changeindistrictoperatingcapacitytotal", value);
+				this.OnPropertyChanged("caps_ChangeinDistrictOperatingCapacityTotal");
+			}
+		}
+		
+		/// <summary>
 		/// To track the change in elementary operating capacity of a facility due to a project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_changeinoperatingcapacityelementary")]
@@ -42499,74 +43274,20 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a place for the User to indicate the area under construction for the Project
+		/// Is the identified facility on a Crown Land Grant?
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_constructionarea")]
-		public System.Nullable<int> caps_ConstructionArea
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_crownlandgrant")]
+		public System.Nullable<bool> caps_CrownLandGrant
 		{
 			get
 			{
-				return this.GetAttributeValue<System.Nullable<int>>("caps_constructionarea");
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_crownlandgrant");
 			}
 			set
 			{
-				this.OnPropertyChanging("caps_ConstructionArea");
-				this.SetAttributeValue("caps_constructionarea", value);
-				this.OnPropertyChanged("caps_ConstructionArea");
-			}
-		}
-		
-		/// <summary>
-		/// OFC Cost Estimate (excluding taxes)
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_constructioncostsnonstructuralseismicupgr")]
-		public System.Nullable<decimal> caps_ConstructionCostsNonStructuralSeismicUpgr
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("caps_constructioncostsnonstructuralseismicupgr");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_ConstructionCostsNonStructuralSeismicUpgr");
-				this.SetAttributeValue("caps_constructioncostsnonstructuralseismicupgr", value);
-				this.OnPropertyChanged("caps_ConstructionCostsNonStructuralSeismicUpgr");
-			}
-		}
-		
-		/// <summary>
-		/// Construction costs as identified in the SPIR (excluding taxes)
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_constructioncostsspir")]
-		public System.Nullable<decimal> caps_ConstructionCostsSPIR
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("caps_constructioncostsspir");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_ConstructionCostsSPIR");
-				this.SetAttributeValue("caps_constructioncostsspir", value);
-				this.OnPropertyChanged("caps_ConstructionCostsSPIR");
-			}
-		}
-		
-		/// <summary>
-		/// Only applicable for updates due to Seismic Retrofit Guideline changes (excluding taxes)
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_constructioncostsspiradjustments")]
-		public System.Nullable<decimal> caps_ConstructionCostsSPIRAdjustments
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("caps_constructioncostsspiradjustments");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_ConstructionCostsSPIRAdjustments");
-				this.SetAttributeValue("caps_constructioncostsspiradjustments", value);
-				this.OnPropertyChanged("caps_ConstructionCostsSPIRAdjustments");
+				this.OnPropertyChanging("caps_CrownLandGrant");
+				this.SetAttributeValue("caps_crownlandgrant", value);
+				this.OnPropertyChanged("caps_CrownLandGrant");
 			}
 		}
 		
@@ -43314,6 +44035,42 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Used for Import
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_importid")]
+		public string caps_ImportID
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_importid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ImportID");
+				this.SetAttributeValue("caps_importid", value);
+				this.OnPropertyChanged("caps_ImportID");
+			}
+		}
+		
+		/// <summary>
+		/// Used for Import
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_importsource")]
+		public string caps_ImportSource
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_importsource");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ImportSource");
+				this.SetAttributeValue("caps_importsource", value);
+				this.OnPropertyChanged("caps_ImportSource");
+			}
+		}
+		
+		/// <summary>
 		/// a place for the User to indicate whether the Project is included in the LRFP as a future capital project need
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_includedinlrfpasneed")]
@@ -43442,6 +44199,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Provide the rationale behind the Surrounding Schools selected
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_justificationofsurroundingschools")]
+		public string caps_JustificationofSurroundingSchools
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_justificationofsurroundingschools");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_JustificationofSurroundingSchools");
+				this.SetAttributeValue("caps_justificationofsurroundingschools", value);
+				this.OnPropertyChanged("caps_JustificationofSurroundingSchools");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_lastschedulebrunstatus")]
@@ -43460,14 +44235,32 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Indicates the type of consultation conducted for a PEP project
+		/// The length of a lease in terms in years.
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_levelofconsultation")]
-		public Microsoft.Xrm.Sdk.OptionSetValue caps_LevelofConsultation
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_leaselength")]
+		public System.Nullable<decimal> caps_LeaseLength
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_levelofconsultation");
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_leaselength");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LeaseLength");
+				this.SetAttributeValue("caps_leaselength", value);
+				this.OnPropertyChanged("caps_LeaseLength");
+			}
+		}
+		
+		/// <summary>
+		/// All applicable levels of consultation.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_levelofconsultation")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_LevelofConsultation
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_levelofconsultation");
 			}
 			set
 			{
@@ -43730,6 +44523,78 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// a H1 sub-category. Contributes to the total H1 blocks.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp1blocks")]
+		public System.Nullable<decimal> caps_NumberofP1Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_numberofp1blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP1Blocks");
+				this.SetAttributeValue("caps_numberofp1blocks", value);
+				this.OnPropertyChanged("caps_NumberofP1Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category. Contributes to the total H1 blocks.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp2blocks")]
+		public System.Nullable<decimal> caps_NumberofP2Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_numberofp2blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP2Blocks");
+				this.SetAttributeValue("caps_numberofp2blocks", value);
+				this.OnPropertyChanged("caps_NumberofP2Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category. Contributes to the total H1 blocks.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp3blocks")]
+		public System.Nullable<decimal> caps_NumberofP3Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_numberofp3blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP3Blocks");
+				this.SetAttributeValue("caps_numberofp3blocks", value);
+				this.OnPropertyChanged("caps_NumberofP3Blocks");
+			}
+		}
+		
+		/// <summary>
+		/// a H1 sub-category. Contributes to the total H1 blocks.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofp4blocks")]
+		public System.Nullable<decimal> caps_NumberofP4Blocks
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_numberofp4blocks");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NumberofP4Blocks");
+				this.SetAttributeValue("caps_numberofp4blocks", value);
+				this.OnPropertyChanged("caps_NumberofP4Blocks");
+			}
+		}
+		
+		/// <summary>
 		/// Indicates the number of Portables (use) eliminated by an Addition or New School projects
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_numberofportableseliminated_seismicrisk")]
@@ -43942,6 +44807,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_PreCancellationStatus");
 				this.SetAttributeValue("caps_precancellationstatus", value);
 				this.OnPropertyChanged("caps_PreCancellationStatus");
+			}
+		}
+		
+		/// <summary>
+		/// Has the facility been previously approved by the ministry for disposal? 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_previouslyapprovedfordisposal")]
+		public System.Nullable<bool> caps_PreviouslyApprovedforDisposal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_previouslyapprovedfordisposal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_PreviouslyApprovedforDisposal");
+				this.SetAttributeValue("caps_previouslyapprovedfordisposal", value);
+				this.OnPropertyChanged("caps_PreviouslyApprovedforDisposal");
 			}
 		}
 		
@@ -44417,6 +45300,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Optional:  Enter after running the preliminary budget if the new/replacement space allocation is insufficient.  Re-run preliminary budget calculation after entering. Do not enter NLC here.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schbadditionalspaceallocation")]
+		public System.Nullable<decimal> caps_SchBAdditionalSpaceAllocation
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schbadditionalspaceallocation");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchBAdditionalSpaceAllocation");
+				this.SetAttributeValue("caps_schbadditionalspaceallocation", value);
+				this.OnPropertyChanged("caps_SchBAdditionalSpaceAllocation");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schbbasebudgetrate")]
@@ -44707,6 +45608,24 @@ namespace CAPS.DataContext
 		/// <summary>
 		/// 
 		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schbriskreserve")]
+		public System.Nullable<decimal> caps_SchBRiskReserve
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schbriskreserve");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchBRiskReserve");
+				this.SetAttributeValue("caps_schbriskreserve", value);
+				this.OnPropertyChanged("caps_SchBRiskReserve");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schbsitedevelopmentallowance")]
 		public System.Nullable<decimal> caps_SchBSiteDevelopmentAllowance
 		{
@@ -44773,6 +45692,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_SchBSpaceAllocationNLC");
 				this.SetAttributeValue("caps_schbspaceallocationnlc", value);
 				this.OnPropertyChanged("caps_SchBSpaceAllocationNLC");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schbtotalspaceallocation")]
+		public System.Nullable<decimal> caps_SchBTotalSpaceAllocation
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schbtotalspaceallocation");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchBTotalSpaceAllocation");
+				this.SetAttributeValue("caps_schbtotalspaceallocation", value);
+				this.OnPropertyChanged("caps_SchBTotalSpaceAllocation");
 			}
 		}
 		
@@ -44867,6 +45804,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Estimated Seismic Construction Cost ($)
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_seismicconstructioncost")]
+		public System.Nullable<decimal> caps_SeismicConstructionCost
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_seismicconstructioncost");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SeismicConstructionCost");
+				this.SetAttributeValue("caps_seismicconstructioncost", value);
+				this.OnPropertyChanged("caps_SeismicConstructionCost");
+			}
+		}
+		
+		/// <summary>
 		/// a place for the User to indicate whether  a SPIR has been completed
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_seismicprojectidentificationreport")]
@@ -44881,24 +45836,6 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_SeismicProjectIdentificationReport");
 				this.SetAttributeValue("caps_seismicprojectidentificationreport", value);
 				this.OnPropertyChanged("caps_SeismicProjectIdentificationReport");
-			}
-		}
-		
-		/// <summary>
-		/// All-inclusive known cost
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_seismicprojectidentificationreportfees")]
-		public System.Nullable<decimal> caps_SeismicProjectIdentificationReportFees
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("caps_seismicprojectidentificationreportfees");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_SeismicProjectIdentificationReportFees");
-				this.SetAttributeValue("caps_seismicprojectidentificationreportfees", value);
-				this.OnPropertyChanged("caps_SeismicProjectIdentificationReportFees");
 			}
 		}
 		
@@ -44957,24 +45894,6 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Existing m(2) of Blocks requiring seismic upgrade, as per the SPIR.
-		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_seismicupgradespaceallocation")]
-		public System.Nullable<decimal> caps_SeismicUpgradeSpaceAllocation
-		{
-			get
-			{
-				return this.GetAttributeValue<System.Nullable<decimal>>("caps_seismicupgradespaceallocation");
-			}
-			set
-			{
-				this.OnPropertyChanging("caps_SeismicUpgradeSpaceAllocation");
-				this.SetAttributeValue("caps_seismicupgradespaceallocation", value);
-				this.OnPropertyChanged("caps_SeismicUpgradeSpaceAllocation");
-			}
-		}
-		
-		/// <summary>
 		/// Indicates whether an addition or new school project requires a site acquisition 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_siterequirement")]
@@ -45025,6 +45944,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_SPIRCostEstimate");
 				this.SetAttributeValue("caps_spircostestimate", value);
 				this.OnPropertyChanged("caps_SPIRCostEstimate");
+			}
+		}
+		
+		/// <summary>
+		/// Estimated Cost from SRA information
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sracostestimate")]
+		public System.Nullable<decimal> caps_SRAcostestimate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_sracostestimate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SRAcostestimate");
+				this.SetAttributeValue("caps_sracostestimate", value);
+				this.OnPropertyChanged("caps_SRAcostestimate");
 			}
 		}
 		
@@ -45223,6 +46160,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_SummaryofHazardousMaterialsEnvAssessment");
 				this.SetAttributeValue("caps_summaryofhazardousmaterialsenvassessment", value);
 				this.OnPropertyChanged("caps_SummaryofHazardousMaterialsEnvAssessment");
+			}
+		}
+		
+		/// <summary>
+		/// List of surrounding schools included.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_surroundingschools")]
+		public string caps_SurroundingSchools
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_surroundingschools");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SurroundingSchools");
+				this.SetAttributeValue("caps_surroundingschools", value);
+				this.OnPropertyChanged("caps_SurroundingSchools");
 			}
 		}
 		
@@ -45529,6 +46484,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_WheelchairSpaces");
 				this.SetAttributeValue("caps_wheelchairspaces", value);
 				this.OnPropertyChanged("caps_WheelchairSpaces");
+			}
+		}
+		
+		/// <summary>
+		/// The yearly cost of a lease agreement.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_yearlyleaseamount")]
+		public System.Nullable<decimal> caps_YearlyLeaseAmount
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_yearlyleaseamount");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_YearlyLeaseAmount");
+				this.SetAttributeValue("caps_yearlyleaseamount", value);
+				this.OnPropertyChanged("caps_YearlyLeaseAmount");
 			}
 		}
 		
@@ -47312,10 +48285,14 @@ namespace CAPS.DataContext
 			public const string caps_CPSNumber = "caps_cpsnumber";
 			public const string caps_CurrentCOA = "caps_currentcoa";
 			public const string caps_DateCashFlowUpdated = "caps_datecashflowupdated";
+			public const string caps_DateProjectClosed = "caps_dateprojectclosed";
 			public const string caps_Description = "caps_description";
 			public const string caps_DesignCapacityElementary = "caps_designcapacityelementary";
 			public const string caps_DesignCapacityKindergarten = "caps_designcapacitykindergarten";
 			public const string caps_DesignCapacitySecondary = "caps_designcapacitysecondary";
+			public const string caps_DistrictOperatingCapacityElementary = "caps_districtoperatingcapacityelementary";
+			public const string caps_DistrictOperatingCapacityKindergarten = "caps_districtoperatingcapacitykindergarten";
+			public const string caps_DistrictOperatingCapacitySecondary = "caps_districtoperatingcapacitysecondary";
 			public const string caps_EconomicAdjustment = "caps_economicadjustment";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_FacilitySite = "caps_facilitysite";
@@ -47356,6 +48333,7 @@ namespace CAPS.DataContext
 			public const string caps_TotalAgencyProjected = "caps_totalagencyprojected";
 			public const string caps_TotalApproved = "caps_totalapproved";
 			public const string caps_TotalDesignCapacity = "caps_totaldesigncapacity";
+			public const string caps_TotalDistrictOperatingCapacity = "caps_totaldistrictoperatingcapacity";
 			public const string caps_TotalOtherFunding = "caps_totalotherfunding";
 			public const string caps_TotalProvincialBudget = "caps_totalprovincialbudget";
 			public const string caps_TotalProvincialCashFlow = "caps_totalprovincialcashflow";
@@ -47556,6 +48534,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// The official completion/cancelled date of the project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_dateprojectclosed")]
+		public System.Nullable<System.DateTime> caps_DateProjectClosed
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_dateprojectclosed");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DateProjectClosed");
+				this.SetAttributeValue("caps_dateprojectclosed", value);
+				this.OnPropertyChanged("caps_DateProjectClosed");
+			}
+		}
+		
+		/// <summary>
 		/// A project description area, that is populated originally from the project request 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_description")]
@@ -47624,6 +48620,60 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_DesignCapacitySecondary");
 				this.SetAttributeValue("caps_designcapacitysecondary", value);
 				this.OnPropertyChanged("caps_DesignCapacitySecondary");
+			}
+		}
+		
+		/// <summary>
+		/// As inputted by the school district from the originating project request.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacityelementary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacityelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityElementary");
+				this.SetAttributeValue("caps_districtoperatingcapacityelementary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityElementary");
+			}
+		}
+		
+		/// <summary>
+		/// As inputted by the school district from the originating project request
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitykindergarten")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacityKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitykindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacityKindergarten");
+				this.SetAttributeValue("caps_districtoperatingcapacitykindergarten", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacityKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// As inputted by the school district from the originating project request
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_districtoperatingcapacitysecondary")]
+		public System.Nullable<decimal> caps_DistrictOperatingCapacitySecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_districtoperatingcapacitysecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_DistrictOperatingCapacitySecondary");
+				this.SetAttributeValue("caps_districtoperatingcapacitysecondary", value);
+				this.OnPropertyChanged("caps_DistrictOperatingCapacitySecondary");
 			}
 		}
 		
@@ -48351,6 +49401,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Derived from by summing the three District Operating Capacity fields Kindergarten, Elementary and Secondary.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totaldistrictoperatingcapacity")]
+		public System.Nullable<decimal> caps_TotalDistrictOperatingCapacity
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totaldistrictoperatingcapacity");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_TotalDistrictOperatingCapacity");
+				this.SetAttributeValue("caps_totaldistrictoperatingcapacity", value);
+				this.OnPropertyChanged("caps_TotalDistrictOperatingCapacity");
+			}
+		}
+		
+		/// <summary>
 		/// The total amount of funding from other sources
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalotherfunding")]
@@ -48460,7 +49528,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Difference between Total Provincial Cash Flow ($) and Total Provincial Budget ($).
+		/// Difference between Total Provincial Cashflow ($) and Total Provincial Budget ($).
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_variancefromprovincial")]
 		public System.Nullable<decimal> caps_VariancefromProvincial
@@ -52039,7 +53107,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Mark true if you have no funding to request for this call for submission and so you will submit without any projects. 
+		/// Mark Yes if you have no funding to request for this call for submission, and then attach your board resolution and submit your empty plan.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_noprojectstosubmit")]
 		public System.Nullable<bool> caps_NoProjectsToSubmit

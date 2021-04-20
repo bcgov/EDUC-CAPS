@@ -116,9 +116,9 @@ namespace CustomWorkflowActivities
                     }
                 }
 
-                if (schoolRecordErrorMessage.Length > 4000)
+                if (schoolRecordErrorMessage.Length > 100)
                 {
-                    schoolRecordErrorMessage = schoolRecordErrorMessage.Substring(0, 4000);
+                    schoolRecordErrorMessage = schoolRecordErrorMessage.Substring(0, 100);
                 }
 
 
@@ -178,6 +178,11 @@ namespace CustomWorkflowActivities
                     collectionErrorMessage += facility.GetAttributeValue<string>("caps_name")+"\r\n";
                 }
 
+            }
+
+            if (collectionErrorMessage.Length > 4000)
+            {
+                collectionErrorMessage = collectionErrorMessage.Substring(0, 4000);
             }
 
             //Update Collection Record

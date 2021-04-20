@@ -925,6 +925,92 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_SetProjectRequesttoSupported")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_SetProjectRequesttoSupportedRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_SetProjectRequesttoSupportedRequest()
+		{
+			this.RequestName = "caps_SetProjectRequesttoSupported";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_SetProjectRequesttoSupported")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_SetProjectRequesttoSupportedResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_SetProjectRequesttoSupportedResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_SetProjectRequesttoUnsupported")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_SetProjectRequesttoUnsupportedRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_SetProjectRequesttoUnsupportedRequest()
+		{
+			this.RequestName = "caps_SetProjectRequesttoUnsupported";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_SetProjectRequesttoUnsupported")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_SetProjectRequesttoUnsupportedResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_SetProjectRequesttoUnsupportedResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ValidatePRFSSurroundingSchools")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
 	public partial class caps_ValidatePRFSSurroundingSchoolsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -4091,6 +4177,49 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_UpdateOperatingCapacityValuesBySchoolDistrict")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesBySchoolDistrictRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_UpdateOperatingCapacityValuesBySchoolDistrictRequest()
+		{
+			this.RequestName = "caps_UpdateOperatingCapacityValuesBySchoolDistrict";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_UpdateOperatingCapacityValuesBySchoolDistrict")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class caps_UpdateOperatingCapacityValuesBySchoolDistrictResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_UpdateOperatingCapacityValuesBySchoolDistrictResponse()
+		{
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ScheduleRetrain")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -5717,6 +5846,49 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cascadeAsyncSuccessAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cascadeAsyncSuccessAPIRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string casadeAsyncJobName
+		{
+			get
+			{
+				if (this.Parameters.Contains("casadeAsyncJobName"))
+				{
+					return ((string)(this.Parameters["casadeAsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["casadeAsyncJobName"] = value;
+			}
+		}
+		
+		public cascadeAsyncSuccessAPIRequest()
+		{
+			this.RequestName = "cascadeAsyncSuccessAPI";
+			this.casadeAsyncJobName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cascadeAsyncSuccessAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cascadeAsyncSuccessAPIResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cascadeAsyncSuccessAPIResponse()
+		{
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_ConditionXmlConversion")]
 	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
@@ -6277,6 +6449,69 @@ namespace CAPS.DataContext
 					return default(int);
 				}
 			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("cascadeAsyncFailureAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cascadeAsyncFailureAPIRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string casadeAsyncJobName
+		{
+			get
+			{
+				if (this.Parameters.Contains("casadeAsyncJobName"))
+				{
+					return ((string)(this.Parameters["casadeAsyncJobName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["casadeAsyncJobName"] = value;
+			}
+		}
+		
+		public string casadeAsyncExceptionDetails
+		{
+			get
+			{
+				if (this.Parameters.Contains("casadeAsyncExceptionDetails"))
+				{
+					return ((string)(this.Parameters["casadeAsyncExceptionDetails"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["casadeAsyncExceptionDetails"] = value;
+			}
+		}
+		
+		public cascadeAsyncFailureAPIRequest()
+		{
+			this.RequestName = "cascadeAsyncFailureAPI";
+			this.casadeAsyncJobName = default(string);
+			this.casadeAsyncExceptionDetails = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("cascadeAsyncFailureAPI")]
+	[System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.45")]
+	public partial class cascadeAsyncFailureAPIResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public cascadeAsyncFailureAPIResponse()
+		{
 		}
 	}
 	

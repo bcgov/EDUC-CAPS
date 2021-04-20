@@ -23,7 +23,7 @@ CAPS.COA.ShowClose = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On") {
             showButton = true;
         }
     });
@@ -94,4 +94,53 @@ CAPS.COA.Close = function (primaryControl) {
 
 
     }
+}
+
+/**
+ * Function to determine when the Cancel button should be shown.
+ * @param {any} primaryControl primary control
+ * @returns {boolean} true if should be shown, otherwise false.
+ */
+CAPS.COA.ShowCancel = function (primaryControl) {
+    debugger;
+    var formContext = primaryControl;
+
+    //TODO: check current state of coa, if signed (746660001) or draft (1)
+    if (!(formContext.getAttribute("statuscode").getValue() == 746660001
+        || formContext.getAttribute("statuscode").getValue() == 1)) {
+        return false;
+    }
+
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB Finance Unit - Add On") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
+
+/**
+ * Function to close the coa record.
+ * @param {any} primaryControl primary control
+ */
+CAPS.COA.Cancel = function (primaryControl) {
+    var formContext = primaryControl;
+    //Change status to DRAFT
+    let confirmStrings = { text: "This will cancel the certificate of approval.  Click OK to continue or Cancel to exit.", title: "Cancel Certificate of Approval" };
+    let confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                debugger;
+                formContext.getAttribute("statecode").setValue(1);
+                formContext.getAttribute("statuscode").setValue(200870003);
+                formContext.data.entity.save();
+            }
+
+        });
 }

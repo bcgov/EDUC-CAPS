@@ -29,9 +29,9 @@ namespace CustomWorkflowActivities
 
             var recordId = context.PrimaryEntityId;
 
-            var enrolmentK = 0;
-            var enrolmentE = 0;
-            var enrolmentS = 0;
+            decimal? enrolmentK = 0;
+            decimal? enrolmentE = 0;
+            decimal? enrolmentS = 0;
 
             //Get Facility record with all current design capacity fields & school district
             var columns = new ColumnSet("caps_adjusteddesigncapacityelementary",
@@ -41,7 +41,13 @@ namespace CustomWorkflowActivities
                                     "caps_currentenrolment",
                                     "caps_lowestgrade",
                                     "caps_highestgrade",
-                                    "caps_name");
+                                    "caps_name",
+                                    "caps_districtoperatingcapacitykindergarten",
+                                    "caps_districtoperatingcapacityelementary",
+                                    "caps_districtoperatingcapacitysecondary",
+                                    "caps_operatingcapacitykindergarten",
+                                    "caps_operatingcapacityelementary",
+                                    "caps_operatingcapacitysecondary");
             var facilityRecord = service.Retrieve(context.PrimaryEntityName, context.PrimaryEntityId, columns) as caps_Facility;
 
             tracingService.Trace("Facility Name:{0}", facilityRecord.caps_Name);
@@ -62,7 +68,7 @@ namespace CustomWorkflowActivities
                 tracingService.Trace("Line: {0}", "49");
             }
 
-            //Get Curretn Enrolment Projections
+            //Get Current Enrolment Projections
             QueryExpression enrolmentQuery = new QueryExpression("caps_enrolmentprojections_sd");
             enrolmentQuery.ColumnSet.AllColumns = true;
             enrolmentQuery.Criteria = new FilterExpression();
@@ -74,10 +80,11 @@ namespace CustomWorkflowActivities
 
             //Get Projects for this facility with occupancy dates in the future
             QueryExpression projectQuery = new QueryExpression("caps_projecttracker");
-            projectQuery.ColumnSet.AddColumns("caps_designcapacitykindergarten", "caps_designcapacityelementary", "caps_designcapacitysecondary");
+            projectQuery.ColumnSet.AddColumns("caps_designcapacitykindergarten", "caps_designcapacityelementary", "caps_designcapacitysecondary", "caps_districtoperatingcapacitykindergarten", "caps_districtoperatingcapacityelementary", "caps_districtoperatingcapacitysecondary");
             projectQuery.Criteria = new FilterExpression();
             projectQuery.Criteria.AddCondition("caps_facility", ConditionOperator.Equal, recordId);
             projectQuery.Criteria.AddCondition("statecode", ConditionOperator.Equal, 0);
+
             LinkEntity milestoneLink = projectQuery.AddLink("caps_projectmilestone", "caps_projecttrackerid", "caps_projecttracker", JoinOperator.Inner);
             milestoneLink.Columns.AddColumn("caps_expectedactualdate");
             milestoneLink.EntityAlias = "milestone";
@@ -86,8 +93,6 @@ namespace CustomWorkflowActivities
             milestoneLink.LinkCriteria.AddCondition("caps_expectedactualdate", ConditionOperator.OnOrAfter, DateTime.Now);
 
             EntityCollection projectRecords = service.RetrieveMultiple(projectQuery);
-
-            
 
             //Get Capacity Reporting Records
             QueryExpression query = new QueryExpression("caps_capacityreporting");
@@ -109,7 +114,6 @@ namespace CustomWorkflowActivities
 
                 if (recordType.Value == 757500001)
                 {
-                    tracingService.Trace("Line: {0}", "77");
                     //Historical
                     #region Historical
 
@@ -165,6 +169,14 @@ namespace CustomWorkflowActivities
                         recordToUpdate.caps_Elementary_operatingutilization = (topRecord.caps_OperatingCapacityElementary == 0) ? 0 : historicalEnrolmentE / topRecord.caps_OperatingCapacityElementary * 100;
                         recordToUpdate.caps_Secondary_operatingutilization = (topRecord.caps_OperatingCapacitySecondary == 0) ? 0 : historicalEnrolmentS / topRecord.caps_OperatingCapacitySecondary * 100;
 
+                        recordToUpdate.caps_kindergarten_operatingcapacity_district = topRecord.caps_DistrictOperatingCapacityKindergarten;
+                        recordToUpdate.caps_elementary_operatingcapacity_district = topRecord.caps_DistrictOperatingCapacityElementary;
+                        recordToUpdate.caps_secondary_operatingcapacity_district = topRecord.caps_DistrictOperatingCapacitySecondary;
+
+                        recordToUpdate.caps_kindergarten_operatingutilizatio_district = (topRecord.caps_DistrictOperatingCapacityKindergarten == 0) ? 0 : historicalEnrolmentK / topRecord.caps_DistrictOperatingCapacityKindergarten * 100;
+                        recordToUpdate.caps_elementary_operatingutilization_district = (topRecord.caps_DistrictOperatingCapacityElementary == 0) ? 0 : historicalEnrolmentE / topRecord.caps_DistrictOperatingCapacityElementary * 100;
+                        recordToUpdate.caps_secondary_operatingutilization_district = (topRecord.caps_DistrictOperatingCapacitySecondary == 0) ? 0 : historicalEnrolmentS / topRecord.caps_DistrictOperatingCapacitySecondary * 100;
+
                         service.Update(recordToUpdate);
                     } 
                     #endregion
@@ -200,66 +212,81 @@ namespace CustomWorkflowActivities
                     recordToUpdate.caps_Elementary_operatingutilization = (facilityRecord.caps_OperatingCapacityElementary == 0) ? 0 : enrolmentE / facilityRecord.caps_OperatingCapacityElementary * 100;
                     recordToUpdate.caps_Secondary_operatingutilization = (facilityRecord.caps_OperatingCapacitySecondary == 0) ? 0 : enrolmentS / facilityRecord.caps_OperatingCapacitySecondary * 100;
 
+                    recordToUpdate.caps_kindergarten_operatingcapacity_district = facilityRecord.caps_DistrictOperatingCapacityKindergarten;
+                    recordToUpdate.caps_elementary_operatingcapacity_district = facilityRecord.caps_DistrictOperatingCapacityElementary;
+                    recordToUpdate.caps_secondary_operatingcapacity_district = facilityRecord.caps_DistrictOperatingCapacitySecondary;
+
+                    recordToUpdate.caps_kindergarten_operatingutilizatio_district = (facilityRecord.caps_DistrictOperatingCapacityKindergarten == 0) ? 0 : enrolmentK / facilityRecord.caps_DistrictOperatingCapacityKindergarten * 100;
+                    recordToUpdate.caps_elementary_operatingutilization_district = (facilityRecord.caps_DistrictOperatingCapacityElementary == 0) ? 0 : enrolmentE / facilityRecord.caps_DistrictOperatingCapacityElementary * 100;
+                    recordToUpdate.caps_secondary_operatingutilization_district = (facilityRecord.caps_DistrictOperatingCapacitySecondary == 0) ? 0 : enrolmentS / facilityRecord.caps_DistrictOperatingCapacitySecondary * 100;
+
                     service.Update(recordToUpdate); 
                     #endregion
                 }
                 else {
                     //Future
                     #region Future
+                    var endDate = (DateTime?)((AliasedValue)reportingRecord["year.edu_enddate"]).Value;
+
+                    var recordToUpdate = new caps_CapacityReporting();
+                    recordToUpdate.Id = reportingRecord.Id;
+
+                    //get matching enrolment projection record
+                    var matchingProjection = enrolmentProjectionList.FirstOrDefault(r => r.caps_ProjectionYear.Id == reportingRecord.GetAttributeValue<EntityReference>("caps_schoolyear").Id);
+
+                    var kDesign = facilityRecord.caps_AdjustedDesignCapacityKindergarten.GetValueOrDefault(0);
+                    var eDesign = facilityRecord.caps_AdjustedDesignCapacityElementary.GetValueOrDefault(0);
+                    var sDesign = facilityRecord.caps_AdjustedDesignCapacitySecondary.GetValueOrDefault(0);
+
+                    var kDistrict = facilityRecord.caps_DistrictOperatingCapacityKindergarten.GetValueOrDefault(0);
+                    var eDistrict = facilityRecord.caps_DistrictOperatingCapacityElementary.GetValueOrDefault(0);
+                    var sDistrict = facilityRecord.caps_DistrictOperatingCapacitySecondary.GetValueOrDefault(0);
+
+                    tracingService.Trace("Design Capacity - K:{0}; E:{1}; S:{2}", kDesign, eDesign, sDesign);
+
+                    if (endDate.HasValue)
+                    {
+                        //loop project records
+                        foreach (var projectRecord in projectRecords.Entities)
+                        {
+                            if ((DateTime?)((AliasedValue)projectRecord["milestone.caps_expectedactualdate"]).Value <= endDate)
+                            {
+                                //add design capacity on
+                                kDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacitykindergarten").GetValueOrDefault(0));
+                                eDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacityelementary").GetValueOrDefault(0));
+                                sDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacitysecondary").GetValueOrDefault(0));
+
+                                //add district operating capacity
+                                kDistrict += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_districtoperatingcapacitykindergarten").GetValueOrDefault(0));
+                                eDistrict += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_districtoperatingcapacityelementary").GetValueOrDefault(0));
+                                sDistrict += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_districtoperatingcapacitysecondary").GetValueOrDefault(0));
+                            }
+                        }
+                    }
+
+                    tracingService.Trace("Updated Design Capacity - K:{0}; E:{1}; S:{2}", kDesign, eDesign, sDesign);
+
+                    decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : enrolmentK;
+                    decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : enrolmentE;
+                    decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : enrolmentS;
+
+                    recordToUpdate.caps_Kindergarten_enrolment = futureEnrolmentK;
+                    recordToUpdate.caps_Elementary_enrolment = futureEnrolmentE;
+                    recordToUpdate.caps_Secondary_enrolment = futureEnrolmentS;
+
+                    recordToUpdate.caps_Kindergarten_designcapacity = kDesign;
+                    recordToUpdate.caps_Elementary_designcapacity = eDesign;
+                    recordToUpdate.caps_Secondary_designcapacity = sDesign;
+
+                    tracingService.Trace("Enrolment - K:{0}; E:{1}; S:{2}", futureEnrolmentK, futureEnrolmentE, futureEnrolmentS);
+
+                    recordToUpdate.caps_Kindergarten_designutilization = (kDesign == 0) ? 0 : futureEnrolmentK / kDesign * 100;
+                    recordToUpdate.caps_Elementary_designutilization = (eDesign == 0) ? 0 : futureEnrolmentE / eDesign * 100;
+                    recordToUpdate.caps_Secondary_designutilization = (sDesign == 0) ? 0 : futureEnrolmentS / sDesign * 100;
+
                     //no sense in running this if the grade range isn't specified
                     if (facilityRecord.caps_LowestGrade != null && facilityRecord.caps_HighestGrade != null)
                     {
-                        tracingService.Trace("Line: {0}", "144");
-
-                        var endDate = (DateTime?)((AliasedValue)reportingRecord["year.edu_enddate"]).Value;
-
-                        var recordToUpdate = new caps_CapacityReporting();
-                        recordToUpdate.Id = reportingRecord.Id;
-
-                        //get matching enrolment projection record
-                        var matchingProjection = enrolmentProjectionList.FirstOrDefault(r => r.caps_ProjectionYear.Id == reportingRecord.GetAttributeValue<EntityReference>("caps_schoolyear").Id);
-
-                        var kDesign = facilityRecord.caps_AdjustedDesignCapacityKindergarten.GetValueOrDefault(0);
-                        var eDesign = facilityRecord.caps_AdjustedDesignCapacityElementary.GetValueOrDefault(0);
-                        var sDesign = facilityRecord.caps_AdjustedDesignCapacitySecondary.GetValueOrDefault(0);
-
-                        tracingService.Trace("Design Capacity - K:{0}; E:{1}; S:{2}", kDesign, eDesign, sDesign);
-
-                        if (endDate.HasValue)
-                        {
-                            //loop project records
-                            foreach (var projectRecord in projectRecords.Entities)
-                            {
-                                if ((DateTime?)((AliasedValue)projectRecord["milestone.caps_expectedactualdate"]).Value <= endDate)
-                                {
-                                    //add design capacity on
-                                    kDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacitykindergarten").GetValueOrDefault(0));
-                                    eDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacityelementary").GetValueOrDefault(0));
-                                    sDesign += Convert.ToInt32(projectRecord.GetAttributeValue<decimal?>("caps_designcapacitysecondary").GetValueOrDefault(0));
-                                }
-                            }
-                        }
-
-                        tracingService.Trace("Updated Design Capacity - K:{0}; E:{1}; S:{2}", kDesign, eDesign, sDesign);
-
-                        decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : enrolmentK;
-                        decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : enrolmentE;
-                        decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : enrolmentS;
-
-                        recordToUpdate.caps_Kindergarten_enrolment = futureEnrolmentK;
-                        recordToUpdate.caps_Elementary_enrolment = futureEnrolmentE;
-                        recordToUpdate.caps_Secondary_enrolment = futureEnrolmentS;
-
-                        recordToUpdate.caps_Kindergarten_designcapacity = kDesign;
-                        recordToUpdate.caps_Elementary_designcapacity = eDesign;
-                        recordToUpdate.caps_Secondary_designcapacity = sDesign;
-
-                        tracingService.Trace("Enrolment - K:{0}; E:{1}; S:{2}", futureEnrolmentK, futureEnrolmentE, futureEnrolmentS);
-
-                        recordToUpdate.caps_Kindergarten_designutilization = (kDesign == 0) ? 0 : futureEnrolmentK / kDesign * 100;
-                        recordToUpdate.caps_Elementary_designutilization = (eDesign == 0) ? 0 : futureEnrolmentE / eDesign * 100;
-                        recordToUpdate.caps_Secondary_designutilization = (sDesign == 0) ? 0 : futureEnrolmentS / sDesign * 100;
-
                         //Get operating capacity for the design numbers
                         var lowestGrade = facilityRecord.caps_LowestGrade.Value;
                         var highestGrade = facilityRecord.caps_HighestGrade.Value;
@@ -273,11 +300,20 @@ namespace CustomWorkflowActivities
                         recordToUpdate.caps_Kindergarten_operatingutilization = (result.KindergartenCapacity == 0) ? 0 : futureEnrolmentK / result.KindergartenCapacity * 100;
                         recordToUpdate.caps_Elementary_operatingutilization = (result.ElementaryCapacity == 0) ? 0 : futureEnrolmentE / result.ElementaryCapacity * 100;
                         recordToUpdate.caps_Secondary_operatingutilization = (result.SecondaryCapacity == 0) ? 0 : futureEnrolmentS / result.SecondaryCapacity * 100;
-
-                        service.Update(recordToUpdate);
                     }
-                    #endregion
+
+                    recordToUpdate.caps_kindergarten_operatingcapacity_district = kDistrict;
+                    recordToUpdate.caps_elementary_operatingcapacity_district = eDistrict;
+                    recordToUpdate.caps_secondary_operatingcapacity_district = sDistrict;
+
+                    recordToUpdate.caps_kindergarten_operatingutilizatio_district = (kDistrict == 0) ? 0 : futureEnrolmentK / kDistrict * 100;
+                    recordToUpdate.caps_elementary_operatingutilization_district = (eDistrict == 0) ? 0 : futureEnrolmentE / eDistrict * 100;
+                    recordToUpdate.caps_secondary_operatingutilization_district = (sDistrict == 0) ? 0 : futureEnrolmentS / sDistrict * 100;
+
+                    service.Update(recordToUpdate);
                 }
+                    #endregion
+                
             }
 
         }
