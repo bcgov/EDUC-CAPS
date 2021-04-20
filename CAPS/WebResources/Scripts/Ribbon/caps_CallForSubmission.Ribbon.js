@@ -176,7 +176,7 @@ CAPS.CallForSubmission.ShowReleaseResults = function (primaryControl) {
     var showReleaseResults = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On") {
             showReleaseResults =  true;
         }
     });
@@ -295,7 +295,7 @@ CAPS.CallForSubmission.ShowPublish = function (primaryControl) {
     var showPublish = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On" || item.name === "CAPS Ministry Super User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showPublish = true;
         }
     });
@@ -350,7 +350,7 @@ CAPS.CallForSubmission.ShowEdit = function (primaryControl) {
     var showPublish = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On" || item.name === "CAPS Ministry Super User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showPublish = true;
         }
     });
@@ -405,7 +405,7 @@ CAPS.CallForSubmission.ShowCancel = function (primaryControl) {
     var showPublish = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On" || item.name === "CAPS Ministry Super User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showPublish = true;
         }
     });

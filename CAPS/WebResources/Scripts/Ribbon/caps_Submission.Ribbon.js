@@ -21,7 +21,7 @@ CAPS.Submission.ShowUnsubmit = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });
@@ -38,8 +38,7 @@ CAPS.Submission.ShowCancel = function (primaryControl) {
     var formContext = primaryControl;
 
     //TODO: Check current state of capital plan
-    if (!(formContext.getAttribute("statuscode").getValue() == 2
-        || formContext.getAttribute("statuscode").getValue() == 1)) {
+    if (!(formContext.getAttribute("statuscode").getValue() == 1)) {
         return false;
     }
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
@@ -47,7 +46,7 @@ CAPS.Submission.ShowCancel = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Financial Director Ministry User - Add On") {
+        if (item.name === "CAPS CMB Release Submission Results - Add On") {
             showButton = true;
         }
     });
@@ -90,6 +89,7 @@ CAPS.Submission.Cancel = function (primaryControl) {
             if (success.confirmed) {
                 debugger;
                 formContext.getAttribute("statuscode").setValue(100000001);
+                formContext.getAttribute("statecode").setValue(1);
                 formContext.data.entity.save();
             }
 

@@ -102,7 +102,7 @@ CAPS.PRFSOption.ToggleScheduleBFields = function (executionContext) {
             //New = 200,870,000
             //Replacement = 200,870,001
             //Partial Seismic = 200,870,004
-            //Seismic = 200,870,005
+            //Seismic Upgrade = 200,870,005
             if (calcType === 200870000 || calcType === 200870001) {
                 //show NLC
                 formContext.getControl("caps_includenlc").setVisible(true);
@@ -113,24 +113,38 @@ CAPS.PRFSOption.ToggleScheduleBFields = function (executionContext) {
                 formContext.getAttribute("caps_includenlc").setValue(null);
             }
             if (calcType === 200870004 || calcType === 200870005) {
-                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
-                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
                 formContext.getControl("caps_constructioncostsspir").setVisible(true);
-                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
-                //formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(true);
+
             }
             else {
-                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
-                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
                 formContext.getControl("caps_constructioncostsspir").setVisible(false);
-                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
-                //formContext.getControl("caps_constructioncostsnonstructuralseismicup").setVisible(false);
 
-                //formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
-                //formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
                 formContext.getAttribute("caps_constructioncostsspir").setValue(null);
-                //formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
-                //formContext.getAttribute("caps_constructioncostsnonstructuralseismicup").setValue(null);
+            }
+
+            if (calcType === 200870005) {
+                //blank values
+                formContext.getAttribute("caps_optionincludesdemolition").setValue(false);
+                formContext.getAttribute("caps_demolitioncost").setValue(null);
+                formContext.getAttribute("caps_optionincludesabnormaltopography").setValue(false);
+                formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
+
+                //hide
+                formContext.getControl("caps_optionincludesdemolition").setVisible(false);
+                formContext.getControl("caps_demolitioncost").setVisible(false);
+                formContext.getControl("caps_optionincludesabnormaltopography").setVisible(false);
+                formContext.getControl("caps_abnormaltopographycost").setVisible(false);
+
+                //make optional
+                formContext.getAttribute("caps_demolitioncost").setRequiredLevel("none");
+                formContext.getAttribute("caps_abnormaltopographycost").setRequiredLevel("none");
+            }
+            else {
+                //shoe
+                formContext.getControl("caps_optionincludesdemolition").setVisible(true);
+                formContext.getControl("caps_demolitioncost").setVisible(formContext.getAttribute("caps_optionincludesdemolition").getValue());
+                formContext.getControl("caps_optionincludesabnormaltopography").setVisible(true);
+                formContext.getControl("caps_abnormaltopographycost").setVisible(formContext.getAttribute("caps_optionincludesabnormaltopography").getValue());
             }
         },
         function (error) {

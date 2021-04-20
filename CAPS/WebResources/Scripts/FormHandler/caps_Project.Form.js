@@ -66,7 +66,12 @@ CAPS.Project.onLoad = function (executionContext) {
     
     //On Create
     if (formState === FORM_STATE.CREATE) {
+        debugger;
         CAPS.Project.RECORD_JUST_CREATED = true;
+
+        //remove Lease from list
+        formContext.getControl("caps_submissioncategory").addPreSearch(CAPS.Project.HideLeaseSubmissionCategory);
+
         //Set School District based on User
         CAPS.Project.DefaultSchoolDistrict(formContext);
 
@@ -136,12 +141,12 @@ CAPS.Project.onLoad = function (executionContext) {
 
         CAPS.Project.addFacilitiesEventListener(0);
     }
-
-    //Check if AFG Project
-    if (submissionCategoryCode === "AFG") {
-        CAPS.Project.ToggleAFGFacility(executionContext);
+    debugger;
+    //Check if AFG or Demolition Project to setup existing facility toggle
+    if (submissionCategoryCode === "AFG" || submissionCategoryCode === "DEMOLITION") {
+        CAPS.Project.ToggleFacility(executionContext);
         //add on-change function to existing facility? caps_existingfacility
-        formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.ToggleAFGFacility);
+        formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.ToggleFacility);
     }   
 
     //Hide Ministry Review Status of Planned if not allowed
@@ -192,6 +197,7 @@ CAPS.Project.onLoad = function (executionContext) {
 
 }
 
+
 /**
  * Prevents autosave if the global prevent autosave flag is set
  * @param {any} executionContext execution context
@@ -207,6 +213,14 @@ CAPS.Project.onSave = function (executionContext) {
         }
     }
 
+}
+
+/*
+This function hides the submission category lease for all school districts except SD93
+*/
+CAPS.Project.HideLeaseSubmissionCategory = function () {
+    var customerCategoryFilter = "<filter type='and'><condition attribute='caps_categorycode' operator='ne' value='LEASE' /></filter>";
+    CAPS.Project.GLOBAL_FORM_CONTEXT.getControl("caps_submissioncategory").addCustomFilter(customerCategoryFilter, "caps_submissioncategory");
 }
 
 /**
@@ -246,10 +260,10 @@ CAPS.Project.UpdateTotalAllocated = function (executionContext) {
 }
 
 /**
- * This function is used to toggle showing and hiding of facility and facility site on AFG onchange of Existing Facility? field.
+ * This function is used to toggle showing and hiding of facility and facility site on onchange of Existing Facility? field.
  * @param {any} executionContext the execution context
  */
-CAPS.Project.ToggleAFGFacility = function (executionContext) {
+CAPS.Project.ToggleFacility = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
     var submissionCategoryTabNames = formContext.getAttribute("caps_submissioncategorytabname").getValue();
@@ -343,6 +357,16 @@ CAPS.Project.SetMultipleFacility = function (executionContext) {
                         }
                     }
 
+                    if (control.getAttribute().getName() === "caps_phasedprojectgroup") {
+                        if (showMultipleFacilities) {
+                            control.setVisible(false);
+                            control.getAttribute().setValue(null);
+                        }
+                        else {
+                            control.setVisible(true);
+                        }
+                    }
+
                 });
             });
         }
@@ -402,6 +426,12 @@ CAPS.Project.DefaultSchoolDistrict = function (formContext) {
                         formContext.getAttribute("caps_schooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
 
                         formContext.getAttribute("caps_hostschooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
+
+                        //if SD93
+                        if (sdName.includes("SD93"))
+                        {
+                            formContext.getControl("caps_submissioncategory").removePreSearch(CAPS.Project.HideLeaseSubmissionCategory);
+                        }
                     }
                 },
                 function (error) {
@@ -555,7 +585,7 @@ CAPS.Project.ValidateExpenditureDistribution = function (executionContext) {
     var sumOfEstimatedExpenditures = formContext.getAttribute("caps_totalallocated").getValue();
 
     if (totalProjectCost !== null && totalProjectCost !== sumOfEstimatedExpenditures) {
-        formContext.ui.setFormNotification('Total Project Cost not fully allocated  on the Cashflow tab.', 'WARNING', COST_MISSMATCH_NOTIFICATION);
+        formContext.ui.setFormNotification('Total Project Cost not fully allocated  on the Cashflow tab.', 'INFO', COST_MISSMATCH_NOTIFICATION);
         //formContext.getControl("caps_totalprojectcost").setNotification('Total Project Cost Not Fully Allocated', COST_MISSMATCH_NOTIFICATION);
     }
     else {
@@ -643,7 +673,7 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
                             function (response) {
 
                                 if (response.hasCashflow) {
-                                    formContext.ui.setFormNotification('PRFS is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
+                                    formContext.ui.setFormNotification('Concept Plan is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
                                 }
                                 else {
                                     formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
@@ -692,7 +722,7 @@ CAPS.Project.ValidatePRFSAlternativeOptions = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No PRFS Alternative Options have been provided on the PRFS tab.', 'INFO', PRFS_NOALTERNATIVES_NOTIFICATION);
+                            formContext.ui.setFormNotification('No Concept Plan Alternative Options have been provided on the Concept Plan tab.', 'INFO', PRFS_NOALTERNATIVES_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOALTERNATIVES_NOTIFICATION);
@@ -740,7 +770,7 @@ CAPS.Project.ValidatePRFSSurroundingSchools = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'INFO', PRFS_NOSCHOOLS_NOTIFICATION);
+                            formContext.ui.setFormNotification('No Concept Plan Surrounding Schools have been provided on the Concept Plan tab.', 'INFO', PRFS_NOSCHOOLS_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
@@ -752,17 +782,7 @@ CAPS.Project.ValidatePRFSSurroundingSchools = function (executionContext) {
             formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
         }
     );
-    /*
-    var formContext = executionContext.getFormContext();
 
-    var filteredRecordCount = formContext.getControl("sgd_surroundingschools").getGrid().getTotalRecordCount();
-
-    if (filteredRecordCount < 1) {
-        formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'WARNING', PRFS_NOSCHOOLS_NOTIFICATION);
-    }
-    else {
-        formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
-    }*/
 }
 
 /**
@@ -940,24 +960,38 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
                 formContext.getAttribute("caps_includenlc").setValue(null);
             }
             if (calcType === 200870004 || calcType === 200870005) {
-                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(true);
-                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(true);
                 formContext.getControl("caps_constructioncostsspir").setVisible(true);
-                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(true);
-                //formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(true);
             }
             else {
-                //formContext.getControl("caps_seismicupgradespaceallocation").setVisible(false);
-                //formContext.getControl("caps_seismicprojectidentificationreportfees").setVisible(false);
                 formContext.getControl("caps_constructioncostsspir").setVisible(false);
-                //formContext.getControl("caps_constructioncostsspiradjustments").setVisible(false);
-                //formContext.getControl("caps_constructioncostsnonstructuralseismicupgr").setVisible(false);
 
-                //formContext.getAttribute("caps_seismicupgradespaceallocation").setValue(null);
-                //formContext.getAttribute("caps_seismicprojectidentificationreportfees").setValue(null);
                 formContext.getAttribute("caps_constructioncostsspir").setValue(null);
-                //formContext.getAttribute("caps_constructioncostsspiradjustments").setValue(null);
-                //formContext.getAttribute("caps_constructioncostsnonstructuralseismicupgr").setValue(null);
+            }
+
+            if (calcType === 200870005) {
+                //blank values
+                formContext.getAttribute("caps_projectincludesdemolition").setValue(false);
+                formContext.getAttribute("caps_demolitioncost").setValue(null);
+                formContext.getAttribute("caps_projectincludesabnormaltopography").setValue(false);
+                formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
+
+                //hide
+                formContext.getControl("caps_projectincludesdemolition").setVisible(false);
+                formContext.getControl("caps_demolitioncost").setVisible(false);
+                formContext.getControl("caps_projectincludesabnormaltopography").setVisible(false);
+                formContext.getControl("caps_abnormaltopographycost").setVisible(false);
+
+                //make optional
+                formContext.getAttribute("caps_demolitioncost").setRequiredLevel("none");
+                formContext.getAttribute("caps_abnormaltopographycost").setRequiredLevel("none");
+
+            }
+            else {
+                //show
+                formContext.getControl("caps_projectincludesdemolition").setVisible(true);
+                formContext.getControl("caps_demolitioncost").setVisible(formContext.getAttribute("caps_projectincludesdemolition").getValue());
+                formContext.getControl("caps_projectincludesabnormaltopography").setVisible(true);
+                formContext.getControl("caps_abnormaltopographycost").setVisible(formContext.getAttribute("caps_projectincludesabnormaltopography").getValue());
             }
         },
         function (error) {
@@ -1094,7 +1128,7 @@ CAPS.Project.ValidateKindergartenDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'KINDERGARTEN DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'KINDERGARTEN DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('KINDERGARTEN DESIGN WARNING');
@@ -1126,7 +1160,7 @@ CAPS.Project.ValidateElementaryDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'ELEMENTARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'ELEMENTARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('ELEMENTARY DESIGN WARNING');
@@ -1158,7 +1192,7 @@ CAPS.Project.ValidateSecondaryDesignCapacity = function (executionContext) {
                 function (response) {
                     debugger;
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'WARNING', 'SECONDARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'SECONDARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('SECONDARY DESIGN WARNING');

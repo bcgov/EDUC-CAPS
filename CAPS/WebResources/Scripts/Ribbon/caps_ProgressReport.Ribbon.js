@@ -26,7 +26,7 @@ CAPS.ProgressReport.ShowUnsubmit = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });

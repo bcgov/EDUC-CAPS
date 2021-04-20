@@ -702,11 +702,7 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("2011-2013 Playground Equipment", 2)]
-		_20112013PlaygroundEquipment = 100000002,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("AFG", 3)]
+		[OptionSetMetadataAttribute("AFG", 2)]
 		AFG = 100000003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -714,11 +710,11 @@ namespace CAPS.DataContext
 		BCGamingGrants = 100000001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Local Capital", 4)]
+		[OptionSetMetadataAttribute("Local Capital", 3)]
 		LocalCapital = 100000004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Other", 5)]
+		[OptionSetMetadataAttribute("Other", 4)]
 		Other = 100000005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]

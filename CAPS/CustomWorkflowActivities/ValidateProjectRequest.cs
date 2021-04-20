@@ -231,11 +231,19 @@ namespace CustomWorkflowActivities
                     tracingService.Trace("Capital Plan Year: {0}", callForSubmission.caps_CapitalPlanYear.Id);
                     //Project request is not in correct year
                     isValid = false;
-                    validationMessage.AppendLine("Minor project requests added to a capital plan must start in same year in order to be submitted.");
+                    if (submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.Minor)
+                    {
+                        validationMessage.AppendLine("Minor project requests added to a capital plan must start in same year as the plan in order to be submitted.");
+                    }
+                    else
+                    {
+                        validationMessage.AppendLine("AFG project requests added to an expenditure plan must start in same year as the plan in order to be submitted.");
+                    }
                 }
             }
             #endregion
 
+            tracingService.Trace("{0}", "Check if Major Project has cash flow in first 5 years and not lease");
             #region Check if Major Project has cash flow in first 5 years and not lease
             //Check if Major Project has cash flow in first 5 years and not lease
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major && submissionCategory.caps_CategoryCode != "LEASE")
@@ -279,6 +287,7 @@ namespace CustomWorkflowActivities
             }
             #endregion
 
+            tracingService.Trace("{0}", "Check if Major Project has occupancy year before anticipated start year");
             #region Check if Major Project has occupancy year before anticipated start year
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major
         && projectRequest.caps_AnticipatedOccupancyYear != null
@@ -298,6 +307,7 @@ namespace CustomWorkflowActivities
             }
             #endregion
 
+            tracingService.Trace("{0}", "Check if major project has any prfs options with a start date before the capital plan year");
             #region Check if major project has any prfs options with a start date before the capital plan year
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
             {
@@ -331,16 +341,17 @@ namespace CustomWorkflowActivities
                     if (prfsOptions.Entities.Count() > 0)
                     {
                         isValid = false;
-                        validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the PRFS Alternative Option from the Project Request.");
+                        validationMessage.AppendLine("There is one or more Concept Plan Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the Concept Plan Alternative Option from the Project Request.");
                     }
                 }
-            } 
+            }
             #endregion
 
-            //Check if Lease occupancy year on or after submission year
+            tracingService.Trace("{0}", "Check if Lease occupancy year on or after submission year");
+            #region Check if Lease occupancy year on or after submission year
             if (submissionCategory.caps_CategoryCode == "LEASE"
-                && projectRequest.caps_Submission != null
-                && projectRequest.caps_AnticipatedOccupancyYear != callForSubmission.caps_CapitalPlanYear)
+        && projectRequest.caps_Submission != null
+        && projectRequest.caps_AnticipatedOccupancyYear != callForSubmission.caps_CapitalPlanYear)
             {
                 //get occupancy year
                 var occupancyYear = service.Retrieve(projectRequest.caps_AnticipatedOccupancyYear.LogicalName, projectRequest.caps_AnticipatedOccupancyYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
@@ -359,6 +370,36 @@ namespace CustomWorkflowActivities
                     }
                 }
             }
+            #endregion
+
+            tracingService.Trace("{0}", "Check if any Procurement Analysis Questions aren't marked as complete on Major Projects");
+            #region Check if any Procurement Analysis Questions aren't marked as complete on Major Projects
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
+            {
+                var fetchProcurementAnalysis = "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>" +
+                                                "<entity name = 'caps_procurementanalysis' > " +
+                                                "<attribute name = 'caps_procurementanalysisid' /> " +
+                                                "<attribute name = 'caps_name' /> " +
+                                                "<attribute name = 'createdon' /> " +
+                                                "<order attribute = 'caps_name' descending = 'false' /> " +
+                                                "<filter type = 'and' > " +
+                                                    "<condition attribute = 'caps_projectrequest' operator= 'eq'  value = '{" + recordId + "}' /> " +
+                                                    "<condition attribute = 'caps_complete' operator= 'ne' value = '1' /> " +
+                                                    "<condition attribute = 'statecode' operator= 'eq' value = '0' /> " +
+                                                "</filter> " +
+                                                "</entity> " +
+                                                "</fetch> ";
+
+                var incompleteAnalysis = service.RetrieveMultiple(new FetchExpression(fetchProcurementAnalysis));
+
+                if (incompleteAnalysis.Entities.Count() > 0)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("All Procurement Analysis records on the Concept Plan tab must be marked as Complete.");
+                }
+
+            } 
+            #endregion
 
             this.valid.Set(executionContext, isValid);
             this.message.Set(executionContext, validationMessage.ToString());

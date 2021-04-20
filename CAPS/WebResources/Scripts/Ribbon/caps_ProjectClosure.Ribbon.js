@@ -112,7 +112,7 @@ CAPS.ProjectClosure.ShowUnsubmit = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });
@@ -168,10 +168,12 @@ CAPS.ProjectClosure.ShowComplete = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });
 
     return showButton;
 }
+
+CAPS.ProjectClosure.ShowActivateDeactivate

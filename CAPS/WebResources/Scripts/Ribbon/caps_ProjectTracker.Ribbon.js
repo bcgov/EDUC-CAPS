@@ -84,10 +84,43 @@ CAPS.ProjectTracker.Complete = function (primaryControl) {
     var confirmOptions = { height: 200, width: 450 };
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {
+            var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
             if (success.confirmed) {
-                formContext.getAttribute("statecode").setValue(1);
-                formContext.getAttribute("statuscode").setValue(200870007);
-                formContext.data.entity.save();
+
+                //validate project caps_ValidateProjectonClosure
+                let req = {};
+                req.getMetadata = function () {
+                    return {
+                        boundParameter: "entity",
+                        operationType: 0,
+                        operationName: "caps_ValidateProjectonClosure",
+                        parameterTypes: {
+                            "entity": {
+                                "typeName": "mscrm.caps_projecttracker",
+                                "structuralProperty": 5
+                            }
+                        }
+                    }
+                };
+                req.entity = { entityType: "caps_projecttracker", id: recordId };
+
+                Xrm.WebApi.online.execute(req).then(
+                    function (result) {
+                        debugger;
+                        if (result.ok) {
+
+                            formContext.getAttribute("statecode").setValue(1);
+                            formContext.getAttribute("statuscode").setValue(200870007);
+                            formContext.getAttribute("caps_dateprojectclosed").setRequiredLevel("required");
+                            formContext.getControl("caps_dateprojectclosed").setFocus();
+                            formContext.data.entity.save();
+                        }
+                    },
+                    function (e) {
+                        Xrm.Navigation.openErrorDialog({ message: e.message });
+                    }
+                );
+
             }
         },
         function (error) {
@@ -116,7 +149,7 @@ CAPS.ProjectTracker.ShowComplete = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });
@@ -139,6 +172,8 @@ CAPS.ProjectTracker.Cancel = function (primaryControl) {
             if (success.confirmed) {
                 formContext.getAttribute("statecode").setValue(1);
                 formContext.getAttribute("statuscode").setValue(200870008);
+                formContext.getAttribute("caps_dateprojectclosed").setRequiredLevel("required");
+                formContext.getControl("caps_dateprojectclosed").setFocus();
                 formContext.data.entity.save();
             }
         },
@@ -168,7 +203,7 @@ CAPS.ProjectTracker.ShowCancel = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS Ministry User") {
+        if (item.name === "CAPS CMB User") {
             showButton = true;
         }
     });
