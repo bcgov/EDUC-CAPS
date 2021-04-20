@@ -14557,7 +14557,7 @@ Fields!caps_total_operatingutilization_district.Value, ""),
                                                                                                                                           <Paragraph>
                                                                                                                                             <TextRuns>
                                                                                                                                               <TextRun>
-                                                                                                                                                <Value>=trim(join(lookupset(Fields!PROJECT_caps_facilityValue.Value,Fields!caps_facilityValue.Value, IIF(Fields!YEAR_caps_schoolyear.Value = ReportItems!PROJECT_caps_anticipatedoccupancyyear1.Value, Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
+                                                                                                                                                <Value>=lookup(Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -14630,14 +14630,8 @@ Fields!caps_total_operatingutilization_district.Value, ""),
                                                                                                                                                   <Paragraph>
                                                                                                                                                     <TextRuns>
                                                                                                                                                       <TextRun>
-                                                                                                                                                        <Value>=trim(join(LookupSet(
-Fields!PROJECT_caps_facilityValue.Value, Fields!caps_facilityValue.Value, 
-IIF(Fields!YEAR_edu_startyearValue.Value = Parameters!CurrentFiscalYearStart.Value + 2, Fields!caps_total_designcapacity.Value, ""), 
-"CapacityReporting"), "")) - 
-trim(join(lookupset(
-Fields!PROJECT_caps_facilityValue.Value,Fields!caps_facilityValue.Value, 
-IIF(Fields!YEAR_edu_startyearValue.Value = Parameters!CurrentFiscalYearStart.Value+2, 
-Fields!caps_total_enrolment.Value,""), "CapacityReporting"),""))</Value>
+                                                                                                                                                        <Value>=lookup(Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,Fields!caps_total_designcapacity.Value,"CapacityReporting") - 
+lookup(Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                         <Style>
                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                           <FontSize>9pt</FontSize>
