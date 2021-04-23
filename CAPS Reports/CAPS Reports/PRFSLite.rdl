@@ -3177,7 +3177,7 @@
     &lt;attribute name="caps_constructionmanagementdescription" /&gt;
     &lt;attribute name="caps_sortorder" /&gt;
     &lt;filter&gt;
-      &lt;condition attribute="caps_projectrequest" operator="eq" value="@ProjectID" uitype="caps_project" /&gt;
+      &lt;condition attribute="caps_projectrequest" operator="eq" value="@ProjectID " uitype="caps_project" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_sortorder" /&gt;
   &lt;/entity&gt;
@@ -16038,6 +16038,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Height>3.85521cm</Height>
                 <Width>23.76118cm</Width>
                 <ZIndex>5</ZIndex>
+                <Visibility>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>

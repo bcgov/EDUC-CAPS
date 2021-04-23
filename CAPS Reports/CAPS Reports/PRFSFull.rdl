@@ -18763,6 +18763,9 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Height>4.56959cm</Height>
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
+                <Visibility>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                </Visibility>
                 <Style>
                   <Border>
                     <Style>None</Style>
