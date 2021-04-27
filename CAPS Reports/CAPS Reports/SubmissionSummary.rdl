@@ -274,8 +274,9 @@
         &lt;attribute name="caps_callforsubmissiontype" /&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_project" from="caps_projectid" to="caps_project" alias="ParentProjectRequest" &gt;
+    &lt;link-entity name="caps_project" from="caps_projectid" to="caps_project" link-type="outer" alias="ParentProjectRequest" &gt;
       &lt;attribute name="caps_submission" /&gt;
+      &lt;attribute name="caps_projectcode" /&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -446,6 +447,10 @@
         <Field Name="ParentProjectRequest_caps_submissionValue">
           <DataField>ParentProjectRequest_caps_submissionValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="ParentProjectRequest_caps_projectcode">
+          <DataField>ParentProjectRequest_caps_projectcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SupportedTotalProjectCost">
           <Value>= IIF(Fields!MinistryReviewStatus_SD.Value = "Supported", CDec(Fields!caps_totalprojectcostValue.Value), CDec(0))</Value>
@@ -1620,7 +1625,7 @@
                 <DataSetName>CapitalPlanDetails</DataSetName>
                 <Top>0.23748cm</Top>
                 <Left>0.13416cm</Left>
-                <Height>7.88651cm</Height>
+                <Height>7.88652cm</Height>
                 <Width>11.03401cm</Width>
                 <Style>
                   <Border>
@@ -1632,10 +1637,10 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>5.12555cm</Width>
+                      <Width>4.13797cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.98708cm</Width>
+                      <Width>3.94534cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -1681,7 +1686,7 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox252">
+                            <Textbox Name="Textbox5">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1701,7 +1706,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox252</rd:DefaultName>
+                              <rd:DefaultName>Textbox5</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -1768,8 +1773,6 @@
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>11pt</FontSize>
-                                        <Format>'$'#,0;('$'#,0)</Format>
-                                        <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -1832,7 +1835,7 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox254">
+                            <Textbox Name="Textbox14">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1851,7 +1854,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox254</rd:DefaultName>
+                              <rd:DefaultName>Textbox14</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -1909,14 +1912,14 @@
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="SupportedTotalProjectCost1">
+                            <Textbox Name="Textbox24">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(CDec(Fields!SupportedTotalProjectCost.Value))</Value>
+                                      <Value>=Sum(Fields!SupportedTotalProjectCost.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -1929,7 +1932,7 @@
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>SupportedTotalProjectCost1</rd:DefaultName>
+                              <rd:DefaultName>Textbox24</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -1951,19 +1954,14 @@
                 <TablixColumnHierarchy>
                   <TablixMembers>
                     <TablixMember />
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>= Parameters!CapitalPlanStatus.Value &lt;&gt; "Results Released" or Parameters!CapitalPlanToggle.Value = "Submitted" 
-or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
-                      </Visibility>
-                    </TablixMember>
+                    <TablixMember />
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox233">
                             <CanGrow>true</CanGrow>
@@ -2017,7 +2015,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="caps_submissioncategory11">
                             <CanGrow>true</CanGrow>
@@ -2064,7 +2062,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     </TablixMember>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox239">
                             <CanGrow>true</CanGrow>
@@ -2105,10 +2103,10 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>CapitalPlanSummaryV2</DataSetName>
-                <Top>0.17449cm</Top>
+                <Top>0cm</Top>
                 <Left>11.34456cm</Left>
                 <Height>3.69181cm</Height>
-                <Width>14.76457cm</Width>
+                <Width>11.74767cm</Width>
                 <ZIndex>1</ZIndex>
                 <Visibility>
                   <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Major"</Hidden>
@@ -2123,10 +2121,10 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>5.15201cm</Width>
+                      <Width>4.16443cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.96063cm</Width>
+                      <Width>3.97305cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -2256,7 +2254,10 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!SupportedFundingRequested.Value</Value>
+                                      <Value>=Lookup(
+Fields!caps_submissioncategorycode.Value, 
+Fields!caps_submissioncategorycode.Value, 
+Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2331,7 +2332,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(Fields!SupportedFundingRequested.Value)</Value>
+                                      <Value>=Sum(Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2408,7 +2409,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(CDec(Fields!SupportedFundingRequested.Value))</Value>
+                                      <Value>=CDEC(Sum(Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests"))</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2454,7 +2455,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox271">
                             <CanGrow>true</CanGrow>
@@ -2508,7 +2509,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="caps_submissioncategory81">
                             <CanGrow>true</CanGrow>
@@ -2555,7 +2556,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                     </TablixMember>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66436cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox281">
                             <CanGrow>true</CanGrow>
@@ -2599,7 +2600,7 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <Top>3.92385cm</Top>
                 <Left>11.34456cm</Left>
                 <Height>3.35251cm</Height>
-                <Width>14.76458cm</Width>
+                <Width>11.80184cm</Width>
                 <ZIndex>2</ZIndex>
                 <Visibility>
                   <Hidden>= Fields!CallforSubmission_caps_callforsubmissiontype.Value &lt;&gt; "Minor"</Hidden>
@@ -8197,10 +8198,10 @@ or Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>5.15201cm</Width>
+                      <Width>4.16849cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>4.92018cm</Width>
+                      <Width>3.93666cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -8454,7 +8455,7 @@ Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66842cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox272">
                             <CanGrow>true</CanGrow>
@@ -8508,7 +8509,7 @@ Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>4.65194cm</Size>
+                        <Size>3.66842cm</Size>
                         <CellContents>
                           <Textbox Name="caps_submissioncategory82">
                             <CanGrow>true</CanGrow>
@@ -8562,7 +8563,7 @@ Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 <Top>7.49092cm</Top>
                 <Left>11.37284cm</Left>
                 <Height>2.52761cm</Height>
-                <Width>14.72413cm</Width>
+                <Width>11.77357cm</Width>
                 <ZIndex>6</ZIndex>
                 <Visibility>
                   <Hidden>=Parameters!SubmissionType.Value &lt;&gt; "Expenditure Plan"</Hidden>
@@ -12280,6 +12281,7 @@ Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0in</Top>
               <Left>9.05362in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
