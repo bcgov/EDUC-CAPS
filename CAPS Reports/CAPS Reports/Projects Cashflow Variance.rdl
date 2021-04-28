@@ -7,9 +7,8 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
-        <Prompt>Login</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>2a3fa75e-8da5-436b-8697-399099d07702</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -17,6 +16,11 @@
     <DataSet Name="ActiveProjectCashflow">
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
     &lt;attribute name="caps_projectcashflowid" /&gt;
@@ -33,8 +37,10 @@
       &lt;attribute name="caps_fundingprogram" /&gt;
       &lt;attribute name="caps_datecashflowupdated" /&gt;
       &lt;attribute name="statuscode" /&gt;
-      &lt;filter&gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SCHOOL_DISTRICT" &gt;
         &lt;attribute name="edu_commonname" /&gt;
@@ -161,6 +167,11 @@
     <DataSet Name="ClosedProjectCashflow">
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectcashflow" &gt;
     &lt;attribute name="caps_projectcashflowid" /&gt;
@@ -171,8 +182,8 @@
     &lt;attribute name="caps_totalagency" /&gt;
     &lt;attribute name="caps_agencyactual" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
-    &lt;filter type="and"&gt;
-      &lt;filter type="or"&gt;
+    &lt;filter type="and" &gt;
+      &lt;filter type="or" &gt;
         &lt;condition attribute="caps_totalagency" operator="gt" value="0" /&gt;
         &lt;condition attribute="caps_totalprovincial" operator="gt" value="0" /&gt;
       &lt;/filter&gt;
@@ -186,6 +197,7 @@
       &lt;attribute name="caps_dateprojectclosed" /&gt;
       &lt;filter&gt;
         &lt;condition attribute="statecode" operator="eq" value="1" /&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SCHOOL_DISTRICT" &gt;
         &lt;attribute name="edu_commonname" /&gt;
@@ -317,6 +329,59 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="SchoolDistricts">
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="edu_schooldistrict"&gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;attribute name="edu_region" /&gt;
+    &lt;attribute name="edu_schooldistrictid" /&gt;
+    &lt;attribute name="edu_number" /&gt;
+    &lt;attribute name="edu_internalcode" /&gt;
+    &lt;attribute name="edu_commonname" /&gt;
+    &lt;order attribute="edu_number" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_region">
+          <DataField>edu_region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_regionValue">
+          <DataField>edu_regionValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="edu_regionEntityName">
+          <DataField>edu_regionEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_schooldistrictid">
+          <DataField>edu_schooldistrictid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_number">
+          <DataField>edu_number</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_internalcode">
+          <DataField>edu_internalcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_commonname">
+          <DataField>edu_commonname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -341,7 +406,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Projects Cashflow Variance - current fiscal year</Value>
+                    <Value>Projects Cashflow Variance - Current Fiscal Year</Value>
                     <Style>
                       <FontSize>18pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2623,10 +2688,31 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="SchoolDistrict">
+      <DataType>String</DataType>
+      <Prompt>Select the desired School District(s)</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>SchoolDistricts</DataSetName>
+          <ValueField>edu_schooldistrictid</ValueField>
+          <LabelField>edu_name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>SchoolDistrict</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
