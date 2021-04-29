@@ -654,9 +654,6 @@
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_prfsalternativeoption" &gt;
     &lt;all-attributes/&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
     &lt;filter type="and" /&gt;
     &lt;order attribute="caps_name" /&gt;
     &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" link-type="inner" alias="ProjReq" &gt;
@@ -8084,7 +8081,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>=Fields!caps_facility.Value</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -8546,10 +8543,10 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>=Fields!caps_proposedfacility.Value</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <FontWeight>Normal</FontWeight>
+                                            <FontWeight>Bold</FontWeight>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
