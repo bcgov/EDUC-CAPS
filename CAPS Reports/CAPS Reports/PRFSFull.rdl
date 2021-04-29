@@ -6229,7 +6229,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest"), 0)</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -6247,7 +6247,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -6302,7 +6302,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest"), 0)</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>0;(0)</Format>
@@ -6320,7 +6320,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -6375,11 +6375,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(
-Fields!caps_schoolyear.Value &gt;= 
-First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), 
-First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest"), 
-0)</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest"), 0)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -6396,7 +6392,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -6597,7 +6593,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value))</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -6672,7 +6668,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
+                                          <Value>=IIF(Sum(Fields!caps_total_designcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -6757,7 +6753,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeindesigncapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_designcapacityValue.Value), Sum(Fields!caps_total_designcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -6783,6 +6779,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -6831,7 +6828,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0;(#,0)</Format>
@@ -6906,7 +6903,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
+                                          <Value>=IIF(Sum(Fields!caps_total_operatingcapacityValue.Value) = 0, 0, Sum(Fields!caps_total_enrolmentValue.Value) / iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)))</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -6991,7 +6988,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=iif(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                          <Value>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), First(Fields!caps_changeinoperatingcapacitytotal.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacityValue.Value), Sum(Fields!caps_total_operatingcapacityValue.Value)) - Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <Format>#,0</Format>
@@ -7072,7 +7069,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <TextRuns>
                                         <TextRun>
                                           <Value>=IIF(
-Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"),
+Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"),
 First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
 Sum(Fields!caps_total_operatingcapacity_districtValue.Value))</Value>
                                           <Style>
@@ -7156,7 +7153,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value))</Value>
                                           <Value>= IIF(Sum(Fields!caps_total_operatingcapacity_districtValue.Value) = 0,
 0,
 Sum(Fields!caps_total_enrolmentValue.Value) / 
-IIF(Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"),
+IIF(Fields!YEAR_edu_startyear.Value &gt;=First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"),
 Sum(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
 Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                           <Style>
@@ -7247,7 +7244,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                       <TextRuns>
                                         <TextRun>
                                           <Value>=IIF(
-Fields!caps_schoolyear.Value &gt;= First(Fields!caps_anticipatedoccupancyyear.Value, "ProjectRequest"), 
+Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), 
 First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectRequest") + Sum(Fields!caps_total_operatingcapacity_districtValue.Value),
 Sum(Fields!caps_total_operatingcapacity_districtValue.Value)) - 
 Sum(Fields!caps_total_enrolmentValue.Value)</Value>
