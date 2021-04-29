@@ -3765,7 +3765,6 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -5312,7 +5311,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_name.Value</Value>
+                                          <Value>=iif(isnothing(Fields!caps_proposedfacility.Value), Fields!caps_name.Value &amp; " - " &amp; Fields!caps_facility.Value, Fields!caps_name.Value &amp; " - " &amp; Fields!caps_proposedfacility.Value)</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -5343,6 +5342,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                   </Style>
                                 </Textbox>
                                 <ColSpan>13</ColSpan>
+                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell />
@@ -5364,14 +5364,14 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox548">
+                                <Textbox Name="Textbox20">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_facility.Value</Value>
+                                          <Value />
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -5381,7 +5381,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox548</rd:DefaultName>
+                                  <rd:DefaultName>Textbox20</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -5826,14 +5826,14 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                           <TablixCells>
                             <TablixCell>
                               <CellContents>
-                                <Textbox Name="Textbox987">
+                                <Textbox Name="Textbox22">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Fields!caps_proposedfacility.Value</Value>
+                                          <Value />
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -5843,7 +5843,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Style />
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox987</rd:DefaultName>
+                                  <rd:DefaultName>Textbox22</rd:DefaultName>
                                   <Style>
                                     <Border>
                                       <Color>LightGrey</Color>
@@ -16153,10 +16153,13 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <Width>2.26347cm</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>2.86425cm</Width>
+                      <Width>2.52029cm</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>2.49784cm</Width>
+                    </TablixColumn>
+                    <TablixColumn>
+                      <Width>2.5cm</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -16285,6 +16288,39 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox34</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#e3a82b</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox9">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Related New School Cost (if Applicable)</Value>
+                                      <Style>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox9</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -16519,6 +16555,40 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                             </Textbox>
                           </CellContents>
                         </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox18">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_otherprojecttotalcost.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <Format>'$'#,0;('$'#,0)</Format>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox18</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                                <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
                       </TablixCells>
                     </TablixRow>
                   </TablixRows>
@@ -16528,7 +16598,16 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
-                    <TablixMember />
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=Fields!caps_submissioncategorycode.Value = "SITE_ACQUISITION"</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "SITE_ACQUISITION"</Hidden>
+                      </Visibility>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
@@ -16541,7 +16620,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Top>1.5175cm</Top>
                 <Left>0.02681cm</Left>
                 <Height>1.2cm</Height>
-                <Width>9.88903cm</Width>
+                <Width>12.04507cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -16573,7 +16652,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>2.5cm</Width>
+                      <Width>4.53729cm</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>2.5cm</Width>
@@ -16595,7 +16674,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Available Site Size</Value>
+                                      <Value>Available Site Size (Acres/Hectares)</Value>
                                       <Style>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
@@ -16699,7 +16778,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Fields!caps_availablesitesize_acres.Value &amp; " acres/" &amp; Fields!caps_availablesitesize_hectares.Value &amp; " hectares"</Value>
+                                      <Value>=Fields!caps_availablesitesize_acres.Value &amp; "/" &amp; Fields!caps_availablesitesize_hectares.Value</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <Format>0.0;(0.0)</Format>
@@ -16876,7 +16955,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Top>2.80202cm</Top>
                 <Left>0.02681cm</Left>
                 <Height>1.2cm</Height>
-                <Width>7.5cm</Width>
+                <Width>9.53729cm</Width>
                 <ZIndex>3</ZIndex>
                 <Visibility>
                   <Hidden>=IIF(Fields!caps_submissioncategorycode.Value = "SITE_ACQUISITION" Or Fields!caps_submissioncategorycode.Value  = "NEW_SCHOOL", False, True)</Hidden>
