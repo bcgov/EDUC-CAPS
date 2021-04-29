@@ -686,9 +686,6 @@
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_prfsalternativeoption" &gt;
     &lt;all-attributes/&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
     &lt;filter type="and" /&gt;
     &lt;order attribute="caps_name" /&gt;
     &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" link-type="inner" alias="ProjReq" &gt;
@@ -4497,11 +4494,14 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                       <TextRuns>
                                         <TextRun>
                                           <Value>Total Surplus \ </Value>
-                                          <Style />
+                                          <Style>
+                                            <FontFamily>Arial</FontFamily>
+                                          </Style>
                                         </TextRun>
                                         <TextRun>
                                           <Value>Shortfall</Value>
                                           <Style>
+                                            <FontFamily>Arial</FontFamily>
                                             <Color>Red</Color>
                                           </Style>
                                         </TextRun>
@@ -5370,7 +5370,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>=Fields!caps_facility.Value</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                             <FontWeight>Bold</FontWeight>
@@ -5832,10 +5832,10 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value />
+                                          <Value>=Fields!caps_proposedfacility.Value</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
-                                            <FontWeight>Normal</FontWeight>
+                                            <FontWeight>Bold</FontWeight>
                                           </Style>
                                         </TextRun>
                                       </TextRuns>
@@ -12667,7 +12667,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>11.01398cm</Top>
+                    <Top>10.48481cm</Top>
                     <Left>0.01729in</Left>
                     <Height>9.85856cm</Height>
                     <Width>22.51255cm</Width>
@@ -12682,7 +12682,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <KeepTogether>true</KeepTogether>
                 <Top>27.90639cm</Top>
                 <Left>0.40993cm</Left>
-                <Height>20.87254cm</Height>
+                <Height>20.50212cm</Height>
                 <Width>22.75949cm</Width>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -15144,8 +15144,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>48.96303cm</Top>
-                <Left>0.41906cm</Left>
+                <Top>48.54962cm</Top>
+                <Left>0.45384cm</Left>
                 <Height>0.6cm</Height>
                 <Width>6.44671cm</Width>
                 <ZIndex>4</ZIndex>
@@ -15791,6 +15791,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -16050,7 +16051,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>22.17445cm</Top>
-            <Height>49.5975cm</Height>
+            <Height>49.20062cm</Height>
             <Width>24.13557cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -23724,7 +23725,7 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>71.93185cm</Height>
+        <Height>71.58789cm</Height>
         <Style />
       </Body>
       <Width>24.13557cm</Width>
