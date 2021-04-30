@@ -382,6 +382,31 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="CurrentFiscalYear">
+      <Query>
+        <DataSourceName>CAPS_DEV</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;attribute name="edu_yearid" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -391,6 +416,7 @@
             <Source>Embedded</Source>
             <Value>BC_EDUC_H_RGB_pos</Value>
             <Sizing>FitProportional</Sizing>
+            <Left>0in</Left>
             <Height>0.73644in</Height>
             <Width>1.56053in</Width>
             <Style>
@@ -417,7 +443,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox30</rd:DefaultName>
-            <Left>3.96375cm</Left>
+            <Left>3.96376cm</Left>
             <Height>1.11125cm</Height>
             <Width>14.64813cm</Width>
             <ZIndex>1</ZIndex>
@@ -449,7 +475,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
             <Top>1.11125cm</Top>
-            <Left>3.96375cm</Left>
+            <Left>3.96376cm</Left>
             <Height>0.6cm</Height>
             <Width>7.35917cm</Width>
             <ZIndex>2</ZIndex>
@@ -1465,7 +1491,7 @@
                 <Value>=Fields!PROJECT_caps_fundingprogram.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>2.02888in</Top>
+            <Top>2.3518in</Top>
             <Height>0.88542in</Height>
             <Width>12.42751in</Width>
             <ZIndex>3</ZIndex>
@@ -2582,7 +2608,7 @@
                 <Value>=Fields!SCHOOL_DISTRICT_edu_commonname.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>1.02138in</Top>
+            <Top>1.3443in</Top>
             <Left>0.00001cm</Left>
             <Height>0.88542in</Height>
             <Width>13.34626in</Width>
@@ -2593,8 +2619,118 @@
               </Border>
             </Style>
           </Tablix>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox37">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Fiscal Year</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="edu_name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!edu_name.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>edu_name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details1" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>CurrentFiscalYear</DataSetName>
+            <Top>0.91542in</Top>
+            <Left>0in</Left>
+            <Height>0.25in</Height>
+            <Width>2in</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
         </ReportItems>
-        <Height>2.99068in</Height>
+        <Height>3.32401in</Height>
         <Style />
       </Body>
       <Width>13.52218in</Width>
@@ -2624,6 +2760,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.03528cm</Top>
+              <Left>0in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <Style>
@@ -2656,7 +2793,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.03528cm</Top>
-              <Left>22.93284cm</Left>
+              <Left>22.93285cm</Left>
               <Height>0.25in</Height>
               <Width>1.6435in</Width>
               <ZIndex>1</ZIndex>

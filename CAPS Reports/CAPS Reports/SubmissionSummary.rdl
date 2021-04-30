@@ -2254,10 +2254,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Lookup(
-Fields!caps_submissioncategorycode.Value, 
-Fields!caps_submissioncategorycode.Value, 
-Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2332,7 +2329,7 @@ Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
+                                      <Value>=Sum(Fields!SupportedFundingRequested.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2402,14 +2399,14 @@ Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="SupportedFundingRequested3">
+                            <Textbox Name="SupportedFundingRequested2">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=CDEC(Sum(Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests"))</Value>
+                                      <Value>=Sum(Fields!SupportedFundingRequested.Value)</Value>
                                       <Style>
                                         <FontFamily>Arial</FontFamily>
                                         <FontSize>11pt</FontSize>
@@ -2422,7 +2419,7 @@ Fields!FundingRequested_Minor.Value, "MinisterApprovedProjectRequests")</Value>
                                   <Style />
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>SupportedFundingRequested3</rd:DefaultName>
+                              <rd:DefaultName>SupportedFundingRequested2</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -12281,7 +12278,6 @@ Parameters!CapitalPlanToggle.Value = "Draft"</Hidden>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0in</Top>
               <Left>9.05362in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
