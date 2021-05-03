@@ -136,23 +136,6 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
                     alert(error.message);
                 }
                 );
-
-        /*
-        formContext.getControl("sgd_facilities").addOnLoad(function (gridContext) {
-            debugger;
-            var filteredRecordCount = gridContext.getFormContext().getControl("sgd_facilities").getGrid().getTotalRecordCount();
-
-            if (filteredRecordCount > 0) {
-                formContext.getControl("sgd_facilities").setVisible(true);
-                formContext.getControl("caps_facility").setVisible(false);
-            }
-            else {
-                formContext.getControl("sgd_facilities").setVisible(false);
-                formContext.getControl("caps_facility").setVisible(true);
-            }
-        });
-
-        */
     }
 
 
@@ -335,12 +318,12 @@ CAPS.ProjectTracker.showSummaryReport = function (formContext) {
 
                 if (iframeObject !== null) {
                     var strURL = "/crmreports/viewer/viewer.aspx"
-                        + "?id=ed1744bc-98a6-ea11-a813-000d3af42496"
+                        + "?id=6c075f27-49ba-ea11-a812-000d3af42496"
                         + "&action=run"
                         + "&context=records"
                         + "&recordstype="+objectTypeCode
                         + "&records=" + formContext.data.entity.getId()
-                        + "&helpID=Monthly%20Project%20Summary.rdl";
+                        + "&helpID=Project%20Summary.rdl";
 
                     //Set URL of iframe
                     iframeObject.setSrc(strURL);
@@ -389,9 +372,9 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
-        if (formContext.ui.tabs.get("tab_emr") != null) {
+        /*if (formContext.ui.tabs.get("tab_emr") != null) {
             formContext.ui.tabs.get("tab_emr").setVisible(false);
-        }
+        }*/
 
     }
     else if (submissionCategoryCode === 'BUS' || submissionCategoryCode === 'SEP' || submissionCategoryCode === 'PEP' || submissionCategoryCode === 'CNCP') {
@@ -415,9 +398,9 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
-        if (formContext.ui.tabs.get("tab_emr") != null) {
+        /*if (formContext.ui.tabs.get("tab_emr") != null) {
             formContext.ui.tabs.get("tab_emr").setVisible(false);
-        }
+        }*/
 
     }
     else if (submissionCategoryCode === 'SITE_ACQUISITION') {

@@ -176,4 +176,19 @@ CAPS.ProjectClosure.ShowComplete = function (primaryControl) {
     return showButton;
 }
 
-CAPS.ProjectClosure.ShowActivateDeactivate
+/*
+Function to check if the current user has CAPS CMB User Role.
+*/
+CAPS.ProjectClosure.IsMinistryUser = function () {
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB User") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}

@@ -27,6 +27,8 @@ const NO_FACILITY_NOTIFICATION = "No_Facility_Notification";
 const PRFS_INCOMPLETE_NOTIFICATION = "PRFS_Incomplete_Notification";
 const PRFS_NOSCHOOLS_NOTIFICATION = "PRFS_No_Surrounding_Schools_Notification";
 const PRFS_NOALTERNATIVES_NOTIFICATION = "PRFS_No_Alternatives_Notification";
+const CURRENT_FCI_NOTIFICATION = "Current_FCI_Notification";
+const FUTURE_FCI_NOTIFICATION = "Future_FCI_Notification";
 
 /**
  * Main function for Project.  This function calls all other form functions and registers onChange and onLoad events.
@@ -141,7 +143,7 @@ CAPS.Project.onLoad = function (executionContext) {
 
         CAPS.Project.addFacilitiesEventListener(0);
     }
-    debugger;
+
     //Check if AFG or Demolition Project to setup existing facility toggle
     if (submissionCategoryCode === "AFG" || submissionCategoryCode === "DEMOLITION") {
         CAPS.Project.ToggleFacility(executionContext);
@@ -159,7 +161,6 @@ CAPS.Project.onLoad = function (executionContext) {
     if (submissionCategoryCode == "ADDITION" || submissionCategoryCode == "DEMOLITION" || submissionCategoryCode == "NEW_SCHOOL" || submissionCategoryCode == "REPLACEMENT_RENOVATION" || submissionCategoryCode == "SEISMIC" || submissionCategoryCode == "SITE_ACQUISITION" || submissionCategoryCode == "BEP") {
         formContext.getControl("caps_fundingawarded").setVisible(false);
     }
-
 
     //Adding Schedule B Toggles & general setup of schedule B    
     CAPS.Project.SetupScheduleB(executionContext);
@@ -181,9 +182,21 @@ CAPS.Project.onLoad = function (executionContext) {
         CAPS.Project.ToggleBusIssueType(executionContext);
     }
 
+    //if site aquisition, hide procurement analysis
+    if (submissionCategoryCode === "SITE_ACQUISITION") {
+        formContext.ui.tabs.get("tab_PRFS").sections.get("PRFS_section_PROCUREMENT_ANALYSIS").setVisible(false);
+    }
+
     //setup LRFP field validation and display
     CAPS.Project.ToggleLRFP(executionContext);
     formContext.getAttribute("caps_longrangefacilityplan").addOnChange(CAPS.Project.ToggleLRFP);
+
+    //Validate FCI
+    formContext.getAttribute("caps_currentfci").addOnChange(CAPS.Project.ValidateCurrentFCI);
+    CAPS.Project.ValidateCurrentFCI(executionContext);
+
+    formContext.getAttribute("caps_futurefacilityconditionindex").addOnChange(CAPS.Project.ValidateFutureFCI);
+    CAPS.Project.ValidateFutureFCI(executionContext);
 
     //Design Capacity Checks
     CAPS.Project.ValidateKindergartenDesignCapacity(executionContext);
@@ -673,7 +686,7 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
                             function (response) {
 
                                 if (response.hasCashflow) {
-                                    formContext.ui.setFormNotification('Concept Plan is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
+                                    formContext.ui.setFormNotification('PRFS is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
                                 }
                                 else {
                                     formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
@@ -722,7 +735,7 @@ CAPS.Project.ValidatePRFSAlternativeOptions = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No Concept Plan Alternative Options have been provided on the Concept Plan tab.', 'INFO', PRFS_NOALTERNATIVES_NOTIFICATION);
+                            formContext.ui.setFormNotification('No PRFS Alternative Options have been provided on the PRFS tab.', 'INFO', PRFS_NOALTERNATIVES_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOALTERNATIVES_NOTIFICATION);
@@ -770,7 +783,7 @@ CAPS.Project.ValidatePRFSSurroundingSchools = function (executionContext) {
                     function (response) {
 
                         if (response.displayError) {
-                            formContext.ui.setFormNotification('No Concept Plan Surrounding Schools have been provided on the Concept Plan tab.', 'INFO', PRFS_NOSCHOOLS_NOTIFICATION);
+                            formContext.ui.setFormNotification('No PRFS Surrounding Schools have been provided on the PRFS tab.', 'INFO', PRFS_NOSCHOOLS_NOTIFICATION);
                         }
                         else {
                             formContext.ui.clearFormNotification(PRFS_NOSCHOOLS_NOTIFICATION);
@@ -1229,5 +1242,43 @@ CAPS.Project.ValidateDesignCapacityRequest.prototype.getMetadata = function () {
         operationName: "caps_ValidateDesignCapacity"
     };
 };
+
+/**
+This function validates the current FCI and displays a notification if it's greater than 1.
+*/
+CAPS.Project.ValidateCurrentFCI = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    var fci = formContext.getAttribute("caps_currentfci");
+
+    if (fci != null) {
+        if (fci.getValue() > 1) {
+            formContext.ui.setFormNotification('Current FCI is usually equal to or less than 1, please make sure it is correct.', 'INFO', CURRENT_FCI_NOTIFICATION);
+        }
+        else {
+            formContext.ui.clearFormNotification(CURRENT_FCI_NOTIFICATION);
+        }
+    }
+}
+
+/**
+This function validates the future FCI and displays a notification if it's greater than 1.
+*/
+CAPS.Project.ValidateFutureFCI = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+
+    var fci = formContext.getAttribute("caps_futurefacilityconditionindex");
+
+    if (fci != null) {
+        if (fci.getValue() > 1) {
+            formContext.ui.setFormNotification('Future FCI is usually equal to or less than 1, please make sure it is correct.', 'INFO', FUTURE_FCI_NOTIFICATION);
+        }
+        else {
+            formContext.ui.clearFormNotification(FUTURE_FCI_NOTIFICATION);
+        }
+    }
+}
 
 

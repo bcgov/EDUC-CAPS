@@ -38,7 +38,8 @@ CAPS.Submission.ShowCancel = function (primaryControl) {
     var formContext = primaryControl;
 
     //TODO: Check current state of capital plan
-    if (!(formContext.getAttribute("statuscode").getValue() == 1)) {
+    if (!(formContext.getAttribute("statuscode").getValue() == 1
+        || formContext.getAttribute("statuscode").getValue() == 2)) {
         return false;
     }
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
@@ -46,7 +47,7 @@ CAPS.Submission.ShowCancel = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS CMB Release Submission Results - Add On") {
+        if (item.name === "CAPS CMB Finance Unit - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });

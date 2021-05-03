@@ -23,7 +23,7 @@ CAPS.COA.ShowClose = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS CMB Release Submission Results - Add On") {
+        if (item.name === "CAPS CMB Finance Unit - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
@@ -116,7 +116,7 @@ CAPS.COA.ShowCancel = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS CMB Finance Unit - Add On") {
+        if (item.name === "CAPS CMB Finance Unit - Add On" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
@@ -137,6 +137,8 @@ CAPS.COA.Cancel = function (primaryControl) {
         function (success) {
             if (success.confirmed) {
                 debugger;
+                formContext.getAttribute("caps_signedon").setValue(null);
+                formContext.getAttribute("caps_signedby").setValue(null);
                 formContext.getAttribute("statecode").setValue(1);
                 formContext.getAttribute("statuscode").setValue(200870003);
                 formContext.data.entity.save();

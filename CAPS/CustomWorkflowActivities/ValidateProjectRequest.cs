@@ -341,7 +341,7 @@ namespace CustomWorkflowActivities
                     if (prfsOptions.Entities.Count() > 0)
                     {
                         isValid = false;
-                        validationMessage.AppendLine("There is one or more Concept Plan Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the Concept Plan Alternative Option from the Project Request.");
+                        validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the Concept Plan Alternative Option from the Project Request.");
                     }
                 }
             }
@@ -395,7 +395,7 @@ namespace CustomWorkflowActivities
                 if (incompleteAnalysis.Entities.Count() > 0)
                 {
                     isValid = false;
-                    validationMessage.AppendLine("All Procurement Analysis records on the Concept Plan tab must be marked as Complete.");
+                    validationMessage.AppendLine("All Procurement Analysis records on the PRFS tab must be marked as Complete.");
                 }
 
             } 

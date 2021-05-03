@@ -54,8 +54,9 @@ CAPS.ProjectTracker.Closure = function (primaryControl) {
 CAPS.ProjectTracker.ShowClosure = function (primaryControl) {
     //check that record is draft & user's roles
     var formContext = primaryControl;
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
-    if (formContext.getAttribute("statecode").getValue() !== 0 || formContext.getAttribute("caps_showprogressreports").getValue() !== true) {
+    if (formContext.getAttribute("statecode").getValue() !== 0 || formContext.getAttribute("caps_showprogressreports").getValue() !== true || submissionCategoryCode == "LEASE") {
         return false;
     }
 
@@ -108,7 +109,7 @@ CAPS.ProjectTracker.Complete = function (primaryControl) {
                     function (result) {
                         debugger;
                         if (result.ok) {
-
+                            formContext.ui.tabs.get("tab_projectclosure").setVisible(true);
                             formContext.getAttribute("statecode").setValue(1);
                             formContext.getAttribute("statuscode").setValue(200870007);
                             formContext.getAttribute("caps_dateprojectclosed").setRequiredLevel("required");
@@ -170,6 +171,7 @@ CAPS.ProjectTracker.Cancel = function (primaryControl) {
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {
             if (success.confirmed) {
+                formContext.ui.tabs.get("tab_projectclosure").setVisible(true);
                 formContext.getAttribute("statecode").setValue(1);
                 formContext.getAttribute("statuscode").setValue(200870008);
                 formContext.getAttribute("caps_dateprojectclosed").setRequiredLevel("required");

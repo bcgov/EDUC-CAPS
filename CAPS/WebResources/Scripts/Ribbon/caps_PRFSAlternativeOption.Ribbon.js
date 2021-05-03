@@ -114,7 +114,7 @@ CAPS.PRFSOption.ShowCalculateScheduleB = function (primaryControl) {
 CAPS.PRFSOption.Deactivate = function (primaryControl) {
     var formContext = primaryControl;
     //Change status to DRAFT
-    let confirmStrings = { text: "The selected Concept Plan Alternative Option record's status will be changed to Cancelled and cannot be undone.  Click OK to continue or Cancel to exit.", title: "Deactivate Confirmation" };
+    let confirmStrings = { text: "The selected PRFS Alternative Option record's status will be changed to Cancelled and cannot be undone.  Click OK to continue or Cancel to exit.", title: "Deactivate Confirmation" };
     let confirmOptions = { height: 200, width: 450 };
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {

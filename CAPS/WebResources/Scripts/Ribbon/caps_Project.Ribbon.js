@@ -705,6 +705,25 @@ CAPS.Project.MarkAsUnpublished = function (selectedControlIds, selectedControl) 
 );
 }
 
+/*
+Function to check if the current user has CAPS CMB User Role.
+*/
+CAPS.Project.IsMinistrySuperUser = function () {
+    debugger;
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB Super User - Add On") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
+
+
 
 
 
