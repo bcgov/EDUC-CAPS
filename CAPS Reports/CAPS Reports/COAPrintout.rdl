@@ -264,7 +264,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=FormatDateTime(First(Fields!caps_signedon.Value, "CAPS"),DateFormat.ShortDate)</Value>
+                        <Value>=iif(First(Fields!caps_signedon.Value, "CAPS") &lt;&gt; "",(FormatDateTime(First(Fields!caps_signedon.Value, "CAPS"),DateFormat.ShortDate)),"")</Value>
                         <Style>
                           <Color>Blue</Color>
                         </Style>
