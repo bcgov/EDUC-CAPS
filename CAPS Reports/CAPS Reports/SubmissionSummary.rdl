@@ -1954,7 +1954,11 @@
                 <TablixColumnHierarchy>
                   <TablixMembers>
                     <TablixMember />
-                    <TablixMember />
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>= Parameters!CapitalPlanStatus.Value &lt;&gt; "Results Released" or Parameters!CapitalPlanToggle.Value &lt;&gt; "Results Released"</Hidden>
+                      </Visibility>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>

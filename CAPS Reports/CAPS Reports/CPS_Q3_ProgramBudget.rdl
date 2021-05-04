@@ -25,7 +25,8 @@
   &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;order attribute="edu_name" descending="true" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
       &lt;filter type="or" &gt;
@@ -44,6 +45,14 @@
         <Field Name="edu_name">
           <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -165,6 +174,32 @@
         </Field>
         <Field Name="edu_yearid">
           <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CurrentFiscalYear_Default">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
+    &lt;attribute name="edu_yearid" /&gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -947,6 +982,12 @@
     </ReportParameter>
     <ReportParameter Name="BudgetYear">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear_Default</DataSetName>
+          <ValueField>edu_yearid</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Select a Budget Year</Prompt>
       <ValidValues>
         <DataSetReference>
