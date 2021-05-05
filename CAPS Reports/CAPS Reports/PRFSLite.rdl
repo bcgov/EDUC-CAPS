@@ -6767,7 +6767,6 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -16040,7 +16039,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Width>23.76118cm</Width>
                 <ZIndex>5</ZIndex>
                 <Visibility>
-                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION" or
+First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>

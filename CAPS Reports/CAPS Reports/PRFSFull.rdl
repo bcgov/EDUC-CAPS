@@ -3606,6 +3606,9 @@
       &lt;condition attribute="caps_projectrequest" operator="eq" value="@ProjectID " uitype="caps_project" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_sortorder" /&gt;
+    &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" alias="PR" &gt;
+      &lt;attribute name="caps_submissioncategorycode" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -3664,6 +3667,10 @@ Fields!caps_constructionmanagementrankValue.Value = "200870000", 0,
 Fields!caps_constructionmanagementrankValue.Value = "200870001", 1,
 Fields!caps_constructionmanagementrankValue.Value = "200870002", 2,
 Fields!caps_constructionmanagementrankValue.Value = "200870003", 3)</Value>
+        </Field>
+        <Field Name="PR_caps_submissioncategorycode">
+          <DataField>PR_caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DBrank_integer">
           <Value>=Switch(
@@ -8982,7 +8989,6 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                           </TablixCells>
@@ -18769,7 +18775,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
                 <Visibility>
-                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                  <Hidden>= Fields!PR_caps_submissioncategorycode.Value = "SITE_ACQUISITION"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>
