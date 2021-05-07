@@ -15511,7 +15511,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="caps_name">
+                            <Textbox Name="ProcurementObjective_Name">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -15531,7 +15531,6 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>caps_name</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -16046,7 +16045,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Width>23.76118cm</Width>
                 <ZIndex>5</ZIndex>
                 <Visibility>
-                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION" or 
+First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>
@@ -24029,7 +24029,7 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
           <ParameterName>SchoolDistrict</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>FacilityID</ParameterName>
         </CellDefinition>
