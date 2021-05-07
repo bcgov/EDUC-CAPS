@@ -6,9 +6,10 @@
     <DataSource Name="CAPS">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>Login</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>49068e8b-a0d4-444b-b357-c790a3d83669</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -78,9 +79,13 @@
     &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_type" /&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_cycleyear">
@@ -661,7 +666,6 @@
             </TablixRowHierarchy>
             <DataSetName>ProgramBudgets</DataSetName>
             <Top>1.63724cm</Top>
-            <Left>0cm</Left>
             <Height>2.68485cm</Height>
             <Width>9.11396cm</Width>
             <Style>
@@ -773,7 +777,6 @@
             </TablixRowHierarchy>
             <DataSetName>SelectedFiscalYear</DataSetName>
             <Top>0.31433cm</Top>
-            <Left>0cm</Left>
             <Height>1.07625cm</Height>
             <Width>6.61396cm</Width>
             <ZIndex>1</ZIndex>
@@ -937,7 +940,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0cm</Top>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>

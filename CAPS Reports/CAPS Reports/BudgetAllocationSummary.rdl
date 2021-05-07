@@ -6,9 +6,10 @@
     <DataSource Name="CAPS">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://caps-dev.crm3.dynamics.com/e2a5b1b4-c717-46df-a0a1-9b293680aa04</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>Login</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>a5a73f2e-1bf6-4e2e-b987-8bd717776a61</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -86,7 +87,7 @@
       &lt;condition attribute="caps_cycleyear" operator="eq" value="@CurrentFiscalYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_fundingprogram" descending="false" /&gt;
-    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="outer" alias="FUNDINGPROGRAM" &gt;
+    &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" link-type="inner" alias="FUNDINGPROGRAM" &gt;
       &lt;attribute name="caps_fundingprogramcode" /&gt;
       &lt;attribute name="caps_type" /&gt;
       &lt;attribute name="caps_fundingprogramid" /&gt;
@@ -98,6 +99,7 @@
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_programbudgetid">
@@ -1633,7 +1635,6 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
             </TablixRowHierarchy>
             <DataSetName>ProgramBudgetCurrentYear</DataSetName>
             <Top>0.14111cm</Top>
-            <Left>0cm</Left>
             <Height>7.10896cm</Height>
             <Width>15.73708cm</Width>
             <Style>
@@ -1713,7 +1714,6 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox83</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>9.76503cm</Left>
               <Height>0.6cm</Height>
               <Width>6.87536cm</Width>
@@ -1759,7 +1759,6 @@ First(Fields!provincialValue.Value, "PDR_Planned_NoFundingProgram_ProjectCashFlo
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>5.21279in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
