@@ -18775,7 +18775,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
                 <Visibility>
-                  <Hidden>= Fields!PR_caps_submissioncategorycode.Value = "SITE_ACQUISITION"</Hidden>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION" OR 
+First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>
