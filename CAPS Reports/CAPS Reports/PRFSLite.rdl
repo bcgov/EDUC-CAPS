@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -686,7 +686,9 @@
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_prfsalternativeoption" &gt;
     &lt;all-attributes/&gt;
-    &lt;filter type="and" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="statuscode" operator="neq" value="2" /&gt;
+    &lt;/filter&gt;
     &lt;order attribute="caps_name" /&gt;
     &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" link-type="inner" alias="ProjReq" &gt;
       &lt;filter&gt;
@@ -702,6 +704,7 @@
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_schbadditionalspaceallocation">
