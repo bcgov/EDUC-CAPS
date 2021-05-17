@@ -92,18 +92,27 @@ Shows either the facility lookup or the facility sub-grid depending on if multip
 CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
+    formContext.getControl("caps_facilitysite").setVisible(false);
 
     if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "LEASE") {
         formContext.getControl("sgd_facilities").setVisible(false);
         formContext.getControl("caps_facility").setVisible(false);
     }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
+        formContext.getControl("sgd_facilities").setVisible(false);
+        formContext.getControl("caps_proposedfacility").setVisible(true);
+    }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "SITE_ACQUISITION") {
+        formContext.getControl("sgd_facilities").setVisible(false);
+        formContext.getControl("caps_proposedsite").setVisible(true);
+    }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "DEMOLITION") {
+        formContext.getControl("sgd_facilities").setVisible(false);
+        if (formContext.getAttribute("caps_facility").getValue() == null) {
+            formContext.getControl("caps_otherfacility").setVisible(true);
+        }
+    }
     else {
-        if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
-            formContext.getControl("caps_facilitysite").setVisible(true);
-        }
-        else {
-            formContext.getControl("caps_facilitysite").setVisible(false);
-        }
 
         var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
 

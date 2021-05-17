@@ -182,8 +182,8 @@ CAPS.Project.onLoad = function (executionContext) {
         CAPS.Project.ToggleBusIssueType(executionContext);
     }
 
-    //if site aquisition, hide procurement analysis
-    if (submissionCategoryCode === "SITE_ACQUISITION") {
+    //if site aquisition or lease hide procurement analysis
+    if (submissionCategoryCode === "SITE_ACQUISITION" || submissionCategoryCode === "LEASE") {
         formContext.ui.tabs.get("tab_PRFS").sections.get("PRFS_section_PROCUREMENT_ANALYSIS").setVisible(false);
     }
 
@@ -656,49 +656,51 @@ CAPS.Project.ValidatePRFS = function (executionContext) {
     }
 
 
-        if (!prfsFieldsComplete) {
-            //Call action to validate 
-            var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
-            //call action
-            var req = {};
-            var target = { entityType: "caps_project", id: recordId };
-            req.entity = target;
+    if (!prfsFieldsComplete) {
 
-            req.getMetadata = function () {
-                return {
-                    boundParameter: "entity",
-                    operationType: 0,
-                    operationName: "caps_ValidatePRFS",
-                    parameterTypes: {
-                        "entity": {
-                            "typeName": "mscrm.caps_project",
-                            "structuralProperty": 5
-                        }
+        //Call action to validate 
+        var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
+        //call action
+        var req = {};
+        var target = { entityType: "caps_project", id: recordId };
+        req.entity = target;
+
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_ValidatePRFS",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_project",
+                        "structuralProperty": 5
                     }
-                };
-            };
-
-            Xrm.WebApi.online.execute(req).then(
-                function (result) {
-                    debugger;
-                    if (result.ok) {
-                        return result.json().then(
-                            function (response) {
-
-                                if (response.hasCashflow) {
-                                    formContext.ui.setFormNotification('PRFS is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
-                                }
-                                else {
-                                    formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
-                                }
-                            });
-                    }
-                },
-                function (e) {
-                    formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
                 }
-            );
-        }
+            };
+        };
+
+        Xrm.WebApi.online.execute(req).then(
+            function (result) {
+                debugger;
+                if (result.ok) {
+                    return result.json().then(
+                        function (response) {
+
+                            if (response.hasCashflow) {
+                                formContext.ui.setFormNotification('PRFS is not complete.', 'INFO', PRFS_INCOMPLETE_NOTIFICATION);
+                            }
+                            else {
+                                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+                            }
+                        });
+                }
+            },
+            function (e) {
+                formContext.ui.clearFormNotification(PRFS_INCOMPLETE_NOTIFICATION);
+            }
+        );
+    }
+    
 }
 
 /**
@@ -927,11 +929,13 @@ CAPS.Project.ToggleRequiresScheduleB = function (executionContext) {
 
     if (formContext.getAttribute("caps_requiresscheduleb").getValue() === true) {
         //Lock Total Project Cost
+        formContext.ui.tabs.get("tab_scheduleb").setVisible(true);
         attr.controls.forEach(function (control) {
             control.setDisabled(true);
         });
     }
     else {
+        formContext.ui.tabs.get("tab_scheduleb").setVisible(false);
         //un-Lock Total Project Cost
         attr.controls.forEach(function (control) {
             control.setDisabled(false);
@@ -947,70 +951,84 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
     var formContext = executionContext.getFormContext();
     //Get Schedule B Type field on Project Type
     var projectType = formContext.getAttribute("caps_projecttype").getValue();
-
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
     var hostSD = formContext.getAttribute("caps_schooldistrict").getValue();
+    var includeNLC = formContext.getAttribute("caps_includenlc");
 
     if (hostSD !== null && !hostSD[0].name.includes("SD93")) {
         formContext.getControl("caps_hostschooldistrict").setVisible(false);
     }
-
-    if (projectType !== null) {
-        Xrm.WebApi.retrieveRecord("caps_projecttype", projectType[0].id, "?$select=caps_budgetcalculationtype").then(
-        function success(result) {
-            debugger;
-            var calcType = result.caps_budgetcalculationtype;
-            //New = 200,870,000
-            //Replacement = 200,870,001
-            //Partial Seismic = 200,870,004
-            //Seismic = 200,870,005
-            if (calcType === 200870000 || calcType === 200870001) {
-                //show NLC
-                formContext.getControl("caps_includenlc").setVisible(true);
-            }
-            else {
-                //hide and set NLS to false
-                formContext.getControl("caps_includenlc").setVisible(false);
-                formContext.getAttribute("caps_includenlc").setValue(null);
-            }
-            if (calcType === 200870004 || calcType === 200870005) {
-                formContext.getControl("caps_constructioncostsspir").setVisible(true);
-            }
-            else {
-                formContext.getControl("caps_constructioncostsspir").setVisible(false);
-
-                formContext.getAttribute("caps_constructioncostsspir").setValue(null);
-            }
-
-            if (calcType === 200870005) {
-                //blank values
-                formContext.getAttribute("caps_projectincludesdemolition").setValue(false);
-                formContext.getAttribute("caps_demolitioncost").setValue(null);
-                formContext.getAttribute("caps_projectincludesabnormaltopography").setValue(false);
-                formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
-
-                //hide
-                formContext.getControl("caps_projectincludesdemolition").setVisible(false);
-                formContext.getControl("caps_demolitioncost").setVisible(false);
-                formContext.getControl("caps_projectincludesabnormaltopography").setVisible(false);
-                formContext.getControl("caps_abnormaltopographycost").setVisible(false);
-
-                //make optional
-                formContext.getAttribute("caps_demolitioncost").setRequiredLevel("none");
-                formContext.getAttribute("caps_abnormaltopographycost").setRequiredLevel("none");
-
-            }
-            else {
-                //show
-                formContext.getControl("caps_projectincludesdemolition").setVisible(true);
-                formContext.getControl("caps_demolitioncost").setVisible(formContext.getAttribute("caps_projectincludesdemolition").getValue());
-                formContext.getControl("caps_projectincludesabnormaltopography").setVisible(true);
-                formContext.getControl("caps_abnormaltopographycost").setVisible(formContext.getAttribute("caps_projectincludesabnormaltopography").getValue());
-            }
-        },
-        function (error) {
-            console.log(error.message);
-            // handle error conditions
+    if (submissionCategoryCode === "LEASE") {
+        includeNLC.controls.forEach(function (control) {
+            control.setVisible(true);
         });
+    }
+    else {
+        if (projectType !== null) {
+            Xrm.WebApi.retrieveRecord("caps_projecttype", projectType[0].id, "?$select=caps_budgetcalculationtype").then(
+            function success(result) {
+                debugger;
+                var calcType = result.caps_budgetcalculationtype;
+                
+                //New = 200,870,000
+                //Replacement = 200,870,001
+                //Partial Seismic = 200,870,004
+                //Seismic = 200,870,005
+                if (calcType === 200870000 || calcType === 200870001) {
+                    //show NLC
+                    includeNLC.controls.forEach(function (control) {
+                        control.setVisible(true);
+                    });
+                    //formContext.getControl("caps_includenlc").setVisible(true);
+                }
+                else {
+                    //hide and set NLS to false
+                    //formContext.getControl("caps_includenlc").setVisible(false);
+                    includeNLC.controls.forEach(function (control) {
+                        control.setVisible(false);
+                    });
+                    formContext.getAttribute("caps_includenlc").setValue(null);
+                }
+                if (calcType === 200870004 || calcType === 200870005) {
+                    formContext.getControl("caps_constructioncostsspir").setVisible(true);
+                }
+                else {
+                    formContext.getControl("caps_constructioncostsspir").setVisible(false);
+
+                    formContext.getAttribute("caps_constructioncostsspir").setValue(null);
+                }
+
+                if (calcType === 200870005) {
+                    //blank values
+                    formContext.getAttribute("caps_projectincludesdemolition").setValue(false);
+                    formContext.getAttribute("caps_demolitioncost").setValue(null);
+                    formContext.getAttribute("caps_projectincludesabnormaltopography").setValue(false);
+                    formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
+
+                    //hide
+                    formContext.getControl("caps_projectincludesdemolition").setVisible(false);
+                    formContext.getControl("caps_demolitioncost").setVisible(false);
+                    formContext.getControl("caps_projectincludesabnormaltopography").setVisible(false);
+                    formContext.getControl("caps_abnormaltopographycost").setVisible(false);
+
+                    //make optional
+                    formContext.getAttribute("caps_demolitioncost").setRequiredLevel("none");
+                    formContext.getAttribute("caps_abnormaltopographycost").setRequiredLevel("none");
+
+                }
+                else {
+                    //show
+                    formContext.getControl("caps_projectincludesdemolition").setVisible(true);
+                    formContext.getControl("caps_demolitioncost").setVisible(formContext.getAttribute("caps_projectincludesdemolition").getValue());
+                    formContext.getControl("caps_projectincludesabnormaltopography").setVisible(true);
+                    formContext.getControl("caps_abnormaltopographycost").setVisible(formContext.getAttribute("caps_projectincludesabnormaltopography").getValue());
+                }
+            },
+            function (error) {
+                console.log(error.message);
+                // handle error conditions
+            });
+        }
     }
 }
 

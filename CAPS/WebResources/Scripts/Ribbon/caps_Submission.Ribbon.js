@@ -96,3 +96,49 @@ CAPS.Submission.Cancel = function (primaryControl) {
 
         });
 }
+
+CAPS.Submission.ShowBulkCancel = function () {
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB Finance Unit - Add On" || item.name === "CAPS CMB Super User - Add On") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
+
+CAPS.Submission.BulkCancel = function (selectedControlIds, selectedControl) {
+    //call action
+    var promises = [];
+    selectedControlIds.forEach((record) => {
+        let req = {};
+        req.getMetadata = function () {
+            return {
+                boundParameter: "entity",
+                operationType: 0,
+                operationName: "caps_CancelSubmission",
+                parameterTypes: {
+                    "entity": {
+                        "typeName": "mscrm.caps_submission",
+                        "structuralProperty": 5
+                    }
+                }
+            }
+        };
+        req.entity = { entityType: "caps_submission", id: record };
+        promises.push(Xrm.WebApi.online.execute(req));
+    });
+
+    Promise.all(promises).then(
+    function (results) {
+        selectedControl.refresh();
+    }
+    , function (error) {
+        console.log(error);
+    }
+);
+}
