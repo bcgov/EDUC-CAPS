@@ -2970,7 +2970,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 3) AND (month(Fields!caps_drawdateValue.Value) &lt; 7) , CDbl(Fields!caps_amountValue.Value),CDbl(0)), "ActualDraws")</Value>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 3) AND (month(Fields!caps_drawdateValue.Value) &lt; 7) AND Fields!YEAR_edu_startyear.Value = Parameters!FiscalStartYear.Value, CDbl(Fields!caps_amountValue.Value),CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3004,7 +3004,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 6) And (month(Fields!caps_drawdateValue.Value) &lt; 10), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 6) And (month(Fields!caps_drawdateValue.Value) &lt; 10) AND Fields!YEAR_edu_startyear.Value = Parameters!FiscalStartYear.Value, CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3038,7 +3038,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 9) And (month(Fields!caps_drawdateValue.Value) &lt; 13), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 9) And (month(Fields!caps_drawdateValue.Value) &lt; 13) AND Fields!YEAR_edu_startyear.Value = Parameters!FiscalStartYear.Value, CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3072,7 +3072,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 0) And (month(Fields!caps_drawdateValue.Value) &lt; 4), CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
+                                  <Value>=Sum(IIF((month(Fields!caps_drawdateValue.Value) &gt; 0) And (month(Fields!caps_drawdateValue.Value) &lt; 4) AND Fields!YEAR_edu_startyear.Value = Parameters!FiscalStartYear.Value, CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3106,7 +3106,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_amountValue.Value, "ActualDraws")</Value>
+                                  <Value>=Sum(IIF(Fields!YEAR_edu_startyear.Value = Parameters!FiscalStartYear.Value, CDbl(Fields!caps_amountValue.Value), CDbl(0)), "ActualDraws")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3129,6 +3129,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

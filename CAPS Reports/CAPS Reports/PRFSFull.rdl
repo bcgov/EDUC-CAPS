@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -653,8 +653,10 @@
         </QueryParameters>
         <CommandText>&lt;fetch&gt;
   &lt;entity name="caps_prfsalternativeoption" &gt;
-    &lt;all-attributes/&gt;
-    &lt;filter type="and" /&gt;
+    &lt;all-attributes/&gt;    
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="statuscode" operator="neq" value="2" /&gt;
+    &lt;/filter&gt;
     &lt;order attribute="caps_name" /&gt;
     &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" link-type="inner" alias="ProjReq" &gt;
       &lt;filter&gt;
@@ -670,6 +672,7 @@
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_schbadditionalspaceallocation">
@@ -3606,6 +3609,9 @@
       &lt;condition attribute="caps_projectrequest" operator="eq" value="@ProjectID " uitype="caps_project" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_sortorder" /&gt;
+    &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectrequest" alias="PR" &gt;
+      &lt;attribute name="caps_submissioncategorycode" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -3664,6 +3670,10 @@ Fields!caps_constructionmanagementrankValue.Value = "200870000", 0,
 Fields!caps_constructionmanagementrankValue.Value = "200870001", 1,
 Fields!caps_constructionmanagementrankValue.Value = "200870002", 2,
 Fields!caps_constructionmanagementrankValue.Value = "200870003", 3)</Value>
+        </Field>
+        <Field Name="PR_caps_submissioncategorycode">
+          <DataField>PR_caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DBrank_integer">
           <Value>=Switch(
@@ -8166,7 +8176,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8201,7 +8211,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime) + 1), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8236,7 +8246,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime) +2), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime) +2), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8271,7 +8281,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8306,7 +8316,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8341,7 +8351,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8376,7 +8386,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8411,7 +8421,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8446,7 +8456,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8481,7 +8491,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8516,7 +8526,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8564,7 +8574,6 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <rd:Selected>true</rd:Selected>
                               </CellContents>
                             </TablixCell>
                             <TablixCell>
@@ -8626,7 +8635,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8661,7 +8670,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime),year(Globals!ExecutionTime)+1), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8696,7 +8705,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+1,year(Globals!ExecutionTime)+2), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8731,7 +8740,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+2,year(Globals!ExecutionTime)+3), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8766,7 +8775,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+3,year(Globals!ExecutionTime)+4), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8801,7 +8810,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+4,year(Globals!ExecutionTime)+5), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8836,7 +8845,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+5,year(Globals!ExecutionTime)+6), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8871,7 +8880,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+6,year(Globals!ExecutionTime)+7), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8906,7 +8915,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+7,year(Globals!ExecutionTime)+8), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8941,7 +8950,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+8,year(Globals!ExecutionTime)+9), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -8976,7 +8985,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; 5, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
+                                    <BackgroundColor>=iif(IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime)+9,year(Globals!ExecutionTime)+10), Fields!caps_changeinoperatingcapacity_total.Value, 0) &lt;=0, "LightGrey", "#fff6d5")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9090,6 +9099,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) -1, year(Globals!ExecutionTime)), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9127,6 +9137,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime), year(Globals!ExecutionTime)+1), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9164,6 +9175,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +1, year(Globals!ExecutionTime)+2), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9201,6 +9213,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +2, year(Globals!ExecutionTime)+3), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9238,6 +9251,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +3, year(Globals!ExecutionTime)+4), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9275,6 +9289,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +4, year(Globals!ExecutionTime)+5), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9312,6 +9327,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +5, year(Globals!ExecutionTime)+6), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9349,6 +9365,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +6, year(Globals!ExecutionTime)+7), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9386,6 +9403,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +7, year(Globals!ExecutionTime)+8), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9423,6 +9441,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +8, year(Globals!ExecutionTime)+9), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -9460,6 +9479,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=IIF(Fields!YEAR_edu_startyear.Value &lt;= iif(month(Globals!ExecutionTime) &lt; Parameters!MonthRollover.Value, year(Globals!ExecutionTime) +9, year(Globals!ExecutionTime)+10), "#fff6d5", "LightGrey")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -18758,7 +18778,8 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                 <Width>23.76118cm</Width>
                 <ZIndex>4</ZIndex>
                 <Visibility>
-                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION"</Hidden>
+                  <Hidden>= First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "SITE_ACQUISITION" OR 
+First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hidden>
                 </Visibility>
                 <Style>
                   <Border>

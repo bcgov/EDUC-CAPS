@@ -6,9 +6,10 @@
     <DataSource Name="CAPS">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>Login</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>49068e8b-a0d4-444b-b357-c790a3d83669</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -25,7 +26,8 @@
   &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
-    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;order attribute="edu_name" descending="true" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
       &lt;filter type="or" &gt;
@@ -44,6 +46,14 @@
         <Field Name="edu_name">
           <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -69,9 +79,13 @@
     &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_type" /&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="caps_cycleyear">
@@ -165,6 +179,32 @@
         </Field>
         <Field Name="edu_yearid">
           <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CurrentFiscalYear_Default">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
+    &lt;attribute name="edu_yearid" /&gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;order attribute="edu_name" descending="false" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -626,7 +666,6 @@
             </TablixRowHierarchy>
             <DataSetName>ProgramBudgets</DataSetName>
             <Top>1.63724cm</Top>
-            <Left>0cm</Left>
             <Height>2.68485cm</Height>
             <Width>9.11396cm</Width>
             <Style>
@@ -738,7 +777,6 @@
             </TablixRowHierarchy>
             <DataSetName>SelectedFiscalYear</DataSetName>
             <Top>0.31433cm</Top>
-            <Left>0cm</Left>
             <Height>1.07625cm</Height>
             <Width>6.61396cm</Width>
             <ZIndex>1</ZIndex>
@@ -902,7 +940,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0cm</Top>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>
@@ -947,6 +984,12 @@
     </ReportParameter>
     <ReportParameter Name="BudgetYear">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear_Default</DataSetName>
+          <ValueField>edu_yearid</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Select a Budget Year</Prompt>
       <ValidValues>
         <DataSetReference>
