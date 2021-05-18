@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>54180316-c497-4eb8-9804-51200afdb2bb</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -41,6 +41,10 @@
     &lt;/filter&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="outer" alias="YEARSTATUS"&gt;
       &lt;attribute name="statuscode" /&gt;
+      &lt;attribute name="edu_startyear" /&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="edu_startyear" operator="ge" value="2021" /&gt;
+      &lt;/filter&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" visible="false" link-type="inner" alias="PROJECT"&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
@@ -99,9 +103,17 @@
           <DataField>YEARSTATUS_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="YEARSTATUS_edu_startyear">
+          <DataField>YEARSTATUS_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="PROJECT_caps_schooldistrict">
           <DataField>PROJECT_caps_schooldistrict</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEARSTATUS_edu_startyearValue">
+          <DataField>YEARSTATUS_edu_startyearValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="PROJECT_caps_schooldistrictValue">
           <DataField>PROJECT_caps_schooldistrictValue</DataField>
@@ -393,13 +405,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.8in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.6in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.6in</Width>
@@ -1014,7 +1026,7 @@
             <Top>1.35916in</Top>
             <Left>0.10707cm</Left>
             <Height>0.67in</Height>
-            <Width>3.8in</Width>
+            <Width>4.2in</Width>
             <Style />
           </Tablix>
           <Chart Name="Chart1">
@@ -1381,7 +1393,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>6.5018in</Top>
+            <Top>6.7518in</Top>
             <Left>0.1071cm</Left>
             <Height>3.0625in</Height>
             <Width>9.97916in</Width>
@@ -2066,7 +2078,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>9.5643in</Top>
+            <Top>9.8143in</Top>
             <Left>0.1071cm</Left>
             <Height>3.56in</Height>
             <Width>9.97917in</Width>
@@ -2459,7 +2471,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>13.1243in</Top>
+            <Top>13.3743in</Top>
             <Left>0.1071cm</Left>
             <Height>3.5in</Height>
             <Width>9.97917in</Width>
@@ -2893,7 +2905,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>FiveYearsActualDraws</DataSetName>
-            <Top>2.58139in</Top>
+            <Top>2.82374in</Top>
             <Left>0.10708cm</Left>
             <Height>3.8725in</Height>
             <Width>9.97917in</Width>
@@ -2907,8 +2919,40 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Note: The table will show 4 historical fiscal years of data, starting from 2021/2022.</Value>
+                    <Style>
+                      <FontFamily>segoe UI</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox5</rd:DefaultName>
+            <Top>2.38625in</Top>
+            <Left>0.04215in</Left>
+            <Height>0.25in</Height>
+            <Width>5.69026in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>16.6618in</Height>
+        <Height>16.8743in</Height>
         <Style />
       </Body>
       <Width>10.02134in</Width>
