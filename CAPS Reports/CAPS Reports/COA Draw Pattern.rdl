@@ -39,7 +39,7 @@
         &lt;condition attribute="caps_drawdate" operator="last-x-fiscal-years" value="4" /&gt;
       &lt;/filter&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="outer" alias="YEARSTATUS"&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="inner" alias="YEARSTATUS"&gt;
       &lt;attribute name="statuscode" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;filter&gt;
