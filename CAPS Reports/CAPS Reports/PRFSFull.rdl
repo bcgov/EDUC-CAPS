@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_Dev:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
@@ -91,6 +92,7 @@
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
     &lt;attribute name="caps_changeindistrictoperatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_numberofportableseliminated" /&gt;
     &lt;order attribute="caps_projectcode" descending="false" /&gt;
     &lt;link-entity name="caps_longrangefacilityplan" from="caps_longrangefacilityplanid" to="caps_longrangefacilityplan" visible="false" link-type="outer" alias="LRPF"&gt;
       &lt;attribute name="caps_description" /&gt;
@@ -617,6 +619,10 @@
           <DataField>LRPF_caps_lrfpdateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofportableseliminated">
+          <DataField>caps_numberofportableseliminated</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_projectcode">
           <DataField>caps_projectcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -624,6 +630,10 @@
         <Field Name="caps_changeindistrictoperatingcapacitytotalValue">
           <DataField>caps_changeindistrictoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofportableseliminatedValue">
+          <DataField>caps_numberofportableseliminatedValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_projectid">
           <DataField>caps_projectid</DataField>
@@ -18901,6 +18911,9 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                     <TablixColumn>
                       <Width>2.5cm</Width>
                     </TablixColumn>
+                    <TablixColumn>
+                      <Width>2.5cm</Width>
+                    </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
@@ -19062,6 +19075,40 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox434</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#e3a82b</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox435">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Number of Portables Eliminated</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox435</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -19330,6 +19377,38 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                             </Textbox>
                           </CellContents>
                         </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofportableseliminated">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofportableseliminated.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofportableseliminated</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
                       </TablixCells>
                     </TablixRow>
                   </TablixRows>
@@ -19349,6 +19428,16 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                         <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "SITE_ACQUISITION"</Hidden>
                       </Visibility>
                     </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>= Switch(
+Fields!caps_submissioncategorycode.Value = "ADDITION", False,
+Fields!caps_submissioncategorycode.Value = "NEW_SCHOOL", False,
+Fields!caps_submissioncategorycode.Value = "LEASE", False,
+True, True
+)</Hidden>
+                      </Visibility>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
@@ -19361,7 +19450,7 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                 <Top>1.5175cm</Top>
                 <Left>0.03419cm</Left>
                 <Height>1.2cm</Height>
-                <Width>12.04968cm</Width>
+                <Width>14.54968cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
