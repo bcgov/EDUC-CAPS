@@ -208,6 +208,8 @@ CAPS.Project.onLoad = function (executionContext) {
     CAPS.Project.ValidateSecondaryDesignCapacity(executionContext);
     formContext.getAttribute("caps_changeindesigncapacitysecondary").addOnChange(CAPS.Project.ValidateSecondaryDesignCapacity);
 
+    //Remove Previously Planned as an option from Ministry Review Status field
+    formContext.getControl("caps_ministryassessmentstatus").removeOption(200870001);
 }
 
 
@@ -438,12 +440,15 @@ CAPS.Project.DefaultSchoolDistrict = function (formContext) {
                         var sdType = resultBU["_caps_schooldistrict_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
                         formContext.getAttribute("caps_schooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
 
-                        formContext.getAttribute("caps_hostschooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
+                        
 
                         //if SD93
                         if (sdName.includes("SD93"))
                         {
                             formContext.getControl("caps_submissioncategory").removePreSearch(CAPS.Project.HideLeaseSubmissionCategory);
+                        }
+                        else {
+                            formContext.getAttribute("caps_hostschooldistrict").setValue([{ id: sdID, name: sdName, entityType: sdType }]);
                         }
                     }
                 },
@@ -925,21 +930,29 @@ CAPS.Project.GetSchoolType = function (executionContext) {
  */
 CAPS.Project.ToggleRequiresScheduleB = function (executionContext) {
     var formContext = executionContext.getFormContext();
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
     var attr = formContext.getAttribute("caps_totalprojectcost");
 
-    if (formContext.getAttribute("caps_requiresscheduleb").getValue() === true) {
-        //Lock Total Project Cost
-        formContext.ui.tabs.get("tab_scheduleb").setVisible(true);
+    if (submissionCategoryCode === "LEASE") {
         attr.controls.forEach(function (control) {
             control.setDisabled(true);
         });
     }
     else {
-        formContext.ui.tabs.get("tab_scheduleb").setVisible(false);
-        //un-Lock Total Project Cost
-        attr.controls.forEach(function (control) {
-            control.setDisabled(false);
-        });
+        if (formContext.getAttribute("caps_requiresscheduleb").getValue() === true) {
+            //Lock Total Project Cost
+            formContext.ui.tabs.get("tab_scheduleb").setVisible(true);
+            attr.controls.forEach(function (control) {
+                control.setDisabled(true);
+            });
+        }
+        else {
+            formContext.ui.tabs.get("tab_scheduleb").setVisible(false);
+            //un-Lock Total Project Cost
+            attr.controls.forEach(function (control) {
+                control.setDisabled(false);
+            });
+        }
     }
 }
 
@@ -962,6 +975,7 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
         includeNLC.controls.forEach(function (control) {
             control.setVisible(true);
         });
+
     }
     else {
         if (projectType !== null) {

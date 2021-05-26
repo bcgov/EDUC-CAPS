@@ -110,10 +110,12 @@ namespace Plugins
 
                                 }
                             }
-                            tracingService.Trace("{0}", total);
+                            tracingService.Trace("New Total: {0}", total);
+                            tracingService.Trace("Old Total: {0}", cashFlowRecord.caps_TotalActualDraws.GetValueOrDefault(0));
 
-                            if (cashFlowRecord.caps_TotalActualDraws.GetValueOrDefault(0) != total)
+                            if (!cashFlowRecord.caps_TotalActualDraws.GetValueOrDefault(0).Equals(total))
                             {
+                                tracingService.Trace("Updating:{0}", cashFlowRecord.Id);
                                 //Now update the cash flow record
                                 var cashFlowToUpdate = new caps_projectcashflow();
                                 cashFlowToUpdate.Id = cashFlowRecord.Id;
