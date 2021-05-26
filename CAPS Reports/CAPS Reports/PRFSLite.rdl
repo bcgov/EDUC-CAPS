@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>6d946c96-aaea-430f-927a-bc1ec9811273</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -95,6 +95,7 @@
     &lt;attribute name="caps_previouslyapprovedfordisposal" /&gt;
     &lt;attribute name="caps_crownlandgrant" /&gt;
     &lt;attribute name="caps_changeindistrictoperatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_numberofportableseliminated" /&gt;
     &lt;order attribute="caps_projectcode" descending="false" /&gt;
     &lt;link-entity name="caps_longrangefacilityplan" from="caps_longrangefacilityplanid" to="caps_longrangefacilityplan" visible="false" link-type="outer" alias="LRPF" &gt;
       &lt;attribute name="caps_description" /&gt;
@@ -133,13 +134,13 @@
           <DataField>caps_sracostestimate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_projectedchangetofacilityconditionindex">
-          <DataField>caps_projectedchangetofacilityconditionindex</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_sracostestimateValue">
           <DataField>caps_sracostestimateValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectedchangetofacilityconditionindex">
+          <DataField>caps_projectedchangetofacilityconditionindex</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_projectedchangetofacilityconditionindexValue">
           <DataField>caps_projectedchangetofacilityconditionindexValue</DataField>
@@ -169,20 +170,24 @@
           <DataField>caps_otherprojecttotalcost</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_benefitsofafullorpartialdemolition">
-          <DataField>caps_benefitsofafullorpartialdemolition</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_otherprojecttotalcostValue">
           <DataField>caps_otherprojecttotalcostValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_changeindesigncapacityelementary">
-          <DataField>caps_changeindesigncapacityelementary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_demolitioncompletedinonefiscalyear">
           <DataField>caps_demolitioncompletedinonefiscalyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_demolitioncompletedinonefiscalyearValue">
+          <DataField>caps_demolitioncompletedinonefiscalyearValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_benefitsofafullorpartialdemolition">
+          <DataField>caps_benefitsofafullorpartialdemolition</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindesigncapacityelementary">
+          <DataField>caps_changeindesigncapacityelementary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeindesigncapacityelementaryValue">
@@ -192,10 +197,6 @@
         <Field Name="caps_municipalrequirements">
           <DataField>caps_municipalrequirements</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_demolitioncompletedinonefiscalyearValue">
-          <DataField>caps_demolitioncompletedinonefiscalyearValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="caps_submissioncategorycode">
           <DataField>caps_submissioncategorycode</DataField>
@@ -221,10 +222,6 @@
           <DataField>caps_futurehighestgradeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_futurefacilityconditionindex">
-          <DataField>caps_futurefacilityconditionindex</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_currentfci">
           <DataField>caps_currentfci</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -232,6 +229,10 @@
         <Field Name="caps_currentfciValue">
           <DataField>caps_currentfciValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_futurefacilityconditionindex">
+          <DataField>caps_futurefacilityconditionindex</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_futurefacilityconditionindexValue">
           <DataField>caps_futurefacilityconditionindexValue</DataField>
@@ -573,33 +574,21 @@
           <DataField>caps_hasschoolbeenpermanentlyclosedValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
-        <Field Name="LRPF_caps_description">
-          <DataField>LRPF_caps_description</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_changeinoperatingcapacitytotal">
           <DataField>caps_changeinoperatingcapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="LRPF_caps_lrfpdate">
-          <DataField>LRPF_caps_lrfpdate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_numberofp4blocks">
-          <DataField>caps_numberofp4blocks</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_changeinoperatingcapacitytotalValue">
           <DataField>caps_changeinoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_numberofp4blocks">
+          <DataField>caps_numberofp4blocks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_numberofp4blocksValue">
           <DataField>caps_numberofp4blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="LRPF_caps_lrfpdateValue">
-          <DataField>LRPF_caps_lrfpdateValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_numberofp3blocks">
           <DataField>caps_numberofp3blocks</DataField>
@@ -609,69 +598,89 @@
           <DataField>caps_numberofp3blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_projectcode">
-          <DataField>caps_projectcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_numberofp2blocks">
           <DataField>caps_numberofp2blocks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectid">
-          <DataField>caps_projectid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_numberofp2blocksValue">
           <DataField>caps_numberofp2blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_anyotherbuildinguses">
-          <DataField>caps_anyotherbuildinguses</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="YEAR_edu_name">
-          <DataField>YEAR_edu_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_previouslyapprovedfordisposal">
-          <DataField>caps_previouslyapprovedfordisposal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_numberofp1blocks">
           <DataField>caps_numberofp1blocks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_previouslyapprovedfordisposalValue">
-          <DataField>caps_previouslyapprovedfordisposalValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-        <Field Name="caps_changeindistrictoperatingcapacitytotal">
-          <DataField>caps_changeindistrictoperatingcapacitytotal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_crownlandgrant">
-          <DataField>caps_crownlandgrant</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_changeindistrictoperatingcapacitytotalValue">
-          <DataField>caps_changeindistrictoperatingcapacitytotalValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="YEAR_edu_startyear">
-          <DataField>YEAR_edu_startyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_numberofp1blocksValue">
           <DataField>caps_numberofp1blocksValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="caps_projectcode">
+          <DataField>caps_projectcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectid">
+          <DataField>caps_projectid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_anyotherbuildinguses">
+          <DataField>caps_anyotherbuildinguses</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_previouslyapprovedfordisposal">
+          <DataField>caps_previouslyapprovedfordisposal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_previouslyapprovedfordisposalValue">
+          <DataField>caps_previouslyapprovedfordisposalValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="caps_crownlandgrant">
+          <DataField>caps_crownlandgrant</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="caps_crownlandgrantValue">
           <DataField>caps_crownlandgrantValue</DataField>
           <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
+        <Field Name="caps_changeindistrictoperatingcapacitytotal">
+          <DataField>caps_changeindistrictoperatingcapacitytotal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_changeindistrictoperatingcapacitytotalValue">
+          <DataField>caps_changeindistrictoperatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofportableseliminated">
+          <DataField>caps_numberofportableseliminated</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_numberofportableseliminatedValue">
+          <DataField>caps_numberofportableseliminatedValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_description">
+          <DataField>LRPF_caps_description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdate">
+          <DataField>LRPF_caps_lrfpdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="LRPF_caps_lrfpdateValue">
+          <DataField>LRPF_caps_lrfpdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_startyear">
+          <DataField>YEAR_edu_startyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="YEAR_edu_startyearValue">
           <DataField>YEAR_edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_name">
+          <DataField>YEAR_edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -16170,6 +16179,9 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                     <TablixColumn>
                       <Width>2.5cm</Width>
                     </TablixColumn>
+                    <TablixColumn>
+                      <Width>2.5cm</Width>
+                    </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
@@ -16330,6 +16342,39 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox9</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <BackgroundColor>#e3a82b</BackgroundColor>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox26">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Number of Portables Eliminated</Value>
+                                      <Style>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox26</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -16598,6 +16643,38 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                             </Textbox>
                           </CellContents>
                         </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="caps_numberofportableseliminated">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!caps_numberofportableseliminated.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial</FontFamily>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>caps_numberofportableseliminated</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
                       </TablixCells>
                     </TablixRow>
                   </TablixRows>
@@ -16617,6 +16694,16 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                         <Hidden>=Fields!caps_submissioncategorycode.Value &lt;&gt; "SITE_ACQUISITION"</Hidden>
                       </Visibility>
                     </TablixMember>
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>= Switch(
+Fields!caps_submissioncategorycode.Value = "ADDITION", False,
+Fields!caps_submissioncategorycode.Value = "NEW_SCHOOL", False,
+Fields!caps_submissioncategorycode.Value = "LEASE", False,
+True, True
+)</Hidden>
+                      </Visibility>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixColumnHierarchy>
                 <TablixRowHierarchy>
@@ -16629,7 +16716,7 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                 <Top>1.5175cm</Top>
                 <Left>0.02681cm</Left>
                 <Height>1.2cm</Height>
-                <Width>12.04507cm</Width>
+                <Width>14.54507cm</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>

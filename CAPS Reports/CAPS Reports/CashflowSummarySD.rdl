@@ -148,16 +148,22 @@
     <DataSet Name="FiscalYears">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_year"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="createdon" /&gt;
     &lt;attribute name="edu_startyear" /&gt;
+    &lt;attribute name="edu_type" /&gt;
+    &lt;attribute name="statuscode" /&gt;
     &lt;order attribute="edu_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
-      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;condition attribute="edu_startyear" operator="ge" value="2021" /&gt;
+      &lt;condition attribute="statuscode" operator="in" &gt;
+        &lt;value&gt;1&lt;/value&gt;
+        &lt;value&gt;757500001&lt;/value&gt;
+      &lt;/condition&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -186,6 +192,65 @@
         <Field Name="edu_startyearValue">
           <DataField>edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="edu_type">
+          <DataField>edu_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_typeValue">
+          <DataField>edu_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CurrentFiscalYear">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
+    &lt;attribute name="edu_name" /&gt;
+    &lt;attribute name="edu_type" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="edu_yearid" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_type">
+          <DataField>edu_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_typeValue">
+          <DataField>edu_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1353,6 +1418,12 @@
   <ReportParameters>
     <ReportParameter Name="FiscalYear">
       <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear</DataSetName>
+          <ValueField>edu_yearid</ValueField>
+        </DataSetReference>
+      </DefaultValue>
       <Prompt>Select Fiscal Year</Prompt>
       <ValidValues>
         <DataSetReference>
