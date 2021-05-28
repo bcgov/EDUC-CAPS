@@ -381,9 +381,12 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
-        /*if (formContext.ui.tabs.get("tab_emr") != null) {
-            formContext.ui.tabs.get("tab_emr").setVisible(false);
-        }*/
+        formContext.getControl("caps_projecttype").setVisible(false);
+        formContext.getControl("caps_cpsnumber").setVisible(false);
+        formContext.getControl("caps_requestedfunding").setVisible(false);
+        formContext.getControl("caps_relatedproject").setVisible(false);
+        formContext.getControl("caps_sdprojectnumber").setVisible(false);
+
 
     }
     else if (submissionCategoryCode === 'BUS' || submissionCategoryCode === 'SEP' || submissionCategoryCode === 'PEP' || submissionCategoryCode === 'CNCP') {
@@ -407,9 +410,13 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
-        /*if (formContext.ui.tabs.get("tab_emr") != null) {
-            formContext.ui.tabs.get("tab_emr").setVisible(false);
-        }*/
+        if (submissionCategoryCode === 'BUS') {
+            formContext.getControl("caps_projecttype").setVisible(false);
+            formContext.getControl("caps_cpsnumber").setVisible(false);
+            formContext.getControl("caps_requestedfunding").setVisible(false);
+            formContext.getControl("caps_relatedproject").setVisible(false);
+            formContext.getControl("caps_procurementmethod").setVisible(false);
+        }
 
     }
     else if (submissionCategoryCode === 'SITE_ACQUISITION') {

@@ -30,15 +30,16 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                     "<order attribute=\"caps_name\" descending=\"false\" />" +
                     "<filter type=\"and\">" +
                         "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                        "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>"+
                         "<filter type=\"or\">" +
                         "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
-                        "<filter type=\"and\">" +
-                            "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
-                            "<value>100000000</value>" +
-                            "<value>100000001</value>" +
-                            "</condition>" +
-                            "<condition attribute=\"caps_boardofresolutionattached\" operator=\"ne\" value=\"1\" />" +
-                        "</filter>" +
+                            "<filter type=\"and\">" +
+                                "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
+                                "<value>100000000</value>" +
+                                "<value>100000001</value>" +
+                                "</condition>" +
+                                "<condition attribute=\"caps_boardofresolutionattached\" operator=\"ne\" value=\"1\" />" +
+                            "</filter>" +
                         "</filter>" +
                     "</filter>" +
                     "</entity>" +
@@ -112,7 +113,53 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                         });
                 }
                 else {
-                    CAPS.CallForSubmission.ConfirmResultsReleased(formContext);
+                    //check that all Project requests are marked as supported, not supported or planned
+                    var fetchXML3 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
+                          "<entity name=\"caps_submission\">" +
+                            "<attribute name=\"caps_submissionid\" />" +
+                            "<attribute name=\"caps_name\" />" +
+                            "<attribute name=\"createdon\" />" +
+                            "<attribute name=\"caps_submissiontype\" />" +
+                            "<order attribute=\"caps_name\" descending=\"false\" />" +
+                            "<filter type=\"and\">" +
+                              "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                            "</filter>" +
+                            "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
+                              "<filter type=\"and\">" +
+                                    "<condition attribute=\"caps_ministryassessmentstatus\" operator=\"not-in\">"+
+                                    "<value>200870000</value>"+
+                                    "<value>100000001</value>"+
+                                    "<value>100000000</value>"+
+                                  "</condition>"+
+                              "</filter>" +
+                            "</link-entity>" +
+                          "</entity>" +
+                        "</fetch>";
+
+                    Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML3).then(
+                        function success(result) {
+                            if (result.entities.length > 0) {
+                                //Some bad projects
+                                errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported, not supported or planned.";
+
+                                let alertStrings = { confirmButtonLabel: "OK", text: errorText, title: "Call For Submission" };
+                                let alertOptions = { height: 120, width: 260 };
+                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                                    function success(result) {
+                                        console.log("Alert dialog closed");
+                                    },
+                                    function (error) {
+                                        console.log(error.message);
+                                    }
+                                );
+                            }
+                            else {
+                                CAPS.CallForSubmission.ConfirmResultsReleased(formContext);
+                            }
+                        },
+                        function (error) {
+                            Xrm.Navigation.openErrorDialog({ message: error });
+                        });
                 }
             }
 

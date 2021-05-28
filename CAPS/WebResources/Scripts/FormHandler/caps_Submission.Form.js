@@ -68,6 +68,10 @@ CAPS.Submission.onLoad = function (executionContext) {
         if (callForSubmissionType === 100000002) {
             formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
         }
+        if (status === SUBMISSION_STAUS.CANCELLED) {
+            //show reason for cancellation
+            formContext.getControl("caps_reasonforcancellation").setVisible(true);
+        }
     }
     else if (status === SUBMISSION_STAUS.SUBMITTED) {
         if (selectedForm === 'SD Capital Plan') {
