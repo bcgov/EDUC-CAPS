@@ -9459,6 +9459,7 @@
                                                                                                         <Style>
                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                           <FontSize>9pt</FontSize>
+                                                                                                          <Format>#,0;(#,0)</Format>
                                                                                                           <Color>=iif(trim(join(lookupset(Fields!PROJECT_caps_projectid.Value, 
     Fields!ProjectID.Value , 
 	  Fields!SumTotalEnrolmentValue.Value,
@@ -9501,6 +9502,7 @@
                                                                                                             <Style>
                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                               <FontSize>9pt</FontSize>
+                                                                                                              <Format>#,0;(#,0)</Format>
                                                                                                               <Color>=iif(trim(join(lookupset(Fields!PROJECT_caps_projectid.Value, 
     Fields!ProjectID.Value , 
 	  Fields!SumTotalEnrolmentValue.Value,
@@ -9543,6 +9545,7 @@
                                                                                                                 <Style>
                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                   <FontSize>9pt</FontSize>
+                                                                                                                  <Format>#,0;(#,0)</Format>
                                                                                                                   <Color>=iif(trim(join(lookupset(Fields!PROJECT_caps_projectid.Value, 
     Fields!ProjectID.Value , 
 	  Fields!SumTotalEnrolmentValue.Value,
@@ -15200,6 +15203,7 @@
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
+                                                                                                                                                  <Format>#,0;(#,0)</Format>
                                                                                                                                                 </Style>
                                                                                                                                               </TextRun>
                                                                                                                                             </TextRuns>
@@ -15280,6 +15284,7 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                         <Style>
                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                           <FontSize>9pt</FontSize>
+                                                                                                                                                          <Format>#,0;(#,0)</Format>
                                                                                                                                                         </Style>
                                                                                                                                                       </TextRun>
                                                                                                                                                     </TextRuns>
@@ -15688,7 +15693,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                <Value>=Fields!FACILITY_caps_utilizationtotal_design.Value</Value>
+                                                                                                                                                                                                <Value>=Fields!FACILITY_caps_utilizationtotal_designValue.Value / 100</Value>
                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -15730,7 +15735,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                                     <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -15769,7 +15774,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -15808,7 +15813,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                            <Value>=Fields!FACILITY_caps_utilizationtotal_operating.Value</Value>
+                                                                                                                                                                                                            <Value>=Fields!FACILITY_caps_utilizationtotal_operatingValue.Value /100</Value>
                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -15850,7 +15855,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                 <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -15889,7 +15894,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -15928,7 +15933,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotaldistrictoperating.Value</Value>
+                                                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotaldistrictoperatingValue.Value /100</Value>
                                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -15970,7 +15975,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                             <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -16009,7 +16014,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -21843,6 +21848,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                     <Style>
                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                       <FontSize>9pt</FontSize>
+                                                                                                                                      <Format>#,0;(#,0)</Format>
                                                                                                                                     </Style>
                                                                                                                                   </TextRun>
                                                                                                                                 </TextRuns>
@@ -21921,6 +21927,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                             <Style>
                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                               <FontSize>9pt</FontSize>
+                                                                                                                                              <Format>#,0;(#,0)</Format>
                                                                                                                                             </Style>
                                                                                                                                           </TextRun>
                                                                                                                                         </TextRuns>
@@ -21959,6 +21966,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
+                                                                                                                                                  <Format>#,0;(#,0)</Format>
                                                                                                                                                 </Style>
                                                                                                                                               </TextRun>
                                                                                                                                             </TextRuns>
@@ -22001,6 +22009,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                                     <Style>
                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                       <FontSize>9pt</FontSize>
+                                                                                                                                                      <Format>#,0;(#,0)</Format>
                                                                                                                                                     </Style>
                                                                                                                                                   </TextRun>
                                                                                                                                                 </TextRuns>
@@ -22392,6 +22401,7 @@ Lookup(
                                                                                                                                                                                         <Style>
                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                           <FontSize>9pt</FontSize>
+                                                                                                                                                                                          <Format>#,0;(#,0)</Format>
                                                                                                                                                                                         </Style>
                                                                                                                                                                                       </TextRun>
                                                                                                                                                                                     </TextRuns>
@@ -22426,7 +22436,7 @@ Lookup(
                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                            <Value>=Fields!FACILITY_caps_utilizationtotal_design.Value</Value>
+                                                                                                                                                                                            <Value>=Fields!FACILITY_caps_utilizationtotal_designValue.Value /100</Value>
                                                                                                                                                                                             <Style>
                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -22468,7 +22478,7 @@ Lookup(
                                                                                                                                                                                                 <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -22510,7 +22520,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                     <Value>=lookup(
   Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-      Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+      Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -22549,7 +22559,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotal_operating.Value</Value>
+                                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotal_operatingValue.Value /100</Value>
                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -22591,7 +22601,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                             <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -22633,7 +22643,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                 <Value>=lookup(
   Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-      Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+      Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -22672,7 +22682,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                                    <Value>=Fields!FACILITY_caps_districtoperatingcapacitytotal.Value</Value>
+                                                                                                                                                                                                                    <Value>=Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value /100</Value>
                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -22714,7 +22724,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                         <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -22756,7 +22766,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                                                                                                             <Value>=lookup(
   Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-      Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+      Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -30177,6 +30187,7 @@ trim(join(lookupset(
                                                                                                                                 <Style>
                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                   <FontSize>9pt</FontSize>
+                                                                                                                                  <Format>#,0;(#,0)</Format>
                                                                                                                                 </Style>
                                                                                                                               </TextRun>
                                                                                                                             </TextRuns>
@@ -30255,6 +30266,7 @@ trim(join(lookupset(
                                                                                                                                         <Style>
                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                           <FontSize>9pt</FontSize>
+                                                                                                                                          <Format>#,0;(#,0)</Format>
                                                                                                                                         </Style>
                                                                                                                                       </TextRun>
                                                                                                                                     </TextRuns>
@@ -30296,6 +30308,7 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                             <Style>
                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                               <FontSize>9pt</FontSize>
+                                                                                                                                              <Format>#,0;(#,0)</Format>
                                                                                                                                             </Style>
                                                                                                                                           </TextRun>
                                                                                                                                         </TextRuns>
@@ -30334,6 +30347,7 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
+                                                                                                                                                  <Format>#,0;(#,0)</Format>
                                                                                                                                                 </Style>
                                                                                                                                               </TextRun>
                                                                                                                                             </TextRuns>
@@ -30707,6 +30721,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                     <Style>
                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                       <FontSize>9pt</FontSize>
+                                                                                                                                                                                      <Format>#,0;(#,0)</Format>
                                                                                                                                                                                     </Style>
                                                                                                                                                                                   </TextRun>
                                                                                                                                                                                 </TextRuns>
@@ -30727,6 +30742,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                               <PaddingBottom>2pt</PaddingBottom>
                                                                                                                                                                             </Style>
                                                                                                                                                                           </Textbox>
+                                                                                                                                                                          <rd:Selected>true</rd:Selected>
                                                                                                                                                                         </CellContents>
                                                                                                                                                                       </TablixHeader>
                                                                                                                                                                       <TablixMembers>
@@ -30741,7 +30757,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotal_design.Value</Value>
+                                                                                                                                                                                        <Value>=Fields!FACILITY_caps_utilizationtotal_designValue.Value /100</Value>
                                                                                                                                                                                         <Style>
                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -30766,7 +30782,6 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                   <PaddingBottom>2pt</PaddingBottom>
                                                                                                                                                                                 </Style>
                                                                                                                                                                               </Textbox>
-                                                                                                                                                                              <rd:Selected>true</rd:Selected>
                                                                                                                                                                             </CellContents>
                                                                                                                                                                           </TablixHeader>
                                                                                                                                                                           <TablixMembers>
@@ -30784,7 +30799,7 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                             <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                             <Style>
                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -30823,7 +30838,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -30862,7 +30877,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                    <Value>=Fields!FACILITY_caps_utilizationtotal_operating.Value</Value>
+                                                                                                                                                                                                    <Value>=Fields!FACILITY_caps_utilizationtotal_operatingValue.Value /100</Value>
                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -30904,7 +30919,7 @@ Fields!caps_total_designutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                         <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -30943,7 +30958,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -30982,7 +30997,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                                <Value>=Fields!FACILITY_caps_utilizationtotaldistrictoperating.Value</Value>
+                                                                                                                                                                                                                <Value>=Fields!FACILITY_caps_utilizationtotaldistrictoperatingValue.Value /100</Value>
                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -31024,7 +31039,7 @@ Fields!caps_total_operatingutilization.Value, "CapacityReporting")</Value>
                                                                                                                                                                                                                     <Value>=lookup(
 Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedoccupancyyear.Value,
 Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
-Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -31063,7 +31078,7 @@ Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Val
                                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_district.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                           <FontSize>9pt</FontSize>
