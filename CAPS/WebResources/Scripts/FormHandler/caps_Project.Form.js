@@ -97,40 +97,13 @@ CAPS.Project.onLoad = function (executionContext) {
         //add on-change events for prfs if not BEP
         if (submissionCategoryCode != "BEP") {
             debugger;
-            //majors
-            formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
-
-            //demolition
-            formContext.getAttribute("caps_demolitioncompletedinonefiscalyear").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_hazmatenvassesscomplete").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_datebuildingportionbecameunoccupied").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_hasschoolbeenpermanentlyclosed").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_estimatedmarketvalueofpropertywbuilding").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_estimatedmarketvalueoflandwobuilding").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_summaryofhazardousmaterialsenvassessment").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_challengestheexistingbuildingpresents").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_benefitsofafullorpartialdemolition").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_potentialplanforvacantsite").addOnChange(CAPS.Project.ValidatePRFS);
-
-            formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
-            formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFS);
-            CAPS.Project.ValidatePRFS(executionContext);
-
-            if (submissionCategoryCode != "DEMOLITION") {
-                formContext.getControl("Subgrid_PRFS_Alt_Options").addOnLoad(CAPS.Project.ValidatePRFSAlternativeOptions);
-                formContext.getControl("sgd_surroundingschools").addOnLoad(CAPS.Project.ValidatePRFSSurroundingSchools);
-                formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSAlternativeOptions);
-                formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSSurroundingSchools);
-
-
-                CAPS.Project.ValidatePRFSAlternativeOptions(executionContext);
-                CAPS.Project.ValidatePRFSSurroundingSchools(executionContext);
-            }
+            CAPS.Project.SetupPRFSValidation(executionContext);
 
         }
+    }
+
+    if (submissionCategoryCode === "LEASE") {
+        CAPS.Project.SetupPRFSValidation(executionContext);
     }
 
     //Only call for SEP and CNCP!
@@ -212,6 +185,45 @@ CAPS.Project.onLoad = function (executionContext) {
     formContext.getControl("caps_ministryassessmentstatus").removeOption(200870001);
 }
 
+
+CAPS.Project.SetupPRFSValidation = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+    debugger;
+    //majors
+    formContext.getAttribute("caps_projectrationale").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_scopeofwork").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_tempaccommodationandbusingplan").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_municipalrequirements").addOnChange(CAPS.Project.ValidatePRFS);
+
+    //demolition
+    formContext.getAttribute("caps_demolitioncompletedinonefiscalyear").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_hazmatenvassesscomplete").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_datebuildingportionbecameunoccupied").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_hasschoolbeenpermanentlyclosed").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_estimatedmarketvalueofpropertywbuilding").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_estimatedmarketvalueoflandwobuilding").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_summaryofhazardousmaterialsenvassessment").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_challengestheexistingbuildingpresents").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_benefitsofafullorpartialdemolition").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_potentialplanforvacantsite").addOnChange(CAPS.Project.ValidatePRFS);
+
+    formContext.getAttribute("caps_totalallocated").addOnChange(CAPS.Project.ValidatePRFS);
+    formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFS);
+    CAPS.Project.ValidatePRFS(executionContext);
+
+    if (submissionCategoryCode != "DEMOLITION") {
+        formContext.getControl("Subgrid_PRFS_Alt_Options").addOnLoad(CAPS.Project.ValidatePRFSAlternativeOptions);
+        formContext.getControl("sgd_surroundingschools").addOnLoad(CAPS.Project.ValidatePRFSSurroundingSchools);
+        formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSAlternativeOptions);
+        formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ValidatePRFSSurroundingSchools);
+
+
+        CAPS.Project.ValidatePRFSAlternativeOptions(executionContext);
+        CAPS.Project.ValidatePRFSSurroundingSchools(executionContext);
+    }
+
+}
 
 /**
  * Prevents autosave if the global prevent autosave flag is set

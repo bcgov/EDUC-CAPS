@@ -50,6 +50,7 @@ CAPS.COA.SetPreviousCOAInformation = function (executionContext) {
                             "<attribute name=\"caps_name\" />"+
                             "<attribute name=\"caps_revisionnumber\" />" +
                             "<attribute name=\"caps_totalapprovedadvance\" />" +
+                            "<attribute name=\"caps_expirydate\" />"
                             "<order attribute=\"caps_name\" descending=\"false\" />"+
                             "<link-entity name=\"caps_projecttracker\" from=\"caps_currentcoa\" to=\"caps_certificateofapprovalid\" link-type=\"inner\" alias=\"ac\">"+
                               "<filter type=\"and\">"+
@@ -65,6 +66,7 @@ CAPS.COA.SetPreviousCOAInformation = function (executionContext) {
                     var certificateNumber = result.entities[0]["caps_name"];
                     var revisionNumber = result.entities[0]["caps_revisionnumber"];
                     var previousTotal = result.entities[0]["caps_totalapprovedadvance"];
+                    var expiryDate = result.entities[0]["caps_expirydate"];
 
                     formContext.getAttribute("caps_previouscertificatenumber").setValue(certificateNumber);
                     formContext.getAttribute("caps_previousrevisionnumber").setValue(revisionNumber);

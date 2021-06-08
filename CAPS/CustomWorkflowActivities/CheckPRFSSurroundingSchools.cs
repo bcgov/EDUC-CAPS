@@ -36,6 +36,8 @@ namespace CustomWorkflowActivities
 
             var recordId = context.PrimaryEntityId;
 
+            var projectRequestRecord = service.Retrieve(context.PrimaryEntityName, recordId, new ColumnSet("caps_municipalrequirements", "caps_submissioncategorycode")) as caps_Project;
+
             EntityReference capitalPlanReference = this.capitalPlan.Get(executionContext);
 
             var capitalPlan = service.Retrieve(capitalPlanReference.LogicalName, capitalPlanReference.Id, new ColumnSet("caps_callforsubmission")) as caps_Submission;
@@ -69,7 +71,7 @@ namespace CustomWorkflowActivities
             //Find out if there is cash flow in any of those 5 years
             var estimatedExpenditures = service.RetrieveMultiple(new FetchExpression(fetchXML));
 
-            if (estimatedExpenditures.Entities.Count() > 0)
+            if (estimatedExpenditures.Entities.Count() > 0 || projectRequestRecord.caps_SubmissionCategoryCode == "LEASE")
             {
                 //check if there is at least one surrounding school
                 var fetchFacilties = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">"+

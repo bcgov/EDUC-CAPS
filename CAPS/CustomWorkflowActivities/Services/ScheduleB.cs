@@ -8,7 +8,6 @@ namespace CustomWorkflowActivities.Services
     internal class CalculationResult
     {
         internal decimal SpaceAllocationNewReplacement {get; set;}
-        //internal decimal SpaceAllocationNLC {get; set;}
         internal decimal BaseBudgetRate { get; set; }
         internal decimal ProjectSizeFactor { get; set; }
         internal decimal ProjectLocationFactor { get; set; }
@@ -22,7 +21,6 @@ namespace CustomWorkflowActivities.Services
         internal decimal PostContractNewReplacement {get; set;}
         internal decimal PostContractRenovation {get; set;}
         internal decimal PostContractSeismic { get; set; }
-        //internal decimal MunicipalFees {get; set;}
         internal decimal EquipmentNew { get; set; }
         internal decimal EquipmentReplacement { get; set; }
         internal decimal ProjectManagement {get; set;}
@@ -31,10 +29,8 @@ namespace CustomWorkflowActivities.Services
         internal decimal RiskReserve { get; set; }
         internal decimal NLCBudgetAmount { get; set;}
 
-    internal decimal Total {get; set;}
+        internal decimal Total {get; set;}
 
-
-    //internal decimal  {get; set;}
 }
     internal class DesignCapacity
     {

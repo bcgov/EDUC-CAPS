@@ -35,7 +35,7 @@ namespace CustomWorkflowActivities
 
             var recordId = context.PrimaryEntityId;
 
-            var projectRequestRecord = service.Retrieve(context.PrimaryEntityName, recordId, new ColumnSet("caps_projectrationale", "caps_scopeofwork", "caps_tempaccommodationandbusingplan", "caps_municipalrequirements")) as caps_Project;
+            var projectRequestRecord = service.Retrieve(context.PrimaryEntityName, recordId, new ColumnSet("caps_projectrationale", "caps_scopeofwork", "caps_tempaccommodationandbusingplan", "caps_municipalrequirements", "caps_submissioncategorycode")) as caps_Project;
 
             EntityReference capitalPlanReference = this.capitalPlan.Get(executionContext);
 

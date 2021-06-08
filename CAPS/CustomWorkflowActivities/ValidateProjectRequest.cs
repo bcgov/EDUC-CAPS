@@ -376,28 +376,57 @@ namespace CustomWorkflowActivities
             #region Check if any Procurement Analysis Questions aren't marked as complete on Major Projects
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
             {
-                var fetchProcurementAnalysis = "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>" +
-                                                "<entity name = 'caps_procurementanalysis' > " +
-                                                "<attribute name = 'caps_procurementanalysisid' /> " +
-                                                "<attribute name = 'caps_name' /> " +
-                                                "<attribute name = 'createdon' /> " +
-                                                "<order attribute = 'caps_name' descending = 'false' /> " +
-                                                "<filter type = 'and' > " +
-                                                    "<condition attribute = 'caps_projectrequest' operator= 'eq'  value = '{" + recordId + "}' /> " +
-                                                    "<condition attribute = 'caps_complete' operator= 'ne' value = '1' /> " +
-                                                    "<condition attribute = 'statecode' operator= 'eq' value = '0' /> " +
-                                                "</filter> " +
-                                                "</entity> " +
-                                                "</fetch> ";
+                //get capital plan year
+                var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
 
-                var incompleteAnalysis = service.RetrieveMultiple(new FetchExpression(fetchProcurementAnalysis));
+                int startYear = capitalPlanYear.edu_StartYear.Value;
 
-                if (incompleteAnalysis.Entities.Count() > 0)
+                var fetchXML = "<fetch version = '1.0' output-format = 'xml-platform' mapping = 'logical' distinct = 'false' >" +
+                "<entity name = 'caps_estimatedyearlycapitalexpenditure' >" +
+                    "<attribute name = 'caps_estimatedyearlycapitalexpenditureid' />" +
+                    "<attribute name = 'caps_name' />" +
+                    "<attribute name = 'createdon' />" +
+                    "<order attribute = 'caps_name' descending = 'false' />" +
+                    "<filter type = 'and' >" +
+                        "<condition attribute = 'statecode' operator= 'eq' value = '0' />" +
+                        "<condition attribute = 'caps_project' operator= 'eq' value = '{" + recordId + "}' />" +
+                        "<condition attribute = 'caps_yearlyexpenditure' operator='not-null' />" +
+                        "<condition attribute = 'caps_yearlyexpenditure' operator='gt' value='0' />" +
+                    "</filter>" +
+                    "<link-entity name='edu_year' from='edu_yearid' to='caps_year' link-type='inner' alias='ad' >" +
+                        "<filter type = 'and' >" +
+                            "<condition attribute = 'edu_startyear' operator= 'ge' value='" + startYear + "' />" +
+                            "<condition attribute = 'edu_startyear' operator= 'le' value = '" + (startYear + 2) + "' />" +
+                            "<condition attribute = 'edu_type' operator= 'eq' value = '757500000' />" +
+                        "</filter></link-entity></entity></fetch>";
+
+                //Find out if there is cash flow in any of those 3 years
+                var estimatedExpenditures = service.RetrieveMultiple(new FetchExpression(fetchXML));
+
+                if (estimatedExpenditures.Entities.Count() > 0)
                 {
-                    isValid = false;
-                    validationMessage.AppendLine("All Procurement Analysis records on the PRFS tab must be marked as Complete.");
-                }
+                    var fetchProcurementAnalysis = "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>" +
+                                "<entity name = 'caps_procurementanalysis' > " +
+                                "<attribute name = 'caps_procurementanalysisid' /> " +
+                                "<attribute name = 'caps_name' /> " +
+                                "<attribute name = 'createdon' /> " +
+                                "<order attribute = 'caps_name' descending = 'false' /> " +
+                                "<filter type = 'and' > " +
+                                    "<condition attribute = 'caps_projectrequest' operator= 'eq'  value = '{" + recordId + "}' /> " +
+                                    "<condition attribute = 'caps_complete' operator= 'ne' value = '1' /> " +
+                                    "<condition attribute = 'statecode' operator= 'eq' value = '0' /> " +
+                                "</filter> " +
+                                "</entity> " +
+                                "</fetch> ";
 
+                    var incompleteAnalysis = service.RetrieveMultiple(new FetchExpression(fetchProcurementAnalysis));
+
+                    if (incompleteAnalysis.Entities.Count() > 0)
+                    {
+                        isValid = false;
+                        validationMessage.AppendLine("All Procurement Analysis records on the PRFS tab must be marked as Complete.");
+                    }
+                }
             } 
             #endregion
 
