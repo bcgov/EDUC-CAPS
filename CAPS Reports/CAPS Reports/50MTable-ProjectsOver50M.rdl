@@ -8,7 +8,7 @@
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>c9950daa-d064-4bc5-89c1-496513080c78</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -795,7 +795,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
+                        <Textbox Name="OccupancyYear_Value">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -812,7 +812,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
                           <ToolTip>Expected/Actual date of the Occupancy milestone</ToolTip>
                           <Style>
                             <Border>
@@ -859,7 +858,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1456,6 +1454,11 @@
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>Project</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=lookup(Fields!caps_projecttrackerid.Value, Fields!caps_projecttrackerValue.Value, Fields!caps_expectedactualdateValue.Value, "Milestones")</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>2.82334cm</Top>
             <Height>2.72604cm</Height>
             <Width>25.11438cm</Width>
