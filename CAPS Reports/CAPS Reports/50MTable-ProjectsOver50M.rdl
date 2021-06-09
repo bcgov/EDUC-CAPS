@@ -75,6 +75,13 @@
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
+      &lt;condition attribute="statuscode" operator="not-in" &gt;
+        &lt;value&gt;1&lt;/value&gt;
+        &lt;value&gt;200870000&lt;/value&gt;
+        &lt;value&gt;2&lt;/value&gt;
+        &lt;value&gt;200870006&lt;/value&gt;
+        &lt;value&gt;200870008&lt;/value&gt;
+      &lt;/condition&gt;
       &lt;filter type="or" &gt;
         &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
         &lt;condition attribute="caps_dateprojectclosed" operator="this-fiscal-year" /&gt;
