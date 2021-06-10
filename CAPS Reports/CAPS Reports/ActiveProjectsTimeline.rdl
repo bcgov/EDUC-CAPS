@@ -214,6 +214,7 @@
         &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="CONTRACT_AWARD" /&gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CPRL" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -432,13 +433,10 @@
                   <Width>2.33808cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.94438cm</Width>
+                  <Width>1.9913cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.60042cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.78563cm</Width>
+                  <Width>1.9973cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.1825cm</Width>
@@ -554,40 +552,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox76">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Supported</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox76</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox63">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -629,7 +593,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Expected/Actual</Value>
+                                  <Value>= IIF(
+ReportItems!milestone_name.Value = "CPRL", 
+"Supported", 
+"Expected/Actual")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -787,40 +754,6 @@
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                             <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="PRJ_createdon">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=iif(isnothing(Fields!PRJ_createdon.Value), "", Format(Cdate(Fields!PRJ_createdon.Value), "MMM-yy"))</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>y</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>PRJ_createdon</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>=iif(isnothing(Fields!PRJ_createdon.Value), "White", iif(Fields!PRJ_createdon.Value &lt; Globals!ExecutionTime, "#fff6d5", "White"))</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -1028,38 +961,6 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox8">
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#234075</BackgroundColor>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox9">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1203,7 +1104,6 @@
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
-                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
                 <TablixMember>
@@ -1220,7 +1120,7 @@
                   <TablixHeader>
                     <Size>0.6cm</Size>
                     <CellContents>
-                      <Textbox Name="caps_name">
+                      <Textbox Name="milestone_name">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
@@ -1231,7 +1131,7 @@
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>White</Color>
+                                  <Color>=IIF(ReportItems!milestone_name.Value = "CPRL", "#234075", "White")</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1240,7 +1140,6 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>caps_name</rd:DefaultName>
                         <Style>
                           <Border>
                             <Color>LightGrey</Color>
@@ -1256,7 +1155,11 @@
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
-                    <TablixMember />
+                    <TablixMember>
+                      <Visibility>
+                        <Hidden>= ReportItems!milestone_name.Value = "CPRL"</Hidden>
+                      </Visibility>
+                    </TablixMember>
                     <TablixMember />
                   </TablixMembers>
                 </TablixMember>
@@ -1478,7 +1381,7 @@
             <DataSetName>ProjectMilestones</DataSetName>
             <Top>2.9625cm</Top>
             <Height>1.89729cm</Height>
-            <Width>21.21929cm</Width>
+            <Width>19.87746cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>

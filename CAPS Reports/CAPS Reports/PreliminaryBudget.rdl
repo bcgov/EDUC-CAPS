@@ -26,7 +26,7 @@
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
-  &lt;entity name="caps_project" enableprefiltering="1" &gt;
+  &lt;entity name="caps_project" enableprefiltering="1"&gt;
     &lt;attribute name="caps_projectcode" /&gt;
     &lt;attribute name="caps_projectid" /&gt;
     &lt;attribute name="caps_projecttype" /&gt;
@@ -125,21 +125,21 @@
           <DataField>caps_submissioncategory</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_schbprojectsizefactor">
-          <DataField>caps_schbprojectsizefactor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_submissioncategoryValue">
           <DataField>caps_submissioncategoryValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="caps_schbprojectsizefactorValue">
-          <DataField>caps_schbprojectsizefactorValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_submissioncategoryEntityName">
           <DataField>caps_submissioncategoryEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbprojectsizefactor">
+          <DataField>caps_schbprojectsizefactor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbprojectsizefactorValue">
+          <DataField>caps_schbprojectsizefactorValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_schbprojectmanagementfees">
           <DataField>caps_schbprojectmanagementfees</DataField>
@@ -4947,7 +4947,7 @@
             <PageBreak>
               <BreakLocation>End</BreakLocation>
             </PageBreak>
-            <Top>17.47858cm</Top>
+            <Top>18.11358cm</Top>
             <Left>10.17228cm</Left>
             <Height>0.6cm</Height>
             <Width>9.71779cm</Width>
@@ -5045,6 +5045,75 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox29">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Risk Reserve/Escalation Percentage (%)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox35">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox35</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox41">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -5052,7 +5121,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Risk Reserve/Escalation</Value>
+                                  <Value>Risk Reserve/Escalation Amount ($)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -5125,12 +5194,13 @@
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>ProjectRequest</DataSetName>
             <Top>16.2337cm</Top>
             <Left>10.17228cm</Left>
-            <Height>1.2cm</Height>
+            <Height>1.8cm</Height>
             <Width>9.71779cm</Width>
             <ZIndex>10</ZIndex>
             <Style>
@@ -6975,7 +7045,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>18.25497cm</Top>
+            <Top>19.84247cm</Top>
             <Left>0.01095cm</Left>
             <Height>4.11896cm</Height>
             <Width>19.87912cm</Width>
@@ -6991,7 +7061,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>8.85313in</Height>
+        <Height>9.48855in</Height>
         <Style />
       </Body>
       <Width>7.86204in</Width>
