@@ -75,6 +75,14 @@
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
+      &lt;condition attribute="statuscode" operator="not-in" &gt;
+        &lt;value&gt;1&lt;/value&gt;
+        &lt;value&gt;200870000&lt;/value&gt;
+        &lt;value&gt;2&lt;/value&gt;
+        &lt;value&gt;200870006&lt;/value&gt;
+        &lt;value&gt;200870008&lt;/value&gt;
+        &lt;value&gt;200870005&lt;/value&gt;
+      &lt;/condition&gt;
       &lt;filter type="or" &gt;
         &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
         &lt;condition attribute="caps_dateprojectclosed" operator="this-fiscal-year" /&gt;
@@ -180,8 +188,8 @@
     <DataSet Name="Milestones">
       <Query>
         <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projectmilestone"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_projecttracker" /&gt;
@@ -189,15 +197,18 @@
     &lt;attribute name="caps_expectedactualdate" /&gt;
     &lt;attribute name="caps_complete" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="MILESTONE"&gt;
-      &lt;filter type="and"&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="MILESTONE" &gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PROJECT"&gt;
-      &lt;filter type="and"&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" link-type="inner" alias="PROJECT" &gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_maxpotential_fundingsource" operator="ge" value="50000000" /&gt;
-        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;filter type="or" &gt;
+          &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+          &lt;condition attribute="caps_dateprojectclosed" operator="this-fiscal-year" /&gt;
+        &lt;/filter&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -1505,7 +1516,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Includes projects closed this fiscal year.</Value>
+                    <Value>Includes projects closed/completed this fiscal year.</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>

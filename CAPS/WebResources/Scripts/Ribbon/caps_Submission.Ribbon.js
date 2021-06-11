@@ -181,3 +181,27 @@ CAPS.Submission.BulkCancel = function (selectedControlIds, selectedControl) {
     }
 );
 }
+
+/*
+Function to check if the current user has CAPS CMB User Role.
+*/
+CAPS.Submission.ShowActivate = function (primaryContext) {
+    var formContext = primaryContext;
+    //Hide if not AFG
+    if (formContext.getAttribute("caps_callforsubmissiontype").getValue() != 100000002) {
+        return false;
+
+    }
+
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    var showButton = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB Super User - Add On") {
+            showButton = true;
+        }
+    });
+
+    return showButton;
+}
