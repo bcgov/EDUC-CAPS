@@ -203,6 +203,7 @@
         &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt;
         &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
         &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
@@ -1535,7 +1536,7 @@ ReportItems!milestone_name.Value = "CPRL",
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>8.39958cm</Size>
+                    <Size>8.33911cm</Size>
                     <CellContents>
                       <Textbox Name="Textbox105">
                         <CanGrow>true</CanGrow>
@@ -1578,11 +1579,11 @@ ReportItems!milestone_name.Value = "CPRL",
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!ownerid.Value</Value>
+                      <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.5cm</Size>
+                    <Size>1.46375cm</Size>
                     <CellContents>
                       <Textbox Name="SCHOOLDISTRICT_edu_number1">
                         <CanGrow>true</CanGrow>
@@ -1593,6 +1594,8 @@ ReportItems!milestone_name.Value = "CPRL",
                               <TextRun>
                                 <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
                                 <Style>
+                                  <FontFamily>arial</FontFamily>
+                                  <FontSize>12pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
@@ -1618,7 +1621,7 @@ ReportItems!milestone_name.Value = "CPRL",
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>2.5cm</Size>
+                        <Size>3.47578cm</Size>
                         <CellContents>
                           <Textbox Name="SCHOOLDISTRICT_edu_commonname1">
                             <CanGrow>true</CanGrow>
@@ -1629,6 +1632,8 @@ ReportItems!milestone_name.Value = "CPRL",
                                   <TextRun>
                                     <Value>=Fields!SCHOOLDISTRICT_edu_commonname.Value</Value>
                                     <Style>
+                                      <FontFamily>arial</FontFamily>
+                                      <FontSize>12pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
                                     </Style>
                                   </TextRun>
@@ -1649,6 +1654,7 @@ ReportItems!milestone_name.Value = "CPRL",
                               <PaddingBottom>2pt</PaddingBottom>
                             </Style>
                           </Textbox>
+                          <rd:Selected>true</rd:Selected>
                         </CellContents>
                       </TablixHeader>
                       <TablixMembers>
@@ -1753,7 +1759,7 @@ ReportItems!milestone_name.Value = "CPRL",
             </SortExpressions>
             <Top>2.9625cm</Top>
             <Height>1.89729cm</Height>
-            <Width>27.37746cm</Width>
+            <Width>27.31699cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
