@@ -9,11 +9,8 @@
   <ExtensionConfig>
     <ActionPrefixesWhitelist />
     <ActionsWhitelist />
-    <ActionsToSkip>msdyn_getsifeatureconfiguration|
-retrieveappsetting|
-retrieveappsettinglist|
-saveappsetting</ActionsToSkip>
-    <AddDebuggerNonUserCode>false</AddDebuggerNonUserCode>
+    <ActionsToSkip />
+    <AddDebuggerNonUserCode>true</AddDebuggerNonUserCode>
     <AddNewFilesToProject>true</AddNewFilesToProject>
     <AddOptionSetMetadataAttribute>true</AddOptionSetMetadataAttribute>
     <CamelCaseClassNames>false</CamelCaseClassNames>
@@ -23,88 +20,17 @@ saveappsetting</ActionsToSkip>
     <CreateOneFilePerOptionSet>false</CreateOneFilePerOptionSet>
     <DeleteFilesFromOutputFolders>false</DeleteFilesFromOutputFolders>
     <EntitiesToSkip />
-    <EntitiesWhitelist>account|
-activityparty|
-activitypointer|
-annotation|
-caps_actualdraw|
-caps_budgetcalc_communitylocation|
-caps_budgetcalc_constructionrenovationfactor|
-caps_budgetcalc_log|
-caps_budgetcalc_projectmanagementfees|
-caps_budgetcalc_projectsizefactor|
-caps_budgetcalc_schooltype|
-caps_budgetcalc_spaceallocation|
-caps_budgetcalc_value|
-caps_bus|
-caps_busmake|
-caps_bustype|
-caps_buswheelchairoption|
-caps_buswheelchairoption_caps_bustype|
-caps_callforsubmission|
-caps_callforsubmission_caps_submissioncat|
-caps_callforsubmission_edu_schooldistrict|
-caps_capacityreporting|
-caps_capitalplansupportingdocuments|
-caps_cashflowprojection|
-caps_certificateofapproval|
-caps_childcare|
-caps_coaapproval|
-caps_electricitysupplier|
-caps_emergingissues|
-caps_enrolmentprojections_sd|
-caps_estimatedyearlycapitalexpenditure|
-caps_facility|
-caps_facilityenrolment|
-caps_facilityhistory|
-caps_facilitytype|
-caps_fueltype|
-caps_fundingprogram|
-caps_longrangefacilityplan|
-caps_milestone|
-caps_nlcfactor|
-caps_phasedprojectgroup|
-caps_portable|
-caps_prfsalternativeoption|
-caps_progressreport|
-caps_project|
-caps_project_caps_facility|
-caps_project_caps_facilityss|
-caps_projectcashflow|
-caps_projectcashflowhistory|
-caps_projectclosure|
-caps_projecthistory|
-caps_projecthistory_caps_facility|
-caps_projectmilestone|
-caps_projectrequest_caps_project|
-caps_projecttracker|
-caps_projecttype|
-caps_schooldistrictenrolment|
-caps_schoolenrolmentcollection|
-caps_strongstartcentre|
-caps_submission|
-caps_submissioncategory|
-caps_submissionprocessflow|
-edu_municipality|
-edu_region|
-edu_school|
-edu_schoolauthority|
-edu_schooldistrict|
-edu_schoolenrolment|
-edu_systemconfiguration|
-edu_year|
-email|
-team</EntitiesWhitelist>
+    <EntitiesWhitelist />
     <EntityAttributeSpecifiedNames />
     <EntityPrefixesToSkip />
     <EntityPrefixesWhitelist />
     <GenerateActionAttributeNameConsts>false</GenerateActionAttributeNameConsts>
-    <GenerateAttributeNameConsts>true</GenerateAttributeNameConsts>
+    <GenerateAttributeNameConsts>false</GenerateAttributeNameConsts>
     <GenerateAnonymousTypeConstructor>true</GenerateAnonymousTypeConstructor>
     <GenerateConstructorsSansLogicalName>false</GenerateConstructorsSansLogicalName>
     <GenerateEntityRelationships>true</GenerateEntityRelationships>
     <GenerateEntityTypeCode>false</GenerateEntityTypeCode>
-    <GenerateEnumProperties>false</GenerateEnumProperties>
+    <GenerateEnumProperties>true</GenerateEnumProperties>
     <GenerateOnlyReferencedOptionSets>true</GenerateOnlyReferencedOptionSets>
     <GenerateOptionSetMetadataAttribute>true</GenerateOptionSetMetadataAttribute>
     <GroupLocalOptionSetsByEntity>false</GroupLocalOptionSetsByEntity>
@@ -116,13 +42,12 @@ team</EntitiesWhitelist>
     <OptionSetLanguageCodeOverride
       xsi:nil="true" />
     <OptionSetPrefixesToSkip />
-    <OptionSetsToSkip>organization_currencyformatcode|
-quote_statuscode</OptionSetsToSkip>
+    <OptionSetsToSkip />
     <ProjectNameForEarlyBoundFiles />
     <PropertyEnumMappings />
     <ReadSerializedMetadata>false</ReadSerializedMetadata>
     <RemoveRuntimeVersionComment>true</RemoveRuntimeVersionComment>
-    <ReplaceOptionSetPropertiesWithEnum>false</ReplaceOptionSetPropertiesWithEnum>
+    <ReplaceOptionSetPropertiesWithEnum>true</ReplaceOptionSetPropertiesWithEnum>
     <SerializeMetadata>false</SerializeMetadata>
     <TokenCapitalizationOverrides>AccessTeam|
 ActiveState|

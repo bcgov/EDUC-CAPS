@@ -27,6 +27,7 @@ namespace CustomWorkflowActivities.Services
         internal decimal LiabilityInsurance {get; set;}
         internal decimal PayableTaxes {get; set;}
         internal decimal RiskReserve { get; set; }
+        internal decimal RiskReservePercent { get; set; }
         internal decimal NLCBudgetAmount { get; set;}
 
         internal decimal Total {get; set;}
@@ -379,9 +380,11 @@ namespace CustomWorkflowActivities.Services
 
             var subTotal = totalOwnersCost + constructionTotalConstructionBudget + projectManagementFee + supplementalCosts + NLCAmount;
             
-            var riskReserve = subTotal * GetBudgetCalculationValue("Risk Reserve and Escalation");
+            var riskReservePercent = GetBudgetCalculationValue("Risk Reserve and Escalation");
+            var riskReserve = subTotal * riskReservePercent;
 
             result.RiskReserve = riskReserve;
+            result.RiskReservePercent = riskReservePercent * 100;
 
             result.Total = subTotal + riskReserve;
 

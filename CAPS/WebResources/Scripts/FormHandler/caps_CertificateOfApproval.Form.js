@@ -50,7 +50,7 @@ CAPS.COA.SetPreviousCOAInformation = function (executionContext) {
                             "<attribute name=\"caps_name\" />"+
                             "<attribute name=\"caps_revisionnumber\" />" +
                             "<attribute name=\"caps_totalapprovedadvance\" />" +
-                            "<attribute name=\"caps_expirydate\" />"
+                            "<attribute name=\"caps_expirydate\" />"+
                             "<order attribute=\"caps_name\" descending=\"false\" />"+
                             "<link-entity name=\"caps_projecttracker\" from=\"caps_currentcoa\" to=\"caps_certificateofapprovalid\" link-type=\"inner\" alias=\"ac\">"+
                               "<filter type=\"and\">"+
@@ -71,6 +71,12 @@ CAPS.COA.SetPreviousCOAInformation = function (executionContext) {
                     formContext.getAttribute("caps_previouscertificatenumber").setValue(certificateNumber);
                     formContext.getAttribute("caps_previousrevisionnumber").setValue(revisionNumber);
                     formContext.getAttribute("caps_previoustotalapprovedadvance").setValue(previousTotal);
+
+                    if (expiryDate != null) {
+                        var parts = expiryDate.split('-');
+                        var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
+                        formContext.getAttribute("caps_previousexpirydate").setValue(mydate);
+                    }
                     
                 }
                 else {
