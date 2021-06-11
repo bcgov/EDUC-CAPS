@@ -6,9 +6,10 @@
     <DataSource Name="CAPS_DEV">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://disco.crm3.dynamics.com;org82ba5b4a</ConnectString>
+        <Prompt>login</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>75f388d5-9fe5-4380-84cb-e941ad148a59</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -160,7 +161,7 @@
             <rd:DefaultName>Textbox82</rd:DefaultName>
             <Left>3.94047cm</Left>
             <Height>1.34938cm</Height>
-            <Width>11.05953cm</Width>
+            <Width>12.59411cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -189,7 +190,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox83</rd:DefaultName>
             <Top>1.40229cm</Top>
-            <Left>3.94047cm</Left>
+            <Left>4.25797cm</Left>
             <Height>0.6cm</Height>
             <Width>6.12599cm</Width>
             <ZIndex>1</ZIndex>
@@ -563,9 +564,9 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="fullname">
+                  <Group Name="username">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!fullname.Value</GroupExpression>
+                      <GroupExpression>=Fields!domainname.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
@@ -607,7 +608,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>4.21979cm</Size>
+                        <Size>7cm</Size>
                         <CellContents>
                           <Textbox Name="domainname">
                             <CanGrow>true</CanGrow>
@@ -747,7 +748,7 @@
                                   <TablixMembers>
                                     <TablixMember>
                                       <TablixHeader>
-                                        <Size>5.17229cm</Size>
+                                        <Size>7cm</Size>
                                         <CellContents>
                                           <Textbox Name="internalemailaddress1">
                                             <CanGrow>true</CanGrow>
@@ -782,7 +783,7 @@
                                       <TablixMembers>
                                         <TablixMember>
                                           <TablixHeader>
-                                            <Size>5.17229cm</Size>
+                                            <Size>7cm</Size>
                                             <CellContents>
                                               <Textbox Name="personalemailaddress1">
                                                 <CanGrow>true</CanGrow>
@@ -830,9 +831,14 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>User</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!fullname.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>2.98662cm</Top>
             <Height>1.2cm</Height>
-            <Width>29.63083cm</Width>
+            <Width>36.06646cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -844,10 +850,10 @@
         <Height>1.65869in</Height>
         <Style />
       </Body>
-      <Width>11.69693in</Width>
+      <Width>14.19939in</Width>
       <Page>
         <PageFooter>
-          <Height>1.34938cm</Height>
+          <Height>1.29646cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
