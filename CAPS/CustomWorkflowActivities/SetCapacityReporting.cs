@@ -47,7 +47,8 @@ namespace CustomWorkflowActivities
                                     "caps_districtoperatingcapacitysecondary",
                                     "caps_operatingcapacitykindergarten",
                                     "caps_operatingcapacityelementary",
-                                    "caps_operatingcapacitysecondary");
+                                    "caps_operatingcapacitysecondary",
+                                    "caps_usefutureforutilization");
             var facilityRecord = service.Retrieve(context.PrimaryEntityName, context.PrimaryEntityId, columns) as caps_Facility;
 
             tracingService.Trace("Facility Name:{0}", facilityRecord.caps_Name);
@@ -73,7 +74,17 @@ namespace CustomWorkflowActivities
             enrolmentQuery.ColumnSet.AllColumns = true;
             enrolmentQuery.Criteria = new FilterExpression();
             enrolmentQuery.Criteria.AddCondition("caps_facility", ConditionOperator.Equal, recordId);
-            enrolmentQuery.Criteria.AddCondition("statuscode", ConditionOperator.Equal, 200870000);
+            if (facilityRecord.caps_UseFutureForUtilization.GetValueOrDefault(false))
+            {
+                //submitted
+                enrolmentQuery.Criteria.AddCondition("statuscode", ConditionOperator.Equal, 200870001);
+            }
+            else
+            {
+                //current
+                enrolmentQuery.Criteria.AddCondition("statuscode", ConditionOperator.Equal, 200870000);
+            }
+            
             EntityCollection enrolmentProjectionRecords = service.RetrieveMultiple(enrolmentQuery);
             var enrolmentProjectionList = enrolmentProjectionRecords.Entities.Select(r => r.ToEntity<caps_EnrolmentProjections_SD>()).ToList();
 
@@ -266,9 +277,9 @@ namespace CustomWorkflowActivities
 
                     tracingService.Trace("Updated Design Capacity - K:{0}; E:{1}; S:{2}", kDesign, eDesign, sDesign);
 
-                    decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : enrolmentK;
-                    decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : enrolmentE;
-                    decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : enrolmentS;
+                    decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : 0;
+                    decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : 0;
+                    decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : 0;
 
                     recordToUpdate.caps_Kindergarten_enrolment = futureEnrolmentK;
                     recordToUpdate.caps_Elementary_enrolment = futureEnrolmentE;

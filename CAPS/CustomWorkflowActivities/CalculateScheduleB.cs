@@ -190,6 +190,7 @@ namespace CustomWorkflowActivities
             recordToUpdate.caps_SchBLiabilityInsurance = result.LiabilityInsurance;
             recordToUpdate.caps_SchBPayableTaxes = result.PayableTaxes;
             recordToUpdate.caps_SchBRiskReserve = result.RiskReserve;
+            recordToUpdate.caps_SchBRiskReservePercent = result.RiskReservePercent;
             recordToUpdate.caps_SchBNLCBudgetAmount = result.NLCBudgetAmount;
 
             service.Update(recordToUpdate);

@@ -119,7 +119,6 @@ namespace CustomWorkflowActivities
 
             tracingService.Trace("{0}", "Check Cash Only in Current and Future Years based on Capital Plan year");
             #region Check Cash Only in Current and Future Years based on Capital Plan year
-            //Check if Major Project has cash flow in first 5 years
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
             {
                 if (projectRequest.caps_Submission != null

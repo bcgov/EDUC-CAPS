@@ -382,9 +382,15 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
         formContext.getControl("caps_projecttype").setVisible(false);
-        formContext.getControl("caps_cpsnumber").setVisible(false);
+
+        if (formContext.getControl("caps_cpsnumber") !== null) {
+            formContext.getControl("caps_cpsnumber").setVisible(false);
+        }
         formContext.getControl("caps_requestedfunding").setVisible(false);
-        formContext.getControl("caps_relatedproject").setVisible(false);
+
+        if (formContext.getControl("caps_relatedproject") !== null) {
+            formContext.getControl("caps_relatedproject").setVisible(false);
+        }
         formContext.getControl("caps_sdprojectnumber").setVisible(false);
 
 
@@ -412,9 +418,15 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
 
         if (submissionCategoryCode === 'BUS') {
             formContext.getControl("caps_projecttype").setVisible(false);
-            formContext.getControl("caps_cpsnumber").setVisible(false);
+
+            if (formContext.getControl("caps_cpsnumber") !== null) {
+                formContext.getControl("caps_cpsnumber").setVisible(false);
+            }
             formContext.getControl("caps_requestedfunding").setVisible(false);
-            formContext.getControl("caps_relatedproject").setVisible(false);
+
+            if (formContext.getControl("caps_relatedproject") !== null) {
+                formContext.getControl("caps_relatedproject").setVisible(false);
+            }
             formContext.getControl("caps_procurementmethod").setVisible(false);
         }
 
