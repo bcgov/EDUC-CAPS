@@ -96,8 +96,47 @@
     <Content Include="Help\CAPS_ActualDrawsForm.html" />
     <Content Include="Help\CAPS_ActualDrawsLandingPage.html" />
     <Content Include="Help\CAPS_BudgetCalculationValueForm.html" />
-    <Content Include="Help\HtmlPage2.html" />
-    <Content Include="Help\HtmlPage3.html" />
+    <Content Include="Help\CAPS_BusForm.html" />
+    <Content Include="Help\CAPS_BusMakeForm.html" />
+    <Content Include="Help\CAPS_BusMakesLandingPage.html" />
+    <Content Include="Help\CAPS_BusTypeForm.html" />
+    <Content Include="Help\CAPS_BusTypeLandingPage.html" />
+    <Content Include="Help\CAPS_BusWheelChairOptionForm.html" />
+    <Content Include="Help\CAPS_BusWheelchairOptionsLandingPage.html" />
+    <Content Include="Help\CAPS_BusesLandingPage.html" />
+    <Content Include="Help\CAPS_CalculationValuesLandingPage.html" />
+    <Content Include="Help\CAPS_CallforSubmissionLandingPage.html" />
+    <Content Include="Help\CAPS_CertificateofApprovalForm.html" />
+    <Content Include="Help\CAPS_CertificateofAPprovalLandingPage.html" />
+    <Content Include="Help\CAPS_ChildcareCentreForm.html" />
+    <Content Include="Help\CAPS_ChildcareCentresLandingPage.html" />
+    <Content Include="Help\CAPS_CommunitiesLandingPage.html" />
+    <Content Include="Help\CAPS_CommunityForm.html" />
+    <Content Include="Help\CAPS_CommunityLocationForm.html" />
+    <Content Include="Help\CAPS_ConstructionRenovationFactorForm.html" />
+    <Content Include="Help\CAPS_ConstructionRenovationFactorsLandingPage.html" />
+    <Content Include="Help\CAPS_DashboardsLandingPage.html" />
+    <Content Include="Help\CAPS_ElectricitySupplierForm.html" />
+    <Content Include="Help\CAPS_ElectricitySuppliersLandingPage.html" />
+    <Content Include="Help\CAPS_ExternalResourceForm.html" />
+    <Content Include="Help\CAPS_ExternalResourcesLandingPage.html" />
+    <Content Include="Help\CAPS_FacilitiesLandingPage.html" />
+    <Content Include="Help\CAPS_FacilityEnrolmentForm.html" />
+    <Content Include="Help\CAPS_FacilityEnrolmnetsLandingPage.html" />
+    <Content Include="Help\MyCAPS_FacilitiesLandingPage.html" />
+    <Content Include="Help\MyCAPS_ExternalResourceForm.html" />
+    <Content Include="Help\MyCAPS_ElectricitySupplierForm.html" />
+    <Content Include="Help\MyCAPS_CommunityLocationForm.html" />
+    <Content Include="Help\MyCAPS_CommunityForm.html" />
+    <Content Include="Help\MyCAPS_ChildcareCentresLandingPage.html" />
+    <Content Include="Help\MyCAPS_ChildcareCentreForm.html" />
+    <Content Include="Help\MyCAPS_CertificateofApprovalForm.html" />
+    <Content Include="Help\MyCAPS_CallforSubmissionForm.html" />
+    <Content Include="Help\MyCAPS_BusesLandingPage.html" />
+    <Content Include="Help\MyCAPS_BusWheelChairOptionForm.html" />
+    <Content Include="Help\MyCAPS_BusTypeForm.html" />
+    <Content Include="Help\MyCAPS_BusMakeForm.html" />
+    <Content Include="Help\MyCAPS_BusForm.html" />
     <Content Include="Help\MyCAPS_BudgetCalculationForm.html" />
     <Content Include="Help\MyCAPS_ActivitiesLandingPage.html" />
     <Content Include="Help\MyCAPS_SubmissionsForm.html" />
@@ -121,7 +160,6 @@
     <Content Include="Scripts\FormHandler\caps_Submission.Form.js" />
     <Content Include="Scripts\Ribbon\caps_CallForSubmission.Ribbon.js" />
     <Content Include="Scripts\Ribbon\caps_CertificateOfApproval.Ribbon.js" />
-    <Content Include="Scripts\Ribbon\caps_Facility.Ribbon.js" />
     <Content Include="Scripts\Ribbon\caps_PRFSAlternativeOption.Ribbon.js" />
     <Content Include="Scripts\Ribbon\caps_ProgressReport.Ribbon.js" />
     <Content Include="Scripts\Ribbon\caps_Project.Ribbon.js" />
@@ -187,7 +225,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Help\CAPS\" />
+    <Folder Include="Help\MyCAPS\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
