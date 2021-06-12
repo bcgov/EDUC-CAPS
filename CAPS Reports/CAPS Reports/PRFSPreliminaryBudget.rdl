@@ -6,9 +6,10 @@
     <DataSource Name="CAPS_Dev">
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <ConnectString>https://capsdev.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>enter credentials</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>ad31ae0b-d09c-47ca-a4b3-fa465c46dea7</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -59,6 +60,7 @@
     &lt;attribute name="caps_abnormaltopographycost" /&gt;
     &lt;attribute name="caps_schedulebtotal" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
+    &lt;attribute name="caps_schbriskreservepercent" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCAT" &gt;
       &lt;attribute name="caps_categorycode" /&gt;
@@ -368,9 +370,17 @@
           <DataField>caps_submissioncategoryEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_schbriskreservepercent">
+          <DataField>caps_schbriskreservepercent</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="SubCAT_caps_categorycode">
           <DataField>SubCAT_caps_categorycode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schbriskreservepercentValue">
+          <DataField>caps_schbriskreservepercentValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ProjTyp_caps_type">
           <DataField>ProjTyp_caps_type</DataField>
@@ -5058,9 +5068,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!caps_schbriskreservepercentValue.Value / 100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>0%</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5079,6 +5090,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
