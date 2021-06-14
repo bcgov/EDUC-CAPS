@@ -417,6 +417,60 @@
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="CPRL_Milestone_ProjectDate">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ProjectType">
+            <Value>=Parameters!ProjectType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projectmilestone" &gt;
+    &lt;attribute name="caps_expectedactualdate" /&gt;
+    &lt;attribute name="caps_projecttracker" /&gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" alias="PRJ"&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict"/&gt;
+        &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType"/&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+    &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" alias="Milestone" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CPRL" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_expectedactualdate">
+          <DataField>caps_expectedactualdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_expectedactualdateValue">
+          <DataField>caps_expectedactualdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttracker">
+          <DataField>caps_projecttracker</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerValue">
+          <DataField>caps_projecttrackerValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerEntityName">
+          <DataField>caps_projecttrackerEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -1016,7 +1070,10 @@ ReportItems!milestone_name.Value = "CPRL",
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=DateDiff(DateInterval.month, Fields!PRJ_createdon.Value, Globals!ExecutionTime)/12</Value>
+                                  <Value>=IIF(lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Fields!caps_expectedactualdate.Value, "CPRL_Milestone_ProjectDate") = "", "",
+DateDiff(DateInterval.month, 
+lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Fields!caps_expectedactualdate.Value, "CPRL_Milestone_ProjectDate")
+, Globals!ExecutionTime)/12)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0.0;(0.0)</Format>
@@ -1458,7 +1515,7 @@ ReportItems!milestone_name.Value = "CPRL",
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>=IIF(ReportItems!milestone_name.Value = "CPRL", "#234075", "White")</Color>
+                                  <Color>White</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1654,7 +1711,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <PaddingBottom>2pt</PaddingBottom>
                             </Style>
                           </Textbox>
-                          <rd:Selected>true</rd:Selected>
                         </CellContents>
                       </TablixHeader>
                       <TablixMembers>
@@ -1848,7 +1904,7 @@ ReportItems!milestone_name.Value = "CPRL",
         <Height>1.93414in</Height>
         <Style />
       </Body>
-      <Width>12.74703in</Width>
+      <Width>12.42485in</Width>
       <Page>
         <PageFooter>
           <Height>1.29646cm</Height>
@@ -1938,7 +1994,7 @@ ReportItems!milestone_name.Value = "CPRL",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.035cm</Top>
+              <Top>0cm</Top>
               <Left>27.24704cm</Left>
               <Height>0.6cm</Height>
               <Width>4.31208cm</Width>
