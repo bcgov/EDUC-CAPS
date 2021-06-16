@@ -99,8 +99,8 @@
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_facility" &gt;
     &lt;attribute name="caps_facilityid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -131,9 +131,11 @@
     &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;attribute name="caps_currentfacilitytype" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" /&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" &gt;
+        &lt;value&gt;@SchoolDistrict&lt;/value&gt;
+      &lt;/condition&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -4029,7 +4031,6 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Left>17.34375cm</Left>
               <Height>0.6cm</Height>
               <Width>6.15125cm</Width>
