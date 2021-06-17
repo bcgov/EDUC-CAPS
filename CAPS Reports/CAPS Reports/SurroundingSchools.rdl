@@ -169,6 +169,7 @@
     &lt;attribute name="caps_designcapacityelementary" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="caps_schooldistrict" operator="eq" value="@SchoolDistrict" /&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
   &lt;/entity&gt;
@@ -3015,7 +3016,6 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0in</Top>
               <Left>19.95995cm</Left>
               <Height>0.6cm</Height>
               <Width>5cm</Width>
@@ -3082,7 +3082,6 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.23622in</Height>
               <Width>1.33854in</Width>
               <ZIndex>2</ZIndex>
