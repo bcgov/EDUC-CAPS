@@ -2516,6 +2516,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2572,27 +2573,20 @@
                                 <TextRun>
                                   <Value>Design Utilization %</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontFamily>arial</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
                             <BackgroundColor>#e3a82b</BackgroundColor>
@@ -2617,7 +2611,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>= IIF(Isnothing(ReportItems!caps_total_designcapacityValue1.Value), "white",
+IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2631,9 +2626,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                            </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
@@ -2712,7 +2704,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>=  IIF(Isnothing(ReportItems!caps_total_operatingcapacityValue1.Value),"white",
+IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2810,7 +2803,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!caps_total_operatingutilization_district1.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>=IIF(Isnothing(ReportItems!caps_total_operatingcapacity_districtValue.Value), "white",
+IIF(ReportItems!caps_total_operatingutilization_district1.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3894,11 +3888,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                         <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
                       </Visibility>
                     </TablixMember>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
-                      </Visibility>
-                    </TablixMember>
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
