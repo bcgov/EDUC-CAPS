@@ -1364,6 +1364,11 @@ Sum(Fields!ACTUALDRAWS_caps_amountValue.Value))</Value>
                       <GroupExpression>=Fields!edu_schooldistrictid.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!edu_number.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                 </TablixMember>
                 <TablixMember>
                   <KeepWithGroup>Before</KeepWithGroup>
@@ -1371,6 +1376,11 @@ Sum(Fields!ACTUALDRAWS_caps_amountValue.Value))</Value>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SchoolDistrict_ActualDraws</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!edu_number.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>2.43099cm</Top>
             <Left>0cm</Left>
             <Height>2.47938cm</Height>
