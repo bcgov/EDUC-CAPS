@@ -177,11 +177,19 @@ CAPS.Facility.ShowHideTabs = function (executionContext) {
         formContext.ui.tabs.get("tab_CapacityandUtilization").setVisible(true);
         formContext.ui.tabs.get("tab_EnrolmentProjections").setVisible(true);
         formContext.ui.tabs.get("tab_PastEnrolmentProjections").setVisible(true);
+
+        if (formContext.ui.tabs.get("tab_actualenrolments") != null) {
+            formContext.ui.tabs.get("tab_actualenrolments").setVisible(true);
+        }
     }
     else {
         formContext.ui.tabs.get("tab_CapacityandUtilization").setVisible(false);
         formContext.ui.tabs.get("tab_EnrolmentProjections").setVisible(false);
         formContext.ui.tabs.get("tab_PastEnrolmentProjections").setVisible(false);
+
+        if (formContext.ui.tabs.get("tab_actualenrolments") != null) {
+            formContext.ui.tabs.get("tab_actualenrolments").setVisible(false);
+        }
     }
     //tab_CapacityandUtilization
     //tab_EnrolmentProjections

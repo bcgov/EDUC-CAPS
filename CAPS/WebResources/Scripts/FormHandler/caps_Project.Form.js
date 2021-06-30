@@ -266,13 +266,17 @@ CAPS.Project.UpdateTotalAllocated = function (executionContext) {
             }
 
             // perform operations on record retrieval
-            formContext.getAttribute('caps_totalallocated').setValue(totalAllocated);
+            if (formContext.getAttribute('caps_totalallocated').getValue() != totalAllocated && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                formContext.getAttribute('caps_totalallocated').setValue(totalAllocated);
+            }
             //calculate variance
             var totalCost = formContext.getAttribute('caps_totalprojectcost').getValue();
             var variance = null;
             if (totalCost !== null && totalAllocated !== null) { 
                 variance = totalCost - totalAllocated;
-                formContext.getAttribute('caps_totalprojectcostvariance').setValue(variance);
+                if (formContext.getAttribute('caps_totalprojectcostvariance').getValue() != variance && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                    formContext.getAttribute('caps_totalprojectcostvariance').setValue(variance);
+                }
             }
 
             CAPS.Project.ValidateExpenditureDistribution(executionContext);
@@ -314,7 +318,9 @@ CAPS.Project.ToggleFacility = function (executionContext) {
                         else {
                             control.getAttribute().setRequiredLevel("none");
                             control.setVisible(false);
-                            control.getAttribute().setValue(null);
+                            if (control.getAttribute().getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                                control.getAttribute().setValue(null);
+                            }
                         }
                     }
 
@@ -322,7 +328,9 @@ CAPS.Project.ToggleFacility = function (executionContext) {
                         if (showExistingFacility) {
                             control.getAttribute().setRequiredLevel("none");
                             control.setVisible(false);
-                            control.getAttribute().setValue(null);
+                            if (control.getAttribute().getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                                control.getAttribute().setValue(null);
+                            }
                         }
                         else {
                             control.getAttribute().setRequiredLevel("required");
@@ -377,7 +385,10 @@ CAPS.Project.SetMultipleFacility = function (executionContext) {
 
                         if (showMultipleFacilities) {
                             control.getAttribute().setRequiredLevel("none");
-                            control.getAttribute().setValue(null);
+
+                            if (control.getAttribute().getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                                control.getAttribute().setValue(null);
+                            }
                         }
                         else {
                             control.getAttribute().setRequiredLevel("required");
@@ -387,7 +398,10 @@ CAPS.Project.SetMultipleFacility = function (executionContext) {
                     if (control.getAttribute().getName() === "caps_phasedprojectgroup") {
                         if (showMultipleFacilities) {
                             control.setVisible(false);
-                            control.getAttribute().setValue(null);
+
+                            if (control.getAttribute().getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                                control.getAttribute().setValue(null);
+                            }
                         }
                         else {
                             control.setVisible(true);
@@ -423,8 +437,6 @@ CAPS.Project.SetProjectTypeValue = function (executionContext) {
         CAPS.Common.DefaultLookupIfSingle(formContext, "caps_projecttype", "caps_projecttype", "caps_projecttypeid", "caps_type", filterFetchXml);
     }
 }
-
-
 
 /**
  * Sets the projects School District to the user's business unit's school district if it's set
@@ -875,7 +887,9 @@ CAPS.Project.ToggleScheduleBSupplementalField = function (executionContext, togg
     else {
         if (formContext.getAttribute(displayField) !== null) {
             formContext.getAttribute(displayField).setRequiredLevel("none");
-            formContext.getAttribute(displayField).setValue(null);
+            if (formContext.getAttribute(displayField).getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                formContext.getAttribute(displayField).setValue(null);
+            }
             formContext.getControl(displayField).setVisible(false);
         }
     }
@@ -1013,7 +1027,10 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
                     includeNLC.controls.forEach(function (control) {
                         control.setVisible(false);
                     });
-                    formContext.getAttribute("caps_includenlc").setValue(null);
+
+                    if (formContext.getAttribute("caps_includenlc").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_includenlc").setValue(null);
+                    }
                 }
                 if (calcType === 200870004 || calcType === 200870005) {
                     formContext.getControl("caps_constructioncostsspir").setVisible(true);
@@ -1021,15 +1038,25 @@ CAPS.Project.ToggleScheduleBFields = function (executionContext) {
                 else {
                     formContext.getControl("caps_constructioncostsspir").setVisible(false);
 
-                    formContext.getAttribute("caps_constructioncostsspir").setValue(null);
+                    if (formContext.getAttribute("caps_constructioncostsspir").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_constructioncostsspir").setValue(null);
+                    }
                 }
 
                 if (calcType === 200870005) {
                     //blank values
-                    formContext.getAttribute("caps_projectincludesdemolition").setValue(false);
-                    formContext.getAttribute("caps_demolitioncost").setValue(null);
-                    formContext.getAttribute("caps_projectincludesabnormaltopography").setValue(false);
-                    formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
+                    if (formContext.getAttribute("caps_projectincludesdemolition").getValue() != false && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_projectincludesdemolition").setValue(false);
+                    }
+                    if (formContext.getAttribute("caps_demolitioncost").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_demolitioncost").setValue(null);
+                    }
+                    if (formContext.getAttribute("caps_projectincludesabnormaltopography").getValue() != false && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_projectincludesabnormaltopography").setValue(false);
+                    }
+                    if (formContext.getAttribute("caps_abnormaltopographycost").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                        formContext.getAttribute("caps_abnormaltopographycost").setValue(null);
+                    }
 
                     //hide
                     formContext.getControl("caps_projectincludesdemolition").setVisible(false);
@@ -1094,13 +1121,25 @@ CAPS.Project.TogglePEPReplacement = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var projectType = formContext.getAttribute("caps_projecttype").getValue();
 
-    if (projectType !== null && projectType[0].name === "Replacement") {
-        //Show Age of Existing Playground caps_ageofexistingplayground
-        formContext.getControl("caps_ageofexistingplayground").setVisible(true);
+    if (projectType !== null) {
+
+        //get project type record
+        Xrm.WebApi.retrieveRecord("caps_projecttype", projectType[0].id, "?$select=caps_projecttypecode").then(
+                function success(record) {
+                    if (record.caps_projecttypecode == "PEP_REPLACEMENT") {
+                        formContext.getControl("caps_ageofexistingplayground").setVisible(true);
+                    }
+                    else {
+                        formContext.getControl("caps_ageofexistingplayground").setVisible(false);
+                    }
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
     }
-    else {
-        formContext.getControl("caps_ageofexistingplayground").setVisible(false);
-    }
+
 }
 
 /**
@@ -1112,17 +1151,33 @@ CAPS.Project.ToggleBUSReplacement = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var projectType = formContext.getAttribute("caps_projecttype").getValue();
 
-    if (projectType !== null && projectType[0].name === "Replacement") {
-        //Show Bus to be replaced and make mandatory
-        formContext.getControl("caps_bus").setVisible(true);
-        formContext.getAttribute("caps_bus").setRequiredLevel("required");
+    if (projectType !== null) {
+
+        Xrm.WebApi.retrieveRecord("caps_projecttype", projectType[0].id, "?$select=caps_projecttypecode").then(
+        function success(record) {
+            if (record.caps_projecttypecode == "BUS_REPLACEMENT") {
+                //Show Bus to be replaced and make mandatory
+                formContext.getControl("caps_bus").setVisible(true);
+                formContext.getAttribute("caps_bus").setRequiredLevel("required");
+            }
+            else {
+                //hide Bus to be replaced and make optional and clear
+                formContext.getControl("caps_bus").setVisible(false);
+                formContext.getAttribute("caps_bus").setRequiredLevel("none");
+                if (formContext.getAttribute("caps_bus").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+                    formContext.getAttribute("caps_bus").setValue(null);
+                }
+            }
+        },
+        function (error) {
+            console.log(error.message);
+            // handle error conditions
+        }
+    );
+
+
     }
-    else {
-        //hide Bus to be replaced and make optional and clear
-        formContext.getControl("caps_bus").setVisible(false);
-        formContext.getAttribute("caps_bus").setRequiredLevel("none");
-        formContext.getAttribute("caps_bus").setValue(null);
-    }
+
 }
 
 /**
@@ -1135,7 +1190,9 @@ CAPS.Project.ToggleLRFP = function (executionContext) {
 
     if (formContext.getAttribute("caps_longrangefacilityplan").getValue()) {
         formContext.getControl("caps_datelrfpwillbeinplace").setVisible(false);
-        formContext.getAttribute("caps_datelrfpwillbeinplace").setValue(null);
+        if (formContext.getAttribute("caps_datelrfpwillbeinplace").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
+            formContext.getAttribute("caps_datelrfpwillbeinplace").setValue(null);
+        }
 
     }
     else {
