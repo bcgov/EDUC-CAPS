@@ -373,7 +373,7 @@ namespace CustomWorkflowActivities
 
             tracingService.Trace("{0}", "Check if any Procurement Analysis Questions aren't marked as complete on Major Projects");
             #region Check if any Procurement Analysis Questions aren't marked as complete on Major Projects
-            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
+            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major && projectRequest.caps_Submission != null)
             {
                 //get capital plan year
                 var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;

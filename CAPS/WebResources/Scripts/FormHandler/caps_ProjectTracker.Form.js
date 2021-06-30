@@ -1,7 +1,9 @@
 ﻿"use strict";
 
 var CAPS = CAPS || {};
-CAPS.ProjectTracker = CAPS.ProjectTracker || {};
+CAPS.ProjectTracker = CAPS.ProjectTracker || {
+    Status: null
+};
 
 const MAX_BUDGET_NOTIFICATION = "Max_Budget_Notification";
 const PROVINCIAL_BUDGET_NOTIFICATION = "Provincial_Budget_Notification";
@@ -62,6 +64,12 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
         if (formContext.getAttribute("statuscode").getValue() == 0) {
             CAPS.ProjectTracker.ShowHideClosedDateWarning(executionContext);
         }
+    }
+
+    //Add warning to onChange of status if moving from a preApproval to Approval phase
+    if (formContext.getAttribute("statuscode") != null) {
+        CAPS.ProjectTracker.Status = formContext.getAttribute("statuscode").getValue();
+        formContext.getAttribute("statuscode").addOnChange(CAPS.ProjectTracker.ShowStatusChangeWarning);
     }
 }
 
@@ -586,6 +594,45 @@ CAPS.ProjectTracker.ShowHideClosedDateWarning = function (executionContext) {
     }
     else {
         formContext.ui.clearFormNotification(CLOSED_DATE_NOTIFICATION);
+    }
+}
+
+/*Shows a warning, if changing from a pre-approval status to an approved status.*/
+CAPS.ProjectTracker.ShowStatusChangeWarning = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var newStatus = formContext.getAttribute("statuscode").getValue();
+    debugger;
+
+    //if the status was PDR Development or Approval
+    if (CAPS.ProjectTracker.Status == 1 || CAPS.ProjectTracker.Status == 200870000) {
+        //and the new status is Design Development, Construction or Substatially Complete, show a warning
+        if (newStatus == 200870001 || newStatus == 200870002 || newStatus == 200870003) {
+
+            var confirmStrings = { text: "Changing to an approved phase will make this Project visible to the School District.  If you later move it back to an unapproved phase it will not be hidden again. Click OK to continue or Cancel to remain with the previous phase. ", title: "Confirm Status Change" };
+            var confirmOptions = { height: 200, width: 450 };
+            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+                function (success) {
+                    if (success.confirmed) {
+                        //save the change
+                        formContext.data.entity.save();
+                        CAPS.ProjectTracker.Status = newStatus;
+                    }
+                    else {
+                        //revert back
+                        debugger;
+                        formContext.getAttribute("statuscode").setValue(CAPS.ProjectTracker.Status);
+                        formContext.data.entity.save();
+                    }
+
+                },
+                function (error) {
+                    Xrm.Navigation.openErrorDialog({ message: error });
+                });
+        }
+    }
+    else {
+        //Update the status variable
+        CAPS.ProjectTracker.Status = newStatus;
     }
 }
 
