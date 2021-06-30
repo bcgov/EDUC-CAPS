@@ -99,8 +99,8 @@
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_facility" &gt;
     &lt;attribute name="caps_facilityid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -131,9 +131,11 @@
     &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;attribute name="caps_currentfacilitytype" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" /&gt;
-        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" &gt;
+        &lt;value&gt;@SchoolDistrict&lt;/value&gt;
+      &lt;/condition&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -369,9 +371,6 @@
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
           <QueryParameter Name="@FacilitiesforSelection">
             <Value>=Parameters!FacilitiesforSelection.Value</Value>
           </QueryParameter>
@@ -409,32 +408,13 @@
     &lt;order attribute="caps_schoolyear" descending="false" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;condition attribute="caps_facility" operator="in" value="@FacilitiesforSelection" /&gt;
     &lt;/filter&gt;
     &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" visible="false" link-type="outer" alias="YEAR" &gt;
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
       &lt;attribute name="statuscode" /&gt;
-      &lt;link-entity name="caps_schooldistrictenrolment" from="caps_schoolyear" to="edu_yearid" link-type="outer" alias="SDEnrolment" &gt;
-        &lt;attribute name="statecode" /&gt;
-        &lt;attribute name="statuscode" /&gt;
-        &lt;attribute name="caps_cycleyear" /&gt;
-        &lt;attribute name="caps_totalenrolment" /&gt;
-        &lt;attribute name="caps_schoolyear" /&gt;
-        &lt;attribute name="caps_schooldistrict" /&gt;
-        &lt;attribute name="caps_schooldistrictenrolmentid" /&gt;
-        &lt;filter&gt;
-          &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-        &lt;/filter&gt;
-        &lt;filter&gt;
-          &lt;condition attribute="caps_schooldistrict" operator="eq" value="@SchoolDistrict" uitype="edu_schooldistrict" /&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa" &gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_facilityid" operator="in" uitype="caps_facility" value="@FacilitiesforSelection" /&gt;
-      &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -652,21 +632,25 @@
           <DataField>caps_total_operatingutilization_district</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="YEAR_edu_type">
-          <DataField>YEAR_edu_type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_total_operatingutilization_districtValue">
           <DataField>caps_total_operatingutilization_districtValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="YEAR_edu_typeValue">
-          <DataField>YEAR_edu_typeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_total_operatingcapacity_district">
           <DataField>caps_total_operatingcapacity_district</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_total_operatingcapacity_districtValue">
+          <DataField>caps_total_operatingcapacity_districtValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_type">
+          <DataField>YEAR_edu_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="YEAR_edu_typeValue">
+          <DataField>YEAR_edu_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="YEAR_edu_startyear">
           <DataField>YEAR_edu_startyear</DataField>
@@ -675,10 +659,6 @@
         <Field Name="YEAR_edu_startyearValue">
           <DataField>YEAR_edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_total_operatingcapacity_districtValue">
-          <DataField>caps_total_operatingcapacity_districtValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="YEAR_edu_enddate">
           <DataField>YEAR_edu_enddate</DataField>
@@ -695,70 +675,6 @@
         <Field Name="YEAR_statuscodeValue">
           <DataField>YEAR_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_statecode">
-          <DataField>SDEnrolment_statecode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_statecodeValue">
-          <DataField>SDEnrolment_statecodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_statuscode">
-          <DataField>SDEnrolment_statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_statuscodeValue">
-          <DataField>SDEnrolment_statuscodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_cycleyear">
-          <DataField>SDEnrolment_caps_cycleyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_cycleyearValue">
-          <DataField>SDEnrolment_caps_cycleyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_cycleyearEntityName">
-          <DataField>SDEnrolment_caps_cycleyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_totalenrolment">
-          <DataField>SDEnrolment_caps_totalenrolment</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_totalenrolmentValue">
-          <DataField>SDEnrolment_caps_totalenrolmentValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schoolyear">
-          <DataField>SDEnrolment_caps_schoolyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schoolyearValue">
-          <DataField>SDEnrolment_caps_schoolyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schoolyearEntityName">
-          <DataField>SDEnrolment_caps_schoolyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schooldistrict">
-          <DataField>SDEnrolment_caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schooldistrictValue">
-          <DataField>SDEnrolment_caps_schooldistrictValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schooldistrictEntityName">
-          <DataField>SDEnrolment_caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SDEnrolment_caps_schooldistrictenrolmentid">
-          <DataField>SDEnrolment_caps_schooldistrictenrolmentid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -800,6 +716,107 @@
         </Field>
         <Field Name="BU_caps_schooldistrictEntityName">
           <DataField>BU_caps_schooldistrictEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="MinistrySDProjections">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@SchoolDistrict">
+            <Value>=Parameters!SchoolDistrict.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch&gt;
+  &lt;entity name="caps_schooldistrictenrolment" &gt;
+    &lt;attribute name="statecode" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="caps_cycleyear" /&gt;
+    &lt;attribute name="caps_totalenrolment" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_schoolyear" /&gt;
+    &lt;attribute name="caps_schooldistrictenrolmentid" /&gt;
+    &lt;attribute name="caps_schooldistrict" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;condition attribute="caps_schooldistrict" operator="eq" value="@SchoolDistrict" uitype="edu_schooldistrict" /&gt;
+    &lt;/filter&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_cycleyear" &gt;
+      &lt;filter&gt;
+        &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
+      &lt;/filter&gt;
+    &lt;/link-entity&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="statecode">
+          <DataField>statecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statecodeValue">
+          <DataField>statecodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_cycleyear">
+          <DataField>caps_cycleyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_cycleyearValue">
+          <DataField>caps_cycleyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_cycleyearEntityName">
+          <DataField>caps_cycleyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalenrolment">
+          <DataField>caps_totalenrolment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalenrolmentValue">
+          <DataField>caps_totalenrolmentValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyear">
+          <DataField>caps_schoolyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyearValue">
+          <DataField>caps_schoolyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_schoolyearEntityName">
+          <DataField>caps_schoolyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictenrolmentid">
+          <DataField>caps_schooldistrictenrolmentid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrict">
+          <DataField>caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictValue">
+          <DataField>caps_schooldistrictValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_schooldistrictEntityName">
+          <DataField>caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -952,7 +969,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_kindergarten_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_kindergarten_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>ARIAL</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1042,7 +1059,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_elementary_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_elementary_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1128,7 +1145,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_secondary_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_secondary_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1214,7 +1231,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_enrolmentValue.Value)</Value>
+                                  <Value>=Fields!caps_total_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1227,6 +1244,92 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>caps_total_enrolmentValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Width>1.5pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>International Enrolment</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1.5pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_international_enrolmentValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!caps_international_enrolmentValue.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_international_enrolmentValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1300,7 +1403,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_designcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_total_designcapacityValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1386,7 +1489,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_operatingcapacityValue.Value)</Value>
+                                  <Value>=Fields!caps_total_operatingcapacityValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
@@ -1472,7 +1575,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_operatingcapacity_districtValue.Value)</Value>
+                                  <Value>=Fields!caps_total_operatingcapacity_districtValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1562,7 +1665,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_designutilizationValue.Value)/100</Value>
+                                  <Value>=(Fields!caps_total_designutilizationValue.Value)/100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
@@ -1658,7 +1761,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_total_operatingutilizationValue.Value)/100</Value>
+                                  <Value>=(Fields!caps_total_operatingutilizationValue.Value)/100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
@@ -1758,7 +1861,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(Fields!caps_total_operatingutilizationValue.Value &gt;= 100, "Red", "Black")</Color>
+                                    <Color>=IIF(Fields!caps_total_operatingutilization_districtValue.Value &gt;= 100, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2133,6 +2236,88 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Total International Enrolment</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1.5pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_international_enrolmentValue1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_international_enrolmentValue.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_international_enrolmentValue1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox49">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -2387,27 +2572,20 @@
                                 <TextRun>
                                   <Value>Design Utilization %</Value>
                                   <Style>
-                                    <FontFamily>Arial</FontFamily>
+                                    <FontFamily>arial</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
-                              <Style>Solid</Style>
                               <Width>1.5pt</Width>
                             </RightBorder>
                             <BackgroundColor>#e3a82b</BackgroundColor>
@@ -2432,7 +2610,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>= IIF(Isnothing(ReportItems!caps_total_designcapacityValue1.Value), "white",
+IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2446,9 +2625,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                            </BottomBorder>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
@@ -2527,7 +2703,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>=  IIF(Isnothing(ReportItems!caps_total_operatingcapacityValue1.Value),"white",
+IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2625,7 +2802,8 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>0%</Format>
-                                    <Color>=IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black")</Color>
+                                    <Color>=IIF(Isnothing(ReportItems!caps_total_operatingcapacity_districtValue.Value), "white",
+IIF(ReportItems!caps_total_operatingutilization_district1.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2726,10 +2904,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>=Format(
-CInt(IIF(IsNothing(First(Fields!SDEnrolment_caps_totalenrolmentValue.Value)), 
-0,
-First(Fields!SDEnrolment_caps_totalenrolmentValue.Value))),"#,###0")</Value>
+                                  <Value>= Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolment.Value, "MinistrySDProjections")</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
@@ -3612,6 +3787,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
@@ -3643,6 +3819,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                       </Visibility>
                     </TablixMember>
                   </TablixMembers>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
@@ -3694,6 +3871,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
@@ -3709,11 +3887,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                         <Hidden>=Parameters!CapacityType.Value &lt;&gt; "District_Operating"</Hidden>
                       </Visibility>
                     </TablixMember>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
-                      </Visibility>
-                    </TablixMember>
+                    <TablixMember />
                     <TablixMember>
                       <Visibility>
                         <Hidden>= Parameters!CapacityType.Value &lt;&gt; "Calculated_Operating"</Hidden>
@@ -3726,6 +3900,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     </TablixMember>
                   </TablixMembers>
                   <KeepWithGroup>Before</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
@@ -3816,6 +3991,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     </TablixMember>
                   </TablixMembers>
                   <KeepWithGroup>Before</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
@@ -3891,6 +4067,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     </TablixMember>
                   </TablixMembers>
                   <KeepWithGroup>Before</KeepWithGroup>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
@@ -3898,7 +4075,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>ReportingRecords</DataSetName>
             <Top>0.0441cm</Top>
-            <Height>18.95562cm</Height>
+            <Height>20.15562cm</Height>
             <Width>10.43688cm</Width>
             <Style>
               <Border>
@@ -3907,7 +4084,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>18.99972cm</Height>
+        <Height>20.19972cm</Height>
         <Style />
       </Body>
       <Width>23.495cm</Width>
@@ -4006,7 +4183,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.69701cm</Height>
+          <Height>1.33201cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4029,7 +4206,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
+              <Top>0.25in</Top>
               <Left>17.34375cm</Left>
               <Height>0.6cm</Height>
               <Width>6.15125cm</Width>
@@ -4060,10 +4237,46 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.09701cm</Top>
+              <Top>0.73201cm</Top>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox10">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*</Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>International Students are not included in Total numbers or other calculations</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0.10583cm</Top>
+              <Left>0cm</Left>
+              <Height>0.6cm</Height>
+              <Width>16.47cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

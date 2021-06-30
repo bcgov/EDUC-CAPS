@@ -99,8 +99,8 @@
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_facility" &gt;
     &lt;attribute name="caps_facilityid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -131,8 +131,9 @@
     &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;attribute name="caps_currentfacilitytype" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="caps_schooldistrict" operator="in" uitype="caps_schooldistrict" value="@SchoolDistrict" /&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
