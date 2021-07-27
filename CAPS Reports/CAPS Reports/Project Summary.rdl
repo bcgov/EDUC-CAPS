@@ -21,9 +21,50 @@
             <Value>=Parameters!CRM_caps_projecttracker.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_projecttracker" enableprefiltering="1"&gt;
-&lt;all-attributes/&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_projecttracker" enableprefiltering="1" &gt;
+    &lt;attribute name="caps_projecttrackerid" /&gt;
+    &lt;attribute name="caps_sdother" /&gt;
+    &lt;attribute name="caps_capitalportion" /&gt;
+    &lt;attribute name="caps_unapprovedreserve" /&gt;
+    &lt;attribute name="caps_requestedfunding" /&gt;
+    &lt;attribute name="caps_totalprovincialcashflow" /&gt;
+    &lt;attribute name="caps_maxpotentialprojectbudget" /&gt;
+    &lt;attribute name="caps_submission" /&gt;
+    &lt;attribute name="caps_districtoperatingcapacityelementary" /&gt;
+    &lt;attribute name="caps_totalprovincialbudget" /&gt;
+    &lt;attribute name="caps_capitalprojectbudget" /&gt;
+    &lt;attribute name="caps_totalafgallocation" /&gt;
+    &lt;attribute name="caps_districtoperatingcapacitysecondary" /&gt;
+    &lt;attribute name="caps_approvedreserve" /&gt;
+    &lt;attribute name="caps_restrictedcapital" /&gt;
+    &lt;attribute name="caps_landcapital" /&gt;
+    &lt;attribute name="caps_afg" /&gt;
+    &lt;attribute name="caps_designcapacitykindergarten" /&gt;
+    &lt;attribute name="caps_totaldesigncapacity" /&gt;
+    &lt;attribute name="caps_procurementmethod" /&gt;
+    &lt;attribute name="caps_submissioncategory" /&gt;
+    &lt;attribute name="caps_districtoperatingcapacitykindergarten" /&gt;
+    &lt;attribute name="caps_facilitysite" /&gt;
+    &lt;attribute name="caps_designcapacitysecondary" /&gt;
+    &lt;attribute name="caps_schooldistrict" /&gt;
+    &lt;attribute name="caps_fundingprogram" /&gt;
+    &lt;attribute name="caps_totalapproved" /&gt;
+    &lt;attribute name="caps_riskitems" /&gt;
+    &lt;attribute name="caps_projecttype" /&gt;
+    &lt;attribute name="caps_designcapacityelementary" /&gt;
+    &lt;attribute name="statuscode" /&gt;
+    &lt;attribute name="caps_supplementalitems" /&gt;
+    &lt;attribute name="caps_totalotherfunding" /&gt;
+    &lt;attribute name="caps_operatingportion_net" /&gt;
+    &lt;attribute name="caps_initialapproved" /&gt;
+    &lt;attribute name="caps_economicadjustment" /&gt;
+    &lt;attribute name="caps_thirdparty" /&gt;
+    &lt;attribute name="caps_name" /&gt;
+    &lt;attribute name="caps_submissioncategorycode" /&gt;
+    &lt;attribute name="caps_provincial" /&gt;
+    &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
+    &lt;attribute name="caps_totaldistrictoperatingcapacity" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" alias="SubCat" &gt;
       &lt;attribute name="caps_type" /&gt;
@@ -32,60 +73,12 @@
 &lt;/fetch&gt;</CommandText>
       </Query>
       <Fields>
-        <Field Name="versionnumber">
-          <DataField>versionnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projecttrackerid">
-          <DataField>caps_projecttrackerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_districtoperatingcapacitykindergarten">
           <DataField>caps_districtoperatingcapacitykindergarten</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_districtoperatingcapacitykindergartenValue">
           <DataField>caps_districtoperatingcapacitykindergartenValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="versionnumberValue">
-          <DataField>versionnumberValue</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
-        <Field Name="caps_variancefromprovincial">
-          <DataField>caps_variancefromprovincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdon">
-          <DataField>createdon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdonValue">
-          <DataField>createdonValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_variancefromprovincialValue">
-          <DataField>caps_variancefromprovincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_totaldistrictoperatingcapacity">
-          <DataField>caps_totaldistrictoperatingcapacity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_variancefromagencybudgeted">
-          <DataField>caps_variancefromagencybudgeted</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totaldistrictoperatingcapacityValue">
-          <DataField>caps_totaldistrictoperatingcapacityValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_variancefromagencybudgetedValue">
-          <DataField>caps_variancefromagencybudgetedValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_unapprovedreserve">
@@ -140,14 +133,6 @@
           <DataField>caps_economicadjustment</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_totalagencyprojected">
-          <DataField>caps_totalagencyprojected</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencyprojectedValue">
-          <DataField>caps_totalagencyprojectedValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_economicadjustmentValue">
           <DataField>caps_economicadjustmentValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -164,10 +149,6 @@
           <DataField>caps_requestedfundingValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_importsource">
-          <DataField>caps_importsource</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_submissioncategoryValue">
           <DataField>caps_submissioncategoryValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
@@ -176,53 +157,13 @@
           <DataField>caps_submissioncategoryEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="statecode">
-          <DataField>statecode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statecodeValue">
-          <DataField>statecodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="owningbusinessunit">
-          <DataField>owningbusinessunit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owningbusinessunitValue">
-          <DataField>owningbusinessunitValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_startingcapitalplanyear">
-          <DataField>caps_startingcapitalplanyear</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_startingcapitalplanyearValue">
-          <DataField>caps_startingcapitalplanyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owningbusinessunitEntityName">
-          <DataField>owningbusinessunitEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_startingcapitalplanyearEntityName">
-          <DataField>caps_startingcapitalplanyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_sdother">
           <DataField>caps_sdother</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_dateprojectclosed">
-          <DataField>caps_dateprojectclosed</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_sdotherValue">
           <DataField>caps_sdotherValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_dateprojectclosedValue">
-          <DataField>caps_dateprojectclosedValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="caps_schooldistrict">
           <DataField>caps_schooldistrict</DataField>
@@ -238,10 +179,6 @@
         </Field>
         <Field Name="caps_schooldistrictEntityName">
           <DataField>caps_schooldistrictEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_fundingprogramcode">
-          <DataField>caps_fundingprogramcode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_restrictedcapital">
@@ -272,29 +209,9 @@
           <DataField>caps_totalafgallocationValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="overriddencreatedon">
-          <DataField>overriddencreatedon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="overriddencreatedonValue">
-          <DataField>overriddencreatedonValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="caps_showprogressreports">
-          <DataField>caps_showprogressreports</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_updatecompletedbutton">
-          <DataField>caps_updatecompletedbutton</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_projecttype">
           <DataField>caps_projecttype</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_showprogressreportsValue">
-          <DataField>caps_showprogressreportsValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="caps_projecttypeValue">
           <DataField>caps_projecttypeValue</DataField>
@@ -304,37 +221,13 @@
           <DataField>caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="owningteam">
-          <DataField>owningteam</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="statuscode">
           <DataField>statuscode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="owningteamValue">
-          <DataField>owningteamValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
         <Field Name="statuscodeValue">
           <DataField>statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="owningteamEntityName">
-          <DataField>owningteamEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_sdprojectnumber">
-          <DataField>caps_sdprojectnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectnumber">
-          <DataField>caps_projectnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_cpsnumber">
-          <DataField>caps_cpsnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_procurementmethod">
           <DataField>caps_procurementmethod</DataField>
@@ -351,18 +244,6 @@
         <Field Name="caps_landcapitalValue">
           <DataField>caps_landcapitalValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="ownerid">
-          <DataField>ownerid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owneridValue">
-          <DataField>owneridValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owneridEntityName">
-          <DataField>owneridEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_operatingportion_net">
           <DataField>caps_operatingportion_net</DataField>
@@ -384,32 +265,12 @@
           <DataField>caps_maxpotentialprojectbudget</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="timezoneruleversionnumber">
-          <DataField>timezoneruleversionnumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="timezoneruleversionnumberValue">
-          <DataField>timezoneruleversionnumberValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_maxpotentialprojectbudgetValue">
           <DataField>caps_maxpotentialprojectbudgetValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_projectclosure">
-          <DataField>caps_projectclosure</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectclosureValue">
-          <DataField>caps_projectclosureValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
         <Field Name="caps_initialapproved">
           <DataField>caps_initialapproved</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_projectclosureEntityName">
-          <DataField>caps_projectclosureEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_initialapprovedValue">
@@ -420,17 +281,9 @@
           <DataField>caps_fundingprogram</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_provincial">
-          <DataField>caps_provincial</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_fundingprogramValue">
           <DataField>caps_fundingprogramValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_provincialValue">
-          <DataField>caps_provincialValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_districtoperatingcapacitysecondary">
           <DataField>caps_districtoperatingcapacitysecondary</DataField>
@@ -448,77 +301,17 @@
           <DataField>caps_facilitysite</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_facility">
-          <DataField>caps_facility</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityValue">
-          <DataField>caps_facilityValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owninguser">
-          <DataField>owninguser</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_facilityEntityName">
-          <DataField>caps_facilityEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_importid">
-          <DataField>caps_importid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_description">
-          <DataField>caps_description</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owninguserValue">
-          <DataField>owninguserValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="owninguserEntityName">
-          <DataField>owninguserEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_currentcoa">
-          <DataField>caps_currentcoa</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_relatedproject">
-          <DataField>caps_relatedproject</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_designcapacitysecondary">
           <DataField>caps_designcapacitysecondary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_currentcoaValue">
-          <DataField>caps_currentcoaValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
         <Field Name="caps_designcapacitysecondaryValue">
           <DataField>caps_designcapacitysecondaryValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_currentcoaEntityName">
-          <DataField>caps_currentcoaEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_submission">
           <DataField>caps_submission</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_relatedprojectValue">
-          <DataField>caps_relatedprojectValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_federal">
-          <DataField>caps_federal</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_federalValue">
-          <DataField>caps_federalValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_submissionValue">
           <DataField>caps_submissionValue</DataField>
@@ -526,10 +319,6 @@
         </Field>
         <Field Name="caps_submissionEntityName">
           <DataField>caps_submissionEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_relatedprojectEntityName">
-          <DataField>caps_relatedprojectEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_approvedreserve">
@@ -556,54 +345,6 @@
           <DataField>caps_thirdpartyValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_submissioncategorycode">
-          <DataField>caps_submissioncategorycode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdonbehalfby">
-          <DataField>createdonbehalfby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdonbehalfbyValue">
-          <DataField>createdonbehalfbyValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudget">
-          <DataField>caps_totalagencybudget</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalagencybudgetValue">
-          <DataField>caps_totalagencybudgetValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="createdonbehalfbyEntityName">
-          <DataField>createdonbehalfbyEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="utcconversiontimezonecode">
-          <DataField>utcconversiontimezonecode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="utcconversiontimezonecodeValue">
-          <DataField>utcconversiontimezonecodeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="modifiedon">
-          <DataField>modifiedon</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="modifiedonValue">
-          <DataField>modifiedonValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="importsequencenumber">
-          <DataField>importsequencenumber</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="importsequencenumberValue">
-          <DataField>importsequencenumberValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_designcapacitykindergarten">
           <DataField>caps_designcapacitykindergarten</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -612,56 +353,12 @@
           <DataField>caps_designcapacitykindergartenValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="createdby">
-          <DataField>createdby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdbyValue">
-          <DataField>createdbyValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="createdbyEntityName">
-          <DataField>createdbyEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="modifiedby">
-          <DataField>modifiedby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="modifiedbyValue">
-          <DataField>modifiedbyValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="modifiedbyEntityName">
-          <DataField>modifiedbyEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_riskitems">
           <DataField>caps_riskitems</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_riskitemsValue">
           <DataField>caps_riskitemsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="modifiedonbehalfby">
-          <DataField>modifiedonbehalfby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="modifiedonbehalfbyValue">
-          <DataField>modifiedonbehalfbyValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="modifiedonbehalfbyEntityName">
-          <DataField>modifiedonbehalfbyEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_maxpotential_fundingsource">
-          <DataField>caps_maxpotential_fundingsource</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_maxpotential_fundingsourceValue">
-          <DataField>caps_maxpotential_fundingsourceValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_supplementalitems">
@@ -680,21 +377,49 @@
           <DataField>caps_supplementalitemsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_submissioncategorycode">
+          <DataField>caps_submissioncategorycode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="SubCat_caps_type">
           <DataField>SubCat_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_provincial">
+          <DataField>caps_provincial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_provincialValue">
+          <DataField>caps_provincialValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_maxpotential_fundingsource">
+          <DataField>caps_maxpotential_fundingsource</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_maxpotential_fundingsourceValue">
+          <DataField>caps_maxpotential_fundingsourceValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_totaldistrictoperatingcapacity">
+          <DataField>caps_totaldistrictoperatingcapacity</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totaldistrictoperatingcapacityValue">
+          <DataField>caps_totaldistrictoperatingcapacityValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_projecttrackerid">
+          <DataField>caps_projecttrackerid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SubCat_caps_typeValue">
           <DataField>SubCat_caps_typeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecashflowupdated">
-          <DataField>caps_datecashflowupdated</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_datecashflowupdatedValue">
-          <DataField>caps_datecashflowupdatedValue</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1650,7 +1375,7 @@
             <Top>21.94956cm</Top>
             <Left>0.03436cm</Left>
             <Height>2.12cm</Height>
-            <Width>18.98683cm</Width>
+            <Width>18.9868cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1959,7 +1684,7 @@
             <Top>24.22581cm</Top>
             <Left>0.00777cm</Left>
             <Height>1.8cm</Height>
-            <Width>9.20217cm</Width>
+            <Width>9.20216cm</Width>
             <ZIndex>2</ZIndex>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "CAPS_Project") = "AFG"</Hidden>
@@ -3293,7 +3018,7 @@
             <Top>3.36727cm</Top>
             <Left>0.00777cm</Left>
             <Height>2.94708cm</Height>
-            <Width>19.01342cm</Width>
+            <Width>19.01341cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -7227,7 +6952,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox49</rd:DefaultName>
-              <Top>0.03528cm</Top>
+              <Top>0cm</Top>
               <Left>15.64089cm</Left>
               <Height>0.6cm</Height>
               <Width>2.74694cm</Width>
