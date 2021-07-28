@@ -280,10 +280,12 @@ namespace CustomWorkflowActivities
                     decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : 0;
                     decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : 0;
                     decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : 0;
+                    decimal? futureEnrolmentI = (matchingProjection != null) ? matchingProjection.caps_enrolmentprojectioninternational : 0;
 
                     recordToUpdate.caps_Kindergarten_enrolment = futureEnrolmentK;
                     recordToUpdate.caps_Elementary_enrolment = futureEnrolmentE;
                     recordToUpdate.caps_Secondary_enrolment = futureEnrolmentS;
+                    recordToUpdate.caps_International_enrolment = futureEnrolmentI;
 
                     recordToUpdate.caps_Kindergarten_designcapacity = kDesign;
                     recordToUpdate.caps_Elementary_designcapacity = eDesign;
