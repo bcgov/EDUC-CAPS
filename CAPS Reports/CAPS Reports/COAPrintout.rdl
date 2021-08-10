@@ -7,9 +7,8 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
-        <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>009502d4-7e2b-4982-bfd8-01d2ebf79af3</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -2111,6 +2110,9 @@
             <Left>0.22791in</Left>
             <Height>9.32152in</Height>
             <Width>7.15786in</Width>
+            <Visibility>
+              <Hidden>=iif(IsNothing(Parameters!COA_SignedBy.Value),true,false)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2203,6 +2205,38 @@
               <WritingMode>Rotate270</WritingMode>
             </Style>
           </Textbox>
+          <Textbox Name="ExceptionMessage">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>COA Printout will be displayed once a signature has been obtained.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.01389in</Top>
+            <Left>1.66897in</Left>
+            <Height>0.06889in</Height>
+            <Width>4.95892in</Width>
+            <ZIndex>3</ZIndex>
+            <Visibility>
+              <Hidden>= iif(Isnothing(Parameters!COA_SignedBy.Value),false,true)</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>9.59181in</Height>
         <Style />
@@ -2227,6 +2261,18 @@
       </DefaultValue>
       <Prompt>CRM caps certificateofapproval</Prompt>
     </ReportParameter>
+    <ReportParameter Name="COA_SignedBy">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CAPS</DataSetName>
+          <ValueField>caps_signedby</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>COA_SignedBy</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2237,6 +2283,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>CRM_caps_certificateofapproval</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>COA_SignedBy</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
