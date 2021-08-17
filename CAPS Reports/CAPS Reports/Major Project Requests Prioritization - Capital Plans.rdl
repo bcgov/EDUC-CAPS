@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS_DEV:</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>d27a0bf5-3028-47fb-a6b9-568e0da93ce3</rd:DataSourceID>
@@ -3073,7 +3074,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3181,7 +3182,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3289,7 +3290,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3397,7 +3398,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3505,7 +3506,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3613,7 +3614,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -3721,7 +3722,7 @@
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -4911,7 +4912,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                     <Value>=trim(join(LookupSet(
   Fields!PROJECT_caps_projectid.Value, 
     Fields!ProjectID.Value, 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, CInt(Fields!SumTotalEnrolmentValue.Value), ""), "CapacityReporting_SurroundingSchools")))</Value>
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, CInt(Fields!SumTotalEnrolmentValue.Value), ""), "CapacityReporting_SurroundingSchools")))</Value>
                                                                                                                                     <Style>
                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                       <FontSize>9pt</FontSize>
@@ -5169,7 +5170,13 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                       <Paragraph>
                                                                                                                                                         <TextRuns>
                                                                                                                                                           <TextRun>
-                                                                                                                                                            <Value>=(Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - (Fields!FACILITY_caps_total_currentenrolmentValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                            <Value>=(Fields!FACILITY_caps_operatingcapacitytotalValue.Value + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), 
+"CapacityReporting_SurroundingSchools")))) - 
+(Fields!FACILITY_caps_total_currentenrolmentValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                             <Style>
                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -5298,7 +5305,14 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                   <Paragraph>
                                                                                                                                                                     <TextRuns>
                                                                                                                                                                       <TextRun>
-                                                                                                                                                                        <Value>=(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - (Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                        <Value>=(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value,
+ Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - 
+ (Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+ Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+ trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = 
+ Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value, ""), 
+ "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                         <Style>
                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -5427,7 +5441,14 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                    <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalDesignCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                    <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / 
+(Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalDesignCapacityValue.Value, ""), 
+"CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                     <Style>
                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -5556,7 +5577,14 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_operatingcapacitytotalValue.Value + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), 
+"CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -5685,7 +5713,14 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                            <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                            <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / 
+(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -13346,7 +13381,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13454,7 +13489,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13562,7 +13597,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13670,7 +13705,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13778,7 +13813,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13886,7 +13921,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -13994,7 +14029,7 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -15323,7 +15358,8 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                   <Paragraph>
                                                                                                                                                     <TextRuns>
                                                                                                                                                       <TextRun>
-                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                         <Style>
                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -15448,7 +15484,10 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                               <Paragraph>
                                                                                                                                                                 <TextRuns>
                                                                                                                                                                   <TextRun>
-                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designcapacity.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designcapacity.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                     <Style>
                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -15573,7 +15612,10 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                           <Paragraph>
                                                                                                                                                                             <TextRuns>
                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                                 <Style>
                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -15698,7 +15740,10 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity_district.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity_district.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                                             <Style>
                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -15818,7 +15863,8 @@ Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value
                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
+                                                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -15938,7 +15984,8 @@ Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Va
                                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
+                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -16058,7 +16105,8 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                                                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
+                                                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -19161,7 +19209,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19269,7 +19317,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19377,7 +19425,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19485,7 +19533,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19593,7 +19641,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19701,7 +19749,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -19809,7 +19857,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20061,7 +20109,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20169,7 +20217,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20277,7 +20325,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20385,7 +20433,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20493,7 +20541,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20601,7 +20649,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -20709,7 +20757,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>9pt</FontSize>
@@ -22046,7 +22094,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                                                                                                                                                 <TextRuns>
                                                                                                                                                   <TextRun>
                                                                                                                                                     <Value>=Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolment.Value, 
 	    "CapacityReporting")</Value>
@@ -22168,13 +22216,13 @@ lookup(Fields!PROJECT_caps_facility.Value &amp; Fields!PROJECT_caps_anticipatedo
                                                                                                                                                             <TextRuns>
                                                                                                                                                               <TextRun>
                                                                                                                                                                 <Value>=lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
 	  Fields!caps_total_designcapacity.Value,
   "CapacityReporting") - 
 
 lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
 	  Fields!caps_total_enrolment.Value,
   "CapacityReporting")</Value>
@@ -22303,11 +22351,11 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                         <TextRuns>
                                                                                                                                                                           <TextRun>
                                                                                                                                                                             <Value>=Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_operatingcapacity.Value, "CapacityReporting") - 
 Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
       Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                             <Style>
@@ -22435,11 +22483,11 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                       <TextRun>
                                                                                                                                                                                         <Value>=Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_operatingcapacity_district.Value, "CapacityReporting") - 
 Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
       Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                                         <Style>
@@ -22562,7 +22610,7 @@ Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value
                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                   <TextRun>
                                                                                                                                                                                                     <Value>=lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
       Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                     <Style>
@@ -22685,7 +22733,7 @@ Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Va
                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                               <TextRun>
                                                                                                                                                                                                                 <Value>=lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
       Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                 <Style>
@@ -22808,7 +22856,7 @@ Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting")
                                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                                           <TextRun>
                                                                                                                                                                                                                             <Value>=lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11,
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10,
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value,
       Fields!caps_total_operatingutilization_districtValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                                             <Style>
@@ -23136,7 +23184,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                                                                       <TextRun>
                                                                                                                                                                                                                                                         <Value>=Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -23144,7 +23192,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))</Value>
                                                                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
@@ -23315,7 +23363,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 )
 -
 (Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -23323,7 +23371,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))
 )</Value>
                                                                                                                                                                                                                                                                     <Style>
@@ -23668,7 +23716,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 )
 -
 (Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -23676,7 +23724,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))
 )</Value>
                                                                                                                                                                                                                                                                                             <Style>
@@ -23840,7 +23888,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                                                                                                                       <TextRun>
                                                                                                                                                                                                                                                                                                         <Value>=(Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -23848,7 +23896,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))
 )
 /
@@ -24020,7 +24068,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                                                                                                                   <TextRun>
                                                                                                                                                                                                                                                                                                                     <Value>=(Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -24028,7 +24076,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))
 )
 /
@@ -24200,7 +24248,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
                                                                                                                                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                                                                                                                                               <TextRun>
                                                                                                                                                                                                                                                                                                                                 <Value>=(Lookup(
-  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, 
+  Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
     Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, 
 	  Fields!caps_total_enrolmentValue.Value, 
 	    "CapacityReporting")
@@ -24208,7 +24256,7 @@ Fields!PROJECT_caps_projectid.Value &amp; Fields!PROJECT_caps_anticipatedoccupan
 trim(join(lookupset(
   Fields!PROJECT_caps_projectid.Value , 
     Fields!ProjectID.Value , 
-	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value,""),
+	  iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, Fields!SumTotalEnrolmentValue.Value,""),
 	     "CapacityReporting_SurroundingSchools")))
 )
 /
@@ -27584,7 +27632,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -27692,7 +27740,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -27800,7 +27848,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -27908,7 +27956,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28016,7 +28064,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28124,7 +28172,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28232,7 +28280,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28484,7 +28532,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28592,7 +28640,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28700,7 +28748,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28808,7 +28856,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -28916,7 +28964,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -29024,7 +29072,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -29132,7 +29180,7 @@ trim(join(lookupset(
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11</Value>
+                                    <Value>="At Year " &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10</Value>
                                     <Style>
                                       <FontFamily>Arial</FontFamily>
                                       <FontSize>9pt</FontSize>
@@ -30391,7 +30439,8 @@ Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                           <Paragraph>
                                                                                                                                             <TextRuns>
                                                                                                                                               <TextRun>
-                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                 <Style>
                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -30515,7 +30564,10 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                       <Paragraph>
                                                                                                                                                         <TextRuns>
                                                                                                                                                           <TextRun>
-                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designcapacity.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designcapacity.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                             <Style>
                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -30640,7 +30692,10 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                   <Paragraph>
                                                                                                                                                                     <TextRuns>
                                                                                                                                                                       <TextRun>
-                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                                        <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                         <Style>
                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -30765,7 +30820,10 @@ Fields!caps_total_enrolment.Value,"CapacityReporting")</Value>
                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity_district.Value, "CapacityReporting") - Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
+                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingcapacity_district.Value, "CapacityReporting") - 
+Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolment.Value, "CapacityReporting")</Value>
                                                                                                                                                                                     <Style>
                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -30885,7 +30943,8 @@ Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value
                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
+                                                                                                                                                                                                <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_designutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -31005,7 +31064,8 @@ Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Va
                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
+                                                                                                                                                                                                            <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_operatingutilizationValue.Value, "CapacityReporting") /100</Value>
                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -31335,7 +31395,6 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                   <PaddingBottom>2pt</PaddingBottom>
                                                                                                                                                                                                                                 </Style>
                                                                                                                                                                                                                               </Textbox>
-                                                                                                                                                                                                                              <rd:Selected>true</rd:Selected>
                                                                                                                                                                                                                             </CellContents>
                                                                                                                                                                                                                           </TablixHeader>
                                                                                                                                                                                                                           <TablixMembers>
@@ -31440,7 +31499,11 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))</Value>
+                                                                                                                                                                                                                                                    <Value>=Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))</Value>
                                                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -31569,7 +31632,14 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                                                                                <Value>=(Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalDesignCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - (Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                <Value>=(Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!TotalDesignCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - 
+(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -31698,7 +31768,12 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                                                                                            <Value>=(Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - (Fields!FACILITY_caps_total_currentenrolmentValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                            <Value>=(Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, 
+Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - 
+(Fields!FACILITY_caps_total_currentenrolmentValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, 
+Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1,
+ Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                               <FontSize>9pt</FontSize>
@@ -31827,7 +31902,15 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                                                   <Paragraph>
                                                                                                                                                                                                                                                                                     <TextRuns>
                                                                                                                                                                                                                                                                                       <TextRun>
-                                                                                                                                                                                                                                                                                        <Value>=(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - (Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                                        <Value>=(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools")))) - 
+(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                                         <Style>
                                                                                                                                                                                                                                                                                           <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                                           <FontSize>9pt</FontSize>
@@ -31956,7 +32039,14 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                                                               <Paragraph>
                                                                                                                                                                                                                                                                                                 <TextRuns>
                                                                                                                                                                                                                                                                                                   <TextRun>
-                                                                                                                                                                                                                                                                                                    <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalDesignCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                                                    <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_adjusteddesigncapacitytotalValue.Value + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalDesignCapacityValue.Value, ""), 
+"CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                                                     <Style>
                                                                                                                                                                                                                                                                                                       <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                                                       <FontSize>9pt</FontSize>
@@ -32085,7 +32175,14 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                                                                           <Paragraph>
                                                                                                                                                                                                                                                                                                             <TextRuns>
                                                                                                                                                                                                                                                                                                               <TextRun>
-                                                                                                                                                                                                                                                                                                                <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                                                                <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / 
+(Fields!FACILITY_caps_operatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, 
+Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; 
+Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacityValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                                                                 <Style>
                                                                                                                                                                                                                                                                                                                   <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                                                                   <FontSize>9pt</FontSize>
@@ -32214,7 +32311,14 @@ iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; 
                                                                                                                                                                                                                                                                                                                       <Paragraph>
                                                                                                                                                                                                                                                                                                                         <TextRuns>
                                                                                                                                                                                                                                                                                                                           <TextRun>
-                                                                                                                                                                                                                                                                                                                            <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 10 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 11, Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / (Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
+                                                                                                                                                                                                                                                                                                                            <Value>=(Lookup(Fields!PROJECT_caps_facility.Value &amp; Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!caps_facility.Value &amp; Fields!caps_schoolyear.Value, Fields!caps_total_enrolmentValue.Value, "CapacityReporting") + 
+trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value + 9 &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 10, 
+Fields!SumTotalEnrolmentValue.Value, ""), "CapacityReporting_SurroundingSchools")))) / 
+(Fields!FACILITY_caps_districtoperatingcapacitytotalValue.Value + trim(join(LookupSet(Fields!PROJECT_caps_projectid.Value, Fields!ProjectID.Value, 
+iif(Fields!SchoolYearName.Value = Parameters!CurrentFiscalYearStart.Value &amp; "/" &amp; Parameters!CurrentFiscalYearStart.Value + 1, 
+Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_SurroundingSchools"))))</Value>
                                                                                                                                                                                                                                                                                                                             <Style>
                                                                                                                                                                                                                                                                                                                               <FontFamily>Arial</FontFamily>
                                                                                                                                                                                                                                                                                                                               <FontSize>9pt</FontSize>
