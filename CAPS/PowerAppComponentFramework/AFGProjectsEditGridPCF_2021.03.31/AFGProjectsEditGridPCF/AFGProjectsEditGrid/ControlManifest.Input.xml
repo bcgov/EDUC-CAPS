@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="moeCAPS" constructor="AFGProjectsEditGrid" version="1.0.203" display-name-key="AFGProjectsEditGrid" description-key="AFGProjectsEditGrid description" control-type="standard">
+    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
+    <data-set name="AFGProjectsDataSet" display-name-key="Dataset_Display_Key">
+      <!-- 'property-set' node represents a unique, configurable property that each record in the dataset must provide. -->
+      <!-- UNCOMMENT TO ADD PROPERTY-SET NODE
+      <property-set name="samplePropertySet" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+      -->
+    </data-set>
+    <property name="linkfieldname" display-name-key="Link Field Name" description-key="The field to show as a clickable link" of-type="SingleLine.Text" usage="input" required="true" /> 
+    <property name="entitydisplayname" display-name-key="Entity Display Name" description-key="The display name of the entity thats records are being displayed" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="parententityfieldname" display-name-key="Parent Entity Field Name" description-key="The name of the parent entity field" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="lockoninactivestate" display-name-key="Lock on Inactive State" description-key="Lock the control if the state field is inactive (true or false)" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="parententitydisplayname" display-name-key="Parent Entity Display Name" description-key="The display name of the parent entity" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="allowunlinkrecord" display-name-key="Allow unlink record" description-key="Allow the user to unlink the record from its parent record (true or false)" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="alloweditflaggedforreview" display-name-key="Allow editing flagged for review" description-key="Allow the user to edit the flagged for review field, even if the parent record is inactive" of-type="SingleLine.Text" usage="input" required="true" />
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/AFGProjectsEditGrid.css" order="1" />
+      <resx path="strings/AFGProjectsEditGrid.1033.resx" version="1.0.0" />
+    </resources>
+    <!-- UNCOMMENT TO ENABLE THE SPECIFIED API -->
+    <feature-usage>
+      <!--<uses-feature name="Device.captureAudio" required="true" />
+      <uses-feature name="Device.captureImage" required="true" />
+      <uses-feature name="Device.captureVideo" required="true" />
+      <uses-feature name="Device.getBarcodeValue" required="true" />
+      <uses-feature name="Device.getCurrentPosition" required="true" />
+      <uses-feature name="Device.pickFile" required="true" />-->
+      <uses-feature name="Utility" required="true" />
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>
