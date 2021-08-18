@@ -1,0 +1,208 @@
+/*@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.css');*/
+
+a {color:#0459b3;text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_main-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-container {
+    border:none;
+    background-color: transparent;
+    padding: 10px;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-header {
+    width: 100%;
+    height: 30px;
+    border-bottom: 2px solid lightgrey;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-header:after {
+    clear:both;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-showhide {
+    text-align: left;
+    padding-top:15px;
+    padding-left:15px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-showhide input {
+    width:20px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_category-header{
+    width: 100%;
+    clear:both;
+    background-color: #f2f2f2;
+    padding: 10px;
+    padding-left: 15px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_category-header input {
+    width:20px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_category-spacer {
+    width: 100%;
+    clear: both;
+    height: 20px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-headerCol{
+    width: 150px;
+    float:left;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding:5px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-headerSec {
+    float:left;
+}
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-headerSec_Spcr {
+    float:left;
+    width:150px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-headerColDel{
+    width: 50px;
+    float:left;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding:5px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-item {
+    margin: 5px;
+    width: 100%;
+    height: 20px;
+    background-color: rgb(59, 121, 183);
+    color: white;
+    border: solid thin black;
+    padding: 5px;
+    text-align: center;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-dataRow {
+    width: 100%;
+    clear: both;
+    height: 30px;
+    white-space: nowrap;
+    overflow:hidden;
+    z-index:10;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-dataRow:after {
+    clear: both;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-dataCol {
+    width: 150px;
+    height: 20px;
+    float:left;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding: 5px;
+    white-space: nowrap;
+    z-index:1;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-dataCol input {
+    width:125px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .can-sort .DataSetControl_grid-dataRow {
+    cursor: grab;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-dataColDel {
+    width: 50px;
+    height: 20px;
+    float:left;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    padding: 5px;
+    white-space: nowrap;
+    z-index:1;
+    cursor: grab;
+}
+
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-text-label {
+    font-size: 12px;
+    white-space: normal;
+    margin: 2px;
+    display: block;
+    color: lightgray;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-text-value {
+    font-size: 12px;
+    white-space: normal;
+    margin: 1px;
+    display: block;
+    color: white;
+    font-weight: bold;
+    float:left;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_AllocHeadr {
+    clear:both;
+}
+
+.capsITK\.ExpenditureAllocationGrid button.DataSetControl_LoadMoreButton_Style {
+    background-color:#e5e5e5;
+    font-size:1.5rem;
+    font-weight:bold;
+    height:3.5rem;
+    text-align:center;
+    width:100%;
+    border:none
+}
+
+.capsITK\.ExpenditureAllocationGrid button.DataSetControl_LoadMoreButton_Hidden_Style {
+    display: none;
+}
+
+.capsITK\.ExpenditureAllocationGrid .DataSetControl_grid-norecords {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capsITK\.ExpenditureAllocationGrid .input-error {
+    background-color: indianred;
+}
+
+.capsITK\.ExpenditureAllocationGrid .allocation-header {
+    width:100%;
+}
+
+.capsITK\.ExpenditureAllocationGrid .allocation-header div {
+    float:left;
+    width:150px;
+    padding:10px;
+}
+
+.capsITK\.ExpenditureAllocationGrid .allocation-header::after {
+    clear:both;
+}
