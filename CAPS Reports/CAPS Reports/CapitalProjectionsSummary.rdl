@@ -7,8 +7,9 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>enter credentials</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>2a3fa75e-8da5-436b-8697-399099d07702</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -39,14 +40,13 @@
       &lt;attribute name="caps_cpsnumber" /&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="statuscode" /&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;/filter&gt;
       &lt;link-entity name="caps_projectcashflow" from="caps_ptr" to="caps_projecttrackerid" link-type="inner" alias="CASHFLOW" &gt;
         &lt;attribute name="caps_fiscalyear" /&gt;
         &lt;filter type="and" &gt;
           &lt;condition attribute="caps_fiscalyear" operator="eq" value="@CurrentFiscalYear" /&gt;
-        &lt;/filter&gt;
-        &lt;filter type="or" &gt;
-          &lt;condition attribute="caps_totalactualdraws" operator="gt" value="0" /&gt;
-          &lt;condition attribute="caps_totalprovincial" operator="gt" value="0" /&gt;
         &lt;/filter&gt;
       &lt;/link-entity&gt;
       &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" link-type="inner" alias="SD" &gt;
