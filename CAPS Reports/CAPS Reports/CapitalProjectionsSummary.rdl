@@ -7,9 +7,8 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
-        <Prompt>enter credentials</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>2a3fa75e-8da5-436b-8697-399099d07702</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -18,8 +17,14 @@
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
         <QueryParameters>
+          <QueryParameter Name="@EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </QueryParameter>
           <QueryParameter Name="@CurrentFiscalYear">
             <Value>=Parameters!CurrentFiscalYear.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@StartDate">
+            <Value>=Parameters!StartDate.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
@@ -40,8 +45,22 @@
       &lt;attribute name="caps_cpsnumber" /&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="statuscode" /&gt;
-      &lt;filter&gt;
-        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+      &lt;filter type="and" &gt;
+        &lt;condition attribute="statuscode" operator="in" &gt;
+          &lt;value&gt;1&lt;/value&gt;
+          &lt;value&gt;200870000&lt;/value&gt;
+          &lt;value&gt;200870001&lt;/value&gt;
+          &lt;value&gt;200870002&lt;/value&gt;
+          &lt;value&gt;200870003&lt;/value&gt;
+          &lt;value&gt;200870007&lt;/value&gt;
+        &lt;/condition&gt;
+        &lt;filter type="or" &gt;
+          &lt;condition attribute="caps_dateprojectclosed" operator="null" /&gt;
+          &lt;filter&gt;
+            &lt;condition attribute="caps_dateprojectclosed" operator="on-or-before" value="@EndDate" /&gt;
+            &lt;condition attribute="caps_dateprojectclosed" operator="on-or-after" value="@StartDate" /&gt;
+          &lt;/filter&gt;
+        &lt;/filter&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_projectcashflow" from="caps_ptr" to="caps_projecttrackerid" link-type="inner" alias="CASHFLOW" &gt;
         &lt;attribute name="caps_fiscalyear" /&gt;
@@ -210,13 +229,15 @@
     <DataSet Name="CurrentFiscalYear">
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_year"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="createdon" /&gt;
+    &lt;attribute name="edu_startdate" /&gt;
+    &lt;attribute name="edu_enddate" /&gt;
     &lt;order attribute="edu_name" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="edu_type" operator="eq" value="757500000" /&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
@@ -238,6 +259,22 @@
         </Field>
         <Field Name="createdonValue">
           <DataField>createdonValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="edu_startdate">
+          <DataField>edu_startdate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_startdateValue">
+          <DataField>edu_startdateValue</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="edu_enddate">
+          <DataField>edu_enddate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_enddateValue">
+          <DataField>edu_enddateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
@@ -2655,6 +2692,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>ProjectCashflow</DataSetName>
             <Top>2.04695cm</Top>
             <Height>3.8475cm</Height>
@@ -2746,10 +2784,10 @@
         <Height>2.32065in</Height>
         <Style />
       </Body>
-      <Width>8.8791in</Width>
+      <Width>8.38443in</Width>
       <Page>
         <PageFooter>
-          <Height>1.37583cm</Height>
+          <Height>0.67028cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2804,10 +2842,41 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.67028cm</Top>
+              <Top>0.03528cm</Top>
+              <Left>7in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox45">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*Note that completed Projects will only stay on this report if it was completed/closed within the current fiscal year.</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox45</rd:DefaultName>
+              <Top>0cm</Top>
+              <Left>3.47045cm</Left>
+              <Height>0.52917cm</Height>
+              <Width>14.16844cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2848,6 +2917,28 @@
       <Prompt>Current Fiscal Year</Prompt>
       <Hidden>true</Hidden>
     </ReportParameter>
+    <ReportParameter Name="StartDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear</DataSetName>
+          <ValueField>edu_startdate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Start Date</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="EndDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear</DataSetName>
+          <ValueField>edu_enddate</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>End Date</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2858,6 +2949,16 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>CurrentFiscalYear</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>StartDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>EndDate</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
