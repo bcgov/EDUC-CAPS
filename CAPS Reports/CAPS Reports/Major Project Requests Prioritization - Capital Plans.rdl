@@ -969,7 +969,7 @@
         &lt;condition attribute="caps_categorycode" operator="eq" value="LEASE" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" alias="FACILITY" &gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="outer" alias="FACILITY" &gt;
       &lt;attribute name="caps_facilityid" /&gt;
       &lt;attribute name="caps_adjusteddesigncapacitytotal" /&gt;
       &lt;attribute name="caps_districtoperatingcapacitytotal" /&gt;
@@ -6290,7 +6290,6 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
             <PageName>New School</PageName>
             <KeepTogether>true</KeepTogether>
             <Top>3.26855in</Top>
-            <Left>0in</Left>
             <Height>1.34782in</Height>
             <Width>48.56928in</Width>
             <ZIndex>1</ZIndex>
@@ -24936,7 +24935,6 @@ trim(join(lookupset(
               </Filter>
             </Filters>
             <Top>1.74875in</Top>
-            <Left>0in</Left>
             <Height>1.15625in</Height>
             <Width>78.86875in</Width>
             <ZIndex>4</ZIndex>
@@ -24950,7 +24948,6 @@ trim(join(lookupset(
             <Source>Embedded</Source>
             <Value>BC_EDUC_H_RGB_pos</Value>
             <Sizing>FitProportional</Sizing>
-            <Left>0in</Left>
             <Height>1.06472in</Height>
             <Width>1.56053in</Width>
             <ZIndex>5</ZIndex>
@@ -36168,7 +36165,11 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
                 <TablixRowHierarchy>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="caps_project8" />
+                      <Group Name="caps_project8">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!SD_ownerid.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
                       <TablixHeader>
                         <Size>1in</Size>
                         <CellContents>
@@ -36647,7 +36648,7 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
                                                                                   <Paragraph>
                                                                                     <TextRuns>
                                                                                       <TextRun>
-                                                                                        <Value>=Fields!caps_totalprojectcostValue.Value</Value>
+                                                                                        <Value>=Fields!caps_yearlyleaseamountValue.Value</Value>
                                                                                         <Style>
                                                                                           <FontFamily>arial</FontFamily>
                                                                                           <FontSize>9pt</FontSize>
@@ -36685,7 +36686,7 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
                                                                                       <Paragraph>
                                                                                         <TextRuns>
                                                                                           <TextRun>
-                                                                                            <Value>=Sum(Fields!caps_totalprojectcostValue.Value)</Value>
+                                                                                            <Value>=Fields!caps_totalprojectcostValue.Value</Value>
                                                                                             <Style>
                                                                                               <FontFamily>arial</FontFamily>
                                                                                               <FontSize>9pt</FontSize>
@@ -38211,6 +38212,7 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
             <PageBreak>
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
+            <PageName>Lease</PageName>
             <KeepTogether>true</KeepTogether>
             <Top>11.32267in</Top>
             <Left>0.03485in</Left>
@@ -41981,6 +41983,7 @@ Fields!TotalOperatingCapacity_DistrictValue.Value, ""), "CapacityReporting_Surro
             <PageBreak>
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
+            <PageName>Demolition</PageName>
             <KeepTogether>true</KeepTogether>
             <Top>9.65947in</Top>
             <Left>0.03485in</Left>
