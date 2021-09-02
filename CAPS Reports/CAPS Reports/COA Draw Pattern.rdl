@@ -7,8 +7,9 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>enter credentials</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>54180316-c497-4eb8-9804-51200afdb2bb</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -24,31 +25,34 @@
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
-  &lt;entity name="caps_actualdraw" &gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_actualdraw"&gt;
     &lt;attribute name="caps_actualdrawid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_fiscalyear" /&gt;
     &lt;attribute name="caps_drawdate" /&gt;
     &lt;attribute name="caps_amount" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;filter type="and" &gt;
+    &lt;filter type="and"&gt;
       &lt;condition attribute="statuscode" operator="eq" value="200870000" /&gt;
-      &lt;filter type="or" &gt;
+      &lt;filter type="or"&gt;
         &lt;condition attribute="caps_drawdate" operator="this-fiscal-year" /&gt;
         &lt;condition attribute="caps_drawdate" operator="last-x-fiscal-years" value="4" /&gt;
       &lt;/filter&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="inner" alias="YEARSTATUS" &gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_fiscalyear" visible="false" link-type="inner" alias="YEARSTATUS"&gt;
       &lt;attribute name="statuscode" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
+      &lt;filter&gt;
+        &lt;condition attribute="edu_startyear" operator="ge" value="2021" /&gt;
+      &lt;/filter&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" visible="false" link-type="inner" alias="PROJECT" &gt;
+    &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_project" visible="false" link-type="inner" alias="PROJECT"&gt;
       &lt;attribute name="caps_schooldistrict" /&gt;
       &lt;attribute name="caps_submissioncategory" /&gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_fundingprogram" operator="in" uitype="caps_fundingprogram" value="@Programs" /&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
+      &lt;filter type="and"&gt;
+        &lt;condition attribute="caps_fundingprogram" operator="in" uitype="caps_fundingprogram" value="@Programs"/&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict"/&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -104,13 +108,13 @@
           <DataField>YEARSTATUS_edu_startyear</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="PROJECT_caps_schooldistrict">
-          <DataField>PROJECT_caps_schooldistrict</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="YEARSTATUS_edu_startyearValue">
           <DataField>YEARSTATUS_edu_startyearValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PROJECT_caps_schooldistrict">
+          <DataField>PROJECT_caps_schooldistrict</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PROJECT_caps_schooldistrictValue">
           <DataField>PROJECT_caps_schooldistrictValue</DataField>
