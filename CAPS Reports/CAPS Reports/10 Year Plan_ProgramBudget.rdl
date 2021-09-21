@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily"><df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily><AutoRefresh>0</AutoRefresh><DataSources><DataSource Name="CAPS"><ConnectionProperties><DataProvider>MSCRMFETCH</DataProvider><ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString><Prompt>Login</Prompt></ConnectionProperties><rd:SecurityType>DataBase</rd:SecurityType><rd:DataSourceID>49068e8b-a0d4-444b-b357-c790a3d83669</rd:DataSourceID></DataSource></DataSources><DataSets><DataSet Name="Current_Historical_FiscalYears"><Query><DataSourceName>CAPS</DataSourceName><QueryParameters><QueryParameter Name="@Today"><Value>=Parameters!Today.Value</Value></QueryParameter></QueryParameters><CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="CAPS">
+      <ConnectionProperties>
+        <DataProvider>MSCRMFETCH</DataProvider>
+        <ConnectString>https://disco.crm3.dynamics.com;orgfebe6100</ConnectString>
+        <Prompt>Login</Prompt>
+      </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>49068e8b-a0d4-444b-b357-c790a3d83669</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Current_Historical_FiscalYears">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Today">
+            <Value>=Parameters!Today.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
@@ -12,7 +36,36 @@
       &lt;/filter&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText></Query><Fields><Field Name="edu_yearid"><DataField>edu_yearid</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="edu_name"><DataField>edu_name</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="statuscode"><DataField>statuscode</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="statuscodeValue"><DataField>statuscodeValue</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet><DataSet Name="ProgramBudgets"><Query><DataSourceName>CAPS</DataSourceName><QueryParameters><QueryParameter Name="@BudgetYear"><Value>=Parameters!BudgetYear.Value</Value></QueryParameter></QueryParameters><CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscode">
+          <DataField>statuscode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="statuscodeValue">
+          <DataField>statuscodeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ProgramBudgets">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@BudgetYear">
+            <Value>=Parameters!BudgetYear.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_programbudget" &gt;
     &lt;attribute name="caps_cycleyear" /&gt;
     &lt;attribute name="caps_name" /&gt;
@@ -26,12 +79,87 @@
     &lt;link-entity name="caps_fundingprogram" from="caps_fundingprogramid" to="caps_fundingprogram" alias="FUNDINGPROGRAM" &gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="caps_type" /&gt;
-      &lt;filter&gt;
-        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-      &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText><rd:UseGenericDesigner>true</rd:UseGenericDesigner></Query><Fields><Field Name="caps_cycleyear"><DataField>caps_cycleyear</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_cycleyearValue"><DataField>caps_cycleyearValue</DataField><rd:TypeName>System.Guid</rd:TypeName></Field><Field Name="caps_cycleyearEntityName"><DataField>caps_cycleyearEntityName</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_name"><DataField>caps_name</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_programbudgetid"><DataField>caps_programbudgetid</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_fundingprogram"><DataField>caps_fundingprogram</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_fundingprogramValue"><DataField>caps_fundingprogramValue</DataField><rd:TypeName>System.Guid</rd:TypeName></Field><Field Name="caps_fundingprogramEntityName"><DataField>caps_fundingprogramEntityName</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_projectionyear"><DataField>caps_projectionyear</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_projectionyearValue"><DataField>caps_projectionyearValue</DataField><rd:TypeName>System.Guid</rd:TypeName></Field><Field Name="caps_projectionyearEntityName"><DataField>caps_projectionyearEntityName</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_totalbudget"><DataField>caps_totalbudget</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="caps_totalbudgetValue"><DataField>caps_totalbudgetValue</DataField><rd:TypeName>System.Decimal</rd:TypeName></Field><Field Name="FUNDINGPROGRAM_caps_name"><DataField>FUNDINGPROGRAM_caps_name</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="FUNDINGPROGRAM_caps_type"><DataField>FUNDINGPROGRAM_caps_type</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="FUNDINGPROGRAM_caps_typeValue"><DataField>FUNDINGPROGRAM_caps_typeValue</DataField><rd:TypeName>System.Int32</rd:TypeName></Field></Fields></DataSet><DataSet Name="SelectedFiscalYear"><Query><DataSourceName>CAPS</DataSourceName><QueryParameters><QueryParameter Name="@BudgetYear"><Value>=Parameters!BudgetYear.Value</Value></QueryParameter></QueryParameters><CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+&lt;/fetch&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="caps_cycleyear">
+          <DataField>caps_cycleyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_cycleyearValue">
+          <DataField>caps_cycleyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_cycleyearEntityName">
+          <DataField>caps_cycleyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_name">
+          <DataField>caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_programbudgetid">
+          <DataField>caps_programbudgetid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_fundingprogram">
+          <DataField>caps_fundingprogram</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_fundingprogramValue">
+          <DataField>caps_fundingprogramValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_fundingprogramEntityName">
+          <DataField>caps_fundingprogramEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectionyear">
+          <DataField>caps_projectionyear</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectionyearValue">
+          <DataField>caps_projectionyearValue</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="caps_projectionyearEntityName">
+          <DataField>caps_projectionyearEntityName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalbudget">
+          <DataField>caps_totalbudget</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_totalbudgetValue">
+          <DataField>caps_totalbudgetValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_name">
+          <DataField>FUNDINGPROGRAM_caps_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_type">
+          <DataField>FUNDINGPROGRAM_caps_type</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FUNDINGPROGRAM_caps_typeValue">
+          <DataField>FUNDINGPROGRAM_caps_typeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SelectedFiscalYear">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@BudgetYear">
+            <Value>=Parameters!BudgetYear.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_yearid" /&gt;
@@ -39,7 +167,23 @@
       &lt;condition attribute="edu_yearid" operator="eq" value="@BudgetYear" uitype="edu_year" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText></Query><Fields><Field Name="edu_name"><DataField>edu_name</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="edu_yearid"><DataField>edu_yearid</DataField><rd:TypeName>System.String</rd:TypeName></Field></Fields></DataSet><DataSet Name="CurrentFiscalYear_Default"><Query><DataSourceName>CAPS</DataSourceName><CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CurrentFiscalYear_Default">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="edu_year" &gt;
     &lt;attribute name="edu_yearid" /&gt;
     &lt;attribute name="edu_name" /&gt;
@@ -49,7 +193,1064 @@
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
   &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText></Query><Fields><Field Name="edu_yearid"><DataField>edu_yearid</DataField><rd:TypeName>System.String</rd:TypeName></Field><Field Name="edu_name"><DataField>edu_name</DataField><rd:TypeName>System.String</rd:TypeName></Field></Fields></DataSet></DataSets><ReportSections><ReportSection><Body><ReportItems><Tablix Name="Tablix4"><TablixCorner><TablixCornerRows><TablixCornerRow><TablixCornerCell><CellContents><Textbox Name="Textbox66"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontFamily>Arial</FontFamily></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><rd:DefaultName>Textbox66</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCornerCell><TablixCornerCell><CellContents><Textbox Name="Textbox52"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Program</Value><Style><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox52</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCornerCell></TablixCornerRow></TablixCornerRows></TablixCorner><TablixBody><TablixColumns><TablixColumn><Width>3.16146cm</Width></TablixColumn></TablixColumns><TablixRows><TablixRow><Height>0.2825cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="Textbox22"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontSize>1pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox22</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>LightGrey</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow><TablixRow><Height>0.67938cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="caps_totalbudgetValue"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value><Style><Format>'$'#,0;('$'#,0)</Format><rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>caps_totalbudgetValue</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow><TablixRow><Height>0.85839cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="Textbox18"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value><Style><FontWeight>Bold</FontWeight><Format>'$'#,0;('$'#,0)</Format></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox18</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><TopBorder><Color>LightGrey</Color><Style>Solid</Style><Width>1pt</Width></TopBorder><BottomBorder><Color>LightGrey</Color><Style>Solid</Style><Width>1pt</Width></BottomBorder><LeftBorder><Color>LightGrey</Color><Style>Solid</Style><Width>1pt</Width></LeftBorder><RightBorder><Color>LightGrey</Color><Style>Solid</Style><Width>1pt</Width></RightBorder><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow><TablixRow><Height>0.22958cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="Textbox10"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontSize>3pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox10</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>LightGrey</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow><TablixRow><Height>0.6cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="Textbox7"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value><Style><FontWeight>Bold</FontWeight><Format>'$'#,0;('$'#,0)</Format></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox7</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow></TablixRows></TablixBody><TablixColumnHierarchy><TablixMembers><TablixMember><Group Name="caps_projectionyear"><GroupExpressions><GroupExpression>=Fields!caps_projectionyear.Value</GroupExpression></GroupExpressions></Group><SortExpressions><SortExpression><Value>=Fields!caps_projectionyear.Value</Value></SortExpression></SortExpressions><TablixHeader><Size>0.86458cm</Size><CellContents><Textbox Name="caps_projectionyear"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!caps_projectionyear.Value</Value><Style><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>caps_projectionyear</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader></TablixMember></TablixMembers></TablixColumnHierarchy><TablixRowHierarchy><TablixMembers><TablixMember><Group Name="FUNDINGPROGRAM_caps_type"><GroupExpressions><GroupExpression>=Fields!FUNDINGPROGRAM_caps_type.Value</GroupExpression></GroupExpressions></Group><SortExpressions><SortExpression><Value>=Fields!FUNDINGPROGRAM_caps_type.Value</Value></SortExpression></SortExpressions><TablixHeader><Size>3.26729cm</Size><CellContents><Textbox Name="FundingProgram_ParentGroup"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!FUNDINGPROGRAM_caps_type.Value</Value><Style><FontFamily>Arial</FontFamily><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><TablixMembers><TablixMember><TablixHeader><Size>3.34667cm</Size><CellContents><Textbox Name="Textbox20"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontSize>1pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox20</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#e3a82b</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><KeepWithGroup>After</KeepWithGroup></TablixMember><TablixMember><Group Name="caps_fundingprogram"><GroupExpressions><GroupExpression>=Fields!caps_fundingprogram.Value</GroupExpression></GroupExpressions></Group><SortExpressions><SortExpression><Value>=Fields!caps_fundingprogram.Value</Value></SortExpression></SortExpressions><TablixHeader><Size>3.34667cm</Size><CellContents><Textbox Name="caps_fundingprogram"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!caps_fundingprogram.Value</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>caps_fundingprogram</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#e3a82b</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><Visibility><ToggleItem>FundingProgram_ParentGroup</ToggleItem></Visibility></TablixMember><TablixMember><TablixHeader><Size>3.34667cm</Size><CellContents><Textbox Name="Textbox17"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Total:</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox17</rd:DefaultName><Style><Border><Style>None</Style></Border><BackgroundColor>#e3a82b</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><KeepWithGroup>Before</KeepWithGroup></TablixMember></TablixMembers></TablixMember><TablixMember><TablixHeader><Size>3.26729cm</Size><CellContents><Textbox Name="Textbox8"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontFamily>Arial</FontFamily><FontSize>3pt</FontSize><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox8</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>LightGrey</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><TablixMembers><TablixMember><TablixHeader><Size>3.34667cm</Size><CellContents><Textbox Name="Textbox9"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value /><Style><FontSize>3pt</FontSize><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox9</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>LightGrey</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader></TablixMember></TablixMembers><KeepWithGroup>Before</KeepWithGroup></TablixMember><TablixMember><TablixHeader><Size>6.61396cm</Size><CellContents><Textbox Name="Textbox4"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>All Programs Total:</Value><Style><FontFamily>Arial</FontFamily><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox4</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixHeader><KeepWithGroup>Before</KeepWithGroup></TablixMember></TablixMembers></TablixRowHierarchy><DataSetName>ProgramBudgets</DataSetName><Top>1.63724cm</Top><Height>3.51443cm</Height><Width>9.77542cm</Width><Style><Border><Style>None</Style></Border></Style></Tablix><Tablix Name="Tablix6"><TablixBody><TablixColumns><TablixColumn><Width>3.26729cm</Width></TablixColumn><TablixColumn><Width>3.34667cm</Width></TablixColumn></TablixColumns><TablixRows><TablixRow><Height>1.07625cm</Height><TablixCells><TablixCell><CellContents><Textbox Name="Textbox75"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Selected Budget Year</Value><Style><FontWeight>Bold</FontWeight><Color>White</Color></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox75</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#234075</BackgroundColor><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell><TablixCell><CellContents><Textbox Name="edu_name"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>=Fields!edu_name.Value</Value><Style><FontWeight>Bold</FontWeight></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>edu_name</rd:DefaultName><Style><Border><Color>LightGrey</Color><Style>Solid</Style></Border><BackgroundColor>#e3a82b</BackgroundColor><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></CellContents></TablixCell></TablixCells></TablixRow></TablixRows></TablixBody><TablixColumnHierarchy><TablixMembers><TablixMember /><TablixMember /></TablixMembers></TablixColumnHierarchy><TablixRowHierarchy><TablixMembers><TablixMember /></TablixMembers></TablixRowHierarchy><DataSetName>SelectedFiscalYear</DataSetName><Top>0.31433cm</Top><Height>1.07625cm</Height><Width>6.61396cm</Width><ZIndex>1</ZIndex><Style><Border><Style>None</Style></Border></Style></Tablix></ReportItems><Height>5.52209cm</Height><Style /></Body><Width>18.36208cm</Width><Page><PageHeader><Height>2.54cm</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage><ReportItems><Image Name="Image8"><Source>Embedded</Source><Value>BC_EDUC_H_RGB_pos</Value><Sizing>FitProportional</Sizing><Top>0.04292in</Top><Height>0.94319in</Height><Width>1.56053in</Width><Style><Border><Style>None</Style></Border></Style></Image><Textbox Name="Textbox2"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value><Style><FontFamily>arial</FontFamily></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox2</rd:DefaultName><Left>8.32146cm</Left><Height>0.6cm</Height><Width>8.18854cm</Width><ZIndex>1</ZIndex><Style><Border><Style>None</Style></Border><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox><Textbox Name="Textbox3"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Program Budget per 10 Year Plan</Value><Style><FontSize>24pt</FontSize></Style></TextRun></TextRuns><Style><TextAlign>Center</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox3</rd:DefaultName><Top>0.63528cm</Top><Left>3.99902cm</Left><Height>1.47313cm</Height><Width>12.77556cm</Width><ZIndex>2</ZIndex><Style><Border><Style>None</Style></Border><VerticalAlign>Middle</VerticalAlign><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></ReportItems><Style><Border><Style>None</Style></Border></Style></PageHeader><PageFooter><Height>0.67056cm</Height><PrintOnFirstPage>true</PrintOnFirstPage><PrintOnLastPage>true</PrintOnLastPage><ReportItems><Textbox Name="Textbox1"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value><Style><FontFamily>arial</FontFamily></Style></TextRun></TextRuns><Style><TextAlign>Right</TextAlign></Style></Paragraph></Paragraphs><rd:DefaultName>Textbox1</rd:DefaultName><Top>0.01389in</Top><Left>10.35875cm</Left><Height>0.6cm</Height><Width>6.15125cm</Width><Style><Border><Style>None</Style></Border><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox><Textbox Name="Textbox5"><CanGrow>true</CanGrow><KeepTogether>true</KeepTogether><Paragraphs><Paragraph><TextRuns><TextRun><Value>Source: CAPS</Value><Style><FontFamily>arial</FontFamily></Style></TextRun></TextRuns><Style /></Paragraph></Paragraphs><rd:DefaultName>Textbox1</rd:DefaultName><Top>0in</Top><Height>0.6cm</Height><Width>4.7054cm</Width><ZIndex>1</ZIndex><Style><Border><Style>None</Style></Border><PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight><PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom></Style></Textbox></ReportItems><Style><Border><Style>None</Style></Border></Style></PageFooter><PageHeight>27.94cm</PageHeight><PageWidth>21.59cm</PageWidth><LeftMargin>2.54cm</LeftMargin><RightMargin>2.54cm</RightMargin><TopMargin>2.54cm</TopMargin><BottomMargin>2.54cm</BottomMargin><ColumnSpacing>1.27cm</ColumnSpacing><Style /></Page></ReportSection></ReportSections><ReportParameters><ReportParameter Name="Today"><DataType>String</DataType><DefaultValue><Values><Value>=Format(Globals!ExecutionTime,"yyyy-MM-dd")</Value></Values></DefaultValue><Prompt>Today</Prompt><Hidden>true</Hidden></ReportParameter><ReportParameter Name="BudgetYear"><DataType>String</DataType><DefaultValue><DataSetReference><DataSetName>CurrentFiscalYear_Default</DataSetName><ValueField>edu_yearid</ValueField></DataSetReference></DefaultValue><Prompt>Select a Budget Year</Prompt><ValidValues><DataSetReference><DataSetName>Current_Historical_FiscalYears</DataSetName><ValueField>edu_yearid</ValueField><LabelField>edu_name</LabelField></DataSetReference></ValidValues></ReportParameter></ReportParameters><ReportParametersLayout><GridLayoutDefinition><NumberOfColumns>4</NumberOfColumns><NumberOfRows>2</NumberOfRows><CellDefinitions><CellDefinition><ColumnIndex>0</ColumnIndex><RowIndex>0</RowIndex><ParameterName>Today</ParameterName></CellDefinition><CellDefinition><ColumnIndex>1</ColumnIndex><RowIndex>0</RowIndex><ParameterName>BudgetYear</ParameterName></CellDefinition></CellDefinitions></GridLayoutDefinition></ReportParametersLayout><EmbeddedImages><EmbeddedImage Name="BC_EDUC_H_RGB_pos"><MIMEType>image/png</MIMEType><ImageData>iVBORw0KGgoAAAANSUhEUgAAA8oAAAHqCAYAAADcXLcrAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAeUdJREFUeNrs3X+MJOd95/ciRVH8tZyhqB+0yGSaZ8GiIwI7VGzaQOhMrxRZDiB6h5JhBjnrtonzIbF90g7/kQRYh20CEkLpj9uh5F+5ANle2weEhmzO2sbhZJ21PTETW7bPnEWoWBRksxchZUm0vLMkRUqkzU19qp9n9pln6qlfXd1d3f1+AYPZnZ7prq6qrqpPfZ8fV1y6dCkCAAAAAABDV7IKAAAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAAIIyAAAAAAAEZQAAAAAACMoAAAAAABCUAQAAAAAgKAMAAAAAQFAGAAAAAICgDAAAAAAAQRkAAAAAABCUAQAAAAAg
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_yearid">
+          <DataField>edu_yearid</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edu_name">
+          <DataField>edu_name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix4">
+            <TablixCorner>
+              <TablixCornerRows>
+                <TablixCornerRow>
+                  <TablixCornerCell>
+                    <CellContents>
+                      <Textbox Name="Textbox66">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox66</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixCornerCell>
+                  <TablixCornerCell>
+                    <CellContents>
+                      <Textbox Name="Textbox52">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Program</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox52</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixCornerCell>
+                </TablixCornerRow>
+              </TablixCornerRows>
+            </TablixCorner>
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.16146cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.2825cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>1pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.67938cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_totalbudgetValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value>
+                                  <Style>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>caps_totalbudgetValue</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.85839cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox18">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.22958cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>3pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightGrey</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_totalbudgetValue.Value)</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="caps_projectionyear">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!caps_projectionyear.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!caps_projectionyear.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.86458cm</Size>
+                    <CellContents>
+                      <Textbox Name="caps_projectionyear">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!caps_projectionyear.Value</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>caps_projectionyear</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="FUNDINGPROGRAM_caps_type">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!FUNDINGPROGRAM_caps_type.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!FUNDINGPROGRAM_caps_type.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>3.26729cm</Size>
+                    <CellContents>
+                      <Textbox Name="FundingProgram_ParentGroup">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!FUNDINGPROGRAM_caps_type.Value</Value>
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>3.34667cm</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox20">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontSize>1pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Right</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Textbox20</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#e3a82b</BackgroundColor>
+                              <VerticalAlign>Middle</VerticalAlign>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="caps_fundingprogram">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!caps_fundingprogram.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!caps_fundingprogram.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>3.34667cm</Size>
+                        <CellContents>
+                          <Textbox Name="caps_fundingprogram">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!caps_fundingprogram.Value</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Right</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>caps_fundingprogram</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#e3a82b</BackgroundColor>
+                              <VerticalAlign>Middle</VerticalAlign>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <Visibility>
+                        <ToggleItem>FundingProgram_ParentGroup</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>3.34667cm</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox17">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>Total:</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Right</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Textbox17</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <BackgroundColor>#e3a82b</BackgroundColor>
+                              <VerticalAlign>Middle</VerticalAlign>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>3.26729cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox8">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                  <FontSize>3pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox8</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>LightGrey</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>3.34667cm</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox9">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontSize>3pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Right</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Textbox9</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>LightGrey</BackgroundColor>
+                              <VerticalAlign>Middle</VerticalAlign>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                    </TablixMember>
+                  </TablixMembers>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>6.61396cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox4">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>All Programs Total:</Value>
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox4</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ProgramBudgets</DataSetName>
+            <Top>1.63724cm</Top>
+            <Height>3.51443cm</Height>
+            <Width>9.77542cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Tablix Name="Tablix6">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.26729cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.34667cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>1.07625cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox75">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Selected Budget Year</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox75</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="edu_name">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!edu_name.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>edu_name</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>SelectedFiscalYear</DataSetName>
+            <Top>0.31433cm</Top>
+            <Height>1.07625cm</Height>
+            <Width>6.61396cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>5.52209cm</Height>
+        <Style />
+      </Body>
+      <Width>18.36208cm</Width>
+      <Page>
+        <PageHeader>
+          <Height>2.54cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Image Name="Image8">
+              <Source>Embedded</Source>
+              <Value>BC_EDUC_H_RGB_pos</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.04292in</Top>
+              <Height>0.94319in</Height>
+              <Width>1.56053in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Report run: " &amp; FormatDateTime(Globals!ExecutionTime,DateFormat.LongDate)</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Left>8.32146cm</Left>
+              <Height>0.6cm</Height>
+              <Width>8.18854cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Program Budget per 10 Year Plan</Value>
+                      <Style>
+                        <FontSize>24pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox3</rd:DefaultName>
+              <Top>0.63528cm</Top>
+              <Left>3.99902cm</Left>
+              <Height>1.47313cm</Height>
+              <Width>12.77556cm</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.67056cm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.01389in</Top>
+              <Left>10.35875cm</Left>
+              <Height>0.6cm</Height>
+              <Width>6.15125cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox5">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Source: CAPS</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0in</Top>
+              <Height>0.6cm</Height>
+              <Width>4.7054cm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>27.94cm</PageHeight>
+        <PageWidth>21.59cm</PageWidth>
+        <LeftMargin>2.54cm</LeftMargin>
+        <RightMargin>2.54cm</RightMargin>
+        <TopMargin>2.54cm</TopMargin>
+        <BottomMargin>2.54cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="Today">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Format(Globals!ExecutionTime,"yyyy-MM-dd")</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Today</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="BudgetYear">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CurrentFiscalYear_Default</DataSetName>
+          <ValueField>edu_yearid</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>Select a Budget Year</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Current_Historical_FiscalYears</DataSetName>
+          <ValueField>edu_yearid</ValueField>
+          <LabelField>edu_name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Today</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>BudgetYear</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="BC_EDUC_H_RGB_pos">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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
@@ -90,4 +1291,9 @@ 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
-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</ImageData></EmbeddedImage></EmbeddedImages><rd:ReportUnitType>Cm</rd:ReportUnitType><rd:ReportID>b106631c-de93-47a1-935d-e2c4a13b68ae</rd:ReportID></Report>
+AABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAAEJQBAADgK/8TYAChhZ+Q2d7WcQAAAABJRU5ErkJggg==</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>b106631c-de93-47a1-935d-e2c4a13b68ae</rd:ReportID>
+</Report>
