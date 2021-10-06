@@ -7,6 +7,7 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <Prompt>test</Prompt>
       </ConnectionProperties>
       <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>d3ae00b1-387d-498c-a0f5-6c086771c022</rd:DataSourceID>
@@ -416,6 +417,9 @@
       &lt;attribute name="edu_enddate" /&gt;
       &lt;attribute name="statuscode" /&gt;
     &lt;/link-entity&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" alias="FACILITY" &gt;
+      &lt;attribute name="caps_actualorprojected" /&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -675,6 +679,14 @@
         <Field Name="YEAR_statuscodeValue">
           <DataField>YEAR_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FACILITY_caps_actualorprojected">
+          <DataField>FACILITY_caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FACILITY_caps_actualorprojectedValue">
+          <DataField>FACILITY_caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -998,7 +1010,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1084,7 +1096,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1170,7 +1182,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1256,7 +1268,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1342,7 +1354,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1428,7 +1440,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1514,7 +1526,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1599,7 +1611,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1695,7 +1707,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1791,7 +1803,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1887,7 +1899,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1974,7 +1986,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2056,7 +2068,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2138,7 +2150,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2220,7 +2232,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2302,7 +2314,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2384,7 +2396,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2466,7 +2478,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2547,7 +2559,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2628,7 +2640,7 @@ IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2727,7 +2739,7 @@ IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2827,7 +2839,7 @@ IIF(ReportItems!caps_total_operatingutilization_district1.Value &gt;= 1, "Red", 
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2933,7 +2945,7 @@ IIF(ReportItems!caps_total_operatingutilization_district1.Value &gt;= 1, "Red", 
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3035,7 +3047,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3137,7 +3149,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3244,7 +3256,7 @@ IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_t
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3341,7 +3353,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_to
                             <RightBorder>
                               <Style>Solid</Style>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -3447,7 +3459,7 @@ ReportItems!caps_total_enrolmentValue1.Value - ReportItems!SDEnrolment_caps_tota
                             <RightBorder>
                               <Style>Solid</Style>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -3560,7 +3572,7 @@ ReportItems!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", 
+                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", 
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
                             <VerticalAlign>Bottom</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -3701,10 +3713,9 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                               </Border>
                               <BottomBorder>
                                 <Color>Black</Color>
-                                <Style>Solid</Style>
                                 <Width>1pt</Width>
                               </BottomBorder>
-                              <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#234075")</BackgroundColor>
+                              <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "#234075")</BackgroundColor>
                               <VerticalAlign>Middle</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
@@ -4183,7 +4194,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.33201cm</Height>
+          <Height>1.96701cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4206,7 +4217,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.25in</Top>
+              <Top>0.5in</Top>
               <Left>17.34375cm</Left>
               <Height>0.6cm</Height>
               <Width>6.15125cm</Width>
@@ -4237,7 +4248,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.73201cm</Top>
+              <Top>1.36701cm</Top>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>
@@ -4277,6 +4288,38 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
               <Height>0.6cm</Height>
               <Width>16.47cm</Width>
               <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox17">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*Note that if the K E S and Total Enrolment boxes are filled in with the colour Blue, the enrolment value shown is projected. If the box is filled with Green, the enrolment value is actuals.</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0.7411cm</Top>
+              <Left>0cm</Left>
+              <Height>0.6cm</Height>
+              <Width>16.47cm</Width>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

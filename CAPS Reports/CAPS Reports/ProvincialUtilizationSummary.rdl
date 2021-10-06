@@ -29,6 +29,7 @@
     &lt;attribute name="caps_currentfacilitytype" /&gt;
     &lt;attribute name="caps_designfacilitytype" /&gt;
     &lt;attribute name="caps_districtoperatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_actualorprojected" /&gt;
     &lt;filter&gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
@@ -144,9 +145,17 @@
           <DataField>caps_districtoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_actualorprojected">
+          <DataField>caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="SchoolDistrict_edu_number">
           <DataField>SchoolDistrict_edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualorprojectedValue">
+          <DataField>caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="SchoolDistrict_edu_name">
           <DataField>SchoolDistrict_edu_name</DataField>
@@ -924,6 +933,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>=IIF(Fields!caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1296,7 +1306,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.70499cm</Height>
+          <Height>1.00168cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1353,6 +1363,36 @@
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*Note that if the Current Enrolment box is filled in with the colour Blue, the enrolment value shown is projected for the designated facility. If the box is filled with Green, the enrolment value is actuals.</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox6</rd:DefaultName>
+              <Top>0.05249cm</Top>
+              <Left>6.53203cm</Left>
+              <Height>0.94919cm</Height>
+              <Width>15.55658cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

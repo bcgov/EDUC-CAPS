@@ -17,14 +17,14 @@
       <Query>
         <DataSourceName>CAPS_DEV</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@CurrentType">
-            <Value>=Parameters!CurrentType.Value</Value>
-          </QueryParameter>
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
           <QueryParameter Name="@FacilityStatus">
             <Value>=Parameters!FacilityStatus.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CurrentType">
+            <Value>=Parameters!CurrentType.Value</Value>
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
@@ -58,6 +58,7 @@
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
     &lt;attribute name="caps_utilizationtotal_design" /&gt;
     &lt;attribute name="caps_total_currentenrolment" /&gt;
+    &lt;attribute name="caps_actualorprojected" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
@@ -107,21 +108,21 @@
           <DataField>caps_schooldistrict</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_lowestgrade">
-          <DataField>caps_lowestgrade</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="caps_schooldistrictValue">
           <DataField>caps_schooldistrictValue</DataField>
           <rd:TypeName>System.Guid</rd:TypeName>
         </Field>
-        <Field Name="caps_lowestgradeValue">
-          <DataField>caps_lowestgradeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="caps_schooldistrictEntityName">
           <DataField>caps_schooldistrictEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_lowestgrade">
+          <DataField>caps_lowestgrade</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_lowestgradeValue">
+          <DataField>caps_lowestgradeValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="caps_highestgrade">
           <DataField>caps_highestgrade</DataField>
@@ -199,28 +200,12 @@
           <DataField>caps_adjusteddesigncapacityelementaryValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="caps_operatingcapacitysecondary">
-          <DataField>caps_operatingcapacitysecondary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitysecondaryValue">
-          <DataField>caps_operatingcapacitysecondaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_districtoperatingcapacityelementary">
           <DataField>caps_districtoperatingcapacityelementary</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_districtoperatingcapacityelementaryValue">
           <DataField>caps_districtoperatingcapacityelementaryValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacityelementary">
-          <DataField>caps_operatingcapacityelementary</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacityelementaryValue">
-          <DataField>caps_operatingcapacityelementaryValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_districtoperatingcapacitysecondary">
@@ -239,20 +224,36 @@
           <DataField>caps_districtoperatingcapacitykindergartenValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_operatingcapacitykindergarten">
-          <DataField>caps_operatingcapacitykindergarten</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingcapacitykindergartenValue">
-          <DataField>caps_operatingcapacitykindergartenValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
         <Field Name="caps_districtoperatingcapacitytotal">
           <DataField>caps_districtoperatingcapacitytotal</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="caps_districtoperatingcapacitytotalValue">
           <DataField>caps_districtoperatingcapacitytotalValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitysecondary">
+          <DataField>caps_operatingcapacitysecondary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitysecondaryValue">
+          <DataField>caps_operatingcapacitysecondaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacityelementary">
+          <DataField>caps_operatingcapacityelementary</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacityelementaryValue">
+          <DataField>caps_operatingcapacityelementaryValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitykindergarten">
+          <DataField>caps_operatingcapacitykindergarten</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_operatingcapacitykindergartenValue">
+          <DataField>caps_operatingcapacitykindergartenValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_operatingcapacitytotal">
@@ -294,6 +295,14 @@
         <Field Name="caps_total_currentenrolmentValue">
           <DataField>caps_total_currentenrolmentValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualorprojected">
+          <DataField>caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualorprojectedValue">
+          <DataField>caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2344,6 +2353,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>=IIF(Fields!caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2875,7 +2885,6 @@ ReportItems!caps_utilizationtotaldistrictoperatingValue.Value &gt;= 1,
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3028,7 +3037,7 @@ ReportItems!caps_utilizationtotaldistrictoperatingValue.Value &gt;= 1,
       <Width>18.31437in</Width>
       <Page>
         <PageFooter>
-          <Height>0.67028cm</Height>
+          <Height>0.71146cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3088,6 +3097,36 @@ ReportItems!caps_utilizationtotaldistrictoperatingValue.Value &gt;= 1,
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*Note that if the Enrolment box is filled in with the colour Blue, the enrolment value shown is projected. If the box is filled with Green, the enrolment value is actuals.</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.05265cm</Top>
+              <Left>4.23016cm</Left>
+              <Height>0.6cm</Height>
+              <Width>30.7575cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -373,8 +373,8 @@
             <Value>=Parameters!FacilitiesforSelection.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_capacityreporting"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
+  &lt;entity name="caps_capacityreporting" &gt;
     &lt;attribute name="caps_capacityreportingid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_total_enrolment" /&gt;
@@ -411,17 +411,18 @@
     &lt;attribute name="caps_kindergarten_operatingcapacity_district" /&gt;
     &lt;attribute name="caps_elementary_operatingcapacity_district" /&gt;
     &lt;order attribute="caps_schoolyear" descending="false" /&gt;
-    &lt;filter type="and"&gt;
+    &lt;filter type="and" &gt;
       &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
-    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" visible="false" link-type="outer" alias="YEAR"&gt;
+    &lt;link-entity name="edu_year" from="edu_yearid" to="caps_schoolyear" visible="false" link-type="outer" alias="YEAR" &gt;
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
       &lt;attribute name="statuscode" /&gt;
     &lt;/link-entity&gt;
-    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
-      &lt;filter type="and"&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa" &gt;
+      &lt;attribute name="caps_actualorprojected" /&gt;
+      &lt;filter type="and" &gt;
         &lt;condition attribute="caps_facilityid" operator="in" uitype="caps_facility" value="@FacilitiesforSelection" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -3642,7 +3643,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
       <Width>6.92634in</Width>
       <Page>
         <PageFooter>
-          <Height>1.34938cm</Height>
+          <Height>2.01084cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3664,9 +3665,10 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Left>11.37713cm</Left>
+              <Top>0.02778in</Top>
+              <Left>0.02967cm</Left>
               <Height>0.6cm</Height>
-              <Width>6.13771cm</Width>
+              <Width>13.42729cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3696,6 +3698,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.55545in</Top>
               <Left>0.02967cm</Left>
               <Height>0.23622in</Height>
               <Width>1.33854in</Width>
@@ -3729,11 +3732,43 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.63528cm</Top>
-              <Left>5.55707in</Left>
+              <Top>1.37584cm</Top>
+              <Left>5.5878in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
               <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox27">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Note that the current year enrolment may show projected or actual numbers. Since these are aggregate numbers from all facilities of a school district, you will need to verify each facility record to see if they are Actuals or Projections. </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox27</rd:DefaultName>
+              <Top>0.70501cm</Top>
+              <Left>0.02967cm</Left>
+              <Height>0.6cm</Height>
+              <Width>13.42729cm</Width>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
