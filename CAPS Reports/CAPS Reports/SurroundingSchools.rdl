@@ -315,10 +315,11 @@
       &lt;attribute name="edu_type" /&gt;
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
-      &lt;attribute name="statuscode" /&gt;	
+      &lt;attribute name="statuscode" /&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="aa"&gt;
-       &lt;attribute name="caps_facilityid" /&gt;
+      &lt;attribute name="caps_facilityid" /&gt;
+      &lt;attribute name="caps_actualorprojected" /&gt;
       &lt;filter type="or"&gt;
         &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
         &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
@@ -588,6 +589,14 @@
           <DataField>YEAR_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="aa_caps_actualorprojected">
+          <DataField>aa_caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="aa_caps_actualorprojectedValue">
+          <DataField>aa_caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Portables">
@@ -696,7 +705,7 @@
                           <RightBorder>
                             <Style>None</Style>
                           </RightBorder>
-                          <BackgroundColor>#e3a82b</BackgroundColor>
+                          <BackgroundColor>#234075</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -730,7 +739,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Enrolment</Value>
+                                  <Value>Enrolment*</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -766,6 +775,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0;(#,0)</Format>
+                                    <Color>=iif(Fields!YEAR_statuscodeValue.Value = 1, "Black", "White")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -780,7 +790,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -853,7 +863,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -926,7 +936,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -999,7 +1009,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1072,7 +1082,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1145,7 +1155,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1220,7 +1230,7 @@ Fields!caps_total_operatingcapacity_districtValue.Value)</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1295,7 +1305,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue","LightGreen"), "White")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1443,7 +1453,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1516,7 +1526,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1589,7 +1599,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1665,7 +1675,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1746,7 +1756,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1819,7 +1829,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1892,7 +1902,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1979,7 +1989,7 @@ Fields!caps_total_operatingutilization_districtValue.Value &amp; "%")</Value>
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2062,7 +2072,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value))</Value>
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2147,7 +2157,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2234,7 +2244,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                             <TopBorder>
                               <Style>None</Style>
                             </TopBorder>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "white")</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2278,7 +2288,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                           <LeftBorder>
                             <Style>None</Style>
                           </LeftBorder>
-                          <BackgroundColor>#e3a82b</BackgroundColor>
+                          <BackgroundColor>#234075</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -2309,6 +2319,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                   <FontFamily>Arial</FontFamily>
                                   <FontSize>8pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
+                                  <Color>=iif(Fields!YEAR_statuscodeValue.Value = 1, "black", "white")</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -2323,7 +2334,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                             <Color>LightGrey</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "#e3a82b")</BackgroundColor>
+                          <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#e3a82b", "#234075")</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -2994,7 +3005,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
       <Width>9.83717in</Width>
       <Page>
         <PageFooter>
-          <Height>1.32292cm</Height>
+          <Height>1.87cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3016,9 +3027,10 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Left>19.95995cm</Left>
+              <Top>0.01378in</Top>
+              <Left>0cm</Left>
               <Height>0.6cm</Height>
-              <Width>5cm</Width>
+              <Width>20.96792cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3048,7 +3060,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
-              <Top>0.6cm</Top>
+              <Top>1.235cm</Top>
               <Left>8.48821in</Left>
               <Height>0.25in</Height>
               <Width>1.33854in</Width>
@@ -3082,9 +3094,42 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
+              <Top>0.5in</Top>
               <Height>0.23622in</Height>
               <Width>1.33854in</Width>
               <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox5">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>*Note that if the Enrolment box is filled in with the colour Blue, the enrolment value shown is projected. If the box is filled with Green, the enrolment value is actuals. For Total Enrolment, it can be a combination of projected and actuals. Thus, verify each facility individually.</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox5</rd:DefaultName>
+              <Top>0.63472cm</Top>
+              <Left>0cm</Left>
+              <Height>0.6cm</Height>
+              <Width>20.96792cm</Width>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
