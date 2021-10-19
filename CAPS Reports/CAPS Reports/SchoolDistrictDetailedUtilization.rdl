@@ -7,9 +7,8 @@
       <ConnectionProperties>
         <DataProvider>MSCRMFETCH</DataProvider>
         <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
-        <Prompt>test</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>d3ae00b1-387d-498c-a0f5-6c086771c022</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -938,7 +937,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>K Enrolment*</Value>
+                                  <Value>K Enrolment</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                   </Style>
@@ -1033,7 +1032,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>E Enrolment*</Value>
+                                  <Value>E Enrolment</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1119,7 +1118,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>S Enrolment*</Value>
+                                  <Value>S Enrolment</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1205,7 +1204,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Enrolment*</Value>
+                                  <Value>Total Enrolment</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1354,7 +1353,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1440,7 +1439,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1526,7 +1525,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1611,7 +1610,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1707,7 +1706,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1803,7 +1802,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1899,7 +1898,7 @@
                             <RightBorder>
                               <Color>Black</Color>
                             </RightBorder>
-                            <BackgroundColor>=IIF(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3692,7 +3691,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!caps_schoolyear.Value</Value>
+                                    <Value>=IIF(Fields!YEAR_statuscodeValue.Value = 1, Fields!caps_schoolyear.Value &amp; "*", Fields!caps_schoolyear.Value)</Value>
                                     <Style>
                                       <FontFamily>ARIAL</FontFamily>
                                       <FontSize>11pt</FontSize>
