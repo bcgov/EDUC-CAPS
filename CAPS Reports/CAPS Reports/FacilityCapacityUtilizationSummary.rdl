@@ -776,7 +776,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Enrolment*</Value>
+                                  <Value>=iif(Fields!YEAR_statuscodeValue.Value = 1, "Enrolment*", "Enrolment")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -971,7 +971,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, IIF(Fields!aa_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
+                            <BackgroundColor>White</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -2506,7 +2506,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0in</Top>
               <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>14.08875cm</Width>
