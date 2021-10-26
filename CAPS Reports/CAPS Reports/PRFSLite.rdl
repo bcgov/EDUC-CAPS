@@ -1495,13 +1495,13 @@
           </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch&gt;
-  &lt;entity name="caps_facility" &gt;
+  &lt;entity name="caps_facility"&gt;
     &lt;attribute name="caps_total_currentenrolment" /&gt;
     &lt;attribute name="caps_sldfacilitycode" /&gt;
     &lt;attribute name="caps_designcapacitykindergarten" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_facilityid" /&gt;
-&lt;attribute name="caps_streetaddress" /&gt;
+    &lt;attribute name="caps_streetaddress" /&gt;
     &lt;attribute name="statecode" /&gt;
     &lt;attribute name="caps_designcapacitytotal" /&gt;
     &lt;attribute name="caps_utilizationtotal_operating" /&gt;
@@ -1527,9 +1527,10 @@
     &lt;attribute name="caps_districtoperatingcapacityelementary" /&gt;
     &lt;attribute name="caps_districtoperatingcapacitykindergarten" /&gt;
     &lt;attribute name="caps_districtoperatingcapacitytotal" /&gt;
+    &lt;attribute name="caps_actualorprojected" /&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
-    &lt;link-entity name="caps_project" from="caps_facility" to="caps_facilityid" link-type="inner" alias="Fac" &gt;
-      &lt;filter type="and" &gt;
+    &lt;link-entity name="caps_project" from="caps_facility" to="caps_facilityid" link-type="inner" alias="Fac"&gt;
+      &lt;filter type="and"&gt;
         &lt;condition attribute="caps_projectid" operator="eq" value="@ProjectID" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
@@ -1764,6 +1765,14 @@
         <Field Name="caps_districtoperatingcapacitytotalValue">
           <DataField>caps_districtoperatingcapacitytotalValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualorprojected">
+          <DataField>caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_actualorprojectedValue">
+          <DataField>caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2121,11 +2130,12 @@
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_enddate" /&gt;
       &lt;attribute name="statuscode" /&gt;
- &lt;filter type="and"&gt;
+      &lt;filter type="and"&gt;
         &lt;condition attribute="statuscode" operator="ne" value="757500001" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" link-type="inner" alias="FACILITY"&gt;
+      &lt;attribute name="caps_actualorprojected" /&gt;
       &lt;filter type="or"&gt;
         &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
       &lt;/filter&gt;
@@ -2389,6 +2399,14 @@
         <Field Name="YEAR_statuscodeValue">
           <DataField>YEAR_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FACILITY_caps_actualorprojected">
+          <DataField>FACILITY_caps_actualorprojected</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FACILITY_caps_actualorprojectedValue">
+          <DataField>FACILITY_caps_actualorprojectedValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -3556,7 +3574,7 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3629,7 +3647,7 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3704,7 +3722,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_edu_startyear.Value &gt;= First(Fields!YEAR_edu_startyear.Value, "ProjectRequest"), "#fff6d5", "LightGrey")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3727,7 +3745,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Enrolment</Value>
+                                          <Value>Enrolment*</Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -3777,7 +3795,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, iif(Fields!FACILITY_caps_actualorprojectedValue.Value = 0, "LightBlue", "LightGreen"), "White")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3850,7 +3868,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3923,7 +3941,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4003,7 +4021,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <BottomBorder>
                                       <Style>None</Style>
                                     </BottomBorder>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4084,7 +4102,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4157,7 +4175,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4234,7 +4252,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4321,7 +4339,7 @@ First(Fields!caps_changeindistrictoperatingcapacitytotalValue.Value, "ProjectReq
                                     <TopBorder>
                                       <Style>None</Style>
                                     </TopBorder>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4404,7 +4422,7 @@ SUm(Fields!caps_total_operatingcapacity_districtValue.Value))</Value>
                                     <TopBorder>
                                       <Style>None</Style>
                                     </TopBorder>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4489,7 +4507,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                                     <TopBorder>
                                       <Style>None</Style>
                                     </TopBorder>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4580,7 +4598,7 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                     <TopBorder>
                                       <Style>None</Style>
                                     </TopBorder>
-                                    <BackgroundColor>=iif(Fields!YEAR_statuscodeValue.Value = 1, "#cadff0", "White")</BackgroundColor>
+                                    <BackgroundColor>White</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -6840,7 +6858,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Enrolment </Value>
+                                          <Value>Enrolment* </Value>
                                           <Style>
                                             <FontFamily>Arial</FontFamily>
                                           </Style>
@@ -6890,6 +6908,7 @@ Fields!caps_changeindistrictoperatingcapacity_totalValue.Value, 0)</Value>
                                       <Color>LightGrey</Color>
                                       <Style>Solid</Style>
                                     </Border>
+                                    <BackgroundColor>=iif(First(Fields!caps_actualorprojectedValue.Value, "ProjectRequestFacility") = 0, "LightBlue", "LightGreen")</BackgroundColor>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -12686,7 +12705,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </TablixMembers>
                     </TablixRowHierarchy>
                     <DataSetName>PRFSAlternativeOption</DataSetName>
-                    <Top>10.48481cm</Top>
+                    <Top>11.41085cm</Top>
                     <Left>0.01729in</Left>
                     <Height>9.85856cm</Height>
                     <Width>22.51255cm</Width>
@@ -12697,11 +12716,41 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       </Border>
                     </Style>
                   </Tablix>
+                  <Textbox Name="Textbox38">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>*In the above, if the enrolment cell in the current school year is highlighted in green, actual enrolment is being displayed. If blue, the values shown are projections.</Value>
+                            <Style />
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox38</rd:DefaultName>
+                    <Top>10.39059cm</Top>
+                    <Left>0.04391cm</Left>
+                    <Height>0.6cm</Height>
+                    <Width>22.43605cm</Width>
+                    <ZIndex>3</ZIndex>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>27.90639cm</Top>
+                <Top>29.17639cm</Top>
                 <Left>0.40993cm</Left>
-                <Height>20.50212cm</Height>
+                <Height>21.41934cm</Height>
                 <Width>22.75949cm</Width>
                 <Visibility>
                   <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -15154,7 +15203,7 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                       <TextRun>
                         <Value>International Students are not included in Total numbers or other calculations</Value>
                         <Style>
-                          <FontStyle>Italic</FontStyle>
+                          <FontStyle>Normal</FontStyle>
                           <FontFamily>Arial</FontFamily>
                         </Style>
                       </TextRun>
@@ -15163,10 +15212,10 @@ cdbl(Fields!caps_total_enrolmentValue.Value), cdbl(0)), "ProjectOptionCapacityRe
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>48.54962cm</Top>
+                <Top>50.8074cm</Top>
                 <Left>0.45384cm</Left>
                 <Height>0.6cm</Height>
-                <Width>6.44671cm</Width>
+                <Width>22.43605cm</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
@@ -16066,10 +16115,43 @@ First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "LEASE"</Hid
                   </Border>
                 </Style>
               </Tablix>
+              <Textbox Name="Textbox440">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>*In the above, in the current school year is highlighted in green, actual enrolment is being displayed. If blue, the values shown are projections. The Enrolment value is pulling from the facility of the originating Project Request.</Value>
+                        <Style>
+                          <FontStyle>Normal</FontStyle>
+                          <FontFamily>arial</FontFamily>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox440</rd:DefaultName>
+                <Top>51.47795cm</Top>
+                <Left>0.40993cm</Left>
+                <Height>0.6cm</Height>
+                <Width>22.47996cm</Width>
+                <ZIndex>6</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>22.17445cm</Top>
-            <Height>49.20062cm</Height>
+            <Height>52.07795cm</Height>
             <Width>24.13557cm</Width>
             <Visibility>
               <Hidden>=First(Fields!caps_submissioncategorycode.Value, "ProjectRequest") = "DEMOLITION"</Hidden>
@@ -23900,13 +23982,13 @@ Fields!caps_districtoperatingcapacitysecondaryValue.Value)</Value>
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>71.58789cm</Height>
+        <Height>74.55123cm</Height>
         <Style />
       </Body>
       <Width>24.13557cm</Width>
       <Page>
         <PageFooter>
-          <Height>0.76729cm</Height>
+          <Height>0.67028cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
