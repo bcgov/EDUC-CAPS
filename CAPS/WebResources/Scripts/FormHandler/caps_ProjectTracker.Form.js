@@ -165,25 +165,28 @@ CAPS.ProjectTracker.CalculateTotalCashFlowFields = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
-    Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_totalagency,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_totalagency,caps_thirdpartyforecast,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
         function success(result) {
             debugger;
             //var totalActualDraws = 0;
             var totalProvincial = 0;
             var totalAgency = 0;
+            var total3rdParty = 0;
             for (var i = 0; i < result.entities.length; i++) {
                 if (result.entities[i].statecode == 0) {
-                    totalProvincial += result.entities[i].caps_totalprovincial;
+                    totalProvincial += result.entities[i].caps_totalprovincial;  // Total Provincial has display name of Provincial Forecast
                 }
                 else {
-                    totalProvincial += result.entities[i].caps_totalactualdraws;
+                    totalProvincial += result.entities[i].caps_totalactualdraws; // Actual Draws values come from different child entity.
                 }
-                totalAgency += result.entities[i].caps_totalagency;
+                totalAgency += result.entities[i].caps_totalagency; // caps_totalagency was Other Funding Sources Forecast previously and is now repurpose to SD Funding Forecast
+                total3rdParty += result.entities[i].caps_thirdpartyforecast; // new field from CAPS-1964
             }
 
             // perform operations on record retrieval
             formContext.getAttribute('caps_totalagencyprojected').setValue(totalAgency);
-            formContext.getAttribute('caps_totalprovincialcashflow').setValue(totalProvincial);
+            formContext.getAttribute('caps_totalprovincialcashflow').setValue(totalProvincial); 
+            formContext.getAttribute('caps_totalthirdpartyprojected').setValue(total3rdParty); // New field from CAPS-1966
 
         },
         function (error) {

@@ -86,13 +86,40 @@ CAPS.ProgressReport.Unsubmit = function (primaryControl) {
  */
 CAPS.ProgressReport.Submit = function (primaryControl) {
     var formContext = primaryControl;
-    //Change status to DRAFT
+    // Call Validation Method at Form JavaScript.  
+    //CAPS.ProgressReport.ValidateStatusComment(null, formContext);
+    CAPS.ProgressReport.UpdateProjectBudgetValues(null, formContext);
+    CAPS.ProgressReport.ValidateOccupancyDate(null, formContext, true);
+    /* Move this segment to its own method so it can be callback from Validation method in the form.
+    //Change status to SUBMITTED
     let confirmStrings = { text: "This will submit the progress report.  Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
     let confirmOptions = { height: 200, width: 450 };
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {
             if (success.confirmed) {
-                debugger;
+                formContext.getAttribute("statecode").setValue(1);
+                formContext.getAttribute("statuscode").setValue(PROJECT_STATE.SUBMITTED);
+                formContext.data.entity.save();
+            }
+
+        });
+    */
+};
+
+CAPS.ProgressReport.ConfirmSubmit = function (formContext, additionalMessage) {
+
+    var baseMessage = "This will submit the progress report.  Click OK to continue or Cancel to exit.";
+    var message = baseMessage;
+    if (additionalMessage != null && additionalMessage != "") {
+        message = additionalMessage + "\n\r⠀\n\r" + baseMessage;
+    }
+
+    //Change status to SUBMITTED
+    let confirmStrings = { text: message, title: "Submit Confirmation" };
+    let confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
                 formContext.getAttribute("statecode").setValue(1);
                 formContext.getAttribute("statuscode").setValue(PROJECT_STATE.SUBMITTED);
                 formContext.data.entity.save();
@@ -100,3 +127,4 @@ CAPS.ProgressReport.Submit = function (primaryControl) {
 
         });
 }
+
