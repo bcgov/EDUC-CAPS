@@ -18,7 +18,7 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
     //Show Summary Report
-    CAPS.ProjectTracker.showSummaryReport(formContext);
+    // CAPS.ProjectTracker.showSummaryReport(formContext); // CAPS-1949 Get Rid of Summary Report
 
     //Format the form by showing and hiding the relevant sections and fields
     CAPS.ProjectTracker.showHideCategoryRelevantSections(formContext);
@@ -638,4 +638,22 @@ CAPS.ProjectTracker.ShowStatusChangeWarning = function (executionContext) {
         CAPS.ProjectTracker.Status = newStatus;
     }
 }
+
+CAPS.ProjectTracker.ValidateBudgetPressureAndSavings = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var budgetPressureAttribute = formContext.getAttribute("caps_budgetpressure");
+    var budgetSavingsAttribute = formContext.getAttribute("caps_budgetsavings");
+    if (budgetPressureAttribute == null || budgetSavingsAttribute == null) {
+        return; // Ignore if attribute not found.
+    }
+    var budgetPressureValue = budgetPressureAttribute.getValue();
+    var budgetSavingsValue = budgetSavingsAttribute.getValue();
+
+    if (budgetPressureValue == true && budgetSavingsValue == true) {
+        var message = "Budget Pressure and Budget Savings should not be set to YES simaltaneously";
+        var alertStrings = { confirmButtonLabel: "OK", text: message, title: "Budget Pressure & Budget Savings Validation" };
+        var alertOptions = { height: 120, width: 260 };
+        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+    }
+};
 

@@ -8,9 +8,11 @@ Main function for Project Tracker.  This function calls all other form function
 */
 CAPS.ProgressReport.onLoad = function (executionContext) {
     var formContext = executionContext.getFormContext();
-
-    formContext.getControl("sgd_FutureCashFlow").addOnLoad(CAPS.ProgressReport.UpdateTotalFutureCashFlow);
-    CAPS.ProgressReport.UpdateProjectBudgetValues(executionContext);
+    var formType = formContext.ui.getFormType();
+    if (formType == 2) { // Update Mode
+        formContext.getControl("sgd_FutureCashFlow").addOnLoad(CAPS.ProgressReport.UpdateTotalFutureCashFlow);
+        CAPS.ProgressReport.UpdateProjectBudgetValues(executionContext);
+    }
     //embed report
     //CAPS.ProgressReport.ShowMonthlyReport(formContext);
 };
@@ -20,29 +22,45 @@ Sums up the total projected provincial forecast and projected actuals.
 */
 CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
     var formContext = executionContext.getFormContext();
+    var progressReportYearAttribute = formContext.getAttribute("caps_fiscalyear");
+    var progressReportYearId = progressReportYearAttribute.getValue()[0].id.replace("{", "").replace("}", "");
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
-    // Provincial Amount
-    // Agency Amount is changed to SD Funding Sources Amount per CAPS-1958
-    // Schema Name did not change.
-    Xrm.WebApi.retrieveMultipleRecords("caps_cashflowprojection", "?$select=caps_provincialamount,caps_agencyamount,caps_thirdpartyamount&$filter=caps_ProgressReport/caps_progressreportid eq " + id).then(
-        function success(result) {
-            var totalProvincial = 0;
-            var totalAgency = 0;
-            var total3rdParty = 0;
-            for (var i = 0; i < result.entities.length; i++) {
-                totalProvincial += result.entities[i].caps_provincialamount;
-                totalAgency += result.entities[i].caps_agencyamount;
-                total3rdParty += result.entities[i].caps_thirdpartyamount;
-            }
+    Xrm.WebApi.retrieveRecord("edu_year", progressReportYearId, "?$select=edu_startyear").then(
+        function SuccessRetrievingYear(data) {
+            // Provincial Amount
+            // Agency Amount is changed to SD Funding Sources Amount per CAPS-1958
+            // Schema Name did not change.
+            var progressReportStartYear = data.edu_startyear;
+            var optionsOld = "?$select=caps_provincialamount,caps_agencyamount,caps_thirdpartyamount&$filter=caps_ProgressReport/caps_progressreportid eq " + id;
+            var options = "?$select=caps_provincialamount,caps_agencyamount,caps_thirdpartyamount&$expand=caps_Year($select=edu_startyear)&$filter=_caps_progressreport_value eq " + id;
+            Xrm.WebApi.retrieveMultipleRecords("caps_cashflowprojection", options).then(
 
-            // perform operations on record retrieval
-            formContext.getAttribute('caps_totalfutureprovincialprojection').setValue(totalProvincial);
-            formContext.getAttribute('caps_totalfutureagencyprojection').setValue(totalAgency);
-            formContext.getAttribute('caps_totalfuturethirdpartyprojection').setValue(total3rdParty);
-        },
-        function (error) {
-            console.log(error.message);
-            // handle error conditions
+                function success(result) {
+                    var totalProvincial = 0;
+                    var totalAgency = 0;
+                    var total3rdParty = 0;
+                    var startYear = 0;
+                    for (var i = 0; i < result.entities.length; i++) {
+                        startYear = result.entities[i].caps_Year.edu_startyear;
+                        if (startYear >= progressReportStartYear) {
+                            // Existing Math has fiscal in the past calculated with a pre-populated amount.  
+                            // We will only calculate the current and future fiscal years.
+                            totalProvincial += result.entities[i].caps_provincialamount;
+                            totalAgency += result.entities[i].caps_agencyamount;
+                            total3rdParty += result.entities[i].caps_thirdpartyamount;
+                        }
+                    }
+
+                    // perform operations on record retrieval
+                    formContext.getAttribute('caps_totalfutureprovincialprojection').setValue(totalProvincial);
+                    formContext.getAttribute('caps_totalfutureagencyprojection').setValue(totalAgency);
+                    formContext.getAttribute('caps_totalfuturethirdpartyprojection').setValue(total3rdParty);
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
         }
     );
 };
@@ -111,7 +129,7 @@ CAPS.ProgressReport.ValidateStatusComment = function (executionContext, formCont
     if (statusCommentAttribute != null && confirmNoChangesAttribute != null) {
         var confirmNoChangeValue = confirmNoChangesAttribute.getValue();
         var statusCommentsValue = statusCommentAttribute.getValue();
-        if (!confirmNoChangeValue && (statusCommentsValue == null || statusCommentsValue.trim() == "")) {
+        if (confirmNoChangeValue && (statusCommentsValue == null || statusCommentsValue.trim() == "")) {
             statusCommentAttribute.setRequiredLevel("required");
             return false;
         }
