@@ -13,6 +13,13 @@ CAPS.ProgressReport.onLoad = function (executionContext) {
         formContext.getControl("sgd_FutureCashFlow").addOnLoad(CAPS.ProgressReport.UpdateTotalFutureCashFlow);
         CAPS.ProgressReport.UpdateProjectBudgetValues(executionContext);
     }
+    else if (formType == 1) // Create Mode
+    {
+        CAPS.ProgressReport.SetUseNewFormOnCreate(executionContext);
+    }
+
+
+    CAPS.ProgressReport.SwitchForm(executionContext);
     //embed report
     //CAPS.ProgressReport.ShowMonthlyReport(formContext);
 };
@@ -31,8 +38,8 @@ CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
             // Agency Amount is changed to SD Funding Sources Amount per CAPS-1958
             // Schema Name did not change.
             var progressReportStartYear = data.edu_startyear;
-            var optionsOld = "?$select=caps_provincialamount,caps_agencyamount,caps_thirdpartyamount&$filter=caps_ProgressReport/caps_progressreportid eq " + id;
-            var options = "?$select=caps_provincialamount,caps_agencyamount,caps_thirdpartyamount&$expand=caps_Year($select=edu_startyear)&$filter=_caps_progressreport_value eq " + id;
+            var optionsOld = "?$select=caps_provincialamount,caps_sdfundingsourcesforecast,caps_thirdpartyforecast&$filter=caps_ProgressReport/caps_progressreportid eq " + id;
+            var options = "?$select=caps_provincialamount,caps_sdprovincialforecast,caps_sdfundingsourcesforecast,caps_agencyamount,caps_thirdpartyforecast,caps_thirdpartyamount&$expand=caps_Year($select=edu_startyear)&$filter=_caps_progressreport_value eq " + id;
             Xrm.WebApi.retrieveMultipleRecords("caps_cashflowprojection", options).then(
 
                 function success(result) {
@@ -40,14 +47,28 @@ CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
                     var totalAgency = 0;
                     var total3rdParty = 0;
                     var startYear = 0;
+                    var actualProvincial = 0;
+                    var actual3rdParty = 0;
+                    var actualSDSources = 0;
                     for (var i = 0; i < result.entities.length; i++) {
                         startYear = result.entities[i].caps_Year.edu_startyear;
                         if (startYear >= progressReportStartYear) {
                             // Existing Math has fiscal in the past calculated with a pre-populated amount.  
                             // We will only calculate the current and future fiscal years.
-                            totalProvincial += result.entities[i].caps_provincialamount;
-                            totalAgency += result.entities[i].caps_agencyamount;
-                            total3rdParty += result.entities[i].caps_thirdpartyamount;
+                            if (result.entities[i].caps_sdprovincialforecast != null)
+                                totalProvincial += result.entities[i].caps_sdprovincialforecast;
+                            if (result.entities[i].caps_sdfundingsourcesforecast != null)
+                                totalAgency += result.entities[i].caps_sdfundingsourcesforecast;
+                            if (result.entities[i].caps_thirdpartyforecast != null)
+                                total3rdParty += result.entities[i].caps_thirdpartyforecast;
+                        }
+                        else {
+                            if (result.entities[i].caps_provincialamount != null)
+                                actualProvincial += result.entities[i].caps_provincialamount;
+                            if (result.entities[i].caps_agencyamount != null)
+                                actualSDSources += result.entities[i].caps_agencyamount;
+                            if (result.entities[i].caps_thirdpartyamount != null)
+                                actual3rdParty += result.entities[i].caps_thirdpartyamount;
                         }
                     }
 
@@ -55,6 +76,10 @@ CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
                     formContext.getAttribute('caps_totalfutureprovincialprojection').setValue(totalProvincial);
                     formContext.getAttribute('caps_totalfutureagencyprojection').setValue(totalAgency);
                     formContext.getAttribute('caps_totalfuturethirdpartyprojection').setValue(total3rdParty);
+
+                    formContext.getAttribute('caps_totalprovincialactualdraws').setValue(actualProvincial);
+                    formContext.getAttribute('caps_totalthirdpartyactuals').setValue(actual3rdParty);
+                    formContext.getAttribute('caps_totalagencyactuals').setValue(actualSDSources);
                 },
                 function (error) {
                     console.log(error.message);
@@ -148,8 +173,8 @@ CAPS.ProgressReport.ConfirmReviewedBeforeSubmission = function (formContext, mes
     var isConfimrMilestoneValid = false;
     var isConfirmCashflowValid = false;
     var isConfirmStatusCommentsValid = CAPS.ProgressReport.ValidateStatusComment(null, formContext);
-    var confirmMessage = "Project Milestone and Cashflow section has Confirm Reviewed";
-    var commentMessage = "EXPLANATION OF CHANGES IN THIS PROGRESS REPORT comments entered";
+    var confirmMessage = "Please ensure Confirm Review of required sections";
+    var commentMessage = "You have indicated changes have been made to this report, please provide an explanation of these changes in the comment box in order to submit. If no changes have been made please set the Changes Made toggle to No.";
     var confirmReviewMessage = ""
     var confirmProjectMilestoneReviewAttribute = formContext.getAttribute("caps_confirmprojectmilestonereview");
     if (confirmProjectMilestoneReviewAttribute != null) {
@@ -186,7 +211,7 @@ CAPS.ProgressReport.ConfirmReviewedBeforeSubmission = function (formContext, mes
         if (!isConfirmStatusCommentsValid) {
             confirmReviewMessage += commentMessage;
         }
-        confirmReviewMessage = "Please ensure " + confirmReviewMessage;
+        confirmReviewMessage = confirmReviewMessage;
         var alertStrings = {
             confirmButtonLabel: "OK", text: confirmReviewMessage, title: "Confirmed Review before Submission"
         };
@@ -223,7 +248,7 @@ CAPS.ProgressReport.UpdateProjectBudgetValues = function (executionContext, form
                     // This is used in Calculated fields, and having 0 results in NULL in those calculated fields too.
                     var total3rdPartyActualsAttribute = formContext.getAttribute("caps_totalthirdpartyactuals");
                     if (total3rdPartyActualsAttribute != null && total3rdPartyActualsAttribute.getValue() == null) {
-                        caps_totalthirdpartyactuals.setValue(0);
+                        total3rdPartyActualsAttribute.setValue(0);
                         updateData = true;
                     }
 
@@ -268,6 +293,54 @@ CAPS.ProgressReport.UpdateProjectBudgetValues = function (executionContext, form
     }
 };
 
+CAPS.ProgressReport.SetUseNewFormOnCreate = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var useNewFormAttribute = formContext.getAttribute("caps_usenewform");
+    if (useNewFormAttribute == null) {
+        return; // Ignore if the attribute cannot be found.
+    }
+    useNewFormAttribute.setValue(true);
+};
+
+CAPS.ProgressReport.SwitchForm = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var useNewFormAttribute = formContext.getAttribute("caps_usenewform");
+    if (useNewFormAttribute == null) {
+        return; // Ignore if the attribute cannot be found.
+    }
+    var useNewForm = useNewFormAttribute.getValue();
+    var newFormName = "Information Form";
+    var legacyFormName = "Legacy Form";
+    var formName = "";
+    if (useNewForm == true) {
+        formName = newFormName;
+    }
+    else {
+        formName = legacyFormName;
+    }
+    var clientContext = Xrm.Utility.getGlobalContext().client;
+    try {
+        // Mobile App only have 1 form.
+        if (clientContext.getClient() == "Mobile") {
+            return;
+        }
+        if (formContext.ui.formSelector.getCurrentItem().getLabel() !== formName) {
+            var items = formContext.ui.formSelector.items;
+            items.forEach(function (item, index) {
+                var itemLabel = item.getLabel();
+                if (itemLabel === formName) {
+                    //navigate to the form
+                    item.navigate();
+                } //endif
+            });
+
+        } //endif
+    }
+    catch (ex) {
+        // Do Nothing
+    }
+};
+
 CAPS.ProgressReport.ValidateOccupancyDate = function (executionContext, formContext1, confrimSubmit) {
     var formContext = formContext1; // Take Form Context from Ribbon Control
     if (executionContext != null) {
@@ -281,6 +354,10 @@ CAPS.ProgressReport.ValidateOccupancyDate = function (executionContext, formCont
     // Cannot be in the past if contains data
     var occupancyDateValue = occupancyAttribute.getValue();
     if (occupancyDateValue == null) {
+        if (confrimSubmit) {
+            var message = "Occupancy Date does not contains value";
+            CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
+        }
         return true; // Ignore if it does not contains data
     }
 

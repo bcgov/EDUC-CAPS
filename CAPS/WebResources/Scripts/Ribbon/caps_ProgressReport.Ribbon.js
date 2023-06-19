@@ -21,6 +21,15 @@ CAPS.ProgressReport.ShowUnsubmit = function (primaryControl) {
         return false;
     }
 
+    // Check caps_UseNewForm flag
+    var useNewFormAttribute = formContext.getAttribute("caps_usenewform");
+    if (useNewFormAttribute != null) {
+        var useNewForm = useNewFormAttribute.getValue();
+        if (useNewForm != true) {
+            return false; 
+        }
+    }    
+
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
     var showButton = false;
@@ -88,8 +97,20 @@ CAPS.ProgressReport.Submit = function (primaryControl) {
     var formContext = primaryControl;
     // Call Validation Method at Form JavaScript.  
     //CAPS.ProgressReport.ValidateStatusComment(null, formContext);
-    CAPS.ProgressReport.UpdateProjectBudgetValues(null, formContext);
-    CAPS.ProgressReport.ValidateOccupancyDate(null, formContext, true);
+    // Check for Legacy Form
+    var useNewFormAttribute = formContext.getAttribute("caps_usenewform");
+    if (useNewFormAttribute == null) {
+        return; // Ignore if the attribute cannot be found.
+    }
+    var useNewForm = useNewFormAttribute.getValue();
+    if (useNewForm) {
+
+        CAPS.ProgressReport.UpdateProjectBudgetValues(null, formContext);
+        CAPS.ProgressReport.ValidateOccupancyDate(null, formContext, true);
+    }
+    else {
+        CAPS.ProgressReport.ConfirmSubmit(formContext, null);
+    }
     /* Move this segment to its own method so it can be callback from Validation method in the form.
     //Change status to SUBMITTED
     let confirmStrings = { text: "This will submit the progress report.  Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };

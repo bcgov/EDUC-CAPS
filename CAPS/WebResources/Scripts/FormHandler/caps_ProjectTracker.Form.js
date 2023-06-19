@@ -165,7 +165,7 @@ CAPS.ProjectTracker.CalculateTotalCashFlowFields = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
-    Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_totalagency,caps_thirdpartyforecast,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_agencyactual,caps_totalagency,caps_thirdpartyactual,caps_thirdpartyforecast,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
         function success(result) {
             debugger;
             //var totalActualDraws = 0;
@@ -175,12 +175,14 @@ CAPS.ProjectTracker.CalculateTotalCashFlowFields = function (executionContext) {
             for (var i = 0; i < result.entities.length; i++) {
                 if (result.entities[i].statecode == 0) {
                     totalProvincial += result.entities[i].caps_totalprovincial;  // Total Provincial has display name of Provincial Forecast
+                    totalAgency += result.entities[i].caps_totalagency; // caps_agencyactual was Other Funding Sources Actuals previously and is now repurpose to SD Funding Actual
+                    total3rdParty += result.entities[i].caps_thirdpartyforecast; // new field from CAPS-1964
                 }
                 else {
                     totalProvincial += result.entities[i].caps_totalactualdraws; // Actual Draws values come from different child entity.
+                    totalAgency += result.entities[i].caps_agencyactual; // caps_totalagency was Other Funding Sources Forecast previously and is now repurpose to SD Funding Forecast
+                    total3rdParty += result.entities[i].caps_thirdpartyactual; // new field from CAPS-1964
                 }
-                totalAgency += result.entities[i].caps_totalagency; // caps_totalagency was Other Funding Sources Forecast previously and is now repurpose to SD Funding Forecast
-                total3rdParty += result.entities[i].caps_thirdpartyforecast; // new field from CAPS-1964
             }
 
             // perform operations on record retrieval
@@ -650,7 +652,7 @@ CAPS.ProjectTracker.ValidateBudgetPressureAndSavings = function (executionContex
     var budgetSavingsValue = budgetSavingsAttribute.getValue();
 
     if (budgetPressureValue == true && budgetSavingsValue == true) {
-        var message = "Budget Pressure and Budget Savings should not be set to YES simaltaneously";
+        var message = "Budget Pressure and Budget Savings can’t both be YES";
         var alertStrings = { confirmButtonLabel: "OK", text: message, title: "Budget Pressure & Budget Savings Validation" };
         var alertOptions = { height: 120, width: 260 };
         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
