@@ -1385,9 +1385,9 @@
     &lt;attribute name="caps_year" /&gt;
     &lt;attribute name="caps_agencyamount" /&gt;
     &lt;attribute name="caps_thirdpartyamount" /&gt;
-    &lt;attribute name="caps_sdprovincialforecast" /&gt;
+    &lt;attribute name="caps_yearlyactualdraws" /&gt;
     &lt;attribute name="caps_provincialamount" /&gt;
-    &lt;attribute name="caps_sdfundingsourcesforecast" /&gt;
+    &lt;attribute name="caps_sdfundingsourcesactuals" /&gt;
     &lt;attribute name="caps_thirdpartyforecast" /&gt;
     &lt;order attribute="caps_year" descending="false" /&gt;
     &lt;filter type="and"&gt;
@@ -1432,12 +1432,12 @@
           <DataField>caps_thirdpartyamountValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_sdprovincialforecast">
-          <DataField>caps_sdprovincialforecast</DataField>
+        <Field Name="caps_yearlyactualdraws">
+          <DataField>caps_yearlyactualdraws</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_sdprovincialforecastValue">
-          <DataField>caps_sdprovincialforecastValue</DataField>
+        <Field Name="caps_yearlyactualdrawsValue">
+          <DataField>caps_yearlyactualdrawsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_provincialamount">
@@ -1448,12 +1448,12 @@
           <DataField>caps_provincialamountValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="caps_sdfundingsourcesforecast">
-          <DataField>caps_sdfundingsourcesforecast</DataField>
+        <Field Name="caps_sdfundingsourcesactuals">
+          <DataField>caps_sdfundingsourcesactuals</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_sdfundingsourcesforecastValue">
-          <DataField>caps_sdfundingsourcesforecastValue</DataField>
+        <Field Name="caps_sdfundingsourcesactualsValue">
+          <DataField>caps_sdfundingsourcesactualsValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="caps_thirdpartyforecast">
@@ -4510,7 +4510,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_provincialamount.Value</Value>
+                                  <Value>=Fields!caps_yearlyactualdraws.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -4544,7 +4544,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_sdprovincialforecast.Value</Value>
+                                  <Value>=Fields!caps_provincialamount.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -4567,6 +4567,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4578,7 +4579,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_agencyamount.Value</Value>
+                                  <Value>=Fields!caps_sdfundingsourcesactuals.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>
@@ -4612,7 +4613,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_sdfundingsourcesforecast.Value</Value>
+                                  <Value>=Fields!caps_agencyamount.Value</Value>
                                   <Style>
                                     <Format>#,0;(#,0)</Format>
                                   </Style>

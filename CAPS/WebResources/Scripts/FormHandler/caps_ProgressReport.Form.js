@@ -6,12 +6,14 @@ CAPS.ProgressReport = CAPS.ProgressReport || {};
 /*
 Main function for Project Tracker.  This function calls all other form functions.
 */
+CAPS.ProgressReport.gridContext = null;
 CAPS.ProgressReport.onLoad = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var formType = formContext.ui.getFormType();
     if (formType == 2) { // Update Mode
         formContext.getControl("sgd_FutureCashFlow").addOnLoad(CAPS.ProgressReport.UpdateTotalFutureCashFlow);
         CAPS.ProgressReport.UpdateProjectBudgetValues(executionContext);
+        CAPS.ProgressReport.gridContext = formContext.getControl("sgd_FutureCashFlow").getGrid();
     }
     else if (formType == 1) // Create Mode
     {
@@ -38,8 +40,9 @@ CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
             // Agency Amount is changed to SD Funding Sources Amount per CAPS-1958
             // Schema Name did not change.
             var progressReportStartYear = data.edu_startyear;
-            var optionsOld = "?$select=caps_provincialamount,caps_sdfundingsourcesforecast,caps_thirdpartyforecast&$filter=caps_ProgressReport/caps_progressreportid eq " + id;
-            var options = "?$select=caps_provincialamount,caps_sdprovincialforecast,caps_sdfundingsourcesforecast,caps_agencyamount,caps_thirdpartyforecast,caps_thirdpartyamount&$expand=caps_Year($select=edu_startyear)&$filter=_caps_progressreport_value eq " + id;
+            // caps_agencyamount == SD Funding Sources Forecast
+            // caps_provincialamount == SD Provincial Forecast
+            var options = "?$select=caps_provincialamount,caps_yearlyactualdraws,caps_sdfundingsourcesactuals,caps_agencyamount,caps_thirdpartyforecast,caps_thirdpartyamount&$expand=caps_Year($select=edu_startyear)&$filter=_caps_progressreport_value eq " + id;
             Xrm.WebApi.retrieveMultipleRecords("caps_cashflowprojection", options).then(
 
                 function success(result) {
@@ -55,18 +58,18 @@ CAPS.ProgressReport.UpdateTotalFutureCashFlow = function (executionContext) {
                         if (startYear >= progressReportStartYear) {
                             // Existing Math has fiscal in the past calculated with a pre-populated amount.  
                             // We will only calculate the current and future fiscal years.
-                            if (result.entities[i].caps_sdprovincialforecast != null)
-                                totalProvincial += result.entities[i].caps_sdprovincialforecast;
-                            if (result.entities[i].caps_sdfundingsourcesforecast != null)
-                                totalAgency += result.entities[i].caps_sdfundingsourcesforecast;
+                            if (result.entities[i].caps_provincialamount != null)
+                                totalProvincial += result.entities[i].caps_provincialamount;
+                            if (result.entities[i].caps_agencyamount != null)
+                                totalAgency += result.entities[i].caps_agencyamount;
                             if (result.entities[i].caps_thirdpartyforecast != null)
                                 total3rdParty += result.entities[i].caps_thirdpartyforecast;
                         }
                         else {
-                            if (result.entities[i].caps_provincialamount != null)
-                                actualProvincial += result.entities[i].caps_provincialamount;
-                            if (result.entities[i].caps_agencyamount != null)
-                                actualSDSources += result.entities[i].caps_agencyamount;
+                            if (result.entities[i].caps_yearlyactualdraws != null)
+                                actualProvincial += result.entities[i].caps_yearlyactualdraws;
+                            if (result.entities[i].caps_sdfundingsourcesactuals != null)
+                                actualSDSources += result.entities[i].caps_sdfundingsourcesactuals;
                             if (result.entities[i].caps_thirdpartyamount != null)
                                 actual3rdParty += result.entities[i].caps_thirdpartyamount;
                         }
@@ -143,6 +146,30 @@ CAPS.ProgressReport.ShowMonthlyReport = function (formContext) {
     req.send();
 };
 */
+
+CAPS.ProgressReport.DisableGridReadOnlyFields = function () {
+    var gridContext = CAPS.ProgressReport.gridContext;
+    if (gridContext == null) {
+        return;
+    }
+    var selectedRows = gridContext.getSelectedRows();
+    if (selectedRows.getLength() === 0) {
+        // do nothing
+        return;
+    }
+    // Can't Edit when select multiple rows.
+    // Pick the first Row.
+    var rowContext = selectedRows.get(0).getData();
+    rowContext.getEntity().attributes.forEach(function (attr) {
+        if (attr.getName() === "caps_fiscalperiodos" ||
+            attr.getName() === "caps_year" ||
+            attr.getName() === "caps_yearlyactualdraws") {
+            attr.controls.forEach(function (c) {
+                c.setDisabled(true);
+            });
+        }
+    });
+};
 
 CAPS.ProgressReport.ValidateStatusComment = function (executionContext, formContext1) {
     var formContext = formContext1; // Take Form Context from Ribbon Control
@@ -341,135 +368,175 @@ CAPS.ProgressReport.SwitchForm = function (executionContext) {
     }
 };
 
-CAPS.ProgressReport.ValidateOccupancyDate = function (executionContext, formContext1, confrimSubmit) {
+CAPS.ProgressReport.ValidateMilestoneDatesRequiredOnSubmit = async function (executionContext, formContext1) {
+    var formContext = formContext1; // Take Form Context from Ribbon Control
+    if (executionContext != null) {
+        formContext = executionContext.getFormContext;
+    }
+    var occupancyDateAttribute = formContext.getAttribute("caps_projectedoccupancydate");
+    var contractAwardDateAttribute = formContext.getAttribute("caps_projectedcontractawarddate");
+    var finalCompletionDateAttribute = formContext.getAttribute("caps_finalcompletiondate");
+
+    var hasOccupancyDate = false;
+    var hasContractAwardDate = false;
+    var hasFinalCompletionDate = false;
+
+    if (occupancyDateAttribute != null && occupancyDateAttribute.getValue() != null) {
+        hasOccupancyDate = true;
+    }
+
+    if (contractAwardDateAttribute != null && contractAwardDateAttribute.getValue() != null) {
+        hasContractAwardDate = true;
+    }
+
+    if (finalCompletionDateAttribute != null && finalCompletionDateAttribute.getValue() != null) {
+        hasFinalCompletionDate = true;
+    }
+    var requiredFieldMessage = "";
+    if (!hasOccupancyDate || !hasContractAwardDate || !hasFinalCompletionDate) {
+        requiredFieldMessage = "One or more milestone date is missing.  All milestone dates are required on submission. "
+    }
+
+    if (requiredFieldMessage != "") {
+        var alertStrings = {
+            confirmButtonLabel: "OK", text: requiredFieldMessage, title: "Confirmed Milestone Dates before Submission"
+        };
+        var alertOptions = { height: 120, width: 260 };
+        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+        return; 
+    }
+
+    var contractAwardMessage = await CAPS.ProgressReport.ValidateMilestoneDates(null, "caps_projectedcontractawarddate", formContext, true);
+    var occupancyMessage = await CAPS.ProgressReport.ValidateMilestoneDates(null, "caps_projectedoccupancydate", formContext, true);
+    var finalCompletionMessage = await CAPS.ProgressReport.ValidateMilestoneDates(null, "caps_finalcompletiondate", formContext, true);
+
+    var message = contractAwardMessage + occupancyMessage + finalCompletionMessage;
+    CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
+    
+}
+
+CAPS.ProgressReport.ValidateMilestoneDates = async function (executionContext, attributeName, formContext1, confirmSubmit) {
     var formContext = formContext1; // Take Form Context from Ribbon Control
     if (executionContext != null) {
         formContext = executionContext.getFormContext();
     }
-    var occupancyDateAttributeName = "caps_projectedoccupancydate";
-    var occupancyAttribute = formContext.getAttribute(occupancyDateAttributeName);
-    if (occupancyAttribute == null) {
-        return true;; // Ignore if attribute does not exist
-    }
-    // Cannot be in the past if contains data
-    var occupancyDateValue = occupancyAttribute.getValue();
-    if (occupancyDateValue == null) {
-        if (confrimSubmit) {
-            var message = "Occupancy Date does not contains value";
-            CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
-        }
-        return true; // Ignore if it does not contains data
+
+    var milestoneDateAttribute = formContext.getAttribute(attributeName);
+    if (milestoneDateAttribute == null) {
+        return ""; // Ignore if attribute does not exist 
+        // Final Completion Date is not in Legacy Form
     }
 
-    var occupancyDate = new Date(occupancyDateValue);
+    var milestoneDateValue = milestoneDateAttribute.getValue();
+    if (milestoneDateValue == null) {
+        return "" // Ignore if NULL value on value change
+        // if called on submit, a separate message is shown for missing milestone date fields.
+    }
 
+    // Some common variables
+    var milestoneName = "";
+    var milestoneDateNotMatchingMessage = "";
+    var milestoneId = "";
+    var occupancyMilestoneId = "1c455023-47a0-ea11-a812-000d3af42496";
+    var contractawardMilestoneId = "0a455023-47a0-ea11-a812-000d3af42496";
+    var finalCompletionMilestoneId = "53fdb72f-47a0-ea11-a812-000d3af42496";
+    var minestoneCompleteAttribute = null;
+    switch (attributeName) {
+        case "caps_projectedoccupancydate":
+            milestoneId = occupancyMilestoneId;
+            milestoneName = "Occupancy";
+            minestoneCompleteAttribute = formContext.getAttribute("caps_occupancydatecomplete");
+            milestoneDateNotMatchingMessage = "Your Planning Officer has marked Occupancy complete as of ";
+            break;
+        case "caps_projectedcontractawarddate":
+            milestoneId = contractawardMilestoneId;
+            milestoneName = "Contract Award";
+            minestoneCompleteAttribute = formContext.getAttribute("caps_contractawardcomplete");
+            milestoneDateNotMatchingMessage = "Your Planning Officer has marked Contract Awarded as of ";
+            break;
+        case "caps_finalcompletiondate":
+            milestoneId = finalCompletionMilestoneId;
+            milestoneName = "Final Completion";
+            minestoneCompleteAttribute = formContext.getAttribute("caps_finalcompletiondatecomplete");
+            milestoneDateNotMatchingMessage = "Your Planning Officer has marked Final Completion as of ";
+            break;
+    }
+
+    var milestoneDate = new Date(milestoneDateValue);
     // Set time to midnight
-    occupancyDate.setHours(0, 0, 0, 0);
+    milestoneDate.setHours(0, 0, 0, 0);
     // Get today's date at midnight
     var today = new Date();
     today.setHours(0, 0, 0, 0);
-    // Check Project's Occupancy Date.
-    // Check if Occupancy Date available and Is it already set as Complete.
-    // If it is, does it equal to the Expected/Actual Date from milestone
+
+    var isInPast = milestoneDate < today;
+    var isInPastMessage = milestoneName + " Date should not be in the past. ";
+
+    // Obtain Project ID
+    var projectId = "";
     var projectAttributeName = "caps_project";
     var projectAttribute = formContext.getAttribute(projectAttributeName);
     if (projectAttribute != null) {
         var projectValue = projectAttribute.getValue();
         if (projectValue != null) {
-            var projectId = projectValue[0].id.replace("{", "").replace("}", "");
-            var occupancyMilestoneId = "1c455023-47a0-ea11-a812-000d3af42496";
-            var notified = true;
-            var options = "?$filter=_caps_milestone_value eq " + occupancyMilestoneId + " and _caps_projecttracker_value eq " + projectId + " and caps_complete eq true";
-            Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", options).then(
-                function Success(data) {
-                    // Do something
-                    var results = data.entities;
-                    if (results.length > 0) {
-                        var expectedDateString = results[0].caps_expectedactualdate;
-                        if (expectedDateString != null) {
-                            var expectedDate = new Date(expectedDateString);
-                            // This expected Date instantiation will get timezone offset.
-                            expectedDate = new Date(expectedDate.getTime() + expectedDate.getTimezoneOffset() * 60000);
-                            expectedDate.setHours(0, 0, 0, 0);
-                            var doNotMatchYear = occupancyDate.getFullYear() != expectedDate.getFullYear();
-                            var doNotMatchMonth = occupancyDate.getMonth() != expectedDate.getMonth();
-                            var doNotMatchDay = occupancyDate.getDay() != expectedDate.getDay();
-                            if (doNotMatchYear || doNotMatchMonth || doNotMatchDay) {
-                                // Prompt
-                                var message = "Occupancy Date is not matching Completed Occupancy Milestone's Expected/Actual Date - " + expectedDateString;
-                                if (confrimSubmit) {
-                                    CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
-                                }
-                                else {
-                                    var alertStrings = { confirmButtonLabel: "OK", text: message, title: "Projected Occupancy Date Validation" };
-                                    var alertOptions = { height: 120, width: 260 };
-                                    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                                }
-                            }
-                            else {
-                                var occupancyCompleteAttribute = formContext.getAttribute("caps_occupancydatecomplete");
-                                // If it hasn't been locked already, lock the field if matching the Completed Occupancy Milestone
-                                if (occupancyCompleteAttribute != null && occupancyCompleteAttribute.getValue() == false) {
-                                    occupancyCompleteAttribute.setValue(true); 
-                                }
-                                if (confrimSubmit) {
-                                    CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
-                                }
-                            }
-                        }
-                        else {
-                            // If it were in the past
-                            if (occupancyDate < today) {
-                                // Prompt
-                                var message = "Occupancy Date should not be in the past";
-                                if (confrimSubmit) {
-                                    CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
-                                }
-                                else {
-                                    var alertStrings = { confirmButtonLabel: "OK", text: message, title: "Projected Occupancy Date Validation" };
-                                    var alertOptions = { height: 120, width: 260 };
-                                    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                                }
-                            }
-                            else {
-
-                                if (confrimSubmit) {
-                                    CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, "");
-                                }
-                            }
-                        }
-                    }
-                    else {
-                        // If it were in the past
-                        if (occupancyDate < today) {
-                            // Prompt
-                            var message = "Occupancy Date should not be in the past";
-                            if (confrimSubmit) {
-                                CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, message);
-                            }
-                            else {
-                                var alertStrings = { confirmButtonLabel: "OK", text: message, title: "Projected Occupancy Date Validation" };
-                                var alertOptions = { height: 120, width: 260 };
-                                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                            }
-                        }
-                        else {
-
-                            if (confrimSubmit) {
-                                CAPS.ProgressReport.ConfirmReviewedBeforeSubmission(formContext, "");
-                            }
-                        }
-                    }
-                    return notified;
-                },
-                function Error(err) {
-                    var debug = err;
-                }
-            );
+            projectId = projectValue[0].id.replace("{", "").replace("}", "");
         }
     }
-
+    if (projectId == "") {
+        return "Project reference does not contain any value. ";
+    }
+    var milestoneDateNotMatching = false;
     
-    // Parent Project whether it is Completed
-};
+    var milestoneOptions = "?$filter=_caps_milestone_value eq " + milestoneId + " and _caps_projecttracker_value eq " + projectId + " and caps_complete eq true";
+    var projectMilestoneResults = await Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", milestoneOptions);
 
+        // CAPS.ProgressReport.RetrieveMultipleCustom("caps_projectmilestone", milestoneOptions);
+
+
+    var hasCompletedMilestone = projectMilestoneResults != null && projectMilestoneResults.entities.length > 0;
+
+    // Check against Completed Milestone
+    if (hasCompletedMilestone) {
+        var expectedDateString = projectMilestoneResults.entities[0].caps_expectedactualdate;
+        if (expectedDateString != null) {
+            milestoneDateNotMatchingMessage = milestoneDateNotMatchingMessage + expectedDateString + ". ";
+            var expectedDate = new Date(expectedDateString);
+            // This expected Date instantiation will get timezone offset.
+            expectedDate = new Date(expectedDate.getTime() + expectedDate.getTimezoneOffset() * 60000);
+            expectedDate.setHours(0, 0, 0, 0);
+            var doNotMatchYear = milestoneDate.getFullYear() != expectedDate.getFullYear();
+            var doNotMatchMonth = milestoneDate.getMonth() != expectedDate.getMonth();
+            var doNotMatchDay = milestoneDate.getDay() != expectedDate.getDay();
+            if (doNotMatchYear || doNotMatchMonth || doNotMatchDay) {
+                milestoneDateNotMatching = true;
+            }
+            else {
+                // If it hasn't been locked already, lock the field if matching the Completed Milestone
+                // There is a business rule that lock the date field if the milestone complete has been set to TRUE
+                if (minestoneCompleteAttribute != null && minestoneCompleteAttribute.getValue() == false) {
+                    minestoneCompleteAttribute.setValue(true);
+                    
+                }
+            }
+        }
+    }
+    var validationMessage = "";
+    if (hasCompletedMilestone) {
+        if (milestoneDateNotMatching) {
+            validationMessage = milestoneDateNotMatchingMessage;
+        }
+    }
+    else if (isInPast) {
+        validationMessage = isInPastMessage;
+    }
+
+    if (confirmSubmit) {
+        return validationMessage;
+    }
+    else if (validationMessage != "") {
+        var title = "Projected " + milestoneName + " Date Validation";
+        var alertStrings = { confirmButtonLabel: "OK", text: validationMessage, title: title };
+        var alertOptions = { height: 120, width: 260 };
+        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+    }
+};

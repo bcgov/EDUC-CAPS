@@ -93,7 +93,7 @@ CAPS.ProgressReport.Unsubmit = function (primaryControl) {
  * Function to submit the progress report record.
  * @param {any} primaryControl primary control
  */
-CAPS.ProgressReport.Submit = function (primaryControl) {
+CAPS.ProgressReport.Submit = async function (primaryControl) {
     var formContext = primaryControl;
     // Call Validation Method at Form JavaScript.  
     //CAPS.ProgressReport.ValidateStatusComment(null, formContext);
@@ -106,7 +106,8 @@ CAPS.ProgressReport.Submit = function (primaryControl) {
     if (useNewForm) {
 
         CAPS.ProgressReport.UpdateProjectBudgetValues(null, formContext);
-        CAPS.ProgressReport.ValidateOccupancyDate(null, formContext, true);
+        await CAPS.ProgressReport.ValidateMilestoneDatesRequiredOnSubmit(null, formContext);
+        //CAPS.ProgressReport.ValidateOccupancyDate(null, formContext, true);
     }
     else {
         CAPS.ProgressReport.ConfirmSubmit(formContext, null);
