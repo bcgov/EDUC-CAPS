@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <FullPath>Debug</FullPath>
-    <Platform>Win32</Platform>
     <OutputPath>bin\Debug</OutputPath>
     <ErrorLevel>2</ErrorLevel>
     <OverwriteDatasets>False</OverwriteDatasets>
     <OverwriteDataSources>False</OverwriteDataSources>
     <TargetServerVersion>SSRS2016</TargetServerVersion>
+    <Platform>Win32</Platform>
     <TargetReportFolder>CAPS Reports</TargetReportFolder>
     <TargetDatasetFolder>Datasets</TargetDatasetFolder>
     <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
@@ -16,12 +16,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'DebugLocal' ">
     <FullPath>DebugLocal</FullPath>
-    <Platform>Win32</Platform>
     <OutputPath>bin\DebugLocal</OutputPath>
     <ErrorLevel>2</ErrorLevel>
     <OverwriteDatasets>False</OverwriteDatasets>
     <OverwriteDataSources>False</OverwriteDataSources>
     <TargetServerVersion>SSRS2016</TargetServerVersion>
+    <Platform>Win32</Platform>
     <TargetReportFolder>CAPS Reports</TargetReportFolder>
     <TargetDatasetFolder>Datasets</TargetDatasetFolder>
     <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
@@ -30,12 +30,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <FullPath>Release</FullPath>
-    <Platform>Win32</Platform>
     <OutputPath>bin\Release</OutputPath>
     <ErrorLevel>2</ErrorLevel>
     <OverwriteDatasets>False</OverwriteDatasets>
     <OverwriteDataSources>False</OverwriteDataSources>
     <TargetServerVersion>SSRS2016</TargetServerVersion>
+    <Platform>Win32</Platform>
     <TargetReportFolder>CAPS Reports</TargetReportFolder>
     <TargetDatasetFolder>Datasets</TargetDatasetFolder>
     <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
@@ -86,6 +86,7 @@
     <Report Include="ProvincialUtilizationSummary.rdl" />
     <Report Include="Report1.rdl" />
     <Report Include="SchoolDistrictDetailedUtilization.rdl" />
+    <Report Include="SD Project Progress Report Legacy.rdl" />
     <Report Include="SD Project Progress Report.rdl" />
     <Report Include="SDCapacityUtilizationSummary.rdl" />
     <Report Include="SMPDistrictCompletion.rdl" />

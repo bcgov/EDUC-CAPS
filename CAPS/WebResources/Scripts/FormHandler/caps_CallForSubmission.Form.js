@@ -24,6 +24,8 @@ CAPS.CallForSubmission.onLoad = async function (executionContext) {
 
         CAPS.CallForSubmission.setFiscalYearFilter(executionContext);
     }
+    // CAPS-1977 Hide PO Portfolio Ranking Tab from SD User View
+    CAPS.CallForSubmission.ShowPOPortfolioRankingTab(executionContext);
 }
 
 /**
@@ -50,4 +52,28 @@ CAPS.CallForSubmission.filterFiscalYear = function (executionContext) {
         "</filter>";
 
     formContext.getControl("caps_capitalplanyear").addCustomFilter(fetchXML, "edu_year");
+}
+
+/**
+ * CAPS-1977 Hide PO Portfolio Ranking Tab from SD User View
+ * Function to determine when the PO Portfolio Ranking Tab should be shown.
+ * @param {any} executionContext the form's execution context
+ */
+CAPS.CallForSubmission.ShowPOPortfolioRankingTab = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+    var showTab = false;
+
+    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+        if (item.name === "CAPS CMB User") {
+            showTab = true;
+        }
+    });
+
+    // Get Tab
+    var theTab = formContext.ui.tabs.get("tab_3");
+    if (theTab != null) {
+        theTab.setVisible(showTab);
+    }
 }

@@ -426,8 +426,14 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 
 		col = new Column("statuscode", "Status", "Optionset", 8, false, false);
 		cols.push(col);
-
-		col = new Column("caps_submissioncategory", "Submission Category", "Lookup.Simple", 9, true, false);
+		
+		col = new Column("caps_projectyear", "Project Year", "Lookup.Simple", 9, false, false);
+		cols.push(col);
+		
+		col = new Column("caps_firstyearofcashflow", "First Year of Cashflow", "Lookup.Simple", 10, false, false);
+		cols.push(col);
+				
+		col = new Column("caps_submissioncategory", "Submission Category", "Lookup.Simple", 11, true, false);
 		cols.push(col);
 
 		if (!cols) { //context.parameters.SortableDataSet.columns) {
@@ -512,7 +518,7 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 							}
 							catch(ex)
 							{
-								alert("An error occured while saving the updated priority (2): " + ex.toString());
+								alert("An error occured while saving the updated priority (2): "); // + ex.toString());
 							}
 						}
 
@@ -583,7 +589,7 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 			"<attribute name=\"caps_districtpriority\" /><attribute name=\"caps_projectcode\" />" +
 			"<attribute name=\"caps_projectdescription\" /><attribute name=\"statuscode\" /><attribute name=\"statecode\" />" +
 			"<attribute name=\"caps_submissioncategory\" /><attribute name=\"caps_schooldistrict\" />" +
-			"<attribute name=\"caps_ministrycomments\" />" +
+			"<attribute name=\"caps_ministrycomments\" /><attribute name=\"caps_firstyearofcashflow\" /><attribute name=\"caps_projectyear\" />" +
 			"<filter><condition attribute=\"caps_submissioncategory\" operator=\"eq\" value=\"" + submissionCategoryId + "\" /></filter>" +
 			"<link-entity name=\"caps_submission\" from=\"caps_submissionid\" to=\"caps_submission\" link-type=\"inner\"><filter>" +
 			"<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + this.callforSubmissionReference.id + "\" />" +
@@ -639,7 +645,9 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 									width += 1;
 
 									var colName = columnItem.name;
-									if (colName === "caps_schooldistrict") colName = "_caps_schooldistrict_value"
+									if (colName === "caps_schooldistrict") colName = "_caps_schooldistrict_value";
+									if (colName === "caps_projectyear") colName = "_caps_projectyear_value";
+									if (colName === "caps_firstyearofcashflow") colName = "_caps_firstyearofcashflow_value";
 									
 									if(record[colName] != null && record[colName] != "")
 									{
@@ -648,6 +656,8 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 										if (colName == "caps_totalprojectcost") valuePara.textContent = "$" + record[colName];
 										else if (colName === "statuscode") valuePara.textContent += record["statuscode@OData.Community.Display.V1.FormattedValue"];
 										else if (colName === "_caps_schooldistrict_value") valuePara.textContent += record["_caps_schooldistrict_value@OData.Community.Display.V1.FormattedValue"];
+										else if (colName === "_caps_projectyear_value") valuePara.textContent += record["_caps_projectyear_value@OData.Community.Display.V1.FormattedValue"];
+										else if (colName === "_caps_firstyearofcashflow_value") valuePara.textContent += record["_caps_firstyearofcashflow_value@OData.Community.Display.V1.FormattedValue"];
 										else valuePara.textContent += record[colName];
 
 										if(columnItem.name.indexOf(rankingFieldName) > -1) priority = record[colName] as number;
@@ -1097,7 +1107,7 @@ export class SubmissionSortGrid implements ComponentFramework.StandardControl<II
 		}
 		catch(ex)
 		{
-			alert("An error occured while saving the updated priority (2): " + ex.toString());
+			alert("An error occured while saving the updated priority (2): "); // + ex.toString());
 		}
 	}
 

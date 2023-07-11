@@ -14,9 +14,10 @@ const CLOSED_DATE_NOTIFICATION = "Closed_Date_Notification";
  * Main function for Project Tracker.  This function calls all other form functions.
  * @param {any} executionContext the form's execution context.
  */
+CAPS.ProjectTracker.gridContext = null;
 CAPS.ProjectTracker.onLoad = function (executionContext) {
     var formContext = executionContext.getFormContext();
-
+    CAPS.ProjectTracker.gridContext = formContext.getControl("Subgrid_5").getGrid(); // Project Cashflow subgrid
     //Show Summary Report
     // CAPS.ProjectTracker.showSummaryReport(formContext); // CAPS-1949 Get Rid of Summary Report
 
@@ -360,6 +361,35 @@ CAPS.ProjectTracker.showSummaryReport = function (formContext) {
         }
     };
     req.send();
+};
+
+CAPS.ProjectTracker.DisableGridReadOnlyFields = function () {
+    var gridContext = CAPS.ProjectTracker.gridContext;
+    if (gridContext == null) {
+        return;
+    }
+    var selectedRows = gridContext.getSelectedRows();
+    if (selectedRows.getLength() === 0) {
+        // do nothing
+        return;
+    }
+    // Can't Edit when select multiple rows.
+    // Pick the first Row.
+    var rowContext = selectedRows.get(0).getData();
+    rowContext.getEntity().attributes.forEach(function (attr) {
+        if (attr.getName() === "caps_name" ||
+            attr.getName() === "caps_fiscalyear" ||
+            attr.getName() === "caps_thirdpartyactual" ||
+            attr.getName() === "caps_thirdpartyforecast" ||
+            attr.getName() === "caps_agencyactual" ||
+            attr.getName() === "caps_totalagency" ||
+            attr.getName() === "caps_sdprovincialforecast" ||
+            attr.getName() === "caps_totalactualdraws") {
+            attr.controls.forEach(function (c) {
+                c.setDisabled(true);
+            });
+        }
+    });
 };
 
 

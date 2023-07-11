@@ -500,7 +500,11 @@ and not selected if there are.
 CAPS.Submission.CheckNothingToSubmit = function (formContext) {
     debugger;
     //Get flag to identify if enrolment validation is required
-    var nothingToSubmit = formContext.getAttribute("caps_noprojectstosubmit").getValue();
+    var nothingToSubmitAttribute = formContext.getAttribute("caps_noprojectstosubmit");
+    var nothingToSubmit = false;
+    if (nothingToSubmitAttribute != null) {
+        nothingToSubmit = nothingToSubmitAttribute.getValue();
+    }
 
 
     //Get record ID
