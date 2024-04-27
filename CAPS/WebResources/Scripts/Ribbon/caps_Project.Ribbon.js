@@ -709,7 +709,7 @@ CAPS.Project.MarkAsUnpublished = function (selectedControlIds, selectedControl) 
 Function to check if the current user has CAPS CMB User Role.
 */
 CAPS.Project.IsMinistrySuperUser = function () {
-    debugger;
+    
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
     var showButton = false;
