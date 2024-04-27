@@ -6,7 +6,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\deann\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\deann\Documents\GitHub\EDUC-CAPS\CAPS\Master_DataContext\OptionSets.cs" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" /username:"deanna.beauchamp@gov.bc.ca" /password:"******************" 
+// Created via this command line: "C:\Users\GolnarNaghavi\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\GolnarNaghavi\Downloads\EDUC-CAPS-master\EDUC-CAPS-master\CAPS\Master_DataContext\OptionSets.cs" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" 
 //------------------------------------------------------------------------------
 
 namespace CAPS.DataContext
@@ -532,6 +532,10 @@ namespace CAPS.DataContext
 		CCRecipient = 3,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Chat Participant", 11)]
+		ChatParticipant = 12,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Customer", 10)]
 		Customer = 11,
 		
@@ -550,6 +554,10 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Regarding", 7)]
 		Regarding = 8,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Related", 12)]
+		Related = 13,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Required attendee", 4)]
@@ -1118,6 +1126,23 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_CCProcurementMethod
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("CM", 0)]
+		CM = 746660000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("DB", 1)]
+		DB = 746660001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("DBB", 2)]
+		DBB = 746660002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum caps_CertificateofApproval_StatusCode
 	{
 		
@@ -1159,12 +1184,20 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Active", 0)]
-		Active = 1,
+		[OptionSetMetadataAttribute("Closed", 3)]
+		Closed = 746660002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Inactive", 1)]
-		Inactive = 2,
+		[OptionSetMetadataAttribute("Open", 0)]
+		Open = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Permanently Closed", 1)]
+		PermanentlyClosed = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Under Construction", 2)]
+		UnderConstruction = 746660001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1273,6 +1306,10 @@ namespace CAPS.DataContext
 		Active = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Cancelled", 2, "#0000ff")]
+		Cancelled = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Submitted", 1, "#0000ff")]
 		Submitted = 2,
 	}
@@ -1316,12 +1353,12 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Active", 0, "#0000ff")]
-		Active = 1,
+		[OptionSetMetadataAttribute("Closed", 2, "#0000ff")]
+		Closed = 746660000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Closed", 2, "#0000ff")]
-		Closed = 2,
+		[OptionSetMetadataAttribute("Open", 0, "#0000ff")]
+		Open = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Permanently Closed", 3, "#0000ff")]
@@ -1374,36 +1411,7 @@ namespace CAPS.DataContext
 		[OptionSetMetadataAttribute("Under Construction", 2)]
 		UnderConstruction = 100000000,
 	}
-	/*
-	[System.Runtime.Serialization.DataContractAttribute()]
-	public enum caps_FacilityType
-	{
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Elementary", 0)]
-		Elementary = 100000000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Elem-Middle", 3)]
-		ElemMiddle = 100000003,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Elem-Sec", 4)]
-		ElemSec = 100000004,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Middle", 1)]
-		Middle = 100000001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Middle-Sec", 5)]
-		MiddleSec = 100000005,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Secondary", 2)]
-		Secondary = 100000002,
-	}
-	*/
+	
 	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum caps_FacilityType_StatusCode
 	{
@@ -1552,6 +1560,35 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("K", 0)]
 		K = 100000000,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ifyeswhichofthefollowingapply
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Deaf and hard of hearing", 1)]
+		Deafandhardofhearing = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Families new to Canada", 3)]
+		FamiliesnewtoCanada = 200870003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Francophone", 5)]
+		Francophone = 200870005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Indigenous-led ", 0)]
+		Indigenousled = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Other specialized support needs", 2)]
+		Otherspecializedsupportneeds = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Young Parents", 4)]
+		YoungParents = 200870004,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1863,6 +1900,10 @@ namespace CAPS.DataContext
 		Accepted = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Approved", 7, "#0000ff")]
+		Approved = 746660000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Cancelled", 4, "#0000ff")]
 		Cancelled = 100000010,
 		
@@ -1918,20 +1959,16 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Accepted", 3, "#0000ff")]
+		[OptionSetMetadataAttribute("Accepted", 2, "#0000ff")]
 		Accepted = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Draft", 1, "#0000ff")]
+		[OptionSetMetadataAttribute("Draft", 0, "#0000ff")]
 		Draft = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Submitted", 2, "#0000ff")]
-		Submitted_Active = 200870001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Submitted", 0, "#0000ff")]
-		Submitted_Inactive = 2,
+		[OptionSetMetadataAttribute("Submitted", 1, "#0000ff")]
+		Submitted = 200870001,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2313,10 +2350,6 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Minor", 1)]
 		Minor = 200870001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("NA", 5, "#0000ff")]
-		NA = 200870005,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2347,6 +2380,23 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("PO RD", 0)]
 		PORD = 200870000,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_TimeEra
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("🟠 Current", 1)]
+		Current = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("🟡 Future", 2)]
+		Future = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("🔒 Past", 0)]
+		Past = 200870000,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2913,6 +2963,19 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum msft_DataState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Default", 0)]
+		Default = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Retain", 1)]
+		Retain = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum SocialProfile_Community
 	{
 		
@@ -2955,19 +3018,74 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("AAD Office Group", 3)]
-		AADOfficeGroup = 3,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("AAD Security Group", 2)]
-		AADSecurityGroup = 2,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Access", 1)]
 		Access = 1,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Office Group", 3)]
+		OfficeGroup = 3,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Owner", 0)]
 		Owner = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Security Group", 2)]
+		SecurityGroup = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum appaction_ClientType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Browser", 0, "#0000ff")]
+		Browser = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Mobile", 1, "#0000ff")]
+		Mobile = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Mail App", 2, "#0000ff")]
+		MailApp = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum card_Sizes
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Small", 0, "#0000ff")]
+		Small = 200000000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Medium", 1, "#0000ff")]
+		Medium = 200000001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Large", 2, "#0000ff")]
+		Large = 200000002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum msdyn_knowledgemanagementsetting_msdyn_actionlist
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Link / unlink article", 0, "#0000ff")]
+		Linkunlinkarticle = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Copy URL", 1, "#0000ff")]
+		CopyURL = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Link article and email URL", 2, "#0000ff")]
+		LinkarticleandemailURL = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Link article and send article content", 3, "#0000ff")]
+		Linkarticleandsendarticlecontent = 3,
 	}
 }

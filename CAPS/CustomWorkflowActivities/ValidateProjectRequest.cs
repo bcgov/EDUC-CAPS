@@ -426,7 +426,73 @@ namespace CustomWorkflowActivities
                         validationMessage.AppendLine("All Procurement Analysis records on the PRFS tab must be marked as Complete.");
                     }
                 }
-            } 
+            }
+            #endregion
+            #region Validating fields on CC Project Requests
+            if(projectRequest.caps_SubmissionCategoryCode == "CC_CONVERSION" || projectRequest.caps_SubmissionCategoryCode == "Major_CC_New_Spaces" ||
+                projectRequest.caps_SubmissionCategoryCode == "CC_MAJOR_NEW_SPACES_INTEGRATED" || projectRequest.caps_SubmissionCategoryCode == "CC_UPGRADE")
+            {
+                var projectStartDate = projectRequest.caps_StartDate;
+                var projectEndDate = projectRequest.caps_EndDate;
+                var desingSubmitDate = projectRequest.caps_AnticipatedDesignSubmissionDate;
+                var tenderDate = projectRequest.caps_AnticipatedTenderDate;
+               
+
+                if(!projectStartDate.HasValue)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Project Start Date needs to be filled in.");
+                }
+                if(!projectEndDate.HasValue) 
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Project End Date needs to be filled in.");
+                }
+                if(!desingSubmitDate.HasValue)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Design Submission Date needs to be filled in.");
+                }
+                if(!tenderDate.HasValue) 
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Tender Date needs to be filled in.");
+                }
+               
+            }
+            else if(projectRequest.caps_SubmissionCategoryCode == "CC_CONVERSION_MINOR" || projectRequest.caps_SubmissionCategoryCode == "CC_UPGRADE_MINOR")
+            {
+                var projectStartDate = projectRequest.caps_StartDate;
+                var projectEndDate = projectRequest.caps_EndDate;
+                var indoorFloorPlan = projectRequest.caps_IndoorFloorPlans_Name;
+                var outdoorPlan = projectRequest.caps_OutdoorPlans_Name;
+                var projectBudget = projectRequest.caps_ProjectBudget_Name;
+                if (!projectStartDate.HasValue)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Project Start Date needs to be filled in.");
+                }
+                if (!projectEndDate.HasValue)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Project End Date needs to be filled in.");
+                }
+                if (indoorFloorPlan == null)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Indoor Floor Plan needs to be filled in.");
+                }
+                if (outdoorPlan == null)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Outdoor Plan needs to be filled in.");
+                }
+                if(projectBudget == null) 
+                { 
+                    isValid = false;
+                    validationMessage.AppendLine("Project Budget needs to be filled in.");
+                }
+            }
             #endregion
 
             this.valid.Set(executionContext, isValid);
