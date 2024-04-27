@@ -19,37 +19,74 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
     var submissionId = formContext.data.entity.getId();
-
-
-
-    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
-                    "<entity name=\"caps_submission\">" +
-                    "<attribute name=\"caps_submissionid\" />" +
-                    "<attribute name=\"caps_name\" />" +
-                    "<attribute name=\"createdon\" />" +
-                    "<order attribute=\"caps_name\" descending=\"false\" />" +
-                    "<filter type=\"and\">" +
-                        "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
-                        "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>"+
-                        "<filter type=\"or\">" +
-                        "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
-                            "<filter type=\"and\">" +
-                                "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
-                                "<value>100000000</value>" +
-                                "<value>100000001</value>" +
-                                "</condition>" +
-                                "<condition attribute=\"caps_boardofresolutionattached\" operator=\"ne\" value=\"1\" />" +
-                            "</filter>" +
-                        "</filter>" +
-                    "</filter>" +
-                    "</entity>" +
-                "</fetch>";
+    var boardResolutionRequired = formContext.getAttribute("caps_boardresolutionrequired").getValue();
+    var fetchXML = "";
+    if (!boardResolutionRequired) {
+        fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+            "<entity name=\"caps_submission\">" +
+            "<attribute name=\"caps_submissionid\" />" +
+            "<attribute name=\"caps_name\" />" +
+            "<attribute name=\"createdon\" />" +
+            "<order attribute=\"caps_name\" descending=\"false\" />" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+            "<filter type=\"or\">" +
+            "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
+            "</filter>" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
+            "<value>100000000</value>" +
+            "<value>100000001</value>" +
+            "</condition>" +
+            "</filter>" +
+            "</filter>" +
+            "<link-entity name=\"caps_callforsubmission\" from=\"caps_callforsubmissionid\" to=\"caps_callforsubmission\" link-type=\"inner\" alias=\"aa\">" +
+           // "<filter type=\"or\">" +
+           // "<condition attribute=\"caps_boardresolutionrequired\" operator=\"eq\" value=\"1\" />" +
+           // "</filter>" +
+            "</link-entity>" +
+            "</entity>" +
+            "</fetch>";
+    }
+    else {
+        fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+            "<entity name=\"caps_submission\">" +
+            "<attribute name=\"caps_submissionid\" />" +
+            "<attribute name=\"caps_name\" />" +
+            "<attribute name=\"createdon\" />" +
+            "<order attribute=\"caps_name\" descending=\"false\" />" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+            "<filter type=\"or\">" +
+            "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
+            "<condition attribute=\"caps_boardofresolutionattached\" value=\"0\" operator=\"eq\"/>" +
+            "</filter>" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
+            "<value>100000000</value>" +
+            "<value>100000001</value>" +
+            "</condition>" +
+            "</filter>" +
+            "</filter>" +
+            "<link-entity name=\"caps_callforsubmission\" from=\"caps_callforsubmissionid\" to=\"caps_callforsubmission\" link-type=\"inner\" alias=\"aa\">" +
+            "<filter type=\"or\">" +
+            "<condition attribute=\"caps_boardresolutionrequired\" operator=\"eq\" value=\"1\" />" +
+            "</filter>" +
+            "</link-entity>" +
+            "</entity>" +
+            "</fetch>";
+    }
 
     //Get all Capital Plans without board resolutions
     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
         function success(result) {
 
             var errorText = "Unable to release results as one or more Submission is in a draft state and/or missing a board resolution.";
+            if (!boardResolutionRequired) {
+                errorText = "Unable to release results as one or more Submission is in a draft state.";
+            }
+            
+            /*var errorText = "Unable to release results as one or more Submission is in a draft state."*/
 
             if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
                 errorText = "Unable to release results as one or more Submission is in a draft state and/or a project request is flagged for review.";
@@ -68,26 +105,27 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                     }
                 );
             }
+
             else {
                 //now if this is AFG, check if there are any projects requests that are flagged for review.
                 if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
                     var fetchXML2 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
-                                      "<entity name=\"caps_submission\">" +
-                                        "<attribute name=\"caps_submissionid\" />" +
-                                        "<attribute name=\"caps_name\" />" +
-                                        "<attribute name=\"createdon\" />" +
-                                        "<attribute name=\"caps_submissiontype\" />" +
-                                        "<order attribute=\"caps_name\" descending=\"false\" />" +
-                                        "<filter type=\"and\">" +
-                                          "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
-                                        "</filter>" +
-                                        "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
-                                          "<filter type=\"and\">" +
-                                            "<condition attribute=\"caps_flaggedforreview\" operator=\"eq\" value=\"1\" />" +
-                                          "</filter>" +
-                                        "</link-entity>" +
-                                      "</entity>" +
-                                    "</fetch>";
+                        "<entity name=\"caps_submission\">" +
+                        "<attribute name=\"caps_submissionid\" />" +
+                        "<attribute name=\"caps_name\" />" +
+                        "<attribute name=\"createdon\" />" +
+                        "<attribute name=\"caps_submissiontype\" />" +
+                        "<order attribute=\"caps_name\" descending=\"false\" />" +
+                        "<filter type=\"and\">" +
+                        "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                        "</filter>" +
+                        "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
+                        "<filter type=\"and\">" +
+                        "<condition attribute=\"caps_flaggedforreview\" operator=\"eq\" value=\"1\" />" +
+                        "</filter>" +
+                        "</link-entity>" +
+                        "</entity>" +
+                        "</fetch>";
 
                     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML2).then(
                         function success(result) {
@@ -115,33 +153,33 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                 else {
                     //check that all Project requests are marked as supported, not supported or planned
                     var fetchXML3 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
-                          "<entity name=\"caps_submission\">" +
-                            "<attribute name=\"caps_submissionid\" />" +
-                            "<attribute name=\"caps_name\" />" +
-                            "<attribute name=\"createdon\" />" +
-                            "<attribute name=\"caps_submissiontype\" />" +
-                            "<order attribute=\"caps_name\" descending=\"false\" />" +
-                            "<filter type=\"and\">" +
-                              "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
-                            "</filter>" +
-                            "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
-                              "<filter type=\"and\">" +
-                                    "<condition attribute=\"caps_ministryassessmentstatus\" operator=\"not-in\">"+
-                                    "<value>200870000</value>"+
-                                    "<value>100000001</value>"+
-                                    "<value>100000000</value>"+
-                                  "</condition>"+
-                              "</filter>" +
-                            "</link-entity>" +
-                          "</entity>" +
+                        "<entity name=\"caps_submission\">" +
+                        "<attribute name=\"caps_submissionid\" />" +
+                        "<attribute name=\"caps_name\" />" +
+                        "<attribute name=\"createdon\" />" +
+                        "<attribute name=\"caps_submissiontype\" />" +
+                        "<order attribute=\"caps_name\" descending=\"false\" />" +
+                        "<filter type=\"and\">" +
+                        "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                        "</filter>" +
+                        "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
+                        "<filter type=\"and\">" +
+                        "<condition attribute=\"caps_ministryassessmentstatus\" operator=\"not-in\">" +
+                        /*  "<value>200870000</value>" +*/
+                        "<value>100000001</value>" +
+                        "<value>100000000</value>" +
+                        "</condition>" +
+                        "</filter>" +
+                        "</link-entity>" +
+                        "</entity>" +
                         "</fetch>";
 
                     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML3).then(
                         function success(result) {
                             if (result.entities.length > 0) {
                                 //Some bad projects
-                                errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported, not supported or planned.";
-
+                                /*  errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported, not supported or planned.";*/
+                                errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported or not supported.";
                                 let alertStrings = { confirmButtonLabel: "OK", text: errorText, title: "Call For Submission" };
                                 let alertOptions = { height: 120, width: 260 };
                                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
@@ -155,6 +193,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                             }
                             else {
                                 CAPS.CallForSubmission.ConfirmResultsReleased(formContext);
+
                             }
                         },
                         function (error) {
@@ -168,8 +207,9 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             alert(error.message);
         }
     );
-    
+
 }
+
 
 /**
 Function called to display the confirmation message when user clicks Release Results.
@@ -224,7 +264,7 @@ CAPS.CallForSubmission.ShowReleaseResults = function (primaryControl) {
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
         if (item.name === "CAPS CMB Release Submission Results - Add On" || item.name === "CAPS CMB Super User - Add On") {
-            showReleaseResults =  true;
+            showReleaseResults = true;
         }
     });
 
@@ -459,4 +499,3 @@ CAPS.CallForSubmission.ShowCancel = function (primaryControl) {
 
     return showPublish;
 }
-

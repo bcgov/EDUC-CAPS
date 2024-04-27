@@ -7,7 +7,7 @@ CAPS.Submission = CAPS.Submission || {};
 Function to determine when the Complete button should be shown.
 */
 CAPS.Submission.ShowComplete = function (primaryControl) {
-    debugger;
+
     var formContext = primaryControl;
 
     //If not in status of accepted
@@ -21,7 +21,7 @@ CAPS.Submission.ShowComplete = function (primaryControl) {
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
         if (item.name === "CAPS School District Approver - Add On") {
-            showValidation =  true;
+            showValidation = true;
         }
     });
 
@@ -56,7 +56,7 @@ CAPS.Submission.Complete = async function (primaryControl) {
             }
         }
     });
-    
+
     //Show Results
     formContext.ui.tabs.forEach(function (tab, i) {
         //loop through sections
@@ -94,7 +94,7 @@ CAPS.Submission.Complete = async function (primaryControl) {
 
     //close the indicator
     Xrm.Utility.closeProgressIndicator();
-    
+
 };
 
 /**
@@ -103,7 +103,7 @@ CAPS.Submission.Complete = async function (primaryControl) {
  * @returns {boolean} true if should be shown, otherwise false.
  */
 CAPS.Submission.ShowValidate = function (primaryControl) {
-    debugger;
+
     var formContext = primaryControl;
 
     //If not in status of draft
@@ -117,7 +117,7 @@ CAPS.Submission.ShowValidate = function (primaryControl) {
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
         if (item.name === "CAPS School District Approver - Add On") {
-            showValidation =  true;
+            showValidation = true;
         }
     });
 
@@ -139,13 +139,13 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
     var resultsMessage = "Validation Errors\r\n";
 
-    
+
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
     let checkProjectCountResults = await CAPS.Submission.CheckNothingToSubmit(formContext);
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
     let checkAFGPreviousSubmission = await CAPS.Submission.CheckAFGProjects(formContext);
 
-   // resultsArray.push(checkEnrolmentResult);
+    // resultsArray.push(checkEnrolmentResult);
     resultsArray.push(checkProjectRequestResults);
     resultsArray.push(checkAFGVariance);
     resultsArray.push(checkProjectCountResults);
@@ -163,28 +163,28 @@ CAPS.Submission.Validate = async function (primaryControl) {
     });
 
     //Check if board resolution attached
-    let checkBoardResolutionResults = CAPS.Submission.CheckBoardResolution(formContext);
+    let checkBoardResolutionResults = await CAPS.Submission.CheckBoardResolution(formContext);
 
     let checkEnrolmentResult = await CAPS.Submission.CheckEnrolmentProjections(formContext);
 
     //Show Results
     formContext.ui.tabs.forEach(function (tab, i) {
         //loop through sections
-            tab.sections.forEach(function (section, j) {
-                section.controls.forEach(function (control, k) {
+        tab.sections.forEach(function (section, j) {
+            section.controls.forEach(function (control, k) {
 
-                    if (control.getAttribute().getName() === "caps_validationresults") {
-                        if (allValidationPassed) {
-                            control.getAttribute().setValue(null);
-                            control.setVisible(false);
-                        }
-                        else {
-                            control.getAttribute().setValue(resultsMessage);
-                            control.setVisible(true);
-                        }
+                if (control.getAttribute().getName() === "caps_validationresults") {
+                    if (allValidationPassed) {
+                        control.getAttribute().setValue(null);
+                        control.setVisible(false);
                     }
-                });
+                    else {
+                        control.getAttribute().setValue(resultsMessage);
+                        control.setVisible(true);
+                    }
+                }
             });
+        });
     });
 
     //refresh the project subgrids
@@ -196,15 +196,16 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
 
     if (allValidationPassed) {
+        debugger;
         //all good so change status or display confirmation
         if ((checkBoardResolutionResults != null && !checkBoardResolutionResults.validationResult)
-            || (checkEnrolmentResult !=null && !checkEnrolmentResult.validationResult)) {
+            || (checkEnrolmentResult != null && !checkEnrolmentResult.validationResult)) {
             let warningText = "WARNING: MISSING INFORMATION";
             if (!checkBoardResolutionResults.validationResult) {
-                warningText = warningText+ "\n\r⠀\n\rNo Board Resolution was attached. This will need to be submitted in order for the Ministry to consider approving projects on the capital plan submission.";
+                warningText = warningText + "\n\r⠀\n\rNo Board Resolution was attached. This will need to be submitted in order for the Ministry to consider approving projects on the capital plan submission.";
             }
             if (!checkEnrolmentResult.validationResult) {
-                warningText = warningText+ "\n\r⠀\n\rEnrolment Projections are not complete. These will need to be submitted in order for the Ministry to review and process the capital plan submission.";
+                warningText = warningText + "\n\r⠀\n\rEnrolment Projections are not complete. These will need to be submitted in order for the Ministry to review and process the capital plan submission.";
             }
 
             warningText = warningText + "\n\r⠀\n\rClick OK to submit or Cancel to exit.";
@@ -262,7 +263,7 @@ CAPS.Submission.ValidationResult = function (validationResult, validationMessage
  * @returns {CAPS.Submission.ValidationResult} object that contains the validation results
  */
 CAPS.Submission.CheckEnrolmentProjections = function (formContext) {
-    debugger;
+
     //Get flag to identify if enrolment validation is required
     var doEnrolmentValidation = formContext.getAttribute("caps_validateenrolment").getValue();
 
@@ -273,24 +274,24 @@ CAPS.Submission.CheckEnrolmentProjections = function (formContext) {
     var schoolDistrictId = schoolDistrict[0].id;
 
 
-    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
-                  "<entity name=\"caps_facility\">"+
-                    "<attribute name=\"caps_facilityid\" />"+
-                    "<attribute name=\"caps_name\" />"+
-                    "<attribute name=\"createdon\" />"+
-                    "<order attribute=\"caps_name\" descending=\"false\" />"+
-                    "<filter type=\"and\">"+
-                      "<condition attribute=\"caps_outstandingenrolmentprojection\" operator=\"ne\" value=\"1\" />"+
-                      "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />"+
-                      "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" /> " +
-                    "</filter>"+
-                        "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ab\">" +
-                          "<filter type=\"and\">" +
-                            "<condition attribute=\"caps_schooltype\" operator=\"not-null\" />" +
-                          "</filter>" +
-                        "</link-entity>" +
-                  "</entity>"+
-                "</fetch>";
+    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+        "<entity name=\"caps_facility\">" +
+        "<attribute name=\"caps_facilityid\" />" +
+        "<attribute name=\"caps_name\" />" +
+        "<attribute name=\"createdon\" />" +
+        "<order attribute=\"caps_name\" descending=\"false\" />" +
+        "<filter type=\"and\">" +
+        "<condition attribute=\"caps_outstandingenrolmentprojection\" operator=\"ne\" value=\"1\" />" +
+        "<condition attribute=\"statecode\" operator=\"eq\" value=\"0\" />" +
+        "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" /> " +
+        "</filter>" +
+        "<link-entity name=\"caps_facilitytype\" from=\"caps_facilitytypeid\" to=\"caps_currentfacilitytype\" link-type=\"inner\" alias=\"ab\">" +
+        "<filter type=\"and\">" +
+        "<condition attribute=\"caps_schooltype\" operator=\"not-null\" />" +
+        "</filter>" +
+        "</link-entity>" +
+        "</entity>" +
+        "</fetch>";
 
     //Get all Facilities on the school district
     return Xrm.WebApi.retrieveMultipleRecords("caps_facility", "?fetchXml=" + fetchXML).then(
@@ -437,8 +438,8 @@ CAPS.Submission.CheckProjectRequests = function (formContext) {
 
     return Xrm.WebApi.online.execute(req).then(
         function (result) {
-            debugger;
-            if (result.ok) {                
+
+            if (result.ok) {
                 return result.json().then(
                     function (response) {
                         //return response
@@ -454,8 +455,8 @@ CAPS.Submission.CheckProjectRequests = function (formContext) {
             }
         },
         function (e) {
-            debugger;
-            return new CAPS.Submission.ValidationResult(false, "Project Request Validation Failed. Details:"+e.message);
+
+            return new CAPS.Submission.ValidationResult(false, "Project Request Validation Failed. Details:" + e.message);
         }
     );
 }
@@ -466,16 +467,37 @@ CAPS.Submission.CheckProjectRequests = function (formContext) {
  * @returns  {CAPS.Submission.ValidationResult} object that contains the validation results
  */
 CAPS.Submission.CheckBoardResolution = function (formContext) {
+    debugger;
     //check if Major or Minor
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
+    var submissionBoardResolutionAttached = formContext.getAttribute("caps_boardofresolutionattached").getValue();
 
     if (callForSubmissionType === 100000000 || callForSubmissionType === 100000001) {
-        if (formContext.getAttribute("caps_boardresolution").getValue()) {
-            return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
-        }
-        else {
-            return new CAPS.Submission.ValidationResult(false, "Board Resolution Validation Failed.");
-        }
+        var callForSubmission = CAPS.Submission.GetLookup("caps_callforsubmission", formContext);
+        var options = "?$select=caps_boardresolutionrequired"
+        return Xrm.WebApi.retrieveRecord("caps_callforsubmission", callForSubmission.id, options).then(
+            function success(result) {
+                debugger;
+                var boardResolutionRequired = result.caps_boardresolutionrequired;
+                if (boardResolutionRequired === true && submissionBoardResolutionAttached === false) {
+                    return new CAPS.Submission.ValidationResult(false, "Board Resolution Validation Failed.");
+                }
+                else if (boardResolutionRequired === true && submissionBoardResolutionAttached === true) {
+                    return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
+                }
+            },
+            function (error) {
+                console.log(error.message);
+                // handle error conditions
+            }
+
+        );
+        //if (formContext.getAttribute("caps_boardresolution").getValue()) {
+        //    return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
+        //}
+        //else {
+        //    return new CAPS.Submission.ValidationResult(false, "Board Resolution Validation Failed.");
+        //}
     }
 }
 
@@ -498,7 +520,7 @@ Called from CAPS.Submission.Validate, this function checks that Nothing to Submi
 and not selected if there are.
 */
 CAPS.Submission.CheckNothingToSubmit = function (formContext) {
-    debugger;
+
     //Get flag to identify if enrolment validation is required
     var nothingToSubmitAttribute = formContext.getAttribute("caps_noprojectstosubmit");
     var nothingToSubmit = false;
@@ -525,7 +547,7 @@ CAPS.Submission.CheckNothingToSubmit = function (formContext) {
     return Xrm.WebApi.retrieveMultipleRecords("caps_project", "?fetchXml=" + fetchXML).then(
         function success(result) {
             if (result.entities.length > 0 && nothingToSubmit) {
-                
+
                 return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are project requests on this capital plan.  Please set \"I confirm I am submitting an empty plan\" to No or remove the project requests.");
             }
             else if (result.entities.length == 0 && !nothingToSubmit) {
@@ -555,21 +577,21 @@ CAPS.Submission.CheckAFGProjects = function (formContext) {
 
     if (submissionType !== 200870001) return;
 
-    
+
     var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
         "<entity name = \"caps_submission\" >" +
         "<attribute name=\"caps_submissionid\" />" +
         "<attribute name=\"caps_name\" />" +
         "<order attribute=\"caps_name\" descending=\"false\" />" +
-        "<filter type=\"and\">"+
-          "<condition attribute=\"caps_submissiontype\" operator=\"eq\" value=\"200870001\" />"+
-          "<condition attribute=\"statuscode\" operator=\"eq\" value=\"200870001\" />"+
-          "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" />"+
-        "</filter>"+
+        "<filter type=\"and\">" +
+        "<condition attribute=\"caps_submissiontype\" operator=\"eq\" value=\"200870001\" />" +
+        "<condition attribute=\"statuscode\" operator=\"eq\" value=\"200870001\" />" +
+        "<condition attribute=\"caps_schooldistrict\" operator=\"eq\" value=\"" + schoolDistrictId + "\" />" +
+        "</filter>" +
         "</entity>" +
         "</fetch >";
 
-    
+
     return Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
         function success(result) {
 
@@ -585,3 +607,17 @@ CAPS.Submission.CheckAFGProjects = function (formContext) {
     );
 }
 
+CAPS.Submission.GetLookup = function (fieldName, formContext) {
+    var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
+    if (lookupFieldObject !== null && lookupFieldObject.getValue() !== null && lookupFieldObject.getValue()[0] !== null) {
+        var entityId = lookupFieldObject.getValue()[0].id;
+        var entityName = lookupFieldObject.getValue()[0].entityType;
+        var entityLabel = lookupFieldObject.getValue()[0].name;
+        var obj = {
+            id: entityId,
+            type: entityName,
+            value: entityLabel
+        };
+        return obj;
+    }
+}
