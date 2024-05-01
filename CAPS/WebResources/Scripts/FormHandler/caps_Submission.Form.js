@@ -25,7 +25,7 @@ CAPS.Submission.onLoad = function (executionContext) {
     var status = formContext.getAttribute("statuscode").getValue();
 
     formContext.getAttribute("caps_boardresolution").addOnChange(CAPS.Submission.FlagBoardResolutionAsUploaded);
-    
+
     if (status === SUBMISSION_STAUS.DRAFT || status === SUBMISSION_STAUS.ACCEPTED) {
         //hide report tab
         formContext.ui.tabs.get("tab_capitalplan").setVisible(false);
@@ -54,7 +54,7 @@ CAPS.Submission.onLoad = function (executionContext) {
                 formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
                 formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(true);
             }
-            
+
         }
     }
     else if (status === SUBMISSION_STAUS.RESULTS_RELEASED || status === SUBMISSION_STAUS.CANCELLED || status === SUBMISSION_STAUS.COMPLETE) {
@@ -64,7 +64,7 @@ CAPS.Submission.onLoad = function (executionContext) {
 
         formContext.ui.tabs.get("tab_general").setVisible(false);
         formContext.ui.tabs.get("tab_afg").setVisible(false);
-        
+
         if (callForSubmissionType === 100000002) {
             formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
         }
@@ -119,6 +119,67 @@ CAPS.Submission.onLoad = function (executionContext) {
     }
 };
 
+//onLoad validate the related capital plan supporting documents files//
+CAPS.Submission.checkSupportingDocuments = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+
+    var tab = formContext.ui.tabs.get("tab_capitalplan");
+    var section = tab.sections.get("tab_capitalplan_section_boardresolution");
+
+    if (!tab.getVisible() || !section.getVisible()) {
+        return;  //exit the function if the tab and section is not visible because the documents won't be applicable.
+    }
+
+    var recordId = formContext.data.entity.getId();
+
+    if (!recordId) {
+        console.error("No record ID available.");
+        return;
+    }
+    recordId = recordId.replace(/[{}]/g, "");
+
+    var entityName = "caps_capitalplansupportingdocuments";
+    var queryFileFields = "?$select=caps_capitalplanresponseletter,caps_capitalbylaw,caps_childcaredeclaration,caps_name&$filter=_caps_capitalplan_value eq '" + recordId + "'";
+    //used OData Filter to reference file fields. FetchXML does not support querying file columns.
+
+    Xrm.WebApi.retrieveMultipleRecords(entityName, queryFileFields).then(function (result) {
+        var allDocumentsPresent = true;
+        var recordName = "";
+
+        if (result.entities.length > 0) {
+            for (var i = 0; i < result.entities.length; i++) {
+                var doc = result.entities[i];
+                recordName = doc["caps_name"]; //Name of Capital Plan Supporting Documents lookup value
+
+                //All file columns must have documents
+                if (!doc["caps_capitalplanresponseletter"] || !doc["caps_capitalbylaw"] || !doc["caps_childcaredeclaration"]) {
+                    allDocumentsPresent = false;
+                    break;
+                }
+            }
+
+            if (!allDocumentsPresent) {
+                formContext.ui.setFormNotification("At least one of the supporting documents is missing. Please click the supporting documents record \"" + recordName + "\" to upload necessary files in the Submission tab below.", "WARNING", "MissingSupportingDocumentsBanner");
+            } else {
+                CAPS.Submission.hideBanner(formContext);
+            }
+        } else {
+            formContext.ui.setFormNotification("No related capital plan supporting documents record found.", "ERROR", "MissingSupportingDocumentsError");
+        }
+    }).catch(function (error) {
+        console.error("Error: " + error.message);
+        formContext.ui.setFormNotification("An error occurred while checking the supporting documents: " + error.message, "ERROR", "SupportingDocumentsCheckError");
+    });
+};
+
+//HideBanner and form notifications function to be called in checkSupportingDocuments
+CAPS.Submission.hideBanner = function (formContext) {
+
+    formContext.ui.clearFormNotification("MissingSupportingDocumentsBanner");
+    formContext.ui.clearFormNotification("MissingSupportingDocumentsError");
+    formContext.ui.clearFormNotification("SupportingDocumentsCheckError");
+};
+
 /**
  * Function that updates the iFrame and embeds the SSRS Capital Plan Report.
  * @param {any} executionContext execution context
@@ -162,7 +223,7 @@ CAPS.Submission.embedCapitalPlanReport = function (executionContext) {
             } else {
                 var errorText = this.responseText;
                 //handle error here
-                    //display error
+                //display error
                 Xrm.Navigation.openErrorDialog({ message: errorText });
             }
         }
