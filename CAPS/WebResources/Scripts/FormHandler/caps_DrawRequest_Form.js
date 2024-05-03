@@ -5,7 +5,6 @@ CAPS.DrawRequest = CAPS.DrawRequest || {};
 
 //This JavaScript is to sum all draw request amounts except cancelled, and validate the amount that can be drawn on "amount" changes at draw request. 
 
-//onLoad, check the project lookup 
 CAPS.DrawRequest.form_onload = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var amountField = formContext.getAttribute("caps_amount");
@@ -13,14 +12,33 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
 
     if (projectLookup) {
         projectLookup.addOnChange(CAPS.DrawRequest.updateRemainingBalance);
-        CAPS.DrawRequest.updateRemainingBalance(executionContext);
     }
 
     if (amountField) {
-        amountField.addOnChange(CAPS.DrawRequest.amountValidation);
+        amountField.addOnChange(function () {
+            CAPS.DrawRequest.amountValidation(executionContext);
+            CAPS.DrawRequest.updateRemainingBalance(executionContext);
+            formContext.ui.refreshRibbon();
+        });
     }
 
-    CAPS.DrawRequest.amountValidation(executionContext);
+    CAPS.DrawRequest.updateRemainingBalance(executionContext);
+};
+
+CAPS.DrawRequest.isFormDirty = function (primaryControl) {
+    var formContext = primaryControl;
+
+    // Use the getIsDirty method to check if the form has unsaved changes. This preents user from running the workflow through the button
+    var isDirty = formContext.data.entity.getIsDirty();
+    var showButton = false;
+
+    if (!isDirty) {
+        showButton = true;
+    } else {
+        showButton = false;
+    }
+
+    return showButton;
 };
 
 //IF CREATE form and the total requested of the related draw requests to the same project === 0 then remaining draw reuest balance = the project's remaining draw request balance.
@@ -29,23 +47,24 @@ CAPS.DrawRequest.updateRemainingBalance = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var projectLookup = formContext.getAttribute("caps_project").getValue();
     var currentDrawRequestId = formContext.data.entity.getId();
-    var formType = formContext.ui.getFormType();
+    var amount = formContext.getAttribute("caps_amount").getValue() || 0;
 
     if (projectLookup && projectLookup.length > 0) {
         var projectId = projectLookup[0].id.replace(/[{}]/g, "");
         CAPS.DrawRequest.fetchTotalApproved(projectId, function (totalApproved) {
-            CAPS.DrawRequest.fetchTotalRequested(projectId, currentDrawRequestId, function (totalRequested, isCurrentIncluded) {
+            CAPS.DrawRequest.fetchTotalRequested(projectId, currentDrawRequestId, false, function (totalRequested) {
                 var remainingBalanceAttribute = formContext.getAttribute("caps_remainingdrawrequestbalance");
 
-                if (formType === 1 && totalRequested === 0) {
-                    CAPS.DrawRequest.fetchProjectRemainingBalance(projectId, function (projectRemainingBalance) {
-                        remainingBalanceAttribute.setValue(projectRemainingBalance);
-                    });
+                var adjustedTotalRequested = totalRequested + amount;
+                var remainingBalance = totalApproved - adjustedTotalRequested;
+                remainingBalanceAttribute.setValue(remainingBalance);
+
+                if (remainingBalance < 0) {
+                    formContext.ui.setFormNotification("Amount cannot exceed the remaining draw request balance.", "ERROR", "exceededBalance");
                 } else {
-                    var remainingBalance = totalApproved - totalRequested;
-                    remainingBalanceAttribute.setValue(remainingBalance);
+                    formContext.ui.clearFormNotification("exceededBalance");
                 }
-            }, formType !== 1);
+            });
         });
     }
 };
@@ -104,15 +123,18 @@ CAPS.DrawRequest.fetchTotalApproved = function (projectId, callback) {
     );
 };
 
-CAPS.DrawRequest.fetchTotalRequested = function (projectId, currentDrawRequestId, callback) {
+CAPS.DrawRequest.fetchTotalRequested = function (projectId, currentDrawRequestId, includeCurrent, callback) {
     var fetchXml = '<fetch aggregate="true">' +
         '<entity name="caps_drawrequest">' +
         '<attribute name="caps_amount" aggregate="sum" alias="total_amount"/>' +
         '<filter type="and">' +
-        '<condition attribute="statuscode" operator="ne" value="200870002"/>' +
-        '<condition attribute="caps_project" operator="eq" value="' + projectId + '"/>' +
-        '<condition attribute="caps_drawrequestid" operator="ne" value="' + currentDrawRequestId + '"/>' +
-        '</filter>' +
+        '<condition attribute="statuscode" operator="ne" value="200870002"/>' + // Exclude cancelled requests
+        '<condition attribute="caps_project" operator="eq" value="' + projectId + '"/>';
+
+    if (!includeCurrent) {
+        fetchXml += '<condition attribute="caps_drawrequestid" operator="ne" value="' + currentDrawRequestId + '"/>';
+    }
+    fetchXml += '</filter>' +
         '</entity>' +
         '</fetch>';
 
@@ -123,7 +145,7 @@ CAPS.DrawRequest.fetchTotalRequested = function (projectId, currentDrawRequestId
         },
         function (error) {
             console.error("Error fetching total requested amount: " + error.message);
-            callback(0, false);
+            callback(0);
         }
     );
 };
@@ -153,10 +175,10 @@ CAPS.DrawRequest.amountValidation = function (executionContext) {
 
                 remainingBalanceAttribute.setValue(remainingBalance);
 
-                var amountControl = formContext.getControl("caps_amount");
-                amountControl.clearNotification("Warning");
-                if (0 > remainingBalance) {
-                    amountControl.setNotification("Amount cannot exceed the remaining draw request balance.", "Warning");
+                if (remainingBalance < 0) {
+                    formContext.ui.setFormNotification("Amount cannot exceed the remaining draw request balance.", "ERROR", "exceededBalance");
+                } else {
+                    formContext.ui.clearFormNotification("exceededBalance");
                 }
             }, true);
         });
