@@ -48,6 +48,7 @@ CAPS.DrawRequest.updateRemainingBalance = function (executionContext) {
     var projectLookup = formContext.getAttribute("caps_project").getValue();
     var currentDrawRequestId = formContext.data.entity.getId();
     var amount = formContext.getAttribute("caps_amount").getValue() || 0;
+    var amountControl = formContext.getControl("caps_amount");
 
     if (projectLookup && projectLookup.length > 0) {
         var projectId = projectLookup[0].id.replace(/[{}]/g, "");
@@ -60,9 +61,11 @@ CAPS.DrawRequest.updateRemainingBalance = function (executionContext) {
                 remainingBalanceAttribute.setValue(remainingBalance);
 
                 if (remainingBalance < 0) {
-                    formContext.ui.setFormNotification("Amount cannot exceed the remaining draw request balance.", "ERROR", "exceededBalance");
+                    formContext.ui.setFormNotification("Please adjust the amount before making it eligible for submission.", "ERROR", "exceededBalance");
+                    amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
                 } else {
                     formContext.ui.clearFormNotification("exceededBalance");
+                    amountControl.clearNotification();
                 }
             });
         });
@@ -157,6 +160,7 @@ CAPS.DrawRequest.amountValidation = function (executionContext) {
     var projectLookup = formContext.getAttribute("caps_project").getValue();
     var currentDrawRequestId = formContext.data.entity.getId();
     var amount = amountAttribute.getValue() || 0;
+    var amountControl = formContext.getControl("caps_amount");
 
     if (projectLookup && projectLookup.length > 0) {
         var projectId = projectLookup[0].id.replace(/[{}]/g, "");
@@ -176,9 +180,11 @@ CAPS.DrawRequest.amountValidation = function (executionContext) {
                 remainingBalanceAttribute.setValue(remainingBalance);
 
                 if (remainingBalance < 0) {
-                    formContext.ui.setFormNotification("Amount cannot exceed the remaining draw request balance.", "ERROR", "exceededBalance");
+                    formContext.ui.setFormNotification("Please adjust the amount before making it eligible for submission.", "ERROR", "exceededBalance");
+                    amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
                 } else {
                     formContext.ui.clearFormNotification("exceededBalance");
+                    amountControl.clearNotification();
                 }
             }, true);
         });
