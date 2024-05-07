@@ -3,15 +3,18 @@
 var CAPS = CAPS || {};
 CAPS.DrawRequest = CAPS.DrawRequest || {};
 
+var CAPS = CAPS || {};
+CAPS.DrawRequest = CAPS.DrawRequest || {};
+
 // Ribbon ShowHide logic based on state code and user role
-CAPS.DrawRequest.ShowReadytoSubmitButton = function (primaryControl) {
+CAPS.DrawRequest.ShowReadytoSubmitButton = async function (primaryControl) {
     var formContext = primaryControl;
     if (formContext.getAttribute("statecode").getValue() !== 0 || formContext.getAttribute("caps_remainingdrawrequestbalance").getValue() < 0) {
         return false;
     }
 
     var userSettings = Xrm.Utility.getGlobalContext().userSettings;
-    var currentUserId = userSettings.userId.replace('{', '').replace('}', ''); 
+    var currentUserId = userSettings.userId.replace('{', '').replace('}', '');
     var teamName = "CMB Expense Signing Authority";
 
     var fetchXml = '<fetch>' +
@@ -32,27 +35,8 @@ CAPS.DrawRequest.ShowReadytoSubmitButton = function (primaryControl) {
 
     fetchXml = encodeURIComponent(fetchXml);
 
-    Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + fetchXml).then(
-        function success(result) {
-            var canSubmit = false;
-            if (result.entities.length > 0) {
-                canSubmit = true; // The user is a member of the required team
-            }
-        },
-        function (error) {
-            console.error("Error in request: " + error.message); 
-        }
-    );
-
-    /* // this is based on a specific role. This needs to be applied to Batch level.
-    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
-    var canSubmit = false;
-    userRoles.forEach(function (role) {
-        if (role.name === "CAPS CMB Finance Unit - Add On") {
-            canSubmit = true;
-        }
-    });
-    */
+    var result = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + fetchXml);
+    var canSubmit = result.entities.length > 0; // Check if the user is a member of the required team
 
     // Date validation
     function validateDates() {
