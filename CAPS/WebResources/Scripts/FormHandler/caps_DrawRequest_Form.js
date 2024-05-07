@@ -7,8 +7,47 @@ CAPS.DrawRequest = CAPS.DrawRequest || {};
 
 CAPS.DrawRequest.form_onload = function (executionContext) {
     var formContext = executionContext.getFormContext();
+
     var amountField = formContext.getAttribute("caps_amount");
     var projectLookup = formContext.getAttribute("caps_project");
+    var projectCode = formContext.getAttribute("caps_projectcode");
+    var fiscalYear = formContext.getAttribute("caps_fiscalyear");
+    var drawDate = formContext.getAttribute("caps_drawdate");
+    var processDate = formContext.getAttribute("caps_processdate");
+
+    // Function to validate dates
+    function validateDates() {
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); 
+
+        var drawDateValue = drawDate.getValue() ? new Date(drawDate.getValue()) : null;
+        var processDateValue = processDate.getValue() ? new Date(processDate.getValue()) : null;
+        var isValid = true;
+
+        if (drawDateValue && drawDateValue < today) {
+            formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
+            isValid = false;
+        } else {
+            formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
+        }
+
+        if (processDateValue && processDateValue < today) {
+            formContext.getControl("caps_processdate").setNotification("Process Date must be today or in the future.", "processdate-error");
+            isValid = false;
+        } else {
+            formContext.getControl("caps_processdate").clearNotification("processdate-error");
+        }
+
+        return isValid;
+    }
+
+
+    if (drawDate) {
+        drawDate.addOnChange(validateDates);
+    }
+    if (processDate) {
+        processDate.addOnChange(validateDates);
+    }
 
     if (projectLookup) {
         projectLookup.addOnChange(CAPS.DrawRequest.updateRemainingBalance);
@@ -23,18 +62,26 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     }
 
     CAPS.DrawRequest.updateRemainingBalance(executionContext);
+    validateDates();
+
+    if (projectLookup.getValue() !== null && projectLookup.getValue() !== undefined && projectLookup.getValue() !== "" &&
+        projectCode.getValue() !== null && projectCode.getValue() !== undefined && projectCode.getValue() !== "" &&
+        fiscalYear.getValue() !== null && fiscalYear.getValue() !== undefined && fiscalYear.getValue() !== "" &&
+        drawDate.getValue() !== null && drawDate.getValue() !== undefined && drawDate.getValue() !== "" &&
+        amountField.getValue() !== null && amountField.getValue() !== undefined && amountField.getValue() !== "") {
+        formContext.data.save();
+    }
 };
 
 CAPS.DrawRequest.isFormDirty = function (primaryControl) {
     var formContext = primaryControl;
-
     // Use the getIsDirty method to check if the form has unsaved changes. This preents user from running the workflow through the button
     var isDirty = formContext.data.entity.getIsDirty();
     var showButton = false;
 
     if (!isDirty) {
         showButton = true;
-    } else {
+    } else if (isDirty || formType === 1) {
         showButton = false;
     }
 
@@ -49,6 +96,7 @@ CAPS.DrawRequest.updateRemainingBalance = function (executionContext) {
     var currentDrawRequestId = formContext.data.entity.getId();
     var amount = formContext.getAttribute("caps_amount").getValue() || 0;
     var amountControl = formContext.getControl("caps_amount");
+    var statecode = formContext.getAttribute("statecode").getValue();
 
     if (projectLookup && projectLookup.length > 0) {
         var projectId = projectLookup[0].id.replace(/[{}]/g, "");
@@ -60,12 +108,12 @@ CAPS.DrawRequest.updateRemainingBalance = function (executionContext) {
                 var remainingBalance = totalApproved - adjustedTotalRequested;
                 remainingBalanceAttribute.setValue(remainingBalance);
 
-                if (remainingBalance < 0) {
-                    formContext.ui.setFormNotification("Please adjust the amount before making it eligible for submission.", "ERROR", "exceededBalance");
-                    amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
+                if (remainingBalance < 0 && statecode === 0) {
+                    formContext.ui.setFormNotification("Please adjust the amount or project funds before making it eligible for submission.", "ERROR", "exceededBalance");
+                    //amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
                 } else {
                     formContext.ui.clearFormNotification("exceededBalance");
-                    amountControl.clearNotification();
+                    //amountControl.clearNotification();
                 }
             });
         });
@@ -161,6 +209,7 @@ CAPS.DrawRequest.amountValidation = function (executionContext) {
     var currentDrawRequestId = formContext.data.entity.getId();
     var amount = amountAttribute.getValue() || 0;
     var amountControl = formContext.getControl("caps_amount");
+    var state = formContext.getAttribute("statecode").getValue();
 
     if (projectLookup && projectLookup.length > 0) {
         var projectId = projectLookup[0].id.replace(/[{}]/g, "");
@@ -179,13 +228,14 @@ CAPS.DrawRequest.amountValidation = function (executionContext) {
 
                 remainingBalanceAttribute.setValue(remainingBalance);
 
-                if (remainingBalance < 0) {
-                    formContext.ui.setFormNotification("Please adjust the amount before making it eligible for submission.", "ERROR", "exceededBalance");
-                    amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
+                if (remainingBalance < 0 && state === 0) {
+                    formContext.ui.setFormNotification("Please adjust the amount or project funds before making it eligible for submission.", "ERROR", "exceededBalance");
+                    //amountControl.setNotification("Amount cannot exceed the remaining draw request balance.");
                 } else {
                     formContext.ui.clearFormNotification("exceededBalance");
-                    amountControl.clearNotification();
+                    //amountControl.clearNotification();
                 }
+                formContext.data.save();
             }, true);
         });
     }
