@@ -35,8 +35,10 @@ CAPS.DrawRequest.ShowReadytoSubmitButton = async function (primaryControl) {
 
     fetchXml = encodeURIComponent(fetchXml);
 
+    //Logic below Await is in an event queue, and the above async code waits for a promise (the outcome of the team fetch query)
     var result = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + fetchXml);
-    var canSubmit = result.entities.length > 0; // Check if the user is a member of the required team
+    // Check if the user is a member of the required team
+    var canSubmit = result.entities.length > 0;
 
     // Date validation
     function validateDates() {
@@ -46,6 +48,7 @@ CAPS.DrawRequest.ShowReadytoSubmitButton = async function (primaryControl) {
         var drawDate = formContext.getAttribute("caps_drawdate");
         var processDate = formContext.getAttribute("caps_processdate");
 
+        //check dates and ensure the valid values exists before the function can be executed
         var drawDateValue = drawDate && drawDate.getValue() ? new Date(drawDate.getValue()) : null;
         var processDateValue = processDate && processDate.getValue() ? new Date(processDate.getValue()) : null;
 

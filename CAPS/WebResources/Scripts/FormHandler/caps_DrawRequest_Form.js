@@ -14,6 +14,7 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     var fiscalYear = formContext.getAttribute("caps_fiscalyear");
     var drawDate = formContext.getAttribute("caps_drawdate");
     var processDate = formContext.getAttribute("caps_processdate");
+    var statecode = formContext.getAttribute("statecode");
 
     // Function to validate dates
     function validateDates() {
@@ -24,14 +25,14 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
         var processDateValue = processDate.getValue() ? new Date(processDate.getValue()) : null;
         var isValid = true;
 
-        if (drawDateValue && drawDateValue < today) {
+        if (drawDateValue && drawDateValue < today && statecode.getValue() === 0) {
             formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
             isValid = false;
         } else {
             formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
         }
 
-        if (processDateValue && processDateValue < today) {
+        if (processDateValue && processDateValue < today && statecode.getValue() === 0) {
             formContext.getControl("caps_processdate").setNotification("Process Date must be today or in the future.", "processdate-error");
             isValid = false;
         } else {
@@ -42,10 +43,10 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     }
 
 
-    if (drawDate) {
+    if (drawDate && statecode.getValue() === 0) {
         drawDate.addOnChange(validateDates);
     }
-    if (processDate) {
+    if (processDate && statecode.getValue() === 0) {
         processDate.addOnChange(validateDates);
     }
 
