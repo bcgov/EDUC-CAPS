@@ -67,6 +67,12 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
     var submissionDeadline = formContext.getAttribute("caps_submissiondeadline");
     var statecode = formContext.getAttribute("statecode").getValue();
 
+    batchNotification(formContext);
+
+    formContext.getAttribute("caps_numberofreadytosubmit").addOnChange(function () {
+        batchNotification(formContext);
+    });
+
     if (submissionDeadline) {
         var submissionDeadlineDate = submissionDeadline.getValue();
 
@@ -86,4 +92,19 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
             return false;
         }
     }
-}
+};
+
+function batchNotification(formContext) {
+    var eligibleToSubmit = formContext.getAttribute("caps_numberofreadytosubmit");
+    var statecode = formContext.getAttribute("statecode").getValue();
+
+    if (statecode !== 0) {
+        return false;
+    }
+
+    if (!eligibleToSubmit || !eligibleToSubmit.getValue() || eligibleToSubmit.getValue() === 0 && statecode === 0) {
+        formContext.ui.setFormNotification("At least one draw request needs to be in Ready to Submit status to submit the batch", "WARNING", "ineligibleNotification");
+    } else {
+        formContext.ui.clearFormNotification("ineligibleNotification");
+    }
+};
