@@ -30,6 +30,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             "<order attribute=\"caps_name\" descending=\"false\" />" +
             "<filter type=\"and\">" +
             "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+            "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
             "<filter type=\"or\">" +
             "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
             "</filter>" +
@@ -57,6 +58,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             "<order attribute=\"caps_name\" descending=\"false\" />" +
             "<filter type=\"and\">" +
             "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+            "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
             "<filter type=\"or\">" +
             "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
             "<condition attribute=\"caps_boardofresolutionattached\" value=\"0\" operator=\"eq\"/>" +

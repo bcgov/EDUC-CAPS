@@ -424,17 +424,24 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("section_districtoperating").setVisible(false);
 
-        formContext.getControl("caps_projecttype").setVisible(false);
+        if (formContext.getControl("caps_projecttype") !== null) {
+            formContext.getControl("caps_projecttype").setVisible(false);
+        }
 
         if (formContext.getControl("caps_cpsnumber") !== null) {
             formContext.getControl("caps_cpsnumber").setVisible(false);
         }
-        formContext.getControl("caps_requestedfunding").setVisible(false);
+        if (formContext.getControl("caps_requestedfunding") !== null) {
+            formContext.getControl("caps_requestedfunding").setVisible(false);
+        }
 
         if (formContext.getControl("caps_relatedproject") !== null) {
             formContext.getControl("caps_relatedproject").setVisible(false);
         }
-        formContext.getControl("caps_sdprojectnumber").setVisible(false);
+
+        if (formContext.getControl("caps_sdprojectnumber") !== null) {
+            formContext.getControl("caps_sdprojectnumber").setVisible(false);
+        }
 
 
     }
