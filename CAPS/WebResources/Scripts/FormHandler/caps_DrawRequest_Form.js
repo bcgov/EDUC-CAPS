@@ -82,7 +82,8 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
 //Display notification that a batch is required to proceed
 function batchNotification(formContext) {
     var batch = formContext.getAttribute("caps_batch");
-    if (!batch || !batch.getValue()) {
+    var statecode = formContext.getAttribute("statecode").getValue();
+    if (!batch || !batch.getValue() && statecode === 0) {
         formContext.ui.setFormNotification("Add the request to a batch to be able to mark it as ready to submit", "WARNING", "missingBatchNotification");
     } else {
         formContext.ui.clearFormNotification("missingBatchNotification");
