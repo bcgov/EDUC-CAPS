@@ -472,12 +472,17 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
             if (formContext.getControl("caps_cpsnumber") !== null) {
                 formContext.getControl("caps_cpsnumber").setVisible(false);
             }
-            formContext.getControl("caps_requestedfunding").setVisible(false);
+            if (formContext.getControl("caps_requestedfunding") !== null) {
+                formContext.getControl("caps_requestedfunding").setVisible(false);
+            }
 
             if (formContext.getControl("caps_relatedproject") !== null) {
                 formContext.getControl("caps_relatedproject").setVisible(false);
             }
-            formContext.getControl("caps_procurementmethod").setVisible(false);
+
+            if (formContext.getControl("caps_procurementmethod") !== null) {
+                formContext.getControl("caps_procurementmethod").setVisible(false);
+            }
         }
 
     }

@@ -154,6 +154,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                 }
                 else {
                     //check that all Project requests are marked as supported, not supported or planned
+                    debugger;
                     var fetchXML3 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
                         "<entity name=\"caps_submission\">" +
                         "<attribute name=\"caps_submissionid\" />" +
@@ -163,6 +164,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                         "<order attribute=\"caps_name\" descending=\"false\" />" +
                         "<filter type=\"and\">" +
                         "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+                        "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
                         "</filter>" +
                         "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
                         "<filter type=\"and\">" +
