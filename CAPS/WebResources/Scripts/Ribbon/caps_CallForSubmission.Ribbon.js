@@ -154,7 +154,6 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                 }
                 else {
                     //check that all Project requests are marked as supported, not supported or planned
-                    debugger;
                     var fetchXML3 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
                         "<entity name=\"caps_submission\">" +
                         "<attribute name=\"caps_submissionid\" />" +
