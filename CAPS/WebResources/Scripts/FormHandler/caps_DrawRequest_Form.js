@@ -16,6 +16,12 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     var processDate = formContext.getAttribute("caps_processdate");
     var statecode = formContext.getAttribute("statecode");
 
+    batchNotification(formContext);
+
+    formContext.getAttribute("caps_batch").addOnChange(function () {
+        batchNotification(formContext);
+    });
+
     // Function to validate dates
     function validateDates() {
         var today = new Date();
@@ -41,7 +47,6 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
 
         return isValid;
     }
-
 
     if (drawDate && statecode.getValue() === 0) {
         drawDate.addOnChange(validateDates);
@@ -73,6 +78,16 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
         formContext.data.save();
     }
 };
+
+//Display notification that a batch is required to proceed
+function batchNotification(formContext) {
+    var batch = formContext.getAttribute("caps_batch");
+    if (!batch || !batch.getValue()) {
+        formContext.ui.setFormNotification("Add the request to a batch to be able to mark it as ready to submit", "WARNING", "missingBatchNotification");
+    } else {
+        formContext.ui.clearFormNotification("missingBatchNotification");
+    }
+}
 
 CAPS.DrawRequest.isFormDirty = function (primaryControl) {
     var formContext = primaryControl;
