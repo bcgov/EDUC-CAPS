@@ -95,15 +95,15 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
 };
 
 function batchNotification(formContext) {
-    var eligibleToSubmit = formContext.getAttribute("caps_numberofreadytosubmit");
+    var eligibleToSign = formContext.getAttribute("caps_numberofreadytosubmit");
     var statecode = formContext.getAttribute("statecode").getValue();
 
     if (statecode !== 0) {
         return false;
     }
 
-    if (!eligibleToSubmit || !eligibleToSubmit.getValue() || eligibleToSubmit.getValue() === 0 && statecode === 0) {
-        formContext.ui.setFormNotification("At least one draw request needs to be in Ready to Submit status to submit the batch", "WARNING", "ineligibleNotification");
+    if (!eligibleToSign || !eligibleToSign.getValue() || eligibleToSign.getValue() === 0 && statecode === 0) {
+        formContext.ui.setFormNotification("At least one draw request needs to be in Ready to Submit status to sign the batch", "WARNING", "ineligibleNotification");
     } else {
         formContext.ui.clearFormNotification("ineligibleNotification");
     }
