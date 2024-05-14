@@ -156,13 +156,15 @@ CAPS.DrawRequest.SubgridShowCancelandRemoveButton = async function (selectedCont
     var draftDrawRequest = "Subgrid_draft";
     var nonDraftDrawRequest = "Subgrid_nondraft";
 
-    if (currentGridName === draftDrawRequest) {
+    var parentStateCode = Xrm.Page.getAttribute("statecode").getValue(); 
+
+    if (currentGridName === draftDrawRequest && parentStateCode === 0) {
         userRoles.forEach(function (role) {
             if (role.name === "CAPS CMB User") {
                 canCancelRemoveBasedOnRole = true;
             }
         });
-    } else if (currentGridName === nonDraftDrawRequest) {
+    } else if (currentGridName === nonDraftDrawRequest && parentStateCode === 0) {
         var fetchXml = '<fetch>' +
             '<entity name="team">' +
             '<attribute name="name" />' +
@@ -185,6 +187,18 @@ CAPS.DrawRequest.SubgridShowCancelandRemoveButton = async function (selectedCont
 
         userRoles.forEach(function (role) {
             if (role.name === "CAPS CMB Finance Unit - Add On" || isExpenseAuthorityTeamMember) {
+                canCancelRemoveBasedOnRole = true;
+            }
+        });
+    } else if (currentGridName === draftDrawRequest && parentStateCode !== 0) {
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB Super User - Add On") {
+                canCancelRemoveBasedOnRole = true;
+            }
+        });
+    } else if (currentGridName === nonDraftDrawRequest && parentStateCode !== 0) {
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB Super User - Add On") {
                 canCancelRemoveBasedOnRole = true;
             }
         });
@@ -205,7 +219,9 @@ CAPS.DrawRequest.SubgridShowSetBacktoDraftButton = async function (selectedContr
     var draftDrawRequest = "Subgrid_draft";
     var nonDraftDrawRequest = "Subgrid_nondraft";
 
-    if (currentGridName === nonDraftDrawRequest) {
+    var parentStateCode = Xrm.Page.getAttribute("statecode").getValue();
+
+    if (currentGridName === nonDraftDrawRequest && parentStateCode === 0) {
         var fetchXml = '<fetch>' +
             '<entity name="team">' +
             '<attribute name="name" />' +
@@ -228,6 +244,12 @@ CAPS.DrawRequest.SubgridShowSetBacktoDraftButton = async function (selectedContr
 
         userRoles.forEach(function (role) {
             if (role.name === "CAPS CMB Finance Unit - Add On" || isExpenseAuthorityTeamMember) {
+                canSetBacktoDraft = true;
+            }
+        });
+    } else if (currentGridName === nonDraftDrawRequest && parentStateCode !== 0) {
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB Super User - Add On") {
                 canSetBacktoDraft = true;
             }
         });
@@ -294,6 +316,74 @@ CAPS.DrawRequest.SubgridRemovefromBatch = function (selectedControl, selectedRec
                         var alertOptions = { height: 350, width: 450 };
                         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
                         console.error("Error when removing Draw Request:", error);
+                    }
+                );
+            });
+        }
+    });
+
+    function refreshSubgrid(subgridName) {
+        var subgridControl = Xrm.Page.getControl(subgridName);
+        if (subgridControl) {
+            subgridControl.refresh();
+        } else {
+            console.error("Subgrid control not found: " + subgridName);
+        }
+    }
+};
+
+// Function to trigger the action "Draw Request: Set Status to Draft"
+CAPS.DrawRequest.SubgridSetBacktoDraft = function (selectedControl, selectedRecordIds) {
+    let confirmStrings = { text: "This will put the draw request(s) back to draft. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
+    let confirmOptions = { height: 200, width: 450 };
+
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
+        if (response.confirmed) {
+            selectedRecordIds.forEach(function (recordId) {
+                console.log("Record ID:", recordId);
+
+                var req = {
+                    entity: {
+                        entityType: "caps_drawrequest",
+                        id: recordId
+                    },
+                    getMetadata: function () {
+                        return {
+                            boundParameter: "entity",
+                            operationType: 0,
+                            operationName: "caps_DrawRequestSetStatustoDraft",
+                            parameterTypes: {
+                                "entity": {
+                                    "typeName": "mscrm.caps_drawrequest",
+                                    "structuralProperty": 5
+                                }
+                            }
+                        };
+                    }
+                };
+
+                Xrm.Utility.showProgressIndicator("Setting Draw Request back to draft...");
+
+                Xrm.WebApi.online.execute(req).then(
+                    function (result) {
+                        Xrm.Utility.closeProgressIndicator();
+                        if (result.ok) {
+                            console.log("Draw Request successfully set back to draft for ID:", recordId);
+
+                            refreshSubgrid('Subgrid_draft');
+                            refreshSubgrid('Subgrid_nondraft');
+                        } else {
+                            var alertStrings = { confirmButtonLabel: "OK", text: "There was an error setting back to draft. Please contact IT.", title: "Error" };
+                            var alertOptions = { height: 350, width: 450 };
+                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                        }
+                    },
+                    function (error) {
+                        Xrm.Utility.closeProgressIndicator();
+                        var alertStrings = { confirmButtonLabel: "OK", text: "Setting the draw request back to draft ran into an error. Details: " + error.message, title: "Error" };
+                        var alertOptions = { height: 350, width: 450 };
+                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                        console.error("Error when setting Draw Request back to draft:", error);
                     }
                 );
             });
