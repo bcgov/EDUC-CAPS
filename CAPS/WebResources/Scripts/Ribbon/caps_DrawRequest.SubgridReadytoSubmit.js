@@ -1,4 +1,6 @@
-﻿"use strict";
+﻿//handles draw requests subgrid buttons on Batch form. Cancel, Ready to Submit, Set Back to Draft, Remove from Batch.
+
+"use strict";
 
 var CAPS = CAPS || {};
 CAPS.DrawRequest = CAPS.DrawRequest || {};
@@ -127,6 +129,171 @@ CAPS.DrawRequest.SubgridSubmit = function (selectedControl, selectedRecordIds) {
                         var alertOptions = { height: 350, width: 450 };
                         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
                         console.error("Error when submitting Draw Request:", error);
+                    }
+                );
+            });
+        }
+    });
+
+    function refreshSubgrid(subgridName) {
+        var subgridControl = Xrm.Page.getControl(subgridName);
+        if (subgridControl) {
+            subgridControl.refresh();
+        } else {
+            console.error("Subgrid control not found: " + subgridName);
+        }
+    }
+};
+
+// Show Remove from Batch and Cancel on Subgrids
+CAPS.DrawRequest.SubgridShowCancelandRemoveButton = async function (selectedControl, selectedRecordIds) {
+    var userSettings = Xrm.Utility.getGlobalContext().userSettings;
+    var userRoles = userSettings.roles;
+    var currentUserId = userSettings.userId.replace('{', '').replace('}', '');
+    var teamName = "CMB Expense Signing Authority";
+    var currentGridName = selectedControl._controlName;
+    var canCancelRemoveBasedOnRole = false;
+    var draftDrawRequest = "Subgrid_draft";
+    var nonDraftDrawRequest = "Subgrid_nondraft";
+
+    if (currentGridName === draftDrawRequest) {
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB User") {
+                canCancelRemoveBasedOnRole = true;
+            }
+        });
+    } else if (currentGridName === nonDraftDrawRequest) {
+        var fetchXml = '<fetch>' +
+            '<entity name="team">' +
+            '<attribute name="name" />' +
+            '<link-entity name="teammembership" from="teamid" to="teamid" intersect="true">' +
+            '<link-entity name="systemuser" from="systemuserid" to="systemuserid" alias="user">' +
+            '<filter type="and">' +
+            '<condition attribute="systemuserid" operator="eq" value="' + currentUserId + '" />' +
+            '</filter>' +
+            '</link-entity>' +
+            '</link-entity>' +
+            '<filter type="and">' +
+            '<condition attribute="name" operator="eq" value="' + teamName + '" />' +
+            '</filter>' +
+            '</entity>' +
+            '</fetch>';
+
+        var encodedFetchXml = encodeURIComponent(fetchXml);
+        var result = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + encodedFetchXml);
+        var isExpenseAuthorityTeamMember = result.entities.length > 0;
+
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB Finance Unit - Add On" || isExpenseAuthorityTeamMember) {
+                canCancelRemoveBasedOnRole = true;
+            }
+        });
+    }
+
+    // Return true only if the condition is met
+    return canCancelRemoveBasedOnRole;
+};
+
+// Show Set Back to Draft on non draft request subgrid
+CAPS.DrawRequest.SubgridShowSetBacktoDraftButton = async function (selectedControl, selectedRecordIds) {
+    var userSettings = Xrm.Utility.getGlobalContext().userSettings;
+    var userRoles = userSettings.roles;
+    var currentUserId = userSettings.userId.replace('{', '').replace('}', '');
+    var teamName = "CMB Expense Signing Authority";
+    var currentGridName = selectedControl._controlName;
+    var canSetBacktoDraft = false;
+    var draftDrawRequest = "Subgrid_draft";
+    var nonDraftDrawRequest = "Subgrid_nondraft";
+
+    if (currentGridName === nonDraftDrawRequest) {
+        var fetchXml = '<fetch>' +
+            '<entity name="team">' +
+            '<attribute name="name" />' +
+            '<link-entity name="teammembership" from="teamid" to="teamid" intersect="true">' +
+            '<link-entity name="systemuser" from="systemuserid" to="systemuserid" alias="user">' +
+            '<filter type="and">' +
+            '<condition attribute="systemuserid" operator="eq" value="' + currentUserId + '" />' +
+            '</filter>' +
+            '</link-entity>' +
+            '</link-entity>' +
+            '<filter type="and">' +
+            '<condition attribute="name" operator="eq" value="' + teamName + '" />' +
+            '</filter>' +
+            '</entity>' +
+            '</fetch>';
+
+        var encodedFetchXml = encodeURIComponent(fetchXml);
+        var result = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + encodedFetchXml);
+        var isExpenseAuthorityTeamMember = result.entities.length > 0;
+
+        userRoles.forEach(function (role) {
+            if (role.name === "CAPS CMB Finance Unit - Add On" || isExpenseAuthorityTeamMember) {
+                canSetBacktoDraft = true;
+            }
+        });
+    }
+
+    // Return true only if the condition is met
+    return canSetBacktoDraft;
+};
+
+// Function to remove draw request from the batch
+CAPS.DrawRequest.SubgridRemovefromBatch = function (selectedControl, selectedRecordIds) {
+    let confirmStrings = { text: "This will remove the draw request from this batch. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
+    let confirmOptions = { height: 200, width: 450 };
+
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
+        if (response.confirmed) {
+            selectedRecordIds.forEach(function (recordId) {
+                console.log("Record ID:", recordId);
+
+                var req = {
+                    entity: {
+                        entityType: "caps_drawrequest",
+                        id: recordId,
+                    },
+                    "DrawRequestID": recordId, 
+                    getMetadata: function () {
+                        return {
+                            boundParameter: "entity",
+                            operationType: 0, 
+                            operationName: "caps_DrawRequestClearBatch",
+                            parameterTypes: {
+                                "entity": {
+                                    "typeName": "mscrm.caps_drawrequest",
+                                    "structuralProperty": 5 
+                                },
+                                "DrawRequestID": {
+                                    "typeName": "Edm.Guid",
+                                    "structuralProperty": 1 
+                                }
+                            }
+                        };
+                    }
+                };
+
+                Xrm.Utility.showProgressIndicator("Removing Draw Request...");
+
+                Xrm.WebApi.online.execute(req).then(
+                    function (result) {
+                        Xrm.Utility.closeProgressIndicator();
+                        if (result.ok) {
+                            console.log("Draw Request successfully removed for ID:", recordId);
+
+                            refreshSubgrid('Subgrid_draft');
+                            refreshSubgrid('Subgrid_nondraft');
+                        } else {
+                            var alertStrings = { confirmButtonLabel: "OK", text: "There was an error removing the draw request. Please contact IT.", title: "Error" };
+                            var alertOptions = { height: 350, width: 450 };
+                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                        }
+                    },
+                    function (error) {
+                        Xrm.Utility.closeProgressIndicator();
+                        var alertStrings = { confirmButtonLabel: "OK", text: "Removing the draw request ran into an error. Details: " + error.message, title: "Error" };
+                        var alertOptions = { height: 350, width: 450 };
+                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                        console.error("Error when removing Draw Request:", error);
                     }
                 );
             });
