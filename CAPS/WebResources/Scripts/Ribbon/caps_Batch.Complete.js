@@ -31,7 +31,7 @@ CAPS.Batch.ShowComplete = function (primaryControl) {
 // Function to trigger the action "Batch: Mark as Completed"
 CAPS.Batch.Complete = function (primaryControl) {
     var formContext = primaryControl;
-    let confirmStrings = { text: "This action will mark the batch and related submitted draw requests, and actual draws to Completed. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
+    let confirmStrings = { text: "This action will mark the batch and related submitted draw requests to Completed, and actual draws to Approved. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
     let confirmOptions = { height: 200, width: 450 };
 
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
