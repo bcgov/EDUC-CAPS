@@ -14,46 +14,15 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     var fiscalYear = formContext.getAttribute("caps_fiscalyear");
     var drawDate = formContext.getAttribute("caps_drawdate");
     var processDate = formContext.getAttribute("caps_processdate");
-    var statecode = formContext.getAttribute("statecode");
+    var batchLookup = formContext.getAttribute("caps_batch");
 
     batchNotification(formContext);
+    fetchBatchDetails(formContext);
 
-    formContext.getAttribute("caps_batch").addOnChange(function () {
+    batchLookup.addOnChange(function () {
         batchNotification(formContext);
+        fetchBatchDetails(formContext);
     });
-
-    // Function to validate dates
-    function validateDates() {
-        var today = new Date();
-        today.setHours(0, 0, 0, 0); 
-
-        var drawDateValue = drawDate.getValue() ? new Date(drawDate.getValue()) : null;
-        var processDateValue = processDate.getValue() ? new Date(processDate.getValue()) : null;
-        var isValid = true;
-
-        if (drawDateValue && drawDateValue < today && statecode.getValue() === 0) {
-            formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
-            isValid = false;
-        } else {
-            formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
-        }
-
-        if (processDateValue && processDateValue < today && statecode.getValue() === 0) {
-            formContext.getControl("caps_processdate").setNotification("Process Date must be today or in the future.", "processdate-error");
-            isValid = false;
-        } else {
-            formContext.getControl("caps_processdate").clearNotification("processdate-error");
-        }
-
-        return isValid;
-    }
-
-    if (drawDate && statecode.getValue() === 0) {
-        drawDate.addOnChange(validateDates);
-    }
-    if (processDate && statecode.getValue() === 0) {
-        processDate.addOnChange(validateDates);
-    }
 
     if (projectLookup) {
         projectLookup.addOnChange(CAPS.DrawRequest.updateRemainingBalance);
@@ -68,14 +37,71 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     }
 
     CAPS.DrawRequest.updateRemainingBalance(executionContext);
-    validateDates();
 
-    if (projectLookup.getValue() !== null && projectLookup.getValue() !== undefined && projectLookup.getValue() !== "" &&
-        projectCode.getValue() !== null && projectCode.getValue() !== undefined && projectCode.getValue() !== "" &&
-        fiscalYear.getValue() !== null && fiscalYear.getValue() !== undefined && fiscalYear.getValue() !== "" &&
-        drawDate.getValue() !== null && drawDate.getValue() !== undefined && drawDate.getValue() !== "" &&
-        amountField.getValue() !== null && amountField.getValue() !== undefined && amountField.getValue() !== "") {
+    // Check all required fields before saving.
+    if (projectLookup.getValue() && projectCode.getValue() && fiscalYear.getValue() &&
+        drawDate.getValue() && processDate.getValue() && amountField.getValue()) {
         formContext.data.save();
+    }
+
+    fetchBatchDetails(formContext);
+
+    function fetchBatchDetails(formContext) {
+
+        function parseDate(dateStr) {
+            var date = new Date(dateStr);
+            return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        }
+
+        var batchValue = formContext.getAttribute("caps_batch").getValue();
+        if (!batchValue || batchValue.length === 0) {
+            drawDate.setValue(null);
+            processDate.setValue(null);
+            fiscalYear.setValue(null);
+            return;
+        }
+
+        var fetchXml = "<fetch top='1'>" +
+            "<entity name='caps_batch'>" +
+            "<attribute name='caps_drawdate' />" +
+            "<attribute name='caps_submissiondeadline' />" +
+            "<attribute name='caps_fiscalyear' />" +
+            "<link-entity name='edu_year' from='edu_yearid' to='caps_fiscalyear' alias='fiscal'>" +
+            "<attribute name='edu_yearid' />" +
+            "<attribute name='edu_name' />" +
+            "</link-entity>" +
+            "<filter type='and'>" +
+            "<condition attribute='caps_batchid' operator='eq' value='" + batchValue[0].id + "' />" +
+            "</filter>" +
+            "</entity>" +
+            "</fetch>";
+
+        var encodedFetchXml = encodeURIComponent(fetchXml);
+        Xrm.WebApi.retrieveMultipleRecords("caps_batch", "?fetchXml=" + encodedFetchXml).then(
+            function (result) {
+                if (result.entities.length > 0) {
+                    var batchRecord = result.entities[0];
+                    drawDate.setValue(parseDate(batchRecord['caps_drawdate']));
+                    processDate.setValue(parseDate(batchRecord['caps_submissiondeadline']));
+                    if (batchRecord['fiscal.edu_yearid']) {
+                        fiscalYear.setValue([{
+                            id: batchRecord['fiscal.edu_yearid'],
+                            name: batchRecord['fiscal.edu_name'],
+                            entityType: "edu_year"
+                        }]);
+                    } else {
+                        fiscalYear.setValue(null);
+                    }
+                } else {
+                    drawDate.setValue(null);
+                    processDate.setValue(null);
+                    fiscalYear.setValue(null);
+                }
+            },
+            function (error) {
+                console.error("Error retrieving batch details with FetchXML: " + error.message);
+            }
+        );
     }
 };
 

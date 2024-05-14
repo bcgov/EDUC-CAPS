@@ -61,11 +61,18 @@ CAPS.Batch.ShowCancel = function (primaryControl) {
     return showButton && canSubmitBasedOnRole;
 };
 
-// Function to check if the deadline is past and manage form notifications. This Function is used on Batch form.
+// Function to check if the deadline is past and manage form notifications.
+// This function is used on the Batch form.
 CAPS.Batch.isDeadlinePast = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var submissionDeadline = formContext.getAttribute("caps_submissiondeadline");
-    var statecode = formContext.getAttribute("statecode").getValue();
+    var drawDate = formContext.getAttribute("caps_drawdate");
+    var statecode = formContext.getAttribute("statecode");
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var isValid = true;  
 
     batchNotification(formContext);
 
@@ -73,26 +80,94 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
         batchNotification(formContext);
     });
 
-    if (submissionDeadline) {
-        var submissionDeadlineDate = submissionDeadline.getValue();
+    function validateDates() {
+        var drawDateValue = drawDate.getValue() ? new Date(drawDate.getValue()) : null;
 
-        if (submissionDeadlineDate !== null) {
-            const now = new Date();
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        if (drawDateValue && drawDateValue < today && statecode.getValue() === 0) {
+            formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
+            formContext.ui.setFormNotification("The Draw Date is past.", "ERROR", "drawDatePast");
 
-            const deadlineDate = new Date(submissionDeadlineDate);
-            const deadline = new Date(deadlineDate.getFullYear(), deadlineDate.getMonth(), deadlineDate.getDate());
+            isValid = false;
+        } else {
+            formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
+            formContext.ui.clearFormNotification("drawDatePast");
+        }
+        return isValid;
+    }
 
-            // Compare the two dates
-            if (today > deadline && statecode == 0) {
-                formContext.ui.setFormNotification("The submission deadline is past. Extend the deadline or create a new batch.", "ERROR", "deadlinePast");
-                return true;
-            }
+    if (drawDate && statecode.getValue() === 0) {
+        drawDate.addOnChange(validateDates);
+    }
+
+    // Validate submission deadline date
+    if (submissionDeadline && submissionDeadline.getValue()) {
+        var deadlineDate = new Date(submissionDeadline.getValue());
+        var deadline = new Date(deadlineDate.getFullYear(), deadlineDate.getMonth(), deadlineDate.getDate());
+
+        if (today > deadline && statecode.getValue() === 0) {
+            formContext.getControl("caps_submissiondeadline").setNotification("The Submission Deadline must be today or in the future.", "submissiondeadline-error");
+            formContext.ui.setFormNotification("The Submission Deadline is past.", "ERROR", "deadlinePast");
+            isValid = false;
+        } else {
+            formContext.getControl("caps_submissiondeadline").clearNotification("submissiondeadline-error");
             formContext.ui.clearFormNotification("deadlinePast");
-            return false;
         }
     }
+
+    return isValid;
 };
+
+//Set fiscal year automatically based on submission deadline
+CAPS.Batch.submissionDeadline_OnChange = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var submissionDeadline = formContext.getAttribute("caps_submissiondeadline").getValue();
+    var statecode = formContext.getAttribute("statecode").getValue();
+
+    if (!submissionDeadline) {
+        formContext.getAttribute("caps_fiscalyear").setValue(null);
+        return;
+    }
+
+    if (statecode === 0) {
+        var deadline = submissionDeadline.toISOString();
+
+        var fetchXml = "<fetch top='1'>" +
+            "<entity name='edu_year'>" +
+            "<attribute name='edu_yearid' />" +
+            "<attribute name='edu_name' />" +
+            "<filter type='and'>" +
+            "<condition attribute='edu_startdate' operator='le' value='" + deadline + "' />" +
+            "<condition attribute='edu_enddate' operator='ge' value='" + deadline + "' />" +
+            "<condition attribute='statecode' operator='eq' value='0' />" +
+            "<condition attribute='edu_type' operator='eq' value='757500000' />" +
+            "</filter>" +
+            "</entity>" +
+            "</fetch>";
+
+        var encodedFetchXml = encodeURIComponent(fetchXml);
+
+        Xrm.WebApi.retrieveMultipleRecords("edu_year", "?fetchXml=" + encodedFetchXml).then(
+            function success(result) {
+                if (result.entities.length > 0) {
+                    var firstRecord = result.entities[0];
+
+                    formContext.getAttribute("caps_fiscalyear").setValue([
+                        {
+                            id: firstRecord.edu_yearid,
+                            name: firstRecord.edu_name,
+                            entityType: "edu_year"
+                        }
+                    ]);
+                } else {
+                    formContext.getAttribute("caps_fiscalyear").setValue(null);
+                }
+            },
+            function (error) {
+                console.error("Error retrieving year records: " + error.message);
+            }
+        );
+    }
+}
 
 /*
 function batchNotification(formContext) {
