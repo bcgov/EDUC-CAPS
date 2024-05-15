@@ -81,8 +81,12 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
             function (result) {
                 if (result.entities.length > 0) {
                     var batchRecord = result.entities[0];
-                    drawDate.setValue(parseDate(batchRecord['caps_drawdate']));
-                    processDate.setValue(parseDate(batchRecord['caps_submissiondeadline']));
+
+                    var drawDateValue = batchRecord['caps_drawdate'] ? parseDate(batchRecord['caps_drawdate']) : null;
+                    var processDateValue = batchRecord['caps_submissiondeadline'] ? parseDate(batchRecord['caps_submissiondeadline']) : null;
+                    drawDate.setValue(drawDateValue);
+                    processDate.setValue(processDateValue);
+
                     if (batchRecord['fiscal.edu_yearid']) {
                         fiscalYear.setValue([{
                             id: batchRecord['fiscal.edu_yearid'],
