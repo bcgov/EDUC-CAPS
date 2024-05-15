@@ -118,26 +118,26 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
 };
 
 //Set fiscal year automatically based on submission deadline
-CAPS.Batch.submissionDeadline_OnChange = function (executionContext) {
+CAPS.Batch.DrawDate_OnChange = function (executionContext) {
     var formContext = executionContext.getFormContext();
-    var submissionDeadline = formContext.getAttribute("caps_submissiondeadline").getValue();
+    var drawDate = formContext.getAttribute("caps_drawdate").getValue();
     var statecode = formContext.getAttribute("statecode").getValue();
 
-    if (!submissionDeadline) {
+    if (!drawDate) {
         formContext.getAttribute("caps_fiscalyear").setValue(null);
         return;
     }
 
     if (statecode === 0) {
-        var deadline = submissionDeadline.toISOString();
+        var drawDateValue = drawDate.toISOString();
 
         var fetchXml = "<fetch top='1'>" +
             "<entity name='edu_year'>" +
             "<attribute name='edu_yearid' />" +
             "<attribute name='edu_name' />" +
             "<filter type='and'>" +
-            "<condition attribute='edu_startdate' operator='le' value='" + deadline + "' />" +
-            "<condition attribute='edu_enddate' operator='ge' value='" + deadline + "' />" +
+            "<condition attribute='edu_startdate' operator='le' value='" + drawDateValue + "' />" +
+            "<condition attribute='edu_enddate' operator='ge' value='" + drawDateValue + "' />" +
             "<condition attribute='statecode' operator='eq' value='0' />" +
             "<condition attribute='edu_type' operator='eq' value='757500000' />" +
             "</filter>" +
