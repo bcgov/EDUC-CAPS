@@ -41,9 +41,11 @@ CAPS.Batch.ShowCancel = function (primaryControl) {
     var showButton = false;
 
     var statecode = formContext.getAttribute("statecode");
-    if (statecode) {
+    var statuscode = formContext.getAttribute("statuscode");
+    if (statecode && statuscode) {
         var statecodevalue = statecode.getValue();
-        if (statecodevalue === 0) {  
+        var statuscodevalue = statuscode.getValue();
+        if (statecodevalue === 0 || statuscodevalue === 200870004 || statuscodevalue === 2) {  
             showButton = true;
         }
     }
