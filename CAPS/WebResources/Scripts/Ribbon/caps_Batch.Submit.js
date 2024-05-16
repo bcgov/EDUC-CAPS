@@ -72,47 +72,47 @@ CAPS.Batch.isDeadlinePast = function (executionContext) {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    var isValid = true;  
+    var isValid = true;
+
+    // Function to validate dates
+    function validateDates() {
+        var isValidLocal = true;
+        var drawDateValue = drawDate.getValue() ? new Date(drawDate.getValue()) : null;
+        var deadlineDateValue = submissionDeadline.getValue() ? new Date(submissionDeadline.getValue()) : null;
+
+        if (drawDateValue && drawDateValue < today && statecode.getValue() === 0) {
+            formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
+            isValidLocal = false;
+        } else {
+            formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
+        }
+
+        if (deadlineDateValue && today > deadlineDateValue && statecode.getValue() === 0) {
+            formContext.getControl("caps_submissiondeadline").setNotification("The Submission Deadline must be today or in the future.", "submissiondeadline-error");
+            isValidLocal = false;
+        } else {
+            formContext.getControl("caps_submissiondeadline").clearNotification("submissiondeadline-error");
+        }
+
+        return isValidLocal;
+    }
+
+    // Initial validation call
+    isValid = validateDates();
+
+    // Set onChange events
+    if (drawDate) {
+        drawDate.addOnChange(validateDates);
+    }
+    if (submissionDeadline) {
+        submissionDeadline.addOnChange(validateDates);
+    }
 
     batchNotification(formContext);
 
     formContext.getAttribute("caps_numberofreadytosubmit").addOnChange(function () {
         batchNotification(formContext);
     });
-
-    function validateDates() {
-        var drawDateValue = drawDate.getValue() ? new Date(drawDate.getValue()) : null;
-
-        if (drawDateValue && drawDateValue < today && statecode.getValue() === 0) {
-            formContext.getControl("caps_drawdate").setNotification("Draw Date must be today or in the future.", "drawdate-error");
-            formContext.ui.setFormNotification("The Draw Date is past.", "ERROR", "drawDatePast");
-
-            isValid = false;
-        } else {
-            formContext.getControl("caps_drawdate").clearNotification("drawdate-error");
-            formContext.ui.clearFormNotification("drawDatePast");
-        }
-        return isValid;
-    }
-
-    if (drawDate && statecode.getValue() === 0) {
-        drawDate.addOnChange(validateDates);
-    }
-
-    // Validate submission deadline date
-    if (submissionDeadline && submissionDeadline.getValue()) {
-        var deadlineDate = new Date(submissionDeadline.getValue());
-        var deadline = new Date(deadlineDate.getFullYear(), deadlineDate.getMonth(), deadlineDate.getDate());
-
-        if (today > deadline && statecode.getValue() === 0) {
-            formContext.getControl("caps_submissiondeadline").setNotification("The Submission Deadline must be today or in the future.", "submissiondeadline-error");
-            formContext.ui.setFormNotification("The Submission Deadline is past.", "ERROR", "deadlinePast");
-            isValid = false;
-        } else {
-            formContext.getControl("caps_submissiondeadline").clearNotification("submissiondeadline-error");
-            formContext.ui.clearFormNotification("deadlinePast");
-        }
-    }
 
     return isValid;
 };
@@ -262,43 +262,3 @@ function saveBatch(formContext) {
         console.error("Failed to save the batch record:", error);
     });
 }
-
-
-/*
-CAPS.Batch.monitorSubgridChanges = function (formContext) {
-    var checkSubgrids = window.setInterval(function () {
-        var subgridDraft = formContext.getControl("Subgrid_draft");
-        var subgridNonDraft = formContext.getControl("Subgrid_nondraft");
-
-        function SubgridLoad(subgrid) {
-            if (subgrid) {
-                subgrid.addOnLoad(function () {
-                    CAPS.Batch.isDeadlinePast(formContext);
-                    CAPS.Batch.ShowSubmit(formContext);
-                    CAPS.Batch.ShowCancel(formContext);
-                    batchNotification(formContext);
-                });
-            }
-        }
-
-        if (subgridDraft || subgridNonDraft) {
-            SubgridLoad(subgridDraft);
-            SubgridLoad(subgridNonDraft);
-            window.clearInterval(checkSubgrids);
-            saveBatch(formContext); // Save once after all subgrid operations
-        }
-    }, 1000);
-
-    formContext.ui.refreshRibbon();
-};
-
-function saveBatch(formContext) {
-    formContext.data.save()
-        .then(function () {
-            console.log("Batch record saved successfully.");
-        })
-        .catch(function (error) {
-            console.error("Failed to save the batch record:", error);
-        });
-}
-*/
