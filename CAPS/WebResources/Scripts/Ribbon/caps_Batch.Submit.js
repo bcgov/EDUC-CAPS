@@ -218,35 +218,65 @@ function batchNotification(formContext) {
     );
 };
 
-/*
-CAPS.Batch.monitorSubgridChanges = function () {
+CAPS.Batch.monitorSubgridChanges = function (formContext) {
+    var checkSubgrids = window.setInterval(async function () { 
+        var subgridDraft = formContext.getControl("Subgrid_draft");
+        var subgridNonDraft = formContext.getControl("Subgrid_nondraft");
 
-    var checkSubgrid_draft = window.setInterval(function () {
-        var subgridDraft = Xrm.Page.getControl("checkSubgrid_draft");
-        if (subgridDraft != null) {
-            subgridDraft.addOnLoad(function () {
-                CAPS.Batch.isDeadlinePast({ getFormContext: function () { return Xrm.Page; } });
-            });
-            window.clearInterval(checkSubgrid_draft);
+        async function SubgridLoad(subgrid) {
+            if (subgrid) {
+                return new Promise(resolve => {
+                    subgrid.addOnLoad(async function () {
+                        await CAPS.Batch.isDeadlinePast(formContext);
+                        await CAPS.Batch.ShowSubmit(formContext);
+                        await CAPS.Batch.ShowCancel(formContext);
+                        await batchNotification(formContext);
+                        resolve(); 
+                    });
+                });
+            }
+            return Promise.resolve(); 
         }
+
+        let loadPromises = [];
+        if (subgridDraft) {
+            loadPromises.push(SubgridLoad(subgridDraft));
+        }
+        if (subgridNonDraft) {
+            loadPromises.push(SubgridLoad(subgridNonDraft));
+        }
+
+        Promise.all(loadPromises).then(() => {
+            saveBatch(formContext); 
+            window.clearInterval(checkSubgrids); 
+        });
     }, 1000);
+
+    formContext.ui.refreshRibbon();
 };
 
-CAPS.Batch.monitorSubgridChanges ();
-*/
+function saveBatch(formContext) {
+    formContext.data.save().then(function () {
+        console.log("Batch record saved successfully.");
+    }).catch(function (error) {
+        console.error("Failed to save the batch record:", error);
+    });
+}
 
-CAPS.Batch.monitorSubgridChanges = function () {
+
+/*
+CAPS.Batch.monitorSubgridChanges = function (formContext) {
     var checkSubgrids = window.setInterval(function () {
-        var subgridDraft = Xrm.Page.getControl("Subgrid_draft");
-        var subgridNonDraft = Xrm.Page.getControl("Subgrid_nondraft");
+        var subgridDraft = formContext.getControl("Subgrid_draft");
+        var subgridNonDraft = formContext.getControl("Subgrid_nondraft");
 
         function SubgridLoad(subgrid) {
             if (subgrid) {
                 subgrid.addOnLoad(function () {
-                    var formContext = { getFormContext: function () { return Xrm.Page; } };
                     CAPS.Batch.isDeadlinePast(formContext);
-                    CAPS.Batch.ShowSubmit(formContext.getFormContext());
-                    CAPS.Batch.ShowCancel(formContext.getFormContext());
+                    CAPS.Batch.ShowSubmit(formContext);
+                    CAPS.Batch.ShowCancel(formContext);
+                    batchNotification(formContext);
                 });
             }
         }
@@ -255,10 +285,20 @@ CAPS.Batch.monitorSubgridChanges = function () {
             SubgridLoad(subgridDraft);
             SubgridLoad(subgridNonDraft);
             window.clearInterval(checkSubgrids);
+            saveBatch(formContext); // Save once after all subgrid operations
         }
     }, 1000);
+
+    formContext.ui.refreshRibbon();
 };
 
-CAPS.Batch.monitorSubgridChanges();
-
-
+function saveBatch(formContext) {
+    formContext.data.save()
+        .then(function () {
+            console.log("Batch record saved successfully.");
+        })
+        .catch(function (error) {
+            console.error("Failed to save the batch record:", error);
+        });
+}
+*/

@@ -5,11 +5,22 @@ CAPS.Batch = CAPS.Batch || {};
 
 // Ribbon ShowHide logic
 CAPS.Batch.ShowSign = async function (primaryControl) {
+    var formContext = primaryControl;
+    var batchId = getBatchId(formContext);
+
+    if (!batchId) {
+        console.error("Batch ID could not be retrieved.");
+        return false; // Early exit if no valid batch ID
+    }
+
+    // User settings and current user ID retrieval
     var userSettings = Xrm.Utility.getGlobalContext().userSettings;
     var currentUserId = userSettings.userId.replace('{', '').replace('}', '');
+
     var teamName = "CMB Expense Signing Authority";
 
-    var fetchXml = '<fetch>' +
+    // Fetch XML to check if the current user is part of the specified team
+    var teamFetchXml = '<fetch>' +
         '<entity name="team">' +
         '<attribute name="name" />' +
         '<link-entity name="teammembership" from="teamid" to="teamid" intersect="true">' +
@@ -24,14 +35,46 @@ CAPS.Batch.ShowSign = async function (primaryControl) {
         '</filter>' +
         '</entity>' +
         '</fetch>';
+    teamFetchXml = encodeURIComponent(teamFetchXml);
 
-    fetchXml = encodeURIComponent(fetchXml);
+    try {
+        var teamResult = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + teamFetchXml);
+        var isTeamMember = teamResult.entities.length > 0;
 
-    var result = await Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + fetchXml);
-    // Check if the user is a member of the signing authority team
-    var canSubmit = result.entities.length > 0;
+        if (!isTeamMember) {
+            console.log("User is not a team member.");
+            return false;
+        }
 
-    return canSubmit;
+        // Fetch XML to check for at least one draw request with statuscode = 2
+        var drawRequestFetchXml = '<fetch aggregate="true">' +
+            '<entity name="caps_drawrequest">' +
+            '<attribute name="caps_drawrequestid" alias="count" aggregate="count" />' +
+            '<filter type="and">' +
+            '<condition attribute="statuscode" operator="eq" value="2" />' +
+            '<condition attribute="caps_batch" operator="eq" value="' + batchId + '" />' +
+            '</filter>' +
+            '</entity>' +
+            '</fetch>';
+        drawRequestFetchXml = encodeURIComponent(drawRequestFetchXml);
+
+        var drawRequestResult = await Xrm.WebApi.retrieveMultipleRecords("caps_drawrequest", "?fetchXml=" + drawRequestFetchXml);
+        var hasEligibleDrawRequests = drawRequestResult.entities.length > 0 && parseInt(drawRequestResult.entities[0].count) > 0;
+
+        return hasEligibleDrawRequests;
+    } catch (error) {
+        console.error("Error during ShowSign execution:", error);
+        return false; // Return false in case of any error during the process
+    }
+};
+
+function getBatchId(formContext) {
+    if (formContext && formContext.data && formContext.data.entity) {
+        return formContext.data.entity.getId().replace('{', '').replace('}', '');
+    } else {
+        console.error("Invalid formContext provided");
+        return null;
+    }
 };
 
 // Function to trigger the action "Batch: Mark as Pending Submission"

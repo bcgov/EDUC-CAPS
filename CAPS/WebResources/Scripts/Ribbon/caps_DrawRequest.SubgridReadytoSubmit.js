@@ -76,7 +76,6 @@ function validateDates(entityReference) {
     return (drawDate >= today) && (processDate >= today);
 };
 
-
 // Function to trigger the action "Draw Request: Set Status to Ready to Submit"
 CAPS.DrawRequest.SubgridSubmit = function (selectedControl, selectedRecordIds) {
     let confirmStrings = { text: "This will make the draw request ready to submit. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
@@ -84,65 +83,58 @@ CAPS.DrawRequest.SubgridSubmit = function (selectedControl, selectedRecordIds) {
 
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
         if (response.confirmed) {
-            selectedRecordIds.forEach(function (recordId) {
-                console.log("Record ID:", recordId); 
+            let promises = selectedRecordIds.map(function (recordId) {
+                return submitDrawRequest(recordId);
+            });
 
-                var req = {
-                    entity: {
-                        entityType: "caps_drawrequest",
-                        id: recordId
-                    },
-                    getMetadata: function () {
-                        return {
-                            boundParameter: "entity",
-                            operationType: 0,
-                            operationName: "caps_DrawRequestSetStatustoReadytoSubmit",
-                            parameterTypes: {
-                                "entity": {
-                                    "typeName": "mscrm.caps_drawrequest",
-                                    "structuralProperty": 5
-                                }
-                            }
-                        };
-                    }
-                };
-
-                Xrm.Utility.showProgressIndicator("Submitting Draw Request...");
-
-                Xrm.WebApi.online.execute(req).then(
-                    function (result) {
-                        Xrm.Utility.closeProgressIndicator();
-                        if (result.ok) {
-                            console.log("Draw Request successfully submitted for ID:", recordId);
-
-                            refreshSubgrid('Subgrid_draft');
-                            refreshSubgrid('Subgrid_nondraft');
-                        } else {
-                            var alertStrings = { confirmButtonLabel: "OK", text: "There was an error submitting the draw request. Please contact IT.", title: "Error" };
-                            var alertOptions = { height: 350, width: 450 };
-                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        }
-                    },
-                    function (error) {
-                        Xrm.Utility.closeProgressIndicator();
-                        var alertStrings = { confirmButtonLabel: "OK", text: "Submitting the draw request ran into an error. Details: " + error.message, title: "Error" };
-                        var alertOptions = { height: 350, width: 450 };
-                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        console.error("Error when submitting Draw Request:", error);
-                    }
-                );
+            Promise.all(promises).then(() => {
+                forceSaveBatchRecord();  
             });
         }
     });
+};
+        function submitDrawRequest(recordId) {
+            var req = {
+                entity: {
+                    entityType: "caps_drawrequest",
+                    id: recordId
+                },
+                getMetadata: function () {
+                    return {
+                        boundParameter: "entity",
+                        operationType: 0,
+                        operationName: "caps_DrawRequestSetStatustoReadytoSubmit",
+                        parameterTypes: {
+                            "entity": {
+                                "typeName": "mscrm.caps_drawrequest",
+                                "structuralProperty": 5
+                            }
+                        }
+                    };
+                }
+            };
 
-    function refreshSubgrid(subgridName) {
-        var subgridControl = Xrm.Page.getControl(subgridName);
-        if (subgridControl) {
-            subgridControl.refresh();
-        } else {
-            console.error("Subgrid control not found: " + subgridName);
+         return Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            Xrm.Utility.closeProgressIndicator();
+            if (result.ok) {
+                console.log("Draw Request successfully submitted for ID:", recordId);
+                refreshSubgrid('Subgrid_draft');
+                refreshSubgrid('Subgrid_nondraft');
+            } else {
+                var alertStrings = { confirmButtonLabel: "OK", text: "There was an error submitting the draw request. Please contact IT.", title: "Error" };
+                var alertOptions = { height: 350, width: 450 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            }
+        },
+        function (error) {
+            Xrm.Utility.closeProgressIndicator();
+            var alertStrings = { confirmButtonLabel: "OK", text: "Submitting the draw request ran into an error. Details: " + error.message, title: "Error" };
+            var alertOptions = { height: 350, width: 450 };
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            console.error("Error when submitting Draw Request:", error);
         }
-    }
+    );
 };
 
 // Show Remove from Batch and Cancel on Subgrids
@@ -259,78 +251,70 @@ CAPS.DrawRequest.SubgridShowSetBacktoDraftButton = async function (selectedContr
     return canSetBacktoDraft;
 };
 
-// Function to remove draw request from the batch
+//remove from batch
 CAPS.DrawRequest.SubgridRemovefromBatch = function (selectedControl, selectedRecordIds) {
     let confirmStrings = { text: "This will remove the draw request from this batch. Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
     let confirmOptions = { height: 200, width: 450 };
 
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
         if (response.confirmed) {
-            selectedRecordIds.forEach(function (recordId) {
-                console.log("Record ID:", recordId);
-
-                var req = {
-                    entity: {
-                        entityType: "caps_drawrequest",
-                        id: recordId,
-                    },
-                    "DrawRequestID": recordId, 
-                    getMetadata: function () {
-                        return {
-                            boundParameter: "entity",
-                            operationType: 0, 
-                            operationName: "caps_DrawRequestClearBatch",
-                            parameterTypes: {
-                                "entity": {
-                                    "typeName": "mscrm.caps_drawrequest",
-                                    "structuralProperty": 5 
-                                },
-                                "DrawRequestID": {
-                                    "typeName": "Edm.Guid",
-                                    "structuralProperty": 1 
-                                }
-                            }
-                        };
-                    }
-                };
-
-                Xrm.Utility.showProgressIndicator("Removing Draw Request...");
-
-                Xrm.WebApi.online.execute(req).then(
-                    function (result) {
-                        Xrm.Utility.closeProgressIndicator();
-                        if (result.ok) {
-                            console.log("Draw Request successfully removed for ID:", recordId);
-
-                            refreshSubgrid('Subgrid_draft');
-                            refreshSubgrid('Subgrid_nondraft');
-                        } else {
-                            var alertStrings = { confirmButtonLabel: "OK", text: "There was an error removing the draw request. Please contact IT.", title: "Error" };
-                            var alertOptions = { height: 350, width: 450 };
-                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        }
-                    },
-                    function (error) {
-                        Xrm.Utility.closeProgressIndicator();
-                        var alertStrings = { confirmButtonLabel: "OK", text: "Removing the draw request ran into an error. Details: " + error.message, title: "Error" };
-                        var alertOptions = { height: 350, width: 450 };
-                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        console.error("Error when removing Draw Request:", error);
-                    }
-                );
+            let removalPromises = selectedRecordIds.map(recordId => removeDrawRequest(recordId));
+            Promise.all(removalPromises).then(() => {
+                forceSaveBatchRecord();
             });
         }
     });
-
-    function refreshSubgrid(subgridName) {
-        var subgridControl = Xrm.Page.getControl(subgridName);
-        if (subgridControl) {
-            subgridControl.refresh();
-        } else {
-            console.error("Subgrid control not found: " + subgridName);
-        }
-    }
 };
+
+        function removeDrawRequest(recordId) {
+            var req = {
+                entity: {
+                    entityType: "caps_drawrequest",
+                    id: recordId
+                },
+                "DrawRequestID": recordId,
+                getMetadata: function () {
+                    return {
+                        boundParameter: "entity",
+                        operationType: 0,
+                        operationName: "caps_DrawRequestClearBatch",
+                        parameterTypes: {
+                            "entity": {
+                                "typeName": "mscrm.caps_drawrequest",
+                                "structuralProperty": 5
+                            },
+                            "DrawRequestID": {
+                                "typeName": "Edm.Guid",
+                                "structuralProperty": 1
+                            }
+                        }
+                    };
+                }
+            };
+
+    return Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            Xrm.Utility.closeProgressIndicator();
+            if (result.ok) {
+                console.log("Draw Request successfully removed for ID:", recordId);
+                refreshSubgrid('Subgrid_draft');
+                refreshSubgrid('Subgrid_nondraft');
+            } else {
+                var alertStrings = { confirmButtonLabel: "OK", text: "There was an error removing the draw request. Please contact IT.", title: "Error" };
+                var alertOptions = { height: 350, width: 450 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            }
+        },
+        function (error) {
+            Xrm.Utility.closeProgressIndicator();
+            var alertStrings = { confirmButtonLabel: "OK", text: "Removing the draw request ran into an error. Details: " + error.message, title: "Error" };
+            var alertOptions = { height: 350, width: 450 };
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            console.error("Error when removing Draw Request:", error);
+        }
+    );
+};
+
 
 // Function to trigger the action "Draw Request: Set Status to Draft"
 CAPS.DrawRequest.SubgridSetBacktoDraft = function (selectedControl, selectedRecordIds) {
@@ -339,63 +323,134 @@ CAPS.DrawRequest.SubgridSetBacktoDraft = function (selectedControl, selectedReco
 
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
         if (response.confirmed) {
-            selectedRecordIds.forEach(function (recordId) {
-                console.log("Record ID:", recordId);
-
-                var req = {
-                    entity: {
-                        entityType: "caps_drawrequest",
-                        id: recordId
-                    },
-                    getMetadata: function () {
-                        return {
-                            boundParameter: "entity",
-                            operationType: 0,
-                            operationName: "caps_DrawRequestSetStatustoDraft",
-                            parameterTypes: {
-                                "entity": {
-                                    "typeName": "mscrm.caps_drawrequest",
-                                    "structuralProperty": 5
-                                }
-                            }
-                        };
-                    }
-                };
-
-                Xrm.Utility.showProgressIndicator("Setting Draw Request back to draft...");
-
-                Xrm.WebApi.online.execute(req).then(
-                    function (result) {
-                        Xrm.Utility.closeProgressIndicator();
-                        if (result.ok) {
-                            console.log("Draw Request successfully set back to draft for ID:", recordId);
-
-                            refreshSubgrid('Subgrid_draft');
-                            refreshSubgrid('Subgrid_nondraft');
-                        } else {
-                            var alertStrings = { confirmButtonLabel: "OK", text: "There was an error setting back to draft. Please contact IT.", title: "Error" };
-                            var alertOptions = { height: 350, width: 450 };
-                            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        }
-                    },
-                    function (error) {
-                        Xrm.Utility.closeProgressIndicator();
-                        var alertStrings = { confirmButtonLabel: "OK", text: "Setting the draw request back to draft ran into an error. Details: " + error.message, title: "Error" };
-                        var alertOptions = { height: 350, width: 450 };
-                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                        console.error("Error when setting Draw Request back to draft:", error);
-                    }
-                );
+            let draftPromises = selectedRecordIds.map(recordId => setBackToDraft(recordId));
+            Promise.all(draftPromises).then(() => {
+                forceSaveBatchRecord();
             });
         }
     });
-
-    function refreshSubgrid(subgridName) {
-        var subgridControl = Xrm.Page.getControl(subgridName);
-        if (subgridControl) {
-            subgridControl.refresh();
-        } else {
-            console.error("Subgrid control not found: " + subgridName);
-        }
-    }
 };
+
+        function setBackToDraft(recordId) {
+            var req = {
+                entity: {
+                    entityType: "caps_drawrequest",
+                    id: recordId
+                },
+                getMetadata: function () {
+                    return {
+                        boundParameter: "entity",
+                        operationType: 0,
+                        operationName: "caps_DrawRequestSetStatustoDraft",
+                        parameterTypes: {
+                            "entity": {
+                                "typeName": "mscrm.caps_drawrequest",
+                                "structuralProperty": 5
+                            }
+                        }
+                    };
+                }
+            };
+
+    return Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            Xrm.Utility.closeProgressIndicator();
+            if (result.ok) {
+                console.log("Draw Request successfully set back to draft for ID:", recordId);
+                refreshSubgrid('Subgrid_draft');
+                refreshSubgrid('Subgrid_nondraft');
+            } else {
+                var alertStrings = { confirmButtonLabel: "OK", text: "There was an error setting the draw request back to draft. Please contact IT.", title: "Error" };
+                var alertOptions = { height: 350, width: 450 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            }
+        },
+        function (error) {
+            Xrm.Utility.closeProgressIndicator();
+            var alertStrings = { confirmButtonLabel: "OK", text: "Setting the draw request back to draft ran into an error. Details: " + error.message, title: "Error" };
+            var alertOptions = { height: 350, width: 450 };
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            console.error("Error when setting Draw Request back to draft:", error);
+        }
+    );
+};
+
+// Function to trigger the action "Draw Request: Cancel Request"
+CAPS.DrawRequest.SubgridCancelRequest = function (selectedControl, selectedRecordIds) {
+    let confirmStrings = { text: "This will cancel the draw request(s). Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
+    let confirmOptions = { height: 200, width: 450 };
+
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (response) {
+        if (response.confirmed) {
+            let cancelPromises = selectedRecordIds.map(recordId => cancelRequest(recordId));
+            Promise.all(cancelPromises).then(() => {
+                forceSaveBatchRecord();
+            });
+        }
+    });
+};
+
+    function cancelRequest(recordId) {
+        var req = {
+            entity: {
+                entityType: "caps_drawrequest",
+                id: recordId
+            },
+            getMetadata: function () {
+                return {
+                    boundParameter: "entity",
+                    operationType: 0,
+                    operationName: "caps_DrawRequestCancelDrawRequest",
+                    parameterTypes: {
+                        "entity": {
+                            "typeName": "mscrm.caps_drawrequest",
+                            "structuralProperty": 5
+                        }
+                    }
+                };
+            }
+        };
+
+    return Xrm.WebApi.online.execute(req).then(
+        function (result) {
+            Xrm.Utility.closeProgressIndicator();
+            if (result.ok) {
+                console.log("Draw Request successfully cancelled for ID:", recordId);
+                refreshSubgrid('Subgrid_draft');
+                refreshSubgrid('Subgrid_nondraft');
+            } else {
+                var alertStrings = { confirmButtonLabel: "OK", text: "There was an error cancelling the draw request. Please contact IT.", title: "Error" };
+                var alertOptions = { height: 350, width: 450 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            }
+        },
+        function (error) {
+            Xrm.Utility.closeProgressIndicator();
+            var alertStrings = { confirmButtonLabel: "OK", text: "Cancelling the draw request ran into an error. Details: " + error.message, title: "Error" };
+            var alertOptions = { height: 350, width: 450 };
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+            console.error("Error when cancelling Draw Request:", error);
+        }
+    );
+};
+
+function forceSaveBatchRecord() {
+    var formContext = Xrm.Page;
+    formContext.data.save().then(
+        function () {
+            console.log("Batch record forcefully saved after updating draw requests.");
+        },
+        function (error) {
+            console.error("Failed to force save the batch record:", error);
+        }
+    );
+}
+
+function refreshSubgrid(subgridName) {
+    var subgridControl = Xrm.Page.getControl(subgridName);
+    if (subgridControl) {
+        subgridControl.refresh();
+    } else {
+        console.error("Subgrid control not found: " + subgridName);
+    }
+}
