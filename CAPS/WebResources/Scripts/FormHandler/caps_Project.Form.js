@@ -220,6 +220,9 @@ CAPS.Project.onLoad = function (executionContext) {
     //Hide Funding Requested for all CC Majors
     CAPS.Project.HideFundingRequested(executionContext);
 
+    formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ShowHideProjectGroup);
+    CAPS.Project.ShowHideProjectGroup(executionContext);
+    
 
     //Hide Health Authority on CC Majors when Existing Child Care Facility is Yes
     formContext.getAttribute("caps_existingchildcarefacility").addOnChange(CAPS.Project.ShowHideHealthAuthority);
@@ -1828,47 +1831,41 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
     var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
+    var submission = CAPS.Project.GetLookup("caps_submission", formContext);
     var proposedSchoolFacility = formContext.getAttribute("caps_proposedfacility").getValue();
     var proposedSite = formContext.getAttribute("caps_proposedsite").getValue();
 
     if (schoolFacility !== undefined && schoolFacility.id !== null) {
-        let fetchXml = "<filter type='and'><condition attribute='caps_schoolfacility' operator='eq' value='" + schoolFacility.id + "' /></filter>";
+        let fetchXml = "<filter type='and'><condition attribute='caps_schoolfacility' operator='eq' value='" + schoolFacility.id + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
     else if (proposedSchoolFacility !== null) {
-        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSchoolFacility + "' /></filter>";
+        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSchoolFacility + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
     else if (proposedSite !== null) {
-        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSite + "' /></filter>";
+        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSite + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
 
-    //var existingChildCareFacility = formContext.getAttribute("caps_existingfacility").getValue();
-    //var noSchoolFacility = "00000000-0000-0000-0000-000000000000";
-    //if (existingChildCareFacility) {
-    //    var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
-    //    if (schoolFacility !== undefined) {
-    //        var fetchXml = "<filter type='and'><condition attribute='caps_schoolfacility' operator='eq' value='" + schoolFacility.id + "' /></filter>";
-    //        formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
-    //    }
-    //    else if (schoolFacility === undefined) {
-    //        var fetchXml = "<filter type='and'><condition attribute='caps_schoolfacility' operator='eq' value='" + noSchoolFacility + "' /></filter>";
-    //        formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
-    //    }
-    //}
-    //else if (!existingChildCareFacility) {
-    //    var proposedSchoolFacility = formContext.getAttribute("caps_proposedfacility").getValue();
-    //    if (proposedSchoolFacility !== null) {
-    //        var fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSchoolFacility + "' /></filter>";
-    //        formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
-    //    }
-    //    else if (proposedSchoolFacility === null) {
-    //        var fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + " " + "' /></filter>";
-    //        formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
-    //    }
-    //}
+    
 
+}
+
+CAPS.Project.ShowHideProjectGroup = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var submission = CAPS.Project.GetLookup("caps_submission", formContext);
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+    if (submissionCategoryCode === "Major_CC_New_Spaces" || submissionCategoryCode === "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
+        submissionCategoryCode === "CC_CONVERSION" || submissionCategoryCode === "CC_UPGRADE") {
+        if (submission === undefined) {
+            formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+
+        }
+        else {
+            formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(true));
+        }
+    }
 }
 CAPS.Project.GetLookup = function (fieldName, formContext) {
     var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
