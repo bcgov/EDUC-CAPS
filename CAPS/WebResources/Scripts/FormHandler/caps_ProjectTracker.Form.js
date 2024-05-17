@@ -72,6 +72,9 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
         CAPS.ProjectTracker.Status = formContext.getAttribute("statuscode").getValue();
         formContext.getAttribute("statuscode").addOnChange(CAPS.ProjectTracker.ShowStatusChangeWarning);
     }
+
+    CAPS.ProjectTracker.ShowHideTabs(executionContext);
+    formContext.getAttribute("caps_submissioncategory").addOnChange(CAPS.ProjectTracker.ShowHideTabs);
 }
 
 /**
@@ -415,6 +418,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("sec_ministry_dates").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("sec_provincial_budget").setVisible(false);
+       
 
         if (formContext.ui.tabs.get("tab_general").sections.get("sec_cps") !== null) {
             formContext.ui.tabs.get("tab_general").sections.get("sec_cps").setVisible(false);
@@ -451,11 +455,11 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
 
 
-        formContext.getControl("caps_approvedreserve").setVisible(false);
-        formContext.getControl("caps_totalapproved").setVisible(false);
-        formContext.getControl("caps_unapprovedreserve").setVisible(false);
-        formContext.getControl("caps_totalprovincialbudget").setVisible(false);
-        
+        //formContext.getControl("caps_approvedreserve").setVisible(false);
+        //formContext.getControl("caps_totalapproved").setVisible(false);
+        //formContext.getControl("caps_unapprovedreserve").setVisible(false);
+        //formContext.getControl("caps_totalprovincialbudget").setVisible(false);
+
         if (formContext.getControl("caps_totalagencyprojected") !== null) {
             formContext.getControl("caps_totalagencyprojected").setVisible(false);
         }
@@ -514,7 +518,97 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
             formContext.ui.tabs.get("tab_emr").setVisible(false);
         }
     }
+         
+    var submissionCategory = CAPS.ProjectTracker.GetLookup("caps_submissioncategory", formContext);
+    if (submissionCategory !== undefined) {
+        Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.ProjectTracker.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_type,caps_categorycode").then(
+            function success(result) {
+                var type = result.caps_type;
+                var categoryCode = result.caps_categorycode;
+                //Minor or BEP or AFG or BUS
+                if (type === 200870001 || type === 200870003 || type === 200870002 || type === 200870004) {
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_Initiatives").setVisible(false);
+                }
+                //Major
+                if (type === 200870000) {
+                    formContext.ui.tabs.get("tab_general").sections.get("sec_Initiatives").setVisible(true);
+                }
+                
 
+                if (categoryCode === 'Major_CC_New_Spaces' || categoryCode === 'CC_MAJOR_NEW_SPACES_INTEGRATED') {
+                    formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
+                }
+                else if (categoryCode === 'CC_CONVERSION') {
+                    formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
+                }
+                else if (categoryCode === 'CC_CONVERSION_MINOR') {
+                    formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
+                }
+                else if (categoryCode === 'CC_UPGRADE') {
+                    formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
+                }
+                else if (categoryCode === 'CC_UPGRADE_MINOR') {
+                    formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+                    formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
+                }
+                else if (categoryCode === 'AFG') {
+                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
+                }
+
+            },
+            function (error) {
+                console.log(error.message);
+
+            }
+        );
+    }
+}
+
+CAPS.ProjectTracker.ShowHideTabs = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var submissionCategory = CAPS.ProjectTracker.GetLookup("caps_submissioncategory", formContext);
+    if (submissionCategory !== undefined) {
+        Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.ProjectTracker.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_ischildcare").then(
+            function success(result) {
+                var isChildCare = result.caps_ischildcare;
+                if (isChildCare) {
+                    formContext.ui.tabs.get("tab_child_care").setVisible(true);
+                }
+                else {
+                    formContext.ui.tabs.get("tab_child_care").setVisible(false);
+                }
+
+            },
+            function (error) {
+                console.log(error.message);
+
+            }
+        );
+    }
 }
 
 /**
@@ -699,5 +793,23 @@ CAPS.ProjectTracker.ValidateBudgetPressureAndSavings = function (executionContex
         var alertOptions = { height: 120, width: 260 };
         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
     }
+}
+
+CAPS.ProjectTracker.GetLookup = function (fieldName, formContext) {
+    var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
+    if (lookupFieldObject !== null && lookupFieldObject.getValue() !== null && lookupFieldObject.getValue()[0] !== null) {
+        var entityId = lookupFieldObject.getValue()[0].id;
+        var entityName = lookupFieldObject.getValue()[0].entityType;
+        var entityLabel = lookupFieldObject.getValue()[0].name;
+        var obj = {
+            id: entityId,
+            type: entityName,
+            value: entityLabel
+        };
+        return obj;
+    }
+}
+CAPS.ProjectTracker.RemoveCurlyBraces = function (str) {
+    return str.replace(/[{}]/g, "");
 };
 
