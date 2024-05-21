@@ -19,6 +19,8 @@ b.caps_paymentdescription as PaymentDescription
         ',', 
         CAST(sum(a.caps_amount) AS INT)
     ) AS CDS
+,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY s.edu_number) AS TotalPerSDNumber
+,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
 FROM caps_actualdraw a
 JOIN caps_drawrequest d on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
