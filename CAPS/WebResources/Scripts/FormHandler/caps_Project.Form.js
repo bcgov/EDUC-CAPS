@@ -1866,6 +1866,11 @@ CAPS.Project.ShowHideProjectGroup = function (executionContext) {
             formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(true));
         }
     }
+    else if (submissionCategoryCode !== "Major_CC_New_Spaces" || submissionCategoryCode !== "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
+        submissionCategoryCode !== "CC_CONVERSION" || submissionCategoryCode !== "CC_UPGRADE") {
+
+        formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+    }
 }
 CAPS.Project.GetLookup = function (fieldName, formContext) {
     var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
