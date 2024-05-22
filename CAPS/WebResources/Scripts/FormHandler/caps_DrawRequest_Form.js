@@ -58,6 +58,7 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
             drawDate.setValue(null);
             processDate.setValue(null);
             fiscalYear.setValue(null);
+            projectCode.setValue(null);
             return;
         }
 
@@ -66,6 +67,11 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
             "<attribute name='caps_drawdate' />" +
             "<attribute name='caps_submissiondeadline' />" +
             "<attribute name='caps_fiscalyear' />" +
+            "<attribute name='caps_projectcode' />" +
+            "<link-entity name='caps_projectcode' from='caps_projectcodeid' to='caps_projectcode' alias='code'>" +
+            "<attribute name='caps_projectcodeid' />" +
+            "<attribute name='caps_name' />" +
+            "</link-entity>" +
             "<link-entity name='edu_year' from='edu_yearid' to='caps_fiscalyear' alias='fiscal'>" +
             "<attribute name='edu_yearid' />" +
             "<attribute name='edu_name' />" +
@@ -96,10 +102,20 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
                     } else {
                         fiscalYear.setValue(null);
                     }
+                    if (batchRecord['code.caps_projectcodeid']) {
+                        projectCode.setValue([{
+                            id: batchRecord['code.caps_projectcodeid'],
+                            name: batchRecord['code.caps_name'],
+                            entityType: "caps_projectcode"
+                        }]);
+                    } else {
+                        projectCode.setValue(null);
+                    }
                 } else {
                     drawDate.setValue(null);
                     processDate.setValue(null);
                     fiscalYear.setValue(null);
+                    projectCode.setValue(null);
                 }
             },
             function (error) {

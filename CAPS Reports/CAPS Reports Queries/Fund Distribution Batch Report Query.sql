@@ -1,4 +1,6 @@
 /*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
+SELECT * FROM
+(
 SELECT 
 b.caps_paymentdescription as PaymentDescription
 ,b.caps_name as Batch
@@ -12,6 +14,7 @@ b.caps_paymentdescription as PaymentDescription
 --,d.caps_projectname as Project
 ,s.edu_commonname as SDName
 ,s.edu_number as SDNumber
+,s.edu_schooldistrictid as SDID
 ,sum(a.caps_amount) as Amount
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
 ,CONCAT(
@@ -45,3 +48,7 @@ b.caps_paymentdescription
 --,d.caps_projectname
 ,s.edu_commonname
 ,s.edu_number
+,s.edu_schooldistrictid
+) as Subquery
+
+FULL OUTER JOIN edu_schooldistrict s2 on SDID = s2.edu_schooldistrictid

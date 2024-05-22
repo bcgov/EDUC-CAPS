@@ -11,16 +11,16 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1807.730</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-05-22T15:52:09.7533366Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-05-22T17:31:40.3171022Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="CAPSDev">
+    <DataSource Name="CAPSTEST">
       <rd:SecurityType>DataBase</rd:SecurityType>
       <ConnectionProperties>
         <DataProvider>DATAVERSE</DataProvider>
-        <ConnectString>Data Source=capsdev.crm3.dynamics.com;Initial Catalog=capsdev;Encrypt=True;Trust Server Certificate=True;Authentication=ActiveDirectoryInteractive</ConnectString>
+        <ConnectString>Data Source=capstest.crm3.dynamics.com;Initial Catalog=capsdev;Encrypt=True;Trust Server Certificate=True;Authentication=ActiveDirectoryInteractive</ConnectString>
         <Prompt>Specify a user name and password for data source CAPSDev:</Prompt>
       </ConnectionProperties>
       <rd:DataSourceID>8be672d8-28e2-41b7-aef9-3fbe25bfa887</rd:DataSourceID>
@@ -29,7 +29,7 @@
   <DataSets>
     <DataSet Name="Batch">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPSTEST</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Batch">
             <rd:UserDefined>true</rd:UserDefined>
@@ -193,7 +193,7 @@ FULL OUTER JOIN edu_schooldistrict s2 on SDID = s2.edu_schooldistrictid</Command
     </DataSet>
     <DataSet Name="BatchParameter">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPSTEST</DataSourceName>
         <CommandText>/*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
 SELECT 
 b.caps_name as Batch
@@ -215,7 +215,7 @@ b.statuscode = 200870003</CommandText>
     </DataSet>
     <DataSet Name="BatchInformation">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPSTEST</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Batch">
             <rd:UserDefined>true</rd:UserDefined>
@@ -795,7 +795,7 @@ b.caps_paymentdescription
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="TotalPerBatch">
+                        <Textbox Name="TotalPerBatch3">
                           <rd:DefaultName>TotalPerBatch</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -803,7 +803,7 @@ b.caps_paymentdescription
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=fields!TotalPerBatch.Value</Value>
+                                  <Value>=Fields!TotalPerBatch.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1174,7 +1174,7 @@ b.caps_paymentdescription
                     <TablixCell>
                       <CellContents>
                         <rd:Selected>true</rd:Selected>
-                        <Textbox Name="TotalPerBatch2">
+                        <Textbox Name="TotalPerBatch4">
                           <rd:DefaultName>TotalPerBatch</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
