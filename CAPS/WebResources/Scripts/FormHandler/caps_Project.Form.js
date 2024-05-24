@@ -1855,21 +1855,29 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
 CAPS.Project.ShowHideProjectGroup = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var submission = CAPS.Project.GetLookup("caps_submission", formContext);
-    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
-    if (submissionCategoryCode === "Major_CC_New_Spaces" || submissionCategoryCode === "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
-        submissionCategoryCode === "CC_CONVERSION" || submissionCategoryCode === "CC_UPGRADE") {
-        if (submission === undefined) {
-            formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+    var submissionCategory = CAPS.Project.GetLookup("caps_submissioncategory", formContext);
+    if (submissionCategory !== undefined) {
+        Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.Project.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_type").then(
+            function success(result) {
+                var type = result.caps_type;
+                //Major
+                if (type === 200870000) {
+                    if (submission === undefined) {
+                        formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+                    }
+                    else {
+                        formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(true));
+                    }
+                }
+                else {
+                    formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+                }
+            },
+            function (error) {
+                console.log(error.message);
 
-        }
-        else {
-            formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(true));
-        }
-    }
-    else if (submissionCategoryCode !== "Major_CC_New_Spaces" || submissionCategoryCode !== "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
-        submissionCategoryCode !== "CC_CONVERSION" || submissionCategoryCode !== "CC_UPGRADE") {
-
-        formContext.getAttribute("caps_projectcollection").controls.forEach(control => control.setVisible(false));
+            }
+        );
     }
 }
 CAPS.Project.GetLookup = function (fieldName, formContext) {

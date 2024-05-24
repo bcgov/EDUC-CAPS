@@ -124,6 +124,17 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
             formContext.getControl("caps_otherfacility").setVisible(true);
         }
     }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "AFG") {
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
+    }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "Major_CC_New_Spaces" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" || 
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION_MINOR" || 
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE_MINOR") {
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
+    }
     else {
 
         var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -401,6 +412,7 @@ CAPS.ProjectTracker.DisableGridReadOnlyFields = function () {
  * @param {any} formContext the form context
  */
 CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
+    debugger;
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
     if (submissionCategoryCode === 'AFG') {
@@ -532,52 +544,49 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
                 //Major
                 if (type === 200870000) {
                     formContext.ui.tabs.get("tab_general").sections.get("sec_Initiatives").setVisible(true);
+                    formContext.ui.tabs.get("tab_general").sections.get("tab_general_cps").setVisible(true);
+                }
+                if (type !== 200870000) {
+                    formContext.ui.tabs.get("tab_general").sections.get("tab_general_cps").setVisible(false);
                 }
                 
 
                 if (categoryCode === 'Major_CC_New_Spaces' || categoryCode === 'CC_MAJOR_NEW_SPACES_INTEGRATED') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
                 }
-                else if (categoryCode === 'CC_CONVERSION') {
+                if (categoryCode === 'CC_CONVERSION') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
                 }
-                else if (categoryCode === 'CC_CONVERSION_MINOR') {
+                if (categoryCode === 'CC_CONVERSION_MINOR') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(true));
                 }
-                else if (categoryCode === 'CC_UPGRADE') {
+                if (categoryCode === 'CC_UPGRADE') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
                 }
-                else if (categoryCode === 'CC_UPGRADE_MINOR') {
+                if (categoryCode === 'CC_UPGRADE_MINOR') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_proposedschoolfacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
                 }
-                else if (categoryCode === 'AFG') {
-                    formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
-                }
+              
 
             },
             function (error) {
@@ -711,7 +720,7 @@ CAPS.ProjectTracker.ShowHideProjectClosureTab = function (executionContext) {
 Set's caps_datecashflowupdated to the current date.  Called on button click.
 */
 CAPS.ProjectTracker.SetCashflowCompletedOn = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
     let attribute = executionContext.getEventSource();
     let value = attribute.getValue();
@@ -742,7 +751,7 @@ CAPS.ProjectTracker.ShowHideClosedDateWarning = function (executionContext) {
 CAPS.ProjectTracker.ShowStatusChangeWarning = function (executionContext) {
     var formContext = executionContext.getFormContext();
     var newStatus = formContext.getAttribute("statuscode").getValue();
-    debugger;
+    
 
     //if the status was PDR Development or Approval
     if (CAPS.ProjectTracker.Status == 1 || CAPS.ProjectTracker.Status == 200870000) {
@@ -760,7 +769,7 @@ CAPS.ProjectTracker.ShowStatusChangeWarning = function (executionContext) {
                     }
                     else {
                         //revert back
-                        debugger;
+                       
                         formContext.getAttribute("statuscode").setValue(CAPS.ProjectTracker.Status);
                         formContext.data.entity.save();
                     }

@@ -793,7 +793,7 @@ export class AFGProjectsEditGrid implements ComponentFramework.StandardControl<I
 			// UNSUPPORTED
 			entity['caps_Submission@odata.bind'] = 'caps_submissions(' + (obj.contextObj.mode as any).contextInfo.entityId + ')';
 
-			obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', '?$select=caps_submissioncategoryid&$filter=caps_type eq 200870002&$top=1').then(
+			obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', '?$select=caps_submissioncategoryid&$filter=caps_categorycode eq "AFG"&$top=1').then(
 				function (response) 
 				{
 					let valid:boolean = true;
