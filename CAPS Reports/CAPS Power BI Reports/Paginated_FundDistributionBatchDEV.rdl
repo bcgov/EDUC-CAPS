@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1807.730</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-05-23T02:04:02.7994928Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-05-24T17:51:59.0243174Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -226,6 +226,7 @@ b.statuscode = 200870003</CommandText>
 SELECT 
 b.caps_paymentdescription as PaymentDescription
 ,b.caps_name as Batch
+,b.caps_invoicedescription as InvoiceDescription
 ,c.caps_name as ProjectCode
 ,c.caps_project as ProjectCodeProject
 ,c.caps_responsibilitycentre as RespCentre
@@ -260,6 +261,7 @@ AND b.caps_batchid = @Batch
 GROUP BY 
 b.caps_paymentdescription
 ,b.caps_name
+,b.caps_invoicedescription
 ,c.caps_name
 ,c.caps_project
 ,c.caps_responsibilitycentre
@@ -269,8 +271,7 @@ b.caps_paymentdescription
 ,b.caps_signedon
 --,d.caps_projectname
 ,s.edu_commonname
-,s.edu_number
-</CommandText>
+,s.edu_number</CommandText>
       </Query>
       <Fields>
         <Field Name="PaymentDescription">
@@ -280,6 +281,10 @@ b.caps_paymentdescription
         <Field Name="Batch">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>Batch</DataField>
+        </Field>
+        <Field Name="InvoiceDescription">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>InvoiceDescription</DataField>
         </Field>
         <Field Name="ProjectCode">
           <rd:TypeName>System.String</rd:TypeName>
@@ -405,12 +410,12 @@ p.caps_projectnumber
                   <Width>37.03854mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>28.96875mm</Width>
+                  <Width>38.75833mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>20.94896mm</Height>
+                  <Height>6.39688mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -423,6 +428,131 @@ p.caps_projectnumber
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!PaymentDescription.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                            </BottomBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox96">
+                          <rd:DefaultName>Textbox93</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox90">
+                          <rd:DefaultName>Textbox89</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Invoice Description</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>2</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="InvoiceDescription">
+                          <rd:DefaultName>InvoiceDescription</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!InvoiceDescription.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -546,7 +676,7 @@ p.caps_projectnumber
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Resp Centre</Value>
+                                  <Value EvaluationMode="Constant">Resp. Centre</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                   </Style>
@@ -1349,7 +1479,7 @@ p.caps_projectnumber
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>19.65189mm</Height>
+                  <Height>8.27481mm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1394,23 +1524,18 @@ p.caps_projectnumber
             <TablixColumnHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="ColumnGroup">
-                    <GroupExpressions>
-                      <GroupExpression />
-                    </GroupExpressions>
-                  </Group>
                   <TablixHeader>
-                    <Size>7.19062mm</Size>
+                    <Size>9.96875mm</Size>
                     <CellContents>
-                      <Textbox Name="Textbox89">
-                        <rd:DefaultName>Textbox89</rd:DefaultName>
+                      <Textbox Name="Textbox1">
+                        <rd:DefaultName>Textbox1</rd:DefaultName>
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Payment Description</Value>
+                                <Value EvaluationMode="Constant">Ministry of Education &amp; Child care Grant/Recovery Request</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
@@ -1436,14 +1561,102 @@ p.caps_projectnumber
                     </CellContents>
                   </TablixHeader>
                   <TablixMembers>
-                    <TablixMember />
-                    <TablixMember />
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>6mm</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox97">
+                            <rd:DefaultName>Textbox93</rd:DefaultName>
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontFamily>Arial</FontFamily>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Color>White</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <TopBorder>
+                                <Color>Black</Color>
+                              </TopBorder>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="ColumnGroup">
+                            <GroupExpressions>
+                              <GroupExpression />
+                            </GroupExpressions>
+                          </Group>
+                          <TablixHeader>
+                            <Size>7.19062mm</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox89">
+                                <rd:DefaultName>Textbox89</rd:DefaultName>
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>Payment Description</Value>
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                          <FontWeight>Bold</FontWeight>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <TablixMembers>
+                            <TablixMember />
+                            <TablixMember />
+                          </TablixMembers>
+                        </TablixMember>
+                      </TablixMembers>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -1469,10 +1682,10 @@ p.caps_projectnumber
             <PageBreak>
               <BreakLocation>End</BreakLocation>
             </PageBreak>
-            <Top>13.76389mm</Top>
+            <Top>2.51633mm</Top>
             <Left>0mm</Left>
-            <Height>143.79147mm</Height>
-            <Width>66.00729mm</Width>
+            <Height>151.83105mm</Height>
+            <Width>75.79687mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1899,42 +2112,6 @@ p.caps_projectnumber
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox166">
-            <rd:DefaultName>Textbox166</rd:DefaultName>
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value EvaluationMode="Constant">Ministry of Education &amp; Child care Grant/Recovery Request</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <Top>0.39008mm</Top>
-            <Left>0mm</Left>
-            <Height>11.9627mm</Height>
-            <Width>66.00729mm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix7">
             <TablixBody>
               <TablixColumns>
@@ -2108,7 +2285,7 @@ p.caps_projectnumber
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Constant">Total per SD</Value>
+                                  <Value EvaluationMode="Constant">Total</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2288,11 +2465,11 @@ p.caps_projectnumber
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
             <DataSetName>ProjectList</DataSetName>
-            <Top>164.11537mm</Top>
+            <Top>160.94037mm</Top>
             <Left>0mm</Left>
             <Height>18mm</Height>
             <Width>114.81979mm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2300,7 +2477,7 @@ p.caps_projectnumber
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>207.93908mm</Height>
+        <Height>178.94037mm</Height>
         <Style>
           <Border>
             <Style>None</Style>
