@@ -171,23 +171,6 @@ CAPS.Batch.DrawDate_OnChange = function (executionContext) {
     }
 }
 
-/*
-function batchNotification(formContext) {
-    var eligibleToSign = formContext.getAttribute("caps_numberofreadytosubmit");
-    var statecode = formContext.getAttribute("statecode").getValue();
-
-    if (statecode !== 0) {
-        return false;
-    }
-
-    if (!eligibleToSign || !eligibleToSign.getValue() || eligibleToSign.getValue() === 0 && statecode === 0) {
-        formContext.ui.setFormNotification("At least one draw request needs to be in Ready to Submit status to sign the batch", "WARNING", "ineligibleNotification");
-    } else {
-        formContext.ui.clearFormNotification("ineligibleNotification");
-    }
-};
-*/
-
 function batchNotification(formContext) {
     var statecode = formContext.getAttribute("statecode").getValue();
 

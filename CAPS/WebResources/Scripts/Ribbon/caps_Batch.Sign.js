@@ -10,7 +10,7 @@ CAPS.Batch.ShowSign = async function (primaryControl) {
 
     if (!batchId) {
         console.error("Batch ID could not be retrieved.");
-        return false; // Early exit if no valid batch ID
+        return false; 
     }
 
     // User settings and current user ID retrieval
