@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1807.730</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-05-24T17:51:59.0243174Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-05-25T21:27:59.6449096Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -42,6 +42,7 @@ CAST(SUBSTRING(s2.edu_number, 3, LEN(s2.edu_number)-2) AS INT) AS NoBatch_SDnumb
 ,s2.edu_commonname as NoBatch_SDName
 ,PaymentDescription
 ,Batch
+,BatchID
 ,ProjectCode
 ,ProjectCodeProject
 ,RespCentre
@@ -62,6 +63,7 @@ FROM
 SELECT 
 b.caps_paymentdescription as PaymentDescription
 ,b.caps_name as Batch
+,b.caps_batchid as BatchID
 ,c.caps_name as ProjectCode
 ,c.caps_project as ProjectCodeProject
 ,c.caps_responsibilitycentre as RespCentre
@@ -97,6 +99,7 @@ AND b.caps_batchid = @Batch
 GROUP BY 
 b.caps_paymentdescription
 ,b.caps_name
+,b.caps_batchid
 ,c.caps_name
 ,c.caps_project
 ,c.caps_responsibilitycentre
@@ -128,6 +131,10 @@ FULL OUTER JOIN edu_schooldistrict s2 on SDID = s2.edu_schooldistrictid</Command
         <Field Name="Batch">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>Batch</DataField>
+        </Field>
+        <Field Name="BatchID">
+          <rd:TypeName>System.Guid</rd:TypeName>
+          <DataField>BatchID</DataField>
         </Field>
         <Field Name="ProjectCode">
           <rd:TypeName>System.String</rd:TypeName>
@@ -226,6 +233,7 @@ b.statuscode = 200870003</CommandText>
 SELECT 
 b.caps_paymentdescription as PaymentDescription
 ,b.caps_name as Batch
+,b.caps_batchid as BatchID
 ,b.caps_invoicedescription as InvoiceDescription
 ,c.caps_name as ProjectCode
 ,c.caps_project as ProjectCodeProject
@@ -261,6 +269,7 @@ AND b.caps_batchid = @Batch
 GROUP BY 
 b.caps_paymentdescription
 ,b.caps_name
+,b.caps_batchid
 ,b.caps_invoicedescription
 ,c.caps_name
 ,c.caps_project
@@ -281,6 +290,10 @@ b.caps_paymentdescription
         <Field Name="Batch">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>Batch</DataField>
+        </Field>
+        <Field Name="BatchID">
+          <rd:TypeName>System.Guid</rd:TypeName>
+          <DataField>BatchID</DataField>
         </Field>
         <Field Name="InvoiceDescription">
           <rd:TypeName>System.String</rd:TypeName>
@@ -410,7 +423,7 @@ p.caps_projectnumber
                   <Width>37.03854mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>38.75833mm</Width>
+                  <Width>44.05mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -443,6 +456,7 @@ p.caps_projectnumber
                             <BottomBorder>
                               <Color>Black</Color>
                             </BottomBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -568,6 +582,7 @@ p.caps_projectnumber
                             <BottomBorder>
                               <Color>Black</Color>
                             </BottomBorder>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -651,6 +666,7 @@ p.caps_projectnumber
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -682,13 +698,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -752,13 +771,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -822,13 +844,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -892,13 +917,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -962,13 +990,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -997,7 +1028,7 @@ p.caps_projectnumber
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1088,6 +1119,7 @@ p.caps_projectnumber
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1119,13 +1151,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1151,7 +1186,7 @@ p.caps_projectnumber
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1189,13 +1224,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1221,13 +1259,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1309,6 +1350,7 @@ p.caps_projectnumber
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1326,6 +1368,7 @@ p.caps_projectnumber
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <rd:Selected>true</rd:Selected>
                         <Textbox Name="Textbox189">
                           <rd:DefaultName>Textbox189</rd:DefaultName>
                           <CanGrow>true</CanGrow>
@@ -1340,13 +1383,16 @@ p.caps_projectnumber
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1466,6 +1512,7 @@ p.caps_projectnumber
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1507,6 +1554,7 @@ p.caps_projectnumber
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1600,11 +1648,6 @@ p.caps_projectnumber
                       </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="ColumnGroup">
-                            <GroupExpressions>
-                              <GroupExpression />
-                            </GroupExpressions>
-                          </Group>
                           <TablixHeader>
                             <Size>7.19062mm</Size>
                             <CellContents>
@@ -1684,8 +1727,8 @@ p.caps_projectnumber
             </PageBreak>
             <Top>2.51633mm</Top>
             <Left>0mm</Left>
-            <Height>151.83105mm</Height>
-            <Width>75.79687mm</Width>
+            <Height>151.83106mm</Height>
+            <Width>81.08854mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
