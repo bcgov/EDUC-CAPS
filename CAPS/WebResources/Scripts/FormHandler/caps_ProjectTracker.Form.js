@@ -643,14 +643,14 @@ CAPS.ProjectTracker.ShowBudgetMissmatch = function (executionContext) {
     if (formContext.getAttribute('caps_showprogressreports').getValue()) {
 
         if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
-            formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'INFO', MAX_BUDGET_NOTIFICATION);
+            formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'ERROR', MAX_BUDGET_NOTIFICATION);
         }
         else {
             formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
         }
 
         if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
-            formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'INFO', PROVINCIAL_BUDGET_NOTIFICATION);
+            formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'ERROR', PROVINCIAL_BUDGET_NOTIFICATION);
         }
         else {
             formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
@@ -684,7 +684,7 @@ CAPS.ProjectTracker.ShowStaleDates = function (executionContext) {
     Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", "?fetchXml=" + fetchXML).then(
                   function success(result) {
                       if (result.entities.length > 0) {
-                          formContext.ui.setFormNotification('One or more project milestone dates requires updating.', 'INFO', STALE_DATES_NOTIFICATION);
+                          formContext.ui.setFormNotification('One or more project milestone dates requires updating.', 'ERROR', STALE_DATES_NOTIFICATION);
                     
                       }
                       else {
