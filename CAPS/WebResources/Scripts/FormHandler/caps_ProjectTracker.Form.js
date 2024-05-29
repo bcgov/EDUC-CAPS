@@ -229,7 +229,7 @@ CAPS.ProjectTracker.ValidateKindergartenDesignCapacity = function (executionCont
             return result.json().then(
                 function (response) {
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'KINDERGARTEN DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'ERROR', 'KINDERGARTEN DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('KINDERGARTEN DESIGN WARNING');
@@ -260,7 +260,7 @@ CAPS.ProjectTracker.ValidateElementaryDesignCapacity = function (executionContex
             return result.json().then(
                 function (response) {
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'ELEMENTARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'ERROR', 'ELEMENTARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('ELEMENTARY DESIGN WARNING');
@@ -291,7 +291,7 @@ CAPS.ProjectTracker.ValidateSecondaryDesignCapacity = function (executionContext
             return result.json().then(
                 function (response) {
                     if (!response.IsValid) {
-                        formContext.ui.setFormNotification(response.ValidationMessage, 'INFO', 'SECONDARY DESIGN WARNING');
+                        formContext.ui.setFormNotification(response.ValidationMessage, 'ERROR', 'SECONDARY DESIGN WARNING');
                     }
                     else {
                         formContext.ui.clearFormNotification('SECONDARY DESIGN WARNING');
@@ -740,7 +740,7 @@ CAPS.ProjectTracker.ShowHideClosedDateWarning = function (executionContext) {
     var formContext = executionContext.getFormContext();
 
     if (formContext.getAttribute("statecode").getValue() == 0 && formContext.getAttribute("caps_dateprojectclosed").getValue() !== null) {
-        formContext.ui.setFormNotification('The project has a complete/cancelled date but is not completed or cancelled. Either clear the field or complete/cancel the project.', 'INFO', CLOSED_DATE_NOTIFICATION);
+        formContext.ui.setFormNotification('The project has a complete/cancelled date but is not completed or cancelled. Either clear the field or complete/cancel the project.', 'ERROR', CLOSED_DATE_NOTIFICATION);
     }
     else {
         formContext.ui.clearFormNotification(CLOSED_DATE_NOTIFICATION);
