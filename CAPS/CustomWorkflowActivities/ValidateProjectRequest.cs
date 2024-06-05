@@ -300,7 +300,7 @@ namespace CustomWorkflowActivities
                 if (anticipatedOccupancyYear.edu_StartYear < anticipatedStartYear.edu_StartYear)
                 {
                     isValid = false;
-                    validationMessage.AppendLine("Anticipated Occupancy Year should be equal or After Anticipated Project Start Year.");
+                    validationMessage.AppendLine("Occupancy Year should be equal or After Project Start Year.");
                 }
 
             }
