@@ -78,6 +78,7 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
 
     CAPS.ProjectTracker.ShowHideTabs(executionContext);
     formContext.getAttribute("caps_submissioncategory").addOnChange(CAPS.ProjectTracker.ShowHideTabs);
+
 }
 
 /**
@@ -638,10 +639,16 @@ CAPS.ProjectTracker.ShowHideTabs = function (executionContext) {
             function success(result) {
                 var isChildCare = result.caps_ischildcare;
                 if (isChildCare) {
+                    // Show CC tab, Draw Requests tab and hide Certificates of Approval tab when CC
                     formContext.ui.tabs.get("tab_child_care").setVisible(true);
+                    formContext.ui.tabs.get("tab_drawrequests").setVisible(true);
+                    formContext.ui.tabs.get("tab_certificatesofapproval").setVisible(false);
                 }
                 else {
+                    // Hide CC tab, Draw Requests tab and show Certificates of Approval tab when K-12
                     formContext.ui.tabs.get("tab_child_care").setVisible(false);
+                    formContext.ui.tabs.get("tab_drawrequests").setVisible(false);
+                    formContext.ui.tabs.get("tab_certificatesofapproval").setVisible(true);
                 }
 
             },
@@ -854,4 +861,3 @@ CAPS.ProjectTracker.GetLookup = function (fieldName, formContext) {
 CAPS.ProjectTracker.RemoveCurlyBraces = function (str) {
     return str.replace(/[{}]/g, "");
 };
-

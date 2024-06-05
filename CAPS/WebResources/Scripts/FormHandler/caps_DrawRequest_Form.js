@@ -14,6 +14,10 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
     var fiscalYear = formContext.getAttribute("caps_fiscalyear");
     var drawDate = formContext.getAttribute("caps_drawdate");
     var processDate = formContext.getAttribute("caps_processdate");
+    var projectCodeControl = formContext.getControl("caps_projectcode");
+    var fiscalYearControl = formContext.getControl("caps_fiscalyear");
+    var drawDateControl = formContext.getControl("caps_drawdate");
+    var processDateControl = formContext.getControl("caps_processdate");
     var batchLookup = formContext.getAttribute("caps_batch");
 
     batchNotification(formContext);
@@ -59,6 +63,10 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
             processDate.setValue(null);
             fiscalYear.setValue(null);
             projectCode.setValue(null);
+            drawDateControl.setVisible(false);
+            processDateControl.setVisible(false);
+            fiscalYearControl.setVisible(false);
+            projectCodeControl.setVisible(false);
             return;
         }
 
@@ -86,6 +94,12 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
         Xrm.WebApi.retrieveMultipleRecords("caps_batch", "?fetchXml=" + encodedFetchXml).then(
             function (result) {
                 if (result.entities.length > 0) {
+
+                    drawDateControl.setVisible(true);
+                    processDateControl.setVisible(true);
+                    fiscalYearControl.setVisible(true);
+                    projectCodeControl.setVisible(true);
+
                     var batchRecord = result.entities[0];
 
                     var drawDateValue = batchRecord['caps_drawdate'] ? parseDate(batchRecord['caps_drawdate']) : null;
@@ -116,6 +130,10 @@ CAPS.DrawRequest.form_onload = function (executionContext) {
                     processDate.setValue(null);
                     fiscalYear.setValue(null);
                     projectCode.setValue(null);
+                    drawDateControl.setVisible(false);
+                    processDateControl.setVisible(false);
+                    fiscalYearControl.setVisible(false);
+                    projectCodeControl.setVisible(false);
                 }
             },
             function (error) {
