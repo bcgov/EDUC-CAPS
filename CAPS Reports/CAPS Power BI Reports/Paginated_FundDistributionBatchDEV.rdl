@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1807.730</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-05-25T21:27:59.6449096Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-06-06T17:06:42.2044251Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -75,25 +75,40 @@ b.caps_paymentdescription as PaymentDescription
 ,s.edu_commonname as SDName
 ,s.edu_schooldistrictid as SDID
 ,s.edu_number as SDNumber
-,sum(a.caps_amount) as Amount
+,
+SUM(
+	CASE 
+		WHEN b.statuscode = 200870004 THEN d.caps_amount
+		ELSE a.caps_amount
+	END) as Amount
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
-,CONCAT(
-        CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT), 
+,    CONCAT(
+        CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number) - 2) AS INT), 
         ',', 
-        CAST(sum(a.caps_amount) AS INT)
-    ) AS CDS
-,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY s.edu_number) AS TotalPerSDNumber
-,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
-FROM caps_actualdraw a
-JOIN caps_drawrequest d on a.caps_originatingdrawrequest = d.caps_drawrequestid
+        CAST(SUM(CASE 
+                    WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                    ELSE a.caps_amount 
+                 END) AS INT)
+    ) AS CDS,
+    SUM(SUM(CASE 
+                WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                ELSE a.caps_amount 
+            END)) OVER (PARTITION BY s.edu_number) AS TotalPerSDNumber,
+    SUM(SUM(CASE 
+                WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                ELSE a.caps_amount 
+            END)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
+
+FROM caps_drawrequest d
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
 JOIN edu_schooldistrict s on p.caps_schooldistrict = s.edu_schooldistrictid
 
 WHERE 
-d.statuscode = 200870003 AND
-b.statuscode = 200870003 
+d.statuscode not in (200870002,1) AND -- exclude draft and cancelled
+b.statuscode not in (200870001,1) -- exclude active and cancelled
 AND b.caps_batchid = @Batch
 
 GROUP BY 
@@ -201,13 +216,20 @@ FULL OUTER JOIN edu_schooldistrict s2 on SDID = s2.edu_schooldistrictid</Command
     <DataSet Name="BatchParameter">
       <Query>
         <DataSourceName>CAPSDev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Status">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!Status.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
         <CommandText>/*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
 SELECT 
 b.caps_name as Batch
 ,b.caps_batchid as BatchID
 FROM caps_batch b
 WHERE 
-b.statuscode = 200870003</CommandText>
+b.statuscode not in (200870001,1)
+AND b.statuscode in (@Status)</CommandText>
       </Query>
       <Fields>
         <Field Name="Batch">
@@ -245,25 +267,42 @@ b.caps_paymentdescription as PaymentDescription
 --,d.caps_projectname as Project
 ,s.edu_commonname as SDName
 ,s.edu_number as SDNumber
-,sum(a.caps_amount) as Amount
+,FORMAT(b.caps_actualsubmissiondate, 'yyyy-MM-dd') AS ActualSubmissionDate
+
+,b.statuscodename as StatusReason
+,CONCAT('Batch Name: ', b.caps_name, CHAR(10), CHAR(10), 'Actual Submission Date: ', CAST(b.caps_actualsubmissiondate AS DATE)) AS BatchInfo
+,SUM(
+	CASE 
+		WHEN b.statuscode = 200870004 THEN d.caps_amount
+		ELSE a.caps_amount
+	END) as Amount
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
-,CONCAT(
-        CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT), 
+,    CONCAT(
+        CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number) - 2) AS INT), 
         ',', 
-        CAST(sum(a.caps_amount) AS INT)
-    ) AS CDS
-,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY s.edu_number) AS TotalPerSDNumber
-,    SUM(SUM(a.caps_amount)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
-FROM caps_actualdraw a
-JOIN caps_drawrequest d on a.caps_originatingdrawrequest = d.caps_drawrequestid
+        CAST(SUM(CASE 
+                    WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                    ELSE a.caps_amount 
+                 END) AS INT)
+    ) AS CDS,
+    SUM(SUM(CASE 
+                WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                ELSE a.caps_amount 
+            END)) OVER (PARTITION BY s.edu_number) AS TotalPerSDNumber,
+    SUM(SUM(CASE 
+                WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
+                ELSE a.caps_amount 
+            END)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
+FROM caps_drawrequest d
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
 JOIN edu_schooldistrict s on p.caps_schooldistrict = s.edu_schooldistrictid
 
 WHERE 
-d.statuscode = 200870003 AND
-b.statuscode = 200870003 
+d.statuscode not in (200870002,1) AND -- exclude draft and cancelled
+b.statuscode not in (200870001,1) -- exclude active and cancelled
 AND b.caps_batchid = @Batch
 
 GROUP BY 
@@ -280,7 +319,9 @@ b.caps_paymentdescription
 ,b.caps_signedon
 --,d.caps_projectname
 ,s.edu_commonname
-,s.edu_number</CommandText>
+,s.edu_number
+,b.caps_actualsubmissiondate
+,b.statuscodename</CommandText>
       </Query>
       <Fields>
         <Field Name="PaymentDescription">
@@ -335,6 +376,18 @@ b.caps_paymentdescription
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>SDNumber</DataField>
         </Field>
+        <Field Name="ActualSubmissionDate">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>ActualSubmissionDate</DataField>
+        </Field>
+        <Field Name="BatchInfo">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>BatchInfo</DataField>
+        </Field>
+        <Field Name="StatusReason">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>StatusReason</DataField>
+        </Field>
         <Field Name="Amount">
           <rd:TypeName>System.Decimal</rd:TypeName>
           <DataField>Amount</DataField>
@@ -370,27 +423,29 @@ b.caps_paymentdescription
 SELECT 
 p.caps_projectnumber as ProjectNumber
 ,s.edu_commonname as SDName
-,sum(a.caps_amount) as Amount
+,SUM(
+	CASE 
+		WHEN b.statuscode = 200870004 THEN d.caps_amount
+		ELSE a.caps_amount
+	END) as Amount
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
 
-FROM caps_actualdraw a
-JOIN caps_drawrequest d on a.caps_originatingdrawrequest = d.caps_drawrequestid
+FROM caps_drawrequest d
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
 JOIN edu_schooldistrict s on p.caps_schooldistrict = s.edu_schooldistrictid
 
 WHERE 
-d.statuscode = 200870003 AND
-b.statuscode = 200870003 AND 
-a.statuscodename = 'Approved' 
+d.statuscode not in (200870002,1) AND -- exclude draft and cancelled
+b.statuscode not in (200870001,1)  -- exclude active and cancelled
 AND d.caps_batch = @Batch
 
 GROUP BY 
 p.caps_projectnumber
 ,s.edu_commonname
-,s.edu_number
-</CommandText>
+,s.edu_number</CommandText>
       </Query>
       <Fields>
         <Field Name="ProjectNumber">
@@ -411,6 +466,33 @@ p.caps_projectnumber
         </Field>
       </Fields>
     </DataSet>
+    <DataSet Name="BatchStatusParameter">
+      <Query>
+        <DataSourceName>CAPSDev</DataSourceName>
+        <CommandText>/*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
+SELECT 
+	b.statuscodename as StatusReasons
+	,b.statuscode as StatusReasonIDs
+FROM caps_batch b
+WHERE 
+	b.statuscode not in (200870001,1)
+GROUP BY
+	b.statuscodename
+	,b.statuscode
+ORDER BY
+	b.statuscodename asc</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="StatusReasons">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>StatusReasons</DataField>
+        </Field>
+        <Field Name="StatusReasonIDs">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>StatusReasonIDs</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -420,10 +502,10 @@ p.caps_projectnumber
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>37.03854mm</Width>
+                  <Width>36.24479mm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>44.05mm</Width>
+                  <Width>42.72708mm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -443,6 +525,7 @@ p.caps_projectnumber
                                   <Value>=Fields!PaymentDescription.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -485,6 +568,7 @@ p.caps_projectnumber
                                   <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -527,6 +611,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Invoice Description</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -569,6 +654,7 @@ p.caps_projectnumber
                                   <Value>=Fields!InvoiceDescription.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -611,6 +697,7 @@ p.caps_projectnumber
                                   <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -653,6 +740,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Account Coding</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -695,6 +783,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Resp. Centre</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -729,6 +818,7 @@ p.caps_projectnumber
                                   <Value>=Fields!RespCentre.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -768,6 +858,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Service Line</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -802,6 +893,7 @@ p.caps_projectnumber
                                   <Value>=Fields!ServiceLine.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -841,6 +933,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">STOB</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -875,6 +968,7 @@ p.caps_projectnumber
                                   <Value>=Fields!Stob.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -914,6 +1008,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">PROJECT</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -948,6 +1043,7 @@ p.caps_projectnumber
                                   <Value>=Fields!ProjectCodeProject.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -987,6 +1083,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Total Payment</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1021,6 +1118,7 @@ p.caps_projectnumber
                                   <Value>=fields!TotalPerBatch.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>0;(0)</Format>
                                     <Color>#006100</Color>
@@ -1064,6 +1162,7 @@ p.caps_projectnumber
                                   <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1106,6 +1205,7 @@ p.caps_projectnumber
                                   <Value>Expense Authority</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1148,6 +1248,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Name</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1182,6 +1283,7 @@ p.caps_projectnumber
                                   <Value>=Fields!ExpenseAuthority.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1221,6 +1323,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Approval Date</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1255,6 +1358,7 @@ p.caps_projectnumber
                                   <Value>=Fields!SignedOn.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <Format>yyyy-MM-dd</Format>
                                   </Style>
                                 </TextRun>
@@ -1295,6 +1399,7 @@ p.caps_projectnumber
                                   <Value />
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1337,6 +1442,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">VALIDATION</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1368,7 +1474,6 @@ p.caps_projectnumber
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <rd:Selected>true</rd:Selected>
                         <Textbox Name="Textbox189">
                           <rd:DefaultName>Textbox189</rd:DefaultName>
                           <CanGrow>true</CanGrow>
@@ -1380,6 +1485,7 @@ p.caps_projectnumber
                                   <Value EvaluationMode="Constant">Provincial Totals</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1414,6 +1520,7 @@ p.caps_projectnumber
                                   <Value>=Fields!TotalPerBatch.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>#,0.00;(#,0.00)</Format>
                                     <Color>#006100</Color>
@@ -1496,9 +1603,10 @@ p.caps_projectnumber
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Constant">Additional Notes</Value>
+                                  <Value EvaluationMode="Constant">Batch Info</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1530,18 +1638,19 @@ p.caps_projectnumber
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox200">
-                          <rd:DefaultName>Textbox200</rd:DefaultName>
+                        <Textbox Name="BatchInfo2">
+                          <rd:DefaultName>BatchInfo</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value EvaluationMode="Constant">Name</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1561,10 +1670,199 @@ p.caps_projectnumber
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Batch">
+                          <rd:DefaultName>Batch</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Batch.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="BatchInfo3">
+                          <rd:DefaultName>BatchInfo</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Actual Submission Date</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ActualSubmissionDate">
+                          <rd:DefaultName>ActualSubmissionDate</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ActualSubmissionDate.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <Format>d</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="BatchInfo4">
+                          <rd:DefaultName>BatchInfo</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Status</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="StatusReason">
+                          <rd:DefaultName>StatusReason</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!StatusReason.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
               </TablixRows>
@@ -1662,6 +1960,7 @@ p.caps_projectnumber
                                         <Value>Payment Description</Value>
                                         <Style>
                                           <FontFamily>Arial</FontFamily>
+                                          <FontSize>8pt</FontSize>
                                           <FontWeight>Bold</FontWeight>
                                         </Style>
                                       </TextRun>
@@ -1718,6 +2017,8 @@ p.caps_projectnumber
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
@@ -1727,8 +2028,8 @@ p.caps_projectnumber
             </PageBreak>
             <Top>2.51633mm</Top>
             <Left>0mm</Left>
-            <Height>151.83106mm</Height>
-            <Width>81.08854mm</Width>
+            <Height>163.83106mm</Height>
+            <Width>78.97187mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2508,7 +2809,7 @@ p.caps_projectnumber
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
             <DataSetName>ProjectList</DataSetName>
-            <Top>160.94037mm</Top>
+            <Top>173.64037mm</Top>
             <Left>0mm</Left>
             <Height>18mm</Height>
             <Width>114.81979mm</Width>
@@ -2520,7 +2821,7 @@ p.caps_projectnumber
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>178.94037mm</Height>
+        <Height>191.64037mm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2551,6 +2852,22 @@ p.caps_projectnumber
     </ReportSection>
   </ReportSections>
   <ReportParameters>
+    <ReportParameter Name="Status">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Status</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>BatchStatusParameter</DataSetName>
+          <ValueField>StatusReasonIDs</ValueField>
+          <LabelField>StatusReasons</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
+    </ReportParameter>
     <ReportParameter Name="Batch">
       <DataType>String</DataType>
       <Prompt>Batch</Prompt>
@@ -2572,9 +2889,14 @@ p.caps_projectnumber
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
+          <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>Batch</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>Status</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
