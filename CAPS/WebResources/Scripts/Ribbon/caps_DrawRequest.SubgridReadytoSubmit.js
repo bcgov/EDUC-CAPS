@@ -375,6 +375,7 @@ CAPS.DrawRequest.SubgridSetBacktoDraft = function (selectedControl, selectedReco
     );
 };
 
+/*
 // Function to trigger the action "Draw Request: Cancel Request"
 CAPS.DrawRequest.SubgridCancelRequest = function (selectedControl, selectedRecordIds) {
     let confirmStrings = { text: "This will cancel the draw request(s). Click OK to continue or Cancel to exit.", title: "Submit Confirmation" };
@@ -433,6 +434,7 @@ CAPS.DrawRequest.SubgridCancelRequest = function (selectedControl, selectedRecor
         }
     );
 };
+*/
 
 function forceSaveBatchRecord() {
     var formContext = Xrm.Page;
