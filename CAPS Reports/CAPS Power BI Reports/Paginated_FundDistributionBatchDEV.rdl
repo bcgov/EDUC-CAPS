@@ -11,12 +11,12 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1807.730</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-06-21T05:59:34.0357310Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-06-25T21:32:43.2484271Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="CAPSDev">
+    <DataSource Name="CAPS">
       <rd:SecurityType>DataBase</rd:SecurityType>
       <ConnectionProperties>
         <DataProvider>DATAVERSE</DataProvider>
@@ -29,7 +29,7 @@
   <DataSets>
     <DataSet Name="Batch">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Batch">
             <rd:UserDefined>true</rd:UserDefined>
@@ -215,7 +215,7 @@ FULL OUTER JOIN edu_schooldistrict s2 on SDID = s2.edu_schooldistrictid</Command
     </DataSet>
     <DataSet Name="BatchParameter">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Status">
             <rd:UserDefined>true</rd:UserDefined>
@@ -244,7 +244,7 @@ AND b.statuscode in (@Status)</CommandText>
     </DataSet>
     <DataSet Name="BatchInformation">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Batch">
             <rd:UserDefined>true</rd:UserDefined>
@@ -418,7 +418,7 @@ b.caps_paymentdescription
     </DataSet>
     <DataSet Name="ProjectList">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@Batch">
             <rd:UserDefined>true</rd:UserDefined>
@@ -474,7 +474,7 @@ p.caps_projectnumber
     </DataSet>
     <DataSet Name="BatchStatusParameter">
       <Query>
-        <DataSourceName>CAPSDev</DataSourceName>
+        <DataSourceName>CAPS</DataSourceName>
         <CommandText>/*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
 SELECT 
 	b.statuscodename as StatusReasons
@@ -1999,7 +1999,7 @@ ORDER BY
             <DataSetName>BatchInformation</DataSetName>
             <Top>0mm</Top>
             <Left>0mm</Left>
-            <Height>193.46439mm</Height>
+            <Height>193.46438mm</Height>
             <Width>65.74271mm</Width>
             <Style>
               <Border>
@@ -2419,7 +2419,7 @@ ORDER BY
             <Top>0mm</Top>
             <Left>70.15243mm</Left>
             <Height>12mm</Height>
-            <Width>137.87967mm</Width>
+            <Width>137.87966mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
