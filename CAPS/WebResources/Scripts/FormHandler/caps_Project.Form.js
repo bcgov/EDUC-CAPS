@@ -132,10 +132,10 @@ CAPS.Project.onLoad = function (executionContext) {
     }
 
     //Hide Ministry Review Status of Planned if not allowed
-    if (formContext.getAttribute("caps_submissioncategoryallowplannedstatus").getValue() !== true) {
-        //remove planned (2008700000)
-        formContext.getControl("caps_ministryassessmentstatus").removeOption(200870000);
-    }
+    //if (formContext.getAttribute("caps_submissioncategoryallowplannedstatus").getValue() !== true) {
+    //    //remove planned (2008700000)
+    //    formContext.getControl("caps_ministryassessmentstatus").removeOption(200870000);
+    //}
 
     //Hide Funding Awarded if not Minor
     if (submissionCategoryCode == "ADDITION" || submissionCategoryCode == "DEMOLITION" || submissionCategoryCode == "NEW_SCHOOL" ||
@@ -253,7 +253,7 @@ CAPS.Project.onLoad = function (executionContext) {
     formContext.getAttribute("caps_changeindesigncapacitysecondary").addOnChange(CAPS.Project.ValidateSecondaryDesignCapacity);
 
     //Remove Previously Planned as an option from Ministry Review Status field
-    formContext.getControl("caps_ministryassessmentstatus").removeOption(200870001);
+    //formContext.getControl("caps_ministryassessmentstatus").removeOption(200870001);
 
 }
 
@@ -1820,7 +1820,7 @@ CAPS.Project.HideTotalChildCareSpace = function (executionContext) {
     }
 }
 CAPS.Project.preFilterProjectGroupLookup = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
     if (formContext.getControl("caps_projectcollection") === null)
         return;
@@ -1833,6 +1833,8 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
     var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
     var submission = CAPS.Project.GetLookup("caps_submission", formContext);
     var proposedSchoolFacility = formContext.getAttribute("caps_proposedfacility").getValue();
+    
+   
     var proposedSite = formContext.getAttribute("caps_proposedsite").getValue();
 
     if (schoolFacility !== undefined && schoolFacility.id !== null) {
@@ -1840,8 +1842,10 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
     else if (proposedSchoolFacility !== null) {
-        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSchoolFacility + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
+        var formattedProposedSchoolFacility = proposedSchoolFacility.replace(/[^a-zA-Z ]/g, "%27");
+        let fetchXml = "<filter type='and'><condition attribute='caps_formattedproposedschoolfacility' operator='eq' value='" + formattedProposedSchoolFacility + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
+      
     }
     else if (proposedSite !== null) {
         let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSite + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";

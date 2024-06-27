@@ -26,6 +26,8 @@ CAPS.Submission.onLoad = function (executionContext) {
 
     formContext.getAttribute("caps_boardresolution").addOnChange(CAPS.Submission.FlagBoardResolutionAsUploaded);
 
+    CAPS.Submission.checkSupportingDocuments(executionContext);
+
     if (status === SUBMISSION_STAUS.DRAFT || status === SUBMISSION_STAUS.ACCEPTED) {
         //hide report tab
         formContext.ui.tabs.get("tab_capitalplan").setVisible(false);
@@ -121,63 +123,44 @@ CAPS.Submission.onLoad = function (executionContext) {
 
 //onLoad validate the related capital plan supporting documents files//
 CAPS.Submission.checkSupportingDocuments = function (executionContext) {
+    debugger;
     var formContext = executionContext.getFormContext();
+    var addSupportingDocuments = CAPS.Submission.GetLookup("caps_supportingdocuments", formContext);
+    var submissionType = formContext.getAttribute("caps_submissiontype").getValue();
+    //No Expenditure Plans
+    if (submissionType !== "200870001") {
+        if (addSupportingDocuments !== undefined && formContext.getAttribute("statuscode").getValue() === 200870000) {
+            formContext.ui.clearFormNotification("MissingSupportingDocumentsError");
+            var addSupportingDocumentsID = CAPS.Submission.RemoveCurlyBraces(addSupportingDocuments.id);
+            var options = "?$select=caps_capitalplanresponseletter,caps_capitalbylaw,caps_childcaredeclaration,caps_name";
+            Xrm.WebApi.retrieveRecord("caps_capitalplansupportingdocuments", addSupportingDocumentsID, options).then(
+                function success(result) {
+                    debugger;
+                    var supportingDocumentName = result.caps_name;
+                    var capitalPlanResponseLetter = result.caps_capitalplanresponseletter;
+                    var capitalBylaw = result.caps_capitalbylaw;
+                    var childCareDeclaration = result.caps_childcaredeclaration;
+                    //var capitalPlanSupportingDocumentName = result.caps_name;
+                    if (capitalPlanResponseLetter === null || capitalBylaw === null || childCareDeclaration === null) {
+                        formContext.ui.setFormNotification("At least one of the supporting documents is missing. Please click the supporting documents record \"" + supportingDocumentName + "\" to upload necessary files in the Submission tab below.", "WARNING", "MissingSupportingDocumentsBanner");
+                    }
+                    else {
+                        formContext.ui.clearFormNotification("MissingSupportingDocumentsBanner");
+                    }
 
-    var tab = formContext.ui.tabs.get("tab_capitalplan");
-    var section = tab.sections.get("tab_capitalplan_section_boardresolution");
-
-    if (!tab.getVisible() || !section.getVisible()) {
-        return;  //exit the function if the tab and section is not visible because the documents won't be applicable.
-    }
-
-    var recordId = formContext.data.entity.getId();
-
-    if (!recordId) {
-        console.error("No record ID available.");
-        return;
-    }
-    recordId = recordId.replace(/[{}]/g, "");
-
-    var entityName = "caps_capitalplansupportingdocuments";
-    var queryFileFields = "?$select=caps_capitalplanresponseletter,caps_capitalbylaw,caps_childcaredeclaration,caps_name&$filter=_caps_capitalplan_value eq '" + recordId + "'";
-    //used OData Filter to reference file fields. FetchXML does not support querying file columns.
-
-    Xrm.WebApi.retrieveMultipleRecords(entityName, queryFileFields).then(function (result) {
-        var allDocumentsPresent = true;
-        var recordName = "";
-
-        if (result.entities.length > 0) {
-            for (var i = 0; i < result.entities.length; i++) {
-                var doc = result.entities[i];
-                recordName = doc["caps_name"]; //Name of Capital Plan Supporting Documents lookup value
-
-                //All file columns must have documents
-                if (!doc["caps_capitalplanresponseletter"] || !doc["caps_capitalbylaw"] || !doc["caps_childcaredeclaration"]) {
-                    allDocumentsPresent = false;
-                    break;
+                },
+                function (error) {
+                    console.log(error.message);
                 }
-            }
-
-            if (!allDocumentsPresent) {
-                formContext.ui.setFormNotification("At least one of the supporting documents is missing. Please click the supporting documents record \"" + recordName + "\" to upload necessary files in the Submission tab below.", "WARNING", "MissingSupportingDocumentsBanner");
-            } else {
-                CAPS.Submission.hideBanner(formContext);
-            }
-        } else {
+            );
+        }
+        else if (formContext.getAttribute("statuscode").getValue() !== 200870000) { // Do not show the notification if submission status is not Results Released
+            formContext.ui.clearFormNotification("MissingSupportingDocumentsBanner");
+        }
+        else if (addSupportingDocuments === undefined && formContext.getAttribute("statuscode").getValue() === 200870000) {
             formContext.ui.setFormNotification("No related capital plan supporting documents record found.", "ERROR", "MissingSupportingDocumentsError");
         }
-    }).catch(function (error) {
-        console.error("Error: " + error.message);
-        formContext.ui.setFormNotification("An error occurred while checking the supporting documents: " + error.message, "ERROR", "SupportingDocumentsCheckError");
-    });
-};
-
-//HideBanner and form notifications function to be called in checkSupportingDocuments
-CAPS.Submission.hideBanner = function (formContext) {
-
-    formContext.ui.clearFormNotification("MissingSupportingDocumentsBanner");
-    formContext.ui.clearFormNotification("MissingSupportingDocumentsError");
-    formContext.ui.clearFormNotification("SupportingDocumentsCheckError");
+    }
 };
 
 /**
@@ -186,7 +169,7 @@ CAPS.Submission.hideBanner = function (formContext) {
  */
 CAPS.Submission.embedCapitalPlanReport = function (executionContext) {
     var formContext = executionContext.getFormContext();
-    debugger;
+   
     var requestUrl = "/api/data/v9.1/EntityDefinitions?$filter=LogicalName eq 'caps_submission'&$select=ObjectTypeCode";
 
     var globalContext = Xrm.Utility.getGlobalContext();
@@ -201,7 +184,7 @@ CAPS.Submission.embedCapitalPlanReport = function (executionContext) {
         if (this.readyState === 4) {
             req.onreadystatechange = null;
             if (this.status === 200) {
-                debugger;
+               
                 var result = JSON.parse(this.response);
                 var objectTypeCode = result.value[0].ObjectTypeCode;
                 //use retrieved objectTypeCode
@@ -280,4 +263,22 @@ CAPS.Submission.FlagBoardResolutionAsUploaded = function (executionContext) {
     else {
         formContext.getAttribute("caps_boardofresolutionattached").setValue(false);
     }
+}
+
+CAPS.Submission.GetLookup = function (fieldName, formContext) {
+    var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
+    if (lookupFieldObject !== null && lookupFieldObject.getValue() !== null && lookupFieldObject.getValue()[0] !== null) {
+        var entityId = lookupFieldObject.getValue()[0].id;
+        var entityName = lookupFieldObject.getValue()[0].entityType;
+        var entityLabel = lookupFieldObject.getValue()[0].name;
+        var obj = {
+            id: entityId,
+            type: entityName,
+            value: entityLabel
+        };
+        return obj;
+    }
+}
+CAPS.Submission.RemoveCurlyBraces = function (str) {
+    return str.replace(/[{}]/g, "");
 }

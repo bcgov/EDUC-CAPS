@@ -79,6 +79,9 @@ CAPS.ProjectTracker.onLoad = function (executionContext) {
     CAPS.ProjectTracker.ShowHideTabs(executionContext);
     formContext.getAttribute("caps_submissioncategory").addOnChange(CAPS.ProjectTracker.ShowHideTabs);
 
+    CAPS.ProjectTracker.LockFields(executionContext);
+    formContext.getAttribute("caps_childcarefacility").addOnChange(CAPS.ProjectTracker.LockFields);
+
 }
 
 /**
@@ -843,7 +846,17 @@ CAPS.ProjectTracker.ValidateBudgetPressureAndSavings = function (executionContex
         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
     }
 }
-
+CAPS.ProjectTracker.LockFields = function (executionContext) {
+    var formContext = executionContext.getFormContext();
+    var childCareFacility = CAPS.ProjectTracker.GetLookup("caps_childcarefacility", formContext);
+    if (childCareFacility !== undefined) {
+        formContext.getControl("caps_proposedchildcarefacility").setDisabled(true);
+    }
+    else if (childCareFacility === undefined) {
+        formContext.getControl("caps_proposedchildcarefacility").setDisabled(false);
+    }
+    
+}
 CAPS.ProjectTracker.GetLookup = function (fieldName, formContext) {
     var lookupFieldObject = formContext.data.entity.attributes.get(fieldName);
     if (lookupFieldObject !== null && lookupFieldObject.getValue() !== null && lookupFieldObject.getValue()[0] !== null) {

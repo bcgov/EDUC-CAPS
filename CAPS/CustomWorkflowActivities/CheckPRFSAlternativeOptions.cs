@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 namespace CustomWorkflowActivities
 {
     /// <summary>
@@ -80,8 +81,11 @@ namespace CustomWorkflowActivities
                                          "<attribute name = \"createdon\" /> "+
                                           "<order attribute = \"caps_name\" descending = \"false\" /> "+
                                             "<filter type = \"and\" > "+
-                                                "<condition attribute = 'statecode' operator= 'eq' value = '0' />" +
-                                                "<condition attribute = \"caps_projectrequest\" operator= \"eq\" value = \"{" +recordId+"}\" /> "+
+                                                "<condition attribute = \"statuscode\" operator= \"in\" >" +
+                                                    "<value>1</value>" +
+                                                     "<value>200870000</value>" +
+                                                "</condition >" +
+                                                "<condition attribute = \"caps_projectrequest\" operator= \"eq\" value = \"{" + recordId+"}\" /> "+
                                                         "</filter>" +
                                                     "</entity> " +
                                              "</fetch>";
