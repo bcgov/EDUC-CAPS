@@ -187,7 +187,7 @@ CAPS.Project.onLoad = function (executionContext) {
         formContext.getAttribute("caps_areyourelocatingexistingchildcarespaces").addOnChange(CAPS.Project.ShowHideSubgrid);
         formContext.getAttribute("caps_areyourelocatingexistingchildcarespaces").addOnChange(CAPS.Project.ShowConfirmationRelocatingCC);
         CAPS.Project.ShowHideSubgrid(executionContext);
-        
+
     }
 
     formContext.getAttribute("caps_areyourelocatingexistingchildcarespaces").addOnChange(CAPS.Project.HideTotalChildCareSpace);
@@ -222,7 +222,7 @@ CAPS.Project.onLoad = function (executionContext) {
 
     formContext.getAttribute("caps_submission").addOnChange(CAPS.Project.ShowHideProjectGroup);
     CAPS.Project.ShowHideProjectGroup(executionContext);
-    
+
 
     //Hide Health Authority on CC Majors when Existing Child Care Facility is Yes
     formContext.getAttribute("caps_existingchildcarefacility").addOnChange(CAPS.Project.ShowHideHealthAuthority);
@@ -1820,7 +1820,7 @@ CAPS.Project.HideTotalChildCareSpace = function (executionContext) {
     }
 }
 CAPS.Project.preFilterProjectGroupLookup = function (executionContext) {
-    
+
     var formContext = executionContext.getFormContext();
     if (formContext.getControl("caps_projectcollection") === null)
         return;
@@ -1833,8 +1833,8 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
     var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
     var submission = CAPS.Project.GetLookup("caps_submission", formContext);
     var proposedSchoolFacility = formContext.getAttribute("caps_proposedfacility").getValue();
-    
-   
+
+
     var proposedSite = formContext.getAttribute("caps_proposedsite").getValue();
 
     if (schoolFacility !== undefined && schoolFacility.id !== null) {
@@ -1845,14 +1845,14 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
         var formattedProposedSchoolFacility = proposedSchoolFacility.replace(/[^a-zA-Z ]/g, "%27");
         let fetchXml = "<filter type='and'><condition attribute='caps_formattedproposedschoolfacility' operator='eq' value='" + formattedProposedSchoolFacility + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
-      
+
     }
     else if (proposedSite !== null) {
         let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSite + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
 
-    
+
 
 }
 
@@ -1901,4 +1901,3 @@ CAPS.Project.GetLookup = function (fieldName, formContext) {
 CAPS.Project.RemoveCurlyBraces = function (str) {
     return str.replace(/[{}]/g, "");
 }
-

@@ -31,6 +31,7 @@ CAPS.Submission.ShowComplete = function (primaryControl) {
 /*  For AFG Only.  This function validates the submission and completes it if it's valid.
 */
 CAPS.Submission.Complete = async function (primaryControl) {
+    
     var formContext = primaryControl;
 
     //Declare variables
@@ -129,7 +130,7 @@ CAPS.Submission.ShowValidate = function (primaryControl) {
  * @param {any} primaryControl primary control
  */
 CAPS.Submission.Validate = async function (primaryControl) {
-    debugger;
+    
     var formContext = primaryControl;
 
     //Declare variables
@@ -196,7 +197,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
 
 
     if (allValidationPassed) {
-        debugger;
+        
         //all good so change status or display confirmation
         if ((checkBoardResolutionResults != null && !checkBoardResolutionResults.validationResult)
             || (checkEnrolmentResult != null && !checkEnrolmentResult.validationResult)) {
@@ -213,6 +214,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
             let confirmOptions = { height: 350, width: 550 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
+                    
                     if (success.confirmed) {
                         formContext.getAttribute("statecode").setValue(1);
                         formContext.getAttribute("statuscode").setValue(2);
@@ -226,6 +228,7 @@ CAPS.Submission.Validate = async function (primaryControl) {
             let confirmOptions = { height: 200, width: 450 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
+                    
                     if (success.confirmed) {
                         formContext.getAttribute("statecode").setValue(1);
                         formContext.getAttribute("statuscode").setValue(2);
@@ -467,7 +470,7 @@ CAPS.Submission.CheckProjectRequests = function (formContext) {
  * @returns  {CAPS.Submission.ValidationResult} object that contains the validation results
  */
 CAPS.Submission.CheckBoardResolution = function (formContext) {
-    debugger;
+    
     //check if Major or Minor
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
     var submissionBoardResolutionAttached = formContext.getAttribute("caps_boardofresolutionattached").getValue();
@@ -477,12 +480,12 @@ CAPS.Submission.CheckBoardResolution = function (formContext) {
         var options = "?$select=caps_boardresolutionrequired"
         return Xrm.WebApi.retrieveRecord("caps_callforsubmission", callForSubmission.id, options).then(
             function success(result) {
-                debugger;
+                
                 var boardResolutionRequired = result.caps_boardresolutionrequired;
                 if (boardResolutionRequired === true && submissionBoardResolutionAttached === false) {
                     return new CAPS.Submission.ValidationResult(false, "Board Resolution Validation Failed.");
                 }
-                else if (boardResolutionRequired === true && submissionBoardResolutionAttached === true) {
+                else if ((boardResolutionRequired === true && submissionBoardResolutionAttached === true) || (boardResolutionRequired === false && submissionBoardResolutionAttached === false)) {
                     return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
                 }
             },
@@ -520,7 +523,7 @@ Called from CAPS.Submission.Validate, this function checks that Nothing to Submi
 and not selected if there are.
 */
 CAPS.Submission.CheckNothingToSubmit = function (formContext) {
-
+    
     //Get flag to identify if enrolment validation is required
     var nothingToSubmitAttribute = formContext.getAttribute("caps_noprojectstosubmit");
     var nothingToSubmit = false;
@@ -546,6 +549,7 @@ CAPS.Submission.CheckNothingToSubmit = function (formContext) {
     //Get all Facilities on the school district
     return Xrm.WebApi.retrieveMultipleRecords("caps_project", "?fetchXml=" + fetchXML).then(
         function success(result) {
+
             if (result.entities.length > 0 && nothingToSubmit) {
 
                 return new CAPS.Submission.ValidationResult(false, "Project Count Validation: There are project requests on this capital plan.  Please set \"I confirm I am submitting an empty plan\" to No or remove the project requests.");
