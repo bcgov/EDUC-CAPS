@@ -134,25 +134,20 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
     else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "AFG") {
         formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
     }
-    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "Major_CC_New_Spaces" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_MAJOR_NEW_SPACES_INTEGRATED" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" || 
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION_MINOR" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE" ||
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE_MINOR") {
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
         formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
        
     }
     else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "Major_CC_New_Spaces" ||
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_MAJOR_NEW_SPACES_INTEGRATED") {
         formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(true)); 
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
     }
-    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION_MINOR" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE_MINOR") {
-        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
-    }
+    
     else {
 
         var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -484,12 +479,6 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.ui.tabs.get("tab_general").sections.get("sec_other_funding").setVisible(false);
         formContext.ui.tabs.get("tab_general").sections.get("sec_budget_breakdown").setVisible(false);
 
-
-        //formContext.getControl("caps_approvedreserve").setVisible(false);
-        //formContext.getControl("caps_totalapproved").setVisible(false);
-        //formContext.getControl("caps_unapprovedreserve").setVisible(false);
-        //formContext.getControl("caps_totalprovincialbudget").setVisible(false);
-
         if (formContext.getControl("caps_totalagencyprojected") !== null) {
             formContext.getControl("caps_totalagencyprojected").setVisible(false);
         }
@@ -574,7 +563,6 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
                     categoryCode === 'CC_CONVERSION' || categoryCode === 'CC_CONVERSION_MINOR') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(true));
-                    //formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
                 }
 
@@ -586,24 +574,22 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
                 }
                 if (categoryCode === 'CC_CONVERSION_MINOR') {
                     
-                   formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
+                    formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
+                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(false);
                   
                 }
                 if (categoryCode === 'CC_UPGRADE') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
-                    //formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
-                    //formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
                 }
                 if (categoryCode === 'CC_UPGRADE_MINOR') {
                     formContext.getAttribute("caps_childcarefacility").controls.forEach(control => control.setVisible(true));
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
-                    //formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
-                    //formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
+                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(false);
                 }
               
 

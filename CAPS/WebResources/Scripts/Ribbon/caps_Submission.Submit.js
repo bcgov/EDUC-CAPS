@@ -485,7 +485,7 @@ CAPS.Submission.CheckBoardResolution = function (formContext) {
                 if (boardResolutionRequired === true && submissionBoardResolutionAttached === false) {
                     return new CAPS.Submission.ValidationResult(false, "Board Resolution Validation Failed.");
                 }
-                else if ((boardResolutionRequired === true && submissionBoardResolutionAttached === true) || (boardResolutionRequired === false && submissionBoardResolutionAttached === false)) {
+                else if ((boardResolutionRequired === true && submissionBoardResolutionAttached === true) || (boardResolutionRequired === false)) {
                     return new CAPS.Submission.ValidationResult(true, "Board Resolution Validation Succeeded.");
                 }
             },
