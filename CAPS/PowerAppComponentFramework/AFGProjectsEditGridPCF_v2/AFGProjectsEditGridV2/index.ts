@@ -559,14 +559,14 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 					'<attribute name="' + valueField + '" />' +
 					'<attribute name="' + textField + '" />' +
 					'<order attribute="caps_type" />' +
+                    '<filter type="and" >' +
+                        '<condition attribute="statecode" operator="eq" value="0" />' +
+                    '</filter>' +
 					'<link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner">' +
 						'<filter type="and" >' +
 							'<condition attribute="caps_categorycode" operator="eq" value="AFG" />' +
 						'</filter>' +
 					'</link-entity>' +
-                    '<filter type="and" >' +
-                        '<condition attribute="statecode" operator="eq" value="0" />' +
-                    '</filter>' +
 					'</entity>' +
 				'</fetch>';
 				break;
