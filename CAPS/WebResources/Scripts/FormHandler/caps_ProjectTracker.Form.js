@@ -113,31 +113,52 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
     var formContext = executionContext.getFormContext();
     formContext.getControl("caps_facilitysite").setVisible(false);
 
-    if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "LEASE") {
+    if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "LEASE") {
         formContext.getControl("sgd_facilities").setVisible(false);
         formContext.getControl("caps_facility").setVisible(false);
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
     }
-    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "NEW_SCHOOL") {
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "NEW_SCHOOL") {
         formContext.getControl("sgd_facilities").setVisible(false);
         formContext.getControl("caps_proposedfacility").setVisible(true);
+        if (formContext.getAttribute("caps_facility").getValue() !== null) {
+            formContext.getControl("caps_proposedfacility").setDisabled(true);
+        }
+        else {
+            formContext.getControl("caps_proposedfacility").setDisabled(false);
+        }
     }
-    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "SITE_ACQUISITION") {
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "SITE_ACQUISITION") {
         formContext.getControl("sgd_facilities").setVisible(false);
         formContext.getControl("caps_proposedsite").setVisible(true);
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
     }
-    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() == "DEMOLITION") {
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "DEMOLITION") {
         formContext.getControl("sgd_facilities").setVisible(false);
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false));
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
         if (formContext.getAttribute("caps_facility").getValue() == null) {
             formContext.getControl("caps_otherfacility").setVisible(true);
         }
     }
     else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "AFG") {
         formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
+
     }
     else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION_MINOR" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE" ||
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE_MINOR") {
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE_MINOR" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "ADDITION" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "REPLACEMENT_RENOVATION" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "SEISMIC" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "BUS" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "CNCP" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "PEP" || 
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "SEP") {
         formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
         formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
        
@@ -190,12 +211,12 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
 This function is called on load of the project cash flow grid and calculates the total provincial cash flow and total agency projected values.
 */
 CAPS.ProjectTracker.CalculateTotalCashFlowFields = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
     Xrm.WebApi.retrieveMultipleRecords("caps_projectcashflow", "?$select=caps_totalactualdraws,caps_totalprovincial,caps_agencyactual,caps_totalagency,caps_thirdpartyactual,caps_thirdpartyforecast,statecode&$filter=caps_PTR/caps_projecttrackerid eq " + id).then(
         function success(result) {
-            debugger;
+            
             //var totalActualDraws = 0;
             var totalProvincial = 0;
             var totalAgency = 0;
@@ -425,7 +446,7 @@ CAPS.ProjectTracker.DisableGridReadOnlyFields = function () {
  * @param {any} formContext the form context
  */
 CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
-    debugger;
+   
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
     if (submissionCategoryCode === 'AFG') {
@@ -517,7 +538,9 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
         formContext.getControl("caps_facility").setVisible(false);
         formContext.getControl("caps_submission").setVisible(false);
         formContext.getControl("caps_sdprojectnumber").setVisible(false);
-        formContext.getControl("caps_requestedfunding").setVisible(false);
+        if (formContext.getControl("caps_requestedfunding") !== null) {
+            formContext.getControl("caps_requestedfunding").setVisible(false);
+        }
 
         if (formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity") != null) {
             formContext.ui.tabs.get("tab_general").sections.get("section_designcapacity").setVisible(false);
@@ -543,7 +566,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
     if (submissionCategory !== undefined) {
         Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.ProjectTracker.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_type,caps_categorycode").then(
             function success(result) {
-                debugger;
+               
                 var type = result.caps_type;
                 var categoryCode = result.caps_categorycode;
                 //Minor or BEP or AFG or BUS
@@ -610,7 +633,7 @@ CAPS.ProjectTracker.ShowHideHealthAuthority = function (executionContext) {
     if (submissionCategory !== undefined) {
         Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.ProjectTracker.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_type,caps_categorycode").then(
             function success(result) {
-                debugger;
+                
                 var categoryCode = result.caps_categorycode;
 
                 if (categoryCode === 'Major_CC_New_Spaces' || categoryCode === 'CC_MAJOR_NEW_SPACES_INTEGRATED' ||
@@ -679,23 +702,35 @@ Shows a warning if the Max Potential Budget and Max Potential don't match or if 
 */
 CAPS.ProjectTracker.ShowBudgetMissmatch = function (executionContext) {
     var formContext = executionContext.getFormContext();
+    var submissionCategory = formContext.getAttribute("caps_submissioncategorycode").getValue();
+    if (submissionCategory !== null) {
+        
+        if (submissionCategory === 'Major_CC_New_Spaces' || submissionCategory === 'CC_MAJOR_NEW_SPACES_INTEGRATED' ||
+            submissionCategory === 'CC_CONVERSION' || submissionCategory === 'CC_CONVERSION_MINOR' ||
+            submissionCategory === 'CC_UPGRADE' || submissionCategory === 'CC_UPGRADE_MINOR' ||
+            submissionCategory === 'BEP' || submissionCategory === 'ADDITION' ||
+            submissionCategory === 'DEMOLITION' || submissionCategory === 'LEASE' ||
+            submissionCategory === 'NEW_SCHOOL' || submissionCategory === 'REPLACEMENT_RENOVATION' ||
+            submissionCategory === 'SEISMIC' || submissionCategory === 'SITE_ACQUISITION') {
 
-    //if (formContext.getAttribute('caps_showprogressreports').getValue()) {
+            if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
+                formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'ERROR', MAX_BUDGET_NOTIFICATION);
+            }
+            else {
+                formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
+            }
 
-        if (formContext.getAttribute("caps_maxpotential_fundingsource").getValue() !== formContext.getAttribute("caps_maxpotentialprojectbudget").getValue()) {
-            formContext.ui.setFormNotification('Max Potential Project Budget and Max Potential Funding Source don\'t match.', 'ERROR', MAX_BUDGET_NOTIFICATION);
+            if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
+                formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'ERROR', PROVINCIAL_BUDGET_NOTIFICATION);
+            }
+            else {
+                formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
+            }
         }
-        else {
-            formContext.ui.clearFormNotification(MAX_BUDGET_NOTIFICATION);
-        }
-
-        if (formContext.getAttribute("caps_provincial").getValue() !== formContext.getAttribute("caps_totalprovincialbudget").getValue()) {
-            formContext.ui.setFormNotification('Provincial Funding Source and Total Provincial Budget don\'t match.', 'ERROR', PROVINCIAL_BUDGET_NOTIFICATION);
-        }
-        else {
-            formContext.ui.clearFormNotification(PROVINCIAL_BUDGET_NOTIFICATION);
-        }
-    //}
+            
+    }
+    
+    
 };
 
 /**
@@ -703,46 +738,46 @@ Shows a warning if any Milestones dates are in the past but are not flagged as c
 **/
 CAPS.ProjectTracker.ShowStaleDates = function (executionContext) {
     var formContext = executionContext.getFormContext();
+    
+            var recordId = formContext.data.entity.getId();
 
-    var recordId = formContext.data.entity.getId();
-
-    var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">"+
-              "<entity name=\"caps_projectmilestone\">"+
-                "<attribute name=\"caps_projectmilestoneid\" />"+
-                "<attribute name=\"caps_name\" />"+
-                "<attribute name=\"createdon\" />"+
-                "<order attribute=\"caps_name\" descending=\"false\" />"+
-                "<filter type=\"and\">"+
-                  "<condition attribute=\"caps_complete\" operator=\"eq\" value=\"0\" />"+
-                  "<condition attribute=\"caps_expectedactualdate\" operator=\"olderthan-x-days\" value=\"1\" />" +
-                  "<condition attribute=\"caps_projecttracker\" operator=\"eq\"  value=\""+recordId+"\" />"+
-                "</filter>"+
-              "</entity>"+
-            "</fetch>";
+            var fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+                "<entity name=\"caps_projectmilestone\">" +
+                "<attribute name=\"caps_projectmilestoneid\" />" +
+                "<attribute name=\"caps_name\" />" +
+                "<attribute name=\"createdon\" />" +
+                "<order attribute=\"caps_name\" descending=\"false\" />" +
+                "<filter type=\"and\">" +
+                "<condition attribute=\"caps_complete\" operator=\"eq\" value=\"0\" />" +
+                "<condition attribute=\"caps_expectedactualdate\" operator=\"olderthan-x-days\" value=\"1\" />" +
+                "<condition attribute=\"caps_projecttracker\" operator=\"eq\"  value=\"" + recordId + "\" />" +
+                "</filter>" +
+                "</entity>" +
+                "</fetch>";
 
 
-    Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", "?fetchXml=" + fetchXML).then(
-                  function success(result) {
-                      if (result.entities.length > 0) {
-                          formContext.ui.setFormNotification('One or more project milestone dates requires updating.', 'ERROR', STALE_DATES_NOTIFICATION);
-                    
-                      }
-                      else {
-                          formContext.ui.clearFormNotification(STALE_DATES_NOTIFICATION);
-                      }
-                  },
-                  function (error) {
-                      Xrm.Navigation.openErrorDialog({ message: error.message });
-                  }
-                  );
+            Xrm.WebApi.retrieveMultipleRecords("caps_projectmilestone", "?fetchXml=" + fetchXML).then(
+                function success(result) {
+                    if (result.entities.length > 0) {
+                        formContext.ui.setFormNotification('One or more project milestone dates requires updating.', 'ERROR', STALE_DATES_NOTIFICATION);
 
+                    }
+                    else {
+                        formContext.ui.clearFormNotification(STALE_DATES_NOTIFICATION);
+                    }
+                },
+                function (error) {
+                    Xrm.Navigation.openErrorDialog({ message: error.message });
+                }
+            );
+    
 };
 
 /***
 Show/Hide Project Closure Tab based on if caps_projectclosure has a value (show if it does).
 */
 CAPS.ProjectTracker.ShowHideProjectClosureTab = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
 
     var projectClosure = formContext.getAttribute("caps_projectclosure").getValue();
@@ -844,10 +879,12 @@ CAPS.ProjectTracker.ValidateBudgetPressureAndSavings = function (executionContex
     }
 }
 CAPS.ProjectTracker.LockFields = function (executionContext) {
+    
     var formContext = executionContext.getFormContext();
     var childCareFacility = CAPS.ProjectTracker.GetLookup("caps_childcarefacility", formContext);
     if (childCareFacility !== undefined) {
         formContext.getControl("caps_proposedchildcarefacility").setDisabled(true);
+        
     }
     else if (childCareFacility === undefined) {
         formContext.getControl("caps_proposedchildcarefacility").setDisabled(false);
