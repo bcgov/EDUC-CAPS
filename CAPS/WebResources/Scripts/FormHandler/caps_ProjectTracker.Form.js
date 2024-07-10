@@ -882,12 +882,25 @@ CAPS.ProjectTracker.LockFields = function (executionContext) {
     
     var formContext = executionContext.getFormContext();
     var childCareFacility = CAPS.ProjectTracker.GetLookup("caps_childcarefacility", formContext);
+    var schoolFacility = CAPS.ProjectTracker.GetLookup("caps_facility", formContext);
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+
     if (childCareFacility !== undefined) {
         formContext.getControl("caps_proposedchildcarefacility").setDisabled(true);
         
     }
     else if (childCareFacility === undefined) {
         formContext.getControl("caps_proposedchildcarefacility").setDisabled(false);
+    }
+
+    if (submissionCategoryCode === "Major_CC_New_Spaces" || submissionCategoryCode === "CC_MAJOR_NEW_SPACES_INTEGRATED") {
+        if (schoolFacility !== undefined) {
+            formContext.getControl("caps_proposedfacility").setDisabled(true);
+        }
+        else {
+            formContext.getControl("caps_proposedfacility").setDisabled(false);
+        }
+        
     }
     
 }
