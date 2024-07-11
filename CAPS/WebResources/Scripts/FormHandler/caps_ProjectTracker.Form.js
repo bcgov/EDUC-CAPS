@@ -158,7 +158,8 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "BUS" ||
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CNCP" ||
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "PEP" || 
-        formContext.getAttribute("caps_submissioncategorycode").getValue() === "SEP") {
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "SEP" ||
+        formContext.getAttribute("caps_submissioncategorycode").getValue() === "BEP") {
         formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
         formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(true));
        
