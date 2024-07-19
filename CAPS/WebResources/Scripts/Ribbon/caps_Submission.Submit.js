@@ -510,12 +510,20 @@ CAPS.Submission.CheckBoardResolution = function (formContext) {
  * @returns  {CAPS.Submission.ValidationResult} object that contains the validation results
  */
 CAPS.Submission.CheckAFGTotal = function (formContext) {
+    //AFG 
     if (formContext.getAttribute("caps_callforsubmissiontype").getValue() === 100000002) {
         //Validate AFG Total
         if (formContext.getAttribute("caps_variance").getValue() !== 0) {
             return new CAPS.Submission.ValidationResult(false, "AFG Allocation Validation Failed.  The variance should be 0.");
         }
     }
+    //CC-AFG
+    else if (formContext.getAttribute("caps_callforsubmissiontype").getValue() === 385610001) {
+        if (formContext.getAttribute("caps_variance").getValue() !== 0) {
+            return new CAPS.Submission.ValidationResult(false, "CC-AFG Allocation Validation Failed.  The variance should be 0.");
+        }
+    }
+    
 }
 
 /***

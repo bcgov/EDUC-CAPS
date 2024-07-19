@@ -9,7 +9,7 @@ const RowRecordId:string = "recordId";
 // Style name of Load More Button
 const DataSetControl_LoadMoreButton_Hidden_Style = "DataSetControl_LoadMoreButton_Hidden_Style";
 
-export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
     // Cached context object for the latest updateView
 	private contextObj: ComponentFramework.Context<IInputs>;
@@ -83,10 +83,10 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
     {
         console.log("start updateView");
         this.contextObj = context;
-		this.toggleLoadMoreButtonWhenNeeded(context.parameters.AFGProjectsDataSet);
+		this.toggleLoadMoreButtonWhenNeeded(context.parameters.CCAFGProjectsGridPCF);
 
-		if(!context.parameters.AFGProjectsDataSet.loading){
-            console.log("AFGProjectsDataSet loaded");
+		if(!context.parameters.CCAFGProjectsGridPCF.loading){
+            console.log("CCAFGProjectsGridPCF loaded");
 			this.isActive = false;
 			this.isSubmitted = false;
 			this.lockOnInactive = false;
@@ -126,7 +126,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 						obj.gridContainer.removeChild(obj.gridContainer.firstChild);
 					}
 
-					obj.gridContainer.appendChild(obj.createGridBody(context, columnsOnView, obj.contextObj.parameters.AFGProjectsDataSet));
+					obj.gridContainer.appendChild(obj.createGridBody(context, columnsOnView, obj.contextObj.parameters.CCAFGProjectsGridPCF));
 
 					obj.bindEvents();
 				},
@@ -163,11 +163,11 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 	 */
 	private getSortedColumnsOnView(context: ComponentFramework.Context<IInputs>): DataSetInterfaces.Column[]
 	{
-		if (!context.parameters.AFGProjectsDataSet.columns) {
+		if (!context.parameters.CCAFGProjectsGridPCF.columns) {
 			return [];
 		}
 		
-		const columns =context.parameters.AFGProjectsDataSet.columns
+		const columns =context.parameters.CCAFGProjectsGridPCF.columns
 			.filter(function (columnItem:DataSetInterfaces.Column) { 
 				// some column are supplementary and their order is not > 0
 				return columnItem.order >= 0 }
@@ -478,7 +478,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 							input.maxLength = 200;
 							input.setAttribute('data-fielddisplayname', columnItem.displayName);
 							if (!isAddRow) input.value = $(dataFields[index-hiddenCount]).data('value');
-							if (columnItem.name.indexOf('caps_otherfacility') > -1) {
+							if (columnItem.name.indexOf('caps_childcare') > -1) {
 								input.setAttribute('data-required', 'true');
 								if (input.value.length === 0) input.disabled = true;
 								else {
@@ -564,7 +564,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
                     '</filter>' +
 					'<link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner">' +
 						'<filter type="and" >' +
-							'<condition attribute="caps_categorycode" operator="eq" value="AFG" />' +
+							'<condition attribute="caps_categorycode" operator="eq" value="CC_AFG" />' +
 						'</filter>' +
 					'</link-entity>' +
 					'</entity>' +
@@ -627,16 +627,16 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 	private facilityChanged(event:Event) {
 		const slct:HTMLSelectElement = event.target as HTMLSelectElement;
 
-		const otherFacility = $(slct).parent().parent().find('#caps_otherfacility');
+		const ccFacility = $(slct).parent().parent().find('#caps_childcare');
 
 		if (slct.value === '0') {
-			otherFacility.prop('disabled', false);
+			ccFacility.prop('disabled', false);
 		}
 		else {
-			$(otherFacility).val('');
-			otherFacility.prop('disabled', true);
-			otherFacility.css('border-width', '1px');
-			otherFacility.css('border-color', '#C3C3C3');
+			$(ccFacility).val('');
+			ccFacility.prop('disabled', true);
+			ccFacility.css('border-width', '1px');
+			ccFacility.css('border-color', '#C3C3C3');
 		}
 	}
 	
@@ -717,7 +717,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 
 		if(rowRecordId)
 		{
-			const entityReference = this.contextObj.parameters.AFGProjectsDataSet.records[rowRecordId].getNamedReference();
+			const entityReference = this.contextObj.parameters.CCAFGProjectsGridPCF.records[rowRecordId].getNamedReference();
 			const entityFormOptions = {
 				entityName: (entityReference as any).LogicalName,
 				entityId: rowRecordId,
@@ -748,8 +748,8 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 	 * @param event
 	 */
 	private onLoadMoreButtonClick(event: Event): void {
-		this.contextObj.parameters.AFGProjectsDataSet.paging.loadNextPage();
-		this.toggleLoadMoreButtonWhenNeeded(this.contextObj.parameters.AFGProjectsDataSet);
+		this.contextObj.parameters.CCAFGProjectsGridPCF.paging.loadNextPage();
+		this.toggleLoadMoreButtonWhenNeeded(this.contextObj.parameters.CCAFGProjectsGridPCF);
 	}
 
 	private onRowEditClick(event: Event): void {
@@ -797,7 +797,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 			entity['caps_Submission@odata.bind'] = 'caps_submissions(' + (obj.contextObj.mode as any).contextInfo.entityId + ')';
 
             //obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', '?$select=caps_submissioncategoryid&$filter=caps_type eq 200870002&$top=1').then(
-			obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', "?$select=caps_submissioncategoryid&$filter=caps_categorycode eq 'AFG'&$top=1").then(
+			obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', "?$select=caps_submissioncategoryid&$filter=caps_categorycode eq 'CC_AFG'&$top=1").then(
 				function (response) 
 				{
 					let valid:boolean = true;
@@ -863,7 +863,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 								obj.contextObj.webAPI.updateRecord('caps_project', recordId, entity).then(
 									function (response) {
 										obj.isEditing = false;
-										obj.contextObj.parameters.AFGProjectsDataSet.refresh();
+										obj.contextObj.parameters.CCAFGProjectsGridPCF.refresh();
 									},
 									function (errorResponse: any) 
 									{
@@ -879,7 +879,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 								obj.contextObj.webAPI.createRecord('caps_project', entity).then(
 									function (response) {
 										obj.isEditing = false;
-										obj.contextObj.parameters.AFGProjectsDataSet.refresh();
+										obj.contextObj.parameters.CCAFGProjectsGridPCF.refresh();
 									},
 									function (errorResponse: any) 
 									{
@@ -898,14 +898,14 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 						}
 					}
 					else {
-						alert('Error: AFG submission category was not found.');
+						alert('Error: CC AFG submission category was not found.');
 						$('.add-button').prop('disabled',false);
 					}
 				},
 				function (errorResponse: any) 
 				{
 					// Error handling code here - record failed to be created
-					alert("An error occured while querying AFG submission category:\r\n\r\n" + errorResponse.message);
+					alert("An error occured while querying CC AFG submission category:\r\n\r\n" + errorResponse.message);
 					$('.add-button').prop('disabled',false);
 				}
 			);
@@ -949,7 +949,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 			obj.contextObj.navigation.openConfirmDialog({title:'Cancel ' + entityDisplayName + ' "' + linkField + '"?', text:'Are you sure you want to cancel ' + entityDisplayName + ' "' + linkField + '"?'}, {}).then(
 				function(success) {
 					if (success.confirmed) {
-						const entityName:string = obj.contextObj.parameters.AFGProjectsDataSet.getTargetEntityType();
+						const entityName:string = obj.contextObj.parameters.CCAFGProjectsGridPCF.getTargetEntityType();
 						//let parentEntityFieldName:string = obj.contextObj.parameters.parententityfieldname.raw as string;
 						const recordId:string = row.attr(RowRecordId)!;
 
@@ -959,7 +959,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 
 						obj.contextObj.webAPI.updateRecord(entityName, recordId, entity).then(
 							function (response) {
-								obj.contextObj.parameters.AFGProjectsDataSet.refresh();
+								obj.contextObj.parameters.CCAFGProjectsGridPCF.refresh();
 								//var group = row.parent();
 								//row.remove();
 								//var items = group.children();
@@ -984,12 +984,12 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 			const row = $(this).parent().parent();
 			const linkField:string = row.attr(obj.contextObj.parameters.linkfieldname.raw as string)!;
 			const entityDisplayName:string = obj.contextObj.parameters.entitydisplayname.raw as string;
-			const parentEntityDisplayName:string = obj.contextObj.parameters.parententitydisplayname.raw as string;
+			const parentEntityDisplayName:string = obj.contextObj.parameters.entitydisplayname.raw as string;
 
 			obj.contextObj.navigation.openConfirmDialog({title:'Remove ' + entityDisplayName + ' "' + linkField + '"?', text:'Are you sure you want to remove ' + entityDisplayName + ' "' + linkField + '"?'}, {}).then(
 				function(success) {
 					if (success.confirmed) {
-						const entityName:string = obj.contextObj.parameters.AFGProjectsDataSet.getTargetEntityType();
+						const entityName:string = obj.contextObj.parameters.CCAFGProjectsGridPCF.getTargetEntityType();
 						const parentEntityFieldName:string = obj.contextObj.parameters.parententityfieldname.raw as string;
 						const recordId:string = row.attr(RowRecordId)!;
 
@@ -1000,7 +1000,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 						obj.contextObj.webAPI.updateRecord(entityName, recordId, data).then(
 						//obj.contextObj.webAPI.deleteRecord(entityName, recordId).then(
 							function (response) {
-								obj.contextObj.parameters.AFGProjectsDataSet.refresh();
+								obj.contextObj.parameters.CCAFGProjectsGridPCF.refresh();
 								const group = row.parent();
 								row.remove();
 								const items = group.children();

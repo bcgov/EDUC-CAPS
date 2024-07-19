@@ -6,7 +6,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\GolnarNaghavi\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\GolnarNaghavi\Downloads\EDUC-CAPS-master\EDUC-CAPS-master\CAPS\Master_DataContext\OptionSets.cs" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" 
+// Created via this command line: "C:\Users\GolnarNaghavi\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\GolnarNaghavi\Documents\GitHub\CAPS Development\EDUC-CAPS\CAPS\Master_DataContext\OptionSets.cs" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.OptionSet.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.OptionSet.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.BaseMetadataProviderService,DLaB.CrmSvcUtilExtensions" 
 //------------------------------------------------------------------------------
 
 namespace CAPS.DataContext
@@ -707,6 +707,39 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ApplicableFor
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("AFG", 2)]
+		AFG = 200870002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("BEP", 3)]
+		BEP = 200870003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Bus", 4)]
+		Bus = 200870004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Major CC", 5)]
+		MajorCC = 200870005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Major K-12", 0)]
+		MajorK12 = 200870000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Minor CC", 6)]
+		MinorCC = 200870006,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Minor K-12", 1)]
+		MinorK12 = 200870001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum caps_BudgetCalc_CommunityLocation_StatusCode
 	{
 		
@@ -1078,6 +1111,10 @@ namespace CAPS.DataContext
 		AFG = 100000002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("CC - AFG", 3)]
+		CCAFG = 385610001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Major", 0)]
 		Major = 100000000,
 		
@@ -1282,6 +1319,19 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Tender-Ready", 2)]
 		TenderReady = 100000002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_DrawType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Capital", 1)]
+		Capital = 200870001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Operating", 0)]
+		Operating = 200870000,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -1662,14 +1712,6 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Not Supported", 1)]
 		NotSupported = 100000001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Planned", 3, "#0000ff")]
-		Planned = 200870000,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Previously Planned", 4)]
-		PreviouslyPlanned = 200870001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Supported", 0)]
@@ -2055,11 +2097,11 @@ namespace CAPS.DataContext
 		Approval = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Cancelled", 9, "#0000ff")]
+		[OptionSetMetadataAttribute("Cancelled", 8, "#0000ff")]
 		Cancelled = 200870008,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Complete", 8, "#0000ff")]
+		[OptionSetMetadataAttribute("Complete", 7, "#0000ff")]
 		Complete = 200870007,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -2081,10 +2123,6 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Planned", 5, "#F6FF33")]
 		Planned = 200870005,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Previously Planned", 7, "#0000ff")]
-		PreviouslyPlanned = 200870006,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Substantially Complete", 4, "#0000ff")]

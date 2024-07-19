@@ -89,6 +89,23 @@ namespace CustomWorkflowActivities
                 }
             }
 
+            else if(callForSubmission.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.CCAFG)
+            {
+                using (var crmContext = new CrmServiceContext(service))
+                {
+                    var ccafgFundingTotal = crmContext.edu_schooldistrictSet.Where(r => r.StateCode == edu_schooldistrictState.Active).AsEnumerable().Sum(r => r.caps_CCAFGRatio);
+
+                    tracingService.Trace("CC AFG Total: {0}", ccafgFundingTotal);
+
+                    if (ccafgFundingTotal != 1M)
+                    {
+                        isValid = false;
+                        validationMessage.AppendLine("CC-AFG total allocation does not equal 100%.");
+                    }
+
+                }
+            }
+
             this.valid.Set(executionContext, isValid);
             this.message.Set(executionContext, validationMessage.ToString());
         }

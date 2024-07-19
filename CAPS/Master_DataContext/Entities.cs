@@ -6,7 +6,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\GolnarNaghavi\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\GolnarNaghavi\Downloads\EDUC-CAPS-master\EDUC-CAPS-master\CAPS\Master_DataContext\Entities.cs" /servicecontextname:"CrmServiceContext" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" 
+// Created via this command line: "C:\Users\GolnarNaghavi\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /url:"https://CAPSDEV.api.crm3.dynamics.com" /namespace:"CAPS.DataContext" /out:"C:\Users\GolnarNaghavi\Documents\GitHub\CAPS Development\EDUC-CAPS\CAPS\Master_DataContext\Entities.cs" /servicecontextname:"CrmServiceContext" /SuppressGeneratedCodeAttribute /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
@@ -5614,14 +5614,18 @@ namespace CAPS.DataContext
 			public const string caps_ActualDrawId = "caps_actualdrawid";
 			public const string Id = "caps_actualdrawid";
 			public const string caps_Amount = "caps_amount";
+			public const string caps_Batch = "caps_batch";
 			public const string caps_CertificateOfApproval = "caps_certificateofapproval";
 			public const string caps_DrawDate = "caps_drawdate";
 			public const string caps_FiscalYear = "caps_fiscalyear";
 			public const string caps_importID = "caps_importid";
 			public const string caps_ImportSource = "caps_importsource";
 			public const string caps_Name = "caps_name";
+			public const string caps_OriginatingDrawRequest = "caps_originatingdrawrequest";
 			public const string caps_ProcessDate = "caps_processdate";
 			public const string caps_Project = "caps_project";
+			public const string caps_ProjectCode = "caps_projectcode";
+			public const string caps_Type = "caps_type";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -5745,6 +5749,24 @@ namespace CAPS.DataContext
 		/// <summary>
 		/// 
 		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_batch")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_Batch
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_batch");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Batch");
+				this.SetAttributeValue("caps_batch", value);
+				this.OnPropertyChanged("caps_Batch");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_certificateofapproval")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_CertificateOfApproval
 		{
@@ -5851,6 +5873,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// If populated, this actual draw is created from the respective draw request's batch submission
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_originatingdrawrequest")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_OriginatingDrawRequest
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_originatingdrawrequest");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_OriginatingDrawRequest");
+				this.SetAttributeValue("caps_originatingdrawrequest", value);
+				this.OnPropertyChanged("caps_OriginatingDrawRequest");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_processdate")]
@@ -5883,6 +5923,42 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Project");
 				this.SetAttributeValue("caps_project", value);
 				this.OnPropertyChanged("caps_Project");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectcode")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ProjectCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_projectcode");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ProjectCode");
+				this.SetAttributeValue("caps_projectcode", value);
+				this.OnPropertyChanged("caps_ProjectCode");
+			}
+		}
+		
+		/// <summary>
+		/// Operating vs Capital
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_type")]
+		public Microsoft.Xrm.Sdk.OptionSetValue caps_Type
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("caps_type");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Type");
+				this.SetAttributeValue("caps_type", value);
+				this.OnPropertyChanged("caps_Type");
 			}
 		}
 		
@@ -16768,7 +16844,10 @@ namespace CAPS.DataContext
 			public const string caps_CapitalPlanResponseLetter_Name = "caps_capitalplanresponseletter_name";
 			public const string caps_CapitalPlanSupportingDocumentsId = "caps_capitalplansupportingdocumentsid";
 			public const string Id = "caps_capitalplansupportingdocumentsid";
+			public const string caps_ChildCareDeclaration = "caps_childcaredeclaration";
+			public const string caps_ChildCareDeclaration_Name = "caps_childcaredeclaration_name";
 			public const string caps_Comments_Bylaw = "caps_comments_bylaw";
+			public const string caps_Comments_CCD = "caps_comments_ccd";
 			public const string caps_Comments_CPRL = "caps_comments_cprl";
 			public const string caps_Name = "caps_name";
 			public const string CreatedBy = "createdby";
@@ -16956,6 +17035,30 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Upload signed physical form
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcaredeclaration")]
+		public object caps_ChildCareDeclaration
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_childcaredeclaration");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcaredeclaration_name")]
+		public string caps_ChildCareDeclaration_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_childcaredeclaration_name");
+			}
+		}
+		
+		/// <summary>
 		/// a Comments field for the Bylaw file
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_comments_bylaw")]
@@ -16970,6 +17073,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Comments_Bylaw");
 				this.SetAttributeValue("caps_comments_bylaw", value);
 				this.OnPropertyChanged("caps_Comments_Bylaw");
+			}
+		}
+		
+		/// <summary>
+		/// Comments for the Child Care Declaration
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_comments_ccd")]
+		public string caps_Comments_CCD
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_comments_ccd");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Comments_CCD");
+				this.SetAttributeValue("caps_comments_ccd", value);
+				this.OnPropertyChanged("caps_Comments_CCD");
 			}
 		}
 		
@@ -19952,6 +20073,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_projecthistory_ChildCare_caps_childcare");
 				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectHistory>("caps_projecthistory_ChildCare_caps_childcare", null, value);
 				this.OnPropertyChanged("caps_projecthistory_ChildCare_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_projecttracker_ChildCareFacility_caps_chi
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecttracker_ChildCareFacility_caps_chi")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ProjectTracker> caps_projecttracker_ChildCareFacility_caps_chi
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ProjectTracker>("caps_projecttracker_ChildCareFacility_caps_chi", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecttracker_ChildCareFacility_caps_chi");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectTracker>("caps_projecttracker_ChildCareFacility_caps_chi", null, value);
+				this.OnPropertyChanged("caps_projecttracker_ChildCareFacility_caps_chi");
 			}
 		}
 		
@@ -29631,7 +29770,7 @@ namespace CAPS.DataContext
 		
 		public static class Fields
 		{
-			public const string caps_Applicablefor = "caps_applicablefor";
+			public const string caps_Applicable_for = "caps_applicable_for";
 			public const string caps_Audience = "caps_audience";
 			public const string caps_File = "caps_file";
 			public const string caps_File_Name = "caps_file_name";
@@ -29706,18 +29845,18 @@ namespace CAPS.DataContext
 		/// <summary>
 		/// Indicates whether a Milestone is used for Projects of certain Submission Category Type. Ex. Applicable for Minor, Major, BEP
 		/// </summary>
-		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_applicablefor")]
-		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Applicablefor
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_applicable_for")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Applicable_for
 		{
 			get
 			{
-				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_applicablefor");
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_applicable_for");
 			}
 			set
 			{
-				this.OnPropertyChanging("caps_Applicablefor");
-				this.SetAttributeValue("caps_applicablefor", value);
-				this.OnPropertyChanged("caps_Applicablefor");
+				this.OnPropertyChanging("caps_Applicable_for");
+				this.SetAttributeValue("caps_applicable_for", value);
+				this.OnPropertyChanged("caps_Applicable_for");
 			}
 		}
 		
@@ -32691,7 +32830,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// The impacted facility of this alternative option.
+		/// The impacted school facility of this alternative option.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_facility")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_Facility
@@ -33054,7 +33193,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// a place for the User to detail the proposed facility name in the case the option is a new school
+		/// a place for the User to detail the proposed school facility name in the case the option is a new school
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_proposedfacility")]
 		public string caps_ProposedFacility
@@ -35747,11 +35886,14 @@ namespace CAPS.DataContext
 			public const string caps_ChildCareConstructionType = "caps_childcareconstructiontype";
 			public const string caps_ChildCareNeedsAssessment = "caps_childcareneedsassessment";
 			public const string caps_Colocations = "caps_colocations";
+			public const string caps_CommunityEngagementDocumentation = "caps_communityengagementdocumentation";
+			public const string caps_CommunityEngagementDocumentation_Name = "caps_communityengagementdocumentation_name";
 			public const string caps_CommunityLocation = "caps_communitylocation";
 			public const string caps_CommunityName = "caps_communityname";
 			public const string caps_ConnectProjectRequest = "caps_connectprojectrequest";
 			public const string caps_ConstructionCostsSPIR = "caps_constructioncostsspir";
 			public const string caps_ConvertedChangeinSchoolAgeSchoolGrounds = "caps_convertedchangeinschoolageschoolgrounds";
+			public const string caps_CostperSeatSpace = "caps_costperseatspace";
 			public const string caps_CrownLandGrant = "caps_crownlandgrant";
 			public const string caps_CurrentConsultantReport = "caps_currentconsultantreport";
 			public const string caps_CurrentConsultantReportFile = "caps_currentconsultantreportfile";
@@ -35762,6 +35904,7 @@ namespace CAPS.DataContext
 			public const string caps_DateoflastBECA = "caps_dateoflastbeca";
 			public const string caps_DemolitionCompletedinOneFiscalYear = "caps_demolitioncompletedinonefiscalyear";
 			public const string caps_DemolitionCost = "caps_demolitioncost";
+			public const string caps_Describecommunitysupportfortheproject = "caps_describecommunitysupportfortheproject";
 			public const string caps_DescribehowtheCCNAsupportstheProjectneed = "caps_describehowtheccnasupportstheprojectneed";
 			public const string caps_describeLRFPsupportsneed = "caps_describelrfpsupportsneed";
 			public const string caps_DevelopmentStatus = "caps_developmentstatus";
@@ -35853,12 +35996,15 @@ namespace CAPS.DataContext
 			public const string caps_NumberofPortablesEliminated = "caps_numberofportableseliminated";
 			public const string caps_NumberofUnknownBlocks_seismicrisk = "caps_numberofunknownblocks_seismicrisk";
 			public const string caps_Operatingchildcarespaceatleast4hoursMonFri = "caps_operatingchildcarespaceatleast4hoursmonfri";
+			public const string caps_OtherCommunityNeedDocumentation = "caps_othercommunityneeddocumentation";
+			public const string caps_OtherCommunityNeedDocumentation_Name = "caps_othercommunityneeddocumentation_name";
 			public const string caps_OtherCost = "caps_othercost";
 			public const string caps_OtherCostDescription = "caps_othercostdescription";
 			public const string caps_OtherFacility = "caps_otherfacility";
 			public const string caps_OtherProjectTotalCost = "caps_otherprojecttotalcost";
 			public const string caps_OutdoorPlans = "caps_outdoorplans";
 			public const string caps_OutdoorPlans_Name = "caps_outdoorplans_name";
+			public const string caps_Over100kperSeat = "caps_over100kperseat";
 			public const string caps_PercentofSystemReplaced = "caps_percentofsystemreplaced";
 			public const string caps_PhasedProjectGroup = "caps_phasedprojectgroup";
 			public const string caps_Pleasedescribetheoperatorsstaffingplan = "caps_pleasedescribetheoperatorsstaffingplan";
@@ -37177,7 +37323,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// 
+		/// Must be from within the last 2 years.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareneedsassessment")]
 		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareNeedsAssessment
@@ -37209,6 +37355,30 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Colocations");
 				this.SetAttributeValue("caps_colocations", value);
 				this.OnPropertyChanged("caps_Colocations");
+			}
+		}
+		
+		/// <summary>
+		/// Must be from within the last year.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communityengagementdocumentation")]
+		public object caps_CommunityEngagementDocumentation
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_communityengagementdocumentation");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communityengagementdocumentation_name")]
+		public string caps_CommunityEngagementDocumentation_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_communityengagementdocumentation_name");
 			}
 		}
 		
@@ -37299,6 +37469,20 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ConvertedChangeinSchoolAgeSchoolGrounds");
 				this.SetAttributeValue("caps_convertedchangeinschoolageschoolgrounds", value);
 				this.OnPropertyChanged("caps_ConvertedChangeinSchoolAgeSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// Formula = Project Cost / Total Design Capacity Change
+		///OR
+		///Total Project Cost / Total CC Space Change
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_costperseatspace")]
+		public System.Nullable<decimal> caps_CostperSeatSpace
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_costperseatspace");
 			}
 		}
 		
@@ -37467,6 +37651,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_DemolitionCost");
 				this.SetAttributeValue("caps_demolitioncost", value);
 				this.OnPropertyChanged("caps_DemolitionCost");
+			}
+		}
+		
+		/// <summary>
+		/// Describe how these documents demonstrate the community support for the project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_describecommunitysupportfortheproject")]
+		public string caps_Describecommunitysupportfortheproject
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_describecommunitysupportfortheproject");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Describecommunitysupportfortheproject");
+				this.SetAttributeValue("caps_describecommunitysupportfortheproject", value);
+				this.OnPropertyChanged("caps_Describecommunitysupportfortheproject");
 			}
 		}
 		
@@ -38539,7 +38741,7 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
-		/// Please select Yes if this project is related to multiple facilities.
+		/// Please select Yes if this project is related to multiple School facilities.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_multiplefacilities")]
 		public System.Nullable<bool> caps_MultipleFacilities
@@ -39013,6 +39215,30 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Where needs assessment is unavailable please provide additional documentation supporting community need.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercommunityneeddocumentation")]
+		public object caps_OtherCommunityNeedDocumentation
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_othercommunityneeddocumentation");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercommunityneeddocumentation_name")]
+		public string caps_OtherCommunityNeedDocumentation_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_othercommunityneeddocumentation_name");
+			}
+		}
+		
+		/// <summary>
 		/// a place for the User to indicate any other applicable costs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercost")]
@@ -39105,6 +39331,18 @@ namespace CAPS.DataContext
 			get
 			{
 				return this.GetAttributeValue<string>("caps_outdoorplans_name");
+			}
+		}
+		
+		/// <summary>
+		/// Flag is set to Yes if Cost per Seat/Space is greater than $100,000. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_over100kperseat")]
+		public System.Nullable<bool> caps_Over100kperSeat
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_over100kperseat");
 			}
 		}
 		
@@ -45510,10 +45748,13 @@ namespace CAPS.DataContext
 			public const string caps_ChildCareConstructionType = "caps_childcareconstructiontype";
 			public const string caps_childcareneedsassessment = "caps_childcareneedsassessment";
 			public const string caps_Colocations = "caps_colocations";
+			public const string caps_CommunityEngagementDocumentation = "caps_communityengagementdocumentation";
+			public const string caps_CommunityEngagementDocumentation_Name = "caps_communityengagementdocumentation_name";
 			public const string caps_CommunityLocation = "caps_communitylocation";
 			public const string caps_CommunityName = "caps_communityname";
 			public const string caps_ConnectedProjectRequest = "caps_connectedprojectrequest";
 			public const string caps_ConvertedChangeinSchoolAgeSchoolGrounds = "caps_convertedchangeinschoolageschoolgrounds";
+			public const string caps_CostperSeatSpace = "caps_costperseatspace";
 			public const string caps_CrownLandGrant = "caps_crownlandgrant";
 			public const string caps_CurrentConsultantReport = "caps_currentconsultantreport";
 			public const string caps_CurrentFacilityConditionIndex = "caps_currentfacilityconditionindex";
@@ -45523,6 +45764,7 @@ namespace CAPS.DataContext
 			public const string caps_DateofLastBECA = "caps_dateoflastbeca";
 			public const string caps_DemolitionCompletedinOneFiscalYear = "caps_demolitioncompletedinonefiscalyear";
 			public const string caps_DemolitionCost = "caps_demolitioncost";
+			public const string caps_Describecommunitysupportfortheproject = "caps_describecommunitysupportfortheproject";
 			public const string caps_describehowtheccnasupportstheprojectneed = "caps_describehowtheccnasupportstheprojectneed";
 			public const string caps_describeLRFPsupportsneeded = "caps_describelrfpsupportsneeded";
 			public const string caps_DevelopmentStatus = "caps_developmentstatus";
@@ -45626,12 +45868,15 @@ namespace CAPS.DataContext
 			public const string caps_NumberofPortablesEliminated_seismicrisk = "caps_numberofportableseliminated_seismicrisk";
 			public const string caps_NumberofUnknownBlocks_seismicrisk = "caps_numberofunknownblocks_seismicrisk";
 			public const string caps_operatingchildcarespaceatleast4hoursmonfri = "caps_operatingchildcarespaceatleast4hoursmonfri";
+			public const string caps_OtherCommunityNeedDocumentation = "caps_othercommunityneeddocumentation";
+			public const string caps_OtherCommunityNeedDocumentation_Name = "caps_othercommunityneeddocumentation_name";
 			public const string caps_OtherCost = "caps_othercost";
 			public const string caps_OtherCostDescription = "caps_othercostdescription";
 			public const string caps_OtherFacility = "caps_otherfacility";
 			public const string caps_OtherProjectTotalCost = "caps_otherprojecttotalcost";
 			public const string caps_OutdoorPlans = "caps_outdoorplans";
 			public const string caps_OutdoorPlans_Name = "caps_outdoorplans_name";
+			public const string caps_Over100kperSeat = "caps_over100kperseat";
 			public const string caps_PercentofSystemReplaced = "caps_percentofsystemreplaced";
 			public const string caps_PhasedProjectGroup = "caps_phasedprojectgroup";
 			public const string caps_PhasedProjects = "caps_phasedprojects";
@@ -45647,6 +45892,8 @@ namespace CAPS.DataContext
 			public const string caps_ProcurementAnalysis = "caps_procurementanalysis";
 			public const string caps_programtailoredtomeetneedsofpopulationgroup = "caps_programtailoredtomeetneedsofpopulationgroup";
 			public const string caps_Project = "caps_project";
+			public const string caps_ProjectBudget = "caps_projectbudget";
+			public const string caps_ProjectBudget_Name = "caps_projectbudget_name";
 			public const string caps_ProjectCode = "caps_projectcode";
 			public const string caps_ProjectCollection = "caps_projectcollection";
 			public const string caps_ProjectDescription = "caps_projectdescription";
@@ -46940,6 +47187,30 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communityengagementdocumentation")]
+		public object caps_CommunityEngagementDocumentation
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_communityengagementdocumentation");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communityengagementdocumentation_name")]
+		public string caps_CommunityEngagementDocumentation_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_communityengagementdocumentation_name");
+			}
+		}
+		
+		/// <summary>
 		/// The community a facility is or will be located in.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communitylocation")]
@@ -47008,6 +47279,26 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ConvertedChangeinSchoolAgeSchoolGrounds");
 				this.SetAttributeValue("caps_convertedchangeinschoolageschoolgrounds", value);
 				this.OnPropertyChanged("caps_ConvertedChangeinSchoolAgeSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// Formula = Project Cost / Total Design Capacity Change
+		///OR
+		///Total Project Cost / Total CC Space Change
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_costperseatspace")]
+		public System.Nullable<decimal> caps_CostperSeatSpace
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_costperseatspace");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CostperSeatSpace");
+				this.SetAttributeValue("caps_costperseatspace", value);
+				this.OnPropertyChanged("caps_CostperSeatSpace");
 			}
 		}
 		
@@ -47170,6 +47461,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_DemolitionCost");
 				this.SetAttributeValue("caps_demolitioncost", value);
 				this.OnPropertyChanged("caps_DemolitionCost");
+			}
+		}
+		
+		/// <summary>
+		/// Describe how these documents demonstrate the community support for the project
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_describecommunitysupportfortheproject")]
+		public string caps_Describecommunitysupportfortheproject
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_describecommunitysupportfortheproject");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Describecommunitysupportfortheproject");
+				this.SetAttributeValue("caps_describecommunitysupportfortheproject", value);
+				this.OnPropertyChanged("caps_Describecommunitysupportfortheproject");
 			}
 		}
 		
@@ -48975,6 +49284,30 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercommunityneeddocumentation")]
+		public object caps_OtherCommunityNeedDocumentation
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_othercommunityneeddocumentation");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercommunityneeddocumentation_name")]
+		public string caps_OtherCommunityNeedDocumentation_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_othercommunityneeddocumentation_name");
+			}
+		}
+		
+		/// <summary>
 		/// a place for the User to indicate any other applicable costs
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_othercost")]
@@ -49067,6 +49400,24 @@ namespace CAPS.DataContext
 			get
 			{
 				return this.GetAttributeValue<string>("caps_outdoorplans_name");
+			}
+		}
+		
+		/// <summary>
+		/// Flag is set to Yes if Cost per Seat/Space is greater than $100,000. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_over100kperseat")]
+		public System.Nullable<bool> caps_Over100kperSeat
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_over100kperseat");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Over100kperSeat");
+				this.SetAttributeValue("caps_over100kperseat", value);
+				this.OnPropertyChanged("caps_Over100kperSeat");
 			}
 		}
 		
@@ -49325,6 +49676,30 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Project");
 				this.SetAttributeValue("caps_project", value);
 				this.OnPropertyChanged("caps_Project");
+			}
+		}
+		
+		/// <summary>
+		/// Project Budget
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectbudget")]
+		public object caps_ProjectBudget
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_projectbudget");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectbudget_name")]
+		public string caps_ProjectBudget_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_projectbudget_name");
 			}
 		}
 		
@@ -53065,6 +53440,7 @@ namespace CAPS.DataContext
 		
 		public static class Fields
 		{
+			public const string caps_AdjustedProvincial = "caps_adjustedprovincial";
 			public const string caps_AFG = "caps_afg";
 			public const string caps_ApprovedReserve = "caps_approvedreserve";
 			public const string caps_BudgetPressure = "caps_budgetpressure";
@@ -53072,7 +53448,20 @@ namespace CAPS.DataContext
 			public const string caps_CapitalPortion = "caps_capitalportion";
 			public const string caps_CapitalProjectBudget = "caps_capitalprojectbudget";
 			public const string caps_CashflowComments = "caps_cashflowcomments";
+			public const string caps_ChildCareConstructionType = "caps_childcareconstructiontype";
+			public const string caps_ChildCareFacility = "caps_childcarefacility";
+			public const string caps_ClassroomsUsedElementary = "caps_classroomsusedelementary";
+			public const string caps_ClassroomsUsedKindergarten = "caps_classroomsusedkindergarten";
+			public const string caps_ClassroomsUsedSecondary = "caps_classroomsusedsecondary";
+			public const string caps_ConvertedChangein30MonthstoSchoolAge = "caps_convertedchangein30monthstoschoolage";
+			public const string caps_ConvertedChangeinMultiAge = "caps_convertedchangeinmultiage";
+			public const string caps_ConvertedChangeinPreschool = "caps_convertedchangeinpreschool";
+			public const string caps_ConvertedChangeinSASG = "caps_convertedchangeinsasg";
+			public const string caps_ConvertedChangeinSchoolAge = "caps_convertedchangeinschoolage";
+			public const string caps_ConvertedChangeinUnder36Months = "caps_convertedchangeinunder36months";
+			public const string caps_ConvertedSpacesTotal = "caps_convertedspacestotal";
 			public const string caps_CPSNumber = "caps_cpsnumber";
+			public const string caps_CPSProvincial = "caps_cpsprovincial";
 			public const string caps_CurrentCOA = "caps_currentcoa";
 			public const string caps_DateCashFlowUpdated = "caps_datecashflowupdated";
 			public const string caps_DateProjectClosed = "caps_dateprojectclosed";
@@ -53083,26 +53472,52 @@ namespace CAPS.DataContext
 			public const string caps_DistrictOperatingCapacityElementary = "caps_districtoperatingcapacityelementary";
 			public const string caps_DistrictOperatingCapacityKindergarten = "caps_districtoperatingcapacitykindergarten";
 			public const string caps_DistrictOperatingCapacitySecondary = "caps_districtoperatingcapacitysecondary";
+			public const string caps_Doyouintendtoselfoperate = "caps_doyouintendtoselfoperate";
 			public const string caps_EconomicAdjustment = "caps_economicadjustment";
+			public const string caps_ExistingChildCareFacility = "caps_existingchildcarefacility";
+			public const string caps_ExistingSchoolFacility = "caps_existingschoolfacility";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_FacilitySite = "caps_facilitysite";
 			public const string caps_Federal = "caps_federal";
 			public const string caps_FundingProgram = "caps_fundingprogram";
 			public const string caps_FundingProgramCode = "caps_fundingprogramcode";
+			public const string caps_GHG = "caps_ghg";
+			public const string caps_HealthAuthority = "caps_healthauthority";
+			public const string caps_Ifyeswhichofthefollowingapply = "caps_ifyeswhichofthefollowingapply";
 			public const string caps_importID = "caps_importid";
 			public const string caps_ImportSource = "caps_importsource";
 			public const string caps_InitialApproved = "caps_initialapproved";
 			public const string caps_LandCapital = "caps_landcapital";
+			public const string caps_MassTimber = "caps_masstimber";
 			public const string caps_MaxPotential_FundingSource = "caps_maxpotential_fundingsource";
 			public const string caps_MaxPotentialProjectBudget = "caps_maxpotentialprojectbudget";
 			public const string caps_MostRecentSubmittedProgressReport = "caps_mostrecentsubmittedprogressreport";
 			public const string caps_MultipleFacilities = "caps_multiplefacilities";
 			public const string caps_Name = "caps_name";
+			public const string caps_NetTotal30MonthstoSchoolAge = "caps_nettotal30monthstoschoolage";
+			public const string caps_NetTotalAllChildCare = "caps_nettotalallchildcare";
+			public const string caps_NetTotalMultiAge = "caps_nettotalmultiage";
+			public const string caps_NetTotalPreschool = "caps_nettotalpreschool";
+			public const string caps_NetTotalSASG = "caps_nettotalsasg";
+			public const string caps_NetTotalSchoolAge = "caps_nettotalschoolage";
+			public const string caps_NetTotalUnder36Months = "caps_nettotalunder36months";
+			public const string caps_NewSpaceChangein30MonthstoSchoolAge = "caps_newspacechangein30monthstoschoolage";
+			public const string caps_NewSpaceChangeinMultiAge = "caps_newspacechangeinmultiage";
+			public const string caps_NewSpaceChangeinPreschool = "caps_newspacechangeinpreschool";
+			public const string caps_NewSpaceChangeinSASG = "caps_newspacechangeinsasg";
+			public const string caps_NewSpaceChangeinSchoolAge = "caps_newspacechangeinschoolage";
+			public const string caps_NewSpaceChangeinUnder36Months = "caps_newspacechangeinunder36months";
+			public const string caps_NewSpacesTotal = "caps_newspacestotal";
+			public const string caps_NLC = "caps_nlc";
+			public const string caps_Operatingchildcarespaceatleast4hoursMonFri = "caps_operatingchildcarespaceatleast4hoursmonfri";
+			public const string caps_Operatingondatesofschoolclosure = "caps_operatingondatesofschoolclosure";
+			public const string caps_Operatingonstatutoryholidays = "caps_operatingonstatutoryholidays";
 			public const string caps_OperatingPortion_Net = "caps_operatingportion_net";
 			public const string caps_OperatingPortionGross = "caps_operatingportiongross";
 			public const string caps_OperatingPortionWithheldCAMS = "caps_operatingportionwithheldcams";
 			public const string caps_OtherFacility = "caps_otherfacility";
 			public const string caps_ProcurementMethod = "caps_procurementmethod";
+			public const string caps_Programtailoredtomeetneedsofpopulationgroup = "caps_programtailoredtomeetneedsofpopulationgroup";
 			public const string caps_ProjectClosure = "caps_projectclosure";
 			public const string caps_ProjectDevelopmentReport = "caps_projectdevelopmentreport";
 			public const string caps_ProjectDevelopmentReport_Name = "caps_projectdevelopmentreport_name";
@@ -53112,12 +53527,23 @@ namespace CAPS.DataContext
 			public const string caps_ProjectTrackerId = "caps_projecttrackerid";
 			public const string Id = "caps_projecttrackerid";
 			public const string caps_ProjectType = "caps_projecttype";
+			public const string caps_ProposedChildCareFacility = "caps_proposedchildcarefacility";
 			public const string caps_ProposedFacility = "caps_proposedfacility";
 			public const string caps_ProposedSite = "caps_proposedsite";
 			public const string caps_Provincial = "caps_provincial";
+			public const string caps_ProvincialVariance = "caps_provincialvariance";
 			public const string caps_RecordCreatedbyAutomation = "caps_recordcreatedbyautomation";
 			public const string caps_RelatedProject = "caps_relatedproject";
+			public const string caps_Relocated30MonthstoSchoolAgeTotal = "caps_relocated30monthstoschoolagetotal";
+			public const string caps_RelocatedMultiAgeTotal = "caps_relocatedmultiagetotal";
+			public const string caps_RelocatedPreschoolTotal = "caps_relocatedpreschooltotal";
+			public const string caps_RelocatedSASGTotal = "caps_relocatedsasgtotal";
+			public const string caps_RelocatedSchoolAgeTotal = "caps_relocatedschoolagetotal";
+			public const string caps_RelocatedTotal = "caps_relocatedtotal";
+			public const string caps_RelocatedUnder36MonthsTotal = "caps_relocatedunder36monthstotal";
+			public const string caps_RemainingDrawRequestBalance = "caps_remainingdrawrequestbalance";
 			public const string caps_RequestedFunding = "caps_requestedfunding";
+			public const string caps_ReserveTransferredout = "caps_reservetransferredout";
 			public const string caps_RestrictedCapital = "caps_restrictedcapital";
 			public const string caps_RiskItems = "caps_riskitems";
 			public const string caps_SchoolDistrict = "caps_schooldistrict";
@@ -53138,6 +53564,7 @@ namespace CAPS.DataContext
 			public const string caps_TotalApproved = "caps_totalapproved";
 			public const string caps_TotalDesignCapacity = "caps_totaldesigncapacity";
 			public const string caps_TotalDistrictOperatingCapacity = "caps_totaldistrictoperatingcapacity";
+			public const string caps_TotalDrawRequestedAmount = "caps_totaldrawrequestedamount";
 			public const string caps_TotalOtherFunding = "caps_totalotherfunding";
 			public const string caps_TotalProvincialBudget = "caps_totalprovincialbudget";
 			public const string caps_TotalProvincialCashFlow = "caps_totalprovincialcashflow";
@@ -53164,6 +53591,7 @@ namespace CAPS.DataContext
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string caps_projecttracker_ChildCareFacility_caps_chi = "caps_projecttracker_ChildCareFacility_caps_chi";
 			public const string caps_ProjectTracker_CurrentCOA_caps_Certi = "caps_ProjectTracker_CurrentCOA_caps_Certi";
 			public const string caps_ProjectTracker_Facility_caps_Facilit = "caps_ProjectTracker_Facility_caps_Facilit";
 			public const string caps_ProjectTracker_FundingProgram_caps_F = "caps_ProjectTracker_FundingProgram_caps_F";
@@ -53221,6 +53649,24 @@ namespace CAPS.DataContext
 			if ((this.PropertyChanging != null))
 			{
 				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Formula = "Total Provincial Budget" - "Reserve Transferred Out"
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_adjustedprovincial")]
+		public System.Nullable<decimal> caps_AdjustedProvincial
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_adjustedprovincial");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AdjustedProvincial");
+				this.SetAttributeValue("caps_adjustedprovincial", value);
+				this.OnPropertyChanged("caps_AdjustedProvincial");
 			}
 		}
 		
@@ -53351,6 +53797,216 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Lookup to the Child Care Construction Type table.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontype")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareConstructionType
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcareconstructiontype");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareConstructionType");
+				this.SetAttributeValue("caps_childcareconstructiontype", value);
+				this.OnPropertyChanged("caps_ChildCareConstructionType");
+			}
+		}
+		
+		/// <summary>
+		/// Lookup to the Child Care Facility record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacility");
+				this.SetAttributeValue("caps_childcarefacility", value);
+				this.OnPropertyChanged("caps_ChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// elementary classrooms used by child care spaces. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedelementary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedElementary");
+				this.SetAttributeValue("caps_classroomsusedelementary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedElementary");
+			}
+		}
+		
+		/// <summary>
+		/// Kindergarten classrooms used by child care spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedkindergarten")]
+		public System.Nullable<decimal> caps_ClassroomsUsedKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedkindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedKindergarten");
+				this.SetAttributeValue("caps_classroomsusedkindergarten", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// Secondary classrooms used by child care spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedsecondary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedSecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedsecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedSecondary");
+				this.SetAttributeValue("caps_classroomsusedsecondary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedSecondary");
+			}
+		}
+		
+		/// <summary>
+		/// Converted space for 30 months to school age.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangein30monthstoschoolage")]
+		public System.Nullable<decimal> caps_ConvertedChangein30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangein30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangein30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_convertedchangein30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_ConvertedChangein30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// Converted spaces in Multi-Age.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangeinmultiage")]
+		public System.Nullable<decimal> caps_ConvertedChangeinMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangeinmultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangeinMultiAge");
+				this.SetAttributeValue("caps_convertedchangeinmultiage", value);
+				this.OnPropertyChanged("caps_ConvertedChangeinMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// Converted spaces for Preschool.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangeinpreschool")]
+		public System.Nullable<decimal> caps_ConvertedChangeinPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangeinpreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangeinPreschool");
+				this.SetAttributeValue("caps_convertedchangeinpreschool", value);
+				this.OnPropertyChanged("caps_ConvertedChangeinPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// Converted spaces for School Age on School Grounds.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangeinsasg")]
+		public System.Nullable<decimal> caps_ConvertedChangeinSASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangeinsasg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangeinSASG");
+				this.SetAttributeValue("caps_convertedchangeinsasg", value);
+				this.OnPropertyChanged("caps_ConvertedChangeinSASG");
+			}
+		}
+		
+		/// <summary>
+		/// Converted spaces for School Age.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangeinschoolage")]
+		public System.Nullable<decimal> caps_ConvertedChangeinSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangeinschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangeinSchoolAge");
+				this.SetAttributeValue("caps_convertedchangeinschoolage", value);
+				this.OnPropertyChanged("caps_ConvertedChangeinSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// Converted spaces for under 36 months.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedchangeinunder36months")]
+		public System.Nullable<decimal> caps_ConvertedChangeinUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedchangeinunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ConvertedChangeinUnder36Months");
+				this.SetAttributeValue("caps_convertedchangeinunder36months", value);
+				this.OnPropertyChanged("caps_ConvertedChangeinUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// 'Converted Change in Under 36 Months' + 'Converted Change in 30 Months to School Age' + 'Converted Change in Preschool' + 'Converted Change in Multi-Age' + 'Converted Change in School Age' + 'Converted Change in SASG'
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_convertedspacestotal")]
+		public System.Nullable<decimal> caps_ConvertedSpacesTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_convertedspacestotal");
+			}
+		}
+		
+		/// <summary>
 		/// The corresponding project number from CPS
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_cpsnumber")]
@@ -53365,6 +54021,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_CPSNumber");
 				this.SetAttributeValue("caps_cpsnumber", value);
 				this.OnPropertyChanged("caps_CPSNumber");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_cpsprovincial")]
+		public System.Nullable<decimal> caps_CPSProvincial
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_cpsprovincial");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CPSProvincial");
+				this.SetAttributeValue("caps_cpsprovincial", value);
+				this.OnPropertyChanged("caps_CPSProvincial");
 			}
 		}
 		
@@ -53549,6 +54223,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Do you intend to self-operate?
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_doyouintendtoselfoperate")]
+		public System.Nullable<bool> caps_Doyouintendtoselfoperate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_doyouintendtoselfoperate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Doyouintendtoselfoperate");
+				this.SetAttributeValue("caps_doyouintendtoselfoperate", value);
+				this.OnPropertyChanged("caps_Doyouintendtoselfoperate");
+			}
+		}
+		
+		/// <summary>
 		/// 
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_economicadjustment")]
@@ -53563,6 +54255,42 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_EconomicAdjustment");
 				this.SetAttributeValue("caps_economicadjustment", value);
 				this.OnPropertyChanged("caps_EconomicAdjustment");
+			}
+		}
+		
+		/// <summary>
+		/// Existing Child Care Facility?
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_existingchildcarefacility")]
+		public System.Nullable<bool> caps_ExistingChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_existingchildcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ExistingChildCareFacility");
+				this.SetAttributeValue("caps_existingchildcarefacility", value);
+				this.OnPropertyChanged("caps_ExistingChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// Existing School Facility
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_existingschoolfacility")]
+		public System.Nullable<bool> caps_ExistingSchoolFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_existingschoolfacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ExistingSchoolFacility");
+				this.SetAttributeValue("caps_existingschoolfacility", value);
+				this.OnPropertyChanged("caps_ExistingSchoolFacility");
 			}
 		}
 		
@@ -53657,6 +54385,60 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_ghg")]
+		public System.Nullable<bool> caps_GHG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_ghg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_GHG");
+				this.SetAttributeValue("caps_ghg", value);
+				this.OnPropertyChanged("caps_GHG");
+			}
+		}
+		
+		/// <summary>
+		/// Lookup to the Health Authority record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_healthauthority")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_HealthAuthority
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_healthauthority");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_HealthAuthority");
+				this.SetAttributeValue("caps_healthauthority", value);
+				this.OnPropertyChanged("caps_HealthAuthority");
+			}
+		}
+		
+		/// <summary>
+		/// If "Program tailored to meet needs of population group?" equals yes, which of the following apply? 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_ifyeswhichofthefollowingapply")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Ifyeswhichofthefollowingapply
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_ifyeswhichofthefollowingapply");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Ifyeswhichofthefollowingapply");
+				this.SetAttributeValue("caps_ifyeswhichofthefollowingapply", value);
+				this.OnPropertyChanged("caps_Ifyeswhichofthefollowingapply");
+			}
+		}
+		
+		/// <summary>
 		/// Used for Import
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_importid")]
@@ -53725,6 +54507,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_LandCapital");
 				this.SetAttributeValue("caps_landcapital", value);
 				this.OnPropertyChanged("caps_LandCapital");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_masstimber")]
+		public System.Nullable<bool> caps_MassTimber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_masstimber");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MassTimber");
+				this.SetAttributeValue("caps_masstimber", value);
+				this.OnPropertyChanged("caps_MassTimber");
 			}
 		}
 		
@@ -53819,6 +54619,282 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// The sum of change in 30 Months to School Age for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotal30monthstoschoolage")]
+		public System.Nullable<decimal> caps_NetTotal30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotal30monthstoschoolage");
+			}
+		}
+		
+		/// <summary>
+		/// Sum of the Net Total for 30 Months to School Age, Multi-Age, Preschool, SASG, School Age and Under 36 Months.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalallchildcare")]
+		public System.Nullable<decimal> caps_NetTotalAllChildCare
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalallchildcare");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of change in Multi-Age for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalmultiage")]
+		public System.Nullable<decimal> caps_NetTotalMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalmultiage");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of change in Preschool for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalpreschool")]
+		public System.Nullable<decimal> caps_NetTotalPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalpreschool");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of change in School Age School Grounds for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalsasg")]
+		public System.Nullable<decimal> caps_NetTotalSASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalsasg");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of change in School Age for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalschoolage")]
+		public System.Nullable<decimal> caps_NetTotalSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalschoolage");
+			}
+		}
+		
+		/// <summary>
+		/// The sum of change in Under 36 Months for New, Converted and Relocated spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nettotalunder36months")]
+		public System.Nullable<decimal> caps_NetTotalUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_nettotalunder36months");
+			}
+		}
+		
+		/// <summary>
+		/// New Space in 30 Months to School Age
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangein30monthstoschoolage")]
+		public System.Nullable<decimal> caps_NewSpaceChangein30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangein30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangein30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_newspacechangein30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_NewSpaceChangein30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// New Space for Multi-Age
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangeinmultiage")]
+		public System.Nullable<decimal> caps_NewSpaceChangeinMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangeinmultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangeinMultiAge");
+				this.SetAttributeValue("caps_newspacechangeinmultiage", value);
+				this.OnPropertyChanged("caps_NewSpaceChangeinMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// New Space for Preschool
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangeinpreschool")]
+		public System.Nullable<decimal> caps_NewSpaceChangeinPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangeinpreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangeinPreschool");
+				this.SetAttributeValue("caps_newspacechangeinpreschool", value);
+				this.OnPropertyChanged("caps_NewSpaceChangeinPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// New space for School Age on School Grounds
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangeinsasg")]
+		public System.Nullable<decimal> caps_NewSpaceChangeinSASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangeinsasg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangeinSASG");
+				this.SetAttributeValue("caps_newspacechangeinsasg", value);
+				this.OnPropertyChanged("caps_NewSpaceChangeinSASG");
+			}
+		}
+		
+		/// <summary>
+		/// New space for School Age.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangeinschoolage")]
+		public System.Nullable<decimal> caps_NewSpaceChangeinSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangeinschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangeinSchoolAge");
+				this.SetAttributeValue("caps_newspacechangeinschoolage", value);
+				this.OnPropertyChanged("caps_NewSpaceChangeinSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// New space for under 36 months
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacechangeinunder36months")]
+		public System.Nullable<decimal> caps_NewSpaceChangeinUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacechangeinunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaceChangeinUnder36Months");
+				this.SetAttributeValue("caps_newspacechangeinunder36months", value);
+				this.OnPropertyChanged("caps_NewSpaceChangeinUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// 'New Space in 30 Months to School Age' + 'New Space in Multi Age' + 'New Space in Preschool' + 'New Space in School Age' + 'New Space in Under 36 Months'
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspacestotal")]
+		public System.Nullable<decimal> caps_NewSpacesTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_newspacestotal");
+			}
+		}
+		
+		/// <summary>
+		/// Neighbourhood Learning Center.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nlc")]
+		public System.Nullable<bool> caps_NLC
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_nlc");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NLC");
+				this.SetAttributeValue("caps_nlc", value);
+				this.OnPropertyChanged("caps_NLC");
+			}
+		}
+		
+		/// <summary>
+		/// Will you be operating the childcare space for at least 4 hours from Monday to Friday?
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingchildcarespaceatleast4hoursmonfri")]
+		public System.Nullable<bool> caps_Operatingchildcarespaceatleast4hoursMonFri
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_operatingchildcarespaceatleast4hoursmonfri");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Operatingchildcarespaceatleast4hoursMonFri");
+				this.SetAttributeValue("caps_operatingchildcarespaceatleast4hoursmonfri", value);
+				this.OnPropertyChanged("caps_Operatingchildcarespaceatleast4hoursMonFri");
+			}
+		}
+		
+		/// <summary>
+		/// Will the facility operate on dates of school closure? 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingondatesofschoolclosure")]
+		public System.Nullable<bool> caps_Operatingondatesofschoolclosure
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_operatingondatesofschoolclosure");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Operatingondatesofschoolclosure");
+				this.SetAttributeValue("caps_operatingondatesofschoolclosure", value);
+				this.OnPropertyChanged("caps_Operatingondatesofschoolclosure");
+			}
+		}
+		
+		/// <summary>
+		/// Will the facility operate on statutory holidays? 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingonstatutoryholidays")]
+		public System.Nullable<bool> caps_Operatingonstatutoryholidays
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_operatingonstatutoryholidays");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Operatingonstatutoryholidays");
+				this.SetAttributeValue("caps_operatingonstatutoryholidays", value);
+				this.OnPropertyChanged("caps_Operatingonstatutoryholidays");
+			}
+		}
+		
+		/// <summary>
 		/// Net operating amount given for AFG projects
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingportion_net")]
@@ -53905,6 +54981,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ProcurementMethod");
 				this.SetAttributeValue("caps_procurementmethod", value);
 				this.OnPropertyChanged("caps_ProcurementMethod");
+			}
+		}
+		
+		/// <summary>
+		/// Is your program tailored to meet the needs of a specific population group(s)?
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_programtailoredtomeetneedsofpopulationgroup")]
+		public System.Nullable<bool> caps_Programtailoredtomeetneedsofpopulationgroup
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_programtailoredtomeetneedsofpopulationgroup");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Programtailoredtomeetneedsofpopulationgroup");
+				this.SetAttributeValue("caps_programtailoredtomeetneedsofpopulationgroup", value);
+				this.OnPropertyChanged("caps_Programtailoredtomeetneedsofpopulationgroup");
 			}
 		}
 		
@@ -54050,6 +55144,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Proposed name of the Child Care Facility of the Project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_proposedchildcarefacility")]
+		public string caps_ProposedChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_proposedchildcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ProposedChildCareFacility");
+				this.SetAttributeValue("caps_proposedchildcarefacility", value);
+				this.OnPropertyChanged("caps_ProposedChildCareFacility");
+			}
+		}
+		
+		/// <summary>
 		/// Used for New School projects to indicate proposed school name
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_proposedfacility")]
@@ -54104,6 +55216,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Formula = "CPS Provincial" - "Adjusted Provincial"
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_provincialvariance")]
+		public System.Nullable<decimal> caps_ProvincialVariance
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_provincialvariance");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ProvincialVariance");
+				this.SetAttributeValue("caps_provincialvariance", value);
+				this.OnPropertyChanged("caps_ProvincialVariance");
+			}
+		}
+		
+		/// <summary>
 		/// Used to identify if the automation that created this project will also handle creating child records (milestones and cashflow etc..) or if this project needs those created by a separate flow triggered simply on create of the project.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_recordcreatedbyautomation")]
@@ -54140,6 +55270,138 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Total relocated 30 Months to School Age spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocated30monthstoschoolagetotal")]
+		public System.Nullable<decimal> caps_Relocated30MonthstoSchoolAgeTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocated30monthstoschoolagetotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Relocated30MonthstoSchoolAgeTotal");
+				this.SetAttributeValue("caps_relocated30monthstoschoolagetotal", value);
+				this.OnPropertyChanged("caps_Relocated30MonthstoSchoolAgeTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total relocated Multi-Age spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedmultiagetotal")]
+		public System.Nullable<decimal> caps_RelocatedMultiAgeTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedmultiagetotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RelocatedMultiAgeTotal");
+				this.SetAttributeValue("caps_relocatedmultiagetotal", value);
+				this.OnPropertyChanged("caps_RelocatedMultiAgeTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total relocated preschool spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedpreschooltotal")]
+		public System.Nullable<decimal> caps_RelocatedPreschoolTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedpreschooltotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RelocatedPreschoolTotal");
+				this.SetAttributeValue("caps_relocatedpreschooltotal", value);
+				this.OnPropertyChanged("caps_RelocatedPreschoolTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total relocated School Age on School Ground spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedsasgtotal")]
+		public System.Nullable<decimal> caps_RelocatedSASGTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedsasgtotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RelocatedSASGTotal");
+				this.SetAttributeValue("caps_relocatedsasgtotal", value);
+				this.OnPropertyChanged("caps_RelocatedSASGTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total for the relocated school age spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedschoolagetotal")]
+		public System.Nullable<decimal> caps_RelocatedSchoolAgeTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedschoolagetotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RelocatedSchoolAgeTotal");
+				this.SetAttributeValue("caps_relocatedschoolagetotal", value);
+				this.OnPropertyChanged("caps_RelocatedSchoolAgeTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total relocated spaces for 30 Months to School Age, Multi-Age, Preschool, SASG, School Ground, and Under 36 Months.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedtotal")]
+		public System.Nullable<decimal> caps_RelocatedTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedtotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total of the relocated under 36 months spaces.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_relocatedunder36monthstotal")]
+		public System.Nullable<decimal> caps_RelocatedUnder36MonthsTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_relocatedunder36monthstotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RelocatedUnder36MonthsTotal");
+				this.SetAttributeValue("caps_relocatedunder36monthstotal", value);
+				this.OnPropertyChanged("caps_RelocatedUnder36MonthsTotal");
+			}
+		}
+		
+		/// <summary>
+		/// Difference between Total Approved at Project and Total Draw Requested Amount
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_remainingdrawrequestbalance")]
+		public System.Nullable<decimal> caps_RemainingDrawRequestBalance
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_remainingdrawrequestbalance");
+			}
+		}
+		
+		/// <summary>
 		/// A field used to capture the funding indicated on the Project Request
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_requestedfunding")]
@@ -54154,6 +55416,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_RequestedFunding");
 				this.SetAttributeValue("caps_requestedfunding", value);
 				this.OnPropertyChanged("caps_RequestedFunding");
+			}
+		}
+		
+		/// <summary>
+		/// Reserve funds that were transferred out of the Project.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_reservetransferredout")]
+		public System.Nullable<decimal> caps_ReserveTransferredout
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_reservetransferredout");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ReserveTransferredout");
+				this.SetAttributeValue("caps_reservetransferredout", value);
+				this.OnPropertyChanged("caps_ReserveTransferredout");
 			}
 		}
 		
@@ -54508,6 +55788,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_TotalDistrictOperatingCapacity");
 				this.SetAttributeValue("caps_totaldistrictoperatingcapacity", value);
 				this.OnPropertyChanged("caps_TotalDistrictOperatingCapacity");
+			}
+		}
+		
+		/// <summary>
+		/// Sums amount of related draw requests in draft, ready to submit, or submitted.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totaldrawrequestedamount")]
+		public System.Nullable<decimal> caps_TotalDrawRequestedAmount
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totaldrawrequestedamount");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_TotalDrawRequestedAmount");
+				this.SetAttributeValue("caps_totaldrawrequestedamount", value);
+				this.OnPropertyChanged("caps_TotalDrawRequestedAmount");
 			}
 		}
 		
@@ -55193,6 +56491,25 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// N:1 caps_projecttracker_ChildCareFacility_caps_chi
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecttracker_ChildCareFacility_caps_chi")]
+		public CAPS.DataContext.caps_Childcare caps_projecttracker_ChildCareFacility_caps_chi
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_projecttracker_ChildCareFacility_caps_chi", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecttracker_ChildCareFacility_caps_chi");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_projecttracker_ChildCareFacility_caps_chi", null, value);
+				this.OnPropertyChanged("caps_projecttracker_ChildCareFacility_caps_chi");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 caps_ProjectTracker_CurrentCOA_caps_Certi
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_currentcoa")]
@@ -55480,6 +56797,7 @@ namespace CAPS.DataContext
 			public const string caps_BudgetCalculationType = "caps_budgetcalculationtype";
 			public const string caps_ImportID = "caps_importid";
 			public const string caps_ImportSource = "caps_importsource";
+			public const string caps_ProjectDescription = "caps_projectdescription";
 			public const string caps_ProjectTypeCode = "caps_projecttypecode";
 			public const string caps_ProjectTypeId = "caps_projecttypeid";
 			public const string Id = "caps_projecttypeid";
@@ -55602,6 +56920,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ImportSource");
 				this.SetAttributeValue("caps_importsource", value);
 				this.OnPropertyChanged("caps_ImportSource");
+			}
+		}
+		
+		/// <summary>
+		/// Used to automatically populate a Minor Project's description when a Project is created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_projectdescription")]
+		public string caps_ProjectDescription
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_projectdescription");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ProjectDescription");
+				this.SetAttributeValue("caps_projectdescription", value);
+				this.OnPropertyChanged("caps_ProjectDescription");
 			}
 		}
 		
@@ -63187,6 +64523,7 @@ namespace CAPS.DataContext
 		public static class Fields
 		{
 			public const string caps_AFGFundingPercentage = "caps_afgfundingpercentage";
+			public const string caps_CCAFGRatio = "caps_ccafgratio";
 			public const string caps_FreightRateAllowance = "caps_freightrateallowance";
 			public const string caps_importID = "caps_importid";
 			public const string caps_ImportSource = "caps_importsource";
@@ -63287,6 +64624,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_AFGFundingPercentage");
 				this.SetAttributeValue("caps_afgfundingpercentage", value);
 				this.OnPropertyChanged("caps_AFGFundingPercentage");
+			}
+		}
+		
+		/// <summary>
+		/// Ratio used for CC AFG Call for Submissions to determine the distribution per School District.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_ccafgratio")]
+		public System.Nullable<decimal> caps_CCAFGRatio
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_ccafgratio");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CCAFGRatio");
+				this.SetAttributeValue("caps_ccafgratio", value);
+				this.OnPropertyChanged("caps_CCAFGRatio");
 			}
 		}
 		

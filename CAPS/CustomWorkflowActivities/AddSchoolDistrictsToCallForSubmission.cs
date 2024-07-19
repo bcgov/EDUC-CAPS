@@ -21,6 +21,10 @@ namespace CustomWorkflowActivities
         [ReferenceTarget("caps_callforsubmission")]
         public InArgument<EntityReference> callForSubmission { get; set; }
 
+        [Input("Call Type")]
+        [AttributeTarget("caps_callforsubmission", "caps_callforsubmissiontype")]
+        public InArgument<OptionSetValue> callType { get; set; }
+
         protected override void Execute(CodeActivityContext executionContext)
         {
             ITracingService tracingService = executionContext.GetExtension<ITracingService>();
@@ -33,6 +37,8 @@ namespace CustomWorkflowActivities
 
             //Check to see if the EntityReference has been set
             EntityReference callForSubmissionReference = this.callForSubmission.Get(executionContext);
+            OptionSetValue callTypeOptionSet = this.callType.Get(executionContext);
+            
             if (callForSubmissionReference == null)
             {
                 throw new InvalidOperationException("Call for Submission has not been specified", new ArgumentNullException("Call for Submission"));
@@ -46,9 +52,20 @@ namespace CustomWorkflowActivities
             using (var crmContext = new CrmServiceContext(service))
             {
                 var relatedEntities = new EntityReferenceCollection();
-
-                //get active school districts
-                var schoolDistricts = crmContext.edu_schooldistrictSet.Where(r => r.StateCode == edu_schooldistrictState.Active);
+                IQueryable<edu_schooldistrict> schoolDistricts;
+                //If call type is CC-AFG
+                if (callTypeOptionSet.Value == 385610001)
+                {
+                    //Get Active School Districts with CC AFG Ratio greater than 0
+                    schoolDistricts = crmContext.edu_schooldistrictSet.Where(r => r.StateCode == edu_schooldistrictState.Active
+                                                                                   && r.caps_CCAFGRatio > 0);
+                }
+                else 
+                {
+                    //Get active school districts
+                    schoolDistricts = crmContext.edu_schooldistrictSet.Where(r => r.StateCode == edu_schooldistrictState.Active);
+                }
+                
 
                 foreach(var schoolDistrict in schoolDistricts)
                 {

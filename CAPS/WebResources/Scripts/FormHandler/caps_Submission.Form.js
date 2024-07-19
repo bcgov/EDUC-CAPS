@@ -35,15 +35,28 @@ CAPS.Submission.onLoad = function (executionContext) {
         if (callForSubmissionType === 100000002) {
             //AFG
             formContext.ui.tabs.get("tab_afg").setVisible(true);
+            formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
             formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(true);
             formContext.ui.tabs.get("tab_general").setVisible(false);
             formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
             formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
-
             formContext.getControl("sgd_AFGProjects").addOnLoad(CAPS.Submission.UpdateTotalAllocated);
+            
+        }
+        //CC-AFG
+        else if (callForSubmissionType === 385610001) {
+            formContext.ui.tabs.get("tab_CCAFG").setVisible(true);
+            formContext.ui.tabs.get("tab_afg").setVisible(false);
+            formContext.ui.tabs.get("tab_CCAFG").sections.get("sec_CCAFG_projects").setVisible(true);
+            formContext.ui.tabs.get("tab_general").setVisible(false);
+            formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
+            formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
+            formContext.getControl("sgd_CCAFGProjects").addOnLoad(CAPS.Submission.UpdateTotalAllocated);
+
         }
         else {
             formContext.ui.tabs.get("tab_afg").setVisible(false);
+            formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
             formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(false);
             formContext.ui.tabs.get("tab_general").setVisible(true);
             if (callForSubmissionType === 100000000) {
@@ -123,7 +136,7 @@ CAPS.Submission.onLoad = function (executionContext) {
 
 //onLoad validate the related capital plan supporting documents files//
 CAPS.Submission.checkSupportingDocuments = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
     var addSupportingDocuments = CAPS.Submission.GetLookup("caps_supportingdocuments", formContext);
     var submissionType = formContext.getAttribute("caps_submissiontype").getValue();
@@ -135,7 +148,7 @@ CAPS.Submission.checkSupportingDocuments = function (executionContext) {
             var options = "?$select=caps_capitalplanresponseletter,caps_capitalbylaw,caps_childcaredeclaration,caps_name";
             Xrm.WebApi.retrieveRecord("caps_capitalplansupportingdocuments", addSupportingDocumentsID, options).then(
                 function success(result) {
-                    debugger;
+                    
                     var supportingDocumentName = result.caps_name;
                     var capitalPlanResponseLetter = result.caps_capitalplanresponseletter;
                     var capitalBylaw = result.caps_capitalbylaw;
@@ -238,6 +251,7 @@ CAPS.Submission.UpdateTotalAllocated = function (executionContext) {
             if (totalCost !== null && totalAllocated !== null) {
                 variance = totalCost - totalAllocated;
                 formContext.getAttribute('caps_variance').setValue(variance);
+                
             }
             formContext.data.entity.save();
         },
