@@ -450,7 +450,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
    
     var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
 
-    if (submissionCategoryCode === 'AFG') {
+    if (submissionCategoryCode === 'AFG' || submissionCategoryCode === 'CC_AFG') {
         //hide procurement, hide other funding, hide both date sections, hide agency section
         formContext.getControl("caps_procurementmethod").setVisible(false);
         if (formContext.getControl("caps_totalagencyprojected") !== null) {

@@ -90,7 +90,8 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             
             /*var errorText = "Unable to release results as one or more Submission is in a draft state."*/
 
-            if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+            if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002 || 
+                formContext.getAttribute("caps_callforsubmissiontype").getValue() == 385610001) {
                 errorText = "Unable to release results as one or more Submission is in a draft state and/or a project request is flagged for review.";
             }
 
@@ -110,7 +111,8 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
 
             else {
                 //now if this is AFG, check if there are any projects requests that are flagged for review.
-                if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002) {
+                if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002 || 
+                    formContext.getAttribute("caps_callforsubmissiontype").getValue() == 385610001) {
                     var fetchXML2 = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">" +
                         "<entity name=\"caps_submission\">" +
                         "<attribute name=\"caps_submissionid\" />" +
@@ -164,6 +166,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                         "<filter type=\"and\">" +
                         "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
                         "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
+                        "<condition attribute=\"caps_callforsubmissiontype\" value=\"385610001\" operator=\"ne\"/>" //not equal CC - AFG
                         "</filter>" +
                         "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
                         "<filter type=\"and\">" +

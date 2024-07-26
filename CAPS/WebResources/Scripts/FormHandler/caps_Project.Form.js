@@ -1833,7 +1833,8 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
     var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
     var submission = CAPS.Project.GetLookup("caps_submission", formContext);
     var proposedSchoolFacility = formContext.getAttribute("caps_proposedfacility").getValue();
-
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+    var otherFacility = formContext.getAttribute("caps_otherfacility").getValue();
 
     var proposedSite = formContext.getAttribute("caps_proposedsite").getValue();
 
@@ -1851,7 +1852,10 @@ CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
         let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + proposedSite + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
         formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
     }
-
+    else if (submissionCategoryCode === "DEMOLITION" && otherFacility !== null) {
+        let fetchXml = "<filter type='and'><condition attribute='caps_proposedschoolfacility' operator='eq' value='" + otherFacility + "' /><condition attribute='caps_submission' operator='eq' value='" + submission.id + "' /></filter>";
+        formContext.getControl("caps_projectcollection").addCustomFilter(fetchXml);
+    }
 
 
 }

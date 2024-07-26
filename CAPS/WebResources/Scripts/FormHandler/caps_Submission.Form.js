@@ -17,7 +17,7 @@ const SUBMISSION_STAUS = {
  * @param {any} executionContext execution context
  */
 CAPS.Submission.onLoad = function (executionContext) {
-    debugger;
+   
     var formContext = executionContext.getFormContext();
 
     var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
@@ -79,6 +79,7 @@ CAPS.Submission.onLoad = function (executionContext) {
 
         formContext.ui.tabs.get("tab_general").setVisible(false);
         formContext.ui.tabs.get("tab_afg").setVisible(false);
+        formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
 
         if (callForSubmissionType === 100000002) {
             formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
@@ -96,6 +97,7 @@ CAPS.Submission.onLoad = function (executionContext) {
 
             formContext.ui.tabs.get("tab_general").setVisible(false);
             formContext.ui.tabs.get("tab_afg").setVisible(false);
+            formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
 
             if (callForSubmissionType === 100000002) {
                 formContext.ui.tabs.get("tab_capitalplan").sections.get("tab_capitalplan_section_boardresolution").setVisible(false);
@@ -108,12 +110,19 @@ CAPS.Submission.onLoad = function (executionContext) {
             if (callForSubmissionType === 100000002) {
                 //AFG
                 formContext.ui.tabs.get("tab_afg").setVisible(true);
+                formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
                 formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(true);
                 formContext.ui.tabs.get("tab_general").setVisible(false);
                 formContext.ui.tabs.get("tab_general").sections.get("sec_major_projects").setVisible(false);
                 formContext.ui.tabs.get("tab_general").sections.get("sec_minor_projects").setVisible(false);
 
                 formContext.getControl("sgd_AFGProjects").addOnLoad(CAPS.Submission.UpdateTotalAllocated);
+            }
+            //CC-AFG
+            else if (callForSubmissionType === 385610001) {
+                formContext.ui.tabs.get("tab_afg").setVisible(false);
+                formContext.ui.tabs.get("tab_CCAFG").setVisible(true);
+                formContext.ui.tabs.get("tab_general").setVisible(false);
             }
             else {
                 formContext.ui.tabs.get("tab_afg").setVisible(false);
@@ -233,7 +242,7 @@ CAPS.Submission.embedCapitalPlanReport = function (executionContext) {
  * @param {any} executionContext execution context
  */
 CAPS.Submission.UpdateTotalAllocated = function (executionContext) {
-    debugger;
+   
     var formContext = executionContext.getFormContext();
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
     Xrm.WebApi.retrieveMultipleRecords("caps_project", "?$select=caps_totalprojectcost&$filter=caps_Submission/caps_submissionid eq " + id).then(

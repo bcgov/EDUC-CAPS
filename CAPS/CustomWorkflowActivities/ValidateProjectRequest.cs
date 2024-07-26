@@ -241,7 +241,6 @@ namespace CustomWorkflowActivities
                 }
             }
             #endregion
-
             tracingService.Trace("{0}", "Check if Major Project has cash flow in first 5 years and not lease");
             #region Check if Major Project has cash flow in first 5 years and not lease
             //Check if Major Project has cash flow in first 5 years and not lease
@@ -310,13 +309,14 @@ namespace CustomWorkflowActivities
             #region Check if major project has any prfs options with a start date before the capital plan year
             if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major)
             {
+                
                 if (projectRequest.caps_Submission != null)
-                {
+                {                    
                     //get capital plan year
-                    var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear")) as edu_Year;
-
+                    var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear", "edu_startdate")) as edu_Year;
                     int startYear = capitalPlanYear.edu_StartYear.Value;
-
+                        
+                    //DateTime yearEndDate = capitalPlanYear.edu_EndDate.Value;
                     var fetchXMLPRFS = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
                                         "<entity name=\"caps_prfsalternativeoption\" > " +
                                            "<attribute name=\"caps_prfsalternativeoptionid\" /> " +
@@ -336,12 +336,33 @@ namespace CustomWorkflowActivities
                                                                             "</fetch > ";
                     //Find out if there are any PRFSs with early start dates
                     var prfsOptions = service.RetrieveMultiple(new FetchExpression(fetchXMLPRFS));
-
+                    
                     if (prfsOptions.Entities.Count() > 0)
                     {
                         isValid = false;
                         validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the Concept Plan Alternative Option from the Project Request.");
                     }
+                                       
+                                       
+                    var yearStartDate = capitalPlanYear.edu_StartDate.Value;
+                    if (projectRequest.caps_AnticipatedTenderDate < yearStartDate)
+                    {
+                        validationMessage.AppendLine("Tender Date is before the Call For Submission's Capital Plan Year.");
+                    }
+                    
+                    if (projectRequest.caps_Projectyear != null)
+                    {
+                        EntityReference thisProjectRequestYear = projectRequest.caps_Projectyear;
+                                                                      
+                        Entity thisProjectRequestYearRec = service.Retrieve("edu_year", thisProjectRequestYear.Id, new ColumnSet("edu_startyear"));
+                        int thisProjectRequestStartYear = thisProjectRequestYearRec.GetAttributeValue<int>("edu_startyear");
+                        if (thisProjectRequestStartYear < startYear)
+                        {
+                            validationMessage.AppendLine("Project Start Year is before the Call For Submission's Capital Plan Year.");
+                        }
+                        
+                    }
+                    
                 }
             }
             #endregion
@@ -460,7 +481,7 @@ namespace CustomWorkflowActivities
                 }
                
             }
-            else if(projectRequest.caps_SubmissionCategoryCode == "CC_CONVERSION_MINOR" || projectRequest.caps_SubmissionCategoryCode == "CC_UPGRADE_MINOR")
+            if(projectRequest.caps_SubmissionCategoryCode == "CC_CONVERSION_MINOR" || projectRequest.caps_SubmissionCategoryCode == "CC_UPGRADE_MINOR")
             {
                 var projectStartDate = projectRequest.caps_StartDate;
                 var projectEndDate = projectRequest.caps_EndDate;

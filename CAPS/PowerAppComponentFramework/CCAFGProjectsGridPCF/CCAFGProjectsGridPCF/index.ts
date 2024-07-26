@@ -28,7 +28,10 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 	private lockOnInactive:boolean;
 	private isEditing:boolean;
 	private intervalHandler:any;
-
+	private schoolFacilityElement : HTMLSelectElement;
+	private notifyOutputChanged: () => void;
+	
+	//private schoolFacilityElement: HTMLSelectElement;
     /**
      * Empty constructor.
      */
@@ -50,7 +53,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
         console.log("start init");
         // Need to track container resize so that control could get the available width. The available height won't be provided even this is true
 		context.mode.trackContainerResize(false);
-
+		this.notifyOutputChanged = notifyOutputChanged;
 		// Create main table container div. 
 		this.mainContainer = document.createElement("div");
 
@@ -72,6 +75,18 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 		this.mainContainer.classList.add("DataSetControl_main-container");
 		container.appendChild(this.mainContainer);
         console.log("end init");
+
+		this.schoolFacilityElement = (<HTMLSelectElement[]><any>document.getElementsByName('caps_facility'))[0];
+
+		// Attach the onChange event to the select element
+        if (this.schoolFacilityElement) {
+            this.schoolFacilityElement.addEventListener('change', this.onSchoolFacilityChange.bind(this));
+        }
+
+		
+		// Initial rendering
+        //this.renderData();
+		
     }
 
 
@@ -136,6 +151,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 				alert("An error occured while running the query:\r\n\r\n" + errorResponse.message);
 			});
 		}
+		
     }
 
     /**
@@ -154,6 +170,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
     public destroy(): void
     {
         // Add code to cleanup control if necessary
+		
     }
 
     /**
@@ -272,6 +289,13 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 							const entityRef:ComponentFramework.EntityReference = <ComponentFramework.EntityReference>(gridParam.records[currentRecordId]).getValue(columnItem.name);
 							if (entityRef != null) valuePara.setAttribute('data-value', entityRef.id.guid);
 							if (valuePara.textContent == '-') valuePara.textContent = 'Other';
+						}
+						else if(fieldName.indexOf('caps_childcare') > -1){
+							valuePara.setAttribute('data-required', 'true');
+							valuePara.setAttribute('data-entityname', 'caps_childcares');
+							const entityRef:ComponentFramework.EntityReference = <ComponentFramework.EntityReference>(gridParam.records[currentRecordId]).getValue(columnItem.name);
+							if (entityRef != null) valuePara.setAttribute('data-value', entityRef.id.guid);
+							if (valuePara.textContent == '-') valuePara.textContent = '-';
 						}
 						else if (fieldName.indexOf('caps_projectdescription') > -1) {
 							valuePara.setAttribute('data-required', 'true');
@@ -542,6 +566,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 
 		let query:string = '';
 
+		
 		switch (columnName.toLowerCase())
 		{
 			case 'caps_facility':
@@ -570,6 +595,12 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 					'</entity>' +
 				'</fetch>';
 				break;
+			case 'caps_childcare':
+			select.setAttribute('data-entityname', 'caps_childcares')
+			valueField = 'caps_childcareid';
+			textField = 'caps_name';
+			query = '?$select=' + valueField + ',' + textField + '&$orderby=' + textField + ' asc';
+				break;
 			default:
 				break;
 		}
@@ -590,14 +621,14 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 							option.text = '-- SELECT --';
 							select.append(option);
 
-							if (columnName.toLowerCase() == 'caps_facility') {
+							/*if (columnName.toLowerCase() == 'caps_facility') {
 								option = document.createElement('option');
 								option.value = '0';
 								option.text = 'Other (Please Specify)';
 								select.append(option);
 
 								select.on('change', obj.facilityChanged);
-							}
+							}*/
 
 							for (let i = 0; i < response.entities.length; i++) {
 								const entity:ComponentFramework.WebApi.Entity = response.entities[i];
@@ -757,6 +788,54 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 
 		$(event.target as HTMLElement).parent().find('.edit-button').click();
 	}
+
+	
+	private onSchoolFacilityChange(event: Event){
+		// Handle the onChange event
+		const schoolFacilitySelectedValue = (<HTMLSelectElement[]><any>document.getElementsByName('caps_facility'))[0].value;
+        console.log('School Facility Changed: ${schoolFacilitySelectedValue}');
+		
+		// Filter the dataset based on the selected value
+		//this.filterCCFacility(schoolFacilitySelectedValue);
+		
+		// Notify that output has changed
+        this.notifyOutputChanged();
+		
+	}
+
+	/*private async filterCCFacility (schoolFacilitySelectedValue: string): Promise<void> {
+		
+	    const ccFacilityQuery = '?fetchXml=<fetch top="50" distinct="true" >' +
+					'<entity name="caps_childcare" >' +
+					'<attribute name="caps_name" />' +
+					'<attribute name="caps_childcareid" />' +
+					'<order attribute="caps_name" />' +
+                    '<filter type="and" >' +
+                        '<condition attribute="caps_facility" operator="eq" value= '+ schoolFacilitySelectedValue +' />' + 
+                    '</filter>' +
+					'</entity>' +
+				'</fetch>' 
+		try {
+		const ccFacilityResults = await this.contextObj.webAPI.retrieveMultipleRecords("caps_childcare", '?fetchXml=${encodeURIComponent(ccFacilityQuery)}');
+		this.processResults(ccFacilityResults.entities);
+		} catch(error) {
+			console.error('Error executing FetchXML: ${error}');
+            this.gridContainer.innerHTML = 'Error fetching data: ${error.message}';
+		}	
+
+	}*/
+
+	private processResults(entities: ComponentFramework.WebApi.Entity[]): void {
+       
+        // Render the fetched data
+        entities.forEach(entity => {
+            const div = document.createElement("div");
+            div.innerText = 'CC Facility: ${entity["name"]}';
+            this.gridContainer.appendChild(div);
+        });
+    }
+
+	
 
 	private bindEvents() {
 		$(".DataSetControl_grid-dataRow").on("click", ".click-to-open", this.onRowClick.bind(this));
