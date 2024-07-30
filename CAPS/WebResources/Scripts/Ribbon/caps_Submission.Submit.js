@@ -104,7 +104,7 @@ CAPS.Submission.Complete = async function (primaryControl) {
  * @returns {boolean} true if should be shown, otherwise false.
  */
 CAPS.Submission.ShowValidate = function (primaryControl) {
-    debugger;
+    
     var formContext = primaryControl;
 
     //If not in status of draft

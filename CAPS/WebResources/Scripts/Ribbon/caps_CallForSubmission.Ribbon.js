@@ -21,6 +21,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
     var submissionId = formContext.data.entity.getId();
     var boardResolutionRequired = formContext.getAttribute("caps_boardresolutionrequired").getValue();
     var fetchXML = "";
+    //If board resolution is no
     if (!boardResolutionRequired) {
         fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
             "<entity name=\"caps_submission\">" +
@@ -38,6 +39,8 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
             "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
             "<value>100000000</value>" +
             "<value>100000001</value>" +
+            "<value>100000002</value>" +
+            "<value>385610001</value>" +
             "</condition>" +
             "</filter>" +
             "</filter>" +
@@ -45,6 +48,36 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
            // "<filter type=\"or\">" +
            // "<condition attribute=\"caps_boardresolutionrequired\" operator=\"eq\" value=\"1\" />" +
            // "</filter>" +
+            "</link-entity>" +
+            "</entity>" +
+            "</fetch>";
+    }
+    //If AFG or CC-AFG we want to make sure there is no submission in draft
+    else if (formContext.getAttribute("caps_callforsubmissiontype").getValue() == 100000002 ||
+        formContext.getAttribute("caps_callforsubmissiontype").getValue() == 385610001) {
+        fetchXML = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
+            "<entity name=\"caps_submission\">" +
+            "<attribute name=\"caps_submissionid\" />" +
+            "<attribute name=\"caps_name\" />" +
+            "<attribute name=\"createdon\" />" +
+            "<order attribute=\"caps_name\" descending=\"false\" />" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
+            "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
+            "<filter type=\"or\">" +
+            "<condition attribute=\"statuscode\" value=\"1\" operator=\"eq\"/>" +
+            "</filter>" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_callforsubmissiontype\" operator=\"in\">" +
+            "<value>100000002</value>" +
+            "<value>385610001</value>" +
+            "</condition>" +
+            "</filter>" +
+            "</filter>" +
+            "<link-entity name=\"caps_callforsubmission\" from=\"caps_callforsubmissionid\" to=\"caps_callforsubmission\" link-type=\"inner\" alias=\"aa\">" +
+            "<filter type=\"or\">" +
+            "<condition attribute=\"caps_boardresolutionrequired\" operator=\"eq\" value=\"1\" />" +
+            "</filter>" +
             "</link-entity>" +
             "</entity>" +
             "</fetch>";
@@ -82,7 +115,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
     //Get all Capital Plans without board resolutions
     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML).then(
         function success(result) {
-
+            debugger;
             var errorText = "Unable to release results as one or more Submission is in a draft state and/or missing a board resolution.";
             if (!boardResolutionRequired) {
                 errorText = "Unable to release results as one or more Submission is in a draft state.";
@@ -134,6 +167,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML2).then(
                         function success(result) {
                             if (result.entities.length > 0) {
+                                debugger;
                                 //Some bad projects
                                 let alertStrings = { confirmButtonLabel: "OK", text: errorText, title: "Call For Submission" };
                                 let alertOptions = { height: 120, width: 260 };
@@ -183,6 +217,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                     Xrm.WebApi.retrieveMultipleRecords("caps_submission", "?fetchXml=" + fetchXML3).then(
                         function success(result) {
                             if (result.entities.length > 0) {
+                                debugger;
                                 //Some bad projects
                                 /*  errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported, not supported or planned.";*/
                                 errorText = "Unable to release results as one or more Submissions contains a project request not marked as supported or not supported.";
