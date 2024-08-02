@@ -58,20 +58,13 @@ namespace CustomWorkflowActivities
             Services.OperatingCapacity capacityService = new Services.OperatingCapacity(service, tracingService, capacity);
 
             tracingService.Trace("Line: {0}", "40");
-            if (facilityRecord.caps_CurrentEnrolment != null)
-            {
-                var enrolmentRecord = service.Retrieve(caps_facilityenrolment.EntityLogicalName, facilityRecord.caps_CurrentEnrolment.Id, new ColumnSet("caps_sumofkindergarten", "caps_sumofelementary", "caps_sumofsecondary")) as caps_facilityenrolment;
-
-                enrolmentK = enrolmentRecord.caps_SumofKindergarten.GetValueOrDefault(0);
-                enrolmentE = enrolmentRecord.caps_SumofElementary.GetValueOrDefault(0);
-                enrolmentS = enrolmentRecord.caps_SumofSecondary.GetValueOrDefault(0);
-
-                tracingService.Trace("Line: {0}", "49");
-            }
 
             //Get Current Enrolment Projections
             QueryExpression enrolmentQuery = new QueryExpression("caps_enrolmentprojections_sd");
             enrolmentQuery.ColumnSet.AllColumns = true;
+            LinkEntity enrolmentYearLink = enrolmentQuery.AddLink("edu_year", "caps_projectionyear", "edu_yearid");
+            enrolmentYearLink.Columns.AddColumns("edu_yearid", "statuscode", "edu_enddate");
+            enrolmentYearLink.EntityAlias = "year";
             enrolmentQuery.Criteria = new FilterExpression();
             enrolmentQuery.Criteria.AddCondition("caps_facility", ConditionOperator.Equal, recordId);
             if (facilityRecord.caps_UseFutureForUtilization.GetValueOrDefault(false))
@@ -84,9 +77,49 @@ namespace CustomWorkflowActivities
                 //current
                 enrolmentQuery.Criteria.AddCondition("statuscode", ConditionOperator.Equal, 200870000);
             }
-            
+
             EntityCollection enrolmentProjectionRecords = service.RetrieveMultiple(enrolmentQuery);
             var enrolmentProjectionList = enrolmentProjectionRecords.Entities.Select(r => r.ToEntity<caps_EnrolmentProjections_SD>()).ToList();
+
+
+            if (facilityRecord.caps_CurrentEnrolment != null)
+            {
+                var enrolmentRecord = service.Retrieve(caps_facilityenrolment.EntityLogicalName, facilityRecord.caps_CurrentEnrolment.Id, new ColumnSet("caps_sumofkindergarten", "caps_sumofelementary", "caps_sumofsecondary")) as caps_facilityenrolment;
+
+                enrolmentK = enrolmentRecord.caps_SumofKindergarten.GetValueOrDefault(0);
+                enrolmentE = enrolmentRecord.caps_SumofElementary.GetValueOrDefault(0);
+                enrolmentS = enrolmentRecord.caps_SumofSecondary.GetValueOrDefault(0);
+
+                tracingService.Trace("Line: {0}", "49");
+            }
+            else
+            {
+                //TODO: code to get latest projection for the current year
+                foreach (Entity projection in enrolmentProjectionRecords.Entities)
+                {
+                    var yearStatus = (OptionSetValue)((AliasedValue)projection["year.statuscode"]).Value;
+                    if (yearStatus.Value == 1)
+                    {
+                        //Current Year projections, now get K, E & S and set current enrolment
+                        enrolmentK = projection.GetAttributeValue<int?>("caps_enrolmentprojectionkindergarten").GetValueOrDefault(0);
+                        enrolmentE = projection.GetAttributeValue<int?>("caps_enrolmentprojectionelementary").GetValueOrDefault(0);
+                        enrolmentS = projection.GetAttributeValue<int?>("caps_enrolmentprojectionsecondary").GetValueOrDefault(0);
+
+                        break;
+                    }
+                }
+
+                //Set Current Year Projections
+                var facilityToUpdate = new caps_Facility();
+                facilityToUpdate.Id = recordId;
+                facilityToUpdate.caps_CurrentYearProjectionKindergarten = (int)enrolmentK;
+                facilityToUpdate.caps_CurrentYearProjectionElementary = (int)enrolmentE;
+                facilityToUpdate.caps_CurrentYearProjectionSecondary = (int)enrolmentS;
+                service.Update(facilityToUpdate);
+
+            }
+
+
 
 
             //Get Projects for this facility with occupancy dates in the future
@@ -156,9 +189,9 @@ namespace CustomWorkflowActivities
                         var recordToUpdate = new caps_CapacityReporting();
                         recordToUpdate.Id = reportingRecord.Id;
 
-                        decimal? historicalEnrolmentK = (!reportingRecord.Contains("enrolment.caps_sumofkindergarten")) ? 0 : ((int?)((AliasedValue)reportingRecord["enrolment.caps_sumofkindergarten"]).Value).GetValueOrDefault(0);
-                        decimal? historicalEnrolmentE = (!reportingRecord.Contains("enrolment.caps_sumofelementary")) ? 0 : ((int?)((AliasedValue)reportingRecord["enrolment.caps_sumofelementary"]).Value).GetValueOrDefault(0);
-                        decimal? historicalEnrolmentS = (!reportingRecord.Contains("enrolment.caps_sumofsecondary")) ? 0 : ((int?)((AliasedValue)reportingRecord["enrolment.caps_sumofsecondary"]).Value).GetValueOrDefault(0);
+                        decimal? historicalEnrolmentK = (!topRecord.Contains("enrolment.caps_sumofkindergarten")) ? 0 : ((int?)((AliasedValue)topRecord["enrolment.caps_sumofkindergarten"]).Value).GetValueOrDefault(0);
+                        decimal? historicalEnrolmentE = (!topRecord.Contains("enrolment.caps_sumofelementary")) ? 0 : ((int?)((AliasedValue)topRecord["enrolment.caps_sumofelementary"]).Value).GetValueOrDefault(0);
+                        decimal? historicalEnrolmentS = (!topRecord.Contains("enrolment.caps_sumofsecondary")) ? 0 : ((int?)((AliasedValue)topRecord["enrolment.caps_sumofsecondary"]).Value).GetValueOrDefault(0);
 
                         recordToUpdate.caps_Kindergarten_enrolment = historicalEnrolmentK;
                         recordToUpdate.caps_Elementary_enrolment = historicalEnrolmentE;
@@ -189,7 +222,7 @@ namespace CustomWorkflowActivities
                         recordToUpdate.caps_secondary_operatingutilization_district = (topRecord.caps_DistrictOperatingCapacitySecondary == 0) ? 0 : historicalEnrolmentS / topRecord.caps_DistrictOperatingCapacitySecondary * 100;
 
                         service.Update(recordToUpdate);
-                    } 
+                    }
                     #endregion
                 }
                 else if (recordType.Value == 1)
@@ -231,10 +264,11 @@ namespace CustomWorkflowActivities
                     recordToUpdate.caps_elementary_operatingutilization_district = (facilityRecord.caps_DistrictOperatingCapacityElementary == 0) ? 0 : enrolmentE / facilityRecord.caps_DistrictOperatingCapacityElementary * 100;
                     recordToUpdate.caps_secondary_operatingutilization_district = (facilityRecord.caps_DistrictOperatingCapacitySecondary == 0) ? 0 : enrolmentS / facilityRecord.caps_DistrictOperatingCapacitySecondary * 100;
 
-                    service.Update(recordToUpdate); 
+                    service.Update(recordToUpdate);
                     #endregion
                 }
-                else {
+                else
+                {
                     //Future
                     #region Future
                     var endDate = (DateTime?)((AliasedValue)reportingRecord["year.edu_enddate"]).Value;
@@ -280,12 +314,10 @@ namespace CustomWorkflowActivities
                     decimal? futureEnrolmentK = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionKindergarten : 0;
                     decimal? futureEnrolmentE = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionElementary : 0;
                     decimal? futureEnrolmentS = (matchingProjection != null) ? matchingProjection.caps_EnrolmentProjectionSecondary : 0;
-                    decimal? futureEnrolmentI = (matchingProjection != null) ? matchingProjection.caps_enrolmentprojectioninternational : 0;
 
                     recordToUpdate.caps_Kindergarten_enrolment = futureEnrolmentK;
                     recordToUpdate.caps_Elementary_enrolment = futureEnrolmentE;
                     recordToUpdate.caps_Secondary_enrolment = futureEnrolmentS;
-                    recordToUpdate.caps_International_enrolment = futureEnrolmentI;
 
                     recordToUpdate.caps_Kindergarten_designcapacity = kDesign;
                     recordToUpdate.caps_Elementary_designcapacity = eDesign;
@@ -325,8 +357,8 @@ namespace CustomWorkflowActivities
 
                     service.Update(recordToUpdate);
                 }
-                    #endregion
-                
+                #endregion
+
             }
 
         }
