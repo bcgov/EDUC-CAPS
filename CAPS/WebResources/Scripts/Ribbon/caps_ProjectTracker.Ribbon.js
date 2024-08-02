@@ -81,8 +81,27 @@ CAPS.ProjectTracker.Complete = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
 
-    var confirmStrings = { text: "Do you wish to complete this project? Click OK to continue.  ", title: "Confirm Completion" };
-    var confirmOptions = { height: 200, width: 450 };
+    var confirmStrings;
+    var confirmOptions;
+    var isSuperUser = false;
+
+    confirmOptions = { height: 200, width: 450 };
+
+    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+
+    userRoles.forEach(function hasAppropriateRole(item, index) {
+        if (item.name === "CAPS CMB Super User - Add On") {
+            isSuperUser = true;
+        }
+    });
+
+    if (isSuperUser == true) {
+        confirmStrings = { text: "There is currently no Accepted project closure. Are you sure you want to complete this project? Click OK to continue.  ", title: "Confirm Completion (Super User)" };
+    } 
+    if (isSuperUser == false) {
+        confirmStrings = { text: "Do you wish to complete this project? Click OK to continue.  ", title: "Confirm Completion" };
+    } 
+    
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {
             var recordId = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -150,7 +169,7 @@ CAPS.ProjectTracker.ShowComplete = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasAppropriateRole(item, index) {
-        if (item.name === "CAPS CMB User") {
+        if (item.name === "CAPS CMB User" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
@@ -212,5 +231,3 @@ CAPS.ProjectTracker.ShowCancel = function (primaryControl) {
 
     return showButton;
 }
-
-

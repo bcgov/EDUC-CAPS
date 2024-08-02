@@ -192,6 +192,8 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
             "caps_markassubmitted": true
         };
 
+    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
+
     //update all future enrolment projection records
     Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 1").then(
         function success(result) {
@@ -207,15 +209,17 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
                     formContext.data.refresh();
                     formContext.getAttribute("caps_usefutureforutilization").setValue(true);
                     formContext.data.entity.save();
-                    
+                    Xrm.Utility.closeProgressIndicator();             
                 }
                 , function (error) {
+                    Xrm.Utility.closeProgressIndicator();
                     Xrm.Navigation.openErrorDialog({ message: error.message });
                 }
             );
 
         },
         function (error) {
+            Xrm.Utility.closeProgressIndicator();
             console.log(error.message);
             // handle error conditions
         }
@@ -236,7 +240,9 @@ CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
     var data =
         {
             "caps_markassubmitted": false
-        };
+    };
+
+    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
     //update all future enrolment projection records
     Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 200870001").then(
@@ -253,16 +259,17 @@ CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
                     formContext.data.refresh();
                     formContext.getAttribute("caps_usefutureforutilization").setValue(false);
                     formContext.data.entity.save();
-
+                    Xrm.Utility.closeProgressIndicator();
                 }
                 , function (error) {
-
+                    Xrm.Utility.closeProgressIndicator();
                     Xrm.Navigation.openErrorDialog({ message: error.message });
                 }
             );
 
         },
         function (error) {
+            Xrm.Utility.closeProgressIndicator();
             console.log(error.message);
             // handle error conditions
         }
