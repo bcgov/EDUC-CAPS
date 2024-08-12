@@ -32,6 +32,8 @@ CAPS.Facility.onLoad = function (executionContext) {
 
     // Check Projection Values
     CAPS.Facility.UpdateCurrentYearEnrolmentProjectionsValue(executionContext);
+    formContext.getAttribute("caps_currentenrolment").addOnChange(CAPS.Facility.UpdateCurrentYearEnrolmentProjectionsValue);
+
 }
 
 /***

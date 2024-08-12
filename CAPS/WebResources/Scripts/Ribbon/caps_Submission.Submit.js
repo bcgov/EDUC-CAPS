@@ -43,9 +43,11 @@ CAPS.Submission.Complete = async function (primaryControl) {
 
     let checkProjectRequestResults = await CAPS.Submission.CheckProjectRequests(formContext);
     let checkAFGVariance = await CAPS.Submission.CheckAFGTotal(formContext);
+    let checkAFGFlagForReview = await CAPS.Submission.CheckAFGFalgForReview(formContext);
 
     resultsArray.push(checkProjectRequestResults);
     resultsArray.push(checkAFGVariance);
+    resultsArray.push(checkAFGFlagForReview);
 
     var allValidationPassed = true;
     //loop through results
@@ -657,6 +659,74 @@ CAPS.Submission.CheckAFGProjects = function (formContext) {
             }
         );
     }
+}
+
+/*
+Checking if any AFG or CC-AFG Project Request has Flag for Review set to Yes
+*/
+CAPS.Submission.CheckAFGFalgForReview = function (formContext) {
+    //Get record ID
+    var submissionId = formContext.data.entity.getId();
+
+    //Get Call for Submission Type
+    var callForSubmissionType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
+
+    //If AFG 
+    if (callForSubmissionType === 100000002) {
+
+        var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
+            "<entity name = \"caps_project\" >" +
+            "<attribute name=\"caps_projectid\" />" +
+            "<order attribute=\"caps_projectcode\" descending=\"false\" />" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_submission\" operator=\"eq\" uitype=\"caps_submission\" value=\"" + submissionId + "\" />" +
+            "<condition attribute=\"caps_flaggedforreview\" operator=\"eq\" value=\"1\" />" +
+            "</filter>" +
+            "</entity>" +
+            "</fetch >";
+
+        return Xrm.WebApi.retrieveMultipleRecords("caps_project", "?fetchXml=" + fetchXML).then(
+            function success(result) {
+
+                if (result.entities.length > 0) {
+                    //Some bad projects
+                    return new CAPS.Submission.ValidationResult(false, "AFG Validation: Unable to complete, please review Flagged for Review items and contact the Minor Capital team.");
+                }
+                return new CAPS.Submission.ValidationResult(true, "AFG Validation: Success");
+            },
+            function (error) {
+                alert(error.message);
+            }
+        );
+    }
+    //CC-AFG
+    else if (callForSubmissionType === 385610001) {
+        var fetchXML = "<fetch version=\"1.0\" output-format=\"xml - platform\" mapping=\"logical\" distinct=\"false\">" +
+            "<entity name = \"caps_project\" >" +
+            "<attribute name=\"caps_projectid\" />" +
+            "<order attribute=\"caps_projectcode\" descending=\"false\" />" +
+            "<filter type=\"and\">" +
+            "<condition attribute=\"caps_submission\" operator=\"eq\" uitype=\"caps_submission\" value=\"" + submissionId + "\" />" +
+            "<condition attribute=\"caps_flaggedforreview\" operator=\"eq\" value=\"1\" />" +
+            "</filter>" +
+            "</entity>" +
+            "</fetch >";
+
+        return Xrm.WebApi.retrieveMultipleRecords("caps_project", "?fetchXml=" + fetchXML).then(
+            function success(result) {
+
+                if (result.entities.length > 0) {
+                    //Some bad projects
+                    return new CAPS.Submission.ValidationResult(false, "CC-AFG Validation: Unable to complete, please review Flagged for Review items and contact the Minor Capital team.");
+                }
+                return new CAPS.Submission.ValidationResult(true, "CC-AFG Validation: Success");
+            },
+            function (error) {
+                alert(error.message);
+            }
+        );
+    }
+
 }
 
 CAPS.Submission.GetLookup = function (fieldName, formContext) {

@@ -126,6 +126,7 @@ CAPS.Submission.onLoad = function (executionContext) {
             }
             else {
                 formContext.ui.tabs.get("tab_afg").setVisible(false);
+                formContext.ui.tabs.get("tab_CCAFG").setVisible(false);
                 formContext.ui.tabs.get("tab_afg").sections.get("sec_afg_projects").setVisible(false);
                 formContext.ui.tabs.get("tab_general").setVisible(true);
                 if (callForSubmissionType === 100000000) {

@@ -193,6 +193,8 @@ namespace CustomWorkflowActivities
                         decimal? historicalEnrolmentE = (!topRecord.Contains("enrolment.caps_sumofelementary")) ? 0 : ((int?)((AliasedValue)topRecord["enrolment.caps_sumofelementary"]).Value).GetValueOrDefault(0);
                         decimal? historicalEnrolmentS = (!topRecord.Contains("enrolment.caps_sumofsecondary")) ? 0 : ((int?)((AliasedValue)topRecord["enrolment.caps_sumofsecondary"]).Value).GetValueOrDefault(0);
 
+                        //tracingService.Trace(((EntityReference)((AliasedValue)topRecord["enrolment.caps_facilityenrolmentid"]).Value).Id.ToString());
+
                         recordToUpdate.caps_Kindergarten_enrolment = historicalEnrolmentK;
                         recordToUpdate.caps_Elementary_enrolment = historicalEnrolmentE;
                         recordToUpdate.caps_Secondary_enrolment = historicalEnrolmentS;

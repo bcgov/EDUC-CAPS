@@ -244,7 +244,8 @@ namespace CustomWorkflowActivities
             tracingService.Trace("{0}", "Check if Major Project has cash flow in first 5 years and not lease");
             #region Check if Major Project has cash flow in first 5 years and not lease
             //Check if Major Project has cash flow in first 5 years and not lease
-            if (submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major && submissionCategory.caps_CategoryCode != "LEASE")
+            if ((submissionCategory.caps_type.Value == (int)caps_submissioncategory_type.Major && submissionCategory.caps_CategoryCode != "LEASE") ||
+                submissionCategory.caps_CategoryCode == "BEP")
             {
                 if (projectRequest.caps_Submission != null
                     && projectRequest.caps_Projectyear != callForSubmission.caps_CapitalPlanYear)
@@ -311,12 +312,11 @@ namespace CustomWorkflowActivities
             {
                 
                 if (projectRequest.caps_Submission != null)
-                {                    
+                {
                     //get capital plan year
                     var capitalPlanYear = service.Retrieve(callForSubmission.caps_CapitalPlanYear.LogicalName, callForSubmission.caps_CapitalPlanYear.Id, new ColumnSet("edu_startyear", "edu_startdate")) as edu_Year;
                     int startYear = capitalPlanYear.edu_StartYear.Value;
-                        
-                    //DateTime yearEndDate = capitalPlanYear.edu_EndDate.Value;
+                                        
                     var fetchXMLPRFS = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">" +
                                         "<entity name=\"caps_prfsalternativeoption\" > " +
                                            "<attribute name=\"caps_prfsalternativeoptionid\" /> " +
@@ -342,11 +342,13 @@ namespace CustomWorkflowActivities
                         isValid = false;
                         validationMessage.AppendLine("There is one or more PRFS Alternative Option with an Anticipated Option Start Year before the Capital Plan Year.  Please adjust or remove the Concept Plan Alternative Option from the Project Request.");
                     }
-                                       
-                                       
+
+                    
                     var yearStartDate = capitalPlanYear.edu_StartDate.Value;
+                    
                     if (projectRequest.caps_AnticipatedTenderDate < yearStartDate)
                     {
+                        isValid = false;
                         validationMessage.AppendLine("Tender Date is before the Call For Submission's Capital Plan Year.");
                     }
                     
@@ -356,8 +358,11 @@ namespace CustomWorkflowActivities
                                                                       
                         Entity thisProjectRequestYearRec = service.Retrieve("edu_year", thisProjectRequestYear.Id, new ColumnSet("edu_startyear"));
                         int thisProjectRequestStartYear = thisProjectRequestYearRec.GetAttributeValue<int>("edu_startyear");
+                        tracingService.Trace("Project Request Start Year:{0}", thisProjectRequestStartYear);
+                        
                         if (thisProjectRequestStartYear < startYear)
                         {
+                            isValid = false;
                             validationMessage.AppendLine("Project Start Year is before the Call For Submission's Capital Plan Year.");
                         }
                         

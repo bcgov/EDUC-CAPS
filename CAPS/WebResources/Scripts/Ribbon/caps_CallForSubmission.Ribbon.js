@@ -200,7 +200,7 @@ CAPS.CallForSubmission.ReleaseResults = function (primaryControl) {
                         "<filter type=\"and\">" +
                         "<condition attribute=\"caps_callforsubmission\" operator=\"eq\" value=\"" + submissionId + "\" />" +
                         "<condition attribute=\"statuscode\" value=\"100000001\" operator=\"ne\"/>" +
-                        "<condition attribute=\"caps_callforsubmissiontype\" value=\"385610001\" operator=\"ne\"/>" //not equal CC - AFG
+                        "<condition attribute=\"caps_callforsubmissiontype\" value=\"385610001\" operator=\"ne\"/>" +
                         "</filter>" +
                         "<link-entity name=\"caps_project\" from=\"caps_submission\" to=\"caps_submissionid\" link-type=\"inner\" alias=\"ad\">" +
                         "<filter type=\"and\">" +
