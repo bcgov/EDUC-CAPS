@@ -221,7 +221,8 @@ namespace CustomWorkflowActivities
             #region Check if minor project year matches call for submission
             //Check if minor projects' project year matches call for submission
             if (submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.Minor
-                || submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.AFG)
+                || submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.AFG
+                || submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.CCAFG)
             {
                 if (projectRequest.caps_Submission != null
                     && projectRequest.caps_Projectyear.Id != callForSubmission.caps_CapitalPlanYear.Id)
@@ -234,9 +235,13 @@ namespace CustomWorkflowActivities
                     {
                         validationMessage.AppendLine("Minor project requests added to a capital plan must start in same year as the plan in order to be submitted.");
                     }
-                    else
+                    else if(submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.AFG)
                     {
                         validationMessage.AppendLine("AFG project requests added to an expenditure plan must start in same year as the plan in order to be submitted.");
+                    }
+                    else if(submissionCategory.caps_CallforSubmissionType.Value == (int)caps_CallforSubmissionType.CCAFG)
+                    {
+                        validationMessage.AppendLine("CC-AFG project requests added to an expenditure plan must start in same year as the plan in order to be submitted.");
                     }
                 }
             }
