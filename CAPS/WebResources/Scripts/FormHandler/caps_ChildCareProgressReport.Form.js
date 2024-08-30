@@ -77,19 +77,40 @@ CAPS.ChildCareProgressReport.checkLicenseCapacityChange = function (formContext)
     var isLicenseCapacityChanged = formContext.getAttribute("caps_achangeinlicensecapacitysincelastyear").getValue();
 
     if (isLicenseCapacityChanged) {
-        formContext.getControl("caps_licensecapacitycurrentlicensedspaces").setVisible(true);
-        formContext.getControl("caps_licensecapacitychangeinspace").setVisible(true);
-        formContext.getControl("caps_licensecapacitynetlicensedspaces").setVisible(true);
-        formContext.getAttribute("caps_licensecapacitycurrentlicensedspaces").setRequiredLevel("required");
-        formContext.getAttribute("caps_licensecapacitychangeinspace").setRequiredLevel("required");
+        formContext.getControl("caps_changeinlicensedcapacity30monthstosa").setVisible(true);
+        formContext.getControl("caps_changeinlicensedcapacitymultiage").setVisible(true);
+        formContext.getControl("caps_changeinlicensedcapacitypreschool").setVisible(true);
+        formContext.getControl("caps_changeinlicensedcapacitysasg").setVisible(true);
+        formContext.getControl("caps_changeinlicensedcapacityschoolage").setVisible(true);
+        formContext.getControl("caps_changeinlicensedcapacityunder36months").setVisible(true);
+
+        formContext.getAttribute("caps_changeinlicensedcapacity30monthstosa").setRequiredLevel("required");
+        formContext.getAttribute("caps_changeinlicensedcapacitymultiage").setRequiredLevel("required");
+        formContext.getAttribute("caps_changeinlicensedcapacitypreschool").setRequiredLevel("required");
+        formContext.getAttribute("caps_changeinlicensedcapacitysasg").setRequiredLevel("required");
+        formContext.getAttribute("caps_changeinlicensedcapacityschoolage").setRequiredLevel("required");
+        formContext.getAttribute("caps_changeinlicensedcapacityunder36months").setRequiredLevel("required");
     } else {
-        formContext.getControl("caps_licensecapacitycurrentlicensedspaces").setVisible(false);
-        formContext.getControl("caps_licensecapacitychangeinspace").setVisible(false);
-        formContext.getControl("caps_licensecapacitynetlicensedspaces").setVisible(false);
-        formContext.getAttribute("caps_licensecapacitycurrentlicensedspaces").setRequiredLevel("none");
-        formContext.getAttribute("caps_licensecapacitychangeinspace").setRequiredLevel("none");
-        formContext.getAttribute("caps_licensecapacitycurrentlicensedspaces").setValue(null);
-        formContext.getAttribute("caps_licensecapacitychangeinspace").setValue(null);
+        formContext.getControl("caps_changeinlicensedcapacity30monthstosa").setVisible(false);
+        formContext.getControl("caps_changeinlicensedcapacitymultiage").setVisible(false);
+        formContext.getControl("caps_changeinlicensedcapacitypreschool").setVisible(false);
+        formContext.getControl("caps_changeinlicensedcapacitysasg").setVisible(false);
+        formContext.getControl("caps_changeinlicensedcapacityschoolage").setVisible(false);
+        formContext.getControl("caps_changeinlicensedcapacityunder36months").setVisible(false);
+
+        formContext.getAttribute("caps_changeinlicensedcapacity30monthstosa").setRequiredLevel("none");
+        formContext.getAttribute("caps_changeinlicensedcapacitymultiage").setRequiredLevel("none");
+        formContext.getAttribute("caps_changeinlicensedcapacitypreschool").setRequiredLevel("none");
+        formContext.getAttribute("caps_changeinlicensedcapacitysasg").setRequiredLevel("none");
+        formContext.getAttribute("caps_changeinlicensedcapacityschoolage").setRequiredLevel("none");
+        formContext.getAttribute("caps_changeinlicensedcapacityunder36months").setRequiredLevel("none");
+
+        formContext.getAttribute("caps_changeinlicensedcapacity30monthstosa").setValue(null);
+        formContext.getAttribute("caps_changeinlicensedcapacitymultiage").setValue(null);
+        formContext.getAttribute("caps_changeinlicensedcapacitypreschool").setValue(null);
+        formContext.getAttribute("caps_changeinlicensedcapacitysasg").setValue(null);
+        formContext.getAttribute("caps_changeinlicensedcapacityschoolage").setValue(null);
+        formContext.getAttribute("caps_changeinlicensedcapacityunder36months").setValue(null);
     }
 };
 
