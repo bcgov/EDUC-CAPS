@@ -3,13 +3,13 @@
 var CAPS = CAPS || {};
 CAPS.ChildCareActualEnrolment = CAPS.ChildCareActualEnrolment || {};
 
-// ShowSubmit logic for "CAPS School District User"
+// ShowSubmit logic for "CAPS School District User" 
 CAPS.ChildCareActualEnrolment.ShowSubmit = async function (primaryControl) {
     var formContext = primaryControl;
     var userSettings = Xrm.Utility.getGlobalContext().userSettings;
     var currentUserId = userSettings.userId.replace('{', '').replace('}', '');
 
-    // Check if the statuscode is "Unsubmitted" (1)
+    // Check if the statuscode is either 1 (Unsubmitted) 
     var statusCode = formContext.getAttribute("statuscode").getValue();
     if (statusCode !== 1) {
         return false;
@@ -19,7 +19,7 @@ CAPS.ChildCareActualEnrolment.ShowSubmit = async function (primaryControl) {
     var fetchXmlDirect = '<fetch>' +
         '<entity name="role">' +
         '<attribute name="name" />' +
-        '<filter type="or">' +
+        '<filter type="and">' +
         '<condition attribute="name" operator="eq" value="CAPS School District User" />' +
         '</filter>' +
         '<link-entity name="systemuserroles" from="roleid" to="roleid" intersect="true">' +
@@ -53,19 +53,21 @@ CAPS.ChildCareActualEnrolment.ShowSubmit = async function (primaryControl) {
         '</entity>' +
         '</fetch>';
 
-    // Encode the FetchXml queries
-    fetchXmlDirect = encodeURIComponent(fetchXmlDirect);
-    fetchXmlTeam = encodeURIComponent(fetchXmlTeam);
+    try {
+        // Execute both queries
+        var directResult = await Xrm.WebApi.retrieveMultipleRecords("role", "?fetchXml=" + fetchXmlDirect);
+        var teamResult = await Xrm.WebApi.retrieveMultipleRecords("systemuser", "?fetchXml=" + fetchXmlTeam);
 
-    // Execute both queries
-    var directResult = await Xrm.WebApi.retrieveMultipleRecords("role", "?fetchXml=" + fetchXmlDirect);
-    var teamResult = await Xrm.WebApi.retrieveMultipleRecords("systemuser", "?fetchXml=" + fetchXmlTeam);
+        if (directResult.entities.length > 0 || teamResult.entities.length > 0) {
+            return true;
+        }
 
-    // If the user has the required role directly or through a team, show the submit button
-    if (directResult.entities.length > 0 || teamResult.entities.length > 0) {
-        return true;
+        console.log("User does not have the required roles.");
+        return false;
+    } catch (error) {
+        console.error("Error retrieving roles: " + error.message);
+        return false;
     }
-    return false;
 };
 
 // ShowUnsubmit logic for "CAPS CMB User"
