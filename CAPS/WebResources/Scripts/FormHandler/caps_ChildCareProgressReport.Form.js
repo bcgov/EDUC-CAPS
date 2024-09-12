@@ -61,7 +61,7 @@ CAPS.ChildCareProgressReport.checkChangesWithDirectorshipNFP = function (formCon
 
 CAPS.ChildCareProgressReport.checkAffordabilityInitiatives = function (formContext) {
     var affordabilityInitiatives = formContext.getAttribute("caps_affordabilityinitiativesyouareenrolledin").getValue();
-    var initiativeCode = 714430003; // Other
+    var initiativeCode = 714430005; // Other
 
     if (affordabilityInitiatives && affordabilityInitiatives.includes(initiativeCode)) {
         formContext.getControl("caps_otheraffordabilityinitiatives").setVisible(true);
