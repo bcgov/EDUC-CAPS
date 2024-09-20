@@ -11,7 +11,7 @@
       <am:Name>PBIRB</am:Name>
       <am:Version>15.7.1811.11</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2024-07-31T23:21:34.9931163Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2024-09-19T21:43:41.4939086Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -40,7 +40,10 @@
 SELECT 
     ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(s2.edu_number, 3, LEN(s2.edu_number)-2) AS INT) ASC) AS RankOrder,
     CAST(SUBSTRING(s2.edu_number, 3, LEN(s2.edu_number)-2) AS INT) AS NoBatch_SDnumber,
-    s2.edu_commonname as NoBatch_SDName,
+    CASE WHEN s2.statecode = 1 THEN
+	CONCAT(s2.edu_commonname, ' - (INACTIVE)') 
+	ELSE s2.edu_commonname 
+	END as NoBatch_SDName,
     sq.PaymentDescription,
     sq.Batch,
     sq.BatchID,
@@ -113,6 +116,7 @@ FROM
     WHERE 
         d.statuscode not in (200870002,1) AND -- exclude draft and cancelled
         b.statuscode not in (200870001,1) -- exclude active and cancelled
+        AND d.caps_amount &lt;&gt; 0
         AND b.caps_batchid = @Batch
     GROUP BY 
         b.caps_paymentdescription,
@@ -129,9 +133,9 @@ FROM
         s.edu_number,
         s.edu_schooldistrictid
 ) as sq
-FULL OUTER JOIN 
-    edu_schooldistrict s2 on sq.SDID = s2.edu_schooldistrictid;
-</CommandText>
+--FULL OUTER JOIN 
+JOIN
+    edu_schooldistrict s2 on sq.SDID = s2.edu_schooldistrictid;</CommandText>
       </Query>
       <Fields>
         <Field Name="RankOrder">
@@ -1943,7 +1947,7 @@ ORDER BY
             <Top>0mm</Top>
             <Left>0mm</Left>
             <Height>77.47083mm</Height>
-            <Width>183.3mm</Width>
+            <Width>183.30002mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1953,6 +1957,9 @@ ORDER BY
           <Tablix Name="Tablix7">
             <TablixBody>
               <TablixColumns>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
                 <TablixColumn>
                   <Width>37.03854mm</Width>
                 </TablixColumn>
@@ -1964,6 +1971,42 @@ ORDER BY
                 <TablixRow>
                   <Height>6mm</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox50">
+                          <rd:DefaultName>Textbox49</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">SD Number</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox161">
@@ -2043,6 +2086,41 @@ ORDER BY
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="SDRevised">
+                          <rd:DefaultName>SDRevised</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!SDRevised.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="NoBatch_SDName2">
                           <rd:DefaultName>NoBatch_SDName</rd:DefaultName>
                           <CanGrow>true</CanGrow>
@@ -2119,6 +2197,42 @@ ORDER BY
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox6">
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox52">
                           <rd:DefaultName>Textbox52</rd:DefaultName>
                           <CanGrow>true</CanGrow>
@@ -2127,7 +2241,7 @@ ORDER BY
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Constant">Total</Value>
+                                  <Value EvaluationMode="Constant">Total per SD</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2200,52 +2314,12 @@ ORDER BY
               <TablixMembers>
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>25mm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox49">
-                        <rd:DefaultName>Textbox49</rd:DefaultName>
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value EvaluationMode="Constant">SD Number</Value>
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                  <FontSize>9pt</FontSize>
-                                  <FontWeight>Bold</FontWeight>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <Style>
-                          <Border>
-                            <Style>Solid</Style>
-                          </Border>
-                          <VerticalAlign>Middle</VerticalAlign>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember />
-                  </TablixMembers>
-                </TablixMember>
+                <TablixMember />
                 <TablixMember>
                   <Group Name="SDRevised">
                     <GroupExpressions>
@@ -2257,42 +2331,6 @@ ORDER BY
                       <Value>=Fields!SDRevised.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <TablixHeader>
-                    <Size>25mm</Size>
-                    <CellContents>
-                      <Textbox Name="SDRevised1">
-                        <rd:DefaultName>SDRevised1</rd:DefaultName>
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>=Fields!SDRevised.Value</Value>
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                  <FontSize>9pt</FontSize>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <Style>
-                          <Border>
-                            <Style>Solid</Style>
-                          </Border>
-                          <VerticalAlign>Middle</VerticalAlign>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
                       <Group Name="Details2" />
@@ -2638,6 +2676,7 @@ ORDER BY
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <Color>=IIF(InStr(Fields!NoBatch_SDName.Value, "(INACTIVE)") &gt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2648,26 +2687,6 @@ ORDER BY
                             <Border>
                               <Style>Solid</Style>
                             </Border>
-                            <TopBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </TopBorder>
-                            <BottomBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </BottomBorder>
-                            <LeftBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </LeftBorder>
-                            <RightBorder>
-                              <Color>Black</Color>
-                              <Style>Solid</Style>
-                              <Width>1pt</Width>
-                            </RightBorder>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -2801,7 +2820,7 @@ ORDER BY
             <Top>77.47083mm</Top>
             <Left>0mm</Left>
             <Height>12mm</Height>
-            <Width>93mm</Width>
+            <Width>92.99999mm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -3121,6 +3140,7 @@ ORDER BY
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <Color>=IIF(InStr(Fields!NoBatch_SDName.Value, "(INACTIVE)") &gt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3286,6 +3306,9 @@ ORDER BY
             <Height>12mm</Height>
             <Width>93mm</Width>
             <ZIndex>3</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Fields!RankOrder.Value &gt;= 31, False, True)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
