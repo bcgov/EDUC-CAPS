@@ -104,7 +104,7 @@ FROM
     FROM 
         caps_drawrequest d
     LEFT JOIN 
-        caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
+          caps_actualdraw a on a.caps_batch = d.caps_batch --a.caps_originatingdrawrequest = d.caps_drawrequestid
     JOIN 
         caps_batch b on d.caps_batch = b.caps_batchid
     JOIN 
@@ -264,47 +264,9 @@ AND b.statuscode in (@Status)</CommandText>
         </QueryParameters>
         <CommandText>/*This query is used in Funding Distribution Report. Pulling data from draw request, actual draws, batch, and project for completed batch. */
 SELECT 
-CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS NoBatch_SDnumber
-,s.edu_commonname as NoBatch_SDName
-,   CONCAT(
-        CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number) - 2) AS INT), 
-        ',', 
-        CAST(SUM(CASE 
-                    WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
-                    ELSE a.caps_amount 
-                 END) AS INT)
-    ) AS CDS
-,SUM(
-	CASE 
-		WHEN b.statuscode = 200870004 THEN d.caps_amount
-		ELSE a.caps_amount
-	END) as Amount
-,b.caps_paymentdescription as PaymentDescription
-,b.caps_projectcodename as Project
-,b.caps_name as Batch
-,b.caps_batchid as BatchID
-,b.caps_invoicedescription as InvoiceDescription
-,c.caps_name as ProjectCode
-,c.caps_project as ProjectCodeProject
-,c.caps_responsibilitycentre as RespCentre
-,c.caps_serviceline as ServiceLine
-,c.caps_stob as Stob
-,b.caps_signedbyname as ExpenseAuthority
-,cast(b.caps_signedon as DATE) as SignedOn
---,d.caps_projectname as Project
-,s.edu_commonname as SDName
-,s.edu_number as SDNumber
-,FORMAT(b.caps_actualsubmissiondate, 'yyyy-MM-dd') AS ActualSubmissionDate
-
-,b.statuscodename as StatusReason
-,CONCAT('Batch Name: ', b.caps_name, CHAR(10), CHAR(10), 'Actual Submission Date: ', CAST(b.caps_actualsubmissiondate AS DATE)) AS BatchInfo
-,SUM(
-	CASE 
-		WHEN b.statuscode = 200870004 THEN d.caps_amount
-		ELSE a.caps_amount
-	END) as Amount
-,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
-,    CONCAT(
+    CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS NoBatch_SDnumber,
+    s.edu_commonname as NoBatch_SDName,
+    CONCAT(
         CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number) - 2) AS INT), 
         ',', 
         CAST(SUM(CASE 
@@ -312,6 +274,27 @@ CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS NoBatch_SDnumber
                     ELSE a.caps_amount 
                  END) AS INT)
     ) AS CDS,
+    SUM(CASE 
+            WHEN b.statuscode = 200870004 THEN d.caps_amount
+            ELSE a.caps_amount
+        END) as Amount,
+    b.caps_paymentdescription as PaymentDescription,
+    b.caps_projectcodename as Project,
+    b.caps_name as Batch,
+    b.caps_batchid as BatchID,
+    b.caps_invoicedescription as InvoiceDescription,
+    c.caps_name as ProjectCode,
+    c.caps_project as ProjectCodeProject,
+    c.caps_responsibilitycentre as RespCentre,
+    c.caps_serviceline as ServiceLine,
+    c.caps_stob as Stob,
+    b.caps_signedbyname as ExpenseAuthority,
+    cast(b.caps_signedon as DATE) as SignedOn,
+    s.edu_commonname as SDName,
+    s.edu_number as SDNumber,
+    FORMAT(b.caps_actualsubmissiondate, 'yyyy-MM-dd') AS ActualSubmissionDate,
+    b.statuscodename as StatusReason,
+    CONCAT('Batch Name: ', b.caps_name, CHAR(10), CHAR(10), 'Actual Submission Date: ', CAST(b.caps_actualsubmissiondate AS DATE)) AS BatchInfo,
     SUM(SUM(CASE 
                 WHEN b.statuscode = 200870004 THEN d.caps_amount -- pending submission then from draw request
                 ELSE a.caps_amount 
@@ -321,37 +304,52 @@ CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS NoBatch_SDnumber
                 ELSE a.caps_amount 
             END)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
 FROM caps_drawrequest d
-LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
+LEFT JOIN caps_actualdraw a on a.caps_batch = d.caps_batch
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
 JOIN edu_schooldistrict s on p.caps_schooldistrict = s.edu_schooldistrictid
 
 WHERE 
-d.statuscode not in (200870002,1) AND -- exclude draft and cancelled
-b.statuscode not in (200870001,1) -- exclude active and cancelled
-AND b.caps_batchid = @Batch
+    d.statuscode NOT IN (200870002,1) -- exclude draft and cancelled
+    AND b.statuscode NOT IN (200870001,1) -- exclude active and cancelled
+   AND b.caps_batchid = @Batch
 
 GROUP BY 
-b.caps_paymentdescription
-,b.caps_projectcodename
-,b.caps_name
-,b.caps_batchid
-,b.caps_invoicedescription
-,c.caps_name
-,c.caps_project
-,c.caps_responsibilitycentre
-,c.caps_serviceline
-,c.caps_stob
-,b.caps_signedbyname
-,b.caps_signedon
---,d.caps_projectname
-,s.edu_commonname
-,s.edu_number
-,b.caps_actualsubmissiondate
-,b.statuscodename</CommandText>
+    b.caps_paymentdescription,
+    b.caps_projectcodename,
+    b.caps_name,
+    b.caps_batchid,
+    b.caps_invoicedescription,
+    c.caps_name,
+    c.caps_project,
+    c.caps_responsibilitycentre,
+    c.caps_serviceline,
+    c.caps_stob,
+    b.caps_signedbyname,
+    b.caps_signedon,
+    s.edu_commonname,
+    s.edu_number,
+    b.caps_actualsubmissiondate,
+    b.statuscodename;</CommandText>
       </Query>
       <Fields>
+        <Field Name="NoBatch_SDnumber">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NoBatch_SDnumber</DataField>
+        </Field>
+        <Field Name="NoBatch_SDName">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>NoBatch_SDName</DataField>
+        </Field>
+        <Field Name="CDS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>CDS</DataField>
+        </Field>
+        <Field Name="Amount">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>Amount</DataField>
+        </Field>
         <Field Name="PaymentDescription">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>PaymentDescription</DataField>
@@ -412,25 +410,13 @@ b.caps_paymentdescription
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>ActualSubmissionDate</DataField>
         </Field>
-        <Field Name="BatchInfo">
-          <rd:TypeName>System.String</rd:TypeName>
-          <DataField>BatchInfo</DataField>
-        </Field>
         <Field Name="StatusReason">
           <rd:TypeName>System.String</rd:TypeName>
           <DataField>StatusReason</DataField>
         </Field>
-        <Field Name="Amount">
-          <rd:TypeName>System.Decimal</rd:TypeName>
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="SDRevised">
-          <rd:TypeName>System.Int32</rd:TypeName>
-          <DataField>SDRevised</DataField>
-        </Field>
-        <Field Name="CDS">
+        <Field Name="BatchInfo">
           <rd:TypeName>System.String</rd:TypeName>
-          <DataField>CDS</DataField>
+          <DataField>BatchInfo</DataField>
         </Field>
         <Field Name="TotalPerSDNumber">
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -463,7 +449,7 @@ p.caps_projectnumber as ProjectNumber
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
 
 FROM caps_drawrequest d
-LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
+LEFT JOIN caps_actualdraw a on a.caps_batch = d.caps_batch
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
