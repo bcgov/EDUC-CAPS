@@ -103,8 +103,7 @@ FROM
                 END)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
     FROM 
         caps_drawrequest d
-    LEFT JOIN 
-          caps_actualdraw a on a.caps_batch = d.caps_batch --a.caps_originatingdrawrequest = d.caps_drawrequestid
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
     JOIN 
         caps_batch b on d.caps_batch = b.caps_batchid
     JOIN 
@@ -304,7 +303,7 @@ SELECT
                 ELSE a.caps_amount 
             END)) OVER (PARTITION BY b.caps_name) AS TotalPerBatch
 FROM caps_drawrequest d
-LEFT JOIN caps_actualdraw a on a.caps_batch = d.caps_batch
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
@@ -449,7 +448,7 @@ p.caps_projectnumber as ProjectNumber
 ,CAST(SUBSTRING(s.edu_number, 3, LEN(s.edu_number)-2) AS INT) AS SDRevised
 
 FROM caps_drawrequest d
-LEFT JOIN caps_actualdraw a on a.caps_batch = d.caps_batch
+LEFT JOIN caps_actualdraw a on a.caps_originatingdrawrequest = d.caps_drawrequestid
 JOIN caps_batch b on d.caps_batch = b.caps_batchid
 JOIN caps_projectcode c on c.caps_projectcodeid = b.caps_projectcode
 JOIN caps_projecttracker p on d.caps_project = p.caps_projecttrackerid
