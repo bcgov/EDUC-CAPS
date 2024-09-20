@@ -28,11 +28,8 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 	private lockOnInactive:boolean;
 	private isEditing:boolean;
 	private intervalHandler:any;
-	private schoolFacilityElement : HTMLSelectElement;
-	private notifyOutputChanged: () => void;
-	
-	//private schoolFacilityElement: HTMLSelectElement;
-    /**
+		
+	/**
      * Empty constructor.
      */
     constructor()
@@ -53,7 +50,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
         console.log("start init");
         // Need to track container resize so that control could get the available width. The available height won't be provided even this is true
 		context.mode.trackContainerResize(false);
-		this.notifyOutputChanged = notifyOutputChanged;
+		
 		// Create main table container div. 
 		this.mainContainer = document.createElement("div");
 
@@ -76,17 +73,6 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 		container.appendChild(this.mainContainer);
         console.log("end init");
 
-		this.schoolFacilityElement = (<HTMLSelectElement[]><any>document.getElementsByName('caps_facility'))[0];
-
-		// Attach the onChange event to the select element
-        if (this.schoolFacilityElement) {
-            this.schoolFacilityElement.addEventListener('change', this.onSchoolFacilityChange.bind(this));
-        }
-
-		
-		// Initial rendering
-        //this.renderData();
-		
     }
 
 
@@ -112,7 +98,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 
 			//context.parameters.AFGProjectsDataSet.records[0].getFormattedValue("");
 			if (!columnsOnView || columnsOnView.length === 0) {
-                console.log("no columns on view");
+                
 				return;
 			}
 
@@ -154,6 +140,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 		
     }
 
+	
     /**
      * It is called by the framework prior to a control receiving new data.
      * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as "bound" or "output"
@@ -161,6 +148,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
     public getOutputs(): IOutputs
     {
         return {};
+		
     }
 
     /**
@@ -290,12 +278,12 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 							if (entityRef != null) valuePara.setAttribute('data-value', entityRef.id.guid);
 							if (valuePara.textContent == '-') valuePara.textContent = 'Other';
 						}
-						else if(fieldName.indexOf('caps_childcare') > -1){
+						else if(fieldName.indexOf('caps_childcare') > -1) {
 							valuePara.setAttribute('data-required', 'true');
 							valuePara.setAttribute('data-entityname', 'caps_childcares');
 							const entityRef:ComponentFramework.EntityReference = <ComponentFramework.EntityReference>(gridParam.records[currentRecordId]).getValue(columnItem.name);
 							if (entityRef != null) valuePara.setAttribute('data-value', entityRef.id.guid);
-							if (valuePara.textContent == '-') valuePara.textContent = '-';
+							if (valuePara.textContent == '--No Child Care Facilities Found --') valuePara.textContent = '-';
 						}
 						else if (fieldName.indexOf('caps_projectdescription') > -1) {
 							valuePara.setAttribute('data-required', 'true');
@@ -386,6 +374,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 	}
 
 	private getAddEditRow(context:ComponentFramework.Context<IInputs>, columnsOnView: DataSetInterfaces.Column[], entityDisplayName:string, isAddRow:boolean, row:HTMLDivElement|null):HTMLDivElement {
+		console.log("getAddEditRow Line 376");
 		const alloweditflaggedforreview_S:string = (context.parameters.alloweditflaggedforreview.raw as string);
 		let alloweditflaggedforreview:boolean = false;
 
@@ -402,6 +391,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 			gridRecord.classList.add("add-dataRow");
 		}
 		else { //!isAddRow
+			console.log("It is in else statement line 393");
 			const jRow = $(<HTMLDivElement>row);
 			dataFields = jRow.find('div');
 			recordId = jRow.attr('recordid')!;
@@ -452,18 +442,37 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 					const attr:Attr = document.createAttribute("autocomplete");
 					attr.value = "off";
 					input.attributes.setNamedItem(attr);
-
+					
 					switch(columnItem.dataType.toLowerCase())
 					{
+						
 						case 'lookup.simple': {
+							console.log("It's a lookup line 449");
+							console.log("Column Item name", columnItem.name);
 							let id = '';
 							if (!isAddRow) id = $(dataFields[index-hiddenCount]).data('value');	
 
-							const select:HTMLSelectElement = obj.addSelectOptions(context, columnItem.name, isAddRow, id);
+							const select:HTMLSelectElement = obj.addSelectOptions(context, columnItem.name, isAddRow, id, recordId);
+							
 							select.setAttribute('data-fielddisplayname', columnItem.displayName);
 							if (columnItem.name.indexOf('caps_facility') > -1 || columnItem.name.indexOf('caps_projecttype') > -1) select.setAttribute('data-required', 'true');
 
-							if (columnItem.name.indexOf('caps_facility') > -1) saveSelect = select;
+							if (columnItem.name.indexOf('caps_facility') > -1)  saveSelect = select;
+								//{
+								
+
+								/*if(!isAddRow){
+									console.log("Id",id);
+									obj.filterChildCareBasedOnFacility(context, id); 
+								}
+
+								$(select).on('change', function () {
+									const selectedFacilityId = $(this).val(); // Get the selected facility
+									if (selectedFacilityId) {
+										obj.filterChildCareBasedOnFacility(context, String(selectedFacilityId));
+									}
+								});*/
+							//}
 							
 							valuePara.appendChild(select);
 							break;
@@ -502,7 +511,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 							input.maxLength = 200;
 							input.setAttribute('data-fielddisplayname', columnItem.displayName);
 							if (!isAddRow) input.value = $(dataFields[index-hiddenCount]).data('value');
-							if (columnItem.name.indexOf('caps_childcare') > -1) {
+							if (columnItem.name.indexOf('caps_otherfacility') > -1) {
 								input.setAttribute('data-required', 'true');
 								if (input.value.length === 0) input.disabled = true;
 								else {
@@ -555,7 +564,9 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 		return gridRecord;
 	}
 
-	private addSelectOptions(context: ComponentFramework.Context<IInputs>, columnName:string, isAddRow:boolean, recordId:string):HTMLSelectElement {
+	private addSelectOptions(context: ComponentFramework.Context<IInputs>, columnName:string, isAddRow:boolean, selectedId:string, recordId:string):HTMLSelectElement {
+		const currentRecordId = recordId;  // make a local scoped copy
+		console.log("Record Id on addSelectOptions function", currentRecordId);
 		const select: HTMLSelectElement = document.createElement("select");
 		let valueField:string = '';
 		let textField:string = '';
@@ -595,42 +606,64 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 					'</entity>' +
 				'</fetch>';
 				break;
-			case 'caps_childcare':
-			select.setAttribute('data-entityname', 'caps_childcares')
-			valueField = 'caps_childcareid';
-			textField = 'caps_name';
-			query = '?$select=' + valueField + ',' + textField + '&$orderby=' + textField + ' asc';
-				break;
+				case 'caps_childcare':
+					select.setAttribute('data-entityname', 'caps_childcares')
+					valueField = 'caps_childcareid';
+					textField = 'caps_name';
+					query = '?$select=' + valueField + ',' + textField + '&$orderby=' + textField + ' asc';
+					break;
 			default:
 				break;
 		}
 
 		if (query.length > 0) {
 			const selectId = select.id;
+			console.log("Row 618 in addSelectOptions function", selectId);
 			const obj=this;
 			try{
 				context.webAPI.retrieveMultipleRecords(columnName.toLowerCase(), query).then(
 					function (response) 
 					{
+						console.log("Getting response row 624");
 						if (response.entities != null && response.entities.length > 0) {
 							const select = $('#' + selectId);
+							console.log("Select row 627", select);
 							select.children().remove();
 
 							let option:HTMLOptionElement = document.createElement('option');
 							option.value = '';
 							option.text = '-- SELECT --';
 							select.append(option);
+							
 
-							/*if (columnName.toLowerCase() == 'caps_facility') {
+							if (columnName.toLowerCase() == 'caps_facility') {
+								console.log("Column Name",columnName.toLowerCase());
 								option = document.createElement('option');
 								option.value = '0';
 								option.text = 'Other (Please Specify)';
 								select.append(option);
 
-								select.on('change', obj.facilityChanged);
-							}*/
+								
+								if(isAddRow){
+									select.on('change', function(){
+										console.log("We are on change row 648 to get Record Id");
+										const selectedFacilityId = select.val() ? String(select.val()) : '';
+										obj.filterChildCareBasedOnFacilityOnCreation(context, selectedFacilityId);
+									});
+								}
+								
+								else if (!isAddRow){
+									select.on('change', function(){
+										console.log("We are on change row 662 to get Record Id", currentRecordId);
+										const selectedFacilityId = select.val() ? String(select.val()) : '';
+										obj.filterChildCareBasedOnFacility(context, selectedFacilityId, currentRecordId);
+									});
+								}							
+							}
 
+							
 							for (let i = 0; i < response.entities.length; i++) {
+								console.log("Row 653 to select.append");
 								const entity:ComponentFramework.WebApi.Entity = response.entities[i];
 								option = document.createElement('option');
 								option.value = entity[valueField];
@@ -639,7 +672,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 								select.append(option);
 							}
 
-							select.val(recordId);
+							select.val(selectedId);
 						}
 					},
 					function (errorResponse: any) 
@@ -658,7 +691,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 	private facilityChanged(event:Event) {
 		const slct:HTMLSelectElement = event.target as HTMLSelectElement;
 
-		const ccFacility = $(slct).parent().parent().find('#caps_childcare');
+		const ccFacility = $(slct).parent().parent().find('#caps_otherfacility');
 
 		if (slct.value === '0') {
 			ccFacility.prop('disabled', false);
@@ -668,6 +701,120 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 			ccFacility.prop('disabled', true);
 			ccFacility.css('border-width', '1px');
 			ccFacility.css('border-color', '#C3C3C3');
+		}
+	}
+
+	private filterChildCareBasedOnFacility(context: ComponentFramework.Context<IInputs>, selectedFacilityId: string, recordId:string){
+		console.log("Record ID", recordId);
+		const childcareSelect = document.getElementById('caps_childcare_'+ recordId) as HTMLSelectElement;
+		console.log("ChildcareSelect row 696",childcareSelect);
+		const valueField = 'caps_childcareid';
+		const textField = 'caps_name';
+
+		
+		if (selectedFacilityId) {
+			console.log("Selected Facility Id", selectedFacilityId);
+			const query = '?$filter=_caps_facility_value eq ' + selectedFacilityId + '&$select=' + valueField + ',' + textField + '&$orderby=' + textField + ' asc';
+	
+			context.webAPI.retrieveMultipleRecords('caps_childcare', query).then(
+				function (response) {
+					if(response.entities.length > 0){
+						console.log("Row 708 child care values exist");
+						childcareSelect.innerHTML = ''; // Clear existing options
+	
+						let option = document.createElement('option');
+						option.value = '';
+						option.text = '-- SELECT --';
+						childcareSelect.appendChild(option);
+	
+						for (let i = 0; i < response.entities.length; i++) {
+							const entity = response.entities[i];
+							option = document.createElement('option');
+							option.value = entity[valueField];
+							option.text = entity[textField];
+							childcareSelect.appendChild(option);
+						}
+					}
+					else {
+						console.log("Row 725 Child Care Facility does not exist");
+						//childcareSelect.innerHTML = '';
+						for(let i = childcareSelect.options.length-1; i >= 0; i--) {
+							childcareSelect.remove(i);
+							
+						}
+						const option = document.createElement('option');
+							option.value = '';
+							option.text = '--No Child Care Facilities Found --';
+							console.log("Options row 732", option);
+							childcareSelect.append(option);
+						
+						
+					}
+				},
+				function (errorResponse: any) {
+					alert("An error occurred while fetching childcare data: " + errorResponse.message);
+				}
+			);
+		} 
+		else {
+			childcareSelect.innerHTML = ''; // Clear dropdown if no facility selected
+		}
+	}
+
+	private filterChildCareBasedOnFacilityOnCreation(context: ComponentFramework.Context<IInputs>, selectedFacilityId: string){
+		
+		const childcareSelect = document.getElementById('caps_childcare') as HTMLSelectElement;
+		console.log("ChildcareSelect row 696",childcareSelect);
+		const valueField = 'caps_childcareid';
+		const textField = 'caps_name';
+
+		
+		if (selectedFacilityId) {
+			console.log("Selected Facility Id", selectedFacilityId);
+			const query = '?$filter=_caps_facility_value eq ' + selectedFacilityId + '&$select=' + valueField + ',' + textField + '&$orderby=' + textField + ' asc';
+	
+			context.webAPI.retrieveMultipleRecords('caps_childcare', query).then(
+				function (response) {
+					if(response.entities.length > 0){
+						console.log("Row 708 child care values exist");
+						childcareSelect.innerHTML = ''; // Clear existing options
+	
+						let option = document.createElement('option');
+						option.value = '';
+						option.text = '-- SELECT --';
+						childcareSelect.appendChild(option);
+	
+						for (let i = 0; i < response.entities.length; i++) {
+							const entity = response.entities[i];
+							option = document.createElement('option');
+							option.value = entity[valueField];
+							option.text = entity[textField];
+							childcareSelect.appendChild(option);
+						}
+					}
+					else {
+						console.log("Row 725 Child Care Facility does not exist");
+						//childcareSelect.innerHTML = '';
+						for(let i = childcareSelect.options.length-1; i >= 0; i--) {
+							childcareSelect.remove(i);
+							
+						}
+						const option = document.createElement('option');
+							option.value = '';
+							option.text = '--No Child Care Facilities Found --';
+							console.log("Options row 732", option);
+							childcareSelect.append(option);
+						
+						
+					}
+				},
+				function (errorResponse: any) {
+					alert("An error occurred while fetching childcare data: " + errorResponse.message);
+				}
+			);
+		} 
+		else {
+			childcareSelect.innerHTML = ''; // Clear dropdown if no facility selected
 		}
 	}
 	
@@ -790,53 +937,6 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 	}
 
 	
-	private onSchoolFacilityChange(event: Event){
-		// Handle the onChange event
-		const schoolFacilitySelectedValue = (<HTMLSelectElement[]><any>document.getElementsByName('caps_facility'))[0].value;
-        console.log('School Facility Changed: ${schoolFacilitySelectedValue}');
-		
-		// Filter the dataset based on the selected value
-		//this.filterCCFacility(schoolFacilitySelectedValue);
-		
-		// Notify that output has changed
-        this.notifyOutputChanged();
-		
-	}
-
-	/*private async filterCCFacility (schoolFacilitySelectedValue: string): Promise<void> {
-		
-	    const ccFacilityQuery = '?fetchXml=<fetch top="50" distinct="true" >' +
-					'<entity name="caps_childcare" >' +
-					'<attribute name="caps_name" />' +
-					'<attribute name="caps_childcareid" />' +
-					'<order attribute="caps_name" />' +
-                    '<filter type="and" >' +
-                        '<condition attribute="caps_facility" operator="eq" value= '+ schoolFacilitySelectedValue +' />' + 
-                    '</filter>' +
-					'</entity>' +
-				'</fetch>' 
-		try {
-		const ccFacilityResults = await this.contextObj.webAPI.retrieveMultipleRecords("caps_childcare", '?fetchXml=${encodeURIComponent(ccFacilityQuery)}');
-		this.processResults(ccFacilityResults.entities);
-		} catch(error) {
-			console.error('Error executing FetchXML: ${error}');
-            this.gridContainer.innerHTML = 'Error fetching data: ${error.message}';
-		}	
-
-	}*/
-
-	private processResults(entities: ComponentFramework.WebApi.Entity[]): void {
-       
-        // Render the fetched data
-        entities.forEach(entity => {
-            const div = document.createElement("div");
-            div.innerText = 'CC Facility: ${entity["name"]}';
-            this.gridContainer.appendChild(div);
-        });
-    }
-
-	
-
 	private bindEvents() {
 		$(".DataSetControl_grid-dataRow").on("click", ".click-to-open", this.onRowClick.bind(this));
 		//$(".DataSetControl_grid-dataRow").on('click', this.onRowEditClick.bind(this));
@@ -844,6 +944,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 		$('.action-button').off('click');
 
 		const obj = this;
+		
 
 		$('.cancel-button').on('click', function(event) {
 			event.preventDefault();
@@ -881,6 +982,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 				{
 					let valid:boolean = true;
 					let validationErrors:string = '';
+					//let preventionMessage:string = '';
 
 					if (response.entities != null && response.entities.length > 0) {						
                         //obj.contextObj.webAPI.retrieveMultipleRecords('caps_submissioncategory', '?$select=caps_submissioncategoryid&$filter=caps_type eq 200870002&$top=1').then(
@@ -913,12 +1015,35 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 									else 
 										entity['_caps_facility_value'] = null;
 								}
+								else if(this.id.indexOf('caps_childcare') > -1)
+								{
+									if ($(this).val() != '0' && $(this).find('option:selected').text() != '--No Child Care Facilities Found --')
+										entity['caps_Childcare@odata.bind'] = entityName + '(' + $(this).val() + ')';
+									else {
+										validationErrors += '"' + $(this).data('fielddisplayname') + '" is required.\r\n';
+										valid = false;
+										this.style.borderColor = '#ff0000';
+										this.style.borderWidth = '1px';
+										$('.add-button').prop('disabled',false);
+										return;
+										/*preventionMessage ='You cannot create a project request with no Child Care Facility';
+										const alertStrings = { confirmButtonLabel: "Ok", text: preventionMessage, title: "Need Child Care Facility" };
+										obj.contextObj.navigation.openAlertDialog(alertStrings).then(() => {
+											console.log("Child Care Facility not selected, stopping further execution.");
+											valid = false;
+											return;
+										});
+										return;*/
+									}
+										
+								}
 							}
 							else if (dataType == null || dataType.length == 0) {
 								entity[this.id] = $(this).val();
 							}
 							else if (dataType.toLowerCase().indexOf('decimal') > -1) {
-								const s:string = (<string>$(this).val()).replace(',','').replace('$','');
+								//const s:string = (<string>$(this).val()).replace(',','').replace('$','');
+								const s:string = (<string>$(this).val()).replace(/,/g, '').replace('$','');
 								const x:number = parseFloat(s);
 								if (s != null && s.length > 0) entity[this.id] = x;
 								if (s.length > 0 && isNaN(x)) {
@@ -994,7 +1119,7 @@ export class CCAFGProjectsGridPCF implements ComponentFramework.StandardControl<
 
 		$(".edit-button").on('click', function(event) {
 			event.preventDefault();
-
+			console.log("Edit triggered line 10");
 			if (obj.isEditing===true) {
 				if (confirm('You\'re currently editing another row. Do you want to cancel editing the other row and edit this row instead? Unsaved changes will be lost.\r\n\r\nClick \'Cancel\' to continue editing the other row.')) {
 					$('.cancel-button').click();

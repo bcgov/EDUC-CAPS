@@ -245,13 +245,16 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 						
 						if(gridParam.records[currentRecordId].getFormattedValue(columnItem.name) != null && gridParam.records[currentRecordId].getFormattedValue(columnItem.name) != "")
 						{
+							
 							valuePara.textContent = "";
 							if (columnItem.name == "caps_totalprojectcost") valuePara.textContent = "$";
 							valuePara.textContent += gridParam.records[currentRecordId].getFormattedValue(columnItem.name);
+							
 							//if(columnItem.name.indexOf(rankingFieldName) > -1) priority = gridParam.records[currentRecordId].getValue(columnItem.name) as number;
 						}
 						else
 						{
+
 							valuePara.textContent = "-";
 						}
 
@@ -809,7 +812,9 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 
 						fields.each(function() {
 							const dataType:string =$(this).data('datatype');
+							console.log("Data Type:" + dataType);
 							const entityName:string = $(this).data('entityname');
+							console.log("Field Name:"+ this.id);
 							const req:string = <string>$(this).data('required') + '';
 							let required:boolean = false;
 							if (req != null && req == 'true') required = true;
@@ -837,12 +842,17 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 							}
 							else if (dataType == null || dataType.length == 0) {
 								entity[this.id] = $(this).val();
+								console.log("Date Type is null");
 							}
 							else if (dataType.toLowerCase().indexOf('decimal') > -1) {
-								const s:string = (<string>$(this).val()).replace(',','').replace('$','');
+								//const s:string = (<string>$(this).val()).replace(',','').replace('$','');
+								const s:string = (<string>$(this).val()).replace(/,/g, '').replace('$','');
+								console.log(s);
 								const x:number = parseFloat(s);
+								console.log(x);
 								if (s != null && s.length > 0) entity[this.id] = x;
 								if (s.length > 0 && isNaN(x)) {
+									console.log("S length is greater thatn 0 and x is not a number");
 									validationErrors += '"' + $(this).data('fielddisplayname') + '" is not a valid number.\r\n';
 									valid = false;
 									this.style.borderColor = '#ff0000';
@@ -850,6 +860,7 @@ export class AFGProjectsEditGridV2 implements ComponentFramework.StandardControl
 									$('.add-button').prop('disabled',false);
 									return;
 								}
+								
 							}
 							else if (dataType.toLowerCase().indexOf('twooptions') > -1) {
 								entity[this.id] = $(this).prop("checked");
