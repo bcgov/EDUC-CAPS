@@ -252,6 +252,8 @@ CAPS.Project.onLoad = function (executionContext) {
     CAPS.Project.ValidateSecondaryDesignCapacity(executionContext);
     formContext.getAttribute("caps_changeindesigncapacitysecondary").addOnChange(CAPS.Project.ValidateSecondaryDesignCapacity);
 
+    formContext.getAttribute("caps_facility").addOnChange(CAPS.Project.ClearCCFacility);
+
     //Remove Previously Planned as an option from Ministry Review Status field
     //formContext.getControl("caps_ministryassessmentstatus").removeOption(200870001);
 
@@ -1828,7 +1830,7 @@ CAPS.Project.preFilterProjectGroupLookup = function (executionContext) {
     formContext.getControl("caps_projectcollection").addPreSearch(CAPS.Project.AddProjectGroupLookupFilter);
 }
 CAPS.Project.AddProjectGroupLookupFilter = function (executionContext) {
-    debugger;
+    
     var formContext = executionContext.getFormContext();
     var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
     var submission = CAPS.Project.GetLookup("caps_submission", formContext);
@@ -1886,6 +1888,16 @@ CAPS.Project.ShowHideProjectGroup = function (executionContext) {
 
             }
         );
+    }
+}
+//Clear cc facility when school facility changes
+CAPS.Project.ClearCCFacility = function (executionContext) {
+    debugger;
+    var formContext = executionContext.getFormContext();
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+
+    if (submissionCategoryCode === "CC_AFG") {
+        formContext.getAttribute("caps_childcare").setValue(null);
     }
 }
 CAPS.Project.GetLookup = function (fieldName, formContext) {
