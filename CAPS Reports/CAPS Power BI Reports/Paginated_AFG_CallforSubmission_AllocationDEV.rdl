@@ -1,15 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily" xmlns:am="http://schemas.microsoft.com/sqlserver/reporting/authoringmetadata">
+  <rd:ReportUnitType>Mm</rd:ReportUnitType>
+  <rd:ReportID>512c4696-da99-4c11-a65d-edb4fdeeab70</rd:ReportID>
+  <am:AuthoringMetadata>
+    <am:CreatedBy>
+      <am:Name>PBIRB</am:Name>
+      <am:Version>15.7.1811.11</am:Version>
+    </am:CreatedBy>
+    <am:UpdatedBy>
+      <am:Name>PBIRB</am:Name>
+      <am:Version>15.7.1811.11</am:Version>
+    </am:UpdatedBy>
+    <am:LastModifiedTimestamp>2024-09-21T01:40:21.7168697Z</am:LastModifiedTimestamp>
+  </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="CAPS">
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <ConnectionProperties>
-        <DataProvider>MSCRMFETCH</DataProvider>
-        <ConnectString>https://disco.crm3.dynamics.com;org3d668c7c</ConnectString>
+        <DataProvider>DATAVERSE</DataProvider>
+        <ConnectString>Data Source=capsdev.crm3.dynamics.com;Initial Catalog=capsdev;Encrypt=True;Trust Server Certificate=True;Authentication=ActiveDirectoryInteractive</ConnectString>
+        <Prompt>Specify a user name and password for data source CAPS:</Prompt>
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
-      <rd:DataSourceID>1de5b71c-04a7-420a-aee5-fcacd38361a1</rd:DataSourceID>
+      <rd:DataSourceID>42bfec5e-4bb3-44ee-aaa9-288374119522</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -17,131 +31,164 @@
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="CRM_caps_callforsubmission">
-            <Value>=Parameters!CRM_caps_callforsubmission.Value</Value>
+          <QueryParameter Name="@CallforSubmission">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!CallforSubmission.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_callforsubmission" enableprefiltering="1" &gt;
-    &lt;attribute name="caps_totalallocationtodistricts" /&gt;
-    &lt;attribute name="caps_capitalportionafg" /&gt;
-    &lt;attribute name="caps_operatingportionnet" /&gt;
-    &lt;attribute name="caps_totalafg" /&gt;
-    &lt;attribute name="caps_operatingportiongross" /&gt;
-    &lt;attribute name="caps_withheldcams" /&gt;
-    &lt;attribute name="caps_opendate" /&gt;
-    &lt;attribute name="caps_callforsubmissiontype" /&gt;
-    &lt;attribute name="caps_capitalplanyear" /&gt;
-    &lt;attribute name="caps_closedate" /&gt;
-    &lt;attribute name="statuscode" /&gt;
-    &lt;attribute name="caps_name" /&gt;
-    &lt;attribute name="caps_callforsubmissionid" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="caps_callforsubmissiontype" operator="eq" value="100000002" /&gt;
-    &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
+        <CommandText>SELECT 
+    caps_totalallocationtodistricts,
+    caps_capitalportionafg,
+    caps_operatingportionnet,
+    caps_totalafg,
+    caps_operatingportiongross,
+    caps_withheldcams,
+    caps_opendate,
+    caps_callforsubmissiontype,
+    caps_capitalplanyearname,
+    caps_closedate,
+    statuscode,
+    caps_name,
+    caps_callforsubmissionid
+FROM 
+    caps_callforsubmission 
+WHERE 
+    caps_callforsubmissiontype in (100000002, 385610001) -- AFG and CC AFG
+	AND caps_callforsubmissionid =@CallforSubmission</CommandText>
       </Query>
       <Fields>
         <Field Name="caps_totalallocationtodistricts">
-          <DataField>caps_totalallocationtodistricts</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalallocationtodistrictsValue">
-          <DataField>caps_totalallocationtodistrictsValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_totalallocationtodistricts</DataField>
         </Field>
         <Field Name="caps_capitalportionafg">
-          <DataField>caps_capitalportionafg</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_capitalportionafgValue">
-          <DataField>caps_capitalportionafgValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_capitalportionafg</DataField>
         </Field>
         <Field Name="caps_operatingportionnet">
-          <DataField>caps_operatingportionnet</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingportionnetValue">
-          <DataField>caps_operatingportionnetValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_operatingportionnet</DataField>
         </Field>
         <Field Name="caps_totalafg">
-          <DataField>caps_totalafg</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_totalafgValue">
-          <DataField>caps_totalafgValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_totalafg</DataField>
         </Field>
         <Field Name="caps_operatingportiongross">
-          <DataField>caps_operatingportiongross</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_operatingportiongrossValue">
-          <DataField>caps_operatingportiongrossValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_operatingportiongross</DataField>
         </Field>
         <Field Name="caps_withheldcams">
-          <DataField>caps_withheldcams</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_withheldcamsValue">
-          <DataField>caps_withheldcamsValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_withheldcams</DataField>
         </Field>
         <Field Name="caps_opendate">
-          <DataField>caps_opendate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_opendateValue">
-          <DataField>caps_opendateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>caps_opendate</DataField>
         </Field>
         <Field Name="caps_callforsubmissiontype">
-          <DataField>caps_callforsubmissiontype</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_callforsubmissiontypeValue">
-          <DataField>caps_callforsubmissiontypeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>caps_callforsubmissiontype</DataField>
         </Field>
-        <Field Name="caps_capitalplanyear">
-          <DataField>caps_capitalplanyear</DataField>
+        <Field Name="caps_capitalplanyearname">
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_capitalplanyearValue">
-          <DataField>caps_capitalplanyearValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="caps_capitalplanyearEntityName">
-          <DataField>caps_capitalplanyearEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>caps_capitalplanyearname</DataField>
         </Field>
         <Field Name="caps_closedate">
-          <DataField>caps_closedate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_closedateValue">
-          <DataField>caps_closedateValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>caps_closedate</DataField>
         </Field>
         <Field Name="statuscode">
-          <DataField>statuscode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statuscodeValue">
-          <DataField>statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>statuscode</DataField>
         </Field>
         <Field Name="caps_name">
-          <DataField>caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+          <DataField>caps_name</DataField>
         </Field>
         <Field Name="caps_callforsubmissionid">
+          <rd:TypeName>System.Guid</rd:TypeName>
           <DataField>caps_callforsubmissionid</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="SD_HighestAFG">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@CallforSubmission">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!CallforSubmission.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT TOP 1
+    s.edu_name,
+    s.edu_regionname,
+    s.edu_schooldistrictid,
+    s.edu_region,
+    s.edu_number,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio
+		END as AFGRatio
+FROM 
+    edu_schooldistrict s
+INNER JOIN caps_callforsubmission_edu_schooldistrict cs
+    ON s.edu_schooldistrictid = cs.edu_schooldistrictid
+INNER JOIN caps_callforsubmission c 
+	ON c.caps_callforsubmissionid = cs.caps_callforsubmissionid
+WHERE  c.caps_callforsubmissionid = @CallforSubmission
+ORDER BY 
+    AFGRatio DESC</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="edu_name">
           <rd:TypeName>System.String</rd:TypeName>
+          <DataField>edu_name</DataField>
+        </Field>
+        <Field Name="edu_regionname">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>edu_regionname</DataField>
+        </Field>
+        <Field Name="edu_schooldistrictid">
+          <rd:TypeName>System.Guid</rd:TypeName>
+          <DataField>edu_schooldistrictid</DataField>
+        </Field>
+        <Field Name="edu_region">
+          <rd:TypeName>System.Guid</rd:TypeName>
+          <DataField>edu_region</DataField>
+        </Field>
+        <Field Name="edu_number">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>edu_number</DataField>
+        </Field>
+        <Field Name="AFGRatio">
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>AFGRatio</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CallforSubmission_Parameter">
+      <Query>
+        <DataSourceName>CAPS</DataSourceName>
+        <CommandText>SELECT 
+    caps_callforsubmissionid,
+caps_name
+FROM 
+    caps_callforsubmission
+WHERE 
+    caps_callforsubmissiontype in (100000002, 385610001) -- AFG and CC AFG
+--AND caps_callforsubmissionid = '20daa4fe-cb43-ef11-a316-000d3a09c38c'</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="caps_callforsubmissionid">
+          <rd:TypeName>System.Guid</rd:TypeName>
+          <DataField>caps_callforsubmissionid</DataField>
+        </Field>
+        <Field Name="caps_name">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>caps_name</DataField>
         </Field>
       </Fields>
     </DataSet>
@@ -149,150 +196,147 @@
       <Query>
         <DataSourceName>CAPS</DataSourceName>
         <QueryParameters>
-          <QueryParameter Name="@CapitalPlanGUID">
-            <Value>=Parameters!CapitalPlanGUID.Value</Value>
+          <QueryParameter Name="@TotalAFG">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!TotalAFG.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CallforSubmission">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!CallforSubmission.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CapitalPortion">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!CapitalPortion.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@GrossOperating">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!GrossOperating.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@NetOperating">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!NetOperating.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@TotalAllocationtoDistrict">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!TotalAllocationtoDistrict.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@WithheldCAMS">
+            <rd:UserDefined>true</rd:UserDefined>
+            <Value>=Parameters!WithheldCAMS.Value</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="edu_schooldistrict" &gt;
-    &lt;attribute name="edu_number" /&gt;
-    &lt;attribute name="statecode" /&gt;
-    &lt;attribute name="caps_afgfundingpercentage" /&gt;
-   &lt;attribute name="caps_ccafgratio" /&gt;
-    &lt;attribute name="edu_name" /&gt;
-    &lt;filter&gt;
-      &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
-    &lt;/filter&gt;
-    &lt;link-entity name="caps_callforsubmission_edu_schooldistrict" from="edu_schooldistrictid" to="edu_schooldistrictid" intersect="true" &gt;
-      &lt;filter&gt;
-        &lt;condition attribute="caps_callforsubmissionid" operator="eq" value= "@CapitalPlanGUID" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
+        <CommandText>SELECT 
+    s.edu_number,
+    s.statecode,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio
+		END as AFGRatio,    
+	CASE
+		WHEN s.statecode &lt;&gt; 0
+			THEN CONCAT(s.edu_name, ' - INACTIVE')
+		Else s.edu_name
+		END as edu_name
+   ,
+   	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_TotalAFG
+	,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_CapitalPortion
+	,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_GrossOperating
+	,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_WithheldCAMS
+	,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_NetOperating
+	,
+	CASE
+		WHEN c.caps_callforsubmissiontype = 100000002
+			THEN s.caps_afgfundingpercentage * @TotalAFG
+		WHEN c.caps_callforsubmissiontype = 385610001
+			THEN s.caps_ccafgratio * @TotalAFG
+		END as calculated_TotalAllocationDistricts
+	--(s.caps_afgfundingpercentage * @TotalAFG ) AS calculated_TotalAFG,
+    --(s.caps_afgfundingpercentage * @CapitalPortion ) AS calculated_CapitalPortion,
+    --(s.caps_afgfundingpercentage * @GrossOperating ) AS calculated_GrossOperating,
+    --(s.caps_afgfundingpercentage * @WithheldCAMS ) AS calculated_WithheldCAMS,
+    --(s.caps_afgfundingpercentage * @NetOperating ) AS calculated_NetOperating,
+    --(s.caps_afgfundingpercentage * @TotalAllocationtoDistrict ) AS calculated_TotalAllocationDistricts
+FROM 
+    edu_schooldistrict s
+INNER JOIN caps_callforsubmission_edu_schooldistrict cs
+    ON s.edu_schooldistrictid = cs.edu_schooldistrictid
+INNER JOIN caps_callforsubmission c 
+	ON c.caps_callforsubmissionid = cs.caps_callforsubmissionid
+
+WHERE 
+cs.caps_callforsubmissionid = @CallforSubmission</CommandText>
       </Query>
       <Fields>
         <Field Name="edu_number">
-          <DataField>edu_number</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+          <DataField>edu_number</DataField>
         </Field>
         <Field Name="statecode">
-          <DataField>statecode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="statecodeValue">
-          <DataField>statecodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>statecode</DataField>
         </Field>
-        <Field Name="caps_afgfundingpercentage">
-          <DataField>caps_afgfundingpercentage</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_afgfundingpercentageValue">
-          <DataField>caps_afgfundingpercentageValue</DataField>
+        <Field Name="AFGRatio">
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_ccafgratio">
-          <DataField>caps_ccafgratio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>AFGRatio</DataField>
         </Field>
         <Field Name="edu_name">
-          <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+          <DataField>edu_name</DataField>
         </Field>
         <Field Name="calculated_TotalAFG">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!TotalAFG.Value)</Value>
-        </Field>
-        <Field Name="caps_ccafgratioValue">
-          <DataField>caps_ccafgratioValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>calculated_TotalAFG</DataField>
         </Field>
         <Field Name="calculated_CapitalPortion">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!CapitalPortion.Value)</Value>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>calculated_CapitalPortion</DataField>
         </Field>
         <Field Name="calculated_GrossOperating">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!GrossOperating.Value)</Value>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>calculated_GrossOperating</DataField>
         </Field>
         <Field Name="calculated_WithheldCAMS">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!WithheldCAMS.Value)</Value>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>calculated_WithheldCAMS</DataField>
         </Field>
         <Field Name="calculated_NetOperating">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!NetOperating.Value)</Value>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+          <DataField>calculated_NetOperating</DataField>
         </Field>
         <Field Name="calculated_TotalAllocationDistricts">
-          <Value>=CInt(Fields!caps_afgfundingpercentageValue.Value*Parameters!TotalAllocationtoDistrict.Value)</Value>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SD_HighestAFG">
-      <Query>
-        <DataSourceName>CAPS</DataSourceName>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" count="1"&gt;
-  &lt;entity name="edu_schooldistrict" &gt;
-    &lt;all-attributes/&gt;
-    &lt;attribute name="edu_name" /&gt;
-    &lt;attribute name="edu_regionname" /&gt;
-    &lt;attribute name="edu_schooldistrictid" /&gt;
-    &lt;attribute name="edu_region" /&gt;
-    &lt;attribute name="edu_number" /&gt;
-    &lt;attribute name="caps_afgfundingpercentage" /&gt;
-    &lt;attribute name="caps_ccafgratio" /&gt;
-    &lt;order attribute="caps_afgfundingpercentage" descending="true" /&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="edu_regionname">
-          <DataField>edu_regionname</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_name">
-          <DataField>edu_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_schooldistrictid">
-          <DataField>edu_schooldistrictid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_region">
-          <DataField>edu_region</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionValue">
-          <DataField>edu_regionValue</DataField>
-          <rd:TypeName>System.Guid</rd:TypeName>
-        </Field>
-        <Field Name="edu_regionEntityName">
-          <DataField>edu_regionEntityName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="edu_number">
-          <DataField>edu_number</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_afgfundingpercentage">
-          <DataField>caps_afgfundingpercentage</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_afgfundingpercentageValue">
-          <DataField>caps_afgfundingpercentageValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="caps_ccafgratio">
-          <DataField>caps_ccafgratio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="PagingCookie">
-          <DataField>PagingCookie</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_ccafgratioValue">
-          <DataField>caps_ccafgratioValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="MoreRecords">
-          <DataField>MoreRecords</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>calculated_TotalAllocationDistricts</DataField>
         </Field>
       </Fields>
     </DataSet>
@@ -339,6 +383,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox148">
+                          <rd:DefaultName>Textbox148</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -355,7 +400,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox148</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -378,6 +422,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox153">
+                          <rd:DefaultName>Textbox153</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -397,7 +442,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox153</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -418,6 +462,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox162">
+                          <rd:DefaultName>Textbox162</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -434,7 +479,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox162</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -457,6 +501,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox127">
+                          <rd:DefaultName>Textbox127</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -476,7 +521,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox127</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -495,6 +539,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox155">
+                          <rd:DefaultName>Textbox155</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -514,7 +559,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox155</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -533,6 +577,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox156">
+                          <rd:DefaultName>Textbox156</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -552,7 +597,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox156</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -571,6 +615,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox157">
+                          <rd:DefaultName>Textbox157</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -590,7 +635,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox157</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -609,6 +653,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox135">
+                          <rd:DefaultName>Textbox135</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -628,7 +673,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox135</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -647,6 +691,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox137">
+                          <rd:DefaultName>Textbox137</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -666,7 +711,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox137</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -685,6 +729,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox139">
+                          <rd:DefaultName>Textbox139</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -704,7 +749,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox139</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -723,6 +767,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox159">
+                          <rd:DefaultName>Textbox159</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -742,7 +787,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox159</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -761,6 +805,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox163">
+                          <rd:DefaultName>Textbox163</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -780,7 +825,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox163</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -804,6 +848,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="edu_name">
+                          <rd:DefaultName>edu_name</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -814,13 +859,13 @@
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <Color>=IIF(Fields!statecode.value &lt;&gt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_name</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -837,6 +882,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="edu_number">
+                          <rd:DefaultName>edu_number</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -853,7 +899,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_number</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -870,13 +915,14 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="caps_afgfundingpercentageValue">
+                          <rd:DefaultName>caps_afgfundingpercentageValue</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
+                                  <Value>=Fields!AFGRatio.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -886,7 +932,6 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_afgfundingpercentageValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -903,6 +948,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_TotalAFG">
+                          <rd:DefaultName>calculated_TotalAFG</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -911,17 +957,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_TotalAFG.Value,Fields!calculated_TotalAFG.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_TotalAFG</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -938,6 +983,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_CapitalPortion">
+                          <rd:DefaultName>calculated_CapitalPortion</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -946,17 +992,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_CapitalPortion.Value,Fields!calculated_CapitalPortion.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_CapitalPortion</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -973,6 +1018,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_GrossOperating">
+                          <rd:DefaultName>calculated_GrossOperating</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -981,17 +1027,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_GrossOperating.Value,Fields!calculated_GrossOperating.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_GrossOperating</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1008,6 +1053,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_WithheldCAMS">
+                          <rd:DefaultName>calculated_WithheldCAMS</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1016,17 +1062,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_WithheldCAMS.Value,Fields!calculated_WithheldCAMS.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_WithheldCAMS</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1043,6 +1088,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_NetOperating">
+                          <rd:DefaultName>calculated_NetOperating</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1051,17 +1097,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_NetOperating.Value,Fields!calculated_NetOperating.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_NetOperating</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1078,6 +1123,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="calculated_TotalAllocationDistricts">
+                          <rd:DefaultName>calculated_TotalAllocationDistricts</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1086,17 +1132,16 @@
                                 <TextRun>
                                   <Value>=IIF(Fields!edu_number.Value=ReportItems!Adjusted_HighestSDNumber.Value,ReportItems!Adjusted_HighestSD_TotalAllocationDistricts.Value,Fields!calculated_TotalAllocationDistricts.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>calculated_TotalAllocationDistricts</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1118,6 +1163,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox152">
+                          <rd:DefaultName>Textbox152</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1137,7 +1183,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox152</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1166,11 +1211,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_TotalAFG.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1202,11 +1247,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_CapitalPortion.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1238,11 +1283,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_GrossOperating.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1274,11 +1319,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_WithheldCAMS.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1310,11 +1355,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_NetOperating.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1346,11 +1391,11 @@
                                 <TextRun>
                                   <Value>=Sum(Fields!calculated_TotalAllocationDistricts.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1379,6 +1424,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox141">
+                          <rd:DefaultName>Textbox141</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1398,7 +1444,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox141</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1425,13 +1470,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= Sum(Fields!caps_totalafgValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>= Sum(Fields!caps_totalafg.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1461,13 +1506,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_capitalportionafgValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>=Sum(Fields!caps_capitalportionafg.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1497,13 +1542,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_operatingportiongrossValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>=Sum(Fields!caps_operatingportiongross.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1533,13 +1578,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_withheldcamsValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>=Sum(Fields!caps_withheldcams.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1569,13 +1614,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_operatingportionnetValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>=Sum(Fields!caps_operatingportionnet.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1605,13 +1650,13 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_totalallocationtodistrictsValue.Value, "CallforSubmission_Details")</Value>
+                                  <Value>=Sum(Fields!caps_totalallocationtodistricts.Value, "CallforSubmission_Details")</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1640,6 +1685,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox5">
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1660,7 +1706,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1896,6 +1941,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox14">
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1916,7 +1962,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox14</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1934,6 +1979,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox15">
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1954,7 +2000,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox15</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1978,7 +2023,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG")</Value>
+                                  <Value>=Sum(Fields!AFGRatio.Value, "SD_HighestAFG")</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2017,12 +2062,12 @@
                                 <TextRun>
                                   <Value>=CInt(Parameters!TotalAFG.Value*ReportItems!HighestSDFunding.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2052,14 +2097,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CInt(Parameters!CapitalPortion.Value*Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG"))</Value>
+                                  <Value>=CInt(Parameters!CapitalPortion.Value*Sum(Fields!AFGRatio.Value, "SD_HighestAFG"))</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2089,14 +2134,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CInt(Parameters!GrossOperating.Value*Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG"))</Value>
+                                  <Value>=CInt(Parameters!GrossOperating.Value*Sum(Fields!AFGRatio.Value, "SD_HighestAFG"))</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2126,14 +2171,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CInt(Parameters!WithheldCAMS.Value*Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG"))</Value>
+                                  <Value>=CInt(Parameters!WithheldCAMS.Value*Sum(Fields!AFGRatio.Value, "SD_HighestAFG"))</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2163,14 +2208,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CInt(Parameters!NetOperating.Value*Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG"))</Value>
+                                  <Value>=CInt(Parameters!NetOperating.Value*Sum(Fields!AFGRatio.Value, "SD_HighestAFG"))</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2200,14 +2245,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CInt(Parameters!TotalAllocationtoDistrict.Value*Sum(Fields!caps_afgfundingpercentageValue.Value, "SD_HighestAFG"))</Value>
+                                  <Value>=CInt(Parameters!TotalAllocationtoDistrict.Value*Sum(Fields!AFGRatio.Value, "SD_HighestAFG"))</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2236,6 +2281,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox32">
+                          <rd:DefaultName>Textbox32</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2256,7 +2302,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox32</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2311,6 +2356,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox34">
+                          <rd:DefaultName>Textbox34</rd:DefaultName>
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2331,7 +2377,6 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox34</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2357,12 +2402,12 @@
                                 <TextRun>
                                   <Value>=(ReportItems!HighestSD_TotalAFG.Value -ReportItems!Variance_TotalAFG.Value)</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2394,12 +2439,12 @@
                                 <TextRun>
                                   <Value>=ReportItems!HighestSD_CapitalPortion.Value - ReportItems!Variance_CapitalPortion.Value</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2431,12 +2476,12 @@
                                 <TextRun>
                                   <Value>= ReportItems!HighestSD_GrossOperating.Value - ReportItems!Variance_Gross.Value</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2468,12 +2513,12 @@
                                 <TextRun>
                                   <Value>= ReportItems!HighestSD_WithheldCAMS.Value - ReportItems!Variance_WithheldCAMS.Value</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2505,12 +2550,12 @@
                                 <TextRun>
                                   <Value>=ReportItems!HighestSD_NetOperating.Value - ReportItems!Variance_NetOperating.Value</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2542,12 +2587,12 @@
                                 <TextRun>
                                   <Value>=ReportItems!HighestSD_TotalAllocationDistricts.Value - ReportItems!Variance_TotalAllocationDistricts.Value</Value>
                                   <Style>
+                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>'$'#,0;('$'#,0)</Format>
                                     <Color>White</Color>
-                                    <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2555,6 +2600,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <Style>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
@@ -2564,7 +2610,6 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
-                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
                       </CellContents>
@@ -2602,6 +2647,11 @@
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details1" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!edu_number.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                   <TablixMembers>
                     <TablixMember />
                   </TablixMembers>
@@ -2637,7 +2687,7 @@
                 <Value>=Fields!edu_number.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>0.12319cm</Top>
+            <Top>0.03528cm</Top>
             <Height>5.54cm</Height>
             <Width>18.06445cm</Width>
             <Style>
@@ -2647,17 +2697,68 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.73402cm</Height>
-        <Style />
+        <Height>55.75278mm</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
       </Body>
-      <Width>18.06445cm</Width>
+      <Width>180.6445mm</Width>
       <Page>
         <PageHeader>
-          <Height>2.87224cm</Height>
+          <Height>28.19044mm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
+            <Image Name="MoE_BC_Logo_image">
+              <Source>Embedded</Source>
+              <Value>BC_EDUC_H_RGB_pos</Value>
+              <Sizing>FitProportional</Sizing>
+              <Height>1.10986in</Height>
+              <Width>1.83136in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="ReportTitle">
+              <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
+              <rd:DefaultName>ReportTitle</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!caps_capitalplanyearname.Value, "CallforSubmission_Details") &amp; " Annual Facility Grant"</Value>
+                      <Style>
+                        <FontFamily>Arial</FontFamily>
+                        <FontSize>15pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>15.49044mm</Top>
+              <Left>4.72221cm</Left>
+              <Height>12.7mm</Height>
+              <Width>110.33125mm</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
             <Textbox Name="Textbox1">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -2676,57 +2777,9 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
               <Left>11.64242cm</Left>
               <Height>0.52062cm</Height>
               <Width>6.42203cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Image Name="MoE_BC_Logo_image">
-              <Source>Embedded</Source>
-              <Value>BC_EDUC_H_RGB_pos</Value>
-              <Sizing>FitProportional</Sizing>
-              <Height>1.10986in</Height>
-              <Width>1.83136in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="Textbox3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=First(Fields!caps_capitalplanyear.Value, "CallforSubmission_Details") &amp; " Annual Facility Grant"</Value>
-                      <Style>
-                        <FontFamily>arial</FontFamily>
-                        <FontSize>15pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>1.11876cm</Top>
-              <Left>4.75749cm</Left>
-              <Height>1.24196cm</Height>
-              <Width>10.0614cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -2746,43 +2799,12 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.79403cm</Height>
+          <Height>38.0675mm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="Textbox2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>= "Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
-                      <Style>
-                        <FontFamily>arial</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.03528cm</Top>
-              <Left>15.24695cm</Left>
-              <Height>0.6cm</Height>
-              <Width>2.8175cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
             <Textbox Name="Textbox4">
+              <rd:DefaultName>Textbox1</rd:DefaultName>
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -2799,10 +2821,42 @@
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.09702cm</Top>
+              <Top>3.20675cm</Top>
+              <Left>0.08013cm</Left>
               <Height>0.6cm</Height>
               <Width>4.7054cm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox2">
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>= "Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>arial</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.20675cm</Top>
+              <Left>15.24695cm</Left>
+              <Height>0.6cm</Height>
+              <Width>2.8175cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2821,103 +2875,163 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>27.94cm</PageHeight>
-        <PageWidth>21.59cm</PageWidth>
-        <LeftMargin>1cm</LeftMargin>
-        <RightMargin>1cm</RightMargin>
-        <TopMargin>1cm</TopMargin>
-        <BottomMargin>1cm</BottomMargin>
-        <ColumnSpacing>1.27cm</ColumnSpacing>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="CRM_caps_callforsubmission">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="caps_callforsubmission"&gt;&lt;all-attributes/&gt;&lt;/entity&gt;&lt;/fetch&gt;</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>CRM caps callforsubmission</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="CapitalPlanGUID">
+    <ReportParameter Name="CallforSubmission">
       <DataType>String</DataType>
       <DefaultValue>
         <DataSetReference>
-          <DataSetName>CallforSubmission_Details</DataSetName>
+          <DataSetName>CallforSubmission_Parameter</DataSetName>
           <ValueField>caps_callforsubmissionid</ValueField>
         </DataSetReference>
       </DefaultValue>
-      <Prompt>CapitalPlanGUID</Prompt>
-      <Hidden>true</Hidden>
-    </ReportParameter>
-    <ReportParameter Name="CapitalPortion">
-      <DataType>String</DataType>
-      <DefaultValue>
+      <Prompt>CallforSubmission</Prompt>
+      <ValidValues>
         <DataSetReference>
-          <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_capitalportionafgValue</ValueField>
+          <DataSetName>CallforSubmission_Parameter</DataSetName>
+          <ValueField>caps_callforsubmissionid</ValueField>
+          <LabelField>caps_name</LabelField>
         </DataSetReference>
-      </DefaultValue>
-      <Prompt>CapitalPortion</Prompt>
-      <Hidden>true</Hidden>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="TotalAFG">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_totalafgValue</ValueField>
+          <ValueField>caps_totalafg</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>TotalAFG</Prompt>
       <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_totalafg</ValueField>
+          <LabelField>caps_totalafg</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="GrossOperating">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_operatingportiongrossValue</ValueField>
+          <ValueField>caps_operatingportiongross</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>GrossOperating</Prompt>
       <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_operatingportiongross</ValueField>
+          <LabelField>caps_operatingportiongross</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="WithheldCAMS">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_withheldcamsValue</ValueField>
+          <ValueField>caps_withheldcams</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>WithheldCAMS</Prompt>
       <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_withheldcams</ValueField>
+          <LabelField>caps_withheldcams</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="NetOperating">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_operatingportionnetValue</ValueField>
+          <ValueField>caps_operatingportionnet</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>NetOperating</Prompt>
       <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_operatingportionnet</ValueField>
+          <LabelField>caps_operatingportionnet</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
     <ReportParameter Name="TotalAllocationtoDistrict">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <DefaultValue>
         <DataSetReference>
           <DataSetName>CallforSubmission_Details</DataSetName>
-          <ValueField>caps_totalallocationtodistrictsValue</ValueField>
+          <ValueField>caps_totalallocationtodistricts</ValueField>
         </DataSetReference>
       </DefaultValue>
       <Prompt>TotalAllocationtoDistrict</Prompt>
       <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_totalallocationtodistricts</ValueField>
+          <LabelField>caps_totalallocationtodistricts</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
+    </ReportParameter>
+    <ReportParameter Name="CapitalPortion">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_capitalportionafg</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>CapitalPortion</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>CallforSubmission_Details</DataSetName>
+          <ValueField>caps_capitalportionafg</ValueField>
+          <LabelField>caps_capitalportionafg</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <cl:ComponentMetadata>
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
     </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
@@ -2926,44 +3040,39 @@
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>CRM_caps_callforsubmission</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>CapitalPlanGUID</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
-          <RowIndex>0</RowIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CapitalPortion</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
+          <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>TotalAFG</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
           <ParameterName>GrossOperating</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>1</RowIndex>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>0</RowIndex>
           <ParameterName>WithheldCAMS</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>NetOperating</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
+          <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>TotalAllocationtoDistrict</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>CallforSubmission</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
@@ -3015,6 +3124,4 @@ YXU2zkd0zusd/76/+z527K9yPJAhLntXGC1nCMrGthxxnDU05OUI6tWI8BWW4/Wed+flyMuTroppszD1
 AABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAABBGQAAAARlAAAAEJQBAABAUAYAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAEZQAAABCUAQAAQFAGAAAAQRkAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAABGUAAAAQlAEAAEBQBgAAAEEZAAAAEJQBAADgK/8TYAChhZ+Q2d7WcQAAAABJRU5ErkJggg==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>054c2199-4910-4ffa-9a4c-d5c892997e25</rd:ReportID>
 </Report>
