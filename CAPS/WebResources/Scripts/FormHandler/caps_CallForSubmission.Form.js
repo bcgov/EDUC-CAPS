@@ -26,6 +26,13 @@ CAPS.CallForSubmission.onLoad = async function (executionContext) {
     }
     // CAPS-1977 Hide PO Portfolio Ranking Tab from SD User View
     CAPS.CallForSubmission.ShowPOPortfolioRankingTab(executionContext);
+
+    // Show AFG Allocation on AFG and CC - AFG
+    formContext.getAttribute("caps_callforsubmissiontype").addOnChange(function () {
+        CAPS.CallForSubmission.ShowAFGAllocationReportTab(formContext);
+    });
+
+    CAPS.CallForSubmission.ShowAFGAllocationReportTab(formContext);
 }
 
 /**
@@ -77,3 +84,16 @@ CAPS.CallForSubmission.ShowPOPortfolioRankingTab = function (executionContext) {
         theTab.setVisible(showTab);
     }
 }
+
+// Show Hide AFG Allocation Report Tab
+CAPS.CallForSubmission.ShowAFGAllocationReportTab = function (formContext) {
+    var CallType = formContext.getAttribute("caps_callforsubmissiontype").getValue();
+    var showTab = false;
+
+    // AFG or CC - AFG
+    if (CallType === 100000002 || CallType === 385610001) {
+        showTab = true;
+    }
+
+    formContext.ui.tabs.get("tab_AFGAllocation").setVisible(showTab);
+};
