@@ -25,6 +25,9 @@
     &lt;attribute name="edu_number" /&gt;
   &lt;attribute name="edu_commonname" /&gt;
     &lt;order attribute="edu_number" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -171,18 +174,6 @@
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Program">
-            <Value>=Parameters!Program.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@RDPOTeam">
-            <Value>=Parameters!RDPOTeam.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Milestone">
-            <Value>=Parameters!Milestone.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectmilestone" &gt;
@@ -209,31 +200,29 @@
       &lt;attribute name="caps_submissioncategory" /&gt;
       &lt;attribute name="caps_fundingprogram" /&gt;
       &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType" /&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
-        &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory" /&gt;
-        &lt;condition attribute="caps_fundingprogram" operator="in" value="@Program" /&gt;
+        &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
         &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
         &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
           &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
-          &lt;!--Major--&gt;
         &lt;/filter&gt;
       &lt;/link-entity&gt;
       &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SCHOOLDISTRICT" &gt;
         &lt;attribute name="edu_name" /&gt;
         &lt;attribute name="edu_commonname" /&gt;
         &lt;attribute name="edu_number" /&gt;
-        &lt;filter&gt;
-          &lt;condition attribute="ownerid" operator="in" value="@RDPOTeam" /&gt;
-        &lt;/filter&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="MILE" &gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_milestoneid" operator="in" value="@Milestone" /&gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="PDR" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONTRACT_AWARD" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CPRL" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -382,20 +371,15 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="ProjectTypeParameter">
+    <DataSet Name="ProjectType">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projecttype"&gt;
     &lt;attribute name="caps_projecttypeid" /&gt;
     &lt;attribute name="caps_type" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
-    &lt;order attribute="caps_type" ascending="true"/&gt;
+    &lt;order attribute="caps_type" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
@@ -403,11 +387,6 @@
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
       &lt;/filter&gt;
-      &lt;link-entity name="caps_projecttracker" alias="ad" link-type="inner" from="caps_submissioncategory" to="caps_submissioncategoryid"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict"/&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -434,7 +413,7 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ProjectTypeLabel">
-          <Value>=Fields!caps_type.Value &amp; " / " &amp; Fields!caps_submissioncategory.Value</Value>
+          <Value>=Fields!caps_submissioncategory.Value &amp; " / " &amp; Fields!caps_type.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -489,187 +468,6 @@
         <Field Name="caps_projecttrackerEntityName">
           <DataField>caps_projecttrackerEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="ProgramParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_fundingprogram"&gt;
-    &lt;attribute name="caps_fundingprogramid"/&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;link-entity name="caps_projecttracker" alias="aa" link-type="inner" from="caps_fundingprogram" to="caps_fundingprogramid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType"/&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict"/&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_fundingprogramid">
-          <DataField>caps_fundingprogramid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SubmissionCategoryParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_submissioncategory"&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;attribute name="caps_submissioncategoryid"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;link-entity name="caps_projecttype" alias="aa" link-type="inner" from="caps_submissioncategory" to="caps_submissioncategoryid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_projecttypeid" operator="in" value="@ProjectType" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_submissioncategoryid">
-          <DataField>caps_submissioncategoryid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="RD_PO_TeamParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="team"&gt;
-    &lt;attribute name="name"/&gt;
-    &lt;attribute name="teamid"/&gt;
-    &lt;order attribute="name" descending="false"/&gt;
-    &lt;link-entity name="edu_schooldistrict" alias="ac" link-type="inner" from="owningteam" to="teamid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="edu_schooldistrictid" operator="in" value="@SchoolDistrict"/&gt;
-      &lt;/filter&gt;
-      &lt;link-entity name="caps_projecttracker" alias="af" link-type="inner" from="caps_schooldistrict" to="edu_schooldistrictid"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory"/&gt;
-          &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType"/&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="teamid">
-          <DataField>teamid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="MilestoneParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_milestone"&gt;
-    &lt;attribute name="caps_milestoneid"/&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;attribute name="caps_type"/&gt;
-    &lt;attribute name="caps_sortorder"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;attribute name="caps_audience"/&gt;
-    &lt;link-entity name="caps_projectmilestone" alias="ag" link-type="inner" from="caps_milestone" to="caps_milestoneid"&gt;
-      &lt;link-entity name="caps_projecttracker" alias="aj" link-type="inner" from="caps_projecttrackerid" to="caps_projecttracker"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType" /&gt;
-          &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
-          &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory" /&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_milestoneid">
-          <DataField>caps_milestoneid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_type">
-          <DataField>caps_type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_typeValue">
-          <DataField>caps_typeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_sortorder">
-          <DataField>caps_sortorder</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_sortorderValue">
-          <DataField>caps_sortorderValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_audience">
-          <DataField>caps_audience</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_audienceValue">
-          <DataField>caps_audienceValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2196,6 +1994,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0cm</Top>
               <Left>27.24704cm</Left>
               <Height>0.6cm</Height>
               <Width>4.31208cm</Width>
@@ -2246,63 +2045,9 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
       <Prompt>Select Project Type(s)</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>ProjectTypeParameter</DataSetName>
+          <DataSetName>ProjectType</DataSetName>
           <ValueField>caps_projecttypeid</ValueField>
           <LabelField>ProjectTypeLabel</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="Program">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>=""</Value>
-        </Values>
-      </DefaultValue>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>Select Program(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>ProgramParameter</DataSetName>
-          <ValueField>caps_fundingprogramid</ValueField>
-          <LabelField>caps_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="SubmissionCategory">
-      <DataType>String</DataType>
-      <Prompt>Select Submission Categories</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>SubmissionCategoryParameter</DataSetName>
-          <ValueField>caps_submissioncategoryid</ValueField>
-          <LabelField>caps_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="RDPOTeam">
-      <DataType>String</DataType>
-      <Prompt>Select RD/PO Team(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>RD_PO_TeamParameter</DataSetName>
-          <ValueField>teamid</ValueField>
-          <LabelField>name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="Milestone">
-      <DataType>String</DataType>
-      <Prompt>Select Milestone(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>MilestoneParameter</DataSetName>
-          <ValueField>caps_milestoneid</ValueField>
-          <LabelField>caps_name</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>
@@ -2322,26 +2067,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>ProjectType</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>Program</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>SubmissionCategory</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>RDPOTeam</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>Milestone</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
