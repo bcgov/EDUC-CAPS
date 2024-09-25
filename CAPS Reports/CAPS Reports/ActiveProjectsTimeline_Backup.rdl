@@ -25,6 +25,9 @@
     &lt;attribute name="edu_number" /&gt;
   &lt;attribute name="edu_commonname" /&gt;
     &lt;order attribute="edu_number" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -171,25 +174,12 @@
           <QueryParameter Name="@SchoolDistrict">
             <Value>=Parameters!SchoolDistrict.Value</Value>
           </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Program">
-            <Value>=Parameters!Program.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@RDPOTeam">
-            <Value>=Parameters!RDPOTeam.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Milestone">
-            <Value>=Parameters!Milestone.Value</Value>
-          </QueryParameter>
         </QueryParameters>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" &gt;
   &lt;entity name="caps_projectmilestone" &gt;
     &lt;attribute name="caps_projectmilestoneid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_projecttracker" /&gt;
-    &lt;attribute name="caps_complete" /&gt;
     &lt;attribute name="ownerid" /&gt;
     &lt;attribute name="caps_expectedactualdate" /&gt;
     &lt;attribute name="caps_originaldate" /&gt;
@@ -203,39 +193,36 @@
     &lt;link-entity name="caps_projecttracker" from="caps_projecttrackerid" to="caps_projecttracker" visible="false" link-type="outer" alias="PRJ" &gt;
       &lt;attribute name="caps_maxpotential_fundingsource" /&gt;
       &lt;attribute name="caps_projecttype" /&gt;
-      &lt;attribute name="statuscode" alias = "ProjectPhase" /&gt;
-      &lt;attribute name="caps_nettotalallchildcare" alias = "TotalCCSeats" /&gt;
+      &lt;attribute name="statuscode" /&gt;
       &lt;attribute name="caps_name" /&gt;
       &lt;attribute name="createdon" /&gt;
       &lt;attribute name="caps_totaldesigncapacity" /&gt;
       &lt;attribute name="caps_submissioncategory" /&gt;
       &lt;attribute name="caps_fundingprogram" /&gt;
       &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType" /&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
-        &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory" /&gt;
-        &lt;condition attribute="caps_fundingprogram" operator="in" value="@Program" /&gt;
-    &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+        &lt;condition attribute="caps_projecttype" operator="in" uitype="caps_projecttype" value="@ProjectType" /&gt;
+        &lt;condition attribute="caps_schooldistrict" operator="in" uitype="edu_schooldistrict" value="@SchoolDistrict" /&gt;
+        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
         &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
         &lt;filter&gt;
           &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
-          &lt;!--Major--&gt;
         &lt;/filter&gt;
       &lt;/link-entity&gt;
       &lt;link-entity name="edu_schooldistrict" from="edu_schooldistrictid" to="caps_schooldistrict" alias="SCHOOLDISTRICT" &gt;
         &lt;attribute name="edu_name" /&gt;
         &lt;attribute name="edu_commonname" /&gt;
         &lt;attribute name="edu_number" /&gt;
-        &lt;filter&gt;
-          &lt;condition attribute="ownerid" operator="in" value="@RDPOTeam" /&gt;
-        &lt;/filter&gt;
       &lt;/link-entity&gt;
     &lt;/link-entity&gt;
     &lt;link-entity name="caps_milestone" from="caps_milestoneid" to="caps_milestone" link-type="inner" alias="MILE" &gt;
-      &lt;filter type="and" &gt;
-        &lt;condition attribute="caps_milestoneid" operator="in" value="@Milestone" /&gt;
+      &lt;filter type="or" &gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="PDR" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="TB_APPROVAL" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CONTRACT_AWARD" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="OCCUPANCY" /&gt;
+        &lt;condition attribute="caps_milestonecode" operator="eq" value="CPRL" /&gt;
       &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
@@ -262,17 +249,9 @@
           <DataField>caps_projecttrackerEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caps_complete">
-          <DataField>caps_complete</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ownerid">
           <DataField>ownerid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_completeValue">
-          <DataField>caps_completeValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="owneridValue">
           <DataField>owneridValue</DataField>
@@ -326,25 +305,17 @@
           <DataField>PRJ_caps_projecttypeEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ProjectPhase">
-          <DataField>ProjectPhase</DataField>
+        <Field Name="PRJ_statuscode">
+          <DataField>PRJ_statuscode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ProjectPhaseValue">
-          <DataField>ProjectPhaseValue</DataField>
+        <Field Name="PRJ_statuscodeValue">
+          <DataField>PRJ_statuscodeValue</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="TotalCCSeats">
-          <DataField>TotalCCSeats</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PRJ_caps_name">
           <DataField>PRJ_caps_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TotalCCSeatsValue">
-          <DataField>TotalCCSeatsValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="PRJ_createdon">
           <DataField>PRJ_createdon</DataField>
@@ -400,20 +371,15 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="ProjectTypeParameter">
+    <DataSet Name="ProjectType">
       <Query>
         <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true"&gt;
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_projecttype"&gt;
     &lt;attribute name="caps_projecttypeid" /&gt;
     &lt;attribute name="caps_type" /&gt;
     &lt;attribute name="caps_submissioncategory" /&gt;
-    &lt;order attribute="caps_type" ascending="true"/&gt;
+    &lt;order attribute="caps_type" descending="false" /&gt;
     &lt;filter type="and"&gt;
       &lt;condition attribute="statuscode" operator="eq" value="1" /&gt;
     &lt;/filter&gt;
@@ -421,11 +387,6 @@
       &lt;filter type="and"&gt;
         &lt;condition attribute="caps_type" operator="eq" value="200870000" /&gt;
       &lt;/filter&gt;
-      &lt;link-entity name="caps_projecttracker" alias="ad" link-type="inner" from="caps_submissioncategory" to="caps_submissioncategoryid"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict"/&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -452,7 +413,7 @@
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ProjectTypeLabel">
-          <Value>=Fields!caps_type.Value &amp; " / " &amp; Fields!caps_submissioncategory.Value</Value>
+          <Value>=Fields!caps_submissioncategory.Value &amp; " / " &amp; Fields!caps_type.Value</Value>
         </Field>
       </Fields>
     </DataSet>
@@ -510,207 +471,57 @@
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="ProgramParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_fundingprogram"&gt;
-    &lt;attribute name="caps_fundingprogramid"/&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;link-entity name="caps_projecttracker" alias="aa" link-type="inner" from="caps_fundingprogram" to="caps_fundingprogramid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType"/&gt;
-        &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict"/&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_fundingprogramid">
-          <DataField>caps_fundingprogramid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="SubmissionCategoryParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_submissioncategory"&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;attribute name="caps_submissioncategoryid"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;link-entity name="caps_projecttype" alias="aa" link-type="inner" from="caps_submissioncategory" to="caps_submissioncategoryid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="caps_projecttypeid" operator="in" value="@ProjectType" /&gt;
-      &lt;/filter&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_submissioncategoryid">
-          <DataField>caps_submissioncategoryid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="RD_PO_TeamParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="team"&gt;
-    &lt;attribute name="name"/&gt;
-    &lt;attribute name="teamid"/&gt;
-    &lt;order attribute="name" descending="false"/&gt;
-    &lt;link-entity name="edu_schooldistrict" alias="ac" link-type="inner" from="owningteam" to="teamid"&gt;
-      &lt;filter type="and"&gt;
-        &lt;condition attribute="edu_schooldistrictid" operator="in" value="@SchoolDistrict"/&gt;
-      &lt;/filter&gt;
-      &lt;link-entity name="caps_projecttracker" alias="af" link-type="inner" from="caps_schooldistrict" to="edu_schooldistrictid"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory"/&gt;
-          &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType"/&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="teamid">
-          <DataField>teamid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="MilestoneParameter">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@ProjectType">
-            <Value>=Parameters!ProjectType.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SchoolDistrict">
-            <Value>=Parameters!SchoolDistrict.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@SubmissionCategory">
-            <Value>=Parameters!SubmissionCategory.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" mapping="logical" no-lock="false" distinct="true"&gt;
-  &lt;entity name="caps_milestone"&gt;
-    &lt;attribute name="caps_milestoneid"/&gt;
-    &lt;attribute name="caps_name"/&gt;
-    &lt;attribute name="caps_type"/&gt;
-    &lt;attribute name="caps_sortorder"/&gt;
-    &lt;order attribute="caps_name" descending="false"/&gt;
-    &lt;attribute name="caps_audience"/&gt;
-    &lt;link-entity name="caps_projectmilestone" alias="ag" link-type="inner" from="caps_milestone" to="caps_milestoneid"&gt;
-      &lt;link-entity name="caps_projecttracker" alias="aj" link-type="inner" from="caps_projecttrackerid" to="caps_projecttracker"&gt;
-        &lt;filter type="and"&gt;
-          &lt;condition attribute="caps_projecttype" operator="in" value="@ProjectType" /&gt;
-          &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
-          &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory" /&gt;
-        &lt;/filter&gt;
-      &lt;/link-entity&gt;
-    &lt;/link-entity&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="caps_milestoneid">
-          <DataField>caps_milestoneid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_name">
-          <DataField>caps_name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_type">
-          <DataField>caps_type</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_typeValue">
-          <DataField>caps_typeValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_sortorder">
-          <DataField>caps_sortorder</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_sortorderValue">
-          <DataField>caps_sortorderValue</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="caps_audience">
-          <DataField>caps_audience</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="caps_audienceValue">
-          <DataField>caps_audienceValue</DataField>
-          <rd:TypeName>System.Boolean</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
           <Tablix Name="Tablix4">
+            <TablixCorner>
+              <TablixCornerRows>
+                <TablixCornerRow>
+                  <TablixCornerCell>
+                    <CellContents>
+                      <Textbox Name="Textbox53">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style />
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox53</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <RightBorder>
+                            <Style>None</Style>
+                          </RightBorder>
+                          <BackgroundColor>#234075</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                      <ColSpan>3</ColSpan>
+                    </CellContents>
+                  </TablixCornerCell>
+                  <TablixCornerCell />
+                  <TablixCornerCell />
+                </TablixCornerRow>
+              </TablixCornerRows>
+            </TablixCorner>
             <TablixBody>
               <TablixColumns>
-                <TablixColumn>
-                  <Width>2.5cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>4.16688cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>2.5cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>2.11287cm</Width>
-                </TablixColumn>
                 <TablixColumn>
                   <Width>2.5cm</Width>
                 </TablixColumn>
@@ -742,148 +553,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox36">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value EvaluationMode="Constant">SD Number</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox36</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox40">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value EvaluationMode="Constant">SD Name</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox40</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox44">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Project Phase</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox44</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox47">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value EvaluationMode="Constant">Total CC Seats</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox47</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox17">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -908,7 +577,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -943,7 +611,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -978,7 +645,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1013,7 +679,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1050,7 +715,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1085,7 +749,6 @@
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1123,7 +786,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1158,7 +820,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>#e3a82b</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1172,141 +833,6 @@ ReportItems!milestone_name.Value = "CPRL",
                 <TablixRow>
                   <Height>0.6cm</Height>
                   <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="SCHOOLDISTRICT_edu_number">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>SCHOOLDISTRICT_edu_number</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="SCHOOLDISTRICT_edu_commonname">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!SCHOOLDISTRICT_edu_commonname.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>SCHOOLDISTRICT_edu_commonname</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="ProjectPhase">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!ProjectPhase.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>ProjectPhase</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="TotalCCSeats">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!TotalCCSeats.Value</Value>
-                                  <Style>
-                                    <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>TotalCCSeats</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="PRJ_caps_fundingprogram">
@@ -1331,7 +857,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1364,7 +889,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1397,7 +921,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1430,7 +953,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1464,7 +986,6 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1486,15 +1007,6 @@ ReportItems!milestone_name.Value = "CPRL",
                                   <Value>=iif(isnothing(Fields!caps_originaldate.Value), "", Format(Cdate(Fields!caps_originaldate.Value), "MMM-yy"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
-    "Black", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "White",  
-            "White"), 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Black",  
-            "Black")))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1507,23 +1019,13 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
-    "White", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Green",  
-            "Red"),   
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "#FFCC99",  
-            "White")))</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <BackgroundColor>=iif(isnothing(Fields!caps_originaldate.Value), "White", iif(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, "#fff6d5", "White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1538,15 +1040,6 @@ ReportItems!milestone_name.Value = "CPRL",
                                   <Value>=iif(isnothing(Fields!caps_expectedactualdate.Value), "", Format(Cdate(Fields!caps_expectedactualdate.Value), "MMM-yy"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
-    "Black", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "White",  
-            "White"), 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Black",  
-            "Black")))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1559,16 +1052,7 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
-    "White", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Green",  
-            "Red"),   
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "#FFCC99",  
-            "White")))</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <BackgroundColor>=iif(isnothing(Fields!caps_expectedactualdate.Value), "White", iif(Fields!caps_expectedactualdate.Value &lt; Globals!ExecutionTime, "#fff6d5", "White"))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1606,7 +1090,270 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                               <Style>Solid</Style>
                             </Border>
                             <BackgroundColor>White</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.09729cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox6">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1621,164 +1368,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
             </TablixBody>
             <TablixColumnHierarchy>
               <TablixMembers>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>0.6cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox35">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox35</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <LeftBorder>
-                            <Style>None</Style>
-                          </LeftBorder>
-                          <BackgroundColor>#234075</BackgroundColor>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>0.6cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox39">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox39</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <LeftBorder>
-                            <Style>None</Style>
-                          </LeftBorder>
-                          <BackgroundColor>#234075</BackgroundColor>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>0.6cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox43">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox43</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <LeftBorder>
-                            <Style>None</Style>
-                          </LeftBorder>
-                          <BackgroundColor>#234075</BackgroundColor>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                </TablixMember>
-                <TablixMember>
-                  <TablixHeader>
-                    <Size>0.6cm</Size>
-                    <CellContents>
-                      <Textbox Name="Textbox46">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value />
-                                <Style>
-                                  <FontFamily>Arial</FontFamily>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Right</TextAlign>
-                            </Style>
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>Textbox46</rd:DefaultName>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>Solid</Style>
-                          </Border>
-                          <LeftBorder>
-                            <Style>None</Style>
-                          </LeftBorder>
-                          <BackgroundColor>#234075</BackgroundColor>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                </TablixMember>
                 <TablixMember>
                   <TablixHeader>
                     <Size>0.6cm</Size>
@@ -1941,7 +1530,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                             <Style>Solid</Style>
                           </Border>
                           <BackgroundColor>#234075</BackgroundColor>
-                          <VerticalAlign>Middle</VerticalAlign>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -2004,6 +1592,40 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
+                  <TablixHeader>
+                    <Size>8.33911cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox105">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style>
+                                  <FontFamily>Arial</FontFamily>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox105</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#e3a82b</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
                   <KeepWithGroup>After</KeepWithGroup>
                 </TablixMember>
                 <TablixMember>
@@ -2017,20 +1639,168 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                       <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
                     </SortExpression>
                   </SortExpressions>
+                  <TablixHeader>
+                    <Size>1.46375cm</Size>
+                    <CellContents>
+                      <Textbox Name="SCHOOLDISTRICT_edu_number1">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
+                                <Style>
+                                  <FontFamily>arial</FontFamily>
+                                  <FontSize>12pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>SCHOOLDISTRICT_edu_number1</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#bacbdb</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="caps_projecttrackerValue">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!caps_projecttrackerValue.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!PRJ_caps_projecttype.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>3.47578cm</Size>
+                        <CellContents>
+                          <Textbox Name="SCHOOLDISTRICT_edu_commonname1">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!SCHOOLDISTRICT_edu_commonname.Value</Value>
+                                    <Style>
+                                      <FontFamily>arial</FontFamily>
+                                      <FontSize>12pt</FontSize>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>SCHOOLDISTRICT_edu_commonname1</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>#bacbdb</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
                       <TablixMembers>
-                        <TablixMember />
+                        <TablixMember>
+                          <Group Name="caps_projecttrackerValue">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!caps_projecttrackerValue.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!PRJ_caps_projecttype.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixMembers>
+                            <TablixMember>
+                              <TablixHeader>
+                                <Size>3.39958cm</Size>
+                                <CellContents>
+                                  <Textbox Name="caps_projecttracker">
+                                    <CanGrow>true</CanGrow>
+                                    <KeepTogether>true</KeepTogether>
+                                    <Paragraphs>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>=Fields!caps_projecttracker.Value</Value>
+                                            <Style>
+                                              <FontFamily>Arial</FontFamily>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style />
+                                      </Paragraph>
+                                    </Paragraphs>
+                                    <rd:DefaultName>caps_projecttracker</rd:DefaultName>
+                                    <Style>
+                                      <Border>
+                                        <Color>LightGrey</Color>
+                                        <Style>Solid</Style>
+                                      </Border>
+                                      <PaddingLeft>2pt</PaddingLeft>
+                                      <PaddingRight>2pt</PaddingRight>
+                                      <PaddingTop>2pt</PaddingTop>
+                                      <PaddingBottom>2pt</PaddingBottom>
+                                    </Style>
+                                  </Textbox>
+                                </CellContents>
+                              </TablixHeader>
+                              <TablixMembers>
+                                <TablixMember />
+                              </TablixMembers>
+                            </TablixMember>
+                          </TablixMembers>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>3.39958cm</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox4">
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value />
+                                        <Style>
+                                          <FontFamily>Arial</FontFamily>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>Textbox4</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Color>LightGrey</Color>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>#234075</BackgroundColor>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                        </TablixMember>
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
@@ -2044,8 +1814,8 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
               </SortExpression>
             </SortExpressions>
             <Top>2.9625cm</Top>
-            <Height>1.8cm</Height>
-            <Width>30.25763cm</Width>
+            <Height>1.89729cm</Height>
+            <Width>27.31699cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2105,7 +1875,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
             <Top>0.89959cm</Top>
             <Left>3.96375cm</Left>
             <Height>0.6cm</Height>
-            <Width>13.67829cm</Width>
+            <Width>6.87536cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2130,43 +1900,11 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
               </Border>
             </Style>
           </Image>
-          <Textbox Name="Textbox85">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>="Milestones dates are in MMM-YY format (June 2024 = Jun-24)"</Value>
-                    <Style>
-                      <FontFamily>Arial</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox83</rd:DefaultName>
-            <Top>1.57015cm</Top>
-            <Left>3.99902cm</Left>
-            <Height>0.6cm</Height>
-            <Width>13.67829cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>2.19456in</Height>
+        <Height>1.93414in</Height>
         <Style />
       </Body>
-      <Width>12.8967in</Width>
+      <Width>12.42485in</Width>
       <Page>
         <PageFooter>
           <Height>1.29646cm</Height>
@@ -2256,6 +1994,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0cm</Top>
               <Left>27.24704cm</Left>
               <Height>0.6cm</Height>
               <Width>4.31208cm</Width>
@@ -2291,12 +2030,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
   <ReportParameters>
     <ReportParameter Name="SchoolDistrict">
       <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>SchoolDistricts</DataSetName>
-          <ValueField>edu_schooldistrictid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
       <Prompt>Select School District(s)</Prompt>
       <ValidValues>
         <DataSetReference>
@@ -2309,91 +2042,12 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
     </ReportParameter>
     <ReportParameter Name="ProjectType">
       <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>ProjectTypeParameter</DataSetName>
-          <ValueField>caps_projecttypeid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
       <Prompt>Select Project Type(s)</Prompt>
       <ValidValues>
         <DataSetReference>
-          <DataSetName>ProjectTypeParameter</DataSetName>
+          <DataSetName>ProjectType</DataSetName>
           <ValueField>caps_projecttypeid</ValueField>
           <LabelField>ProjectTypeLabel</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="Program">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>ProgramParameter</DataSetName>
-          <ValueField>caps_fundingprogramid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>Select Program(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>ProgramParameter</DataSetName>
-          <ValueField>caps_fundingprogramid</ValueField>
-          <LabelField>caps_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="SubmissionCategory">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>SubmissionCategoryParameter</DataSetName>
-          <ValueField>caps_submissioncategoryid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Select Submission Categories</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>SubmissionCategoryParameter</DataSetName>
-          <ValueField>caps_submissioncategoryid</ValueField>
-          <LabelField>caps_name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="RDPOTeam">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>RD_PO_TeamParameter</DataSetName>
-          <ValueField>teamid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Select RD/PO Team(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>RD_PO_TeamParameter</DataSetName>
-          <ValueField>teamid</ValueField>
-          <LabelField>name</LabelField>
-        </DataSetReference>
-      </ValidValues>
-      <MultiValue>true</MultiValue>
-    </ReportParameter>
-    <ReportParameter Name="Milestone">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>MilestoneParameter</DataSetName>
-          <ValueField>caps_milestoneid</ValueField>
-        </DataSetReference>
-      </DefaultValue>
-      <Prompt>Select Milestone(s)</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>MilestoneParameter</DataSetName>
-          <ValueField>caps_milestoneid</ValueField>
-          <LabelField>caps_name</LabelField>
         </DataSetReference>
       </ValidValues>
       <MultiValue>true</MultiValue>
@@ -2413,26 +2067,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>ProjectType</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>Program</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>SubmissionCategory</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>RDPOTeam</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>1</RowIndex>
-          <ParameterName>Milestone</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

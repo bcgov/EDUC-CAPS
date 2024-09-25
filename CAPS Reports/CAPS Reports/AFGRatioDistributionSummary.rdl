@@ -24,6 +24,7 @@
     &lt;attribute name="edu_commonname" /&gt;
     &lt;attribute name="statuscode" /&gt;
     &lt;attribute name="caps_afgfundingpercentage" /&gt;
+    &lt;attribute name="caps_ccafgratio" /&gt;
     &lt;attribute name="edu_name" /&gt;
     &lt;attribute name="edu_number" /&gt;
     &lt;filter&gt;
@@ -77,9 +78,17 @@
           <DataField>caps_afgfundingpercentageValue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="caps_ccafgratio">
+          <DataField>caps_ccafgratio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="edu_name">
           <DataField>edu_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_ccafgratioValue">
+          <DataField>caps_ccafgratioValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="edu_number">
           <DataField>edu_number</DataField>
@@ -96,16 +105,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>7.43479cm</Width>
+                  <Width>8.12271cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.80458cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>8.89cm</Width>
+                  <Width>6.49582cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.97417cm</Width>
+                  <Width>6.65396cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -151,12 +160,46 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>4</ColSpan>
+                        <ColSpan>3</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <Color>Brown</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -199,10 +242,9 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>3</ColSpan>
+                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
@@ -225,6 +267,43 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>DarkRed</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -282,10 +361,9 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>3</ColSpan>
+                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
@@ -297,6 +375,42 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Sum(Fields!caps_afgfundingpercentageValue.Value)</Value>
+                                  <Style>
+                                    <FontFamily>arial</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#234075</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="caps_afgfundingpercentageValue_Sum2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!caps_ccafgratioValue.Value)</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
@@ -406,14 +520,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox27">
+                        <Textbox Name="Textbox28">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Region</Value>
+                                  <Value EvaluationMode="Constant">K-12 AFG Ratio</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
@@ -426,7 +540,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <rd:DefaultName>Textbox28</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -444,14 +558,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox28">
+                        <Textbox Name="Textbox29">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>AFG Ratio</Value>
+                                  <Value EvaluationMode="Constant">CC-AFG Ratio</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>11pt</FontSize>
@@ -487,14 +601,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="edu_name">
+                        <Textbox Name="edu_commonname">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!edu_name.Value</Value>
+                                  <Value>=Fields!edu_commonname.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                   </Style>
@@ -503,7 +617,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_name</rd:DefaultName>
+                          <rd:DefaultName>edu_commonname</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -551,14 +665,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="edu_region">
+                        <Textbox Name="caps_afgfundingpercentageValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!edu_region.Value</Value>
+                                  <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                   </Style>
@@ -567,7 +681,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>edu_region</rd:DefaultName>
+                          <rd:DefaultName>caps_afgfundingpercentageValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -583,14 +697,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_afgfundingpercentageValue">
+                        <Textbox Name="caps_afgfundingpercentageValue2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_afgfundingpercentageValue.Value</Value>
+                                  <Value>=Fields!caps_ccafgratioValue.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                   </Style>
@@ -675,7 +789,7 @@
             <Top>0.10583cm</Top>
             <Left>0.02647cm</Left>
             <Height>4.55661cm</Height>
-            <Width>24.10354cm</Width>
+            <Width>24.07707cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
