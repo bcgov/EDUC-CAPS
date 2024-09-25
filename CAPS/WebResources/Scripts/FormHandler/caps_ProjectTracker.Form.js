@@ -148,6 +148,11 @@ CAPS.ProjectTracker.ShowHideFacilities = function (executionContext) {
         formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
 
     }
+    else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_AFG") {
+        formContext.getAttribute("caps_facility").controls.forEach(control => control.setVisible(false));
+        formContext.getAttribute("caps_proposedfacility").controls.forEach(control => control.setVisible(false)); 
+        formContext.ui.tabs.get("tab_child_care").setVisible(false);
+    }
     else if (formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_CONVERSION_MINOR" || 
         formContext.getAttribute("caps_submissioncategorycode").getValue() === "CC_UPGRADE" ||
@@ -662,7 +667,7 @@ CAPS.ProjectTracker.ShowHideTabs = function (executionContext) {
         Xrm.WebApi.retrieveRecord("caps_submissioncategory", CAPS.ProjectTracker.RemoveCurlyBraces(submissionCategory.id), "?$select=caps_ischildcare").then(
             function success(result) {
                 var isChildCare = result.caps_ischildcare;
-                if (isChildCare) {
+                if (isChildCare && formContext.getAttribute("caps_submissioncategorycode").getValue() !== "CC_AFG") {
                     // Show CC tab, Draw Requests tab and hide Certificates of Approval tab when CC
                     formContext.ui.tabs.get("tab_child_care").setVisible(true);
                     formContext.ui.tabs.get("tab_drawrequests").setVisible(true);

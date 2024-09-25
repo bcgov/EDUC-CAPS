@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var CAPS = CAPS || {};
-CAPS.Facility = CAPS.Facility || {
+CAPS.ChildCareFacilityRibbon = CAPS.ChildCareFacilityRibbon || {
     SHOW_LOCK_ASYNC_COMPLETED: false,
     SHOW_LOCK_BUTTON: false,
     SHOW_UNLOCK_ASYNC_COMPLETED: false,
@@ -9,93 +9,56 @@ CAPS.Facility = CAPS.Facility || {
 };
 
 /*Function to determine if lock enrolment projections button should be displayed.*/
-CAPS.Facility.ShowLockEnrolmentProjections = function (primaryControl) {
-    debugger;
+CAPS.ChildCareFacilityRibbon.ShowLockEnrolmentProjections = function (primaryControl) {
+   
     var formContext = primaryControl;
-    //get facility Id
+    //get child care facility Id
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
     var useFutureForUtilization = formContext.getAttribute("caps_usefutureforutilization").getValue();
 
     if (useFutureForUtilization) return false;
 
     //Check Users role and for draft enrolment projections
-   
+    
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User") {
+       
+        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
 
     if (!showButton) return false;
 
-    if (CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED) {
-        return CAPS.Facility.SHOW_LOCK_BUTTON;
+    if (CAPS.ChildCareFacilityRibbon.SHOW_LOCK_ASYNC_COMPLETED) {
+        return CAPS.ChildCareFacilityRibbon.SHOW_LOCK_BUTTON;
     }
 
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq " + id + " and statuscode eq 1").then(
         function success(result) {
-            debugger;
-            CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
+            
+            CAPS.ChildCareFacilityRibbon.SHOW_LOCK_ASYNC_COMPLETED = true;
             if (result.entities.length > 0) {
-                CAPS.Facility.SHOW_LOCK_BUTTON = true;
+                CAPS.ChildCareFacilityRibbon.SHOW_LOCK_BUTTON = true;
             }
 
-            if (CAPS.Facility.SHOW_LOCK_BUTTON) {
+            if (CAPS.ChildCareFacilityRibbon.SHOW_LOCK_BUTTON) {
                 formContext.ui.refreshRibbon();
             }
         }
         , function (error) {
-            debugger;
-            CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
-            CAPS.Facility.SHOW_LOCK_BUTTON = false;
+            CAPS.ChildCareFacilityRibbon.SHOW_LOCK_ASYNC_COMPLETED = true;
+            CAPS.ChildCareFacilityRibbon.SHOW_LOCK_BUTTON = false;
             Xrm.Navigation.openAlertDialog({ text: error.message });
         }
     );
 }
 
-/*Function to confirm using enrolment projections for capacity*/
-CAPS.Facility.LockEnrolmentProjections = function (primaryControl) {
-    var formContext = primaryControl;
-
-    //If dirty, then save and call again
-    if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
-        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Facility.LockEnrolmentProjections(primaryControl); });
-    }
-    else {
-        //check enrolment complete flag is Completed (1)
-        if (formContext.getAttribute("caps_outstandingenrolmentprojection").getValue()) {
-            //add are you sure question
-            let confirmStrings = { text: "This will lock your future enrolment projections, allowing them to be used in utilization reporting.  Click OK to continue or Cancel to exit.", title: "Lock Enrolment Projections" };
-            let confirmOptions = { height: 200, width: 450 };
-            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
-                function (success) {
-                    if (success.confirmed) {
-                        CAPS.Facility.UpdateCapacityReporting(primaryControl);
-                    }
-                });
-        }
-        else {
-            var alertStrings = { confirmButtonLabel: "OK", text: "Enrolment Projections for this facility are not marked as completed.", title: "Lock Enrolment Projections" };
-            var alertOptions = { height: 120, width: 260 };
-            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
-                function success(result) {
-                    console.log("Alert dialog closed");
-                },
-                function (error) {
-                    console.log(error.message);
-                }
-            );
-        }
-    }
-
-}
-
 /*Function to determine if unlock enrolment projections button should be displayed.*/
-CAPS.Facility.ShowUnlockEnrolmentProjections = function (primaryControl) {
+CAPS.ChildCareFacilityRibbon.ShowUnlockEnrolmentProjections = function (primaryControl) {
     var formContext = primaryControl;
     //get facility Id
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -112,60 +75,101 @@ CAPS.Facility.ShowUnlockEnrolmentProjections = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User") {
+        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
 
     if (!showButton) return false;
 
-    if (CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED) {
-        return CAPS.Facility.SHOW_UNLOCK_BUTTON;
+    if (CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_ASYNC_COMPLETED) {
+        return CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_BUTTON;
     }
 
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq " + id + " and statuscode eq 2").then(
         function success(result) {
-          
-            CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
+           
+            CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_ASYNC_COMPLETED = true;
             if (result.entities.length > 0) {
-                CAPS.Facility.SHOW_UNLOCK_BUTTON = true;
+                CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_BUTTON = true;
             }
 
-            if (CAPS.Facility.SHOW_UNLOCK_BUTTON) {
+            if (CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_BUTTON) {
                 formContext.ui.refreshRibbon();
             }
         }
         , function (error) {
-            CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
-            CAPS.Facility.SHOW_UNLOCK_BUTTON = false;
+            CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_ASYNC_COMPLETED = true;
+            CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_BUTTON = false;
             Xrm.Navigation.openAlertDialog({ text: error.message });
         }
     );
 }
 
-/*Function to confirm unlocking enrolment projections for editing*/
-CAPS.Facility.UnlockEnrolmentProjections = function (primaryControl) {
+
+/*Function to confirm using enrolment projections for capacity*/
+CAPS.ChildCareFacilityRibbon.LockEnrolmentProjections = function (primaryControl) {
+    
     var formContext = primaryControl;
 
     //If dirty, then save and call again
     if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
-        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.Facility.LockEnrolmentProjections(primaryControl); });
+        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.ChildCareFacilityRibbon.LockEnrolmentProjections(primaryControl); });
+    }
+    else {
+        //check enrolment complete flag is Completed (1)
+        if (formContext.getAttribute("caps_enrolmentprojection").getValue()) {
+            //add are you sure question
+            let confirmStrings = { text: "This will lock your future child care enrolment projections, allowing them to be used in utilization reporting.  Click OK to continue or Cancel to exit.", title: "Lock Child Care Enrolment Projections" };
+            let confirmOptions = { height: 200, width: 450 };
+            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+                function (success) {
+                   
+                    if (success.confirmed) {
+                        CAPS.ChildCareFacilityRibbon.UpdateCapacityReporting(primaryControl);
+                    }
+                });
+        }
+        else {
+            var alertStrings = { confirmButtonLabel: "OK", text: "Child Care Enrolment Projections for this child care facility are not marked as completed.", title: "Lock Child Care Enrolment Projections" };
+            var alertOptions = { height: 120, width: 260 };
+            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                function success(result) {
+                    console.log("Alert dialog closed");
+                },
+                function (error) {
+                    console.log(error.message);
+                }
+            );
+        }
+    }
+
+}
+
+/*Function to confirm unlocking enrolment projections for editing*/
+CAPS.ChildCareFacilityRibbon.UnlockEnrolmentProjections = function (primaryControl) {
+    debugger;
+    var formContext = primaryControl;
+
+    //If dirty, then save and call again
+    if (formContext.data.entity.getIsDirty() || formContext.ui.getFormType() === 1) {
+        formContext.data.save({ saveMode: 1 }).then(function success(result) { CAPS.ChildCareFacilityRibbon.LockEnrolmentProjections(primaryControl); });
     }
     else {
         //check enrolment complete flag is Completed (1)
         if (formContext.getAttribute("caps_usefutureforutilization").getValue()) {
             //add are you sure question
-            let confirmStrings = { text: "This will unlock your future enrolment projections, allowing them to be edited.  Click OK to continue or Cancel to exit.", title: "Unlock Enrolment Projections" };
+            let confirmStrings = { text: "This will unlock your future child care enrolment projections, allowing them to be edited.  Click OK to continue or Cancel to exit.", title: "Unlock Child Care Enrolment Projections" };
             let confirmOptions = { height: 200, width: 450 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
                 function (success) {
                     if (success.confirmed) {
-                        CAPS.Facility.ReverseCapacityReporting(primaryControl);
+                        CAPS.ChildCareFacilityRibbon.ReverseCapacityReporting(primaryControl);
                     }
                 });
         }
         else {
-            var alertStrings = { confirmButtonLabel: "OK", text: "Unable to unlock Enrolment Projections for this facility.", title: "Unlock Enrolment Projections" };
+            var alertStrings = { confirmButtonLabel: "OK", text: "Unable to unlock Child Care Enrolment Projections for this facility.", title: "Unlock Child Care Enrolment Projections" };
             var alertOptions = { height: 120, width: 260 };
             Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
                 function success(result) {
@@ -181,7 +185,8 @@ CAPS.Facility.UnlockEnrolmentProjections = function (primaryControl) {
 }
 
 /*Function to set all enrolment projections to submitted and toggle Use Future for Utilization to update capacity reporting*/
-CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
+CAPS.ChildCareFacilityRibbon.UpdateCapacityReporting = function (primaryControl) {
+    
     var formContext = primaryControl;
     //get facility Id
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -190,30 +195,34 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
     //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
 
     var data =
-        {
-            "caps_markassubmitted": true
-        };
+    {
+        "caps_markedassubmitted": true
+    };
 
-    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
+    Xrm.Utility.showProgressIndicator("Updating Child Care Enrolment Projections, please wait...");
 
     //update all future enrolment projection records
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq " + id + " and statuscode eq 1").then(
         function success(result) {
+           
             for (var i = 0; i < result.entities.length; i++) {
-                var recordId = result.entities[i].caps_enrolmentprojections_sdid;
+
+                var recordId = result.entities[i].caps_childcareenrolmentprojectionid;
 
                 //Update the record
-                promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                promises.push(Xrm.WebApi.updateRecord("caps_childcareenrolmentprojection", recordId, data));
             }
             Promise.all(promises).then(
                 function (results) {
+                   
                     //mark as locked
                     formContext.data.refresh();
                     formContext.getAttribute("caps_usefutureforutilization").setValue(true);
                     formContext.data.entity.save();
-                    Xrm.Utility.closeProgressIndicator();             
+                    Xrm.Utility.closeProgressIndicator();
                 }
                 , function (error) {
+                    
                     Xrm.Utility.closeProgressIndicator();
                     Xrm.Navigation.openErrorDialog({ message: error.message });
                 }
@@ -226,12 +235,12 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
             // handle error conditions
         }
     );
-        //
-        //UseFutureForUtilization
+    //
+    //UseFutureForUtilization
 }
 
 /*Function to set all enrolment projections to draft and toggle Use Future for Utilization to update capacity reporting*/
-CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
+CAPS.ChildCareFacilityRibbon.ReverseCapacityReporting = function (primaryControl) {
     var formContext = primaryControl;
     //get facility Id
     var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
@@ -240,20 +249,20 @@ CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
     //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
 
     var data =
-        {
-            "caps_markassubmitted": false
+    {
+        "caps_markedassubmitted": false
     };
 
-    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
+    Xrm.Utility.showProgressIndicator("Updating Child Care Enrolment Projections, please wait...");
 
     //update all future enrolment projection records
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+    Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq " + id + " and statuscode eq 2").then(
         function success(result) {
             for (var i = 0; i < result.entities.length; i++) {
-                var recordId = result.entities[i].caps_enrolmentprojections_sdid;
+                var recordId = result.entities[i].caps_childcareenrolmentprojectionid;
 
                 //Update the record
-                promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                promises.push(Xrm.WebApi.updateRecord("caps_childcareenrolmentprojection", recordId, data));
             }
             Promise.all(promises).then(
                 function (results) {
@@ -283,7 +292,7 @@ CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
 /*
 Function to check if the current user has CAPS CMB User Role.
 */
-CAPS.Facility.IsMinistryUser = function () {
+CAPS.ChildCareFacilityRibbon.IsMinistryUser = function () {
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
     var showButton = false;
