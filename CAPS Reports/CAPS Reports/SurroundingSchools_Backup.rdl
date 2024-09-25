@@ -607,9 +607,6 @@
     &lt;attribute name="caps_facilityid" alias="FacilityID" groupby="true" /&gt;
     &lt;link-entity name="caps_portable" from="caps_facility" to="caps_facilityid" link-type="outer" &gt;
       &lt;attribute name="caps_facility" alias="countPortables" aggregate="countcolumn" /&gt;
-      &lt;filter type="and"&gt;
-          &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -646,13 +643,10 @@
     &lt;attribute name="caps_assetnumber" /&gt;
     &lt;attribute name="createdon" /&gt;
     &lt;order attribute="caps_assetnumber" descending="false" /&gt;
-      &lt;filter type="and"&gt;
-          &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
-    &lt;/filter&gt;
-      &lt;filter type="or"&gt;
+    &lt;filter type="or"&gt;
       &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
       &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
-   &lt;/filter&gt;
+    &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -672,63 +666,6 @@
         <Field Name="createdonValue">
           <DataField>createdonValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="CCClassroomsUsed">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <CommandText>&lt;fetch mapping="logical" aggregate="true"&gt;
-  &lt;entity name="caps_facility"&gt;
-    &lt;attribute name="caps_facilityid" alias="FacilityID" groupby="true" /&gt;
-    &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" aggregate="sum" /&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="FacilityID">
-          <DataField>FacilityID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CCClassroomsUsed">
-          <DataField>CCClassroomsUsed</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CCClassroomsUsedValue">
-          <DataField>CCClassroomsUsedValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-      </Fields>
-    </DataSet>
-    <DataSet Name="CCClassroomsUsedAggregate">
-      <Query>
-        <DataSourceName>CAPS_Dev</DataSourceName>
-        <QueryParameters>
-          <QueryParameter Name="@FacilityID">
-            <Value>=Parameters!FacilityID.Value</Value>
-          </QueryParameter>
-          <QueryParameter Name="@Facilities">
-            <Value>=Parameters!Facilities.Value</Value>
-          </QueryParameter>
-        </QueryParameters>
-        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
-  &lt;entity name="caps_facility"&gt;
-    &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" /&gt;
-      &lt;filter type="or"&gt;
-      &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
-      &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
-   &lt;/filter&gt;
-  &lt;/entity&gt;
-&lt;/fetch&gt;</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="CCClassroomsUsed">
-          <DataField>CCClassroomsUsed</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="CCClassroomsUsedValue">
-          <DataField>CCClassroomsUsedValue</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -786,7 +723,7 @@
                   <Width>5.09293cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.02376cm</Width>
+                  <Width>1.83855cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2434,10 +2371,7 @@ Sum(Fields!caps_total_operatingcapacity_districtValue.Value)))</Value>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!caps_facility.Value &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; 
-lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!countPortables.Value, "Portables")
- &amp; vbcrlf &amp; vbcrlf &amp; "CC Classrooms Used: " &amp; 
-lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassroomsUsed.Value, "CCClassroomsUsed")</Value>
+                                <Value>=Fields!caps_facility.Value &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!countPortables.Value, "Portables")</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
@@ -2513,10 +2447,7 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; 
-"Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")
- &amp; vbcrlf &amp; vbcrlf &amp; 
-"CC Classrooms Used: " &amp; Round(Sum(Fields!CCClassroomsUsedValue.Value, "CCClassroomsUsedAggregate"), 0)</Value>
+                                <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")</Value>
                                 <Style>
                                   <FontFamily>Arial</FontFamily>
                                   <FontWeight>Bold</FontWeight>
@@ -2540,7 +2471,6 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
                           <PaddingBottom>2pt</PaddingBottom>
                         </Style>
                       </Textbox>
-                      <rd:Selected>true</rd:Selected>
                     </CellContents>
                   </TablixHeader>
                   <KeepWithGroup>Before</KeepWithGroup>
@@ -2985,7 +2915,7 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
             <DataSetName>SSReportingRecord</DataSetName>
             <Top>2.3957cm</Top>
             <Height>12.12375cm</Height>
-            <Width>9.61669cm</Width>
+            <Width>9.43148cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3097,6 +3027,7 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.01378in</Top>
+              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>20.96792cm</Width>
               <Style>
@@ -3194,6 +3125,7 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
               <Top>0.63472cm</Top>
+              <Left>0cm</Left>
               <Height>0.6cm</Height>
               <Width>20.96792cm</Width>
               <ZIndex>3</ZIndex>
