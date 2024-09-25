@@ -189,6 +189,7 @@
     &lt;attribute name="caps_projectmilestoneid" /&gt;
     &lt;attribute name="caps_name" /&gt;
     &lt;attribute name="caps_projecttracker" /&gt;
+    &lt;attribute name="caps_complete" /&gt;
     &lt;attribute name="ownerid" /&gt;
     &lt;attribute name="caps_expectedactualdate" /&gt;
     &lt;attribute name="caps_originaldate" /&gt;
@@ -214,7 +215,7 @@
         &lt;condition attribute="caps_schooldistrict" operator="in" value="@SchoolDistrict" /&gt;
         &lt;condition attribute="caps_submissioncategory" operator="in" value="@SubmissionCategory" /&gt;
         &lt;condition attribute="caps_fundingprogram" operator="in" value="@Program" /&gt;
- &lt;!--should include Inactive        &lt;condition attribute="statecode" operator="eq" value="0" /&gt;  --&gt;
+    &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
         &lt;condition attribute="statuscode" operator="neq" value="200870005" /&gt;
       &lt;/filter&gt;
       &lt;link-entity name="caps_submissioncategory" from="caps_submissioncategoryid" to="caps_submissioncategory" link-type="inner" alias="SubCat" &gt;
@@ -261,9 +262,17 @@
           <DataField>caps_projecttrackerEntityName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="caps_complete">
+          <DataField>caps_complete</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ownerid">
           <DataField>ownerid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="caps_completeValue">
+          <DataField>caps_completeValue</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
         <Field Name="owneridValue">
           <DataField>owneridValue</DataField>
@@ -764,7 +773,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1481,10 +1489,12 @@ ReportItems!milestone_name.Value = "CPRL",
                                     <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "Black", 
     IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!ProjectPhaseValue.Value = "200870007", 
+        IIf(Fields!caps_completeValue.Value = "1", 
             "White",  
             "White"), 
-        "Black"))</Color>
+        IIf(Fields!caps_completeValue.Value = "1", 
+            "Black",  
+            "Black")))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1500,13 +1510,11 @@ ReportItems!milestone_name.Value = "CPRL",
                             <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "White", 
     IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!ProjectPhaseValue.Value = "200870007", 
+        IIf(Fields!caps_completeValue.Value = "1", 
             "Green",  
             "Red"),   
-        IIf(Fields!caps_originaldate.Value &gt;= Globals!ExecutionTime, 
-            IIf(Fields!ProjectPhaseValue.Value = "200870007", 
-                "#FFCC99",  
-                "White"),   
+        IIf(Fields!caps_completeValue.Value = "1", 
+            "#FFCC99",  
             "White")))</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1515,6 +1523,7 @@ ReportItems!milestone_name.Value = "CPRL",
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1532,10 +1541,12 @@ ReportItems!milestone_name.Value = "CPRL",
                                     <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "Black", 
     IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!ProjectPhaseValue.Value = "200870007", 
+        IIf(Fields!caps_completeValue.Value = "1", 
             "White",  
             "White"), 
-        "Black"))</Color>
+        IIf(Fields!caps_completeValue.Value = "1", 
+            "Black",  
+            "Black")))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1551,13 +1562,11 @@ ReportItems!milestone_name.Value = "CPRL",
                             <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "White", 
     IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!ProjectPhaseValue.Value = "200870007", 
+        IIf(Fields!caps_completeValue.Value = "1", 
             "Green",  
             "Red"),   
-        IIf(Fields!caps_originaldate.Value &gt;= Globals!ExecutionTime, 
-            IIf(Fields!ProjectPhaseValue.Value = "200870007", 
-                "#FFCC99",  
-                "White"),   
+        IIf(Fields!caps_completeValue.Value = "1", 
+            "#FFCC99",  
             "White")))</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -2096,7 +2105,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
             <Top>0.89959cm</Top>
             <Left>3.96375cm</Left>
             <Height>0.6cm</Height>
-            <Width>6.87536cm</Width>
+            <Width>13.67829cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2121,11 +2130,43 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
               </Border>
             </Style>
           </Image>
+          <Textbox Name="Textbox85">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Milestones dates are in MMM-YY format (June 2024 = Jun-24)"</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox83</rd:DefaultName>
+            <Top>1.57015cm</Top>
+            <Left>3.99902cm</Left>
+            <Height>0.6cm</Height>
+            <Width>13.67829cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2.19456in</Height>
         <Style />
       </Body>
-      <Width>12.72322in</Width>
+      <Width>12.8967in</Width>
       <Page>
         <PageFooter>
           <Height>1.29646cm</Height>
