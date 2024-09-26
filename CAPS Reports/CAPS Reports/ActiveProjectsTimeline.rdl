@@ -1523,7 +1523,6 @@ ReportItems!milestone_name.Value = "CPRL",
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2043,7 +2042,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 <Value>=Fields!SCHOOLDISTRICT_edu_number.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>2.9625cm</Top>
+            <Top>2.645cm</Top>
             <Height>1.8cm</Height>
             <Width>30.25763cm</Width>
             <Style>
@@ -2162,8 +2161,146 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox86">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>NoOriginalDate</Label>
+                    <Value>="• No Colour: No Original Date, or Original Date is in the future and Incomplete."</Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox83</rd:DefaultName>
+            <Left>17.78315cm</Left>
+            <Height>0.53799cm</Height>
+            <Width>12.47448cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox88">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>PastCompleteOriginalDate</Label>
+                    <Value>="• Green: Original Date is before Today, and status is Complete."</Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Color>=IIf(InStr("Green", "Green") &gt; 0, "Green", "Black")</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox83</rd:DefaultName>
+            <Top>0.60855cm</Top>
+            <Left>17.78314cm</Left>
+            <Height>0.52917cm</Height>
+            <Width>12.47449cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox89">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>PastIncompleteOriginalDate</Label>
+                    <Value>="• Red: Original Date is before Today, but status is Incomplete."</Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Color>=IIf(InStr("Red", "Red") &gt; 0, "Red", "Black")</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox83</rd:DefaultName>
+            <Top>1.20828cm</Top>
+            <Left>17.78315cm</Left>
+            <Height>0.52917cm</Height>
+            <Width>12.47449cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox90">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>FutureCompleteOriginalDate</Label>
+                    <Value>="• Light Orange: Original Date is on or after Today, and status is Complete."</Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <Color>=IIf(InStr("Light Orange", "Light Orange") &gt; 0, "#ffcc99", "Black")</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox83</rd:DefaultName>
+            <Top>1.84328cm</Top>
+            <Left>17.78315cm</Left>
+            <Height>0.52917cm</Height>
+            <Width>12.47449cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>2.19456in</Height>
+        <Height>1.98623in</Height>
         <Style />
       </Body>
       <Width>12.8967in</Width>
@@ -2256,6 +2393,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0cm</Top>
               <Left>27.24704cm</Left>
               <Height>0.6cm</Height>
               <Width>4.31208cm</Width>
