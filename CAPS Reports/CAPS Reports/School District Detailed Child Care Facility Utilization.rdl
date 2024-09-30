@@ -3837,7 +3837,7 @@ IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>= Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolment.Value, "MinistrySDProjections")</Value>
+                                  <Value>= Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolmentValue.Value, "MinistrySDProjections")</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
@@ -3874,6 +3874,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
