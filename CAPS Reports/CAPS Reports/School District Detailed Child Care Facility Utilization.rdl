@@ -1847,7 +1847,7 @@
                   <Width>5.675cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.26188cm</Width>
+                  <Width>2.97626cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2257,6 +2257,7 @@
                                   <Value>=Fields!caps_schoolage_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2342,6 +2343,7 @@
                                   <Value>=fields!caps_schoolageonschoolgrounds_enrolmentValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2599,6 +2601,7 @@
                                   <Value>=Fields!caps_totallicensedValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2679,17 +2682,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_designutilizationValue">
+                        <Textbox Name="caps_capacitytotalutilizationValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_capacitytotalutilizationValue.Value</Value>
+                                  <Value>=Fields!caps_capacitytotalutilizationValue.Value / 100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>= IIF(Fields!caps_capacitytotalutilizationValue.Value &gt;= 100, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -2699,7 +2702,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_total_designutilizationValue</rd:DefaultName>
+                          <rd:DefaultName>caps_capacitytotalutilizationValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2775,17 +2778,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="caps_total_operatingutilization_district">
+                        <Textbox Name="caps_licensecapacitytotalutilizationValue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!caps_licensecapacitytotalutilizationValue.value</Value>
+                                  <Value>=Fields!caps_licensecapacitytotalutilizationValue.Value / 100</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>=IIF(Fields!caps_licensecapacitytotalutilizationValue.Value &gt;= 100, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -2795,7 +2798,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>caps_total_operatingutilization_district</rd:DefaultName>
+                          <rd:DefaultName>caps_licensecapacitytotalutilizationValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3229,6 +3232,7 @@
                                   <Value>=sum(Fields!caps_schoolage_enrolmentValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3314,6 +3318,7 @@
                                   <Value>=sum(Fields!caps_schoolageonschoolgrounds_enrolmentValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3563,6 +3568,7 @@
                                   <Value>=Fields!caps_totallicensedValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3642,7 +3648,7 @@
                                   <Value>= ReportItems!caps_total_enrolmentValue1.Value / ReportItems!caps_total_designcapacityValue1.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>= IIF(Isnothing(ReportItems!caps_total_designcapacityValue1.Value), "white",
 IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
@@ -3735,7 +3741,7 @@ IIF(ReportItems!SD_DesignUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   <Value>= ReportItems!caps_total_enrolmentValue1.Value / ReportItems!caps_total_operatingcapacity_districtValue.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>=  IIF(Isnothing(ReportItems!caps_total_operatingcapacity_districtValue.Value),"white",
 IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                                   </Style>
@@ -3829,7 +3835,7 @@ IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SDEnrolment_caps_totalenrolmentValue">
+                        <Textbox Name="SDEnrolment_caps_totalenrolmentValue3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -3837,11 +3843,11 @@ IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                               <TextRuns>
                                 <TextRun>
                                   <Label>Ministry_Total_Enrolment</Label>
-                                  <Value>= Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolmentValue.Value, "MinistrySDProjections")</Value>
+                                  <Value>= FormatNumber(Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolmentValue.Value, "MinistrySDProjections"), 0, -1, -1, -1)</Value>
                                   <MarkupType>HTML</MarkupType>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>#,0;(#,0)</Format>
+                                    <Format>#,0.00%</Format>
                                     <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -3851,7 +3857,6 @@ IIF(ReportItems!SD_OperatingUtilization.Value &gt;= 1, "Red", "Black"))</Color>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SDEnrolment_caps_totalenrolmentValue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3874,7 +3879,112 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox62">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">Total Enrolment (hidden)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
+                            <BackgroundColor>#e3a82b</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="SDEnrolment_caps_totalenrolmentValue">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Ministry_Total_Enrolment</Label>
+                                  <Value>=Lookup(Fields!caps_schoolyearValue.Value, Fields!caps_schoolyearValue.Value, Fields!caps_totalenrolmentValue.Value, "MinistrySDProjections")</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <Format>#,0.00%</Format>
+                                    <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                            </TopBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                            </RightBorder>
+                            <BackgroundColor>=IIF(Fields!SYStatuscodeValue.Value = 1, "#e3a82b", 
+IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White"))</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -4033,6 +4143,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                                   <Value>=sum(Fields!caps_totallicensedValue.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
+                                    <Format>#,0;(#,0)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -4135,7 +4246,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_designcapacityValue6.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>= IIF(
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray",
 IIF((ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_designcapacityValue6.Value) &gt;= 1, 
@@ -4237,7 +4348,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_operatingcapacity_districtValue4.Value)</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0%</Format>
                                     <Color>= IIF(
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray",
 IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value / ReportItems!caps_total_operatingcapacity_districtValue4.Value &gt;= 1,
@@ -4459,7 +4570,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0,
 ReportItems!SDEnrolment_caps_totalenrolmentValue.Value)))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Format>0%</Format>
+                                    <Format>#,0.00%</Format>
                                     <Color>= IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","Black")</Color>
                                   </Style>
                                 </TextRun>
@@ -4878,6 +4989,11 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
+                        <Hidden>true</Hidden>
+                      </Visibility>
+                    </TablixMember>
+                    <TablixMember>
+                      <Visibility>
                         <Hidden>=Parameters!CapacityType.Value &lt;&gt; "Design"</Hidden>
                       </Visibility>
                     </TablixMember>
@@ -4982,8 +5098,8 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
             <RepeatRowHeaders>true</RepeatRowHeaders>
             <DataSetName>ChildCareReportingRecords</DataSetName>
             <Top>0.0441cm</Top>
-            <Height>20.15562cm</Height>
-            <Width>10.43688cm</Width>
+            <Height>20.75562cm</Height>
+            <Width>11.15126cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
