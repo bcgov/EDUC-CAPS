@@ -1938,6 +1938,9 @@
     &lt;/filter&gt;
     &lt;link-entity name="caps_portable" from="caps_facility" to="caps_facilityid" link-type="outer" &gt;
       &lt;attribute name="caps_assetnumber" alias="countPortables" aggregate="countcolumn" /&gt;
+    &lt;filter&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
     &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
@@ -2978,6 +2981,9 @@
     &lt;attribute name="caps_facility" /&gt;
     &lt;attribute name="createdon" /&gt;
     &lt;order attribute="caps_assetnumber" descending="false" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
     &lt;filter type="or"&gt;
       &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
       &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
@@ -3758,6 +3764,63 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
         <Field Name="createdonValue">
           <DataField>createdonValue</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CCClassroomsUsed">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <CommandText>&lt;fetch mapping="logical" aggregate="true"&gt;
+  &lt;entity name="caps_facility"&gt;
+    &lt;attribute name="caps_facilityid" alias="FacilityID" groupby="true" /&gt;
+    &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" aggregate="sum" /&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="FacilityID">
+          <DataField>FacilityID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CCClassroomsUsed">
+          <DataField>CCClassroomsUsed</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CCClassroomsUsedValue">
+          <DataField>CCClassroomsUsedValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="CCClassroomsUsedAggregate">
+      <Query>
+        <DataSourceName>CAPS_Dev</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@FacilityID">
+            <Value>=Parameters!FacilityID.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Facilities">
+            <Value>=Parameters!Facilities.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+  &lt;entity name="caps_facility"&gt;
+    &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" /&gt;
+      &lt;filter type="or"&gt;
+      &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
+      &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
+   &lt;/filter&gt;
+  &lt;/entity&gt;
+&lt;/fetch&gt;</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CCClassroomsUsed">
+          <DataField>CCClassroomsUsed</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CCClassroomsUsedValue">
+          <DataField>CCClassroomsUsedValue</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -5496,7 +5559,8 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!caps_facility.Value &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Lookup(Fields!caps_facilityValue.Value, Fields!facilityid.Value, Fields!countPortables.Value, "FacilityPortables")</Value>
+                                        <Value>=Fields!caps_facility.Value &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Lookup(Fields!caps_facilityValue.Value, Fields!facilityid.Value, Fields!countPortables.Value, "FacilityPortables") &amp; vbcrlf &amp; vbcrlf &amp; "CC Classrooms Used: " &amp; 
+lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassroomsUsed.Value, "CCClassroomsUsed")</Value>
                                         <Style>
                                           <FontFamily>Arial</FontFamily>
                                           <FontWeight>Bold</FontWeight>
@@ -5572,7 +5636,9 @@ Sum(Fields!caps_total_enrolmentValue.Value)</Value>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")</Value>
+                                        <Value>="Totals" &amp; vbcrlf &amp; vbcrlf &amp; "Portables: " &amp; Count(Fields!caps_assetnumber.Value, "PortablesAggregate")
+ &amp; vbcrlf &amp; vbcrlf &amp; 
+"CC Classrooms Used: " &amp; Round(Sum(Fields!CCClassroomsUsedValue.Value, "CCClassroomsUsedAggregate"), 0)</Value>
                                         <Style>
                                           <FontFamily>Arial</FontFamily>
                                           <FontWeight>Bold</FontWeight>
