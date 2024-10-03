@@ -3204,6 +3204,25 @@ namespace CAPS.DataContext
 			}
 		}
 		
+		public string machineDomain
+		{
+			get
+			{
+				if (this.Parameters.Contains("machineDomain"))
+				{
+					return ((string)(this.Parameters["machineDomain"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["machineDomain"] = value;
+			}
+		}
+		
 		public RegisterFlowMachineRequest()
 		{
 			this.RequestName = "RegisterFlowMachine";
@@ -5539,6 +5558,47 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ChildCareProgressReportSubmitReport")]
+	public partial class caps_ChildCareProgressReportSubmitReportRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ChildCareProgressReportSubmitReportRequest()
+		{
+			this.RequestName = "caps_ChildCareProgressReportSubmitReport";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ChildCareProgressReportSubmitReport")]
+	public partial class caps_ChildCareProgressReportSubmitReportResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ChildCareProgressReportSubmitReportResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_BatchMarkasCompleted")]
 	public partial class caps_BatchMarkasCompletedRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -7544,6 +7604,47 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CCActualEnrolmentUnsubmit")]
+	public partial class caps_CCActualEnrolmentUnsubmitRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CCActualEnrolmentUnsubmitRequest()
+		{
+			this.RequestName = "caps_CCActualEnrolmentUnsubmit";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CCActualEnrolmentUnsubmit")]
+	public partial class caps_CCActualEnrolmentUnsubmitResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CCActualEnrolmentUnsubmitResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_DrawRequestSetStatustoDraft")]
 	public partial class caps_DrawRequestSetStatustoDraftRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -7580,6 +7681,88 @@ namespace CAPS.DataContext
 	{
 		
 		public caps_DrawRequestSetStatustoDraftResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ChildCareProgressReportCancelReport")]
+	public partial class caps_ChildCareProgressReportCancelReportRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ChildCareProgressReportCancelReportRequest()
+		{
+			this.RequestName = "caps_ChildCareProgressReportCancelReport";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ChildCareProgressReportCancelReport")]
+	public partial class caps_ChildCareProgressReportCancelReportResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ChildCareProgressReportCancelReportResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ChildCareProgressReportUnsubmitReport")]
+	public partial class caps_ChildCareProgressReportUnsubmitReportRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_ChildCareProgressReportUnsubmitReportRequest()
+		{
+			this.RequestName = "caps_ChildCareProgressReportUnsubmitReport";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_ChildCareProgressReportUnsubmitReport")]
+	public partial class caps_ChildCareProgressReportUnsubmitReportResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_ChildCareProgressReportUnsubmitReportResponse()
 		{
 		}
 	}
@@ -13355,6 +13538,82 @@ namespace CAPS.DataContext
 		}
 	}
 	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CommitToGit")]
+	public partial class CommitToGitRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SolutionUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionUniqueName"))
+				{
+					return ((string)(this.Parameters["SolutionUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionUniqueName"] = value;
+			}
+		}
+		
+		public string CommitMessage
+		{
+			get
+			{
+				if (this.Parameters.Contains("CommitMessage"))
+				{
+					return ((string)(this.Parameters["CommitMessage"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["CommitMessage"] = value;
+			}
+		}
+		
+		public CommitToGitRequest()
+		{
+			this.RequestName = "CommitToGit";
+			this.SolutionUniqueName = default(string);
+			this.CommitMessage = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("CommitToGit")]
+	public partial class CommitToGitResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public CommitToGitResponse()
+		{
+		}
+		
+		public string CommitId
+		{
+			get
+			{
+				if (this.Results.Contains("CommitId"))
+				{
+					return ((string)(this.Results["CommitId"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CardGetFullJson")]
 	public partial class CardGetFullJsonRequest : Microsoft.Xrm.Sdk.OrganizationRequest
@@ -15228,6 +15487,47 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_CCActualEnrolmentSubmit")]
+	public partial class caps_CCActualEnrolmentSubmitRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_CCActualEnrolmentSubmitRequest()
+		{
+			this.RequestName = "caps_CCActualEnrolmentSubmit";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_CCActualEnrolmentSubmit")]
+	public partial class caps_CCActualEnrolmentSubmitResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_CCActualEnrolmentSubmitResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_DrawRequestCancelDrawRequest")]
 	public partial class caps_DrawRequestCancelDrawRequestRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -15432,6 +15732,62 @@ namespace CAPS.DataContext
 				if (this.Results.Contains("CalendarEvents"))
 				{
 					return ((string)(this.Results["CalendarEvents"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PreValidateGitComponents")]
+	public partial class PreValidateGitComponentsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public string SolutionUniqueName
+		{
+			get
+			{
+				if (this.Parameters.Contains("SolutionUniqueName"))
+				{
+					return ((string)(this.Parameters["SolutionUniqueName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["SolutionUniqueName"] = value;
+			}
+		}
+		
+		public PreValidateGitComponentsRequest()
+		{
+			this.RequestName = "PreValidateGitComponents";
+			this.SolutionUniqueName = default(string);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PreValidateGitComponents")]
+	public partial class PreValidateGitComponentsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public PreValidateGitComponentsResponse()
+		{
+		}
+		
+		public string ValidationMessages
+		{
+			get
+			{
+				if (this.Results.Contains("ValidationMessages"))
+				{
+					return ((string)(this.Results["ValidationMessages"]));
 				}
 				else
 				{
@@ -16811,6 +17167,42 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msft_GetSecHubFeatureData")]
+	public partial class msft_GetSecHubFeatureDataRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public msft_GetSecHubFeatureDataRequest()
+		{
+			this.RequestName = "msft_GetSecHubFeatureData";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msft_GetSecHubFeatureData")]
+	public partial class msft_GetSecHubFeatureDataResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public msft_GetSecHubFeatureDataResponse()
+		{
+		}
+		
+		public Microsoft.Xrm.Sdk.EntityCollection FeatureDataCollection
+		{
+			get
+			{
+				if (this.Results.Contains("FeatureDataCollection"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Results["FeatureDataCollection"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityCollection);
+				}
+			}
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UpdateAccountCredentials")]
 	public partial class UpdateAccountCredentialsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -17474,25 +17866,6 @@ namespace CAPS.DataContext
 			}
 		}
 		
-		public System.Guid OperationId
-		{
-			get
-			{
-				if (this.Parameters.Contains("OperationId"))
-				{
-					return ((System.Guid)(this.Parameters["OperationId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-			set
-			{
-				this.Parameters["OperationId"] = value;
-			}
-		}
-		
 		public BulkRetainRequest()
 		{
 			this.RequestName = "BulkRetain";
@@ -17565,3845 +17938,6 @@ namespace CAPS.DataContext
 				else
 				{
 					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CreateFlowCredentialApplication")]
-	public partial class CreateFlowCredentialApplicationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public string description
-		{
-			get
-			{
-				if (this.Parameters.Contains("description"))
-				{
-					return ((string)(this.Parameters["description"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["description"] = value;
-			}
-		}
-		
-		public string applicationId
-		{
-			get
-			{
-				if (this.Parameters.Contains("applicationId"))
-				{
-					return ((string)(this.Parameters["applicationId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["applicationId"] = value;
-			}
-		}
-		
-		public string password
-		{
-			get
-			{
-				if (this.Parameters.Contains("password"))
-				{
-					return ((string)(this.Parameters["password"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["password"] = value;
-			}
-		}
-		
-		public string certificate
-		{
-			get
-			{
-				if (this.Parameters.Contains("certificate"))
-				{
-					return ((string)(this.Parameters["certificate"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["certificate"] = value;
-			}
-		}
-		
-		public string sharingtype
-		{
-			get
-			{
-				if (this.Parameters.Contains("sharingtype"))
-				{
-					return ((string)(this.Parameters["sharingtype"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["sharingtype"] = value;
-			}
-		}
-		
-		public CreateFlowCredentialApplicationRequest()
-		{
-			this.RequestName = "CreateFlowCredentialApplication";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-			this.applicationId = default(string);
-			this.certificate = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("CreateFlowCredentialApplication")]
-	public partial class CreateFlowCredentialApplicationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public CreateFlowCredentialApplicationResponse()
-		{
-		}
-		
-		public System.Guid flowCredentialApplicationId
-		{
-			get
-			{
-				if (this.Results.Contains("flowCredentialApplicationId"))
-				{
-					return ((System.Guid)(this.Results["flowCredentialApplicationId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_SiteMapDiagnosis")]
-	public partial class msdyn_SiteMapDiagnosisRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string IssueType
-		{
-			get
-			{
-				if (this.Parameters.Contains("IssueType"))
-				{
-					return ((string)(this.Parameters["IssueType"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["IssueType"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.EntityReference ComponentInstance
-		{
-			get
-			{
-				if (this.Parameters.Contains("ComponentInstance"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["ComponentInstance"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["ComponentInstance"] = value;
-			}
-		}
-		
-		public msdyn_SiteMapDiagnosisRequest()
-		{
-			this.RequestName = "msdyn_SiteMapDiagnosis";
-			this.IssueType = default(string);
-			this.ComponentInstance = default(Microsoft.Xrm.Sdk.EntityReference);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_SiteMapDiagnosis")]
-	public partial class msdyn_SiteMapDiagnosisResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_SiteMapDiagnosisResponse()
-		{
-		}
-		
-		public string HelpLink
-		{
-			get
-			{
-				if (this.Results.Contains("HelpLink"))
-				{
-					return ((string)(this.Results["HelpLink"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string Message
-		{
-			get
-			{
-				if (this.Results.Contains("Message"))
-				{
-					return ((string)(this.Results["Message"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string RepairIssueType
-		{
-			get
-			{
-				if (this.Results.Contains("RepairIssueType"))
-				{
-					return ((string)(this.Results["RepairIssueType"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string ResultEntities
-		{
-			get
-			{
-				if (this.Results.Contains("ResultEntities"))
-				{
-					return ((string)(this.Results["ResultEntities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public int ReturnStatus
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnStatus"))
-				{
-					return ((int)(this.Results["ReturnStatus"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_DrawRequestSetStatustoReadytoSubmit")]
-	public partial class caps_DrawRequestSetStatustoReadytoSubmitRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public caps_DrawRequestSetStatustoReadytoSubmitRequest()
-		{
-			this.RequestName = "caps_DrawRequestSetStatustoReadytoSubmit";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_DrawRequestSetStatustoReadytoSubmit")]
-	public partial class caps_DrawRequestSetStatustoReadytoSubmitResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public caps_DrawRequestSetStatustoReadytoSubmitResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_RetrieveKnowledgeSearchFilters")]
-	public partial class msdyn_RetrieveKnowledgeSearchFiltersRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string SearchFiltersMetadata
-		{
-			get
-			{
-				if (this.Parameters.Contains("SearchFiltersMetadata"))
-				{
-					return ((string)(this.Parameters["SearchFiltersMetadata"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SearchFiltersMetadata"] = value;
-			}
-		}
-		
-		public msdyn_RetrieveKnowledgeSearchFiltersRequest()
-		{
-			this.RequestName = "msdyn_RetrieveKnowledgeSearchFilters";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_RetrieveKnowledgeSearchFilters")]
-	public partial class msdyn_RetrieveKnowledgeSearchFiltersResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_RetrieveKnowledgeSearchFiltersResponse()
-		{
-		}
-		
-		public string Result
-		{
-			get
-			{
-				if (this.Results.Contains("Result"))
-				{
-					return ((string)(this.Results["Result"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExportSolutionAsync")]
-	public partial class ExportSolutionAsyncRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public bool ExportGeneralSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportGeneralSettings"))
-				{
-					return ((bool)(this.Parameters["ExportGeneralSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportGeneralSettings"] = value;
-			}
-		}
-		
-		public bool ExportAutoNumberingSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportAutoNumberingSettings"))
-				{
-					return ((bool)(this.Parameters["ExportAutoNumberingSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportAutoNumberingSettings"] = value;
-			}
-		}
-		
-		public bool ExportCalendarSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportCalendarSettings"))
-				{
-					return ((bool)(this.Parameters["ExportCalendarSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportCalendarSettings"] = value;
-			}
-		}
-		
-		public bool ExportSales
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportSales"))
-				{
-					return ((bool)(this.Parameters["ExportSales"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportSales"] = value;
-			}
-		}
-		
-		public bool ExportRelationshipRoles
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportRelationshipRoles"))
-				{
-					return ((bool)(this.Parameters["ExportRelationshipRoles"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportRelationshipRoles"] = value;
-			}
-		}
-		
-		public bool ExportEmailTrackingSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportEmailTrackingSettings"))
-				{
-					return ((bool)(this.Parameters["ExportEmailTrackingSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportEmailTrackingSettings"] = value;
-			}
-		}
-		
-		public bool ExportCustomizationSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportCustomizationSettings"))
-				{
-					return ((bool)(this.Parameters["ExportCustomizationSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportCustomizationSettings"] = value;
-			}
-		}
-		
-		public string TargetVersion
-		{
-			get
-			{
-				if (this.Parameters.Contains("TargetVersion"))
-				{
-					return ((string)(this.Parameters["TargetVersion"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["TargetVersion"] = value;
-			}
-		}
-		
-		public bool ExportIsvConfig
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportIsvConfig"))
-				{
-					return ((bool)(this.Parameters["ExportIsvConfig"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportIsvConfig"] = value;
-			}
-		}
-		
-		public string SolutionName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionName"))
-				{
-					return ((string)(this.Parameters["SolutionName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionName"] = value;
-			}
-		}
-		
-		public bool ExportOutlookSynchronizationSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportOutlookSynchronizationSettings"))
-				{
-					return ((bool)(this.Parameters["ExportOutlookSynchronizationSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportOutlookSynchronizationSettings"] = value;
-			}
-		}
-		
-		public bool Managed
-		{
-			get
-			{
-				if (this.Parameters.Contains("Managed"))
-				{
-					return ((bool)(this.Parameters["Managed"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["Managed"] = value;
-			}
-		}
-		
-		public bool ExportMarketingSettings
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportMarketingSettings"))
-				{
-					return ((bool)(this.Parameters["ExportMarketingSettings"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportMarketingSettings"] = value;
-			}
-		}
-		
-		public bool ExportExternalApplications
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportExternalApplications"))
-				{
-					return ((bool)(this.Parameters["ExportExternalApplications"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportExternalApplications"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.ExportComponentsParams ExportComponentsParams
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExportComponentsParams"))
-				{
-					return ((Microsoft.Xrm.Sdk.ExportComponentsParams)(this.Parameters["ExportComponentsParams"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.ExportComponentsParams);
-				}
-			}
-			set
-			{
-				this.Parameters["ExportComponentsParams"] = value;
-			}
-		}
-		
-		public ExportSolutionAsyncRequest()
-		{
-			this.RequestName = "ExportSolutionAsync";
-			this.SolutionName = default(string);
-			this.Managed = default(bool);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExportSolutionAsync")]
-	public partial class ExportSolutionAsyncResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public ExportSolutionAsyncResponse()
-		{
-		}
-		
-		public System.Guid AsyncOperationId
-		{
-			get
-			{
-				if (this.Results.Contains("AsyncOperationId"))
-				{
-					return ((System.Guid)(this.Results["AsyncOperationId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-		}
-		
-		public System.Guid ExportJobId
-		{
-			get
-			{
-				if (this.Results.Contains("ExportJobId"))
-				{
-					return ((System.Guid)(this.Results["ExportJobId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UpdateAutomatedPlugin")]
-	public partial class UpdateAutomatedPluginRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string Context
-		{
-			get
-			{
-				if (this.Parameters.Contains("Context"))
-				{
-					return ((string)(this.Parameters["Context"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Context"] = value;
-			}
-		}
-		
-		public string SolutionUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionUniqueName"))
-				{
-					return ((string)(this.Parameters["SolutionUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionUniqueName"] = value;
-			}
-		}
-		
-		public string EntityLogicalName
-		{
-			get
-			{
-				if (this.Parameters.Contains("EntityLogicalName"))
-				{
-					return ((string)(this.Parameters["EntityLogicalName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["EntityLogicalName"] = value;
-			}
-		}
-		
-		public string FxExpressionUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("FxExpressionUniqueName"))
-				{
-					return ((string)(this.Parameters["FxExpressionUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["FxExpressionUniqueName"] = value;
-			}
-		}
-		
-		public string MessageName
-		{
-			get
-			{
-				if (this.Parameters.Contains("MessageName"))
-				{
-					return ((string)(this.Parameters["MessageName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["MessageName"] = value;
-			}
-		}
-		
-		public string Name
-		{
-			get
-			{
-				if (this.Parameters.Contains("Name"))
-				{
-					return ((string)(this.Parameters["Name"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Name"] = value;
-			}
-		}
-		
-		public string Expression
-		{
-			get
-			{
-				if (this.Parameters.Contains("Expression"))
-				{
-					return ((string)(this.Parameters["Expression"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Expression"] = value;
-			}
-		}
-		
-		public int Stage
-		{
-			get
-			{
-				if (this.Parameters.Contains("Stage"))
-				{
-					return ((int)(this.Parameters["Stage"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-			set
-			{
-				this.Parameters["Stage"] = value;
-			}
-		}
-		
-		public UpdateAutomatedPluginRequest()
-		{
-			this.RequestName = "UpdateAutomatedPlugin";
-			this.FxExpressionUniqueName = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("UpdateAutomatedPlugin")]
-	public partial class UpdateAutomatedPluginResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public UpdateAutomatedPluginResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ExportRetainedData")]
-	public partial class ExportRetainedDataRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string FetchXml
-		{
-			get
-			{
-				if (this.Parameters.Contains("FetchXml"))
-				{
-					return ((string)(this.Parameters["FetchXml"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["FetchXml"] = value;
-			}
-		}
-		
-		public string LayoutXml
-		{
-			get
-			{
-				if (this.Parameters.Contains("LayoutXml"))
-				{
-					return ((string)(this.Parameters["LayoutXml"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["LayoutXml"] = value;
-			}
-		}
-		
-		public ExportRetainedDataRequest()
-		{
-			this.RequestName = "ExportRetainedData";
-			this.FetchXml = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ExportRetainedData")]
-	public partial class ExportRetainedDataResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public ExportRetainedDataResponse()
-		{
-		}
-		
-		public System.Guid ExportedExcelId
-		{
-			get
-			{
-				if (this.Results.Contains("ExportedExcelId"))
-				{
-					return ((System.Guid)(this.Results["ExportedExcelId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveFeatureControlSettings")]
-	public partial class RetrieveFeatureControlSettingsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string FeatureControlName
-		{
-			get
-			{
-				if (this.Parameters.Contains("FeatureControlName"))
-				{
-					return ((string)(this.Parameters["FeatureControlName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["FeatureControlName"] = value;
-			}
-		}
-		
-		public string NamespaceValue
-		{
-			get
-			{
-				if (this.Parameters.Contains("NamespaceValue"))
-				{
-					return ((string)(this.Parameters["NamespaceValue"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["NamespaceValue"] = value;
-			}
-		}
-		
-		public RetrieveFeatureControlSettingsRequest()
-		{
-			this.RequestName = "RetrieveFeatureControlSettings";
-			this.FeatureControlName = default(string);
-			this.NamespaceValue = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveFeatureControlSettings")]
-	public partial class RetrieveFeatureControlSettingsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RetrieveFeatureControlSettingsResponse()
-		{
-		}
-		
-		public Microsoft.Crm.Sdk.Messages.FeatureControlSettingCollection FeatureControlSettingCollection
-		{
-			get
-			{
-				if (this.Results.Contains("FeatureControlSettingCollection"))
-				{
-					return ((Microsoft.Crm.Sdk.Messages.FeatureControlSettingCollection)(this.Results["FeatureControlSettingCollection"]));
-				}
-				else
-				{
-					return default(Microsoft.Crm.Sdk.Messages.FeatureControlSettingCollection);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForDeletedSDKMessageProcessingSteps")]
-	public partial class msdyn_CheckForDeletedSDKMessageProcessingStepsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string EntityIds
-		{
-			get
-			{
-				if (this.Parameters.Contains("EntityIds"))
-				{
-					return ((string)(this.Parameters["EntityIds"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["EntityIds"] = value;
-			}
-		}
-		
-		public string SolutionId
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionId"))
-				{
-					return ((string)(this.Parameters["SolutionId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionId"] = value;
-			}
-		}
-		
-		public msdyn_CheckForDeletedSDKMessageProcessingStepsRequest()
-		{
-			this.RequestName = "msdyn_CheckForDeletedSDKMessageProcessingSteps";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForDeletedSDKMessageProcessingSteps")]
-	public partial class msdyn_CheckForDeletedSDKMessageProcessingStepsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_CheckForDeletedSDKMessageProcessingStepsResponse()
-		{
-		}
-		
-		public string HelpLink
-		{
-			get
-			{
-				if (this.Results.Contains("HelpLink"))
-				{
-					return ((string)(this.Results["HelpLink"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string Message
-		{
-			get
-			{
-				if (this.Results.Contains("Message"))
-				{
-					return ((string)(this.Results["Message"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string ResultEntities
-		{
-			get
-			{
-				if (this.Results.Contains("ResultEntities"))
-				{
-					return ((string)(this.Results["ResultEntities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public int ReturnStatus
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnStatus"))
-				{
-					return ((int)(this.Results["ReturnStatus"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ProvisionDelegation")]
-	public partial class ProvisionDelegationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.Entity delegatedauthorization
-		{
-			get
-			{
-				if (this.Parameters.Contains("delegatedauthorization"))
-				{
-					return ((Microsoft.Xrm.Sdk.Entity)(this.Parameters["delegatedauthorization"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Entity);
-				}
-			}
-			set
-			{
-				this.Parameters["delegatedauthorization"] = value;
-			}
-		}
-		
-		public ProvisionDelegationRequest()
-		{
-			this.RequestName = "ProvisionDelegation";
-			this.delegatedauthorization = default(Microsoft.Xrm.Sdk.Entity);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ProvisionDelegation")]
-	public partial class ProvisionDelegationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public ProvisionDelegationResponse()
-		{
-		}
-		
-		public Microsoft.Xrm.Sdk.Entity team
-		{
-			get
-			{
-				if (this.Results.Contains("team"))
-				{
-					return ((Microsoft.Xrm.Sdk.Entity)(this.Results["team"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Entity);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("SaveSettingValue")]
-	public partial class SaveSettingValueRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string AppUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("AppUniqueName"))
-				{
-					return ((string)(this.Parameters["AppUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["AppUniqueName"] = value;
-			}
-		}
-		
-		public string Value
-		{
-			get
-			{
-				if (this.Parameters.Contains("Value"))
-				{
-					return ((string)(this.Parameters["Value"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Value"] = value;
-			}
-		}
-		
-		public string SettingName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SettingName"))
-				{
-					return ((string)(this.Parameters["SettingName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SettingName"] = value;
-			}
-		}
-		
-		public string SolutionUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionUniqueName"))
-				{
-					return ((string)(this.Parameters["SolutionUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionUniqueName"] = value;
-			}
-		}
-		
-		public SaveSettingValueRequest()
-		{
-			this.RequestName = "SaveSettingValue";
-			this.Value = default(string);
-			this.SettingName = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("SaveSettingValue")]
-	public partial class SaveSettingValueResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public SaveSettingValueResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveAadUserSetOfPrivilegesByIds")]
-	public partial class RetrieveAadUserSetOfPrivilegesByIdsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public System.Guid[] PrivilegeIds
-		{
-			get
-			{
-				if (this.Parameters.Contains("PrivilegeIds"))
-				{
-					return ((System.Guid[])(this.Parameters["PrivilegeIds"]));
-				}
-				else
-				{
-					return default(System.Guid[]);
-				}
-			}
-			set
-			{
-				this.Parameters["PrivilegeIds"] = value;
-			}
-		}
-		
-		public System.Guid DirectoryObjectId
-		{
-			get
-			{
-				if (this.Parameters.Contains("DirectoryObjectId"))
-				{
-					return ((System.Guid)(this.Parameters["DirectoryObjectId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-			set
-			{
-				this.Parameters["DirectoryObjectId"] = value;
-			}
-		}
-		
-		public RetrieveAadUserSetOfPrivilegesByIdsRequest()
-		{
-			this.RequestName = "RetrieveAadUserSetOfPrivilegesByIds";
-			this.PrivilegeIds = default(System.Guid[]);
-			this.DirectoryObjectId = default(System.Guid);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveAadUserSetOfPrivilegesByIds")]
-	public partial class RetrieveAadUserSetOfPrivilegesByIdsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RetrieveAadUserSetOfPrivilegesByIdsResponse()
-		{
-		}
-		
-		public Microsoft.Crm.Sdk.Messages.RolePrivilege[] RolePrivileges
-		{
-			get
-			{
-				if (this.Results.Contains("RolePrivileges"))
-				{
-					return ((Microsoft.Crm.Sdk.Messages.RolePrivilege[])(this.Results["RolePrivileges"]));
-				}
-				else
-				{
-					return default(Microsoft.Crm.Sdk.Messages.RolePrivilege[]);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("searchquery")]
-	public partial class searchqueryRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string propertybag
-		{
-			get
-			{
-				if (this.Parameters.Contains("propertybag"))
-				{
-					return ((string)(this.Parameters["propertybag"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["propertybag"] = value;
-			}
-		}
-		
-		public string entities
-		{
-			get
-			{
-				if (this.Parameters.Contains("entities"))
-				{
-					return ((string)(this.Parameters["entities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["entities"] = value;
-			}
-		}
-		
-		public string facets
-		{
-			get
-			{
-				if (this.Parameters.Contains("facets"))
-				{
-					return ((string)(this.Parameters["facets"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["facets"] = value;
-			}
-		}
-		
-		public string options
-		{
-			get
-			{
-				if (this.Parameters.Contains("options"))
-				{
-					return ((string)(this.Parameters["options"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["options"] = value;
-			}
-		}
-		
-		public string orderby
-		{
-			get
-			{
-				if (this.Parameters.Contains("orderby"))
-				{
-					return ((string)(this.Parameters["orderby"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["orderby"] = value;
-			}
-		}
-		
-		public int skip
-		{
-			get
-			{
-				if (this.Parameters.Contains("skip"))
-				{
-					return ((int)(this.Parameters["skip"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-			set
-			{
-				this.Parameters["skip"] = value;
-			}
-		}
-		
-		public int top
-		{
-			get
-			{
-				if (this.Parameters.Contains("top"))
-				{
-					return ((int)(this.Parameters["top"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-			set
-			{
-				this.Parameters["top"] = value;
-			}
-		}
-		
-		public bool count
-		{
-			get
-			{
-				if (this.Parameters.Contains("count"))
-				{
-					return ((bool)(this.Parameters["count"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["count"] = value;
-			}
-		}
-		
-		public string filter
-		{
-			get
-			{
-				if (this.Parameters.Contains("filter"))
-				{
-					return ((string)(this.Parameters["filter"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["filter"] = value;
-			}
-		}
-		
-		public string search
-		{
-			get
-			{
-				if (this.Parameters.Contains("search"))
-				{
-					return ((string)(this.Parameters["search"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["search"] = value;
-			}
-		}
-		
-		public searchqueryRequest()
-		{
-			this.RequestName = "searchquery";
-			this.search = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("searchquery")]
-	public partial class searchqueryResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public searchqueryResponse()
-		{
-		}
-		
-		public string response
-		{
-			get
-			{
-				if (this.Results.Contains("response"))
-				{
-					return ((string)(this.Results["response"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_MobileAppBuild")]
-	public partial class msdyn_MobileAppBuildRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string AppCenterApiToken
-		{
-			get
-			{
-				if (this.Parameters.Contains("AppCenterApiToken"))
-				{
-					return ((string)(this.Parameters["AppCenterApiToken"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["AppCenterApiToken"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.EntityReference msdyn_MobileApp
-		{
-			get
-			{
-				if (this.Parameters.Contains("msdyn_MobileApp"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["msdyn_MobileApp"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["msdyn_MobileApp"] = value;
-			}
-		}
-		
-		public msdyn_MobileAppBuildRequest()
-		{
-			this.RequestName = "msdyn_MobileAppBuild";
-			this.msdyn_MobileApp = default(Microsoft.Xrm.Sdk.EntityReference);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_MobileAppBuild")]
-	public partial class msdyn_MobileAppBuildResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_MobileAppBuildResponse()
-		{
-		}
-		
-		public string Result
-		{
-			get
-			{
-				if (this.Results.Contains("Result"))
-				{
-					return ((string)(this.Results["Result"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_GetFavoriteArticles")]
-	public partial class msdyn_GetFavoriteArticlesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string msdyn_userid
-		{
-			get
-			{
-				if (this.Parameters.Contains("msdyn_userid"))
-				{
-					return ((string)(this.Parameters["msdyn_userid"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["msdyn_userid"] = value;
-			}
-		}
-		
-		public msdyn_GetFavoriteArticlesRequest()
-		{
-			this.RequestName = "msdyn_GetFavoriteArticles";
-			this.msdyn_userid = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_GetFavoriteArticles")]
-	public partial class msdyn_GetFavoriteArticlesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_GetFavoriteArticlesResponse()
-		{
-		}
-		
-		public string msdyn_response
-		{
-			get
-			{
-				if (this.Results.Contains("msdyn_response"))
-				{
-					return ((string)(this.Results["msdyn_response"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("CreatePolymorphicLookupAttribute")]
-	public partial class CreatePolymorphicLookupAttributeRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string SolutionUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionUniqueName"))
-				{
-					return ((string)(this.Parameters["SolutionUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionUniqueName"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.Metadata.OneToManyRelationshipMetadata[] OneToManyRelationships
-		{
-			get
-			{
-				if (this.Parameters.Contains("OneToManyRelationships"))
-				{
-					return ((Microsoft.Xrm.Sdk.Metadata.OneToManyRelationshipMetadata[])(this.Parameters["OneToManyRelationships"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Metadata.OneToManyRelationshipMetadata[]);
-				}
-			}
-			set
-			{
-				this.Parameters["OneToManyRelationships"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.Metadata.LookupAttributeMetadata Lookup
-		{
-			get
-			{
-				if (this.Parameters.Contains("Lookup"))
-				{
-					return ((Microsoft.Xrm.Sdk.Metadata.LookupAttributeMetadata)(this.Parameters["Lookup"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Metadata.LookupAttributeMetadata);
-				}
-			}
-			set
-			{
-				this.Parameters["Lookup"] = value;
-			}
-		}
-		
-		public CreatePolymorphicLookupAttributeRequest()
-		{
-			this.RequestName = "CreatePolymorphicLookupAttribute";
-			this.OneToManyRelationships = default(Microsoft.Xrm.Sdk.Metadata.OneToManyRelationshipMetadata[]);
-			this.Lookup = default(Microsoft.Xrm.Sdk.Metadata.LookupAttributeMetadata);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("CreatePolymorphicLookupAttribute")]
-	public partial class CreatePolymorphicLookupAttributeResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public CreatePolymorphicLookupAttributeResponse()
-		{
-		}
-		
-		public System.Guid AttributeId
-		{
-			get
-			{
-				if (this.Results.Contains("AttributeId"))
-				{
-					return ((System.Guid)(this.Results["AttributeId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-		}
-		
-		public System.Guid[] RelationshipIds
-		{
-			get
-			{
-				if (this.Results.Contains("RelationshipIds"))
-				{
-					return ((System.Guid[])(this.Results["RelationshipIds"]));
-				}
-				else
-				{
-					return default(System.Guid[]);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("AddToFeedbackLoop")]
-	public partial class AddToFeedbackLoopRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public string predictionOutput
-		{
-			get
-			{
-				if (this.Parameters.Contains("predictionOutput"))
-				{
-					return ((string)(this.Parameters["predictionOutput"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["predictionOutput"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.Entity predictionInput
-		{
-			get
-			{
-				if (this.Parameters.Contains("predictionInput"))
-				{
-					return ((Microsoft.Xrm.Sdk.Entity)(this.Parameters["predictionInput"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Entity);
-				}
-			}
-			set
-			{
-				this.Parameters["predictionInput"] = value;
-			}
-		}
-		
-		public string inputName
-		{
-			get
-			{
-				if (this.Parameters.Contains("inputName"))
-				{
-					return ((string)(this.Parameters["inputName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["inputName"] = value;
-			}
-		}
-		
-		public AddToFeedbackLoopRequest()
-		{
-			this.RequestName = "AddToFeedbackLoop";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-			this.predictionInput = default(Microsoft.Xrm.Sdk.Entity);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("AddToFeedbackLoop")]
-	public partial class AddToFeedbackLoopResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public AddToFeedbackLoopResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RefreshRpaLicensingCapacity")]
-	public partial class RefreshRpaLicensingCapacityRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public RefreshRpaLicensingCapacityRequest()
-		{
-			this.RequestName = "RefreshRpaLicensingCapacity";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RefreshRpaLicensingCapacity")]
-	public partial class RefreshRpaLicensingCapacityResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RefreshRpaLicensingCapacityResponse()
-		{
-		}
-		
-		public string response
-		{
-			get
-			{
-				if (this.Results.Contains("response"))
-				{
-					return ((string)(this.Results["response"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckForPendingProcesses")]
-	public partial class msdyn_CheckForPendingProcessesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string SolutionId
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionId"))
-				{
-					return ((string)(this.Parameters["SolutionId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionId"] = value;
-			}
-		}
-		
-		public msdyn_CheckForPendingProcessesRequest()
-		{
-			this.RequestName = "msdyn_CheckForPendingProcesses";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckForPendingProcesses")]
-	public partial class msdyn_CheckForPendingProcessesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_CheckForPendingProcessesResponse()
-		{
-		}
-		
-		public string Message
-		{
-			get
-			{
-				if (this.Results.Contains("Message"))
-				{
-					return ((string)(this.Results["Message"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string ResultEntities
-		{
-			get
-			{
-				if (this.Results.Contains("ResultEntities"))
-				{
-					return ((string)(this.Results["ResultEntities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public int ReturnLevel
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnLevel"))
-				{
-					return ((int)(this.Results["ReturnLevel"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-		
-		public int ReturnSeverity
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnSeverity"))
-				{
-					return ((int)(this.Results["ReturnSeverity"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-		
-		public int ReturnStatus
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnStatus"))
-				{
-					return ((int)(this.Results["ReturnStatus"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("_InvokeHideReserveEntities")]
-	public partial class _InvokeHideReserveEntitiesRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public _InvokeHideReserveEntitiesRequest()
-		{
-			this.RequestName = "_InvokeHideReserveEntities";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("_InvokeHideReserveEntities")]
-	public partial class _InvokeHideReserveEntitiesResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public _InvokeHideReserveEntitiesResponse()
-		{
-		}
-		
-		public string output
-		{
-			get
-			{
-				if (this.Results.Contains("output"))
-				{
-					return ((string)(this.Results["output"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("GetSearchInformation")]
-	public partial class GetSearchInformationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string Fetchxml
-		{
-			get
-			{
-				if (this.Parameters.Contains("Fetchxml"))
-				{
-					return ((string)(this.Parameters["Fetchxml"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Fetchxml"] = value;
-			}
-		}
-		
-		public GetSearchInformationRequest()
-		{
-			this.RequestName = "GetSearchInformation";
-			this.Fetchxml = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("GetSearchInformation")]
-	public partial class GetSearchInformationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public GetSearchInformationResponse()
-		{
-		}
-		
-		public string CanAllowLeadingWildCardSearch
-		{
-			get
-			{
-				if (this.Results.Contains("CanAllowLeadingWildCardSearch"))
-				{
-					return ((string)(this.Results["CanAllowLeadingWildCardSearch"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string CanSupportedByRelevanceSearch
-		{
-			get
-			{
-				if (this.Results.Contains("CanSupportedByRelevanceSearch"))
-				{
-					return ((string)(this.Results["CanSupportedByRelevanceSearch"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveEnvironmentVariableValue")]
-	public partial class RetrieveEnvironmentVariableValueRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string DefinitionSchemaName
-		{
-			get
-			{
-				if (this.Parameters.Contains("DefinitionSchemaName"))
-				{
-					return ((string)(this.Parameters["DefinitionSchemaName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["DefinitionSchemaName"] = value;
-			}
-		}
-		
-		public RetrieveEnvironmentVariableValueRequest()
-		{
-			this.RequestName = "RetrieveEnvironmentVariableValue";
-			this.DefinitionSchemaName = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveEnvironmentVariableValue")]
-	public partial class RetrieveEnvironmentVariableValueResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RetrieveEnvironmentVariableValueResponse()
-		{
-		}
-		
-		public string Value
-		{
-			get
-			{
-				if (this.Results.Contains("Value"))
-				{
-					return ((string)(this.Results["Value"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("DeleteMultiple")]
-	public partial class DeleteMultipleRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReferenceCollection Targets
-		{
-			get
-			{
-				if (this.Parameters.Contains("Targets"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReferenceCollection)(this.Parameters["Targets"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReferenceCollection);
-				}
-			}
-			set
-			{
-				this.Parameters["Targets"] = value;
-			}
-		}
-		
-		public DeleteMultipleRequest()
-		{
-			this.RequestName = "DeleteMultiple";
-			this.Targets = default(Microsoft.Xrm.Sdk.EntityReferenceCollection);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("DeleteMultiple")]
-	public partial class DeleteMultipleResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public DeleteMultipleResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("GenerateSharedLink")]
-	public partial class GenerateSharedLinkRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public Microsoft.Crm.Sdk.Messages.AccessRights SharedRights
-		{
-			get
-			{
-				if (this.Parameters.Contains("SharedRights"))
-				{
-					return ((Microsoft.Crm.Sdk.Messages.AccessRights)(this.Parameters["SharedRights"]));
-				}
-				else
-				{
-					return default(Microsoft.Crm.Sdk.Messages.AccessRights);
-				}
-			}
-			set
-			{
-				this.Parameters["SharedRights"] = value;
-			}
-		}
-		
-		public GenerateSharedLinkRequest()
-		{
-			this.RequestName = "GenerateSharedLink";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-			this.SharedRights = default(Microsoft.Crm.Sdk.Messages.AccessRights);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("GenerateSharedLink")]
-	public partial class GenerateSharedLinkResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public GenerateSharedLinkResponse()
-		{
-		}
-		
-		public string Response
-		{
-			get
-			{
-				if (this.Results.Contains("Response"))
-				{
-					return ((string)(this.Results["Response"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("AIExtract")]
-	public partial class AIExtractRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string Entity
-		{
-			get
-			{
-				if (this.Parameters.Contains("Entity"))
-				{
-					return ((string)(this.Parameters["Entity"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Entity"] = value;
-			}
-		}
-		
-		public string Text
-		{
-			get
-			{
-				if (this.Parameters.Contains("Text"))
-				{
-					return ((string)(this.Parameters["Text"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["Text"] = value;
-			}
-		}
-		
-		public AIExtractRequest()
-		{
-			this.RequestName = "AIExtract";
-			this.Entity = default(string);
-			this.Text = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("AIExtract")]
-	public partial class AIExtractResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public AIExtractResponse()
-		{
-		}
-		
-		public string[] ExtractedData
-		{
-			get
-			{
-				if (this.Results.Contains("ExtractedData"))
-				{
-					return ((string[])(this.Results["ExtractedData"]));
-				}
-				else
-				{
-					return default(string[]);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_SyncKnowledgeManagementSettingsV2")]
-	public partial class msdyn_SyncKnowledgeManagementSettingsV2Request : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public msdyn_SyncKnowledgeManagementSettingsV2Request()
-		{
-			this.RequestName = "msdyn_SyncKnowledgeManagementSettingsV2";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_SyncKnowledgeManagementSettingsV2")]
-	public partial class msdyn_SyncKnowledgeManagementSettingsV2Response : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_SyncKnowledgeManagementSettingsV2Response()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("GetConsentLink")]
-	public partial class GetConsentLinkRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public string redirectUrl
-		{
-			get
-			{
-				if (this.Parameters.Contains("redirectUrl"))
-				{
-					return ((string)(this.Parameters["redirectUrl"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["redirectUrl"] = value;
-			}
-		}
-		
-		public GetConsentLinkRequest()
-		{
-			this.RequestName = "GetConsentLink";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-			this.redirectUrl = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("GetConsentLink")]
-	public partial class GetConsentLinkResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public GetConsentLinkResponse()
-		{
-		}
-		
-		public string consentLink
-		{
-			get
-			{
-				if (this.Results.Contains("consentLink"))
-				{
-					return ((string)(this.Results["consentLink"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string customParameters
-		{
-			get
-			{
-				if (this.Results.Contains("customParameters"))
-				{
-					return ((string)(this.Results["customParameters"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string firstPartyLoginUri
-		{
-			get
-			{
-				if (this.Results.Contains("firstPartyLoginUri"))
-				{
-					return ((string)(this.Results["firstPartyLoginUri"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string parameterConsentLinks
-		{
-			get
-			{
-				if (this.Results.Contains("parameterConsentLinks"))
-				{
-					return ((string)(this.Results["parameterConsentLinks"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string principalId
-		{
-			get
-			{
-				if (this.Results.Contains("principalId"))
-				{
-					return ((string)(this.Results["principalId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string principalType
-		{
-			get
-			{
-				if (this.Results.Contains("principalType"))
-				{
-					return ((string)(this.Results["principalType"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string redirectUrl
-		{
-			get
-			{
-				if (this.Results.Contains("redirectUrl"))
-				{
-					return ((string)(this.Results["redirectUrl"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string tenantId
-		{
-			get
-			{
-				if (this.Results.Contains("tenantId"))
-				{
-					return ((string)(this.Results["tenantId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("AnalyzeSentiment")]
-	public partial class AnalyzeSentimentRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string text
-		{
-			get
-			{
-				if (this.Parameters.Contains("text"))
-				{
-					return ((string)(this.Parameters["text"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["text"] = value;
-			}
-		}
-		
-		public string modelId
-		{
-			get
-			{
-				if (this.Parameters.Contains("modelId"))
-				{
-					return ((string)(this.Parameters["modelId"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["modelId"] = value;
-			}
-		}
-		
-		public string language
-		{
-			get
-			{
-				if (this.Parameters.Contains("language"))
-				{
-					return ((string)(this.Parameters["language"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["language"] = value;
-			}
-		}
-		
-		public AnalyzeSentimentRequest()
-		{
-			this.RequestName = "AnalyzeSentiment";
-			this.text = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("AnalyzeSentiment")]
-	public partial class AnalyzeSentimentResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public AnalyzeSentimentResponse()
-		{
-		}
-		
-		public Microsoft.Xrm.Sdk.Entity documentScores
-		{
-			get
-			{
-				if (this.Results.Contains("documentScores"))
-				{
-					return ((Microsoft.Xrm.Sdk.Entity)(this.Results["documentScores"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Entity);
-				}
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.EntityCollection sentences
-		{
-			get
-			{
-				if (this.Results.Contains("sentences"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Results["sentences"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityCollection);
-				}
-			}
-		}
-		
-		public string sentiment
-		{
-			get
-			{
-				if (this.Results.Contains("sentiment"))
-				{
-					return ((string)(this.Results["sentiment"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("searchautocomplete")]
-	public partial class searchautocompleteRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string propertybag
-		{
-			get
-			{
-				if (this.Parameters.Contains("propertybag"))
-				{
-					return ((string)(this.Parameters["propertybag"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["propertybag"] = value;
-			}
-		}
-		
-		public bool fuzzy
-		{
-			get
-			{
-				if (this.Parameters.Contains("fuzzy"))
-				{
-					return ((bool)(this.Parameters["fuzzy"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["fuzzy"] = value;
-			}
-		}
-		
-		public string search
-		{
-			get
-			{
-				if (this.Parameters.Contains("search"))
-				{
-					return ((string)(this.Parameters["search"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["search"] = value;
-			}
-		}
-		
-		public string options
-		{
-			get
-			{
-				if (this.Parameters.Contains("options"))
-				{
-					return ((string)(this.Parameters["options"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["options"] = value;
-			}
-		}
-		
-		public string entities
-		{
-			get
-			{
-				if (this.Parameters.Contains("entities"))
-				{
-					return ((string)(this.Parameters["entities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["entities"] = value;
-			}
-		}
-		
-		public string filter
-		{
-			get
-			{
-				if (this.Parameters.Contains("filter"))
-				{
-					return ((string)(this.Parameters["filter"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["filter"] = value;
-			}
-		}
-		
-		public searchautocompleteRequest()
-		{
-			this.RequestName = "searchautocomplete";
-			this.search = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("searchautocomplete")]
-	public partial class searchautocompleteResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public searchautocompleteResponse()
-		{
-		}
-		
-		public string response
-		{
-			get
-			{
-				if (this.Results.Contains("response"))
-				{
-					return ((string)(this.Results["response"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RemoveActiveCustomization")]
-	public partial class RemoveActiveCustomizationRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public System.Guid Id
-		{
-			get
-			{
-				if (this.Parameters.Contains("Id"))
-				{
-					return ((System.Guid)(this.Parameters["Id"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-			set
-			{
-				this.Parameters["Id"] = value;
-			}
-		}
-		
-		public string LogicalName
-		{
-			get
-			{
-				if (this.Parameters.Contains("LogicalName"))
-				{
-					return ((string)(this.Parameters["LogicalName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["LogicalName"] = value;
-			}
-		}
-		
-		public RemoveActiveCustomizationRequest()
-		{
-			this.RequestName = "RemoveActiveCustomization";
-			this.Id = default(System.Guid);
-			this.LogicalName = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RemoveActiveCustomization")]
-	public partial class RemoveActiveCustomizationResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RemoveActiveCustomizationResponse()
-		{
-		}
-		
-		public bool Success
-		{
-			get
-			{
-				if (this.Results.Contains("Success"))
-				{
-					return ((bool)(this.Results["Success"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msdyn_CheckIfFormsHaveTooManyCustomControls")]
-	public partial class msdyn_CheckIfFormsHaveTooManyCustomControlsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string SolutionName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SolutionName"))
-				{
-					return ((string)(this.Parameters["SolutionName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SolutionName"] = value;
-			}
-		}
-		
-		public string LogicalNamesOfEntitiesToCheck
-		{
-			get
-			{
-				if (this.Parameters.Contains("LogicalNamesOfEntitiesToCheck"))
-				{
-					return ((string)(this.Parameters["LogicalNamesOfEntitiesToCheck"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["LogicalNamesOfEntitiesToCheck"] = value;
-			}
-		}
-		
-		public string NotificationRecipientUserIds
-		{
-			get
-			{
-				if (this.Parameters.Contains("NotificationRecipientUserIds"))
-				{
-					return ((string)(this.Parameters["NotificationRecipientUserIds"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["NotificationRecipientUserIds"] = value;
-			}
-		}
-		
-		public string ControlsAndLimits
-		{
-			get
-			{
-				if (this.Parameters.Contains("ControlsAndLimits"))
-				{
-					return ((string)(this.Parameters["ControlsAndLimits"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["ControlsAndLimits"] = value;
-			}
-		}
-		
-		public msdyn_CheckIfFormsHaveTooManyCustomControlsRequest()
-		{
-			this.RequestName = "msdyn_CheckIfFormsHaveTooManyCustomControls";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/msdyn/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msdyn_CheckIfFormsHaveTooManyCustomControls")]
-	public partial class msdyn_CheckIfFormsHaveTooManyCustomControlsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msdyn_CheckIfFormsHaveTooManyCustomControlsResponse()
-		{
-		}
-		
-		public string HelpLink
-		{
-			get
-			{
-				if (this.Results.Contains("HelpLink"))
-				{
-					return ((string)(this.Results["HelpLink"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string Message
-		{
-			get
-			{
-				if (this.Results.Contains("Message"))
-				{
-					return ((string)(this.Results["Message"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public string ResultEntities
-		{
-			get
-			{
-				if (this.Results.Contains("ResultEntities"))
-				{
-					return ((string)(this.Results["ResultEntities"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public int ReturnSeverity
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnSeverity"))
-				{
-					return ((int)(this.Results["ReturnSeverity"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-		
-		public int ReturnStatus
-		{
-			get
-			{
-				if (this.Results.Contains("ReturnStatus"))
-				{
-					return ((int)(this.Results["ReturnStatus"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("Dequeue")]
-	public partial class DequeueRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public DequeueRequest()
-		{
-			this.RequestName = "Dequeue";
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("Dequeue")]
-	public partial class DequeueResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public DequeueResponse()
-		{
-		}
-		
-		public Microsoft.Xrm.Sdk.Entity nextItem
-		{
-			get
-			{
-				if (this.Results.Contains("nextItem"))
-				{
-					return ((Microsoft.Xrm.Sdk.Entity)(this.Results["nextItem"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Entity);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("SnapshotDatasource")]
-	public partial class SnapshotDatasourceRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string SourceDatalakeFolderUniqueName
-		{
-			get
-			{
-				if (this.Parameters.Contains("SourceDatalakeFolderUniqueName"))
-				{
-					return ((string)(this.Parameters["SourceDatalakeFolderUniqueName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["SourceDatalakeFolderUniqueName"] = value;
-			}
-		}
-		
-		public SnapshotDatasourceRequest()
-		{
-			this.RequestName = "SnapshotDatasource";
-			this.SourceDatalakeFolderUniqueName = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("SnapshotDatasource")]
-	public partial class SnapshotDatasourceResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public SnapshotDatasourceResponse()
-		{
-		}
-		
-		public string SnapshotReference
-		{
-			get
-			{
-				if (this.Results.Contains("SnapshotReference"))
-				{
-					return ((string)(this.Results["SnapshotReference"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("UpsertMultiple")]
-	public partial class UpsertMultipleRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityCollection Targets
-		{
-			get
-			{
-				if (this.Parameters.Contains("Targets"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Parameters["Targets"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityCollection);
-				}
-			}
-			set
-			{
-				this.Parameters["Targets"] = value;
-			}
-		}
-		
-		public UpsertMultipleRequest()
-		{
-			this.RequestName = "UpsertMultiple";
-			this.Targets = default(Microsoft.Xrm.Sdk.EntityCollection);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("UpsertMultiple")]
-	public partial class UpsertMultipleResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public UpsertMultipleResponse()
-		{
-		}
-		
-		public Microsoft.Xrm.Sdk.Messages.UpsertResponse[] Results
-		{
-			get
-			{
-				if (this.Results.Contains("Results"))
-				{
-					return ((Microsoft.Xrm.Sdk.Messages.UpsertResponse[])(this.Results["Results"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.Messages.UpsertResponse[]);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("msft_DataEngineIndexMgmt_CreateIndex")]
-	public partial class msft_DataEngineIndexMgmt_CreateIndexRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string CreateIndex_KeyColumnsJson
-		{
-			get
-			{
-				if (this.Parameters.Contains("CreateIndex_KeyColumnsJson"))
-				{
-					return ((string)(this.Parameters["CreateIndex_KeyColumnsJson"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["CreateIndex_KeyColumnsJson"] = value;
-			}
-		}
-		
-		public string CreateIndex_LogicalTableName
-		{
-			get
-			{
-				if (this.Parameters.Contains("CreateIndex_LogicalTableName"))
-				{
-					return ((string)(this.Parameters["CreateIndex_LogicalTableName"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["CreateIndex_LogicalTableName"] = value;
-			}
-		}
-		
-		public bool CreateIndex_QueueAdhocRequest
-		{
-			get
-			{
-				if (this.Parameters.Contains("CreateIndex_QueueAdhocRequest"))
-				{
-					return ((bool)(this.Parameters["CreateIndex_QueueAdhocRequest"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["CreateIndex_QueueAdhocRequest"] = value;
-			}
-		}
-		
-		public msft_DataEngineIndexMgmt_CreateIndexRequest()
-		{
-			this.RequestName = "msft_DataEngineIndexMgmt_CreateIndex";
-			this.CreateIndex_KeyColumnsJson = default(string);
-			this.CreateIndex_LogicalTableName = default(string);
-			this.CreateIndex_QueueAdhocRequest = default(bool);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("msft_DataEngineIndexMgmt_CreateIndex")]
-	public partial class msft_DataEngineIndexMgmt_CreateIndexResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public msft_DataEngineIndexMgmt_CreateIndexResponse()
-		{
-		}
-		
-		public bool CreateIndex_CreateResult
-		{
-			get
-			{
-				if (this.Results.Contains("CreateIndex_CreateResult"))
-				{
-					return ((bool)(this.Results["CreateIndex_CreateResult"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ResetInheritedAccess")]
-	public partial class ResetInheritedAccessRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string FetchXml
-		{
-			get
-			{
-				if (this.Parameters.Contains("FetchXml"))
-				{
-					return ((string)(this.Parameters["FetchXml"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["FetchXml"] = value;
-			}
-		}
-		
-		public ResetInheritedAccessRequest()
-		{
-			this.RequestName = "ResetInheritedAccess";
-			this.FetchXml = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ResetInheritedAccess")]
-	public partial class ResetInheritedAccessResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public ResetInheritedAccessResponse()
-		{
-		}
-		
-		public string ResetInheritedAccessResponse
-		{
-			get
-			{
-				if (this.Results.Contains("ResetInheritedAccessResponse"))
-				{
-					return ((string)(this.Results["ResetInheritedAccessResponse"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("PvaComponentCollectionAuthorize")]
-	public partial class PvaComponentCollectionAuthorizeRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public Microsoft.Xrm.Sdk.EntityCollection Users
-		{
-			get
-			{
-				if (this.Parameters.Contains("Users"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityCollection)(this.Parameters["Users"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityCollection);
-				}
-			}
-			set
-			{
-				this.Parameters["Users"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.OptionSetValue SharingRoleType
-		{
-			get
-			{
-				if (this.Parameters.Contains("SharingRoleType"))
-				{
-					return ((Microsoft.Xrm.Sdk.OptionSetValue)(this.Parameters["SharingRoleType"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.OptionSetValue);
-				}
-			}
-			set
-			{
-				this.Parameters["SharingRoleType"] = value;
-			}
-		}
-		
-		public bool ShareOrUnshare
-		{
-			get
-			{
-				if (this.Parameters.Contains("ShareOrUnshare"))
-				{
-					return ((bool)(this.Parameters["ShareOrUnshare"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ShareOrUnshare"] = value;
-			}
-		}
-		
-		public Microsoft.Xrm.Sdk.EntityReference Target
-		{
-			get
-			{
-				if (this.Parameters.Contains("Target"))
-				{
-					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
-				}
-				else
-				{
-					return default(Microsoft.Xrm.Sdk.EntityReference);
-				}
-			}
-			set
-			{
-				this.Parameters["Target"] = value;
-			}
-		}
-		
-		public PvaComponentCollectionAuthorizeRequest()
-		{
-			this.RequestName = "PvaComponentCollectionAuthorize";
-			this.Users = default(Microsoft.Xrm.Sdk.EntityCollection);
-			this.SharingRoleType = default(Microsoft.Xrm.Sdk.OptionSetValue);
-			this.ShareOrUnshare = default(bool);
-			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011//")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("PvaComponentCollectionAuthorize")]
-	public partial class PvaComponentCollectionAuthorizeResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public PvaComponentCollectionAuthorizeResponse()
-		{
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("pbi_GetEnvironmentWorkspaceAccessForUser")]
-	public partial class pbi_GetEnvironmentWorkspaceAccessForUserRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public System.Guid pbi_UserObjectId
-		{
-			get
-			{
-				if (this.Parameters.Contains("pbi_UserObjectId"))
-				{
-					return ((System.Guid)(this.Parameters["pbi_UserObjectId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-			set
-			{
-				this.Parameters["pbi_UserObjectId"] = value;
-			}
-		}
-		
-		public pbi_GetEnvironmentWorkspaceAccessForUserRequest()
-		{
-			this.RequestName = "pbi_GetEnvironmentWorkspaceAccessForUser";
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("pbi_GetEnvironmentWorkspaceAccessForUser")]
-	public partial class pbi_GetEnvironmentWorkspaceAccessForUserResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public pbi_GetEnvironmentWorkspaceAccessForUserResponse()
-		{
-		}
-		
-		public string pbi_Access
-		{
-			get
-			{
-				if (this.Results.Contains("pbi_Access"))
-				{
-					return ((string)(this.Results["pbi_Access"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveUserSetOfPrivilegesByIds")]
-	public partial class RetrieveUserSetOfPrivilegesByIdsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public System.Guid[] PrivilegeIds
-		{
-			get
-			{
-				if (this.Parameters.Contains("PrivilegeIds"))
-				{
-					return ((System.Guid[])(this.Parameters["PrivilegeIds"]));
-				}
-				else
-				{
-					return default(System.Guid[]);
-				}
-			}
-			set
-			{
-				this.Parameters["PrivilegeIds"] = value;
-			}
-		}
-		
-		public System.Guid UserId
-		{
-			get
-			{
-				if (this.Parameters.Contains("UserId"))
-				{
-					return ((System.Guid)(this.Parameters["UserId"]));
-				}
-				else
-				{
-					return default(System.Guid);
-				}
-			}
-			set
-			{
-				this.Parameters["UserId"] = value;
-			}
-		}
-		
-		public bool ExcludeTeamBasic
-		{
-			get
-			{
-				if (this.Parameters.Contains("ExcludeTeamBasic"))
-				{
-					return ((bool)(this.Parameters["ExcludeTeamBasic"]));
-				}
-				else
-				{
-					return default(bool);
-				}
-			}
-			set
-			{
-				this.Parameters["ExcludeTeamBasic"] = value;
-			}
-		}
-		
-		public RetrieveUserSetOfPrivilegesByIdsRequest()
-		{
-			this.RequestName = "RetrieveUserSetOfPrivilegesByIds";
-			this.PrivilegeIds = default(System.Guid[]);
-			this.UserId = default(System.Guid);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RetrieveUserSetOfPrivilegesByIds")]
-	public partial class RetrieveUserSetOfPrivilegesByIdsResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public RetrieveUserSetOfPrivilegesByIdsResponse()
-		{
-		}
-		
-		public Microsoft.Crm.Sdk.Messages.RolePrivilege[] RolePrivileges
-		{
-			get
-			{
-				if (this.Results.Contains("RolePrivileges"))
-				{
-					return ((Microsoft.Crm.Sdk.Messages.RolePrivilege[])(this.Results["RolePrivileges"]));
-				}
-				else
-				{
-					return default(Microsoft.Crm.Sdk.Messages.RolePrivilege[]);
-				}
-			}
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("ValidateRetentionConfig")]
-	public partial class ValidateRetentionConfigRequest : Microsoft.Xrm.Sdk.OrganizationRequest
-	{
-		
-		public string FetchXml
-		{
-			get
-			{
-				if (this.Parameters.Contains("FetchXml"))
-				{
-					return ((string)(this.Parameters["FetchXml"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-			set
-			{
-				this.Parameters["FetchXml"] = value;
-			}
-		}
-		
-		public ValidateRetentionConfigRequest()
-		{
-			this.RequestName = "ValidateRetentionConfig";
-			this.FetchXml = default(string);
-		}
-	}
-	
-	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/crm/2011/Contracts")]
-	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("ValidateRetentionConfig")]
-	public partial class ValidateRetentionConfigResponse : Microsoft.Xrm.Sdk.OrganizationResponse
-	{
-		
-		public ValidateRetentionConfigResponse()
-		{
-		}
-		
-		public string ErrorMessage
-		{
-			get
-			{
-				if (this.Results.Contains("ErrorMessage"))
-				{
-					return ((string)(this.Results["ErrorMessage"]));
-				}
-				else
-				{
-					return default(string);
-				}
-			}
-		}
-		
-		public bool IsValidationSuccessful
-		{
-			get
-			{
-				if (this.Results.Contains("IsValidationSuccessful"))
-				{
-					return ((bool)(this.Results["IsValidationSuccessful"]));
-				}
-				else
-				{
-					return default(bool);
 				}
 			}
 		}

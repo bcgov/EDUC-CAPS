@@ -3643,6 +3643,7 @@ namespace CAPS.DataContext
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
 			public const string Account_ActivityPointers = "Account_ActivityPointers";
+			public const string caps_childcare_ActivityPointers = "caps_childcare_ActivityPointers";
 			public const string caps_facility_ActivityPointers = "caps_facility_ActivityPointers";
 			public const string caps_project_ActivityPointers = "caps_project_ActivityPointers";
 			public const string caps_projecttracker_ActivityPointers = "caps_projecttracker_ActivityPointers";
@@ -4703,6 +4704,25 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// N:1 caps_childcare_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_ActivityPointers")]
+		public CAPS.DataContext.caps_Childcare caps_childcare_ActivityPointers
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_ActivityPointers", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_ActivityPointers");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_ActivityPointers", null, value);
+				this.OnPropertyChanged("caps_childcare_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 caps_facility_ActivityPointers
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -4873,6 +4893,7 @@ namespace CAPS.DataContext
 			public const string VersionNumber = "versionnumber";
 			public const string Account_Annotation = "Account_Annotation";
 			public const string caps_bus_Annotations = "caps_bus_Annotations";
+			public const string caps_childcare_Annotations = "caps_childcare_Annotations";
 			public const string caps_facility_Annotations = "caps_facility_Annotations";
 			public const string caps_longrangefacilityplan_Annotations = "caps_longrangefacilityplan_Annotations";
 			public const string caps_project_Annotations = "caps_project_Annotations";
@@ -5399,6 +5420,25 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_bus_Annotations");
 				this.SetRelatedEntity<CAPS.DataContext.caps_Bus>("caps_bus_Annotations", null, value);
 				this.OnPropertyChanged("caps_bus_Annotations");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcare_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("objectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_Annotations")]
+		public CAPS.DataContext.caps_Childcare caps_childcare_Annotations
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_Annotations", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_Annotations");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_Annotations", null, value);
+				this.OnPropertyChanged("caps_childcare_Annotations");
 			}
 		}
 		
@@ -19272,29 +19312,79 @@ namespace CAPS.DataContext
 		
 		public static class Fields
 		{
+			public const string caps_30MonthstoSchoolAge_CurrentEnrolment = "caps_30monthstoschoolage_currentenrolment";
+			public const string caps_ActualorProjected = "caps_actualorprojected";
+			public const string caps_AffordabilityInitiatives = "caps_affordabilityinitiatives";
+			public const string caps_Atleast4hoursMF = "caps_atleast4hoursmf";
 			public const string caps_Capacity30MonthstoSchoolAge = "caps_capacity30monthstoschoolage";
+			public const string caps_Capacity30MonthstoSchoolAgeUtilization = "caps_capacity30monthstoschoolageutilization";
 			public const string caps_CapacityMultiAge = "caps_capacitymultiage";
+			public const string caps_CapacityMultiAgeUtilization = "caps_capacitymultiageutilization";
 			public const string caps_CapacityPreschool = "caps_capacitypreschool";
+			public const string caps_CapacityPreschoolUtilization = "caps_capacitypreschoolutilization";
 			public const string caps_CapacitySchoolAge = "caps_capacityschoolage";
+			public const string caps_CapacitySchoolAgeonSchoolGroundsUtilization = "caps_capacityschoolageonschoolgroundsutilization";
 			public const string caps_CapacitySchoolAgeSchoolGrounds = "caps_capacityschoolageschoolgrounds";
+			public const string caps_CapacitySchoolAgeUtilization = "caps_capacityschoolageutilization";
+			public const string caps_CapacityTotalUtilization = "caps_capacitytotalutilization";
 			public const string caps_CapacityUnder36Months = "caps_capacityunder36months";
+			public const string caps_CapacityUnder36MonthsUtilization = "caps_capacityunder36monthsutilization";
 			public const string caps_ChildCareFacilityType = "caps_childcarefacilitytype";
 			public const string caps_ChildcareId = "caps_childcareid";
 			public const string Id = "caps_childcareid";
 			public const string caps_ChildcareType = "caps_childcaretype";
+			public const string caps_ClassroomsUsedElementary = "caps_classroomsusedelementary";
+			public const string caps_ClassroomsUsedKindergarten = "caps_classroomsusedkindergarten";
+			public const string caps_ClassroomsUsedSecondary = "caps_classroomsusedsecondary";
+			public const string caps_ClassroomsUsedTotal = "caps_classroomsusedtotal";
 			public const string caps_ClassroomType = "caps_classroomtype";
 			public const string caps_Comments = "caps_comments";
+			public const string caps_CurrentChildCareActualEnrolment = "caps_currentchildcareactualenrolment";
+			public const string caps_EnrolmentProjection = "caps_enrolmentprojection";
+			public const string caps_EnrolmentProjectionComments = "caps_enrolmentprojectioncomments";
 			public const string caps_Facility = "caps_facility";
 			public const string caps_HealthAuthority = "caps_healthauthority";
+			public const string caps_Licensed30MonthstoSchoolAgeUtilization = "caps_licensed30monthstoschoolageutilization";
+			public const string caps_LicensedCapacity30MonthstoSchoolAge = "caps_licensedcapacity30monthstoschoolage";
+			public const string caps_LicensedCapacityMultiAge = "caps_licensedcapacitymultiage";
+			public const string caps_LicensedCapacityPreschool = "caps_licensedcapacitypreschool";
+			public const string caps_LicensedCapacitySASG = "caps_licensedcapacitysasg";
+			public const string caps_LicensedCapacitySchoolAge = "caps_licensedcapacityschoolage";
+			public const string caps_LicensedCapacityTotal = "caps_licensedcapacitytotal";
+			public const string caps_LicensedCapacityTotalUtilization = "caps_licensedcapacitytotalutilization";
+			public const string caps_LicensedCapacityUnder36Months = "caps_licensedcapacityunder36months";
+			public const string caps_LicensedMultiAgeUtilization = "caps_licensedmultiageutilization";
+			public const string caps_LicensedPreschoolUtilization = "caps_licensedpreschoolutilization";
+			public const string caps_LicensedSchoolAgeonSchoolGroundsUtilization = "caps_licensedschoolageonschoolgroundsutilization";
+			public const string caps_LicensedSchoolAgeUtilization = "caps_licensedschoolageutilization";
+			public const string caps_LicensedUnder36MonthUtilization = "caps_licensedunder36monthutilization";
+			public const string caps_LicenseIssueDate = "caps_licenseissuedate";
 			public const string caps_LicenseNumber = "caps_licensenumber";
+			public const string caps_LocationType = "caps_locationtype";
+			public const string caps_MailingAddress = "caps_mailingaddress";
+			public const string caps_MultiAge_CurrentEnrolment = "caps_multiage_currentenrolment";
 			public const string caps_Name = "caps_name";
 			public const string caps_NewSpaces = "caps_newspaces";
 			public const string caps_NLC = "caps_nlc";
+			public const string caps_OpenDate = "caps_opendate";
 			public const string caps_Operator = "caps_operator";
+			public const string caps_OtherAffordabilityInitiatives = "caps_otheraffordabilityinitiatives";
+			public const string caps_Preschool_CurrentEnrolment = "caps_preschool_currentenrolment";
+			public const string caps_Programs = "caps_programs";
+			public const string caps_SameAddressasSchoolFacility = "caps_sameaddressasschoolfacility";
+			public const string caps_SASG_CurrentEnrolment = "caps_sasg_currentenrolment";
+			public const string caps_SchoolAge_CurrentEnrolment = "caps_schoolage_currentenrolment";
+			public const string caps_Schoolclosures = "caps_schoolclosures";
 			public const string caps_SDAssetNumber = "caps_sdassetnumber";
 			public const string caps_SpacesUsed = "caps_spacesused";
 			public const string caps_SpaceType = "caps_spacetype";
+			public const string caps_StatHolidays = "caps_statholidays";
+			public const string caps_StreetAddress = "caps_streetaddress";
+			public const string caps_Total_CurrentEnrolment = "caps_total_currentenrolment";
 			public const string caps_TotalCapacity = "caps_totalcapacity";
+			public const string caps_TotalEnrolment = "caps_totalenrolment";
+			public const string caps_Under36Months_CurrentEnrolment = "caps_under36months_currentenrolment";
+			public const string caps_UseFutureForUtilization = "caps_usefutureforutilization";
 			public const string CreatedBy = "createdby";
 			public const string CreatedOn = "createdon";
 			public const string CreatedOnBehalfBy = "createdonbehalfby";
@@ -19312,6 +19402,8 @@ namespace CAPS.DataContext
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string caps_childcare_ChildCareFacilityType_caps_chil = "caps_childcare_ChildCareFacilityType_caps_chil";
+			public const string caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment = "caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment";
 			public const string caps_Childcare_Facility_caps_Facility = "caps_Childcare_Facility_caps_Facility";
 			public const string team_caps_childcare = "team_caps_childcare";
 		}
@@ -19357,6 +19449,72 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_30monthstoschoolage_currentenrolment")]
+		public System.Nullable<decimal> caps_30MonthstoSchoolAge_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_30monthstoschoolage_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_30MonthstoSchoolAge_CurrentEnrolment");
+				this.SetAttributeValue("caps_30monthstoschoolage_currentenrolment", value);
+				this.OnPropertyChanged("caps_30MonthstoSchoolAge_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// If the facility has a "Current Enrolment" record, then the utilization values displayed are Actuals. Otherwise, they are taken from the current year projections. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_actualorprojected")]
+		public string caps_ActualorProjected
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_actualorprojected");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_affordabilityinitiatives")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_AffordabilityInitiatives
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_affordabilityinitiatives");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AffordabilityInitiatives");
+				this.SetAttributeValue("caps_affordabilityinitiatives", value);
+				this.OnPropertyChanged("caps_AffordabilityInitiatives");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_atleast4hoursmf")]
+		public System.Nullable<bool> caps_Atleast4hoursMF
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_atleast4hoursmf");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Atleast4hoursMF");
+				this.SetAttributeValue("caps_atleast4hoursmf", value);
+				this.OnPropertyChanged("caps_Atleast4hoursMF");
+			}
+		}
+		
+		/// <summary>
 		/// Capacity for 30 Months to School Age.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolage")]
@@ -19371,6 +19529,18 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Capacity30MonthstoSchoolAge");
 				this.SetAttributeValue("caps_capacity30monthstoschoolage", value);
 				this.OnPropertyChanged("caps_Capacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolageutilization")]
+		public System.Nullable<decimal> caps_Capacity30MonthstoSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacity30monthstoschoolageutilization");
 			}
 		}
 		
@@ -19393,6 +19563,18 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitymultiageutilization")]
+		public System.Nullable<decimal> caps_CapacityMultiAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitymultiageutilization");
+			}
+		}
+		
+		/// <summary>
 		/// Capacity for Preschool
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschool")]
@@ -19407,6 +19589,18 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_CapacityPreschool");
 				this.SetAttributeValue("caps_capacitypreschool", value);
 				this.OnPropertyChanged("caps_CapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschoolutilization")]
+		public System.Nullable<decimal> caps_CapacityPreschoolUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitypreschoolutilization");
 			}
 		}
 		
@@ -19429,6 +19623,18 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageonschoolgroundsutilization")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeonSchoolGroundsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageonschoolgroundsutilization");
+			}
+		}
+		
+		/// <summary>
 		/// Capacity for School Age School Grounds
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageschoolgrounds")]
@@ -19447,6 +19653,30 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageutilization")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitytotalutilization")]
+		public System.Nullable<decimal> caps_CapacityTotalUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitytotalutilization");
+			}
+		}
+		
+		/// <summary>
 		/// Capacity for Under 36 Months
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36months")]
@@ -19461,6 +19691,18 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_CapacityUnder36Months");
 				this.SetAttributeValue("caps_capacityunder36months", value);
 				this.OnPropertyChanged("caps_CapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36monthsutilization")]
+		public System.Nullable<decimal> caps_CapacityUnder36MonthsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityunder36monthsutilization");
 			}
 		}
 		
@@ -19540,6 +19782,72 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedelementary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedElementary");
+				this.SetAttributeValue("caps_classroomsusedelementary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedElementary");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedkindergarten")]
+		public System.Nullable<decimal> caps_ClassroomsUsedKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedkindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedKindergarten");
+				this.SetAttributeValue("caps_classroomsusedkindergarten", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedsecondary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedSecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedsecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedSecondary");
+				this.SetAttributeValue("caps_classroomsusedsecondary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedSecondary");
+			}
+		}
+		
+		/// <summary>
+		/// Sum of Classrooms Used Kindergarten, Elementary and Secondary. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedtotal")]
+		public System.Nullable<decimal> caps_ClassroomsUsedTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedtotal");
+			}
+		}
+		
+		/// <summary>
 		/// the type of classroom used for the Childcare
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomtype")]
@@ -19572,6 +19880,60 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Comments");
 				this.SetAttributeValue("caps_comments", value);
 				this.OnPropertyChanged("caps_Comments");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_currentchildcareactualenrolment")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_CurrentChildCareActualEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_currentchildcareactualenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CurrentChildCareActualEnrolment");
+				this.SetAttributeValue("caps_currentchildcareactualenrolment", value);
+				this.OnPropertyChanged("caps_CurrentChildCareActualEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_enrolmentprojection")]
+		public System.Nullable<bool> caps_EnrolmentProjection
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_enrolmentprojection");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_EnrolmentProjection");
+				this.SetAttributeValue("caps_enrolmentprojection", value);
+				this.OnPropertyChanged("caps_EnrolmentProjection");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_enrolmentprojectioncomments")]
+		public string caps_EnrolmentProjectionComments
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_enrolmentprojectioncomments");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_EnrolmentProjectionComments");
+				this.SetAttributeValue("caps_enrolmentprojectioncomments", value);
+				this.OnPropertyChanged("caps_EnrolmentProjectionComments");
 			}
 		}
 		
@@ -19612,6 +19974,228 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensed30monthstoschoolageutilization")]
+		public System.Nullable<decimal> caps_Licensed30MonthstoSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensed30monthstoschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacity30monthstoschoolage")]
+		public System.Nullable<decimal> caps_LicensedCapacity30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacity30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacity30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_licensedcapacity30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_LicensedCapacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitymultiage")]
+		public System.Nullable<decimal> caps_LicensedCapacityMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitymultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityMultiAge");
+				this.SetAttributeValue("caps_licensedcapacitymultiage", value);
+				this.OnPropertyChanged("caps_LicensedCapacityMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitypreschool")]
+		public System.Nullable<decimal> caps_LicensedCapacityPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitypreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityPreschool");
+				this.SetAttributeValue("caps_licensedcapacitypreschool", value);
+				this.OnPropertyChanged("caps_LicensedCapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// Licensed Capacity School Age School Grounds
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitysasg")]
+		public System.Nullable<decimal> caps_LicensedCapacitySASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitysasg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacitySASG");
+				this.SetAttributeValue("caps_licensedcapacitysasg", value);
+				this.OnPropertyChanged("caps_LicensedCapacitySASG");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacityschoolage")]
+		public System.Nullable<decimal> caps_LicensedCapacitySchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacityschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacitySchoolAge");
+				this.SetAttributeValue("caps_licensedcapacityschoolage", value);
+				this.OnPropertyChanged("caps_LicensedCapacitySchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// Sum of licensed capacities for 30 Months to School Age, Multi Age, Preschool, SASG, School Age, and Under 36 Months.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitytotal")]
+		public System.Nullable<decimal> caps_LicensedCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitytotal");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitytotalutilization")]
+		public System.Nullable<decimal> caps_LicensedCapacityTotalUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitytotalutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacityunder36months")]
+		public System.Nullable<decimal> caps_LicensedCapacityUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacityunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityUnder36Months");
+				this.SetAttributeValue("caps_licensedcapacityunder36months", value);
+				this.OnPropertyChanged("caps_LicensedCapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedmultiageutilization")]
+		public System.Nullable<decimal> caps_LicensedMultiAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedmultiageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedpreschoolutilization")]
+		public System.Nullable<decimal> caps_LicensedPreschoolUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedpreschoolutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolageonschoolgroundsutilization")]
+		public System.Nullable<decimal> caps_LicensedSchoolAgeonSchoolGroundsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolageonschoolgroundsutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolageutilization")]
+		public System.Nullable<decimal> caps_LicensedSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedunder36monthutilization")]
+		public System.Nullable<decimal> caps_LicensedUnder36MonthUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedunder36monthutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licenseissuedate")]
+		public System.Nullable<System.DateTime> caps_LicenseIssueDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_licenseissuedate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicenseIssueDate");
+				this.SetAttributeValue("caps_licenseissuedate", value);
+				this.OnPropertyChanged("caps_LicenseIssueDate");
+			}
+		}
+		
+		/// <summary>
 		/// License Number of the Child Care Facility.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensenumber")]
@@ -19626,6 +20210,60 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_LicenseNumber");
 				this.SetAttributeValue("caps_licensenumber", value);
 				this.OnPropertyChanged("caps_LicenseNumber");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_locationtype")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_LocationType
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_locationtype");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LocationType");
+				this.SetAttributeValue("caps_locationtype", value);
+				this.OnPropertyChanged("caps_LocationType");
+			}
+		}
+		
+		/// <summary>
+		/// The PO Box address of a designated facility. 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_mailingaddress")]
+		public string caps_MailingAddress
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_mailingaddress");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MailingAddress");
+				this.SetAttributeValue("caps_mailingaddress", value);
+				this.OnPropertyChanged("caps_MailingAddress");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_multiage_currentenrolment")]
+		public System.Nullable<decimal> caps_MultiAge_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_multiage_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MultiAge_CurrentEnrolment");
+				this.SetAttributeValue("caps_multiage_currentenrolment", value);
+				this.OnPropertyChanged("caps_MultiAge_CurrentEnrolment");
 			}
 		}
 		
@@ -19684,6 +20322,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Open Date of the Child Care Facility record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_opendate")]
+		public System.Nullable<System.DateTime> caps_OpenDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_opendate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_OpenDate");
+				this.SetAttributeValue("caps_opendate", value);
+				this.OnPropertyChanged("caps_OpenDate");
+			}
+		}
+		
+		/// <summary>
 		/// Name of the Operator
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operator")]
@@ -19698,6 +20354,132 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Operator");
 				this.SetAttributeValue("caps_operator", value);
 				this.OnPropertyChanged("caps_Operator");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_otheraffordabilityinitiatives")]
+		public string caps_OtherAffordabilityInitiatives
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_otheraffordabilityinitiatives");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_OtherAffordabilityInitiatives");
+				this.SetAttributeValue("caps_otheraffordabilityinitiatives", value);
+				this.OnPropertyChanged("caps_OtherAffordabilityInitiatives");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_preschool_currentenrolment")]
+		public System.Nullable<decimal> caps_Preschool_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_preschool_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Preschool_CurrentEnrolment");
+				this.SetAttributeValue("caps_preschool_currentenrolment", value);
+				this.OnPropertyChanged("caps_Preschool_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_programs")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Programs
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_programs");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Programs");
+				this.SetAttributeValue("caps_programs", value);
+				this.OnPropertyChanged("caps_Programs");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sameaddressasschoolfacility")]
+		public System.Nullable<bool> caps_SameAddressasSchoolFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_sameaddressasschoolfacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SameAddressasSchoolFacility");
+				this.SetAttributeValue("caps_sameaddressasschoolfacility", value);
+				this.OnPropertyChanged("caps_SameAddressasSchoolFacility");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sasg_currentenrolment")]
+		public System.Nullable<decimal> caps_SASG_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_sasg_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SASG_CurrentEnrolment");
+				this.SetAttributeValue("caps_sasg_currentenrolment", value);
+				this.OnPropertyChanged("caps_SASG_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolage_currentenrolment")]
+		public System.Nullable<decimal> caps_SchoolAge_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schoolage_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolAge_CurrentEnrolment");
+				this.SetAttributeValue("caps_schoolage_currentenrolment", value);
+				this.OnPropertyChanged("caps_SchoolAge_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolclosures")]
+		public System.Nullable<bool> caps_Schoolclosures
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_schoolclosures");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Schoolclosures");
+				this.SetAttributeValue("caps_schoolclosures", value);
+				this.OnPropertyChanged("caps_Schoolclosures");
 			}
 		}
 		
@@ -19756,6 +20538,60 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_statholidays")]
+		public System.Nullable<bool> caps_StatHolidays
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_statholidays");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_StatHolidays");
+				this.SetAttributeValue("caps_statholidays", value);
+				this.OnPropertyChanged("caps_StatHolidays");
+			}
+		}
+		
+		/// <summary>
+		/// The street address of a designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_streetaddress")]
+		public string caps_StreetAddress
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_streetaddress");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_StreetAddress");
+				this.SetAttributeValue("caps_streetaddress", value);
+				this.OnPropertyChanged("caps_StreetAddress");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_total_currentenrolment")]
+		public System.Nullable<decimal> caps_Total_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_total_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Total_CurrentEnrolment");
+				this.SetAttributeValue("caps_total_currentenrolment", value);
+				this.OnPropertyChanged("caps_Total_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
 		/// Total Capacity at this Child Care Facility.
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalcapacity")]
@@ -19764,6 +20600,54 @@ namespace CAPS.DataContext
 			get
 			{
 				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalcapacity");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalenrolment")]
+		public System.Nullable<decimal> caps_TotalEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalenrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_under36months_currentenrolment")]
+		public System.Nullable<decimal> caps_Under36Months_CurrentEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_under36months_currentenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Under36Months_CurrentEnrolment");
+				this.SetAttributeValue("caps_under36months_currentenrolment", value);
+				this.OnPropertyChanged("caps_Under36Months_CurrentEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// This field is used by code to indicate the future enrolment projection records should be used for capacity reporting as opposed to the current ones.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_usefutureforutilization")]
+		public System.Nullable<bool> caps_UseFutureForUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_usefutureforutilization");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_UseFutureForUtilization");
+				this.SetAttributeValue("caps_usefutureforutilization", value);
+				this.OnPropertyChanged("caps_UseFutureForUtilization");
 			}
 		}
 		
@@ -20041,6 +20925,132 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 1:N caps_childcare_ActivityPointers
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_ActivityPointers")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.ActivityPointer> caps_childcare_ActivityPointers
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.ActivityPointer>("caps_childcare_ActivityPointers", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_ActivityPointers");
+				this.SetRelatedEntities<CAPS.DataContext.ActivityPointer>("caps_childcare_ActivityPointers", null, value);
+				this.OnPropertyChanged("caps_childcare_ActivityPointers");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcare_Annotations
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_Annotations")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.Annotation> caps_childcare_Annotations
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.Annotation>("caps_childcare_Annotations", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_Annotations");
+				this.SetRelatedEntities<CAPS.DataContext.Annotation>("caps_childcare_Annotations", null, value);
+				this.OnPropertyChanged("caps_childcare_Annotations");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcare_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_Emails")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.Email> caps_childcare_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.Email>("caps_childcare_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_Emails");
+				this.SetRelatedEntities<CAPS.DataContext.Email>("caps_childcare_Emails", null, value);
+				this.OnPropertyChanged("caps_childcare_Emails");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcareactualenrolment_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareactualenrolment_ChildCareFacility_caps_childcare")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareActualEnrolment> caps_childcareactualenrolment_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcareactualenrolment_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareactualenrolment_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcareactualenrolment_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcareactualenrolment_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarecapacityreporting_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareCapacityReporting> caps_childcarecapacityreporting_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareEnrolmentProjection> caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarefacilityhistory_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_childcarefacilityhistory_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N caps_project_Childcare_caps_childcare
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_project_Childcare_caps_childcare")]
@@ -20091,6 +21101,44 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_projecttracker_ChildCareFacility_caps_chi");
 				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectTracker>("caps_projecttracker_ChildCareFacility_caps_chi", null, value);
 				this.OnPropertyChanged("caps_projecttracker_ChildCareFacility_caps_chi");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcare_ChildCareFacilityType_caps_chil
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacilitytype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_ChildCareFacilityType_caps_chil")]
+		public CAPS.DataContext.caps_ChildcareConstructionType caps_childcare_ChildCareFacilityType_caps_chil
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_childcare_ChildCareFacilityType_caps_chil", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_ChildCareFacilityType_caps_chil");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_childcare_ChildCareFacilityType_caps_chil", null, value);
+				this.OnPropertyChanged("caps_childcare_ChildCareFacilityType_caps_chil");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_currentchildcareactualenrolment")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment")]
+		public CAPS.DataContext.caps_ChildCareActualEnrolment caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment", null, value);
+				this.OnPropertyChanged("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment");
 			}
 		}
 		
@@ -20151,6 +21199,5266 @@ namespace CAPS.DataContext
                         Attributes["caps_childcareid"] = base.Id;
                         break;
                     case "caps_childcareid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareActualEnrolmentState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcareactualenrolment")]
+	public partial class caps_ChildCareActualEnrolment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_Capacity30MonthstoSchoolAge = "caps_capacity30monthstoschoolage";
+			public const string caps_CapacityMultiAge = "caps_capacitymultiage";
+			public const string caps_CapacityPreschool = "caps_capacitypreschool";
+			public const string caps_CapacitySASG = "caps_capacitysasg";
+			public const string caps_CapacitySchoolAge = "caps_capacityschoolage";
+			public const string caps_CapacityTotal = "caps_capacitytotal";
+			public const string caps_CapacityUnder36Months = "caps_capacityunder36months";
+			public const string caps_ChildCareActualEnrolmentId = "caps_childcareactualenrolmentid";
+			public const string Id = "caps_childcareactualenrolmentid";
+			public const string caps_ChildCareFacility = "caps_childcarefacility";
+			public const string caps_IfOtherCommentonunderutilizationreasons = "caps_ifothercommentonunderutilizationreasons";
+			public const string caps_LicensedCapacityTotal = "caps_licensedcapacitytotal";
+			public const string caps_Name = "caps_name";
+			public const string caps_Operatingatfulllicensecapacity = "caps_operatingatfulllicensecapacity";
+			public const string caps_Reasonforunderutilization = "caps_reasonforunderutilization";
+			public const string caps_SchoolYear = "caps_schoolyear";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string caps_childcareactualenrolment_ChildCareFacility_caps_childcare = "caps_childcareactualenrolment_ChildCareFacility_caps_childcare";
+			public const string caps_childcareactualenrolment_SchoolYear_edu_year = "caps_childcareactualenrolment_SchoolYear_edu_year";
+			public const string team_caps_childcareactualenrolment = "team_caps_childcareactualenrolment";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildCareActualEnrolment() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcareactualenrolment";
+		
+		public const string EntitySchemaName = "caps_ChildCareActualEnrolment";
+		
+		public const string PrimaryIdAttribute = "caps_childcareactualenrolmentid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcareactualenrolments";
+		
+		public const string EntitySetName = "caps_childcareactualenrolments";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolage")]
+		public System.Nullable<decimal> caps_Capacity30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacity30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Capacity30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_capacity30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_Capacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitymultiage")]
+		public System.Nullable<decimal> caps_CapacityMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitymultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityMultiAge");
+				this.SetAttributeValue("caps_capacitymultiage", value);
+				this.OnPropertyChanged("caps_CapacityMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschool")]
+		public System.Nullable<decimal> caps_CapacityPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitypreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityPreschool");
+				this.SetAttributeValue("caps_capacitypreschool", value);
+				this.OnPropertyChanged("caps_CapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitysasg")]
+		public System.Nullable<decimal> caps_CapacitySASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitysasg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySASG");
+				this.SetAttributeValue("caps_capacitysasg", value);
+				this.OnPropertyChanged("caps_CapacitySASG");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolage")]
+		public System.Nullable<decimal> caps_CapacitySchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySchoolAge");
+				this.SetAttributeValue("caps_capacityschoolage", value);
+				this.OnPropertyChanged("caps_CapacitySchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitytotal")]
+		public System.Nullable<decimal> caps_CapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitytotal");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36months")]
+		public System.Nullable<decimal> caps_CapacityUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityUnder36Months");
+				this.SetAttributeValue("caps_capacityunder36months", value);
+				this.OnPropertyChanged("caps_CapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareactualenrolmentid")]
+		public System.Nullable<System.Guid> caps_ChildCareActualEnrolmentId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcareactualenrolmentid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareActualEnrolmentId");
+				this.SetAttributeValue("caps_childcareactualenrolmentid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildCareActualEnrolmentId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareactualenrolmentid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildCareActualEnrolmentId = value;
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacility");
+				this.SetAttributeValue("caps_childcarefacility", value);
+				this.OnPropertyChanged("caps_ChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_ifothercommentonunderutilizationreasons")]
+		public string caps_IfOtherCommentonunderutilizationreasons
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_ifothercommentonunderutilizationreasons");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_IfOtherCommentonunderutilizationreasons");
+				this.SetAttributeValue("caps_ifothercommentonunderutilizationreasons", value);
+				this.OnPropertyChanged("caps_IfOtherCommentonunderutilizationreasons");
+			}
+		}
+		
+		/// <summary>
+		/// Licensed Capacity Total at the time of actual enrolment entry
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitytotal")]
+		public System.Nullable<decimal> caps_LicensedCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityTotal");
+				this.SetAttributeValue("caps_licensedcapacitytotal", value);
+				this.OnPropertyChanged("caps_LicensedCapacityTotal");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// Auto set based on the calculations compared to licensed capacity of child care facility
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operatingatfulllicensecapacity")]
+		public System.Nullable<bool> caps_Operatingatfulllicensecapacity
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_operatingatfulllicensecapacity");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Operatingatfulllicensecapacity");
+				this.SetAttributeValue("caps_operatingatfulllicensecapacity", value);
+				this.OnPropertyChanged("caps_Operatingatfulllicensecapacity");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_reasonforunderutilization")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Reasonforunderutilization
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_reasonforunderutilization");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Reasonforunderutilization");
+				this.SetAttributeValue("caps_reasonforunderutilization", value);
+				this.OnPropertyChanged("caps_Reasonforunderutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolYear
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schoolyear");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolYear");
+				this.SetAttributeValue("caps_schoolyear", value);
+				this.OnPropertyChanged("caps_SchoolYear");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Child Care Actual Enrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildCareActualEnrolmentState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildCareActualEnrolmentState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildCareActualEnrolmentState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Child Care Actual Enrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_Childcare> caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_Childcare>("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment");
+				this.SetRelatedEntities<CAPS.DataContext.caps_Childcare>("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment", null, value);
+				this.OnPropertyChanged("caps_childcare_CurrentChildCareActualEnrolment_caps_childcareactualenrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+			"ent")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareactualenrolment_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareactualenrolment_ChildCareFacility_caps_childcare")]
+		public CAPS.DataContext.caps_Childcare caps_childcareactualenrolment_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcareactualenrolment_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareactualenrolment_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcareactualenrolment_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcareactualenrolment_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareactualenrolment_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareactualenrolment_SchoolYear_edu_year")]
+		public CAPS.DataContext.edu_Year caps_childcareactualenrolment_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareactualenrolment_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareactualenrolment_SchoolYear_edu_year");
+				this.SetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareactualenrolment_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareactualenrolment_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareactualenrolment")]
+		public CAPS.DataContext.Team team_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcareactualenrolment", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildCareActualEnrolment(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcareactualenrolmentid"] = base.Id;
+                        break;
+                    case "caps_childcareactualenrolmentid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareCapacityReportingState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcarecapacityreporting")]
+	public partial class caps_ChildCareCapacityReporting : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_Capacity30MonthstoSchoolAge = "caps_capacity30monthstoschoolage";
+			public const string caps_Capacity30MonthstoSchoolAgeUtilization = "caps_capacity30monthstoschoolageutilization";
+			public const string caps_CapacityMultiAge = "caps_capacitymultiage";
+			public const string caps_CapacityMultiAgeUtilization = "caps_capacitymultiageutilization";
+			public const string caps_CapacityPreschool = "caps_capacitypreschool";
+			public const string caps_CapacityPreschoolUtilization = "caps_capacitypreschoolutilization";
+			public const string caps_CapacitySchoolAge = "caps_capacityschoolage";
+			public const string caps_CapacitySchoolAgeonSchoolGrounds = "caps_capacityschoolageonschoolgrounds";
+			public const string caps_CapacitySchoolAgeonSchoolGroundsUtilization = "caps_capacityschoolageonschoolgroundsutilization";
+			public const string caps_CapacitySchoolAgeUtilization = "caps_capacityschoolageutilization";
+			public const string caps_CapacityTotalUtilization = "caps_capacitytotalutilization";
+			public const string caps_CapacityUnder36Months = "caps_capacityunder36months";
+			public const string caps_CapacityUnder36MonthsUtilization = "caps_capacityunder36monthsutilization";
+			public const string caps_ChildCareCapacityReportingId = "caps_childcarecapacityreportingid";
+			public const string Id = "caps_childcarecapacityreportingid";
+			public const string caps_ChildCareFacility = "caps_childcarefacility";
+			public const string caps_LicenseCapacityTotalUtilization = "caps_licensecapacitytotalutilization";
+			public const string caps_Licensed30MonthstoSchoolAge = "caps_licensed30monthstoschoolage";
+			public const string caps_Licensed30MonthstoSchoolAgeUtilization = "caps_licensed30monthstoschoolageutilization";
+			public const string caps_LicensedMultiAge = "caps_licensedmultiage";
+			public const string caps_LicensedMultiAgeUtilization = "caps_licensedmultiageutilization";
+			public const string caps_LicensedPreschool = "caps_licensedpreschool";
+			public const string caps_LicensedPreschoolUtilization = "caps_licensedpreschoolutilization";
+			public const string caps_LicensedSchoolAge = "caps_licensedschoolage";
+			public const string caps_LicensedSchoolAgeonSchoolGrounds = "caps_licensedschoolageonschoolgrounds";
+			public const string caps_LicensedSchoolAgeonSchoolGroundsUtilization = "caps_licensedschoolageonschoolgroundsutilization";
+			public const string caps_LicensedSchoolAgeUtilization = "caps_licensedschoolageutilization";
+			public const string caps_LicensedUnder36Months = "caps_licensedunder36months";
+			public const string caps_LicensedUnder36MonthsUtilization = "caps_licensedunder36monthsutilization";
+			public const string caps_MonthstoSchoolAge_Enrolment = "caps_monthstoschoolage_enrolment";
+			public const string caps_MultiAge_Enrolment = "caps_multiage_enrolment";
+			public const string caps_Name = "caps_name";
+			public const string caps_Preschool_Enrolment = "caps_preschool_enrolment";
+			public const string caps_SchoolAge_Enrolment = "caps_schoolage_enrolment";
+			public const string caps_SchoolAgeonSchoolGrounds_Enrolment = "caps_schoolageonschoolgrounds_enrolment";
+			public const string caps_SchoolYear = "caps_schoolyear";
+			public const string caps_TotalCapacity = "caps_totalcapacity";
+			public const string caps_TotalEnrolment = "caps_totalenrolment";
+			public const string caps_TotalLicensed = "caps_totallicensed";
+			public const string caps_Under36months_Enrolment = "caps_under36months_enrolment";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string caps_childcarecapacityreporting_ChildCareFacility_caps_childcare = "caps_childcarecapacityreporting_ChildCareFacility_caps_childcare";
+			public const string caps_childcarecapacityreporting_SchoolYear_edu_year = "caps_childcarecapacityreporting_SchoolYear_edu_year";
+			public const string team_caps_childcarecapacityreporting = "team_caps_childcarecapacityreporting";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildCareCapacityReporting() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcarecapacityreporting";
+		
+		public const string EntitySchemaName = "caps_ChildCareCapacityReporting";
+		
+		public const string PrimaryIdAttribute = "caps_childcarecapacityreportingid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcarecapacityreportings";
+		
+		public const string EntitySetName = "caps_childcarecapacityreportings";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolage")]
+		public System.Nullable<decimal> caps_Capacity30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacity30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Capacity30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_capacity30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_Capacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolageutilization")]
+		public System.Nullable<decimal> caps_Capacity30MonthstoSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacity30monthstoschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitymultiage")]
+		public System.Nullable<decimal> caps_CapacityMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitymultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityMultiAge");
+				this.SetAttributeValue("caps_capacitymultiage", value);
+				this.OnPropertyChanged("caps_CapacityMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitymultiageutilization")]
+		public System.Nullable<decimal> caps_CapacityMultiAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitymultiageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschool")]
+		public System.Nullable<decimal> caps_CapacityPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitypreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityPreschool");
+				this.SetAttributeValue("caps_capacitypreschool", value);
+				this.OnPropertyChanged("caps_CapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschoolutilization")]
+		public System.Nullable<decimal> caps_CapacityPreschoolUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitypreschoolutilization");
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolage")]
+		public System.Nullable<decimal> caps_CapacitySchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySchoolAge");
+				this.SetAttributeValue("caps_capacityschoolage", value);
+				this.OnPropertyChanged("caps_CapacitySchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageonschoolgrounds")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeonSchoolGrounds
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageonschoolgrounds");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySchoolAgeonSchoolGrounds");
+				this.SetAttributeValue("caps_capacityschoolageonschoolgrounds", value);
+				this.OnPropertyChanged("caps_CapacitySchoolAgeonSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageonschoolgroundsutilization")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeonSchoolGroundsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageonschoolgroundsutilization");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageutilization")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitytotalutilization")]
+		public System.Nullable<decimal> caps_CapacityTotalUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitytotalutilization");
+			}
+		}
+		
+		/// <summary>
+		/// Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36months")]
+		public System.Nullable<decimal> caps_CapacityUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityUnder36Months");
+				this.SetAttributeValue("caps_capacityunder36months", value);
+				this.OnPropertyChanged("caps_CapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Design Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36monthsutilization")]
+		public System.Nullable<decimal> caps_CapacityUnder36MonthsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityunder36monthsutilization");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacityreportingid")]
+		public System.Nullable<System.Guid> caps_ChildCareCapacityReportingId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcarecapacityreportingid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareCapacityReportingId");
+				this.SetAttributeValue("caps_childcarecapacityreportingid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildCareCapacityReportingId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacityreportingid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildCareCapacityReportingId = value;
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacility");
+				this.SetAttributeValue("caps_childcarefacility", value);
+				this.OnPropertyChanged("caps_ChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensecapacitytotalutilization")]
+		public System.Nullable<decimal> caps_LicenseCapacityTotalUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensecapacitytotalutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensed30monthstoschoolage")]
+		public System.Nullable<decimal> caps_Licensed30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensed30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Licensed30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_licensed30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_Licensed30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensed30monthstoschoolageutilization")]
+		public System.Nullable<decimal> caps_Licensed30MonthstoSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensed30monthstoschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedmultiage")]
+		public System.Nullable<decimal> caps_LicensedMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedmultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedMultiAge");
+				this.SetAttributeValue("caps_licensedmultiage", value);
+				this.OnPropertyChanged("caps_LicensedMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedmultiageutilization")]
+		public System.Nullable<decimal> caps_LicensedMultiAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedmultiageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedpreschool")]
+		public System.Nullable<decimal> caps_LicensedPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedpreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedPreschool");
+				this.SetAttributeValue("caps_licensedpreschool", value);
+				this.OnPropertyChanged("caps_LicensedPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedpreschoolutilization")]
+		public System.Nullable<decimal> caps_LicensedPreschoolUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedpreschoolutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolage")]
+		public System.Nullable<decimal> caps_LicensedSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedSchoolAge");
+				this.SetAttributeValue("caps_licensedschoolage", value);
+				this.OnPropertyChanged("caps_LicensedSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolageonschoolgrounds")]
+		public System.Nullable<decimal> caps_LicensedSchoolAgeonSchoolGrounds
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolageonschoolgrounds");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedSchoolAgeonSchoolGrounds");
+				this.SetAttributeValue("caps_licensedschoolageonschoolgrounds", value);
+				this.OnPropertyChanged("caps_LicensedSchoolAgeonSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolageonschoolgroundsutilization")]
+		public System.Nullable<decimal> caps_LicensedSchoolAgeonSchoolGroundsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolageonschoolgroundsutilization");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedschoolageutilization")]
+		public System.Nullable<decimal> caps_LicensedSchoolAgeUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedschoolageutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedunder36months")]
+		public System.Nullable<decimal> caps_LicensedUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedUnder36Months");
+				this.SetAttributeValue("caps_licensedunder36months", value);
+				this.OnPropertyChanged("caps_LicensedUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// % Utilization percentage based on Enrolment / Licensed Capacity
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedunder36monthsutilization")]
+		public System.Nullable<decimal> caps_LicensedUnder36MonthsUtilization
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedunder36monthsutilization");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_monthstoschoolage_enrolment")]
+		public System.Nullable<decimal> caps_MonthstoSchoolAge_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_monthstoschoolage_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MonthstoSchoolAge_Enrolment");
+				this.SetAttributeValue("caps_monthstoschoolage_enrolment", value);
+				this.OnPropertyChanged("caps_MonthstoSchoolAge_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_multiage_enrolment")]
+		public System.Nullable<decimal> caps_MultiAge_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_multiage_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MultiAge_Enrolment");
+				this.SetAttributeValue("caps_multiage_enrolment", value);
+				this.OnPropertyChanged("caps_MultiAge_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_preschool_enrolment")]
+		public System.Nullable<decimal> caps_Preschool_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_preschool_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Preschool_Enrolment");
+				this.SetAttributeValue("caps_preschool_enrolment", value);
+				this.OnPropertyChanged("caps_Preschool_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolage_enrolment")]
+		public System.Nullable<decimal> caps_SchoolAge_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schoolage_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolAge_Enrolment");
+				this.SetAttributeValue("caps_schoolage_enrolment", value);
+				this.OnPropertyChanged("caps_SchoolAge_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolageonschoolgrounds_enrolment")]
+		public System.Nullable<decimal> caps_SchoolAgeonSchoolGrounds_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schoolageonschoolgrounds_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolAgeonSchoolGrounds_Enrolment");
+				this.SetAttributeValue("caps_schoolageonschoolgrounds_enrolment", value);
+				this.OnPropertyChanged("caps_SchoolAgeonSchoolGrounds_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolYear
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schoolyear");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolYear");
+				this.SetAttributeValue("caps_schoolyear", value);
+				this.OnPropertyChanged("caps_SchoolYear");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalcapacity")]
+		public System.Nullable<decimal> caps_TotalCapacity
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalcapacity");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalenrolment")]
+		public System.Nullable<decimal> caps_TotalEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalenrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totallicensed")]
+		public System.Nullable<decimal> caps_TotalLicensed
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totallicensed");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_under36months_enrolment")]
+		public System.Nullable<decimal> caps_Under36months_Enrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_under36months_enrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Under36months_Enrolment");
+				this.SetAttributeValue("caps_under36months_enrolment", value);
+				this.OnPropertyChanged("caps_Under36months_Enrolment");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Child Care Capacity Reporting
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildCareCapacityReportingState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildCareCapacityReportingState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildCareCapacityReportingState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Child Care Capacity Reporting
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarecapacityreporting_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare")]
+		public CAPS.DataContext.caps_Childcare caps_childcarecapacityreporting_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcarecapacityreporting_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarecapacityreporting_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarecapacityreporting_SchoolYear_edu_year")]
+		public CAPS.DataContext.edu_Year caps_childcarecapacityreporting_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcarecapacityreporting_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarecapacityreporting_SchoolYear_edu_year");
+				this.SetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcarecapacityreporting_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcarecapacityreporting_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcarecapacityreporting
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcarecapacityreporting")]
+		public CAPS.DataContext.Team team_caps_childcarecapacityreporting
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcarecapacityreporting", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildCareCapacityReporting(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcarecapacityreportingid"] = base.Id;
+                        break;
+                    case "caps_childcarecapacityreportingid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildcareConstructionTypeState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// Childcare Construction Type
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcareconstructiontype")]
+	public partial class caps_ChildcareConstructionType : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_ChildcareConstructionTypeId = "caps_childcareconstructiontypeid";
+			public const string Id = "caps_childcareconstructiontypeid";
+			public const string caps_Fundable = "caps_fundable";
+			public const string caps_Name = "caps_name";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string team_caps_childcareconstructiontype = "team_caps_childcareconstructiontype";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildcareConstructionType() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcareconstructiontype";
+		
+		public const string EntitySchemaName = "caps_ChildcareConstructionType";
+		
+		public const string PrimaryIdAttribute = "caps_childcareconstructiontypeid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcareconstructiontypes";
+		
+		public const string EntitySetName = "caps_childcareconstructiontypes";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontypeid")]
+		public System.Nullable<System.Guid> caps_ChildcareConstructionTypeId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcareconstructiontypeid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildcareConstructionTypeId");
+				this.SetAttributeValue("caps_childcareconstructiontypeid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildcareConstructionTypeId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontypeid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildcareConstructionTypeId = value;
+			}
+		}
+		
+		/// <summary>
+		/// If it is fundable, SD users are able to select the child care construction type on Project Request form. Otherwise, the type will be hidden.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_fundable")]
+		public System.Nullable<bool> caps_Fundable
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_fundable");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Fundable");
+				this.SetAttributeValue("caps_fundable", value);
+				this.OnPropertyChanged("caps_Fundable");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Childcare Construction Type
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildcareConstructionTypeState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildcareConstructionTypeState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildcareConstructionTypeState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Childcare Construction Type
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcare_ChildCareFacilityType_caps_chil
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_ChildCareFacilityType_caps_chil")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_Childcare> caps_childcare_ChildCareFacilityType_caps_chil
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_Childcare>("caps_childcare_ChildCareFacilityType_caps_chil", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_ChildCareFacilityType_caps_chil");
+				this.SetRelatedEntities<CAPS.DataContext.caps_Childcare>("caps_childcare_ChildCareFacilityType_caps_chil", null, value);
+				this.OnPropertyChanged("caps_childcare_ChildCareFacilityType_caps_chil");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontype
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+			"e")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontype
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_project_ChildCareConstructionType_caps_ch
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_project_ChildCareConstructionType_caps_ch")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_Project> caps_project_ChildCareConstructionType_caps_ch
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_Project>("caps_project_ChildCareConstructionType_caps_ch", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_project_ChildCareConstructionType_caps_ch");
+				this.SetRelatedEntities<CAPS.DataContext.caps_Project>("caps_project_ChildCareConstructionType_caps_ch", null, value);
+				this.OnPropertyChanged("caps_project_ChildCareConstructionType_caps_ch");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_projecthistory_ChildCareConstructionType_
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecthistory_ChildCareConstructionType_")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ProjectHistory> caps_projecthistory_ChildCareConstructionType_
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ProjectHistory>("caps_projecthistory_ChildCareConstructionType_", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecthistory_ChildCareConstructionType_");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectHistory>("caps_projecthistory_ChildCareConstructionType_", null, value);
+				this.OnPropertyChanged("caps_projecthistory_ChildCareConstructionType_");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_projecttracker_ChildCareConstructionType_
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecttracker_ChildCareConstructionType_")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ProjectTracker> caps_projecttracker_ChildCareConstructionType_
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ProjectTracker>("caps_projecttracker_ChildCareConstructionType_", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecttracker_ChildCareConstructionType_");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectTracker>("caps_projecttracker_ChildCareConstructionType_", null, value);
+				this.OnPropertyChanged("caps_projecttracker_ChildCareConstructionType_");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcareconstructiontype
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareconstructiontype")]
+		public CAPS.DataContext.Team team_caps_childcareconstructiontype
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcareconstructiontype", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildcareConstructionType(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcareconstructiontypeid"] = base.Id;
+                        break;
+                    case "caps_childcareconstructiontypeid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareEnrolmentProjectionState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// Enrolment Projections for Child Care.
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcareenrolmentprojection")]
+	public partial class caps_ChildCareEnrolmentProjection : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_ChildCareEnrolmentProjectionId = "caps_childcareenrolmentprojectionid";
+			public const string Id = "caps_childcareenrolmentprojectionid";
+			public const string caps_ChildCareFacility = "caps_childcarefacility";
+			public const string caps_CycleCalendarYear = "caps_cyclecalendaryear";
+			public const string caps_MarkedAsSubmitted = "caps_markedassubmitted";
+			public const string caps_MonthstoSchoolAge = "caps_monthstoschoolage";
+			public const string caps_MultiAge = "caps_multiage";
+			public const string caps_Name = "caps_name";
+			public const string caps_Preschool = "caps_preschool";
+			public const string caps_SchoolAge = "caps_schoolage";
+			public const string caps_SchoolAgeonSchoolGrounds = "caps_schoolageonschoolgrounds";
+			public const string caps_SchoolYear = "caps_schoolyear";
+			public const string caps_TotalEnrolmentProjection = "caps_totalenrolmentprojection";
+			public const string caps_Under36Months = "caps_under36months";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare = "caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare";
+			public const string caps_childcareenrolmentprojection_CycleCalendarYear_edu_year = "caps_childcareenrolmentprojection_CycleCalendarYear_edu_year";
+			public const string caps_childcareenrolmentprojection_SchoolYear_edu_year = "caps_childcareenrolmentprojection_SchoolYear_edu_year";
+			public const string team_caps_childcareenrolmentprojection = "team_caps_childcareenrolmentprojection";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildCareEnrolmentProjection() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcareenrolmentprojection";
+		
+		public const string EntitySchemaName = "caps_ChildCareEnrolmentProjection";
+		
+		public const string PrimaryIdAttribute = "caps_childcareenrolmentprojectionid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcareenrolmentprojections";
+		
+		public const string EntitySetName = "caps_childcareenrolmentprojections";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareenrolmentprojectionid")]
+		public System.Nullable<System.Guid> caps_ChildCareEnrolmentProjectionId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcareenrolmentprojectionid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareEnrolmentProjectionId");
+				this.SetAttributeValue("caps_childcareenrolmentprojectionid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildCareEnrolmentProjectionId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareenrolmentprojectionid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildCareEnrolmentProjectionId = value;
+			}
+		}
+		
+		/// <summary>
+		/// Lookup to the Child Care Facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacility");
+				this.SetAttributeValue("caps_childcarefacility", value);
+				this.OnPropertyChanged("caps_ChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// Lookup to Calendar Year.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_cyclecalendaryear")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_CycleCalendarYear
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_cyclecalendaryear");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CycleCalendarYear");
+				this.SetAttributeValue("caps_cyclecalendaryear", value);
+				this.OnPropertyChanged("caps_CycleCalendarYear");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_markedassubmitted")]
+		public System.Nullable<bool> caps_MarkedAsSubmitted
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_markedassubmitted");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MarkedAsSubmitted");
+				this.SetAttributeValue("caps_markedassubmitted", value);
+				this.OnPropertyChanged("caps_MarkedAsSubmitted");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_monthstoschoolage")]
+		public System.Nullable<decimal> caps_MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MonthstoSchoolAge");
+				this.SetAttributeValue("caps_monthstoschoolage", value);
+				this.OnPropertyChanged("caps_MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_multiage")]
+		public System.Nullable<decimal> caps_MultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_multiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MultiAge");
+				this.SetAttributeValue("caps_multiage", value);
+				this.OnPropertyChanged("caps_MultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_preschool")]
+		public System.Nullable<decimal> caps_Preschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_preschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Preschool");
+				this.SetAttributeValue("caps_preschool", value);
+				this.OnPropertyChanged("caps_Preschool");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolage")]
+		public System.Nullable<decimal> caps_SchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolAge");
+				this.SetAttributeValue("caps_schoolage", value);
+				this.OnPropertyChanged("caps_SchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolageonschoolgrounds")]
+		public System.Nullable<decimal> caps_SchoolAgeonSchoolGrounds
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_schoolageonschoolgrounds");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolAgeonSchoolGrounds");
+				this.SetAttributeValue("caps_schoolageonschoolgrounds", value);
+				this.OnPropertyChanged("caps_SchoolAgeonSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// Lookup to School year.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolYear
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schoolyear");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolYear");
+				this.SetAttributeValue("caps_schoolyear", value);
+				this.OnPropertyChanged("caps_SchoolYear");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalenrolmentprojection")]
+		public System.Nullable<decimal> caps_TotalEnrolmentProjection
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalenrolmentprojection");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_under36months")]
+		public System.Nullable<decimal> caps_Under36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_under36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Under36Months");
+				this.SetAttributeValue("caps_under36months", value);
+				this.OnPropertyChanged("caps_Under36Months");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Child Care Enrolment Projection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildCareEnrolmentProjectionState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildCareEnrolmentProjectionState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildCareEnrolmentProjectionState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Child Care Enrolment Projection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare")]
+		public CAPS.DataContext.caps_Childcare caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareenrolmentprojection_CycleCalendarYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_cyclecalendaryear")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year")]
+		public CAPS.DataContext.edu_Year caps_childcareenrolmentprojection_CycleCalendarYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year");
+				this.SetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareenrolmentprojection_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_SchoolYear_edu_year")]
+		public CAPS.DataContext.edu_Year caps_childcareenrolmentprojection_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareenrolmentprojection_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_SchoolYear_edu_year");
+				this.SetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcareenrolmentprojection_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcareenrolmentprojection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareenrolmentprojection")]
+		public CAPS.DataContext.Team team_caps_childcareenrolmentprojection
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcareenrolmentprojection", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildCareEnrolmentProjection(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcareenrolmentprojectionid"] = base.Id;
+                        break;
+                    case "caps_childcareenrolmentprojectionid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareFacilityHistoryState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcarefacilityhistory")]
+	public partial class caps_ChildCareFacilityHistory : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_AffordabilityInitiatives = "caps_affordabilityinitiatives";
+			public const string caps_Atleast4hoursMF = "caps_atleast4hoursmf";
+			public const string caps_Capacity30MonthstoSchoolAge = "caps_capacity30monthstoschoolage";
+			public const string caps_CapacityMultiAge = "caps_capacitymultiage";
+			public const string caps_CapacityPreschool = "caps_capacitypreschool";
+			public const string caps_CapacitySchoolAge = "caps_capacityschoolage";
+			public const string caps_CapacitySchoolAgeSchoolGrounds = "caps_capacityschoolageschoolgrounds";
+			public const string caps_CapacityUnder36Months = "caps_capacityunder36months";
+			public const string caps_ChildCareActualEnrolment = "caps_childcareactualenrolment";
+			public const string caps_ChildCareFacility = "caps_childcarefacility";
+			public const string caps_ChildCareFacilityHistoryId = "caps_childcarefacilityhistoryid";
+			public const string Id = "caps_childcarefacilityhistoryid";
+			public const string caps_ChildCareFacilityType = "caps_childcarefacilitytype";
+			public const string caps_ClassroomsUsedElementary = "caps_classroomsusedelementary";
+			public const string caps_ClassroomsUsedKindergarten = "caps_classroomsusedkindergarten";
+			public const string caps_ClassroomsUsedSecondary = "caps_classroomsusedsecondary";
+			public const string caps_ClassroomsUsedTotal = "caps_classroomsusedtotal";
+			public const string caps_Comments = "caps_comments";
+			public const string caps_HealthAuthority = "caps_healthauthority";
+			public const string caps_LicensedCapacity30MonthstoSchoolAge = "caps_licensedcapacity30monthstoschoolage";
+			public const string caps_LicensedCapacityMultiAge = "caps_licensedcapacitymultiage";
+			public const string caps_LicensedCapacityPreschool = "caps_licensedcapacitypreschool";
+			public const string caps_LicensedCapacitySASG = "caps_licensedcapacitysasg";
+			public const string caps_LicensedCapacitySchoolAge = "caps_licensedcapacityschoolage";
+			public const string caps_LicensedCapacityTotal = "caps_licensedcapacitytotal";
+			public const string caps_LicensedCapacityUnder36Months = "caps_licensedcapacityunder36months";
+			public const string caps_LicenseIssueDate = "caps_licenseissuedate";
+			public const string caps_LicenseNumber = "caps_licensenumber";
+			public const string caps_LocationType = "caps_locationtype";
+			public const string caps_MailingAddress = "caps_mailingaddress";
+			public const string caps_Name = "caps_name";
+			public const string caps_NewSpaces = "caps_newspaces";
+			public const string caps_NLC = "caps_nlc";
+			public const string caps_OpenDate = "caps_opendate";
+			public const string caps_Operator = "caps_operator";
+			public const string caps_OtherAffordabilityInitiatives = "caps_otheraffordabilityinitiatives";
+			public const string caps_Programs = "caps_programs";
+			public const string caps_SameAddressasSchoolFacility = "caps_sameaddressasschoolfacility";
+			public const string caps_Schoolclosures = "caps_schoolclosures";
+			public const string caps_SchoolFacility = "caps_schoolfacility";
+			public const string caps_SchoolYear = "caps_schoolyear";
+			public const string caps_SDAssetNumber = "caps_sdassetnumber";
+			public const string caps_SpacesUsed = "caps_spacesused";
+			public const string caps_StatHolidays = "caps_statholidays";
+			public const string caps_StreetAddress = "caps_streetaddress";
+			public const string caps_TotalCapacity = "caps_totalcapacity";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolment = "caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+		"ent";
+			public const string caps_childcarefacilityhistory_ChildCareFacility_caps_childcare = "caps_childcarefacilityhistory_ChildCareFacility_caps_childcare";
+			public const string caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontype = "caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+		"e";
+			public const string caps_childcarefacilityhistory_SchoolFacility_caps_facility = "caps_childcarefacilityhistory_SchoolFacility_caps_facility";
+			public const string caps_childcarefacilityhistory_SchoolYear_edu_year = "caps_childcarefacilityhistory_SchoolYear_edu_year";
+			public const string team_caps_childcarefacilityhistory = "team_caps_childcarefacilityhistory";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildCareFacilityHistory() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcarefacilityhistory";
+		
+		public const string EntitySchemaName = "caps_ChildCareFacilityHistory";
+		
+		public const string PrimaryIdAttribute = "caps_childcarefacilityhistoryid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcarefacilityhistories";
+		
+		public const string EntitySetName = "caps_childcarefacilityhistories";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_affordabilityinitiatives")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_AffordabilityInitiatives
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_affordabilityinitiatives");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AffordabilityInitiatives");
+				this.SetAttributeValue("caps_affordabilityinitiatives", value);
+				this.OnPropertyChanged("caps_AffordabilityInitiatives");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_atleast4hoursmf")]
+		public System.Nullable<bool> caps_Atleast4hoursMF
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_atleast4hoursmf");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Atleast4hoursMF");
+				this.SetAttributeValue("caps_atleast4hoursmf", value);
+				this.OnPropertyChanged("caps_Atleast4hoursMF");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacity30monthstoschoolage")]
+		public System.Nullable<decimal> caps_Capacity30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacity30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Capacity30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_capacity30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_Capacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitymultiage")]
+		public System.Nullable<decimal> caps_CapacityMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitymultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityMultiAge");
+				this.SetAttributeValue("caps_capacitymultiage", value);
+				this.OnPropertyChanged("caps_CapacityMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacitypreschool")]
+		public System.Nullable<decimal> caps_CapacityPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacitypreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityPreschool");
+				this.SetAttributeValue("caps_capacitypreschool", value);
+				this.OnPropertyChanged("caps_CapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolage")]
+		public System.Nullable<decimal> caps_CapacitySchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySchoolAge");
+				this.SetAttributeValue("caps_capacityschoolage", value);
+				this.OnPropertyChanged("caps_CapacitySchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityschoolageschoolgrounds")]
+		public System.Nullable<decimal> caps_CapacitySchoolAgeSchoolGrounds
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityschoolageschoolgrounds");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacitySchoolAgeSchoolGrounds");
+				this.SetAttributeValue("caps_capacityschoolageschoolgrounds", value);
+				this.OnPropertyChanged("caps_CapacitySchoolAgeSchoolGrounds");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_capacityunder36months")]
+		public System.Nullable<decimal> caps_CapacityUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_capacityunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_CapacityUnder36Months");
+				this.SetAttributeValue("caps_capacityunder36months", value);
+				this.OnPropertyChanged("caps_CapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// Child Care Actual Enrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareactualenrolment")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareActualEnrolment
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcareactualenrolment");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareActualEnrolment");
+				this.SetAttributeValue("caps_childcareactualenrolment", value);
+				this.OnPropertyChanged("caps_ChildCareActualEnrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacility");
+				this.SetAttributeValue("caps_childcarefacility", value);
+				this.OnPropertyChanged("caps_ChildCareFacility");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacilityhistoryid")]
+		public System.Nullable<System.Guid> caps_ChildCareFacilityHistoryId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcarefacilityhistoryid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacilityHistoryId");
+				this.SetAttributeValue("caps_childcarefacilityhistoryid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildCareFacilityHistoryId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacilityhistoryid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildCareFacilityHistoryId = value;
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacilitytype")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_ChildCareFacilityType
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_childcarefacilitytype");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareFacilityType");
+				this.SetAttributeValue("caps_childcarefacilitytype", value);
+				this.OnPropertyChanged("caps_ChildCareFacilityType");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedelementary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedElementary");
+				this.SetAttributeValue("caps_classroomsusedelementary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedElementary");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedkindergarten")]
+		public System.Nullable<decimal> caps_ClassroomsUsedKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedkindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedKindergarten");
+				this.SetAttributeValue("caps_classroomsusedkindergarten", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedsecondary")]
+		public System.Nullable<decimal> caps_ClassroomsUsedSecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedsecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedSecondary");
+				this.SetAttributeValue("caps_classroomsusedsecondary", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedSecondary");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_classroomsusedtotal")]
+		public System.Nullable<decimal> caps_ClassroomsUsedTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_classroomsusedtotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ClassroomsUsedTotal");
+				this.SetAttributeValue("caps_classroomsusedtotal", value);
+				this.OnPropertyChanged("caps_ClassroomsUsedTotal");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_comments")]
+		public string caps_Comments
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_comments");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Comments");
+				this.SetAttributeValue("caps_comments", value);
+				this.OnPropertyChanged("caps_Comments");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_healthauthority")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_HealthAuthority
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_healthauthority");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_HealthAuthority");
+				this.SetAttributeValue("caps_healthauthority", value);
+				this.OnPropertyChanged("caps_HealthAuthority");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacity30monthstoschoolage")]
+		public System.Nullable<decimal> caps_LicensedCapacity30MonthstoSchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacity30monthstoschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacity30MonthstoSchoolAge");
+				this.SetAttributeValue("caps_licensedcapacity30monthstoschoolage", value);
+				this.OnPropertyChanged("caps_LicensedCapacity30MonthstoSchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitymultiage")]
+		public System.Nullable<decimal> caps_LicensedCapacityMultiAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitymultiage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityMultiAge");
+				this.SetAttributeValue("caps_licensedcapacitymultiage", value);
+				this.OnPropertyChanged("caps_LicensedCapacityMultiAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitypreschool")]
+		public System.Nullable<decimal> caps_LicensedCapacityPreschool
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitypreschool");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityPreschool");
+				this.SetAttributeValue("caps_licensedcapacitypreschool", value);
+				this.OnPropertyChanged("caps_LicensedCapacityPreschool");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitysasg")]
+		public System.Nullable<decimal> caps_LicensedCapacitySASG
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitysasg");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacitySASG");
+				this.SetAttributeValue("caps_licensedcapacitysasg", value);
+				this.OnPropertyChanged("caps_LicensedCapacitySASG");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacityschoolage")]
+		public System.Nullable<decimal> caps_LicensedCapacitySchoolAge
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacityschoolage");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacitySchoolAge");
+				this.SetAttributeValue("caps_licensedcapacityschoolage", value);
+				this.OnPropertyChanged("caps_LicensedCapacitySchoolAge");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacitytotal")]
+		public System.Nullable<decimal> caps_LicensedCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacitytotal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityTotal");
+				this.SetAttributeValue("caps_licensedcapacitytotal", value);
+				this.OnPropertyChanged("caps_LicensedCapacityTotal");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensedcapacityunder36months")]
+		public System.Nullable<decimal> caps_LicensedCapacityUnder36Months
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_licensedcapacityunder36months");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicensedCapacityUnder36Months");
+				this.SetAttributeValue("caps_licensedcapacityunder36months", value);
+				this.OnPropertyChanged("caps_LicensedCapacityUnder36Months");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licenseissuedate")]
+		public System.Nullable<System.DateTime> caps_LicenseIssueDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_licenseissuedate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicenseIssueDate");
+				this.SetAttributeValue("caps_licenseissuedate", value);
+				this.OnPropertyChanged("caps_LicenseIssueDate");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_licensenumber")]
+		public string caps_LicenseNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_licensenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LicenseNumber");
+				this.SetAttributeValue("caps_licensenumber", value);
+				this.OnPropertyChanged("caps_LicenseNumber");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_locationtype")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_LocationType
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_locationtype");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_LocationType");
+				this.SetAttributeValue("caps_locationtype", value);
+				this.OnPropertyChanged("caps_LocationType");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_mailingaddress")]
+		public string caps_MailingAddress
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_mailingaddress");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_MailingAddress");
+				this.SetAttributeValue("caps_mailingaddress", value);
+				this.OnPropertyChanged("caps_MailingAddress");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_newspaces")]
+		public System.Nullable<bool> caps_NewSpaces
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_newspaces");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NewSpaces");
+				this.SetAttributeValue("caps_newspaces", value);
+				this.OnPropertyChanged("caps_NewSpaces");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_nlc")]
+		public System.Nullable<bool> caps_NLC
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_nlc");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_NLC");
+				this.SetAttributeValue("caps_nlc", value);
+				this.OnPropertyChanged("caps_NLC");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_opendate")]
+		public System.Nullable<System.DateTime> caps_OpenDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_opendate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_OpenDate");
+				this.SetAttributeValue("caps_opendate", value);
+				this.OnPropertyChanged("caps_OpenDate");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_operator")]
+		public string caps_Operator
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_operator");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Operator");
+				this.SetAttributeValue("caps_operator", value);
+				this.OnPropertyChanged("caps_Operator");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_otheraffordabilityinitiatives")]
+		public string caps_OtherAffordabilityInitiatives
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_otheraffordabilityinitiatives");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_OtherAffordabilityInitiatives");
+				this.SetAttributeValue("caps_otheraffordabilityinitiatives", value);
+				this.OnPropertyChanged("caps_OtherAffordabilityInitiatives");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_programs")]
+		public Microsoft.Xrm.Sdk.OptionSetValueCollection caps_Programs
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValueCollection>("caps_programs");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Programs");
+				this.SetAttributeValue("caps_programs", value);
+				this.OnPropertyChanged("caps_Programs");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sameaddressasschoolfacility")]
+		public System.Nullable<bool> caps_SameAddressasSchoolFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_sameaddressasschoolfacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SameAddressasSchoolFacility");
+				this.SetAttributeValue("caps_sameaddressasschoolfacility", value);
+				this.OnPropertyChanged("caps_SameAddressasSchoolFacility");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolclosures")]
+		public System.Nullable<bool> caps_Schoolclosures
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_schoolclosures");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Schoolclosures");
+				this.SetAttributeValue("caps_schoolclosures", value);
+				this.OnPropertyChanged("caps_Schoolclosures");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolfacility")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolFacility
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schoolfacility");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolFacility");
+				this.SetAttributeValue("caps_schoolfacility", value);
+				this.OnPropertyChanged("caps_SchoolFacility");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolYear
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schoolyear");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolYear");
+				this.SetAttributeValue("caps_schoolyear", value);
+				this.OnPropertyChanged("caps_SchoolYear");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_sdassetnumber")]
+		public string caps_SDAssetNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_sdassetnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SDAssetNumber");
+				this.SetAttributeValue("caps_sdassetnumber", value);
+				this.OnPropertyChanged("caps_SDAssetNumber");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_spacesused")]
+		public System.Nullable<int> caps_SpacesUsed
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_spacesused");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SpacesUsed");
+				this.SetAttributeValue("caps_spacesused", value);
+				this.OnPropertyChanged("caps_SpacesUsed");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_statholidays")]
+		public System.Nullable<bool> caps_StatHolidays
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<bool>>("caps_statholidays");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_StatHolidays");
+				this.SetAttributeValue("caps_statholidays", value);
+				this.OnPropertyChanged("caps_StatHolidays");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_streetaddress")]
+		public string caps_StreetAddress
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_streetaddress");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_StreetAddress");
+				this.SetAttributeValue("caps_streetaddress", value);
+				this.OnPropertyChanged("caps_StreetAddress");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_totalcapacity")]
+		public System.Nullable<decimal> caps_TotalCapacity
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_totalcapacity");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_TotalCapacity");
+				this.SetAttributeValue("caps_totalcapacity", value);
+				this.OnPropertyChanged("caps_TotalCapacity");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Child Care Facility History
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildCareFacilityHistoryState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildCareFacilityHistoryState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildCareFacilityHistoryState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Child Care Facility History
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareactualenrolment")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+			"ent")]
+		public CAPS.DataContext.caps_ChildCareActualEnrolment caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareActualEnrolment_caps_childcareactualenrolm" +
+						"ent");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarefacilityhistory_ChildCareFacility_caps_childcare
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare")]
+		public CAPS.DataContext.caps_Childcare caps_childcarefacilityhistory_ChildCareFacility_caps_childcare
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareFacility_caps_childcare");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontype
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarefacilitytype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+			"e")]
+		public CAPS.DataContext.caps_ChildcareConstructionType caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontype
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_ChildCareFacilityType_caps_childcareconstructiontyp" +
+						"e");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarefacilityhistory_SchoolFacility_caps_facility
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolfacility")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_SchoolFacility_caps_facility")]
+		public CAPS.DataContext.caps_Facility caps_childcarefacilityhistory_SchoolFacility_caps_facility
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Facility>("caps_childcarefacilityhistory_SchoolFacility_caps_facility", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_SchoolFacility_caps_facility");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Facility>("caps_childcarefacilityhistory_SchoolFacility_caps_facility", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_SchoolFacility_caps_facility");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcarefacilityhistory_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schoolyear")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_SchoolYear_edu_year")]
+		public CAPS.DataContext.edu_Year caps_childcarefacilityhistory_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcarefacilityhistory_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_SchoolYear_edu_year");
+				this.SetRelatedEntity<CAPS.DataContext.edu_Year>("caps_childcarefacilityhistory_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcarefacilityhistory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcarefacilityhistory")]
+		public CAPS.DataContext.Team team_caps_childcarefacilityhistory
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcarefacilityhistory", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildCareFacilityHistory(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcarefacilityhistoryid"] = base.Id;
+                        break;
+                    case "caps_childcarefacilityhistoryid":
+                        var id = (System.Nullable<System.Guid>) value;
+                        if(id == null){ continue; }
+                        base.Id = id.Value;
+                        Attributes[name] = base.Id;
+                        break;
+                    case "formattedvalues":
+                        // Add Support for FormattedValues
+                        FormattedValues.AddRange((Microsoft.Xrm.Sdk.FormattedValueCollection)value);
+                        break;
+                    default:
+                        Attributes[name] = value;
+                        break;
+                }
+            }
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareNeedsAssessmentState
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Active = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		Inactive = 1,
+	}
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	[System.Runtime.Serialization.DataContractAttribute()]
+	[Microsoft.Xrm.Sdk.Client.EntityLogicalNameAttribute("caps_childcareneedsassessment")]
+	public partial class caps_ChildCareNeedsAssessment : Microsoft.Xrm.Sdk.Entity, System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	{
+		
+		public static class Fields
+		{
+			public const string caps_AssessmentDate = "caps_assessmentdate";
+			public const string caps_ChildCareNeedsAssessmentId = "caps_childcareneedsassessmentid";
+			public const string Id = "caps_childcareneedsassessmentid";
+			public const string caps_Description = "caps_description";
+			public const string caps_File = "caps_file";
+			public const string caps_File_Name = "caps_file_name";
+			public const string caps_Municipality = "caps_municipality";
+			public const string caps_Name = "caps_name";
+			public const string caps_RegionalDistrict = "caps_regionaldistrict";
+			public const string caps_SchoolDistrict = "caps_schooldistrict";
+			public const string CreatedBy = "createdby";
+			public const string CreatedOn = "createdon";
+			public const string CreatedOnBehalfBy = "createdonbehalfby";
+			public const string ImportSequenceNumber = "importsequencenumber";
+			public const string ModifiedBy = "modifiedby";
+			public const string ModifiedOn = "modifiedon";
+			public const string ModifiedOnBehalfBy = "modifiedonbehalfby";
+			public const string OverriddenCreatedOn = "overriddencreatedon";
+			public const string OwnerId = "ownerid";
+			public const string OwningBusinessUnit = "owningbusinessunit";
+			public const string OwningTeam = "owningteam";
+			public const string OwningUser = "owninguser";
+			public const string StateCode = "statecode";
+			public const string StatusCode = "statuscode";
+			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
+			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
+			public const string VersionNumber = "versionnumber";
+			public const string caps_childcareneedsassessment_SchoolDistrict_e = "caps_childcareneedsassessment_SchoolDistrict_e";
+			public const string team_caps_childcareneedsassessment = "team_caps_childcareneedsassessment";
+		}
+		
+		/// <summary>
+		/// Default Constructor.
+		/// </summary>
+		public caps_ChildCareNeedsAssessment() : 
+				base(EntityLogicalName)
+		{
+		}
+		
+		public const string EntityLogicalName = "caps_childcareneedsassessment";
+		
+		public const string EntitySchemaName = "caps_ChildCareNeedsAssessment";
+		
+		public const string PrimaryIdAttribute = "caps_childcareneedsassessmentid";
+		
+		public const string PrimaryNameAttribute = "caps_name";
+		
+		public const string EntityLogicalCollectionName = "caps_childcareneedsassessments";
+		
+		public const string EntitySetName = "caps_childcareneedsassessments";
+		
+		public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+		
+		public event System.ComponentModel.PropertyChangingEventHandler PropertyChanging;
+		
+		private void OnPropertyChanged(string propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void OnPropertyChanging(string propertyName)
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, new System.ComponentModel.PropertyChangingEventArgs(propertyName));
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_assessmentdate")]
+		public System.Nullable<System.DateTime> caps_AssessmentDate
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("caps_assessmentdate");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_AssessmentDate");
+				this.SetAttributeValue("caps_assessmentdate", value);
+				this.OnPropertyChanged("caps_AssessmentDate");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for entity instances
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareneedsassessmentid")]
+		public System.Nullable<System.Guid> caps_ChildCareNeedsAssessmentId
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.Guid>>("caps_childcareneedsassessmentid");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareNeedsAssessmentId");
+				this.SetAttributeValue("caps_childcareneedsassessmentid", value);
+				if (value.HasValue)
+				{
+					base.Id = value.Value;
+				}
+				else
+				{
+					base.Id = System.Guid.Empty;
+				}
+				this.OnPropertyChanged("caps_ChildCareNeedsAssessmentId");
+			}
+		}
+		
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareneedsassessmentid")]
+		public override System.Guid Id
+		{
+			get
+			{
+				return base.Id;
+			}
+			set
+			{
+				this.caps_ChildCareNeedsAssessmentId = value;
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_description")]
+		public string caps_Description
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_description");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Description");
+				this.SetAttributeValue("caps_description", value);
+				this.OnPropertyChanged("caps_Description");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_file")]
+		public object caps_File
+		{
+			get
+			{
+				return this.GetAttributeValue<object>("caps_file");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_file_name")]
+		public string caps_File_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_file_name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_municipality")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_Municipality
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_municipality");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Municipality");
+				this.SetAttributeValue("caps_municipality", value);
+				this.OnPropertyChanged("caps_Municipality");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_name")]
+		public string caps_Name
+		{
+			get
+			{
+				return this.GetAttributeValue<string>("caps_name");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Name");
+				this.SetAttributeValue("caps_name", value);
+				this.OnPropertyChanged("caps_Name");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_regionaldistrict")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_RegionalDistrict
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_regionaldistrict");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_RegionalDistrict");
+				this.SetAttributeValue("caps_regionaldistrict", value);
+				this.OnPropertyChanged("caps_RegionalDistrict");
+			}
+		}
+		
+		/// <summary>
+		/// 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schooldistrict")]
+		public Microsoft.Xrm.Sdk.EntityReference caps_SchoolDistrict
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("caps_schooldistrict");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_SchoolDistrict");
+				this.SetAttributeValue("caps_schooldistrict", value);
+				this.OnPropertyChanged("caps_SchoolDistrict");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdon")]
+		public System.Nullable<System.DateTime> CreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("createdon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who created the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference CreatedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("createdonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("CreatedOnBehalfBy");
+				this.SetAttributeValue("createdonbehalfby", value);
+				this.OnPropertyChanged("CreatedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Sequence number of the import that created this record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("importsequencenumber")]
+		public System.Nullable<int> ImportSequenceNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("importsequencenumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("ImportSequenceNumber");
+				this.SetAttributeValue("importsequencenumber", value);
+				this.OnPropertyChanged("ImportSequenceNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedby");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time when the record was modified.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedon")]
+		public System.Nullable<System.DateTime> ModifiedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("modifiedon");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier of the delegate user who modified the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		public Microsoft.Xrm.Sdk.EntityReference ModifiedOnBehalfBy
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("modifiedonbehalfby");
+			}
+			set
+			{
+				this.OnPropertyChanging("ModifiedOnBehalfBy");
+				this.SetAttributeValue("modifiedonbehalfby", value);
+				this.OnPropertyChanged("ModifiedOnBehalfBy");
+			}
+		}
+		
+		/// <summary>
+		/// Date and time that the record was migrated.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("overriddencreatedon")]
+		public System.Nullable<System.DateTime> OverriddenCreatedOn
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<System.DateTime>>("overriddencreatedon");
+			}
+			set
+			{
+				this.OnPropertyChanging("OverriddenCreatedOn");
+				this.SetAttributeValue("overriddencreatedon", value);
+				this.OnPropertyChanged("OverriddenCreatedOn");
+			}
+		}
+		
+		/// <summary>
+		/// Owner Id
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("ownerid")]
+		public Microsoft.Xrm.Sdk.EntityReference OwnerId
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("ownerid");
+			}
+			set
+			{
+				this.OnPropertyChanging("OwnerId");
+				this.SetAttributeValue("ownerid", value);
+				this.OnPropertyChanged("OwnerId");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the business unit that owns the record
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningbusinessunit")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningBusinessUnit
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningbusinessunit");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the team that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningTeam
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owningteam");
+			}
+		}
+		
+		/// <summary>
+		/// Unique identifier for the user that owns the record.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		public Microsoft.Xrm.Sdk.EntityReference OwningUser
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.EntityReference>("owninguser");
+			}
+		}
+		
+		/// <summary>
+		/// Status of the Child Care Needs Assessment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statecode")]
+		public System.Nullable<CAPS.DataContext.caps_ChildCareNeedsAssessmentState> StateCode
+		{
+			get
+			{
+				Microsoft.Xrm.Sdk.OptionSetValue optionSet = this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statecode");
+				if ((optionSet != null))
+				{
+					return ((CAPS.DataContext.caps_ChildCareNeedsAssessmentState)(System.Enum.ToObject(typeof(CAPS.DataContext.caps_ChildCareNeedsAssessmentState), optionSet.Value)));
+				}
+				else
+				{
+					return null;
+				}
+			}
+			set
+			{
+				this.OnPropertyChanging("StateCode");
+				if ((value == null))
+				{
+					this.SetAttributeValue("statecode", null);
+				}
+				else
+				{
+					this.SetAttributeValue("statecode", new Microsoft.Xrm.Sdk.OptionSetValue(((int)(value))));
+				}
+				this.OnPropertyChanged("StateCode");
+			}
+		}
+		
+		/// <summary>
+		/// Reason for the status of the Child Care Needs Assessment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("statuscode")]
+		public Microsoft.Xrm.Sdk.OptionSetValue StatusCode
+		{
+			get
+			{
+				return this.GetAttributeValue<Microsoft.Xrm.Sdk.OptionSetValue>("statuscode");
+			}
+			set
+			{
+				this.OnPropertyChanging("StatusCode");
+				this.SetAttributeValue("statuscode", value);
+				this.OnPropertyChanged("StatusCode");
+			}
+		}
+		
+		/// <summary>
+		/// For internal use only.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("timezoneruleversionnumber")]
+		public System.Nullable<int> TimeZoneRuleVersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("timezoneruleversionnumber");
+			}
+			set
+			{
+				this.OnPropertyChanging("TimeZoneRuleVersionNumber");
+				this.SetAttributeValue("timezoneruleversionnumber", value);
+				this.OnPropertyChanged("TimeZoneRuleVersionNumber");
+			}
+		}
+		
+		/// <summary>
+		/// Time zone code that was in use when the record was created.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("utcconversiontimezonecode")]
+		public System.Nullable<int> UTCConversionTimeZoneCode
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("utcconversiontimezonecode");
+			}
+			set
+			{
+				this.OnPropertyChanging("UTCConversionTimeZoneCode");
+				this.SetAttributeValue("utcconversiontimezonecode", value);
+				this.OnPropertyChanged("UTCConversionTimeZoneCode");
+			}
+		}
+		
+		/// <summary>
+		/// Version Number
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("versionnumber")]
+		public System.Nullable<long> VersionNumber
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<long>>("versionnumber");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_project_ChildCareNeedsAssessment_caps_chi
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_project_ChildCareNeedsAssessment_caps_chi")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_Project> caps_project_ChildCareNeedsAssessment_caps_chi
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_Project>("caps_project_ChildCareNeedsAssessment_caps_chi", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_project_ChildCareNeedsAssessment_caps_chi");
+				this.SetRelatedEntities<CAPS.DataContext.caps_Project>("caps_project_ChildCareNeedsAssessment_caps_chi", null, value);
+				this.OnPropertyChanged("caps_project_ChildCareNeedsAssessment_caps_chi");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_projecthistory_childcareneedsassessment_c
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecthistory_childcareneedsassessment_c")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ProjectHistory> caps_projecthistory_childcareneedsassessment_c
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ProjectHistory>("caps_projecthistory_childcareneedsassessment_c", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecthistory_childcareneedsassessment_c");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ProjectHistory>("caps_projecthistory_childcareneedsassessment_c", null, value);
+				this.OnPropertyChanged("caps_projecthistory_childcareneedsassessment_c");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_childcareneedsassessment_SchoolDistrict_e
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_schooldistrict")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareneedsassessment_SchoolDistrict_e")]
+		public CAPS.DataContext.edu_schooldistrict caps_childcareneedsassessment_SchoolDistrict_e
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.edu_schooldistrict>("caps_childcareneedsassessment_SchoolDistrict_e", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareneedsassessment_SchoolDistrict_e");
+				this.SetRelatedEntity<CAPS.DataContext.edu_schooldistrict>("caps_childcareneedsassessment_SchoolDistrict_e", null, value);
+				this.OnPropertyChanged("caps_childcareneedsassessment_SchoolDistrict_e");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 team_caps_childcareneedsassessment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owningteam")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareneedsassessment")]
+		public CAPS.DataContext.Team team_caps_childcareneedsassessment
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.Team>("team_caps_childcareneedsassessment", null);
+			}
+		}
+		
+		/// <summary>
+		/// Constructor for populating via LINQ queries given a LINQ anonymous type
+		/// <param name="anonymousType">LINQ anonymous type.</param>
+		/// </summary>
+		public caps_ChildCareNeedsAssessment(object anonymousType) : 
+				this()
+		{
+            foreach (var p in anonymousType.GetType().GetProperties())
+            {
+                var value = p.GetValue(anonymousType, null);
+                var name = p.Name.ToLower();
+            
+                if (name.EndsWith("enum") && value.GetType().BaseType == typeof(System.Enum))
+                {
+                    value = new Microsoft.Xrm.Sdk.OptionSetValue((int) value);
+                    name = name.Remove(name.Length - "enum".Length);
+                }
+            
+                switch (name)
+                {
+                    case "id":
+                        base.Id = (System.Guid)value;
+                        Attributes["caps_childcareneedsassessmentid"] = base.Id;
+                        break;
+                    case "caps_childcareneedsassessmentid":
                         var id = (System.Nullable<System.Guid>) value;
                         if(id == null){ continue; }
                         base.Id = id.Value;
@@ -22697,6 +29005,14 @@ namespace CAPS.DataContext
 			public const string caps_AdjustedDesignCapacityTotal = "caps_adjusteddesigncapacitytotal";
 			public const string caps_Area = "caps_area";
 			public const string caps_BEPEligible = "caps_bepeligible";
+			public const string caps_ChildCareCapacityElementary = "caps_childcarecapacityelementary";
+			public const string caps_ChildCareCapacityKindergarten = "caps_childcarecapacitykindergarten";
+			public const string caps_ChildCareCapacitySecondary = "caps_childcarecapacitysecondary";
+			public const string caps_ChildCareCapacityTotal = "caps_childcarecapacitytotal";
+			public const string caps_ChildCareClassroomsUsedTotal = "caps_childcareclassroomsusedtotal";
+			public const string caps_ChildCareClassroomUsedElementary = "caps_childcareclassroomusedelementary";
+			public const string caps_ChildCareClassroomUsedKindergarten = "caps_childcareclassroomusedkindergarten";
+			public const string caps_ChildCareClassroomUsedSecondary = "caps_childcareclassroomusedsecondary";
 			public const string caps_CloseDate = "caps_closedate";
 			public const string caps_ClosureDescription = "caps_closuredescription";
 			public const string caps_Comments_enrolproj = "caps_comments_enrolproj";
@@ -22963,6 +29279,138 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_BEPEligible");
 				this.SetAttributeValue("caps_bepeligible", value);
 				this.OnPropertyChanged("caps_BEPEligible");
+			}
+		}
+		
+		/// <summary>
+		/// The elementary capacity a Child Care Facility takes up in the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacityelementary")]
+		public System.Nullable<int> caps_ChildCareCapacityElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_childcarecapacityelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareCapacityElementary");
+				this.SetAttributeValue("caps_childcarecapacityelementary", value);
+				this.OnPropertyChanged("caps_ChildCareCapacityElementary");
+			}
+		}
+		
+		/// <summary>
+		/// The kindergarten capacity a Child Care Facility takes up in the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacitykindergarten")]
+		public System.Nullable<int> caps_ChildCareCapacityKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_childcarecapacitykindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareCapacityKindergarten");
+				this.SetAttributeValue("caps_childcarecapacitykindergarten", value);
+				this.OnPropertyChanged("caps_ChildCareCapacityKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// The secondary capacity a Child Care Facility takes up in the designated facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacitysecondary")]
+		public System.Nullable<int> caps_ChildCareCapacitySecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<int>>("caps_childcarecapacitysecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareCapacitySecondary");
+				this.SetAttributeValue("caps_childcarecapacitysecondary", value);
+				this.OnPropertyChanged("caps_ChildCareCapacitySecondary");
+			}
+		}
+		
+		/// <summary>
+		/// Sum of Child Care Capacity KES on a School Facility.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcarecapacitytotal")]
+		public System.Nullable<decimal> caps_ChildCareCapacityTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_childcarecapacitytotal");
+			}
+		}
+		
+		/// <summary>
+		/// Total number of classrooms occupied by Child Care.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareclassroomsusedtotal")]
+		public System.Nullable<decimal> caps_ChildCareClassroomsUsedTotal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_childcareclassroomsusedtotal");
+			}
+		}
+		
+		/// <summary>
+		/// E Classrooms occupied by Child Care.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareclassroomusedelementary")]
+		public System.Nullable<decimal> caps_ChildCareClassroomUsedElementary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_childcareclassroomusedelementary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareClassroomUsedElementary");
+				this.SetAttributeValue("caps_childcareclassroomusedelementary", value);
+				this.OnPropertyChanged("caps_ChildCareClassroomUsedElementary");
+			}
+		}
+		
+		/// <summary>
+		/// Number of K classrooms occupied by Child Care.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareclassroomusedkindergarten")]
+		public System.Nullable<decimal> caps_ChildCareClassroomUsedKindergarten
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_childcareclassroomusedkindergarten");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareClassroomUsedKindergarten");
+				this.SetAttributeValue("caps_childcareclassroomusedkindergarten", value);
+				this.OnPropertyChanged("caps_ChildCareClassroomUsedKindergarten");
+			}
+		}
+		
+		/// <summary>
+		/// S Classrooms occupied by Child Care.
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareclassroomusedsecondary")]
+		public System.Nullable<decimal> caps_ChildCareClassroomUsedSecondary
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_childcareclassroomusedsecondary");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ChildCareClassroomUsedSecondary");
+				this.SetAttributeValue("caps_childcareclassroomusedsecondary", value);
+				this.OnPropertyChanged("caps_ChildCareClassroomUsedSecondary");
 			}
 		}
 		
@@ -24553,6 +31001,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Childcare_Facility_caps_Facility");
 				this.SetRelatedEntities<CAPS.DataContext.caps_Childcare>("caps_Childcare_Facility_caps_Facility", null, value);
 				this.OnPropertyChanged("caps_Childcare_Facility_caps_Facility");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarefacilityhistory_SchoolFacility_caps_facility
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_SchoolFacility_caps_facility")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_childcarefacilityhistory_SchoolFacility_caps_facility
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_SchoolFacility_caps_facility", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_SchoolFacility_caps_facility");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_SchoolFacility_caps_facility", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_SchoolFacility_caps_facility");
 			}
 		}
 		
@@ -36153,6 +42619,8 @@ namespace CAPS.DataContext
 			public const string caps_Project_BusMake_caps_BusMake = "caps_Project_BusMake_caps_BusMake";
 			public const string caps_Project_BusType_caps_BusType = "caps_Project_BusType_caps_BusType";
 			public const string caps_project_Childcare_caps_childcare = "caps_project_Childcare_caps_childcare";
+			public const string caps_project_ChildCareConstructionType_caps_ch = "caps_project_ChildCareConstructionType_caps_ch";
+			public const string caps_project_ChildCareNeedsAssessment_caps_chi = "caps_project_ChildCareNeedsAssessment_caps_chi";
 			public const string caps_Project_ElectricitySupplier_caps_Ele = "caps_Project_ElectricitySupplier_caps_Ele";
 			public const string caps_Project_Facility_caps_Facility = "caps_Project_Facility_caps_Facility";
 			public const string caps_project_FirstYearofCashflow_edu_year = "caps_project_FirstYearofCashflow_edu_year";
@@ -42095,6 +48563,44 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// N:1 caps_project_ChildCareConstructionType_caps_ch
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_project_ChildCareConstructionType_caps_ch")]
+		public CAPS.DataContext.caps_ChildcareConstructionType caps_project_ChildCareConstructionType_caps_ch
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_project_ChildCareConstructionType_caps_ch", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_project_ChildCareConstructionType_caps_ch");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_project_ChildCareConstructionType_caps_ch", null, value);
+				this.OnPropertyChanged("caps_project_ChildCareConstructionType_caps_ch");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_project_ChildCareNeedsAssessment_caps_chi
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareneedsassessment")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_project_ChildCareNeedsAssessment_caps_chi")]
+		public CAPS.DataContext.caps_ChildCareNeedsAssessment caps_project_ChildCareNeedsAssessment_caps_chi
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_project_ChildCareNeedsAssessment_caps_chi", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_project_ChildCareNeedsAssessment_caps_chi");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_project_ChildCareNeedsAssessment_caps_chi", null, value);
+				this.OnPropertyChanged("caps_project_ChildCareNeedsAssessment_caps_chi");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 caps_Project_ElectricitySupplier_caps_Ele
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_electricitysupplier")]
@@ -44172,6 +50678,7 @@ namespace CAPS.DataContext
 			public const string caps_CPFA_Reserve = "caps_cpfa_reserve";
 			public const string caps_DesignAidSheet = "caps_designaidsheet";
 			public const string caps_DesignAidSheet_Name = "caps_designaidsheet_name";
+			public const string caps_Federal = "caps_federal";
 			public const string caps_FloorPlan = "caps_floorplan";
 			public const string caps_FloorPlan_Name = "caps_floorplan_name";
 			public const string caps_LandCapital = "caps_landcapital";
@@ -44181,6 +50688,7 @@ namespace CAPS.DataContext
 			public const string caps_Project_3rdParty = "caps_project_3rdparty";
 			public const string caps_Project_AFG = "caps_project_afg";
 			public const string caps_Project_ApprovedReserve = "caps_project_approvedreserve";
+			public const string caps_Project_Federal = "caps_project_federal";
 			public const string caps_Project_InitialApproved = "caps_project_initialapproved";
 			public const string caps_Project_LandCapital = "caps_project_landcapital";
 			public const string caps_Project_MaxPotentialBudget = "caps_project_maxpotentialbudget";
@@ -44193,6 +50701,7 @@ namespace CAPS.DataContext
 			public const string Id = "caps_projectclosureid";
 			public const string caps_Provincial = "caps_provincial";
 			public const string caps_Reserve = "caps_reserve";
+			public const string caps_ReserveTransferredout = "caps_reservetransferredout";
 			public const string caps_RestrictedCapital = "caps_restrictedcapital";
 			public const string caps_SchoolDistrictComments = "caps_schooldistrictcomments";
 			public const string caps_SDFundingOverExpenditure = "caps_sdfundingoverexpenditure";
@@ -44208,6 +50717,7 @@ namespace CAPS.DataContext
 			public const string caps_TotalApproved_actual = "caps_totalapproved_actual";
 			public const string caps_TotalProvincial_Actual = "caps_totalprovincial_actual";
 			public const string caps_Variance_AFG = "caps_variance_afg";
+			public const string caps_Variance_Federal = "caps_variance_federal";
 			public const string caps_Variance_LandCapital = "caps_variance_landcapital";
 			public const string caps_Variance_Provincial = "caps_variance_provincial";
 			public const string caps_Variance_Reserve = "caps_variance_reserve";
@@ -44501,6 +51011,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// Total Federal Expenditure
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_federal")]
+		public System.Nullable<decimal> caps_Federal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_federal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Federal");
+				this.SetAttributeValue("caps_federal", value);
+				this.OnPropertyChanged("caps_Federal");
+			}
+		}
+		
+		/// <summary>
 		/// location to upload the As-Built Floor Plan
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_floorplan")]
@@ -44647,6 +51175,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Project_ApprovedReserve");
 				this.SetAttributeValue("caps_project_approvedreserve", value);
 				this.OnPropertyChanged("caps_Project_ApprovedReserve");
+			}
+		}
+		
+		/// <summary>
+		/// Project Federal
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_project_federal")]
+		public System.Nullable<decimal> caps_Project_Federal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_project_federal");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_Project_Federal");
+				this.SetAttributeValue("caps_project_federal", value);
+				this.OnPropertyChanged("caps_Project_Federal");
 			}
 		}
 		
@@ -44866,6 +51412,24 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Reserve");
 				this.SetAttributeValue("caps_reserve", value);
 				this.OnPropertyChanged("caps_Reserve");
+			}
+		}
+		
+		/// <summary>
+		/// Reserve Previously Transferred Out 
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_reservetransferredout")]
+		public System.Nullable<decimal> caps_ReserveTransferredout
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_reservetransferredout");
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_ReserveTransferredout");
+				this.SetAttributeValue("caps_reservetransferredout", value);
+				this.OnPropertyChanged("caps_ReserveTransferredout");
 			}
 		}
 		
@@ -45136,6 +51700,18 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_Variance_AFG");
 				this.SetAttributeValue("caps_variance_afg", value);
 				this.OnPropertyChanged("caps_Variance_AFG");
+			}
+		}
+		
+		/// <summary>
+		/// The variance between Federal approved in the project and the Project's final expenditures
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_variance_federal")]
+		public System.Nullable<decimal> caps_Variance_Federal
+		{
+			get
+			{
+				return this.GetAttributeValue<System.Nullable<decimal>>("caps_variance_federal");
 			}
 		}
 		
@@ -46025,6 +52601,8 @@ namespace CAPS.DataContext
 			public const string caps_ProjectHistory_BusType_caps_BusType = "caps_ProjectHistory_BusType_caps_BusType";
 			public const string caps_ProjectHistory_CapitalPlanYear_edu_Y = "caps_ProjectHistory_CapitalPlanYear_edu_Y";
 			public const string caps_projecthistory_ChildCare_caps_childcare = "caps_projecthistory_ChildCare_caps_childcare";
+			public const string caps_projecthistory_ChildCareConstructionType_ = "caps_projecthistory_ChildCareConstructionType_";
+			public const string caps_projecthistory_childcareneedsassessment_c = "caps_projecthistory_childcareneedsassessment_c";
 			public const string caps_ProjectHistory_CommunityLocation_cap = "caps_ProjectHistory_CommunityLocation_cap";
 			public const string caps_ProjectHistory_CurrentLRFP_caps_Long = "caps_ProjectHistory_CurrentLRFP_caps_Long";
 			public const string caps_ProjectHistory_ElectricitySupplier_c = "caps_ProjectHistory_ElectricitySupplier_c";
@@ -52057,6 +58635,44 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// N:1 caps_projecthistory_ChildCareConstructionType_
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecthistory_ChildCareConstructionType_")]
+		public CAPS.DataContext.caps_ChildcareConstructionType caps_projecthistory_ChildCareConstructionType_
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_projecthistory_ChildCareConstructionType_", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecthistory_ChildCareConstructionType_");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_projecthistory_ChildCareConstructionType_", null, value);
+				this.OnPropertyChanged("caps_projecthistory_ChildCareConstructionType_");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_projecthistory_childcareneedsassessment_c
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareneedsassessment")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecthistory_childcareneedsassessment_c")]
+		public CAPS.DataContext.caps_ChildCareNeedsAssessment caps_projecthistory_childcareneedsassessment_c
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_projecthistory_childcareneedsassessment_c", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecthistory_childcareneedsassessment_c");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_projecthistory_childcareneedsassessment_c", null, value);
+				this.OnPropertyChanged("caps_projecthistory_childcareneedsassessment_c");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 caps_ProjectHistory_CommunityLocation_cap
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_communitylocation")]
@@ -53591,6 +60207,7 @@ namespace CAPS.DataContext
 			public const string TimeZoneRuleVersionNumber = "timezoneruleversionnumber";
 			public const string UTCConversionTimeZoneCode = "utcconversiontimezonecode";
 			public const string VersionNumber = "versionnumber";
+			public const string caps_projecttracker_ChildCareConstructionType_ = "caps_projecttracker_ChildCareConstructionType_";
 			public const string caps_projecttracker_ChildCareFacility_caps_chi = "caps_projecttracker_ChildCareFacility_caps_chi";
 			public const string caps_ProjectTracker_CurrentCOA_caps_Certi = "caps_ProjectTracker_CurrentCOA_caps_Certi";
 			public const string caps_ProjectTracker_Facility_caps_Facilit = "caps_ProjectTracker_Facility_caps_Facilit";
@@ -56487,6 +63104,25 @@ namespace CAPS.DataContext
 				this.OnPropertyChanging("caps_ProjectTracker_caps_Facility_caps_Fa");
 				this.SetRelatedEntities<CAPS.DataContext.caps_Facility>("caps_ProjectTracker_caps_Facility_caps_Fa", null, value);
 				this.OnPropertyChanged("caps_ProjectTracker_caps_Facility_caps_Fa");
+			}
+		}
+		
+		/// <summary>
+		/// N:1 caps_projecttracker_ChildCareConstructionType_
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("caps_childcareconstructiontype")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_projecttracker_ChildCareConstructionType_")]
+		public CAPS.DataContext.caps_ChildcareConstructionType caps_projecttracker_ChildCareConstructionType_
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_projecttracker_ChildCareConstructionType_", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_projecttracker_ChildCareConstructionType_");
+				this.SetRelatedEntity<CAPS.DataContext.caps_ChildcareConstructionType>("caps_projecttracker_ChildCareConstructionType_", null, value);
+				this.OnPropertyChanged("caps_projecttracker_ChildCareConstructionType_");
 			}
 		}
 		
@@ -65258,6 +71894,24 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 1:N caps_childcareneedsassessment_SchoolDistrict_e
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareneedsassessment_SchoolDistrict_e")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareNeedsAssessment> caps_childcareneedsassessment_SchoolDistrict_e
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_childcareneedsassessment_SchoolDistrict_e", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareneedsassessment_SchoolDistrict_e");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareNeedsAssessment>("caps_childcareneedsassessment_SchoolDistrict_e", null, value);
+				this.OnPropertyChanged("caps_childcareneedsassessment_SchoolDistrict_e");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N caps_edu_schooldistrict_caps_prfsalternativeoption_SchoolDistrict
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_edu_schooldistrict_caps_prfsalternativeoption_SchoolDistrict")]
@@ -68088,6 +74742,96 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 1:N caps_childcareactualenrolment_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareactualenrolment_SchoolYear_edu_year")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareActualEnrolment> caps_childcareactualenrolment_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcareactualenrolment_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareactualenrolment_SchoolYear_edu_year");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("caps_childcareactualenrolment_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareactualenrolment_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarecapacityreporting_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarecapacityreporting_SchoolYear_edu_year")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareCapacityReporting> caps_childcarecapacityreporting_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("caps_childcarecapacityreporting_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarecapacityreporting_SchoolYear_edu_year");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("caps_childcarecapacityreporting_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcarecapacityreporting_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcareenrolmentprojection_CycleCalendarYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareEnrolmentProjection> caps_childcareenrolmentprojection_CycleCalendarYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_CycleCalendarYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcareenrolmentprojection_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcareenrolmentprojection_SchoolYear_edu_year")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareEnrolmentProjection> caps_childcareenrolmentprojection_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcareenrolmentprojection_SchoolYear_edu_year");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("caps_childcareenrolmentprojection_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcareenrolmentprojection_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N caps_childcarefacilityhistory_SchoolYear_edu_year
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcarefacilityhistory_SchoolYear_edu_year")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_childcarefacilityhistory_SchoolYear_edu_year
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_SchoolYear_edu_year", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcarefacilityhistory_SchoolYear_edu_year");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("caps_childcarefacilityhistory_SchoolYear_edu_year", null, value);
+				this.OnPropertyChanged("caps_childcarefacilityhistory_SchoolYear_edu_year");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N caps_edu_SchoolEnrolment_SchoolYear_edu_Year
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_edu_SchoolEnrolment_SchoolYear_edu_Year")]
@@ -68707,6 +75451,7 @@ namespace CAPS.DataContext
 			public const string Account_Email_SendersAccount = "Account_Email_SendersAccount";
 			public const string Account_Emails = "Account_Emails";
 			public const string activity_pointer_email = "activity_pointer_email";
+			public const string caps_childcare_Emails = "caps_childcare_Emails";
 			public const string caps_facility_Emails = "caps_facility_Emails";
 			public const string caps_project_Emails = "caps_project_Emails";
 			public const string caps_projecttracker_Emails = "caps_projecttracker_Emails";
@@ -70690,6 +77435,25 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// N:1 caps_childcare_Emails
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("caps_childcare_Emails")]
+		public CAPS.DataContext.caps_Childcare caps_childcare_Emails
+		{
+			get
+			{
+				return this.GetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_Emails", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("caps_childcare_Emails");
+				this.SetRelatedEntity<CAPS.DataContext.caps_Childcare>("caps_childcare_Emails", null, value);
+				this.OnPropertyChanged("caps_childcare_Emails");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 caps_facility_Emails
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("regardingobjectid")]
@@ -71929,6 +78693,114 @@ namespace CAPS.DataContext
 		}
 		
 		/// <summary>
+		/// 1:N team_caps_childcareactualenrolment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareactualenrolment")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareActualEnrolment> team_caps_childcareactualenrolment
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("team_caps_childcareactualenrolment", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcareactualenrolment");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareActualEnrolment>("team_caps_childcareactualenrolment", null, value);
+				this.OnPropertyChanged("team_caps_childcareactualenrolment");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_caps_childcarecapacityreporting
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcarecapacityreporting")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareCapacityReporting> team_caps_childcarecapacityreporting
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("team_caps_childcarecapacityreporting", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcarecapacityreporting");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareCapacityReporting>("team_caps_childcarecapacityreporting", null, value);
+				this.OnPropertyChanged("team_caps_childcarecapacityreporting");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_caps_childcareconstructiontype
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareconstructiontype")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildcareConstructionType> team_caps_childcareconstructiontype
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildcareConstructionType>("team_caps_childcareconstructiontype", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcareconstructiontype");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildcareConstructionType>("team_caps_childcareconstructiontype", null, value);
+				this.OnPropertyChanged("team_caps_childcareconstructiontype");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_caps_childcareenrolmentprojection
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareenrolmentprojection")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareEnrolmentProjection> team_caps_childcareenrolmentprojection
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("team_caps_childcareenrolmentprojection", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcareenrolmentprojection");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareEnrolmentProjection>("team_caps_childcareenrolmentprojection", null, value);
+				this.OnPropertyChanged("team_caps_childcareenrolmentprojection");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_caps_childcarefacilityhistory
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcarefacilityhistory")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareFacilityHistory> team_caps_childcarefacilityhistory
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("team_caps_childcarefacilityhistory", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcarefacilityhistory");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareFacilityHistory>("team_caps_childcarefacilityhistory", null, value);
+				this.OnPropertyChanged("team_caps_childcarefacilityhistory");
+			}
+		}
+		
+		/// <summary>
+		/// 1:N team_caps_childcareneedsassessment
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_childcareneedsassessment")]
+		public System.Collections.Generic.IEnumerable<CAPS.DataContext.caps_ChildCareNeedsAssessment> team_caps_childcareneedsassessment
+		{
+			get
+			{
+				return this.GetRelatedEntities<CAPS.DataContext.caps_ChildCareNeedsAssessment>("team_caps_childcareneedsassessment", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("team_caps_childcareneedsassessment");
+				this.SetRelatedEntities<CAPS.DataContext.caps_ChildCareNeedsAssessment>("team_caps_childcareneedsassessment", null, value);
+				this.OnPropertyChanged("team_caps_childcareneedsassessment");
+			}
+		}
+		
+		/// <summary>
 		/// 1:N team_caps_electricitysupplier
 		/// </summary>
 		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("team_caps_electricitysupplier")]
@@ -72969,6 +79841,72 @@ namespace CAPS.DataContext
 			get
 			{
 				return this.CreateQuery<CAPS.DataContext.caps_Childcare>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildCareActualEnrolment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildCareActualEnrolment> caps_ChildCareActualEnrolmentSet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildCareActualEnrolment>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildCareCapacityReporting"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildCareCapacityReporting> caps_ChildCareCapacityReportingSet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildCareCapacityReporting>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildcareConstructionType"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildcareConstructionType> caps_ChildcareConstructionTypeSet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildcareConstructionType>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildCareEnrolmentProjection"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildCareEnrolmentProjection> caps_ChildCareEnrolmentProjectionSet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildCareEnrolmentProjection>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildCareFacilityHistory"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildCareFacilityHistory> caps_ChildCareFacilityHistorySet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildCareFacilityHistory>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="CAPS.DataContext.caps_ChildCareNeedsAssessment"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<CAPS.DataContext.caps_ChildCareNeedsAssessment> caps_ChildCareNeedsAssessmentSet
+		{
+			get
+			{
+				return this.CreateQuery<CAPS.DataContext.caps_ChildCareNeedsAssessment>();
 			}
 		}
 		

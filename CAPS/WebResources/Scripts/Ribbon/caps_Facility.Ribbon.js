@@ -25,7 +25,7 @@ CAPS.Facility.ShowLockEnrolmentProjections = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User") {
+        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });
@@ -49,7 +49,7 @@ CAPS.Facility.ShowLockEnrolmentProjections = function (primaryControl) {
             }
         }
         , function (error) {
-            debugger;
+
             CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
             CAPS.Facility.SHOW_LOCK_BUTTON = false;
             Xrm.Navigation.openAlertDialog({ text: error.message });
@@ -112,7 +112,7 @@ CAPS.Facility.ShowUnlockEnrolmentProjections = function (primaryControl) {
     var showButton = false;
 
     userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User") {
+        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
             showButton = true;
         }
     });

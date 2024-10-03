@@ -1163,6 +1163,23 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ccactualenrolment_reasonforunderutilizat
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Insufficient Staff", 0)]
+		InsufficientStaff = 746660000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Low Enrolment", 1)]
+		LowEnrolment = 746660001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Other", 2)]
+		Other = 746660002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum caps_CCProcurementMethod
 	{
 		
@@ -1235,6 +1252,154 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Under Construction", 2)]
 		UnderConstruction = 746660001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareActualEnrolment_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Past", 1)]
+		Past = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Submitted", 2)]
+		Submitted = 746660001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Unsubmitted", 0)]
+		Unsubmitted = 1,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareAffordabilityInitiatives
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Aboriginal Head Start", 4)]
+		AboriginalHeadStart = 714430004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Child Care Fee Reduction Initiative", 1)]
+		ChildCareFeeReductionInitiative = 714430001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Child Care Operating Funding", 0)]
+		ChildCareOperatingFunding = 714430000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("$10/day", 3)]
+		CurrencySymbol_10day = 714430003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Early Childhood Educator Wage Enhancement", 2)]
+		EarlyChildhoodEducatorWageEnhancement = 714430002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Other", 5)]
+		Other = 714430005,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareCapacityReporting_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Active", 0)]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Inactive", 1)]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildcareConstructionType_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Active", 0)]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Inactive", 1)]
+		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareEnrolmentProjection_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Current", 2)]
+		Current = 714430001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Draft", 0)]
+		Draft = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Past", 3)]
+		Past = 714430002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Submitted", 1)]
+		Submitted = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareFacilityHistory_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Closed", 3)]
+		Closed = 746660002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Open", 0)]
+		Open = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Permanently Closed", 1)]
+		PermanentlyClosed = 2,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Under Construction", 2)]
+		UnderConstruction = 746660001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareFacilityProgram
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Francophone", 2)]
+		Francophone = 714430002,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Indigenous-led", 0)]
+		Indigenousled = 714430000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Specialized Support Needs", 1)]
+		SpecializedSupportNeeds = 714430001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Young Parent Program (YPP)", 3)]
+		YoungParentProgram_YPP = 714430003,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_ChildCareNeedsAssessment_StatusCode
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Active", 0)]
+		Active = 1,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Inactive", 1)]
+		Inactive = 2,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -2278,36 +2443,32 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("General Instruction Classroom", 6)]
-		GeneralInstructionClassroom = 200870005,
+		[OptionSetMetadataAttribute("Cafeteria", 4)]
+		Cafeteria = 714430001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Gym", 5)]
+		[OptionSetMetadataAttribute("Classroom(s)", 0)]
+		Classroom_s = 200870005,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Gym", 3)]
 		Gym = 200870004,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Library", 4)]
+		[OptionSetMetadataAttribute("Library", 5)]
 		Library = 200870003,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Modular", 3, "#0000ff")]
-		Modular = 200870007,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Multipurpose Room", 0)]
-		MultipurposeRoom = 200870000,
+		[OptionSetMetadataAttribute("Multi-purpose", 2)]
+		Multipurpose = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("NLC", 1)]
 		NLC = 200870001,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Other", 7)]
-		Other = 200870006,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Portable", 2)]
-		Portable = 200870002,
+		[OptionSetMetadataAttribute("Purpose built", 6)]
+		Purposebuilt = 714430002,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
@@ -3104,6 +3265,32 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Large", 2, "#0000ff")]
 		Large = 200000002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum credential_UsageType
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Connection", 0, null, "authorize this credential in connection", "connection")]
+		Connection = 280920000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("DesktopScript", 1, null, "authorize this credential in power automate for desktop script", "DesktopScript")]
+		DesktopScript = 280920001,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum formmappingallowedoperations
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Create", 0)]
+		Create = 0,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Update", 1)]
+		Update = 1,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
