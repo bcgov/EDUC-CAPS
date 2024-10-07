@@ -4465,7 +4465,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0</Format>
-                                    <Color>=iif(Sum(Fields!caps_totalcapacity.Value) - Sum(Fields!caps_totalenrolment.Value) &lt;0, "Red", "Black")</Color>
+                                    <Color>=iif(Sum(cdec(Fields!caps_totalcapacity.Value)) - Sum(cdec(Fields!caps_totalenrolment.Value)) &lt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5153,7 +5153,7 @@
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <Format>#,0</Format>
-                                    <Color>=iif(Sum(Fields!caps_totallicensed.Value) - Sum(Fields!caps_totalenrolment.Value) &lt;0, "Red", "Black")</Color>
+                                    <Color>=iif(Sum(cdec(Fields!caps_totallicensed.Value)) - Sum(cdec(Fields!caps_totalenrolment.Value)) &lt; 0, "Red", "Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5178,6 +5178,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -5231,6 +5232,11 @@
                       <GroupExpression>=Fields!caps_schoolyear.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!YEAR_edu_startdate.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
                   <TablixHeader>
                     <Size>0.6cm</Size>
                     <CellContents>

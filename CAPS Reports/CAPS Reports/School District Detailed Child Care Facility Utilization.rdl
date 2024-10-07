@@ -4738,7 +4738,7 @@ IIF(ReportItems!SDEnrolment_caps_totalenrolmentValue.Value = 0, "DimGray","White
                                 <Color>Black</Color>
                                 <Width>1pt</Width>
                               </BottomBorder>
-                              <BackgroundColor>=IIF(Fields!SYStatuscode.Value = 1, "#e3a82b", "#234075")</BackgroundColor>
+                              <BackgroundColor>=IIF(Fields!SYStatuscodeValue.Value = 1, "#e3a82b", "#234075")</BackgroundColor>
                               <VerticalAlign>Middle</VerticalAlign>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>

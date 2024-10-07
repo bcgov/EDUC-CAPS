@@ -101,6 +101,11 @@
       &lt;attribute name="edu_startyear" /&gt;
       &lt;attribute name="edu_name" /&gt;
     &lt;/link-entity&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" visible="false" link-type="inner"&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
@@ -1478,6 +1483,7 @@
     &lt;attribute name="caps_designcapacityelementary" /&gt;
     &lt;filter type="and" &gt;
       &lt;condition attribute="caps_schooldistrict" operator="eq" value="@SchoolDistrict" /&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
     &lt;/filter&gt;
     &lt;order attribute="caps_name" descending="false" /&gt;
   &lt;/entity&gt;
@@ -2946,6 +2952,9 @@
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true"&gt;
 &lt;entity name="caps_facility" &gt;
     &lt;attribute name="caps_facilityid" /&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
     &lt;link-entity name="caps_project_caps_facilityss" from="caps_facilityid" to="caps_facilityid" intersect="true" &gt;
       &lt;link-entity name="caps_project" from="caps_projectid" to="caps_projectid" alias="fe" intersect="true" &gt;
         &lt;filter&gt;
@@ -2988,6 +2997,11 @@
       &lt;condition attribute="caps_facility" operator="eq" value="@FacilityID" /&gt;
       &lt;condition attribute="caps_facility" operator="in" value="@Facilities" /&gt;
     &lt;/filter&gt;
+    &lt;link-entity name="caps_facility" from="caps_facilityid" to="caps_facility" visible="false" link-type="inner"&gt;
+    &lt;filter type="and" &gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
+    &lt;/link-entity&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -3774,6 +3788,9 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
   &lt;entity name="caps_facility"&gt;
     &lt;attribute name="caps_facilityid" alias="FacilityID" groupby="true" /&gt;
     &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" aggregate="sum" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
   &lt;/entity&gt;
 &lt;/fetch&gt;</CommandText>
       </Query>
@@ -3806,6 +3823,9 @@ Fields!caps_designbidbuildrankValue.Value = "200870003", 3)</Value>
         <CommandText>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
   &lt;entity name="caps_facility"&gt;
     &lt;attribute name="caps_childcareclassroomsusedtotal" alias="CCClassroomsUsed" /&gt;
+    &lt;filter type="and"&gt;
+      &lt;condition attribute="statecode" operator="eq" value="0" /&gt;
+    &lt;/filter&gt;
       &lt;filter type="or"&gt;
       &lt;condition attribute="caps_facilityid" operator="eq" value="@FacilityID" /&gt;
       &lt;condition attribute="caps_facilityid" operator="in" value="@Facilities" /&gt;
@@ -5662,6 +5682,7 @@ lookup(Fields!caps_facilityValue.Value, Fields!FacilityID.Value, Fields!CCClassr
                                   <PaddingBottom>2pt</PaddingBottom>
                                 </Style>
                               </Textbox>
+                              <rd:Selected>true</rd:Selected>
                             </CellContents>
                           </TablixHeader>
                           <KeepWithGroup>Before</KeepWithGroup>
