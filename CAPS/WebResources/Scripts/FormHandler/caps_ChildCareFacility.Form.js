@@ -24,44 +24,69 @@ CAPS.ChildCareFacility.updateAddressFields = function (formContext, forceClear =
 
     var mailingAddress = formContext.getAttribute("caps_mailingaddress").getValue();
     var streetAddress = formContext.getAttribute("caps_streetaddress").getValue();
+    var postalCode = formContext.getAttribute("caps_postalcode").getValue();
 
-    // If "Same address as school facility" is checked and a facility is selected, populate the address fields from the facility
-    if (isSameAddress && facility && facility[0] && facility[0].id) {
-        var facilityId = facility[0].id.replace("{", "").replace("}", "");
+    // Check if a valid facility is selected
+    if (facility && facility.length > 0 && facility[0].id) {
 
-        Xrm.WebApi.retrieveRecord("caps_facility", facilityId, "?$select=caps_poboxaddress,caps_streetaddress").then(
-            function (result) {
-                var poBoxAddress = result.caps_poboxaddress;
-                var streetAddressFromFacility = result.caps_streetaddress;
+        formContext.getControl("caps_sameaddressasschoolfacility").setVisible(true);
+        formContext.getControl("caps_mailingaddress").setVisible(true);
+        formContext.getControl("caps_streetaddress").setVisible(true);
+        formContext.getControl("caps_postalcode").setVisible(true);
 
-                // Set the facility address values to the form's mailing and street address fields
-                formContext.getAttribute("caps_mailingaddress").setValue(poBoxAddress);
-                formContext.getAttribute("caps_streetaddress").setValue(streetAddressFromFacility);
+        if (isSameAddress) {
+            var facilityId = facility[0].id.replace("{", "").replace("}", "");
 
-                // Disable the fields and make them optional (not required)
-                formContext.getControl("caps_mailingaddress").setDisabled(true);
-                formContext.getControl("caps_streetaddress").setDisabled(true);
+            Xrm.WebApi.retrieveRecord("caps_facility", facilityId, "?$select=caps_poboxaddress,caps_streetaddress,caps_postalcode").then(
+                function (result) {
+                    var poBoxAddress = result.caps_poboxaddress;
+                    var streetAddressFromFacility = result.caps_streetaddress;
+                    var postalCodefromFacility = result.caps_postalcode;
 
-                formContext.getAttribute("caps_mailingaddress").setRequiredLevel("none");
-                formContext.getAttribute("caps_streetaddress").setRequiredLevel("none");
-            },
-            function (error) {
-                console.log("Error retrieving facility address: " + error.message);
+                    // Set the facility address values to the form's mailing and street address fields
+                    formContext.getAttribute("caps_mailingaddress").setValue(poBoxAddress);
+                    formContext.getAttribute("caps_streetaddress").setValue(streetAddressFromFacility);
+                    formContext.getAttribute("caps_postalcode").setValue(postalCodefromFacility);
+
+                    // Disable the fields and make them optional
+                    formContext.getControl("caps_mailingaddress").setDisabled(true);
+                    formContext.getControl("caps_streetaddress").setDisabled(true);
+                    formContext.getControl("caps_postalcode").setDisabled(true);
+
+                    formContext.getAttribute("caps_mailingaddress").setRequiredLevel("none");
+                    formContext.getAttribute("caps_streetaddress").setRequiredLevel("none");
+                    formContext.getAttribute("caps_postalcode").setRequiredLevel("none");
+                },
+                function (error) {
+                    Xrm.Utility.alertDialog("Error retrieving facility address: " + error.message);
+                }
+            );
+        } else {
+            // If "Same address as school facility" is unchecked, clear fields if needed
+            if (forceClear || (!mailingAddress && !streetAddress && !postalCode)) {
+                formContext.getAttribute("caps_mailingaddress").setValue(null);
+                formContext.getAttribute("caps_streetaddress").setValue(null);
+                formContext.getAttribute("caps_postalcode").setValue(null);
             }
-        );
-    }
-    // If "Same address as school facility" is unchecked, handle address clearing and enabling for manual input
-    else if (!isSameAddress) {
-        // If forceClear is true (i.e., when the user manually changes the toggle), clear the address fields
-        if (forceClear || (!mailingAddress && !streetAddress)) {
-            formContext.getAttribute("caps_mailingaddress").setValue(null);
-            formContext.getAttribute("caps_streetaddress").setValue(null);
+
+            // Enable the fields for manual entry and make street address required
+            formContext.getControl("caps_mailingaddress").setDisabled(false);
+            formContext.getControl("caps_streetaddress").setDisabled(false);
+            formContext.getControl("caps_postalcode").setDisabled(false);
+
+            formContext.getAttribute("caps_streetaddress").setRequiredLevel("required");
+            formContext.getAttribute("caps_postalcode").setRequiredLevel("required");
         }
 
-        // Enable the fields for manual entry and make street address required
-        formContext.getControl("caps_mailingaddress").setDisabled(false);
-        formContext.getControl("caps_streetaddress").setDisabled(false);
+    } else {
+        // Facility is null or empty, hide and clear all relevant fields
+        formContext.getControl("caps_sameaddressasschoolfacility").setVisible(false);
+        formContext.getControl("caps_mailingaddress").setVisible(false);
+        formContext.getControl("caps_streetaddress").setVisible(false);
+        formContext.getControl("caps_postalcode").setVisible(false);
 
-        formContext.getAttribute("caps_streetaddress").setRequiredLevel("required");
+        formContext.getAttribute("caps_mailingaddress").setValue(null);
+        formContext.getAttribute("caps_streetaddress").setValue(null);
+        formContext.getAttribute("caps_postalcode").setValue(null);
     }
 };
