@@ -657,6 +657,33 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_AccessibilityFeatures
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Accessible furniture and equipment will be used in the centre (e.g., modified tab" +
+			"les and chairs).", 4)]
+		Accessiblefurnitureandequipmentwillbeusedinthecentre_egmodifiedtablesandchairs = 746660004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Building plans incorporate universal design guidelines.", 1)]
+		Buildingplansincorporateuniversaldesignguidelines = 746660001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Multi-language signage, wayfinding, braille.", 3)]
+		Multilanguagesignagewayfindingbraille = 746660003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Sensory rooms or space considerations for children with sensory sensitivities.", 0)]
+		Sensoryroomsorspaceconsiderationsforchildrenwithsensorysensitivities = 746660000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("The outdoor space will integrate accessibility features (e.g., rubberized surface" +
+			"s, access to play structure, etc.)", 2)]
+		Theoutdoorspacewillintegrateaccessibilityfeatures_egrubberizedsurfacesaccesstoplaystructureetc = 746660002,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
 	public enum caps_ActualDraw_StatusCode
 	{
 		
@@ -1782,15 +1809,7 @@ namespace CAPS.DataContext
 	{
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Deaf and hard of hearing", 1)]
-		Deafandhardofhearing = 200870001,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Families new to Canada", 3)]
-		FamiliesnewtoCanada = 200870003,
-		
-		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Francophone", 5)]
+		[OptionSetMetadataAttribute("Francophone", 3)]
 		Francophone = 200870005,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
@@ -1798,11 +1817,11 @@ namespace CAPS.DataContext
 		Indigenousled = 200870000,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Other specialized support needs", 2)]
+		[OptionSetMetadataAttribute("Other specialized support needs", 1)]
 		Otherspecializedsupportneeds = 200870002,
 		
 		[System.Runtime.Serialization.EnumMemberAttribute()]
-		[OptionSetMetadataAttribute("Young Parents", 4)]
+		[OptionSetMetadataAttribute("Young Parents", 2)]
 		YoungParents = 200870004,
 	}
 	
@@ -1898,6 +1917,37 @@ namespace CAPS.DataContext
 		[System.Runtime.Serialization.EnumMemberAttribute()]
 		[OptionSetMetadataAttribute("Inactive", 1)]
 		Inactive = 2,
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute()]
+	public enum caps_OperatorExperience
+	{
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Applicant or Authorized Operator has 1-4 years experience operating a single lice" +
+			"nsed child care centre or has experience operating a community-based program.", 1)]
+		ApplicantorAuthorizedOperatorhas14yearsexperienceoperatingasinglelicensedchildcarecentreorhasexperienceoperatingacommunitybasedprogram = 746660001,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Applicant or Authorized Operator has 1-4 years experience operating more than 1 l" +
+			"icensed child care centre, simultaneously.", 3)]
+		ApplicantorAuthorizedOperatorhas14yearsexperienceoperatingmorethan1licensedchildcarecentresimultaneously = 746660003,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Applicant or Authorized Operator has  has more than 4 years experience operating " +
+			"multiple licensed child care centres.", 4)]
+		ApplicantorAuthorizedOperatorhashasmorethan4yearsexperienceoperatingmultiplelicensedchildcarecentres = 746660004,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Applicant or Authorized Operator has little or no child care operating experience" +
+			" (i.e., less than 1 year) and less than 1 year experience operating community- b" +
+			"ased programs, or Authorized Operator is not yet secured.", 0)]
+		ApplicantorAuthorizedOperatorhaslittleornochildcareoperatingexperience_ielessthan1yearandlessthan1yearexperienceoperatingcommunitybasedprogramsorAuthorizedOperatorisnotyetsecured = 746660000,
+		
+		[System.Runtime.Serialization.EnumMemberAttribute()]
+		[OptionSetMetadataAttribute("Applicant or Authorized Operator has more than 4 years experience operating a sin" +
+			"gle licensed child care centre or community-based program.", 2)]
+		ApplicantorAuthorizedOperatorhasmorethan4yearsexperienceoperatingasinglelicensedchildcarecentreorcommunitybasedprogram = 746660002,
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute()]

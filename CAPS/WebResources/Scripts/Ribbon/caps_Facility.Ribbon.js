@@ -13,48 +13,50 @@ CAPS.Facility.ShowLockEnrolmentProjections = function (primaryControl) {
     debugger;
     var formContext = primaryControl;
     //get facility Id
-    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
-    var useFutureForUtilization = formContext.getAttribute("caps_usefutureforutilization").getValue();
+    if (formContext.data.entity.getId() != '') {
+        var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+        var useFutureForUtilization = formContext.getAttribute("caps_usefutureforutilization").getValue();
 
-    if (useFutureForUtilization) return false;
+        if (useFutureForUtilization) return false;
 
-    //Check Users role and for draft enrolment projections
-   
-    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+        //Check Users role and for draft enrolment projections
 
-    var showButton = false;
+        var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
-    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
-            showButton = true;
+        var showButton = false;
+
+        userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+            if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
+                showButton = true;
+            }
+        });
+
+        if (!showButton) return false;
+
+        if (CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED) {
+            return CAPS.Facility.SHOW_LOCK_BUTTON;
         }
-    });
 
-    if (!showButton) return false;
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+            function success(result) {
+                debugger;
+                CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
+                if (result.entities.length > 0) {
+                    CAPS.Facility.SHOW_LOCK_BUTTON = true;
+                }
 
-    if (CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED) {
-        return CAPS.Facility.SHOW_LOCK_BUTTON;
+                if (CAPS.Facility.SHOW_LOCK_BUTTON) {
+                    formContext.ui.refreshRibbon();
+                }
+            }
+            , function (error) {
+
+                CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
+                CAPS.Facility.SHOW_LOCK_BUTTON = false;
+                Xrm.Navigation.openAlertDialog({ text: error.message });
+            }
+        );
     }
-
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
-        function success(result) {
-            debugger;
-            CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
-            if (result.entities.length > 0) {
-                CAPS.Facility.SHOW_LOCK_BUTTON = true;
-            }
-
-            if (CAPS.Facility.SHOW_LOCK_BUTTON) {
-                formContext.ui.refreshRibbon();
-            }
-        }
-        , function (error) {
-
-            CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
-            CAPS.Facility.SHOW_LOCK_BUTTON = false;
-            Xrm.Navigation.openAlertDialog({ text: error.message });
-        }
-    );
 }
 
 /*Function to confirm using enrolment projections for capacity*/
@@ -98,49 +100,51 @@ CAPS.Facility.LockEnrolmentProjections = function (primaryControl) {
 CAPS.Facility.ShowUnlockEnrolmentProjections = function (primaryControl) {
     var formContext = primaryControl;
     //get facility Id
-    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    if (formContext.data.entity.getId() !== '') {
+        var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
 
-    //Get future for utilization
-    var useFutureForUtilization = formContext.getAttribute("caps_usefutureforutilization").getValue();
+        //Get future for utilization
+        var useFutureForUtilization = formContext.getAttribute("caps_usefutureforutilization").getValue();
 
-    if (!useFutureForUtilization) return false;
+        if (!useFutureForUtilization) return false;
 
-    //Check Users role and for draft enrolment projections
-    
-    var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+        //Check Users role and for draft enrolment projections
 
-    var showButton = false;
+        var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
 
-    userRoles.forEach(function hasFinancialDirectorRole(item, index) {
-        if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
-            showButton = true;
+        var showButton = false;
+
+        userRoles.forEach(function hasFinancialDirectorRole(item, index) {
+            if (item.name === "CAPS School District User" || item.name === "CAPS CMB Super User - Add On") {
+                showButton = true;
+            }
+        });
+
+        if (!showButton) return false;
+
+        if (CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED) {
+            return CAPS.Facility.SHOW_UNLOCK_BUTTON;
         }
-    });
 
-    if (!showButton) return false;
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+            function success(result) {
 
-    if (CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED) {
-        return CAPS.Facility.SHOW_UNLOCK_BUTTON;
+                CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
+                if (result.entities.length > 0) {
+                    CAPS.Facility.SHOW_UNLOCK_BUTTON = true;
+                }
+
+                if (CAPS.Facility.SHOW_UNLOCK_BUTTON) {
+                    formContext.ui.refreshRibbon();
+                }
+            }
+            , function (error) {
+                CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
+                CAPS.Facility.SHOW_UNLOCK_BUTTON = false;
+                Xrm.Navigation.openAlertDialog({ text: error.message });
+            }
+        );
     }
-
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
-        function success(result) {
-          
-            CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
-            if (result.entities.length > 0) {
-                CAPS.Facility.SHOW_UNLOCK_BUTTON = true;
-            }
-
-            if (CAPS.Facility.SHOW_UNLOCK_BUTTON) {
-                formContext.ui.refreshRibbon();
-            }
-        }
-        , function (error) {
-            CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
-            CAPS.Facility.SHOW_UNLOCK_BUTTON = false;
-            Xrm.Navigation.openAlertDialog({ text: error.message });
-        }
-    );
 }
 
 /*Function to confirm unlocking enrolment projections for editing*/
@@ -184,100 +188,104 @@ CAPS.Facility.UnlockEnrolmentProjections = function (primaryControl) {
 CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
     var formContext = primaryControl;
     //get facility Id
-    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    if (formContext.data.entity.getId() !== '') {
+        var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
 
-    var promises = [];
-    //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
+        var promises = [];
+        //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
 
-    var data =
+        var data =
         {
             "caps_markassubmitted": true
         };
 
-    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
+        Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
-    //update all future enrolment projection records
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
-        function success(result) {
-            for (var i = 0; i < result.entities.length; i++) {
-                var recordId = result.entities[i].caps_enrolmentprojections_sdid;
+        //update all future enrolment projection records
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+            function success(result) {
+                for (var i = 0; i < result.entities.length; i++) {
+                    var recordId = result.entities[i].caps_enrolmentprojections_sdid;
 
-                //Update the record
-                promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                    //Update the record
+                    promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                }
+                Promise.all(promises).then(
+                    function (results) {
+                        //mark as locked
+                        formContext.data.refresh();
+                        formContext.getAttribute("caps_usefutureforutilization").setValue(true);
+                        formContext.data.entity.save();
+                        Xrm.Utility.closeProgressIndicator();
+                    }
+                    , function (error) {
+                        Xrm.Utility.closeProgressIndicator();
+                        Xrm.Navigation.openErrorDialog({ message: error.message });
+                    }
+                );
+
+            },
+            function (error) {
+                Xrm.Utility.closeProgressIndicator();
+                console.log(error.message);
+                // handle error conditions
             }
-            Promise.all(promises).then(
-                function (results) {
-                    //mark as locked
-                    formContext.data.refresh();
-                    formContext.getAttribute("caps_usefutureforutilization").setValue(true);
-                    formContext.data.entity.save();
-                    Xrm.Utility.closeProgressIndicator();             
-                }
-                , function (error) {
-                    Xrm.Utility.closeProgressIndicator();
-                    Xrm.Navigation.openErrorDialog({ message: error.message });
-                }
-            );
-
-        },
-        function (error) {
-            Xrm.Utility.closeProgressIndicator();
-            console.log(error.message);
-            // handle error conditions
-        }
-    );
+        );
         //
         //UseFutureForUtilization
+    }
 }
 
 /*Function to set all enrolment projections to draft and toggle Use Future for Utilization to update capacity reporting*/
 CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
     var formContext = primaryControl;
     //get facility Id
-    var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
+    if (formContext.data.entity.getId() !== '') {
+        var id = formContext.data.entity.getId().replace("{", "").replace("}", "");
 
-    var promises = [];
-    //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
+        var promises = [];
+        //update to statuscode == 200,870,001 (submitted) and statecode eq 1 (inactive)
 
-    var data =
+        var data =
         {
             "caps_markassubmitted": false
-    };
+        };
 
-    Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
+        Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
-    //update all future enrolment projection records
-    Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
-        function success(result) {
-            for (var i = 0; i < result.entities.length; i++) {
-                var recordId = result.entities[i].caps_enrolmentprojections_sdid;
+        //update all future enrolment projection records
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+            function success(result) {
+                for (var i = 0; i < result.entities.length; i++) {
+                    var recordId = result.entities[i].caps_enrolmentprojections_sdid;
 
-                //Update the record
-                promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                    //Update the record
+                    promises.push(Xrm.WebApi.updateRecord("caps_enrolmentprojections_sd", recordId, data));
+                }
+                Promise.all(promises).then(
+                    function (results) {
+                        //mark as locked
+                        formContext.data.refresh();
+                        formContext.getAttribute("caps_usefutureforutilization").setValue(false);
+                        formContext.data.entity.save();
+                        Xrm.Utility.closeProgressIndicator();
+                    }
+                    , function (error) {
+                        Xrm.Utility.closeProgressIndicator();
+                        Xrm.Navigation.openErrorDialog({ message: error.message });
+                    }
+                );
+
+            },
+            function (error) {
+                Xrm.Utility.closeProgressIndicator();
+                console.log(error.message);
+                // handle error conditions
             }
-            Promise.all(promises).then(
-                function (results) {
-                    //mark as locked
-                    formContext.data.refresh();
-                    formContext.getAttribute("caps_usefutureforutilization").setValue(false);
-                    formContext.data.entity.save();
-                    Xrm.Utility.closeProgressIndicator();
-                }
-                , function (error) {
-                    Xrm.Utility.closeProgressIndicator();
-                    Xrm.Navigation.openErrorDialog({ message: error.message });
-                }
-            );
-
-        },
-        function (error) {
-            Xrm.Utility.closeProgressIndicator();
-            console.log(error.message);
-            // handle error conditions
-        }
-    );
-    //
-    //UseFutureForUtilization
+        );
+        //
+        //UseFutureForUtilization
+    }
 }
 
 /*

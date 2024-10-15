@@ -83,8 +83,9 @@ namespace CustomWorkflowActivities
             EntityCollection ccEnrolmentProjectionRecords = service.RetrieveMultiple(childCareEnrolmentProjQuery);
             var enrolmentProjectionList = ccEnrolmentProjectionRecords.Entities.Select(r => r.ToEntity<caps_ChildCareEnrolmentProjection>()).ToList();
 
-
-            if (childCareFacilityRecord.caps_CurrentChildCareActualEnrolment != null)
+            tracingService.Trace("Line 86");
+            //if (childCareFacilityRecord.caps_CurrentChildCareActualEnrolment != null)
+            if(childCareFacilityRecord.Contains("caps_currentchildcareactualenrolment"))
             {
                 var ccAcctualEnrolmentColumns = new ColumnSet("caps_capacityunder36months", "caps_capacity30monthstoschoolage", 
                     "caps_capacitypreschool", "caps_capacitymultiage", "caps_capacityschoolage", "caps_capacitysasg");
@@ -96,36 +97,38 @@ namespace CustomWorkflowActivities
                 capacityMultiAge = ccActualEnrolmentRecord.caps_CapacityMultiAge;
                 capacitySchoolAge = ccActualEnrolmentRecord.caps_CapacitySchoolAge;
                 capacitySASG = ccActualEnrolmentRecord.caps_CapacitySASG;
-                //tracingService.Trace("Line: {0}", "49");
+                tracingService.Trace("Line: {0}", "99");
             }
             else
             {
                 //TODO: code to get latest child care projection for the current year
                 foreach (Entity projection in ccEnrolmentProjectionRecords.Entities)
                 {
+                    tracingService.Trace("Line 106");
                     var yearStatus = (OptionSetValue)((AliasedValue)projection["year.statuscode"]).Value;
                     if (yearStatus.Value == 1)
                     {
                         //Current Year projections
-                        capacityUnder36Months = projection.GetAttributeValue<int?>("caps_under36months").GetValueOrDefault(0);
-                        capacity30MonthsSchoolAge = projection.GetAttributeValue<int?>("caps_monthstoschoolage").GetValueOrDefault(0);
-                        capacityPreSchool = projection.GetAttributeValue<int?>("caps_preschool").GetValueOrDefault(0);
-                        capacityMultiAge = projection.GetAttributeValue<int?>("caps_multiage").GetValueOrDefault(0);
-                        capacitySchoolAge = projection.GetAttributeValue<int?>("caps_schoolage").GetValueOrDefault(0);
-                        capacitySASG = projection.GetAttributeValue<int?>("caps_schoolageonschoolgrounds").GetValueOrDefault(0);
+                       
+                        capacityUnder36Months = (!projection.Contains("caps_under36months")) ? 0 : projection.GetAttributeValue<decimal?>("caps_under36months").GetValueOrDefault(0);
+                        capacity30MonthsSchoolAge = (!projection.Contains("caps_monthstoschoolage")) ? 0 : projection.GetAttributeValue<decimal?>("caps_monthstoschoolage").GetValueOrDefault(0);
+                        capacityPreSchool = (!projection.Contains("caps_preschool")) ? 0 : projection.GetAttributeValue<decimal?>("caps_preschool").GetValueOrDefault(0);
+                        capacityMultiAge = (!projection.Contains("caps_multiage")) ? 0 : projection.GetAttributeValue<decimal?>("caps_multiage").GetValueOrDefault(0);
+                        capacitySchoolAge = (!projection.Contains("caps_schoolage")) ? 0 : projection.GetAttributeValue<decimal?>("caps_schoolage").GetValueOrDefault(0);
+                        capacitySASG = (!projection.Contains("caps_schoolageonschoolgrounds")) ? 0 : projection.GetAttributeValue<decimal?>("caps_schoolageonschoolgrounds").GetValueOrDefault(0);
                         break;
                     }
                 }
-
+                tracingService.Trace("Line 120");
                 //Set Current Year Projections
                 var childCareFacilityToUpdate = new caps_Childcare();
                 childCareFacilityToUpdate.Id = recordId;
-                childCareFacilityToUpdate.caps_Under36Months_CurrentEnrolment = (int)capacityUnder36Months;
-                childCareFacilityToUpdate.caps_30MonthstoSchoolAge_CurrentEnrolment = (int)capacity30MonthsSchoolAge;
-                childCareFacilityToUpdate.caps_Preschool_CurrentEnrolment = (int)capacityPreSchool;
-                childCareFacilityToUpdate.caps_MultiAge_CurrentEnrolment = (int)capacityMultiAge;
-                childCareFacilityToUpdate.caps_SchoolAge_CurrentEnrolment = (int)capacitySchoolAge;
-                childCareFacilityToUpdate.caps_SASG_CurrentEnrolment = (int)capacitySASG;
+                childCareFacilityToUpdate.caps_Under36Months_CurrentEnrolment = capacityUnder36Months;
+                childCareFacilityToUpdate.caps_30MonthstoSchoolAge_CurrentEnrolment = capacity30MonthsSchoolAge;
+                childCareFacilityToUpdate.caps_Preschool_CurrentEnrolment = capacityPreSchool;
+                childCareFacilityToUpdate.caps_MultiAge_CurrentEnrolment = capacityMultiAge;
+                childCareFacilityToUpdate.caps_SchoolAge_CurrentEnrolment = capacitySchoolAge;
+                childCareFacilityToUpdate.caps_SASG_CurrentEnrolment = capacitySASG;
 
                 service.Update(childCareFacilityToUpdate);
 

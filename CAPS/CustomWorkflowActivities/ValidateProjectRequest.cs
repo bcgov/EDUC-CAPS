@@ -498,6 +498,16 @@ namespace CustomWorkflowActivities
                 var indoorFloorPlan = projectRequest.caps_IndoorFloorPlans_Name;
                 var outdoorPlan = projectRequest.caps_OutdoorPlans_Name;
                 var projectBudget = projectRequest.caps_ProjectBudget_Name;
+                var netTotalUnder36Months = projectRequest.caps_NetTotalUnder36Months;
+                var netTotal30MonthsSchoolAge = projectRequest.caps_NetTotal30MonthstoSchoolAge;
+                var netTotalPreSchool = projectRequest.caps_NetTotalPreschool;
+                var netTotalMultiAge = projectRequest.caps_NetTotalMultiAge;
+                var netTotalSchoolAge = projectRequest.caps_NetTotalSchoolAge;
+                var netTotalSASG = projectRequest.caps_NetTotalSchoolAgeSchoolGrounds;
+                var doYouIntendSelfOperate = projectRequest.caps_Doyouintendtoselfoperate;
+                var ifNoHaveUIdentifiedOperator = projectRequest.caps_Ifnohaveyouidentifiedanoperator;
+                var securingPublicNotProfitOperator = projectRequest.caps_Securingpublicornotforprofitoperator;
+
                 if (!projectStartDate.HasValue)
                 {
                     isValid = false;
@@ -508,20 +518,47 @@ namespace CustomWorkflowActivities
                     isValid = false;
                     validationMessage.AppendLine("Project End Date needs to be filled in.");
                 }
-                if (indoorFloorPlan == null)
+                if(netTotalUnder36Months.HasValue || netTotal30MonthsSchoolAge.HasValue|| netTotalPreSchool.HasValue ||
+                    netTotalMultiAge.HasValue || netTotalSchoolAge.HasValue && indoorFloorPlan == null)
                 {
                     isValid = false;
                     validationMessage.AppendLine("Indoor Floor Plan needs to be filled in.");
                 }
-                if (outdoorPlan == null)
+                if (netTotalUnder36Months.HasValue || netTotal30MonthsSchoolAge.HasValue || netTotalPreSchool.HasValue ||
+                    netTotalMultiAge.HasValue || netTotalSchoolAge.HasValue && outdoorPlan == null)
                 {
                     isValid = false;
-                    validationMessage.AppendLine("Outdoor Plan needs to be filled in.");
+                    validationMessage.AppendLine("Site Plan needs to be filled in.");
                 }
-                if(projectBudget == null) 
+                                
+                if (projectBudget == null) 
                 { 
                     isValid = false;
                     validationMessage.AppendLine("Project Budget needs to be filled in.");
+                }
+
+                if(doYouIntendSelfOperate == false && ifNoHaveUIdentifiedOperator == false && securingPublicNotProfitOperator == false)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Please provide operator information");
+                }
+            }
+            #endregion
+            #region Check All CC Project Requests Except CC-AFG
+            if(submissionCategory.caps_Name.StartsWith("CC") && submissionCategory.caps_CategoryCode != "CC_AFG")
+            {
+                
+                if (projectRequest.caps_NetTotalFundableSpaces == 0 || projectRequest.caps_NetTotalFundableSpaces == null)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Total Fundable Spaces must be greater than 0.");
+                }
+                if(projectRequest.caps_Doyouintendtoselfoperate == false && 
+                    projectRequest.caps_Ifnohaveyouidentifiedanoperator == false && 
+                    projectRequest.caps_Securingpublicornotforprofitoperator == false)
+                {
+                    isValid = false;
+                    validationMessage.AppendLine("Please provide operator information.");
                 }
             }
             #endregion

@@ -723,6 +723,27 @@ CAPS.Project.IsMinistrySuperUser = function () {
     return showButton;
 }
 
+/**
+ * Run Flow for Calculating Score
+ */
+CAPS.Project.CalculatePreliminaryScore = function (primaryControl) {
+    var formContext = primaryControl;
+    var confirmStrings = { text: "Are you sure you want to calculate preliminary Score for this project request?" , title: "Calculate Preliminary Score" };
+    var confirmOptions = { height: 200, width: 450 };
+    Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+        function (success) {
+            if (success.confirmed) {
+                debugger;
+                formContext.getAttribute("caps_runcalculateprelimscoreflow").setValue(true);
+                formContext.data.save();
+            }
+
+            else {
+                console.log("Dialog closed using Cancel button.");
+            }
+
+        });
+}
 
 
 

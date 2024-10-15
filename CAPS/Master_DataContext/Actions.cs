@@ -5558,6 +5558,87 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_UpdateCCCapacityReporting")]
+	public partial class caps_UpdateCCCapacityReportingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_UpdateCCCapacityReportingRequest()
+		{
+			this.RequestName = "caps_UpdateCCCapacityReporting";
+			this.Target = default(Microsoft.Xrm.Sdk.EntityReference);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_UpdateCCCapacityReporting")]
+	public partial class caps_UpdateCCCapacityReportingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_UpdateCCCapacityReportingResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_BulkDeleteChildCareCapacityReporting")]
+	public partial class caps_BulkDeleteChildCareCapacityReportingRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public Microsoft.Xrm.Sdk.EntityReference Target
+		{
+			get
+			{
+				if (this.Parameters.Contains("Target"))
+				{
+					return ((Microsoft.Xrm.Sdk.EntityReference)(this.Parameters["Target"]));
+				}
+				else
+				{
+					return default(Microsoft.Xrm.Sdk.EntityReference);
+				}
+			}
+			set
+			{
+				this.Parameters["Target"] = value;
+			}
+		}
+		
+		public caps_BulkDeleteChildCareCapacityReportingRequest()
+		{
+			this.RequestName = "caps_BulkDeleteChildCareCapacityReporting";
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("caps_BulkDeleteChildCareCapacityReporting")]
+	public partial class caps_BulkDeleteChildCareCapacityReportingResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public caps_BulkDeleteChildCareCapacityReportingResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/caps/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("caps_ChildCareProgressReportSubmitReport")]
 	public partial class caps_ChildCareProgressReportSubmitReportRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -17644,6 +17725,86 @@ namespace CAPS.DataContext
 	}
 	
 	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RemoveCertificateCredential")]
+	public partial class RemoveCertificateCredentialRequest : Microsoft.Xrm.Sdk.OrganizationRequest
+	{
+		
+		public System.Guid certificateCredentialId
+		{
+			get
+			{
+				if (this.Parameters.Contains("certificateCredentialId"))
+				{
+					return ((System.Guid)(this.Parameters["certificateCredentialId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["certificateCredentialId"] = value;
+			}
+		}
+		
+		public string entityLogicalName
+		{
+			get
+			{
+				if (this.Parameters.Contains("entityLogicalName"))
+				{
+					return ((string)(this.Parameters["entityLogicalName"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Parameters["entityLogicalName"] = value;
+			}
+		}
+		
+		public System.Guid entityId
+		{
+			get
+			{
+				if (this.Parameters.Contains("entityId"))
+				{
+					return ((System.Guid)(this.Parameters["entityId"]));
+				}
+				else
+				{
+					return default(System.Guid);
+				}
+			}
+			set
+			{
+				this.Parameters["entityId"] = value;
+			}
+		}
+		
+		public RemoveCertificateCredentialRequest()
+		{
+			this.RequestName = "RemoveCertificateCredential";
+			this.entityLogicalName = default(string);
+			this.entityId = default(System.Guid);
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
+	[Microsoft.Xrm.Sdk.Client.ResponseProxyAttribute("RemoveCertificateCredential")]
+	public partial class RemoveCertificateCredentialResponse : Microsoft.Xrm.Sdk.OrganizationResponse
+	{
+		
+		public RemoveCertificateCredentialResponse()
+		{
+		}
+	}
+	
+	[System.Runtime.Serialization.DataContractAttribute(Namespace="http://schemas.microsoft.com/xrm/2011/new/")]
 	[Microsoft.Xrm.Sdk.Client.RequestProxyAttribute("RetrieveFinanceAndOperationsIntegrationDetails")]
 	public partial class RetrieveFinanceAndOperationsIntegrationDetailsRequest : Microsoft.Xrm.Sdk.OrganizationRequest
 	{
@@ -17844,25 +18005,6 @@ namespace CAPS.DataContext
 			set
 			{
 				this.Parameters["PagingCookie"] = value;
-			}
-		}
-		
-		public int PageSize
-		{
-			get
-			{
-				if (this.Parameters.Contains("PageSize"))
-				{
-					return ((int)(this.Parameters["PageSize"]));
-				}
-				else
-				{
-					return default(int);
-				}
-			}
-			set
-			{
-				this.Parameters["PageSize"] = value;
 			}
 		}
 		
