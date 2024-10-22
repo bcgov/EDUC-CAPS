@@ -849,7 +849,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1563,13 +1562,13 @@ ReportItems!milestone_name.Value = "CPRL",
                                     <FontFamily>Arial</FontFamily>
                                     <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "Black", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "White",  
-            "White"), 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Black",  
-            "Black")))</Color>
+		IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
+			IIf(Fields!caps_completeValue.Value = "1", 
+				"White",  
+				"White"), 
+			IIf(Fields!caps_completeValue.Value = "1", 
+				"Black",  
+				"Black")))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1584,13 +1583,13 @@ ReportItems!milestone_name.Value = "CPRL",
                             </Border>
                             <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
     "White", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Green",  
-            "Red"),   
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "#FFCC99",  
-            "White")))</BackgroundColor>
+			IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
+				IIf(Fields!caps_completeValue.Value = "1", 
+					"Green",  
+					"Red"),   
+				IIf(Fields!caps_completeValue.Value = "1", 
+					"#FFCC99",  
+					"White")))</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1612,15 +1611,17 @@ ReportItems!milestone_name.Value = "CPRL",
                                   <Value>=iif(isnothing(Fields!caps_expectedactualdate.Value), "", Format(Cdate(Fields!caps_expectedactualdate.Value), "MMM-yy"))</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
-                                    <Color>=IIf(IsNothing(Fields!caps_originaldate.Value), 
+                                    <Color>=IIf(IsNothing(Fields!caps_expectedactualdateValue.Value) AND Fields!caps_completeValue.Value &lt;&gt; "1", 
     "Black", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "White",  
-            "White"), 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Black",  
-            "Black")))</Color>
+    IIf(Fields!caps_completeValue.Value = "1", 
+        "White", 
+        IIf(Fields!caps_expectedactualdateValue.Value &lt; Globals!ExecutionTime, 
+            IIf(Fields!caps_completeValue.Value = "1", 
+                "White", 
+                "White"), 
+            IIf(Fields!caps_completeValue.Value = "1", 
+                "Black", 
+                "Black"))))</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1633,15 +1634,15 @@ ReportItems!milestone_name.Value = "CPRL",
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>=IIf(IsNothing(Fields!caps_originaldate.Value), 
+                            <BackgroundColor>=IIf(IsNothing(Fields!caps_expectedactualdateValue.Value), 
     "White", 
-    IIf(Fields!caps_originaldate.Value &lt; Globals!ExecutionTime, 
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "Green",  
-            "Red"),   
-        IIf(Fields!caps_completeValue.Value = "1", 
-            "#FFCC99",  
-            "White")))</BackgroundColor>
+		IIf(Fields!caps_expectedactualdateValue.Value &lt; Globals!ExecutionTime, 
+			IIf(Fields!caps_completeValue.Value = "1", 
+				"Green",  
+				"Red"),   
+			IIf(Fields!caps_completeValue.Value = "1", 
+				"#FFCC99",  
+				"White")))</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1649,6 +1650,7 @@ ReportItems!milestone_name.Value = "CPRL",
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2286,7 +2288,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 <TextRuns>
                   <TextRun>
                     <Label>NoOriginalDate</Label>
-                    <Value>="• No Colour: No Original Date, or Original Date is in the future and Incomplete."</Value>
+                    <Value>="• No Colour: No Original Date/Actual Date, or Original Date/Actual Date is in the future and Incomplete."</Value>
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>Arial</FontFamily>
@@ -2320,7 +2322,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 <TextRuns>
                   <TextRun>
                     <Label>PastCompleteOriginalDate</Label>
-                    <Value>="• Green: Original Date is in the past, and status is Complete."</Value>
+                    <Value>="• Green: Original Date/Actual Date is in the past, and status is Complete."</Value>
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>Arial</FontFamily>
@@ -2355,7 +2357,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 <TextRuns>
                   <TextRun>
                     <Label>PastIncompleteOriginalDate</Label>
-                    <Value>="• Red: Original Date is in the past, but status is Incomplete."</Value>
+                    <Value>="• Red: Original Date/Actual Date is in the past, but status is Incomplete."</Value>
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>Arial</FontFamily>
@@ -2390,7 +2392,7 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 <TextRuns>
                   <TextRun>
                     <Label>FutureCompleteOriginalDate</Label>
-                    <Value>="• Light Orange: Original Date is in the future, and status is Complete."</Value>
+                    <Value>="• Light Orange: Original Date/Actual Date is in the future, and status is Complete."</Value>
                     <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>Arial</FontFamily>
@@ -2545,7 +2547,6 @@ lookup(Fields!caps_projecttracker.Value, Fields!caps_projecttracker.Value, Field
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0cm</Top>
               <Left>27.24704cm</Left>
               <Height>0.6cm</Height>
               <Width>4.31208cm</Width>
