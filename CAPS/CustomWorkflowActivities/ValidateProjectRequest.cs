@@ -518,14 +518,20 @@ namespace CustomWorkflowActivities
                     isValid = false;
                     validationMessage.AppendLine("Project End Date needs to be filled in.");
                 }
-                if(netTotalUnder36Months.HasValue || netTotal30MonthsSchoolAge.HasValue|| netTotalPreSchool.HasValue ||
-                    netTotalMultiAge.HasValue || netTotalSchoolAge.HasValue && indoorFloorPlan == null)
+                if((netTotalUnder36Months.HasValue && netTotalUnder36Months != 0) || 
+                    (netTotal30MonthsSchoolAge.HasValue && netTotal30MonthsSchoolAge != 0) || 
+                    (netTotalPreSchool.HasValue && netTotalPreSchool != 0) ||
+                    (netTotalMultiAge.HasValue && netTotalMultiAge != 0) || 
+                    (netTotalSchoolAge.HasValue && netTotalSchoolAge != 0) && indoorFloorPlan == null)
                 {
                     isValid = false;
                     validationMessage.AppendLine("Indoor Floor Plan needs to be filled in.");
                 }
-                if (netTotalUnder36Months.HasValue || netTotal30MonthsSchoolAge.HasValue || netTotalPreSchool.HasValue ||
-                    netTotalMultiAge.HasValue || netTotalSchoolAge.HasValue && outdoorPlan == null)
+                if ((netTotalUnder36Months.HasValue && netTotalUnder36Months != 0) ||
+                    (netTotal30MonthsSchoolAge.HasValue && netTotal30MonthsSchoolAge != 0) ||
+                    (netTotalPreSchool.HasValue && netTotalPreSchool != 0) ||
+                    (netTotalMultiAge.HasValue && netTotalMultiAge != 0) ||
+                    (netTotalSchoolAge.HasValue && netTotalSchoolAge != 0) && outdoorPlan == null)
                 {
                     isValid = false;
                     validationMessage.AppendLine("Site Plan needs to be filled in.");
@@ -537,11 +543,11 @@ namespace CustomWorkflowActivities
                     validationMessage.AppendLine("Project Budget needs to be filled in.");
                 }
 
-                if(doYouIntendSelfOperate == false && ifNoHaveUIdentifiedOperator == false && securingPublicNotProfitOperator == false)
-                {
-                    isValid = false;
-                    validationMessage.AppendLine("Please provide operator information");
-                }
+                //if(doYouIntendSelfOperate == false && ifNoHaveUIdentifiedOperator == false && securingPublicNotProfitOperator == false)
+                //{
+                //    isValid = false;
+                //    validationMessage.AppendLine("Please provide operator information");
+                //}
             }
             #endregion
             #region Check All CC Project Requests Except CC-AFG

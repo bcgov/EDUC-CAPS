@@ -38,7 +38,7 @@ CAPS.ChildCareFacilityRibbon.ShowLockEnrolmentProjections = function (primaryCon
             return CAPS.ChildCareFacilityRibbon.SHOW_LOCK_BUTTON;
         }
 
-        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq " + id + " and statuscode eq 1").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=caps_ChildCareFacility/caps_childcareid eq " + id + " and statuscode eq 1").then(
             function success(result) {
 
                 CAPS.ChildCareFacilityRibbon.SHOW_LOCK_ASYNC_COMPLETED = true;
@@ -90,7 +90,7 @@ CAPS.ChildCareFacilityRibbon.ShowUnlockEnrolmentProjections = function (primaryC
             return CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_BUTTON;
         }
 
-        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq guid" + id + " and statuscode eq 2").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=caps_ChildCareFacility/caps_childcareid eq " + id + " and statuscode eq 2").then(
             function success(result) {
 
                 CAPS.ChildCareFacilityRibbon.SHOW_UNLOCK_ASYNC_COMPLETED = true;
@@ -208,7 +208,7 @@ CAPS.ChildCareFacilityRibbon.UpdateCapacityReporting = function (primaryControl)
         Xrm.Utility.showProgressIndicator("Updating Child Care Enrolment Projections, please wait...");
 
         //update all future enrolment projection records
-        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq" + id + " and statuscode eq 1").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=caps_ChildCareFacility/caps_childcareid eq " + id + " and statuscode eq 1").then(
             function success(result) {
 
                 for (var i = 0; i < result.entities.length; i++) {
@@ -264,7 +264,7 @@ CAPS.ChildCareFacilityRibbon.ReverseCapacityReporting = function (primaryControl
         Xrm.Utility.showProgressIndicator("Updating Child Care Enrolment Projections, please wait...");
 
         //update all future enrolment projection records
-        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=_caps_childcarefacility_value eq" + id + " and statuscode eq 2").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_childcareenrolmentprojection", "?$select=caps_childcareenrolmentprojectionid&$filter=caps_ChildCareFacility/caps_childcareid eq " + id + " and statuscode eq 2").then(
             function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     var recordId = result.entities[i].caps_childcareenrolmentprojectionid;

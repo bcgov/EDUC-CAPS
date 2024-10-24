@@ -19,6 +19,7 @@ a:hover {text-decoration: underline;}
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%;
+    margin-left: 100px;
 }
 
 .moeCAPS\.AFGProjectsEditGridV2 .DataSetControl_grid-FullHeader {
@@ -89,6 +90,9 @@ a:hover {text-decoration: underline;}
     padding:5px;
     text-align: left;
     white-space: nowrap;
+    
+
+    
 }
 
 .moeCAPS\.AFGProjectsEditGridV2 .DataSetControl_grid-headerColDel{
@@ -100,6 +104,11 @@ a:hover {text-decoration: underline;}
     padding:5px;
     text-align: left;
     white-space: nowrap;
+    margin: 0;
+    padding-left: 0;
+    position: absolute;
+    left: 0;
+    margin-left: 40px;
 }
 
 .moeCAPS\.AFGProjectsEditGridV2 .DataSetControl_grid-dataScroll {
@@ -143,6 +152,7 @@ a:hover {text-decoration: underline;}
     padding: 5px;
     white-space: nowrap;
     z-index:1;
+    margin-left: 0px;
 }
 
 .moeCAPS\.AFGProjectsEditGridV2 .DataSetControl_grid-dataCol input {
@@ -168,6 +178,10 @@ a:hover {text-decoration: underline;}
     white-space: nowrap;
     z-index:1;
     cursor: grab;
+    position: absolute;
+    left: 0;
+    justify-self : start;
+    margin-left: 20px;
 }
 
 

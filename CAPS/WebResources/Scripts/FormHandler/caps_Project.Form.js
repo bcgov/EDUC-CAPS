@@ -200,6 +200,8 @@ CAPS.Project.onLoad = function (executionContext) {
         CAPS.Project.PopulateAddress(executionContext);
         formContext.getAttribute("caps_facility").addOnChange(CAPS.Project.PopulateAddress);
         formContext.getAttribute("caps_existingfacility").addOnChange(CAPS.Project.PopulateAddress);
+        formContext.getAttribute("caps_existingchildcarefacility").addOnChange(CAPS.Project.PopulateAddress);
+        formContext.getAttribute("caps_childcare").addOnChange(CAPS.Project.PopulateAddress);
     }
 
     formContext.getAttribute("caps_areyourelocatingexistingchildcarespaces").addOnChange(CAPS.Project.HideTotalChildCareSpace);
@@ -1604,36 +1606,109 @@ CAPS.Project.ToggleExistingChildCareFacility = function (executionContext) {
 
 }
 
-CAPS.Project.PopulateAddress = function (executionContext) {
+CAPS.Project.PopulateAddress = async function (executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
-    var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
-    if (schoolFacility !== undefined) {
-        
-        var options = "?$select=caps_streetaddress,caps_postalcode";
-        Xrm.WebApi.retrieveRecord("caps_facility", CAPS.Project.RemoveCurlyBraces(schoolFacility.id), options).then(
-            function success(result) {
-                debugger;
-                var streetAddress = result.caps_streetaddress;
-                var postalCode = result.caps_postalcode;
-                formContext.getAttribute("caps_streetaddress").setValue(streetAddress);
-                formContext.getAttribute("caps_postcode").setValue(postalCode);
-                formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
-                formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
-               
-            },
-            function (error) {
-                console.log(error.message);
-            }
-        );
+    var expansionOfExistingCCFacility = formContext.getAttribute("caps_existingchildcarefacility").getValue();
+    var submissionCategoryCode = formContext.getAttribute("caps_submissioncategorycode").getValue();
+
+    if (expansionOfExistingCCFacility === true) {
+        formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
+        formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
+        formContext.getAttribute("caps_postcode").setRequiredLevel("none");
+        var childCareFacility = CAPS.Project.GetLookup("caps_childcare", formContext);
+
+        if (childCareFacility === undefined) {
+            formContext.getAttribute("caps_streetaddress").setValue(null);
+            formContext.getAttribute("caps_postcode").setValue(null);
+            
+        }
+        else if (childCareFacility !== undefined) {
+            CAPS.Project.SetAddressFromCCFacility(formContext, childCareFacility);
+        }
     }
-    else {
+    else if (expansionOfExistingCCFacility === false) {
+
         formContext.getAttribute("caps_streetaddress").setValue(null);
         formContext.getAttribute("caps_postcode").setValue(null);
-        formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(false));
-        formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(false));
+
+        if (submissionCategoryCode === "Major_CC_New_Spaces" || submissionCategoryCode === "CC_MAJOR_NEW_SPACES_INTEGRATED") {
+            var existingSchoolFacilitySite = formContext.getAttribute("caps_existingfacility").getValue();
+
+            if (existingSchoolFacilitySite === false) {
+                formContext.getAttribute("caps_streetaddress").setValue(null);
+                formContext.getAttribute("caps_postcode").setValue(null);
+                formContext.getAttribute("caps_postcode").setRequiredLevel("required");
+                formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(false));
+                formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(false));
+            }
+            else if (existingSchoolFacilitySite === true) {
+                formContext.getAttribute("caps_postcode").setRequiredLevel("none");
+                var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
+                if (schoolFacility !== undefined) {
+                    CAPS.Project.SetAddressFromSchoolFacility(formContext, schoolFacility);
+                }
+            }
+        }
+        else if (submissionCategoryCode === "CC_CONVERSION" || submissionCategoryCode === "CC_CONVERSION_MINOR") {
+            var schoolFacility = CAPS.Project.GetLookup("caps_facility", formContext);
+            if (schoolFacility !== undefined) {
+                CAPS.Project.SetAddressFromSchoolFacility(formContext, schoolFacility);
+            }
+        }
+        else if (submissionCategoryCode === "CC_UPGRADE_MINOR" || submissionCategoryCode === "CC_UPGRADE") {
+            var childCareFacility = CAPS.Project.GetLookup("caps_childcare", formContext);
+
+            if (childCareFacility === undefined) {
+                formContext.getAttribute("caps_streetaddress").setValue(null);
+                formContext.getAttribute("caps_postcode").setValue(null);
+            }
+            else if (childCareFacility !== undefined) {
+                CAPS.Project.SetAddressFromCCFacility(formContext, childCareFacility);
+            }
+        }
+
     }
-    
+}
+
+CAPS.Project.SetAddressFromCCFacility = async function (formContext, childCareFacility) {
+    try {
+        var ccFacilityOptions = "?$select=_caps_facility_value";
+        const childCareFacilityResult = await Xrm.WebApi.retrieveRecord("caps_childcare", CAPS.Project.RemoveCurlyBraces(childCareFacility.id), ccFacilityOptions);
+        var schoolFacilityBasedOnCC = childCareFacilityResult._caps_facility_value;
+
+        var schoolFacilityOoptions = "?$select=caps_streetaddress,caps_postalcode";
+        const schoolFacilityResult = await Xrm.WebApi.retrieveRecord("caps_facility", schoolFacilityBasedOnCC, schoolFacilityOoptions);
+        var streetAddress = schoolFacilityResult.caps_streetaddress;
+        var postalCode = schoolFacilityResult.caps_postalcode;
+        formContext.getAttribute("caps_streetaddress").setValue(streetAddress);
+        formContext.getAttribute("caps_postcode").setValue(postalCode);
+        formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
+        formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
+
+    } catch (error) {
+        console.log("Error during retrieve:", error);
+    }
+}
+
+CAPS.Project.SetAddressFromSchoolFacility = function (formContext, schoolFacility) {
+    var options = "?$select=caps_streetaddress,caps_postalcode";
+    return Xrm.WebApi.retrieveRecord("caps_facility", CAPS.Project.RemoveCurlyBraces(schoolFacility.id), options).then(
+        function success(result) {
+            debugger;
+            var streetAddress = result.caps_streetaddress;
+            var postalCode = result.caps_postalcode;
+            formContext.getAttribute("caps_streetaddress").setValue(streetAddress);
+            formContext.getAttribute("caps_postcode").setValue(postalCode);
+            formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
+            formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
+
+
+        },
+        function (error) {
+            console.log(error.message);
+        }
+    );
 }
 
 CAPS.Project.WipeSchoolFacility = function (executionContext) {

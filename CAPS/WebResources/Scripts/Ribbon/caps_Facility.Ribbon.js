@@ -37,7 +37,7 @@ CAPS.Facility.ShowLockEnrolmentProjections = function (primaryControl) {
             return CAPS.Facility.SHOW_LOCK_BUTTON;
         }
 
-        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 1").then(
             function success(result) {
                 debugger;
                 CAPS.Facility.SHOW_LOCK_ASYNC_COMPLETED = true;
@@ -126,7 +126,7 @@ CAPS.Facility.ShowUnlockEnrolmentProjections = function (primaryControl) {
             return CAPS.Facility.SHOW_UNLOCK_BUTTON;
         }
 
-        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 200870001").then(
             function success(result) {
 
                 CAPS.Facility.SHOW_UNLOCK_ASYNC_COMPLETED = true;
@@ -202,7 +202,7 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
         Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
         //update all future enrolment projection records
-        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 1").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_Facility/caps_facilityid eq " + id + " and statuscode eq 1").then(
             function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     var recordId = result.entities[i].caps_enrolmentprojections_sdid;
@@ -254,7 +254,7 @@ CAPS.Facility.ReverseCapacityReporting = function (primaryControl) {
         Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
         //update all future enrolment projection records
-        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_facility_value eq " + id + " and statuscode eq 200870001").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 200870001").then(
             function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     var recordId = result.entities[i].caps_enrolmentprojections_sdid;
