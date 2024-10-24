@@ -162,10 +162,10 @@ CAPS.Submission.checkSupportingDocuments = function (executionContext) {
                     var supportingDocumentName = result.caps_name;
                     var capitalPlanResponseLetter = result.caps_capitalplanresponseletter;
                     var capitalBylaw = result.caps_capitalbylaw;
-                    var childCareDeclaration = result.caps_childcaredeclaration;
+                    //var childCareDeclaration = result.caps_childcaredeclaration;
                     //var capitalPlanSupportingDocumentName = result.caps_name;
-                    if (capitalPlanResponseLetter === null || capitalBylaw === null || childCareDeclaration === null) {
-                        formContext.ui.setFormNotification("At least one of the supporting documents is missing. Please click the supporting documents record \"" + supportingDocumentName + "\" to upload necessary files in the Submission tab below.", "WARNING", "MissingSupportingDocumentsBanner");
+                    if (capitalPlanResponseLetter === null || capitalBylaw === null) {
+                        formContext.ui.setFormNotification("Either CPRL or Bylaw supporting document is missing. Please click the supporting documents record \"" + supportingDocumentName + "\" to upload necessary files in the Submission tab below.", "WARNING", "MissingSupportingDocumentsBanner");
                     }
                     else {
                         formContext.ui.clearFormNotification("MissingSupportingDocumentsBanner");
