@@ -1311,11 +1311,16 @@ CAPS.Project.ToggleBUSReplacement = function (executionContext) {
                     //Show Bus to be replaced and make mandatory
                     formContext.getControl("caps_bus").setVisible(true);
                     formContext.getAttribute("caps_bus").setRequiredLevel("required");
+                    if (executionContext.getFormContext() != FORM_STATE.CREATE) {
+                        formContext.getControl("caps_currentkilometers").setVisible(true);
+                    }
+                    
                 }
                 else {
                     //hide Bus to be replaced and make optional and clear
                     formContext.getControl("caps_bus").setVisible(false);
                     formContext.getAttribute("caps_bus").setRequiredLevel("none");
+                    formContext.getControl("caps_currentkilometers").setVisible(false);
                     if (formContext.getAttribute("caps_bus").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
                         formContext.getAttribute("caps_bus").setValue(null);
                     }

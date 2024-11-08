@@ -604,7 +604,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
                 if (categoryCode === 'CC_CONVERSION_MINOR') {
                     
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
-                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(false);
+                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(true);
                   
                 }
                 if (categoryCode === 'CC_UPGRADE') {
@@ -618,7 +618,7 @@ CAPS.ProjectTracker.showHideCategoryRelevantSections = function (formContext) {
                     formContext.getAttribute("caps_proposedchildcarefacility").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_childcareconstructiontype").controls.forEach(control => control.setVisible(false));
                     formContext.getAttribute("caps_healthauthority").controls.forEach(control => control.setVisible(false));
-                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(false);
+                    formContext.ui.tabs.get("tab_child_care").sections.get("tab_10_section_1").setVisible(true);
                 }
               
 
