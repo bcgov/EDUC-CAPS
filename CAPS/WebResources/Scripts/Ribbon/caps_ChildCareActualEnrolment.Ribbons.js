@@ -245,4 +245,5 @@ CAPS.ChildCareActualEnrolment.UnsubmitReport = function (primaryControl) {
             );
         }
     });
+
 };

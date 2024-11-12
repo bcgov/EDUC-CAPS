@@ -1313,6 +1313,7 @@ CAPS.Project.ToggleBUSReplacement = function (executionContext) {
                     formContext.getAttribute("caps_bus").setRequiredLevel("required");
                     if (executionContext.getFormContext() != FORM_STATE.CREATE) {
                         formContext.getControl("caps_currentkilometers").setVisible(true);
+                        formContext.getAttribute("caps_currentkilometers").setRequiredLevel("required");
                     }
                     
                 }
@@ -1321,6 +1322,8 @@ CAPS.Project.ToggleBUSReplacement = function (executionContext) {
                     formContext.getControl("caps_bus").setVisible(false);
                     formContext.getAttribute("caps_bus").setRequiredLevel("none");
                     formContext.getControl("caps_currentkilometers").setVisible(false);
+                    formContext.getAttribute("caps_currentkilometers").setRequiredLevel("none");
+                    formContext.getAttribute("caps_currentkilometers").setValue(null);
                     if (formContext.getAttribute("caps_bus").getValue() != null && executionContext.getFormContext() != FORM_STATE.READ_ONLY) {
                         formContext.getAttribute("caps_bus").setValue(null);
                     }
@@ -2065,10 +2068,14 @@ CAPS.Project.ShowHideOnCCPRFSFields = function (executionContext) {
             formContext.getAttribute("caps_operatorname").setValue(null);
             formContext.getControl("caps_operatorleaseloi").setVisible(false);
             formContext.getAttribute("caps_operatorleaseloi").setValue(null);
+            formContext.getAttribute("caps_operatorname").setRequiredLevel("none");
+            formContext.getAttribute("caps_operatorleaseloi").setRequiredLevel("none");
         }
         else {
             formContext.getControl("caps_operatorname").setVisible(true);
             formContext.getControl("caps_operatorleaseloi").setVisible(true);
+            formContext.getAttribute("caps_operatorname").setRequiredLevel("required");
+            formContext.getAttribute("caps_operatorleaseloi").setRequiredLevel("required");
         }
        
     }
