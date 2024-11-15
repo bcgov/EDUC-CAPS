@@ -1681,19 +1681,24 @@ CAPS.Project.PopulateAddress = async function (executionContext) {
 
 CAPS.Project.SetAddressFromCCFacility = async function (formContext, childCareFacility) {
     try {
-        var ccFacilityOptions = "?$select=_caps_facility_value";
-        const childCareFacilityResult = await Xrm.WebApi.retrieveRecord("caps_childcare", CAPS.Project.RemoveCurlyBraces(childCareFacility.id), ccFacilityOptions);
-        var schoolFacilityBasedOnCC = childCareFacilityResult._caps_facility_value;
+        var ccFacilityOptions = "?$select=caps_streetaddress,caps_postalcode";
+        Xrm.WebApi.retrieveRecord("caps_childcare", CAPS.Project.RemoveCurlyBraces(childCareFacility.id), ccFacilityOptions).then(
+            function success(result) {
+                debugger;
+                var streetAddress = result.caps_streetaddress;
+                var postalCode = result.caps_postalcode;
+                formContext.getAttribute("caps_streetaddress").setValue(streetAddress);
+                formContext.getAttribute("caps_postcode").setValue(postalCode);
+                formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
+                formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
 
-        var schoolFacilityOoptions = "?$select=caps_streetaddress,caps_postalcode";
-        const schoolFacilityResult = await Xrm.WebApi.retrieveRecord("caps_facility", schoolFacilityBasedOnCC, schoolFacilityOoptions);
-        var streetAddress = schoolFacilityResult.caps_streetaddress;
-        var postalCode = schoolFacilityResult.caps_postalcode;
-        formContext.getAttribute("caps_streetaddress").setValue(streetAddress);
-        formContext.getAttribute("caps_postcode").setValue(postalCode);
-        formContext.getAttribute("caps_streetaddress").controls.forEach(control => control.setDisabled(true));
-        formContext.getAttribute("caps_postcode").controls.forEach(control => control.setDisabled(true));
 
+            },
+            function (error) {
+                console.log(error.message);
+            }
+        );
+      
     } catch (error) {
         console.log("Error during retrieve:", error);
     }
