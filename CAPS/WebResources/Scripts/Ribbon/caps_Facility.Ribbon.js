@@ -202,7 +202,7 @@ CAPS.Facility.UpdateCapacityReporting = function (primaryControl) {
         Xrm.Utility.showProgressIndicator("Updating Enrolment Projections, please wait...");
 
         //update all future enrolment projection records
-        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=_caps_Facility/caps_facilityid eq " + id + " and statuscode eq 1").then(
+        Xrm.WebApi.retrieveMultipleRecords("caps_enrolmentprojections_sd", "?$select=caps_enrolmentprojections_sdid&$filter=caps_Facility/caps_facilityid eq " + id + " and statuscode eq 1").then(
             function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     var recordId = result.entities[i].caps_enrolmentprojections_sdid;
